@@ -448,8 +448,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
         }
       } while (ch != -1); // while not eof
     } catch (IOException ex) {
-      logger.warning("Exception occured while checking for permission: "
-                     + ex.toString());
+      logger.warning("Exception occured while checking for permission", ex);
     }
 
     return crawl_ok;
