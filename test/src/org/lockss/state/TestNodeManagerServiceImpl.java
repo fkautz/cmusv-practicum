@@ -100,11 +100,11 @@ public class TestNodeManagerServiceImpl extends LockssTestCase {
     nms.addNodeManager(mau);
     NodeManagerImpl node = (NodeManagerImpl)nms.getNodeManager(mau);
     // if the NodeManagerImpl has started, the thread is non-null
-    assertNotNull(node.treeWalkThread);
+    assertNotNull(node.treeWalkHandler);
 
     nms.stopService();
     // once stopped, the thread should be null
-    assertNull(node.treeWalkThread);
+    assertNull(node.treeWalkHandler);
   }
 
   public static void main(String[] argv) {

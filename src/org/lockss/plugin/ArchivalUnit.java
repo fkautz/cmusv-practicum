@@ -148,11 +148,18 @@ public interface ArchivalUnit {
   /**
    * Query the {@link AuState} object to determine if this is the proper time to
    * do a new content crawl.
-   *
    * @param aus {@link AuState} object for this archival unit
    * @return true if we should do a new content crawl
    */
   public boolean shouldCrawlForNewContent(AuState aus);
+
+  /**
+   * Query the {@link AuState} object to determine if this is the proper time to
+   * do a top level poll.
+   * @param aus {@link AuState} object for this archival unit
+   * @return true if we should do a top level poll
+   */
+  public boolean shouldCallTopLevelPoll(AuState aus);
 
   public class ConfigurationException extends Exception {
     private String msg;

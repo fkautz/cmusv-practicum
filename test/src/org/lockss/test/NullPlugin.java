@@ -330,6 +330,10 @@ public class NullPlugin {
       return false;
     }
 
+    public boolean shouldCallTopLevelPoll(AuState aus) {
+      return false;
+    }
+
   }
 
   /**

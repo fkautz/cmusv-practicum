@@ -113,7 +113,7 @@ public interface NodeManager extends LockssManager {
    * parameter settings in the Configuration.
    * @return estimated time in ms
    */
-  public long getEstimatedTreeWalkDuration();
+ // public long getEstimatedTreeWalkDuration();
 
 
   /**

@@ -47,13 +47,13 @@ public class SystemMetrics {
    * should run.
    */
   public static final String PARAM_HASH_TEST_DURATION =
-      Configuration.PREFIX + "hashtest.duration";
+      Configuration.PREFIX + "metrics.hash.duration";
   /**
    * Configuration parameter name for the number of bytes per step in the hash
    * test.
    */
   public static final String PARAM_HASH_TEST_BYTE_STEP =
-      Configuration.PREFIX + "hashtest.bytestep";
+      Configuration.PREFIX + "metrics.hash.stepsize";
   static final int DEFAULT_HASH_DURATION = 1000;
   static final int DEFAULT_HASH_STEP = 1024;
 

@@ -82,7 +82,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     nodeManager.historyRepo = new HistoryRepositoryImpl(tempDirPath);
     nodeManager.startService();
     // don't need the thread
-    nodeManager.treeWalkThread.end();
+    nodeManager.treeWalkHandler.end();
 
     theDaemon.getHashService().startService();
 

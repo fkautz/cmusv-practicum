@@ -130,6 +130,45 @@ public class TestNodeStateMap extends LockssTestCase {
     assertEquals(1, map.getCacheMisses());
   }
 
+  public void testCallbackRefresh() throws Exception {
+    NodeStateMap.Callback callback = map.theCallback;
+
+    CachedUrlSet mcus = new MockCachedUrlSet("http://www.example.com");
+    NodeState node = new NodeStateImpl(mcus, null, null, repo);
+    map.put("http://www.example.com", node);
+
+    mcus = new MockCachedUrlSet("http://www.example.com/test");
+    NodeState node2 = new NodeStateImpl(mcus, null, null, repo);
+    map.put("http://www.example.com/test", node2);
+
+    callback.refreshInLRUMap("http://www.example.com", (NodeStateImpl)node);
+
+    // put in n-1 new items
+    for (int ii=0; ii<map.getMaximumSize()-1; ii++) {
+      map.put("http://www.example.com/test"+ii,
+              new NodeStateImpl(mcus, null, null, repo));
+    }
+    map.refMap.clear();
+    // this should be knocked out
+    assertNull(map.get("http://www.example.com/test"));
+    // this should not be, since it was refreshed
+    assertNotNull(map.get("http://www.example.com"));
+
+  }
+
+  public void testCallbackRemoval() throws Exception {
+    NodeStateMap.Callback callback = map.theCallback;
+    assertEquals(0, map.refMap.size());
+
+    map.refMap.put("test", "nothing");
+    assertEquals(1, map.refMap.size());
+    assertEquals("nothing", map.refMap.get("test"));
+
+    callback.removeReference("test");
+    assertEquals(0, map.refMap.size());
+    assertNull(map.refMap.get("test"));
+  }
+
   public static void main(String[] argv) {
     String[] testCaseList = { TestNodeStateMap.class.getName()};
     junit.swingui.TestRunner.main(testCaseList);
