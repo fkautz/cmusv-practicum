@@ -50,7 +50,6 @@ import org.lockss.plugin.base.*;
 
 public class HighWirePlugin extends BasePlugin {
   public static final String LOG_NAME = "HighWirePlugin";
-  public Map archivalUnits = null;
 
   // public only so test methods can use them
   public static final String AUPARAM_BASE_URL = "base_url";
@@ -58,7 +57,6 @@ public class HighWirePlugin extends BasePlugin {
 
   public void initPlugin(LockssDaemon daemon) {
     super.initPlugin(daemon);
-    archivalUnits = new HashMap();
   }
 
   public void stopPlugin() {
