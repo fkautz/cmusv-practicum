@@ -85,7 +85,7 @@ public class TestProxyInfo extends LockssTestCase {
   List urlStems = ListUtil.list("http://foo.bar", "http://x.com");
 
   Map makeUrlStemMap() {
-    Map map = new HashMap();
+    Map map = new TreeMap();
     for (Iterator iter = urlStems.iterator(); iter.hasNext(); ) {
       String urlStem = (String)iter.next();
       ArchivalUnit au = new MockArchivalUnit();
