@@ -744,4 +744,18 @@ public class StringUtil {
       super(message);
     }
   }    
+
+  /**
+   * Returns the index of the nth occurance of searchStr in sourceStr or -1
+   * if there aren't n instances of searchStr in sourceStr
+   */
+  public static int nthIndexOf(int n, String sourceStr, String searchStr) {
+    int idx = -1;
+    for (int ix = 0; ix < n; ix++) {
+      idx = sourceStr.indexOf(searchStr, idx+1); 
+    }
+    return idx;
+  }
+
+
 }

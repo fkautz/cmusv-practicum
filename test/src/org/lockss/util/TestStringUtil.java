@@ -522,4 +522,13 @@ System.out.println("s: "+s);
     assertEquals("", StringUtil.upToFinal(".foo", "."));
   }
 
+  public void testNthIndexOf() {
+    assertEquals(-1, StringUtil.nthIndexOf(1, "xyz", "q"));
+    assertEquals(0, StringUtil.nthIndexOf(1, "xyz", "x"));
+    assertEquals(1, StringUtil.nthIndexOf(2, "xxyz", "x"));
+
+    assertEquals(7, StringUtil.nthIndexOf(4, "xyzxyzxxxyz", "x"));
+    assertEquals(9, StringUtil.nthIndexOf(2, "xyzzzzzysxyz", "xyz"));
+  }
+
 }
