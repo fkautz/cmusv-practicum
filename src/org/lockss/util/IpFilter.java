@@ -191,6 +191,7 @@ public class IpFilter {
 	      if (en.hasMoreTokens()) {
 		throw new MalformedException("Junk at end", s);
 	      }
+	      // if fewer than 4 bytes, simulate enough 0 bytes
 	      addr <<= (4 - n) * 8;
 	      n = 4;
 	    }
