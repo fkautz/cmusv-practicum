@@ -108,7 +108,7 @@ public class NodeManagerStatus extends BaseLockssManager {
          );
 
     private static final List sortRules =
-      ListUtil.list(new StatusTable.SortRule("AuName", true));
+      ListUtil.list(new StatusTable.SortRule("AuName", CatalogueOrderComparator.SINGLETON));
 
     private static LockssDaemon theDaemon;
 
