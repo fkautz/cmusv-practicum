@@ -49,8 +49,8 @@ import org.mortbay.util.B64Code;
  */
 class VerifyPoll extends Poll {
 
-  public VerifyPoll(LcapMessage msg, CachedUrlSet urlSet, PollManager pm) {
-    super(msg, urlSet, pm);
+  public VerifyPoll(LcapMessage msg, PollSpec pollspec, PollManager pm) {
+    super(msg, pollspec, pm);
     m_replyOpcode = LcapMessage.VERIFY_POLL_REP;
     m_tally.quorum = 1;
     m_tally.type = VERIFY_POLL;

@@ -46,8 +46,8 @@ public class NamePoll
 
   String[] m_entries;
 
-  public NamePoll(LcapMessage msg, CachedUrlSet urlSet, PollManager pm) {
-    super(msg, urlSet, pm);
+  public NamePoll(LcapMessage msg, PollSpec pollspec, PollManager pm) {
+    super(msg, pollspec, pm);
     m_replyOpcode = LcapMessage.NAME_POLL_REP;
     m_tally.type = NAME_POLL;
   }
@@ -213,8 +213,8 @@ public class NamePoll
       if (lwrRem != null) {
         // we call a new poll on the remaining entries and set the regexp
         try {
-          m_pollmanager.requestPoll(m_urlSet, lwrRem, uprRem,
-                                    LcapMessage.NAME_POLL_REQ);
+          PollSpec spec = new PollSpec(m_pollspec.getCachedUrlSet(),lwrRem,uprRem);
+          m_pollmanager.requestPoll(LcapMessage.NAME_POLL_REQ, spec);
         }
         catch (IOException ex) {
           log.error("Unable to create new poll request", ex);

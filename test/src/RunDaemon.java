@@ -106,7 +106,7 @@ public class RunDaemon extends LockssDaemon {
         String url = "http://www.example.com";
         ArchivalUnit au = getPluginManager().findArchivalUnit(url);
         CachedUrlSet cus = au.makeCachedUrlSet(url, null, null);
-	pollManager.requestPoll(cus, null, null, poll_type);
+	pollManager.requestPoll(poll_type, new PollSpec(cus));
       } catch (Exception e) {
 	e.printStackTrace();
       }
