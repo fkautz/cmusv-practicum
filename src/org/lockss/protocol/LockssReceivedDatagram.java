@@ -43,6 +43,7 @@ import org.lockss.util.*;
  * incoming packets.
  */
 public class LockssReceivedDatagram extends LockssDatagram {
+
   private DatagramPacket packet;	// received packet
 
   // Filled in for received packets.
