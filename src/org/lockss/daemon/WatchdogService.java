@@ -53,7 +53,7 @@ public class WatchdogService extends BaseLockssManager {
   static final long DEFAULT_PLATFORM_WDOG_INTERVAL = Constants.HOUR;
 
   static final String PARAM_PLATFORM_WDOG_DNS = PREFIX + "dns.enabled";
-  static final boolean DEFAULT_PLATFORM_WDOG_DNS = true;
+  static final boolean DEFAULT_PLATFORM_WDOG_DNS = false;
   static final String PARAM_PLATFORM_WDOG_DNS_DOMAIN = PREFIX + "dns.domain";
   static final String DEFAULT_PLATFORM_WDOG_DNS_DOMAIN = "lockss.org";
 
