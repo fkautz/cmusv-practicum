@@ -138,7 +138,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   }
 
   public Plugin getPlugin() {
-    return null;
+    return this.plugin;
   }
 
   public String getPluginId() {
@@ -165,7 +165,12 @@ public class MockArchivalUnit implements ArchivalUnit {
     Properties props = new Properties();
     for (Iterator it = defKeys.iterator(); it.hasNext();) {
       String curKey = (String)it.next();
-      props.setProperty(curKey, config.get(curKey));
+      String val = config.get(curKey);
+      // during testing, don't allow missing config values to cause
+      // NullPointerException in setProperty()
+      if (val != null) {
+	props.setProperty(curKey, config.get(curKey));
+      }
     }
     return PluginManager.generateAUId(getPluginId(), props);
   }

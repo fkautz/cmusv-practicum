@@ -76,7 +76,8 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
 
   public String getPluginId() {
     if (pluginId == null) {
-      return super.getPluginId();
+      return this.getClass().getName();
+//       return super.getPluginId();
     } else {
       return pluginId;
     }

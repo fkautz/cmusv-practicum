@@ -87,6 +87,11 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     // different root?
     try {
       fileRoot = config.get(SimulatedPlugin.AU_PARAM_ROOT);
+      if (fileRoot == null) {
+	throw new
+	  ArchivalUnit.ConfigurationException("Missing configuration value for: "+
+					      SimulatedPlugin.AU_PARAM_ROOT);
+      }
       SimulatedContentGenerator gen = getContentGenerator();
       if (config.containsKey(SimulatedPlugin.AU_PARAM_DEPTH)) {
         gen.setTreeDepth(config.getInt(SimulatedPlugin.AU_PARAM_DEPTH));
