@@ -226,7 +226,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     assertIsomorphic(expectedA, histL);
   }
 
-  public void testWalkEntry() throws Exception {
+  public void testWalkNodeState() throws Exception {
     NodeState node = nodeManager.getNodeState(getCUS(TEST_URL));
     nodeManager.walkNodeState(node);
     //XXX set various CrawlStates, PollHistories
