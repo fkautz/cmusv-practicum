@@ -78,7 +78,8 @@ public class LcapIdentity implements Serializable {
 
   static Logger theLog=Logger.getLogger("Identity");
 
-  LcapIdentity(String idKey, int reputation) throws UnknownHostException {
+  public LcapIdentity(String idKey, int reputation)
+    throws UnknownHostException {
     m_idKey = idKey;
     m_reputation = reputation;
     m_address = stringToAddr(idKey);
