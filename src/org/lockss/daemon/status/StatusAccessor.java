@@ -34,8 +34,10 @@ package org.lockss.daemon.status;
 import java.util.*;
 
 /**
- * Objects wishing to provide status information to {@link StatusService} must
- * create an object which implements this.
+ * Objects wishing to provide status information to {@link StatusService}
+ * must create an object which implements this.  StatusAccessor instances
+ * may be invoked simultaneously in multiple threads, so they should not
+ * maintain any local state (<i>ie</i>, no instance variables).
  */
 
 public interface StatusAccessor {
