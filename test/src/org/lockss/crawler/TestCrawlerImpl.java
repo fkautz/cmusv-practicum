@@ -71,10 +71,6 @@ public class TestCrawlerImpl extends LockssTestCase {
     org.lockss.crawler.CrawlerImpl.class
   };
 
-  public static Class prerequisites[] = {
-    TestCrawlRule.class
-  };
-
   public void setUp() throws Exception {
     super.setUp();
     TimeBase.setSimulated(10);
