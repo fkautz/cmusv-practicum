@@ -346,8 +346,7 @@ public class AuConfig extends LockssServlet {
 //     frm.add("<center>");
     Table tbl = new Table(0, "align=center cellspacing=4 cellpadding=0");
 
-    ArrayList titles = new ArrayList(remoteApi.findAllTitles());
-    Collections.sort(titles);
+    java.util.List titles = remoteApi.findAllTitles();
     if (!titles.isEmpty()) {
       boolean includePluginInTitleSelect =
 	configMgr.getBooleanParam(PARAM_INCLUDE_PLUGIN_IN_TITLE_SELECT,
