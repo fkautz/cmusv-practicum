@@ -461,6 +461,17 @@ public class TestBaseUrlCacher extends LockssTestCase {
     assertCuProperty(redTo3, null, CachedUrl.PROPERTY_REDIRECTED_TO);
   }
 
+  public void testIsSlashAppended() {
+    BaseUrlCacher b = new BaseUrlCacher(mcus, "foo");
+    assertTrue(b.isSlashAppended("foo", "foo/"));
+    assertTrue(b.isSlashAppended("http://xx.com/foo", "http://xx.com/foo/"));
+    assertTrue(b.isSlashAppended("http://xx.com/foo", "Http://xx.com/foo/"));
+    assertTrue(b.isSlashAppended("http://xx.com/foo", "Http://Xx.COM/foo/"));
+    assertFalse(b.isSlashAppended("http://xx.com/foo", "http://xx.com/FOO/"));
+    assertFalse(b.isSlashAppended("http://xx.com/foo", "http://xx.com/foo"));
+    assertFalse(b.isSlashAppended("http://xx.com/foo", "http://zz.com/foo/"));
+  }
+
   void assertCuContents(String url, String contents) throws IOException {
     CachedUrl cu = new BaseCachedUrl(mcus, url);
     InputStream is = cu.getUnfilteredInputStream();
