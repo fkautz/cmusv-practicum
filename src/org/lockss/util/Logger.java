@@ -121,9 +121,9 @@ public class Logger {
 
   private static Logger myLog;
 
-  private int level;			// this log's level
+  int level;			// this log's level
   private String name;			// this log's name
-  
+
   static {
     // until we get configured, output to default target
     setDefaultTarget();
