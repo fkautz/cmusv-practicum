@@ -84,8 +84,9 @@ public class TestProbabilisticTimer extends TestCase {
   public void testCompare() {
     ProbabilisticTimer p1 = new ProbabilisticTimer(100);
     ProbabilisticTimer p2 = new ProbabilisticTimer(200);
-    assertTrue(p1.shorterThan(p2));
-    assertTrue(!p2.shorterThan(p1));
+    assertTrue(!p1.isShorterThan(p1));
+    assertTrue(p1.isShorterThan(p2));
+    assertTrue(!p2.isShorterThan(p1));
   }    
 
   public void testSleepUntil() {
