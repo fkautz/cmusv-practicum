@@ -356,6 +356,18 @@ public class LcapComm extends BaseLockssManager {
   }
 
   synchronized void stop() {
+    if (uSock != null) {
+      uSock.stop();
+      uSock = null;
+    }
+    if (mSock1 != null) {
+      mSock1.stop();
+      mSock1 = null;
+    }
+    if (mSock2 != null) {
+      mSock2.stop();
+      mSock2 = null;
+    }
     if (rcvThread != null) {
       log.info("Stopping Q runner");
       rcvThread.stopRcvThread();
