@@ -33,15 +33,14 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.test;
 
 import java.io.*;
+import java.security.*;
 import java.util.*;
-import java.net.*;
-import java.security.MessageDigest;
+
 import org.lockss.app.*;
-import org.lockss.daemon.*;
 import org.lockss.crawler.*;
+import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.state.*;
-import org.lockss.test.*;
 
 /**
  * Base class for test plugins that don't want to implement all the
@@ -105,7 +104,7 @@ public class NullPlugin {
 
     public Collection getAllAus() {
       return null;
-    };
+    }
 
     public org.lockss.plugin.CachedUrlSet
       makeCachedUrlSet(org.lockss.plugin.ArchivalUnit owner,
