@@ -224,6 +224,17 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     activityRegulator.assertNewContentCrawlFinished();
   }
 
+  public void testNCCrawlFreesActivityLockWhenError() {
+    SimpleBinarySemaphore sem = new SimpleBinarySemaphore();
+    crawler = new ThrowingCrawler(new RuntimeException("Blah"));
+    crawlManager.setTestCrawler(crawler);
+
+    crawlManager.startNewContentCrawl(mau, new TestCrawlCB(sem), null, null);
+
+    waitForCrawlToFinish(sem);
+    activityRegulator.assertNewContentCrawlFinished();
+  }
+
   public void testRepairCrawlFreesActivityLockWhenDone() {
     String url1 = "http://www.example.com/index1.html";
     String url2 = "http://www.example.com/index2.html";
@@ -587,6 +598,17 @@ public class TestCrawlManagerImpl extends LockssTestCase {
 
     private void setTestCrawler(MockCrawler mockCrawler) {
       this.mockCrawler = mockCrawler;
+    }
+  }
+
+  private static class ThrowingCrawler extends MockCrawler {
+    RuntimeException e = null;
+    public ThrowingCrawler(RuntimeException e) {
+      this.e = e;
+    }
+
+    public boolean doCrawl(Deadline deadline) {
+      throw e;
     }
   }
 
