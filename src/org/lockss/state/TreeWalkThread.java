@@ -154,7 +154,7 @@ public class TreeWalkThread extends Thread {
   void doTreeWalk() {
     treeWalkRunning = true;
     logger.debug("Attempting tree walk: "+theAu.getName());
-    if (theCrawlManager.canTreeWalkStart(theAu, null, null)) {
+    if (!theCrawlManager.isCrawlingAU(theAu, null, null)) {
       long startTime = TimeBase.nowMs();
 
       NodeState topNode = manager.getNodeState(theAu.getAUCachedUrlSet());

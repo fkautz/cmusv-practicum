@@ -63,21 +63,21 @@ public class MockCrawlManager implements CrawlManager, LockssManager {
   }
 
   /**
-   * Currently returns true if last crawl time > 0, schedules new content crawl
-   * and returns false otherwise.
+   * Currently returns false if last crawl time > 0, schedules new content 
+   * crawl and returns true otherwise.
    * @param au the ArchivalUnit
    * @param aus the AuState
    * @param cb the Callback
    * @param cookie the cookie
-   * @return true if can start
+   * @return true if a crawl is running on this AU
    */
-  public boolean canTreeWalkStart(ArchivalUnit au, 
-				  CrawlManager.Callback cb, Object cookie) {
+  public boolean isCrawlingAU(ArchivalUnit au, 
+			      CrawlManager.Callback cb, Object cookie) {
     if (shouldCrawlNewContent) {
       scheduleNewContentCrawl(au, cb, cookie);
-      return false;
+      return true;
     }
-    return true;
+    return false;
 
   }
 
