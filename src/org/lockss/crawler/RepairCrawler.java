@@ -379,4 +379,12 @@ public class RepairCrawler extends CrawlerImpl {
     }
     return idMgr;
   }
+
+  public PermissionMap getPermissionMap() {
+    if (permissionMap == null) {
+      populatePermissionMap();
+    }
+    return permissionMap;
+  }
+
 }
