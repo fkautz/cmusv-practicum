@@ -769,7 +769,7 @@ public class NodeManagerImpl implements NodeManager {
           }
         }
       } catch (Exception e) {
-        logger.error("Unexpected exception caught in treewalk thread.");
+        logger.warning("Exception caught in treewalk thread.");
       }
     }
 
