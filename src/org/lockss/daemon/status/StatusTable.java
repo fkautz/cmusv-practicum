@@ -379,6 +379,7 @@ public class StatusTable {
     private String title;
     private int type;
     private Object value;
+    private String footnote;
 
     /**
      * @param title title for this SummaryInfo
@@ -401,6 +402,14 @@ public class StatusTable {
 
     public Object getValue() {
       return value;
+    }
+
+    public String getFootnote() {
+      return this.footnote;
+    }
+
+    public void setFootnote(String footnote) {
+      this.footnote = footnote;
     }
   }
 
