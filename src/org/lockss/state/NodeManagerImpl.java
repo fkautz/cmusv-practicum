@@ -342,13 +342,9 @@ public class NodeManagerImpl implements NodeManager {
     while (children.hasNext()) {
       CachedUrlSet child = (CachedUrlSet)children.next();
       String url = (String)child.getSpec().getPrefixList().get(0);
-      int timeToLive = 0; //XXX calculate
       long duration = 0; //XXX calculate
-      InetAddress grpAddr = null; //XXX determine
-      int voteRange = 0; //XXX calculate
       PollManager.getPollManager().makePollRequest(url, null,
-          LcapMessage.CONTENT_POLL_REQ, timeToLive, grpAddr, duration,
-          voteRange);
+          LcapMessage.CONTENT_POLL_REQ, duration);
     }
   }
 }
