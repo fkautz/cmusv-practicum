@@ -47,7 +47,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   private Configuration config;
   private CrawlSpec spec;
   private String pluginId = "mock";
-  private String auId = "none";
+  private String auId = StringUtil.gensym("MockAU_");
   private CachedUrlSet cus = null;
   private MockObjectCallback pauseCallback = null;
   private List newContentUrls = null;
