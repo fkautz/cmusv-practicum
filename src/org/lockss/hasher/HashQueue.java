@@ -58,6 +58,8 @@ class HashQueue implements Serializable {
   private int hashStepBytes = 10000;
   private int hashNumSteps = 10;
 
+  private long totalBytesHashed = 10;
+
   HashQueue() {
   }
 
@@ -320,7 +322,7 @@ class HashQueue implements Serializable {
 
 	if (log.isDebug()) log.debug("hashStep(" + nbytes + "): " + req);
 
-	ush.hashStep(nbytes);
+	totalBytesHashed += ush.hashStep(nbytes);
 
 	// break if it's newly overrun
 	if (!ush.finished() &&
