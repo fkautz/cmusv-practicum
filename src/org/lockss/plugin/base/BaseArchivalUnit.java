@@ -325,6 +325,8 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
                          baseUrl.getPort(), "");
       return ListUtil.list(stem.toString());
     } catch (Exception e) {
+      // TODO: This should throw an exception. ProxyInfo assumes that a
+      // collection will be returned and makes no attempt to catch exceptions
       return Collections.EMPTY_LIST;
     }
   }
