@@ -98,7 +98,6 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
 
   protected long nextPollInterval = -1;
   protected double curTopLevelPollProb = -1;
-  Random random = new Random();
 
   protected Configuration auConfig;
 
@@ -317,7 +316,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
       // reset poll interval regardless
       nextPollInterval = -1;
       // choose probabilistically whether to call
-      if (random.nextDouble() < curTopLevelPollProb) {
+      if (ProbabilisticChoice.choose(curTopLevelPollProb)) {
         logger.debug("Allowing poll.");
         curTopLevelPollProb = -1;
         return true;
