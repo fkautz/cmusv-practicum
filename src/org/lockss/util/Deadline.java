@@ -308,6 +308,26 @@ public class Deadline implements Comparable {
     return expiration.before(other.expiration);
   }
 
+  /**
+   * Return the earlier of two deadlines
+   * @param d1 first Deadline
+   * @param d2 second Deadline
+   * @return d1 if it is before d2, else d2
+   */
+  public static synchronized Deadline earliest(Deadline d1, Deadline d2) {
+    return d1.before(d2) ? d1 : d2;
+  }
+
+  /**
+   * Return the later of two deadlines
+   * @param d1 first Deadline
+   * @param d2 second Deadline
+   * @return d2 if d1 is before it, else d1
+   */
+  public static synchronized Deadline latest(Deadline d1, Deadline d2) {
+    return d1.before(d2) ? d2 : d1;
+  }
+
   /** Cause the deadline to expire immediately */
   public synchronized void expire() {
     expiration.setTime(0);

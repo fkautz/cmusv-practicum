@@ -174,6 +174,26 @@ public class TestDeadline extends LockssTestCase {
     assertTrue(never.expired());
   }
 
+  public void testEarliest() {
+    TimeBase.setSimulated();
+    Deadline p1 = Deadline.in(100);
+    Deadline p2 = Deadline.in(200);
+    assertEquals(Deadline.in(100), Deadline.earliest(p1, p2));
+    assertEquals(Deadline.in(100), Deadline.earliest(p2, p1));
+    assertEquals(Deadline.in(100), Deadline.earliest(p1, p1));
+    assertEquals(Deadline.in(100), Deadline.earliest(Deadline.MAX, p1));
+  }
+
+  public void testLatest() {
+    TimeBase.setSimulated();
+    Deadline p1 = Deadline.in(100);
+    Deadline p2 = Deadline.in(200);
+    assertEquals(Deadline.in(200), Deadline.latest(p1, p2));
+    assertEquals(Deadline.in(200), Deadline.latest(p2, p1));
+    assertEquals(Deadline.in(100), Deadline.latest(p1, p1));
+    assertEquals(Deadline.MAX, Deadline.latest(Deadline.MAX, p1));
+  }
+
   public void testSleep() {
     Interrupter intr = null;
     try {
