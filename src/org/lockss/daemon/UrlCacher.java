@@ -48,6 +48,7 @@ public interface UrlCacher {
     public String getUrl();
     /**
      * Return the {@link CachedUrlSet} to which this UrlCacher belongs.
+     * @return the parent set
      */
     public CachedUrlSet getCachedUrlSet();
     /**
@@ -58,19 +59,14 @@ public interface UrlCacher {
      */
     public boolean shouldBeCached();
     /**
-     * Return a <code>CachedUrl</code> for the content stored.  May be
+     * Return a {@link CachedUrl} for the content stored.  May be
      * called only after the content is completely written.
-     * @return <code>CachedUrl</code> for the content stored.
+     * @return {@link CachedUrl} for the content stored.
      */
     public CachedUrl getCachedUrl();
 
-    // Write interface - used by the crawler to write into the cache.
-
     /**
-     * Convenience method to
-     * copy the content and properties from the source into the cache,
-     * using {@link #getUncachedInputStream()},
-     * {@link #getUncachedProperties()} and storeContent()
+     * Copies the content and properties from the source into the cache.
      * @throws java.io.IOException on many possible I/O problems.
      */
     public void cache() throws IOException;
