@@ -80,7 +80,16 @@ public interface Plugin {
    * supported by this plugin.
    * @return a List of Strings
    */
-  public List getSupportedAUNames();
+  public List getSupportedTitles();
+
+  /**
+   * Return a (partial) configuration that will configure this plugin for
+   * the specified title.
+   * @param title journal title, as returned by getSupportedTitles().
+   * @return Configuration including all parameters whose values are
+   * implied by the title.
+   */
+  public Configuration getConfigForTitle(String title);
 
   /**
    * Return the set of configuration properties required to configure

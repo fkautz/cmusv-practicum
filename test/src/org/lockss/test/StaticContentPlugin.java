@@ -65,7 +65,7 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
     return "Static Content";
   }
 
-  public List getSupportedAUNames() {
+  public List getSupportedTitles() {
     throw new UnsupportedOperationException("Not implemented");
   }
 

@@ -100,7 +100,7 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
    * this plugin
    * @return a List of Strings
    */
-  public List getSupportedAUNames() {
+  public List getSupportedTitles() {
     return ListUtil.list("MockSupportedTitle");
   }
 

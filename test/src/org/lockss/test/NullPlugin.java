@@ -79,7 +79,11 @@ public class NullPlugin {
       return null;
     }
 
-    public List getSupportedAUNames() {
+    public List getSupportedTitles() {
+      return null;
+    }
+
+    public Configuration getConfigForTitle(String title) {
       return null;
     }
 
