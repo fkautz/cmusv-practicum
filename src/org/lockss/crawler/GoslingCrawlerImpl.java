@@ -470,7 +470,7 @@ public class GoslingCrawlerImpl implements Crawler {
 
   private void cacheWithRetries(UrlCacher uc, int type, int maxRetries)
       throws IOException {
-    if (failedUrls.contains(uc)) {
+    if (failedUrls.contains(uc.getUrl())) {
       logger.debug3("Already failed to cache "+uc+". Not retrying.");
       return;
     }
@@ -503,7 +503,7 @@ public class GoslingCrawlerImpl implements Crawler {
 	if (numRetries >= maxRetries) {
 	  logger.warning("Failed to cache "+numRetries +" times.  Skipping "
 			 + uc);
-	  failedUrls.add(uc);
+	  failedUrls.add(uc.getUrl());
 	  throw e;
 	}
 	Plugin plugin = uc.getCachedUrlSet().getArchivalUnit().getPlugin();
