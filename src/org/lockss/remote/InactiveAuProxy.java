@@ -74,8 +74,7 @@ public class InactiveAuProxy extends AuProxy {
    * @return the plugin
    */
   public PluginProxy getPlugin() {
-    RemoteApi rmt = getRemoteApi();
-    return rmt.findPluginProxy(rmt.pluginIdFromAuId(getAuId()));
+    return getRemoteApi().findPluginProxy(getPluginId());
   }
 
   /**
@@ -83,8 +82,7 @@ public class InactiveAuProxy extends AuProxy {
    * @return the plugin's ID
    */
   public String getPluginId() {
-    PluginProxy pluginp = getPlugin();
-    return pluginp.getPluginId();
+    return getRemoteApi().pluginIdFromAuId(getAuId());
   }
 
   /**
