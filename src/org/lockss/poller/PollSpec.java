@@ -252,7 +252,7 @@ public class PollSpec {
   }
 
   public String toString() {
-    return "[PS: auid=" + auId + ", url=" + url
+    return "[PS: " + Poll.PollName[pollType] + " auid=" + auId + ", url=" + url
       + ", l=" + lwrBound + ", u=" + uprBound + ", pollV=" + pollVersion + "]";
   }
 }

@@ -63,8 +63,9 @@ public class V1NamePoll extends V1Poll {
    */
   void castOurVote() {
     LcapMessage msg;
-    LcapIdentity local_id = idMgr.getLocalIdentity();
+    PeerIdentity local_id = idMgr.getLocalPeerIdentity();
     long remainingTime = m_deadline.getRemainingTime();
+    log.debug("castOurVote: " + local_id);
     try {
       msg = LcapMessage.makeReplyMsg(m_msg, m_hash, m_verifier,
                                      getEntries(), m_replyOpcode,

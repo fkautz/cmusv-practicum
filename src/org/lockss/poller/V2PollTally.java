@@ -197,12 +197,12 @@ public class V2PollTally extends PollTally {
   }
 
 
-  void adjustReputation(LcapIdentity voterID, int repDelta) {
+  void adjustReputation(PeerIdentity voterID, int repDelta) {
     // XXX should not need this
     throw new UnsupportedOperationException();
   }
 
-  void addVote(Vote vote, LcapIdentity id, boolean isLocal) {
+  void addVote(Vote vote, PeerIdentity id, boolean isLocal) {
     throw new UnsupportedOperationException();
   }
 

@@ -93,17 +93,17 @@ public class MailTarget {
 					   Configuration.Differences changedKeys) {
           loadConfiguration();
         }});
-    localHostName = IdentityManager.getLocalHostName();
+    try {
+      localHostName = IdentityManager.getLocalIPAddr().getHostName();
 
-    if (localHostName == null) {
-      logger.error("Couldn't find localhost from IdentityManager; "+
-                   "attempting to look up from IPAddr");
-      try {
+      if (localHostName == null) {
+	logger.error("Couldn't find localhost from IdentityManager; "+
+		     "attempting to look up from IPAddr");
         localHostName = IPAddr.getLocalHost().getHostName();
-      } catch (UnknownHostException ex) {
-        logger.error("Couldn't determine localhost.", ex);
-        throw new IllegalStateException("Couldn't determine localhost");
       }
+    } catch (UnknownHostException ex) {
+      logger.error("Couldn't determine localhost.", ex);
+      throw new IllegalStateException("Couldn't determine localhost");
     }
   }
 

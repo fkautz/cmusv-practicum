@@ -471,10 +471,10 @@ public class PollerStatus {
     private Map makeRow(Vote vote) {
       HashMap rowMap = new HashMap();
 
-      rowMap.put("Identity", vote.getIdentityKey());
-      LcapIdentity id = pollManager.getIdentityManager().findIdentity(
-          vote.getIdentityKey());
-      rowMap.put("Reputation", String.valueOf(id.getReputation()));
+      PeerIdentity pid = vote.getVoterIdentity();
+      rowMap.put("Identity", pid.getIdString());
+      int reputation = pollManager.getIdentityManager().getReputation(pid);
+      rowMap.put("Reputation", String.valueOf(reputation));
       rowMap.put("Agree", String.valueOf(vote.agree));
       rowMap.put("Challenge", vote.getChallengeString());
       rowMap.put("Verifier",vote.getVerifierString());

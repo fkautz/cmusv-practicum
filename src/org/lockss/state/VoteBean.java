@@ -33,7 +33,6 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.state;
 
 import org.lockss.poller.Vote;
-import org.lockss.protocol.LcapIdentity;
 import org.lockss.protocol.IdentityManager;
 import java.net.UnknownHostException;
 
@@ -61,7 +60,7 @@ public class VoteBean extends Vote {
    * @param vote the Vote
    */
   VoteBean(Vote vote) {
-    idStr = vote.getIdentityKey();
+    idStr = vote.getVoterIdentity().getIdString();
     agree = vote.isAgreeVote();
     challengeStr = vote.getChallengeString();
     verifierStr = vote.getVerifierString();

@@ -162,7 +162,7 @@ public class V2PollFactory implements PollFactory {
                                  verifier,
                                  opcode,
                                  duration,
-                                 im.getLocalIdentity());
+                                 im.getLocalPeerIdentity());
     // before we actually send the message make sure that another poll
     // isn't going to conflict with this and create a split poll
     if(checkForConflicts(cus,pm) == null) {

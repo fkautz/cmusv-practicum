@@ -103,10 +103,9 @@ public class TestPollSpec extends LockssTestCase {
     CachedUrlSet cus =
       new MockCachedUrlSet(au, new RangeCachedUrlSetSpec(url, lower, upper));
     PollSpec ps = new PollSpec(cus, Poll.CONTENT_POLL);
-    LcapIdentity id = null;
+    PeerIdentity id = null;
     try {
-      IPAddr addr = IPAddr.getByName("127.0.0.1");
-      id = theDaemon.getIdentityManager().findIdentity(addr, 0);
+      id = theDaemon.getIdentityManager().stringToPeerIdentity("127.0.0.1");
     }
     catch (UnknownHostException ex) {
       fail("can't open test host");

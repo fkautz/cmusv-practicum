@@ -180,14 +180,18 @@ public class MockLcapComm extends LcapComm {
    * @param id the identity of the cache to which to send the message
    * @throws IOException
    */
-  public void sendTo(LockssDatagram ld, ArchivalUnit au, LcapIdentity id)
+  public void sendTo(LockssDatagram ld, ArchivalUnit au, PeerIdentity id)
       throws IOException {
     if (uniSendToPort < 0) {
       throw new IllegalStateException("Unicast port not configured");
     }
     log.debug("sendTo(" + ld + ", " + id + ")");
     sendTo(ld,
-	   (uniSendToAddr == null ? id.getAddress() : uniSendToAddr),
+	   // XXX we really should use idmgr.identityToIPAddr()
+	   // but this will work for V1 addresses
+	   (uniSendToAddr == null ?
+	    IPAddr.getByName(id.getIdString()) :
+	    uniSendToAddr),
 	   uniSendToPort);
   }
 
