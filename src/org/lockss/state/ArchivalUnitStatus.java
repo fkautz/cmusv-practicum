@@ -185,7 +185,7 @@ public class ArchivalUnitStatus extends BaseLockssManager {
 
   static {
 //     DAMAGE_STATE_OK.setColor("green");
-    DAMAGE_STATE_DAMAGED.setColor("yellow");
+//     DAMAGE_STATE_DAMAGED.setColor("yellow");
   }
 
   static class AuStatus implements StatusAccessor {
