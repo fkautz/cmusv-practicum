@@ -99,6 +99,10 @@ public class HttpResultMap implements CacheResultMap {
     return new CacheException.HostException(nestedException);
   }
 
+  public CacheException getMalformedURLException(Exception nestedException) {
+    return new CacheException.MalformedURLException(nestedException);
+  }
+
   public CacheException getRepositoryException(Exception nestedException) {
     return new CacheException.RepositoryException(nestedException);
   }

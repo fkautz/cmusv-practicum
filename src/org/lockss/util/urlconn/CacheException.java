@@ -233,6 +233,30 @@ public class CacheException extends IOException {
     }
   }
 
+  /** An error from trying to connect to a malformed URL*/
+  public static class MalformedURLException
+      extends UnretryableException {
+    public MalformedURLException() {
+      super();
+      suppressStackTrace = false;
+    }
+
+    public MalformedURLException(String message) {
+      super(message);
+      suppressStackTrace = false;
+    }
+
+    /** Create this if details of causal exception are more relevant. */
+    public MalformedURLException(Exception e) {
+      super(e.toString());
+      nestedException = e;
+    }
+
+    protected void setAttributes() {
+      attributeBits.clear(ATTRIBUTE_FAIL);
+    }
+  }
+
   /** An error storing the cached content or properties in the repository */
   public static class RepositoryException
       extends UnretryableException {

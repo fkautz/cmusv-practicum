@@ -43,6 +43,8 @@ package org.lockss.util.urlconn;
 public interface CacheResultMap {
   public CacheException getHostException(Exception nestedException);
 
+  public CacheException getMalformedURLException(Exception nestedException);
+
   public CacheException getRepositoryException(Exception nestedException);
 
   public CacheException checkResult(LockssUrlConnection connection);

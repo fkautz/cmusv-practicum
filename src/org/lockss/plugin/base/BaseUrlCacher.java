@@ -435,8 +435,10 @@ public class BaseUrlCacher implements UrlCacher {
 	conn.setIfModifiedSince(lastModified);
       }
       conn.execute();
-    }
-    catch (IOException ex) {
+    } catch (MalformedURLException ex) {
+      logger.warning("openConnection", ex);
+      throw resultMap.getMalformedURLException(ex);
+    } catch (IOException ex) {
       logger.warning("openConnection", ex);
       throw resultMap.getHostException(ex);
     } catch (RuntimeException e) {
