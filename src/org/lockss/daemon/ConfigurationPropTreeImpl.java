@@ -125,7 +125,7 @@ public class ConfigurationPropTreeImpl extends Configuration {
 	if (o instanceof List) {
 	  propList = (List)o;
 	} else {
-	  propList = StringUtil.breakAt((String)o, ';');
+	  propList = StringUtil.breakAt((String)o, ';', 0, true);
 	}
       }
     } catch (ClassCastException ex) {

@@ -249,6 +249,12 @@ public class TestConfiguration extends LockssTestCase {
     }
   }
 
+  public void testGetListEmptyStrings() throws IOException {
+    Configuration config = newConfiguration();
+    config.load(new ConfigFile(FileTestUtil.urlOfString("prop.p1=a;;b;")));
+    assertEquals(ListUtil.list("a", "b"), config.getList("prop.p1"));
+  }
+
   private static final String c2 =
     "timeint=14d\n" +
     "prop.p1=12\n" +
