@@ -408,7 +408,7 @@ public class WrapperGenerator extends Doclet {
 
   /** Write class declaration*/
   void writeClassDecl(ClassDoc cl, Writer wr) throws IOException {
-    wr.write("class ");
+    wr.write("public class ");
     wr.write(prefix);
     wr.write(cl.name());
     if (cl.isInterface()) {

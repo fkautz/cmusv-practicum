@@ -240,7 +240,7 @@ public class TestWrapperGenerator extends LockssTestCase {
     pw.println("import org.lockss.test.*;");
     pw.println("import java.io.*;");
     pw.println("import org.lockss.util.ListUtil;\n");
-    pw.print  ("class " + prefix + "childTestClass ");
+    pw.print  ("public class " + prefix + "childTestClass ");
     if (INTERFACE_ONLY) {
       pw.print("implements");
     } else {
