@@ -279,7 +279,6 @@ public class ConfigManager implements LockssManager {
       return null;
     }
     Configuration newConfig = newConfiguration();
-    //    newConfig.setConfigUrls(urlList);
     try {
       boolean gotIt = newConfig.loadList(urlList);
       return gotIt ? newConfig : null;
