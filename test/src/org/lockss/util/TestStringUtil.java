@@ -397,6 +397,15 @@ System.out.println("s: "+s);
     assertEquals("3w0d0h", StringUtil.timeIntervalToString(WEEK * 3));
   }
 
+  public void testSizeKBToString() throws Exception {
+    assertEquals("123KB", StringUtil.sizeKBToString(123));
+    assertEquals("123MB", StringUtil.sizeKBToString(123 * 1024));
+    assertEquals("3.7MB", StringUtil.sizeKBToString((long)(3.7 * 1024)));
+    assertEquals("3.7GB", StringUtil.sizeKBToString((long)(3.7 * 1024*1024)));
+    assertEquals("432GB", StringUtil.sizeKBToString(432 * 1024*1024));
+    assertEquals("3.7TB", StringUtil.sizeKBToString((long)(3.7 * 1024*1024*1024)));
+  }  
+
   public void testTrimStackTrace() {
     String s1 = "Exception string: Nested error: java.io.FileNotFoundException: /tmp/iddb/idmapping.xml (No such file or directory)";
     String s2 = "java.io.FileNotFoundException: /tmp/iddb/idmapping.xml (No such file or directory)";
