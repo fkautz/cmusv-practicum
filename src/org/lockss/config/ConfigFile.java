@@ -49,6 +49,7 @@ public abstract class ConfigFile {
 
   protected int m_fileType;
   protected String m_lastModified;
+  // FileConfigFile assumes the url doesn't change
   protected String m_fileUrl;
   protected String m_loadError = "Not yet loaded";
   protected IOException m_IOException;
@@ -73,11 +74,6 @@ public abstract class ConfigFile {
     }
 
     m_fileUrl = url;
-
-    // ensure the file is loaded
-    if (!reload()) {
-      log.warning("Configuration file not loaded: " + url);
-    }
   }
 
   public String getFileUrl() {

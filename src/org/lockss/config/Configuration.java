@@ -149,11 +149,17 @@ public abstract class Configuration {
    */
   public Configuration copy() {
     Configuration copy = ConfigManager.newConfiguration();
-    for (Iterator iter = keyIterator(); iter.hasNext(); ) {
-      String key = (String)iter.next();
-      copy.put(key, get(key));
-    }
+    copy.copyFrom(this);
     return copy;
+  }
+
+  /** Copy contents of the argument into this.
+   */
+  public void copyFrom(Configuration other) {
+    for (Iterator iter = other.keyIterator(); iter.hasNext(); ) {
+      String key = (String)iter.next();
+      put(key, other.get(key));
+    }
   }
 
   private ConfigCache getConfigCache() {

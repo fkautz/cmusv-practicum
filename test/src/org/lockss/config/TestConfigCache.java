@@ -84,7 +84,9 @@ public class TestConfigCache extends LockssTestCase {
     String url = null;
     try {
       url = FileTestUtil.urlOfString(config1);
-      cache.ensureLoaded(url);
+      ConfigFile cf = cache.get(url);
+      assertNotNull(cf);
+      assertSame(cf, cache.justGet(url));
     } catch (IOException ex) {
       fail("Unable to load local config file " + url + " :" + ex);
     }
