@@ -135,7 +135,7 @@ public class LcapSocket {
 	  while (goOn) {
 	    receivePacket();
 	  }
-	  //        } catch (InterruptedException e) {
+//        } catch (InterruptedException e) {
 	} catch (IOException e) {
 	  // tk - what do to here?
 	  log.warning("receive()", e);
