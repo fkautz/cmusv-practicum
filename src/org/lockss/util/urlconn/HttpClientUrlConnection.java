@@ -279,7 +279,11 @@ public class HttpClientUrlConnection extends BaseLockssUrlConnection {
 
   public InputStream getResponseInputStream() throws IOException {
     assertExecuted();
-    return new EofMonitoringInputStream(method.getResponseBodyAsStream());
+    InputStream in = method.getResponseBodyAsStream();
+    if (in == null) {
+      return null;
+    }
+    return new EofMonitoringInputStream(in);
   }
 
   public void storeResponseHeaderInto(Properties props, String prefix) {
