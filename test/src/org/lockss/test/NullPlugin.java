@@ -192,6 +192,9 @@ public class NullPlugin {
     public void cache() throws IOException {
     }
 
+    public void forceCache() throws IOException {
+    }
+
     public void storeContent(InputStream input,
 			     Properties headers) throws IOException {
     }

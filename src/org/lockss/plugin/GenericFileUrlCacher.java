@@ -73,8 +73,5 @@ public abstract class GenericFileUrlCacher extends BaseUrlCacher {
 
     leaf.sealNewVersion();
   }
-
-  protected abstract InputStream getUncachedInputStream() throws IOException;
-  protected abstract Properties getUncachedProperties() throws IOException;
 }
 

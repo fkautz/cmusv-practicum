@@ -69,7 +69,15 @@ public interface UrlCacher {
 
     /**
      * Copies the content and properties from the source into the cache.
+     * Only caches if the content has been modified.
      * @throws java.io.IOException on many possible I/O problems.
      */
     public void cache() throws IOException;
+
+    /**
+     * Copies the content and properties from the source into the cache.
+     * Always caches even if the content hasn't been modified.
+     * @throws java.io.IOException on many possible I/O problems.
+     */
+    public void forceCache() throws IOException;
 }

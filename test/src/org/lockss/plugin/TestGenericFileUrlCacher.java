@@ -99,4 +99,30 @@ public class TestGenericFileUrlCacher extends LockssTestCase {
     junit.swingui.TestRunner.main(testCaseList);
   }
 
+  private class MockGenericFileUrlCacher extends GenericFileUrlCacher {
+    private InputStream uncachedIS;
+    private Properties uncachedProp;
+
+    public MockGenericFileUrlCacher(CachedUrlSet owner, String url) {
+      super(owner, url);
+    }
+
+    public InputStream getUncachedInputStream(long lastCached) {
+      return uncachedIS;
+    }
+
+    public Properties getUncachedProperties() {
+      return uncachedProp;
+    }
+
+    //mock specific acessors
+    public void setUncachedInputStream(InputStream is) {
+      uncachedIS = is;
+    }
+
+    public void setUncachedProperties(Properties prop) {
+      uncachedProp = prop;
+    }
+  }
+
 }
