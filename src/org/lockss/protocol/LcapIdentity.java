@@ -61,8 +61,6 @@ public class LcapIdentity {
   protected static final int VOTE_NOT_VERIFIED = -30;
   protected static final int VOTE_VERIFIED = 40;
   protected static final int VOTE_DISOWNED = -400;
-  protected static final String LOCAL_IDENT_PARAM = 
-    "org.lockss.localIPAddress";
   
   long m_lastActiveTime;
   long m_lastOpTime;
@@ -199,7 +197,8 @@ public class LcapIdentity {
    */
   public static LcapIdentity getLocalIdentity() {
     if(theLocalIdentity == null)  {
-      String identStr = Configuration.getParam(LOCAL_IDENT_PARAM);
+      String identStr = 
+	Configuration.getParam(Configuration.PREFIX+"localIPAddress");
       theLocalIdentity = 
       	new LcapIdentity(identStr);
     }
