@@ -281,7 +281,7 @@ public class HttpClientUrlConnection extends BaseLockssUrlConnection {
 
   private boolean processRedirectResponse() {
     if (!method.getFollowRedirects()) {
-      log.debug("Redirect requested but followRedirects is disabled");
+      log.debug3("Redirect requested but followRedirects is disabled");
       return false;
     }
     //get the location header to find out where to redirect to
