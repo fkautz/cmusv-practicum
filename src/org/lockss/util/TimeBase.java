@@ -37,7 +37,7 @@ import java.util.*;
  * TimeBase allows use of a simulated time base for testing.
 
  * Instead of calling <code>System.currentTimeMillis()</code> or <code>new
- * Date()</code>, other parts of the system should call {@link #nowMS()} or
+ * Date()</code>, other parts of the system should call {@link #nowMs()} or
  * {@link #nowDate()}.  When in real mode (the default), these methods
  * return the same value as the normal methods.  In simulated mode, they
  * return the contents of an internal counter, which can be incremented
