@@ -244,13 +244,21 @@ public class BaseUrlCacher implements UrlCacher {
       StreamUtil.copy(input, os);
       input.close();
       os.close();
+      headers.setProperty(CachedUrl.PROPERTY_NODE_URL, url);
+      leaf.setNewProperties(headers);
+      leaf.sealNewVersion();
     }
-    catch (IOException ex) {
+    catch (Exception ex) {
+      logger.debug("storeContentIn", ex);
+      if (leaf != null) {
+	try {
+	  leaf.abandonNewVersion();
+	} catch (Exception e) {
+	  // just being paranoid
+	}
+      }
       throw resultMap.getRepositoryException(ex);
     }
-    headers.setProperty(CachedUrl.PROPERTY_NODE_URL, url);
-    leaf.setNewProperties(headers);
-    leaf.sealNewVersion();
   }
 
   public InputStream getUncachedInputStream() throws IOException {
