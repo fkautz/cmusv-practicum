@@ -45,7 +45,6 @@ import org.lockss.repository.LockssRepositoryImpl;
 
 public class TestProjectMuseArchivalUnit extends LockssTestCase {
   private MockLockssDaemon theDaemon;
-  private MockArchivalUnit mau;
 
   static final String ROOT_URL = "http://muse.jhu.edu/";
   static final String DIR = "american_imago";
@@ -243,6 +242,11 @@ public class TestProjectMuseArchivalUnit extends LockssTestCase {
     assertNull(au.getFilterRule(null));
     assertNull(au.getFilterRule("jpg"));
     assertTrue(au.getFilterRule("text/html") instanceof ProjectMuseFilterRule);
+  }
+
+  public void testRefetchDepth() throws Exception {
+    ProjectMuseArchivalUnit au = makeAu(new URL(ROOT_URL), 60, DIR);
+    assertEquals(2, au.getCrawlSpec().getRefetchDepth());
   }
 
   public static void main(String[] argv) {
