@@ -156,6 +156,8 @@ public class MockUrlCacher implements UrlCacher {
   }
 
   public int cache() throws IOException {
+    int resultCode;
+
     if(cus == null) System.out.println("Warning cache() called with null cus");
     if (cus != null) {
       cus.signalCacheAttempt(url);
@@ -178,9 +180,24 @@ public class MockUrlCacher implements UrlCacher {
 	cus.addCachedUrl(url);
       }
     }
+
+    System.err.println("Stop1");
+    System.err.println("url: "+url);
+
+    //XXX messy
+    //content already there, so we should be doing a not modified response
+//     if (!forceRefetch && cu.hasContent()) {
+    if (cu.hasContent()) {
+    System.err.println("Stop2");
+      return CACHE_RESULT_NOT_MODIFIED;
+    } 
+    
+    //otherwise, mark that there is content and send a fetched response
+
     if (cu != null) {
       cu.setExists(true);
     }
+    System.err.println("Stop3");
     return CACHE_RESULT_FETCHED;
   }
 

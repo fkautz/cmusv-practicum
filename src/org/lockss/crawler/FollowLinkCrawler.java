@@ -394,7 +394,7 @@ public abstract class FollowLinkCrawler extends CrawlerImpl {
 	    if (extractedUrls.remove(url)){
 	      logger.debug3("Removing self reference in "+url+" from the extracted list");
 	    }
-	    crawlStatus.signalUrlParsed();
+	    crawlStatus.signalUrlParsed(uc.getUrl());
 	    parsedPages.add(uc.getUrl());
 	  }
 	}
