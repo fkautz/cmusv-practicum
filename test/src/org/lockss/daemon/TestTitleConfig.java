@@ -59,6 +59,8 @@ public class TestTitleConfig extends LockssTestCase {
 
   public void testAccessors1() {
     TitleConfig tc1 = new TitleConfig("a", "b");
+    tc1.setJournalTitle("42");
+    assertEquals("42", tc1.getJournalTitle());
     tc1.setPluginVersion("4");
     assertEquals("4", tc1.getPluginVersion());
     List foo = new ArrayList();
