@@ -256,9 +256,9 @@ public class PollManager
     }
   }
 
-  public ActivityRegulator.Lock acquirePollLock(Object key) {
+  public ActivityRegulator.Lock acquirePollLock(String key) {
     ActivityRegulator.Lock lock = null;
-    PollManagerEntry pme = (PollManagerEntry)thePolls.get(key);
+    PollManagerEntry pme = getCurrentOrRecentPollEntry(key);
     if(pme != null) {
       PollTally tally = pme.poll.getVoteTally();
       if(tally != null) {
