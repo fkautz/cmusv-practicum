@@ -231,7 +231,7 @@ public class LockssTestCase extends TestCase {
     private boolean want = true;
     private boolean did = false;
 
-    public DoLater(long waitMs) {
+    protected DoLater(long waitMs) {
       wait = waitMs;
     }
 
