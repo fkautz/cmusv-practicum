@@ -67,7 +67,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
     theDaemon.getHashService();
 
     mau = new MyMockArchivalUnit();
-    mau.setCrawlSpec(new CrawlSpec(tempDirPath, null, null, 1));
+    mau.setCrawlSpec(new CrawlSpec(tempDirPath, null));
     MockPlugin plugin = new MyMockPlugin();
     plugin.initPlugin(theDaemon);
     plugin.setDefiningConfigKeys(Collections.EMPTY_LIST);

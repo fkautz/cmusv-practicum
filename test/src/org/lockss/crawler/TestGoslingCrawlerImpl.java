@@ -794,9 +794,10 @@ public class TestGoslingCrawlerImpl extends LockssTestCase {
       "<a href="+url2+">link2</a>"+
       "<a href="+url3+">link3</a>";
 
-    mau.setCrawlSpec(new CrawlSpec(startUrl, null,
-                                   new MockCrawlWindowRuleThatCountsDown(3),
-                                   1));
+    CrawlSpec spec = new CrawlSpec(startUrl, null);
+    spec.setCrawlWindowRule(new MockCrawlWindowRuleThatCountsDown(3));
+    mau.setCrawlSpec(spec);
+
     MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
     cus.addUrl(source, startUrl);
     cus.addUrl(LINKLESS_PAGE, url1);

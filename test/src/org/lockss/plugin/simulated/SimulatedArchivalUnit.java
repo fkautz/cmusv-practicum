@@ -134,7 +134,7 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     } catch (Configuration.InvalidParam e) {
       throw new ArchivalUnit.ConfigurationException("Bad config value", e);
     }
-    this.crawlSpec = new CrawlSpec(SIMULATED_URL_START, null, null, 1);
+    this.crawlSpec = new CrawlSpec(SIMULATED_URL_START, null);
   }
 
   public String getName() {

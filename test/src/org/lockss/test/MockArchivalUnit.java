@@ -121,8 +121,7 @@ public class MockArchivalUnit implements ArchivalUnit {
    * @return MockArchivalUnit with urls in rootUrls in its list
    */
   public static MockArchivalUnit createFromListOfRootUrls(String[] rootUrls){
-    CrawlSpec rootSpec =
-        new CrawlSpec(ListUtil.fromArray(rootUrls), null, null, 1);
+    CrawlSpec rootSpec = new CrawlSpec(ListUtil.fromArray(rootUrls), null);
     return new MockArchivalUnit(rootSpec);
   }
 

@@ -167,11 +167,11 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
 
   private CrawlSpec makeCrawlSpec(URL base, int volume) throws REException {
     CrawlRule rule = makeRules(base, volume);
-    CrawlWindowRule window = null;
+    CrawlSpec spec = new CrawlSpec(makeStartUrl(base, volume), rule);
     if (useCrawlWindow) {
-      window = makeCrawlWindow();
+      spec.setCrawlWindowRule(makeCrawlWindow());
     }
-    return new CrawlSpec(makeStartUrl(base, volume), rule, window, 1);
+    return spec;
   }
 
   String makeStartUrl(URL base, int volume) {
