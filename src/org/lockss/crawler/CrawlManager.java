@@ -34,6 +34,7 @@ package org.lockss.crawler;
 
 import java.util.Collection;
 import org.lockss.daemon.*;
+import org.lockss.app.*;
 import org.lockss.state.*;
 import org.lockss.plugin.*;
 
@@ -105,5 +106,8 @@ public interface CrawlManager {
      * objects for <code>au</code>
      */
     public Collection getCrawlStatus(String auid);
+
+    /** Return the dameon instance */
+    public LockssDaemon getDaemon();
   } 
 }

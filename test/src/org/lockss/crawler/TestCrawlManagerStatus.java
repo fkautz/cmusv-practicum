@@ -91,7 +91,7 @@ public class TestCrawlManagerStatus extends LockssTestCase {
     MockLockssDaemon theDaemon = new MockLockssDaemon();
     theDaemon.setPluginManager(new PluginManager());
 
-    statusSource = new MockCrawlManagerStatusSource();
+    statusSource = new MockCrawlManagerStatusSource(theDaemon);
     cmStatus = new CrawlManagerStatus(statusSource);
   }
 

@@ -95,8 +95,7 @@ public class CrawlManagerStatus implements StatusAccessor {
 
   public CrawlManagerStatus(CrawlManager.StatusSource statusSource) {
     this.statusSource = statusSource;
-    this.pluginMgr =
-      (PluginManager)LockssApp.getManager(LockssDaemon.PLUGIN_MANAGER);
+    this.pluginMgr = statusSource.getDaemon().getPluginManager();
   }
 
   public String getDisplayName() {

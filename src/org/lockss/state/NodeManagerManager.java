@@ -135,9 +135,6 @@ public class NodeManagerManager
   static class ServiceStatus implements StatusAccessor {
     static final String TABLE_TITLE = "NodeManager Service Table";
 
-    PluginManager pluginMgr =
-      (PluginManager)LockssApp.getManager(LockssDaemon.PLUGIN_MANAGER);
-
     private static final List columnDescriptors = ListUtil.list(
          new ColumnDescriptor("AuName", "Volume",
 			      ColumnDescriptor.TYPE_STRING),
@@ -152,10 +149,12 @@ public class NodeManagerManager
     private static final List sortRules =
       ListUtil.list(new StatusTable.SortRule("AuName", CatalogueOrderComparator.SINGLETON));
 
-    private static NodeManagerManager mgr;
+    private NodeManagerManager mgr;
+    private PluginManager pluginMgr;
 
     ServiceStatus(NodeManagerManager mgr) {
       this.mgr = mgr;
+      pluginMgr = mgr.getDaemon().getPluginManager();
     }
 
     public String getDisplayName() {
