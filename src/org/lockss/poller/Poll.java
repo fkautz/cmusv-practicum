@@ -67,7 +67,7 @@ public abstract class Poll implements Serializable {
   static final String PARAM_DISAGREE_VERIFY = Configuration.PREFIX +
       "poll.disagreeVerify";
   static final String PARAM_MARGIN = Configuration.PREFIX +
-      "poll.margin";
+      "poll.voteMargin";
   static final String PARAM_TRUSTED_MARGIN = Configuration.PREFIX +
       "poll.trustedMargin";
 
@@ -405,6 +405,12 @@ public abstract class Poll implements Serializable {
    */
   boolean tooManyPending() {
     return m_pendingVotes > m_tally.quorum + 1;
+  }
+
+  Vote copyVote(Vote vote, boolean agree) {
+    Vote v = new Vote(vote);
+    v.agree = agree;
+    return v;
   }
 
   /**
