@@ -37,11 +37,8 @@ import org.lockss.daemon.status.*;
 
 public class MockStatusAccessor implements StatusAccessor {
   private boolean requiresKey = false;
-  private List columnDescriptorsKeyless;
-  private List rowsKeyless;
   private Map columnDescriptors;
   private Map rows;
-  private List defaultSortRulesKeyless;
   private Map defaultSortRules;
 
 
@@ -80,5 +77,11 @@ public class MockStatusAccessor implements StatusAccessor {
     defaultSortRules.put(key, sortRules);
   }
 
+  public void setRequiresKey(boolean requiresKey) {
+    this.requiresKey = requiresKey;
+  }
 
+  public boolean requiresKey() {
+    return requiresKey;
+  }
 }
