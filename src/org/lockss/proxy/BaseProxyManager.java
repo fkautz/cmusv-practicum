@@ -147,10 +147,10 @@ public abstract class BaseProxyManager extends JettyManager {
 
   protected void stopProxy() {
     if (runningOnPort > 0) {
-      log.debug("Stopping prosy");
+      log.debug("Stopping proxy");
       try {
 	server.stop();
-      } catch (InterruptedException e) {
+      } catch (Exception e) {
 	log.warning("Stopping proxy", e);
       }
       runningOnPort(-1);

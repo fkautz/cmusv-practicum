@@ -112,6 +112,7 @@ public abstract class JettyManager extends BaseLockssManager {
     } else {
       if (runningOnPort > 0) {
 	portsInUse.remove(new Integer(runningOnPort));
+	runningOnPort = -1;
       }
     }
   }
