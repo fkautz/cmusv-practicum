@@ -78,7 +78,7 @@ public class LcapSocket {
 
     /** Convenience method to make names for loggers and threads */
     String getThreadName() {
-      return "Sock " + sock.getPort() + " Rcv";
+      return "Sock " + sock.getLocalPort() + " Rcv";
     }
 
     /** Start the socket's receive thread */
