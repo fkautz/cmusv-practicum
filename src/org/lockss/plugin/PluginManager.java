@@ -166,9 +166,10 @@ public class PluginManager extends BaseLockssManager {
 	      ", " + au);
     auMap.put(plugin.getPluginId() + "|" + au.getAUId(), au);
   }
-  ArchivalUnit getAu(String pluginId, String auId) {
-    log.debug("gutAu(" + pluginId + "|" + auId + ")");
-    return (ArchivalUnit)auMap.get(pluginId + "|" + auId);
+  public ArchivalUnit getAu(String pluginId, String auId) {
+    ArchivalUnit au = (ArchivalUnit)auMap.get(pluginId + "|" + auId);
+    log.debug3("getAu(" + pluginId + "|" + auId + ") = " + au);
+    return au;
   }
   /**
    * load a plugin with the given class name from somewhere in our classpath
