@@ -713,7 +713,7 @@ public class AuConfig extends LockssServlet {
 	tbl.add(StringUtil.sizeKBToString(df.getAvail()));
 	tbl.newCell("align=right");
 	tbl.add("&nbsp;");
-	tbl.add(df.getPercent());
+	tbl.add(df.getPercentString());
 	first = false;
       }
       comp.add(tbl);

@@ -548,6 +548,21 @@ public abstract class LockssServlet extends HttpServlet
     return StringUtil.separatedString(list, "&");
   }
 
+  String modifyParams(String key, String val) {
+    Properties props = getParamsAsProps();
+    props.setProperty(key, val);
+    return concatParams(props);
+  }
+
+  Properties getParamsAsProps() {
+    Properties props = new Properties();
+    for (Enumeration en = req.getParameterNames(); en.hasMoreElements(); ) {
+      String name = (String)en.nextElement();
+      props.setProperty(name, req.getParameter(name));
+    }
+    return props;
+  }
+
   protected String urlEncode(String param) {
     return URLEncoder.encode(param);
   }
