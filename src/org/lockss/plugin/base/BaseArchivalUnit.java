@@ -153,20 +153,6 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   }
 
   /**
-   * Create a CachedUrlSet representing the content in this AU
-   * that matches the url and regexp.
-   * @param url the url string
-   * @param lwrBound the lower boundary of our match range
-   * @param uprBound the upper boundary of our match range
-   * @return the newly created CachedUrlSet
-   */
-  public CachedUrlSet makeCachedUrlSet(String url, String lwrBound,
-				       String uprBound) {
-    return makeCachedUrlSet(new RangeCachedUrlSetSpec(url,
-						      lwrBound, uprBound));
-  }
-
-  /**
    * Return the CachedUrlSet representing the entire contents
    * of this AU
    * @return the CachedUrlSet

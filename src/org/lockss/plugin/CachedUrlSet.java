@@ -101,14 +101,15 @@ public interface CachedUrlSet extends CachedUrlSetNode {
   /**
    * Return an {@link Iterator} of {@link CachedUrlSetNode}
    * objects representing all the nodes of the tree rooted at this
-   * <code>CachedUrlSet</code>.  These are CachedUrlSets for internal nodes
-   * and {@link CachedUrl}s for leaf nodes.  If this CachedUrlSet has content,
-   * it is added as a {@link CachedUrl}.
+   * <code>CachedUrlSet</code> that should be hashed.  These are CachedUrlSets
+   * for internal nodes and {@link CachedUrl}s for leaf nodes.  The CachedUrlSet
+   * itself is added as a {@link CachedUrl} provided the range hasn't already
+   * been subdivided in some manner.
    * @return an {@link Iterator} of {@link CachedUrlSetNode}s
    *         for all the nodes matching the members of the
    *         {@link CachedUrlSetSpec} list.
    */
-  public Iterator treeIterator();
+  public Iterator contentHashIterator();
 
   /**
    * Return an estimate of the time required to hash the content.

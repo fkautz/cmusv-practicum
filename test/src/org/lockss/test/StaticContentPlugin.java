@@ -129,7 +129,13 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
       return null;
     }
 
-    /** Create a CU with content and store it in AU */
+    /**
+     * Create a CU with content and store it in AU
+     * @param owner the CUS owner
+     * @param url the url
+     * @param type the type
+     * @param contents the contents
+     */
     public void storeCachedUrl(CachedUrlSet owner, String url,
 				String type, String contents) {
       SCU scu = new SCU(owner, url, type, contents);
@@ -153,7 +159,13 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
       super(owner, url);
     }
 
-    /** Create a CachedUrl with content */
+    /**
+     * Create a CachedUrl with content
+     * @param owner the CUS owner
+     * @param url the url
+     * @param type the type
+     * @param contents the contents
+     */
     public SCU(CachedUrlSet owner, String url,
 	       String type, String contents) {
       this(owner, url);
@@ -208,7 +220,7 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
       return null;
     }
 
-    public Iterator treeIterator() {
+    public Iterator contentHashIterator() {
       return null;
     }
 

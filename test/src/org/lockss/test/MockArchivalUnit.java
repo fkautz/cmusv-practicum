@@ -120,12 +120,6 @@ public class MockArchivalUnit implements ArchivalUnit {
     return new MockCachedUrlSet(this, cuss);
   }
 
-  public CachedUrlSet makeCachedUrlSet(String url,
-				       String lwrBound, String uprBound) {
-    return makeCachedUrlSet(new RangeCachedUrlSetSpec(url,
-						      lwrBound, uprBound));
-  }
-
   public boolean shouldBeCached(String url) {
     if (cus!=null) {
       return cus.containsUrl(url);
