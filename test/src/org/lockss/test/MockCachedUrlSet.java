@@ -53,14 +53,18 @@ public class MockCachedUrlSet implements CachedUrlSet {
   private HashSet cachedUrls = new HashSet();
   private Vector urls = null;
   private Iterator flatIterator = null;
-  private Iterator leafIterator = null;
+  private Iterator treeIterator = null;
   private Collection flatSource = null;
-  private Collection leafSource = null;
+  private Collection treeSource = null;
 
   private Hashtable ucHash = new Hashtable();
   private Hashtable cuHash = new Hashtable();
 
   private static final Logger logger = Logger.getLogger("MockCachedUrlSet");
+
+  public MockCachedUrlSet() {
+    this(null, null);
+  }
 
   public MockCachedUrlSet(ArchivalUnit owner, CachedUrlSetSpec spec) {
     this.spec = spec;
@@ -112,18 +116,18 @@ public class MockCachedUrlSet implements CachedUrlSet {
   }
 
   public Iterator treeIterator() {
-    if (leafSource!=null) {
-      return leafSource.iterator();
+    if (treeSource!=null) {
+      return treeSource.iterator();
     }
-    return leafIterator;
+    return treeIterator;
   }
 
-  public void setLeafIterator(Iterator it) {
-    leafIterator = it;
+  public void setTreeIterator(Iterator it) {
+    treeIterator = it;
   }
 
-  public void setLeafItSource(Collection col) {
-    leafSource = col;
+  public void setTreeItSource(Collection col) {
+    treeSource = col;
   }
 
 
