@@ -81,6 +81,7 @@ public class ColumnDescriptor {
   private String title;
   private int type;
   private String footNote;
+  protected boolean sortable = true;
 
   public ColumnDescriptor(String columnName, String title, int type) {
     this.columnName = columnName;
@@ -108,6 +109,10 @@ public class ColumnDescriptor {
 
   public String getFootnote() {
     return footNote;
+  }
+
+  public boolean isSortable() {
+    return sortable;
   }
 
   public String toString() {
