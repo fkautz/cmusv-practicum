@@ -89,8 +89,8 @@ public class TreeWalkHandler {
     theAu = manager.managedAu;
 
     configCallback = new Configuration.Callback() {
-      public void configurationChanged(Configuration oldConfig,
-                                       Configuration newConfig,
+      public void configurationChanged(Configuration newConfig,
+                                       Configuration oldConfig,
                                        Set changedKeys) {
         setConfig(newConfig, oldConfig);
       }

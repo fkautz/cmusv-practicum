@@ -87,9 +87,9 @@ public class MailTarget {
 
   public void init() {
     Configuration.registerConfigurationCallback(new Configuration.Callback() {
-        public void configurationChanged(Configuration oldConfig,
-                                         Configuration newConfig,
-                                         Set changedKeys) {
+        public void configurationChanged(Configuration newConfig,
+					   Configuration oldConfig,
+					   Set changedKeys) {
           loadConfiguration();
         }});
     localHostName = IdentityManager.getLocalHostName();

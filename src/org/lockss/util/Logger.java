@@ -338,8 +338,8 @@ public class Logger {
    */
   private static void registerConfigCallback() {
     Configuration.registerConfigurationCallback(new Configuration.Callback() {
-	public void configurationChanged(Configuration oldConfig,
-					 Configuration newConfig,
+	public void configurationChanged(Configuration newConfig,
+					 Configuration oldConfig,
 					 Set changedKeys) {
 	  setAllLogLevels();
 	  if (changedKeys.contains(PARAM_LOG_TARGETS)) {
