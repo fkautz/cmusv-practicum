@@ -141,7 +141,7 @@ public class HistoryRepositoryImpl
       File nodeFile = new File(getNodeLocation(cus) + File.separator +
                                NODE_FILE_NAME);
       if (!nodeFile.exists()) {
-        return new NodeStateImpl(cus,
+        return new NodeStateImpl(cus, -1,
                                  new CrawlState(-1, CrawlState.FINISHED, 0),
                                  new ArrayList(), this);
       }

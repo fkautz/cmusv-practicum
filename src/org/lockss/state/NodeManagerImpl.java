@@ -173,6 +173,21 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
     historyRepo.storeNodeState(topState);
   }
 
+  public void hashFinished(CachedUrlSet cus, long hashDuration) {
+    if (hashDuration<0) {
+      logger.warning("Tried to update hash with negative duration.");
+      return;
+    }
+    NodeState state = getNodeState(cus);
+    if (state==null) {
+      logger.error("Updating state on non-existant node: "+cus.getUrl());
+      throw new IllegalArgumentException(
+          "Updating state on non-existant node.");
+    } else {
+      ((NodeStateImpl)state).setLastHashDuration(hashDuration);
+    }
+  }
+
   public synchronized NodeState getNodeState(CachedUrlSet cus) {
     String url = cus.getUrl();
     logger.debug3("Getting " + url);

@@ -74,7 +74,7 @@ public class TestSystemMetrics extends LockssTestCase {
     assertEquals(estimate, estimate2);
   }
 
-  public static void configHashParams(int duration, int step)
+  public static void configHashParams(long duration, int step)
       throws IOException {
     String s = SystemMetrics.PARAM_HASH_TEST_DURATION + "=" + duration;
     String s2 = SystemMetrics.PARAM_HASH_TEST_BYTE_STEP + "=" + step;

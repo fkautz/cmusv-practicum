@@ -58,8 +58,10 @@ public class TestGenericFileUrlCacher extends LockssTestCase {
 
     theDaemon = new MockLockssDaemon();
     theDaemon.getLockssRepositoryService().startService();
+    theDaemon.setNodeManagerService(new MockNodeManagerService());
 
     theDaemon.getLockssRepository(mgfau);
+    theDaemon.getNodeManager(mgfau);
   }
 
   public void tearDown() throws Exception {

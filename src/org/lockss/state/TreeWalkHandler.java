@@ -280,6 +280,10 @@ public class TreeWalkHandler {
     boolean doingTreeWalk = false;
     Deadline deadline;
 
+    public TreeWalkThread() {
+      super("TreeWalk: "+theAu.getName());
+    }
+
     public void run() {
       while (goOn) {
         long timeToStart = timeUntilTreeWalkStart();

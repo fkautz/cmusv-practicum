@@ -60,9 +60,11 @@ public class TestGenericFileCachedUrl extends LockssTestCase {
 
     theDaemon = new MockLockssDaemon();
     theDaemon.getLockssRepositoryService().startService();
+    theDaemon.setNodeManagerService(new MockNodeManagerService());
 
     mgfau = new MockGenericFileArchivalUnit();
     repo = theDaemon.getLockssRepository(mgfau);
+    theDaemon.getNodeManager(mgfau);
     CachedUrlSetSpec rSpec =
         new RangeCachedUrlSetSpec("http://www.example.com/testDir");
     cus = mgfau.makeCachedUrlSet(rSpec);
