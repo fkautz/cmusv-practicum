@@ -101,7 +101,8 @@ public interface Crawler {
     protected ArchivalUnit au = null;
     protected int type = -1;
 
-    public Status(Collection startUrls, int type) {
+    public Status(ArchivalUnit au, Collection startUrls, int type) {
+      this.au = au;
       this.startUrls = startUrls;
       this.type = type;
     }
