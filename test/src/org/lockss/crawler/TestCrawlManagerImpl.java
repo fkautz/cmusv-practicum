@@ -68,9 +68,9 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     mau.setNewContentCrawlUrls(ListUtil.list(startUrl));
 
     theDaemon = new MockLockssDaemon();
-    theDaemon.setUseMockNodeService(true);
+    theDaemon.useMockNodeService(true);
     nodeManager = new MockNodeManager();
-    theDaemon.setNodeManager(nodeManager, mau);
+    theDaemon.getNodeManager(mau);
 
     crawlManager.initService(theDaemon);
   }
