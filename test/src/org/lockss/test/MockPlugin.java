@@ -56,9 +56,8 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
   private Configuration auConfig;
   private Collection defKeys = null;
 
-  private List aus = new ArrayList();
-
   public MockPlugin(){
+    super();
   }
 
   /**

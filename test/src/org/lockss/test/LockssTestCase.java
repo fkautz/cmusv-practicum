@@ -699,6 +699,13 @@ public class LockssTestCase extends TestCase {
     }
   }
 
+  public static void assertContainsAll(Collection coll,
+                                             Object[] elements) {
+    for (int i = 0; i < elements.length; i++) {
+      assertContains(coll, elements[i]);
+    }
+  }
+
   public static void assertContains(Collection coll, Object element) {
     assertContains(null, coll, element);
   }

@@ -134,4 +134,8 @@ public class WrapperLogger {
     wrapLog.setLevel(level);
   }
 
+  public static int getLevel() {
+    return wrapLog.level;
+  }
+
 }

@@ -299,4 +299,19 @@ public class TestLockssTestCase extends LockssTestCase {
       fail("failing on iteration " + rpt);
     }
   }
+
+  public void testAssertContainsAll() {
+    Set set = new HashSet();
+    set.add("one");
+    set.add("two");
+    set.add("three");
+    String[] strs = { "three","two","one" };
+    assertContainsAll(set,strs);
+    String[] extra = { "three","two","one", "four" };
+    try {
+      assertContainsAll(set,extra);
+      fail("assertContainsAll should have thrown an AssertionFailedException");
+    } catch (AssertionFailedError afe) {
+    }
+  }
 }
