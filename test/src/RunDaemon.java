@@ -42,6 +42,7 @@ import org.lockss.protocol.*;
 import org.lockss.poller.*;
 import org.lockss.util.*;
 import org.lockss.crawler.*;
+import org.lockss.repository.LockssRepositoryImpl;
 
 public class RunDaemon {
   private static final String DEFAULT_DIR_PATH = "./";
@@ -81,7 +82,8 @@ public class RunDaemon {
     HashService.start();
     LcapComm.startComm();
 
-    dirPath = Configuration.getParam(Configuration.PREFIX+"cache.location",
+    dirPath = Configuration.getParam(Configuration.PREFIX+
+                                     LockssRepositoryImpl.LOCKSS_CACHE_LOCATION_PARAM,
 				     DEFAULT_DIR_PATH);
     boolean shouldCallPoll =
       Configuration.getBooleanParam(Configuration.PREFIX+"shouldCallPoll",
