@@ -237,6 +237,7 @@ Args:
 
   <path id="tools.test.compile.classpath">
     <path refid="tools.compile.classpath" />
+    <pathelement path="${lockss.test.jar}" />
     <pathelement path="${lockss.tools.jar}" />
   </path>
 
