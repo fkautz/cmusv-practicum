@@ -522,7 +522,10 @@ public class RepositoryNodeImpl implements RepositoryNode {
           // if identical, don't rename
           if (FileUtil.isContentEqual(currentCacheFile, tempCacheFile)) {
             // don't rename
-	    logger.debug("New version identical to old: " + currentCacheFile);
+	    if (logger.isDebug2()) {
+	      logger.debug2("New version identical to old: " +
+			    currentCacheFile);
+	    }
             identicalVersion = true;
           } else if (!currentCacheFile.renameTo(getVersionedCacheFile(
               currentVersion))) {
