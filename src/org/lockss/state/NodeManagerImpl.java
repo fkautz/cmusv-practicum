@@ -117,16 +117,23 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
       treeWalkHandler = null;
     }
     super.stopService();
-    logger.debug("NodeManager sucessfully stopped");
+    logger.debug("NodeManager successfully stopped");
   }
 
   public void forceTreeWalk() {
-    logger.info("Forcing treewalk...");
+    logger.debug2("Forcing treewalk...");
     if (treeWalkHandler == null) {
       treeWalkHandler = new TreeWalkHandler(this, theDaemon);
       treeWalkHandler.start();
     }
     treeWalkHandler.forceTreeWalk();
+  }
+
+  public void killTreeWalk() {
+    logger.debug2("Killing treewalk thread...");
+    if (treeWalkHandler != null) {
+      treeWalkHandler.end();
+    }
   }
 
   public void forceTopLevelPoll() {
