@@ -36,8 +36,7 @@ package org.lockss.state;
 import java.util.*;
 
 /**
- * NodeState contains the current state information for a node, as well as the
- * poll histories.
+ * NodeStateBean is a settable version of the NodeState, to allow marshalling.
  */
 public class NodeStateBean {
   CrawlStateBean crawlBean;
@@ -45,8 +44,16 @@ public class NodeStateBean {
   int curState;
   long hashDuration = -1;
 
+  /**
+   * Simple constructor to allow bean creation during unmarshalling.
+   */
   public NodeStateBean() { }
 
+  /**
+   * Constructor to create the NodeStateBean from a NodeState prior to
+   * marshalling.
+   * @param nodeState the NodeState
+   */
   NodeStateBean(NodeState nodeState) {
     this.crawlBean = new CrawlStateBean(nodeState.getCrawlState());
     Iterator polls = nodeState.getActivePolls();

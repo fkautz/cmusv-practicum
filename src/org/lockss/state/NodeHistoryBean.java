@@ -34,11 +34,14 @@ package org.lockss.state;
 
 import java.util.Collection;
 
+/**
+ * NodeHistoryBean allows the marshalling of a group of PollHistoryBeans.
+ */
 public class NodeHistoryBean {
   public Collection historyBeans;
 
   /**
-   * Empty constructor for bean creation during marshalling
+   * Empty constructor for bean creation during unmarshalling.
    */
   public NodeHistoryBean() {
   }

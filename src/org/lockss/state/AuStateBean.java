@@ -41,10 +41,17 @@ import java.util.HashSet;
  * because any time the server is restarted a treewalk should be run.
  */
 public class AuStateBean extends AuState {
+  /**
+   * Simple constructor to allow bean creation during unmarshalling.
+   */
   public AuStateBean() {
     super(null, -1, -1, -1, null, null);
   }
 
+  /**
+   * Constructor to create the bean from an AuState prior to marshalling.
+   * @param auState the AuState
+   */
   AuStateBean(AuState auState) {
     super(auState.au, auState.lastCrawlTime, auState.lastTopLevelPoll,
           auState.lastTreeWalk, auState.crawlUrls, null);

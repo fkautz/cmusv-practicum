@@ -36,6 +36,9 @@ import org.lockss.poller.Vote;
 import org.lockss.protocol.LcapIdentity;
 import java.net.UnknownHostException;
 
+/**
+ * Simple class to allow marshalling of Vote instances.
+ */
 public class VoteBean extends Vote {
   public String idStr = null;
   public String challengeStr = null;
