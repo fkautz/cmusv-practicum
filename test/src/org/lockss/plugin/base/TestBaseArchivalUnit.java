@@ -156,6 +156,24 @@ public class TestBaseArchivalUnit extends LockssTestCase {
     assertFalse(mbau.checkCrawlPermission(reader));
   }
 
+  public void testCheckCrawlPermissionWithTrailingPeriod() {
+    StringBuffer sb = new StringBuffer("");
+    sb.append(BaseArchivalUnit.PERMISSION_STRING);
+    sb.append(".");
+    String s_ok = sb.toString();
+    String s_rev = sb.reverse().toString();
+    String s_case = s_ok.toUpperCase();
+
+    Reader reader = new StringReader(s_ok);
+    assertTrue(mbau.checkCrawlPermission(reader));
+
+    reader = new StringReader(s_case);
+    assertTrue(mbau.checkCrawlPermission(reader));
+
+    reader = new StringReader(s_rev);
+    assertFalse(mbau.checkCrawlPermission(reader));
+  }
+
   public void testCheckCrawlPermissionWithWhitespace() {
     int firstWS = BaseArchivalUnit.PERMISSION_STRING.indexOf(' ');
     if (firstWS <=0) {
