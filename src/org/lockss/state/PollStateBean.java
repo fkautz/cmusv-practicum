@@ -49,6 +49,7 @@ public class PollStateBean extends PollState {
     this.status = poll.getStatus();
     this.startTime = poll.getStartTime();
     this.deadlineTime = poll.getDeadline().getExpirationTime();
+    this.ourPoll = poll.getOurPoll();
   }
 
   /**
@@ -108,4 +109,11 @@ public class PollStateBean extends PollState {
     deadlineTime = theDeadline;
   }
 
+  /**
+   * Sets the poll owner boolean
+   * @param ourPollFlag
+   */
+  public void setOurPoll(boolean ourPollFlag) {
+    ourPoll = ourPollFlag;
+  }
 }

@@ -172,4 +172,8 @@ public class Vote implements Serializable {
     return String.valueOf(B64Code.encode(verifier));
   }
 
+  public String getPollKey() {
+    return getChallengeString();
+  }
+
 }

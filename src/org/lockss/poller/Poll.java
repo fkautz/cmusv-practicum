@@ -346,6 +346,7 @@ public abstract class Poll implements Serializable {
     // make sure we haven't already voted
     if(m_tally.hasVoted(voter)) {
       log.warning("Ignoring multiple vote from " + voter);
+      return false;
     }
 
     // make sure our vote will actually matter
@@ -416,8 +417,8 @@ public abstract class Poll implements Serializable {
   }
 
   public String getErrorString() {
-    if(m_pollstate < 0) {
-      return ERROR_STRINGS[-m_pollstate];
+    if(isErrorState()) {
+      return m_tally.getErrString();
     }
     return "No Error";
   }

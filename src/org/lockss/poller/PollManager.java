@@ -182,6 +182,23 @@ public class PollManager  extends BaseLockssManager {
 
 
   /**
+   * Is a poll of the given type and spec currently running
+   * @param type the type of the poll.
+   * @param spec the PollSpec definining the location of the poll.
+   * @return true if we have a poll which is running that matches pollspec
+   */
+  public boolean isPollRunning(int type, PollSpec spec) {
+    Iterator it = thePolls.values().iterator();
+    while(it.hasNext()) {
+      PollManagerEntry pme = (PollManagerEntry)it.next();
+      if(pme.isSamePoll(type,spec)) {
+        return !pme.isPollCompleted();
+      }
+    }
+    return false;
+  }
+
+  /**
    * handle an incoming message packet.  This will create a poll if
    * one is not already running. It will then call recieveMessage on
    * the poll.  This was moved from node state which kept track of the polls
@@ -747,7 +764,6 @@ public class PollManager  extends BaseLockssManager {
     }
 
     synchronized void setPollCompleted(Deadline d) {
-//      poll = null;
       deadline = d;
       status = poll.getVoteTally().didWinPoll() ? WON : LOST;
     }
@@ -772,6 +788,13 @@ public class PollManager  extends BaseLockssManager {
 
     String getShortKey() {
       return(key.substring(0,10));
+    }
+
+    boolean isSamePoll(int type, PollSpec spec) {
+      if(this.type == type) {
+        return this.spec.getCachedUrlSet().equals(spec.getCachedUrlSet());
+      }
+      return false;
     }
   }
 

@@ -84,4 +84,9 @@ public interface NodeState {
    */
   public boolean isInternalNode();
 
+  /**
+   * Returns the current poll status for this node
+   * @return one of the PollState status values.
+   */
+  // public int getPollStatus();
 }

@@ -52,15 +52,16 @@ public class PollHistoryBean extends PollHistory {
   }
 
   PollHistoryBean(PollHistory history) {
-    super(history.type, history.lwrBound, history.uprBound, history.status, history.startTime,
-          history.duration, history.votes);
+    super(history.type, history.lwrBound, history.uprBound, history.status,
+          history.startTime, history.duration, history.votes, history.ourPoll);
     voteBeans = new ArrayList();
     convertVotesToVoteBeans();
   }
 
   PollHistory getPollHistory() {
     convertVoteBeansToVotes();
-    return new PollHistory(type, lwrBound, uprBound, status, startTime, duration, votes);
+    return new PollHistory(type, lwrBound, uprBound, status,
+                           startTime, duration, votes, ourPoll);
   }
 
   /**
@@ -110,6 +111,10 @@ public class PollHistoryBean extends PollHistory {
     super.duration = duration;
   }
 
+  public void setOurPoll(boolean ourPoll) {
+    super.ourPoll = ourPoll;
+  }
+
   /**
    * Gets the voteBeans collection.
    * @return the voteBeans Collection
@@ -125,6 +130,7 @@ public class PollHistoryBean extends PollHistory {
   public void setVoteBeans(Collection voteBeans) {
     this.voteBeans = voteBeans;
   }
+
 
   /**
    * Populates the list of votebeans from the votes list.  This is used purely
