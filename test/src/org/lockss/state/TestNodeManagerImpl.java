@@ -41,6 +41,7 @@ import org.lockss.daemon.*;
 import org.lockss.plugin.Plugin;
 import org.lockss.poller.*;
 import org.lockss.protocol.*;
+import org.lockss.hasher.HashService;
 
 public class TestNodeManagerImpl extends LockssTestCase {
   public static final String TEST_URL = "http://www.example.com";
@@ -58,6 +59,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
+    HashService.start();
     tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     TestHistoryRepositoryImpl.configHistoryParams(tempDirPath);
 
@@ -71,6 +73,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
 
   public void tearDown() throws Exception {
     super.tearDown();
+    HashService.stop();
     Iterator auIt = Plugin.getArchivalUnits();
     ArrayList auList = new ArrayList(Plugin.getNumArchivalUnits());
     while (auIt.hasNext()) {

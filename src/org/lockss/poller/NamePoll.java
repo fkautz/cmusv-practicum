@@ -215,7 +215,7 @@ public class NamePoll extends Poll {
       if(remainingRE != null) {
         // we call a new poll on the remaining entries and set the regexp
         try {
-          m_pollmanager.makePollRequest(m_url,
+          m_pollmanager.requestPoll(m_url,
                                         remainingRE,
                                         LcapMessage.NAME_POLL_REQ,
                                         m_msg.getDuration());

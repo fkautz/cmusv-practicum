@@ -108,7 +108,7 @@ public class RunDaemon {
     if (shouldCallPoll) {
       try {
 	Thread.currentThread().sleep(1000);
-	pollManager.makePollRequest("http://www.example.com/", ".*",
+	pollManager.requestPoll("http://www.example.com/", ".*",
 				    poll_type,
 				    3 * 60 * 1000);
       } catch (Exception e) {

@@ -198,6 +198,12 @@ public class TestLcapMessage extends TestCase {
     new LcapMessage(msgbytes);
   }
 
+  /** test for method makeKey(..) */
+  public void testGetKey() {
+
+
+  }
+
   /** Executes the test case */
   public static void main(String[] argv) {
     String[] testCaseList = {TestLcapMessage.class.getName()};
