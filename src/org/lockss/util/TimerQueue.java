@@ -135,7 +135,9 @@ public class TimerQueue implements Serializable {
 	  Request req = (Request)queue.peekWait(Deadline.in(60000));
 	  if (req != null) {
 	    req.deadline.sleep();
-	    if (req.deadline.expired()) {
+	    // check that this request is still at the head of the queue
+	    Request newHead = (Request)queue.peek();
+	    if (req == newHead && req.deadline.expired()) {
 	      doNotify(req);
 	    }
 	  }
