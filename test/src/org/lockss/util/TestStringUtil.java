@@ -282,8 +282,10 @@ public class TestStringUtil extends LockssTestCase {
   }
 
   public void testTimeInterval() throws Exception {
-    assertEquals("0s", StringUtil.timeIntervalToString(0));
-    assertEquals("1s", StringUtil.timeIntervalToString(SECOND));
+    assertEquals("0ms", StringUtil.timeIntervalToString(0));
+    assertEquals("1000ms", StringUtil.timeIntervalToString(SECOND));
+    assertEquals("9000ms", StringUtil.timeIntervalToString(SECOND * 9));
+    assertEquals("10s", StringUtil.timeIntervalToString(SECOND * 10));
     assertEquals("1m0s", StringUtil.timeIntervalToString(MINUTE));
     assertEquals("1h0m0s", StringUtil.timeIntervalToString(HOUR));
     assertEquals("2d3h0m",
