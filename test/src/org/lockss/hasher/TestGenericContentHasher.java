@@ -203,10 +203,7 @@ public class TestGenericContentHasher extends LockssTestCase {
       String url = TEST_URL+ix;
       MockCachedUrl cu = new MockCachedUrl(url);
 
-      File testFile =
-	FileUtil.writeTempFile(tmpDir.getName(), TEST_FILE_CONTENT+ix);
-
-      cu.setInputStream(new FileInputStream(testFile));
+      cu.setContent(TEST_FILE_CONTENT+ix);
 
       files.add(cu);
     }
