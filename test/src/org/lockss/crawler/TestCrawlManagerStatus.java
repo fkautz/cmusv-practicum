@@ -68,10 +68,6 @@ public class TestCrawlManagerStatus extends LockssTestCase {
 				       ColumnDescriptor.TYPE_INT),
 		  new ColumnDescriptor(NUM_URLS_PARSED, "URLs parsed",
 				       ColumnDescriptor.TYPE_INT),
-		  new ColumnDescriptor(NUM_CACHE_HITS, "Cache hits",
-				       ColumnDescriptor.TYPE_INT),
-		  new ColumnDescriptor(CACHE_HITS_PERCENT, "percent",
-				       ColumnDescriptor.TYPE_PERCENT),
 		  new ColumnDescriptor(START_URLS, "starting url",
 				       ColumnDescriptor.TYPE_STRING)
 		  );
