@@ -103,18 +103,19 @@ public class TreeWalkHandler {
    */
   void doTreeWalk() {
     logger.debug("Attempting tree walk: "+theAu.getName());
-    if (!theCrawlManager.isCrawlingAU(theAu, null, null)) {
-      long startTime = TimeBase.nowMs();
-
-      NodeState topNode = manager.getNodeState(theAu.getAUCachedUrlSet());
-      Iterator activePolls = topNode.getActivePolls();
-      // only continue if no top level poll scheduled or running
-      if (!activePolls.hasNext()) {
+    NodeState topNode = manager.getNodeState(theAu.getAUCachedUrlSet());
+    Iterator activePolls = topNode.getActivePolls();
+    // only continue if no top level poll scheduled or running
+    if (!activePolls.hasNext()) {
+      // check with crawl manager
+      if (!theCrawlManager.isCrawlingAU(theAu, null, null)) {
         // query the AU if a top level poll should be started
         if (theAu.shouldCallTopLevelPoll(manager.getAuState())) {
           manager.callTopLevelPoll();
         } else {
+          // do the actual treewalk
           logger.debug("Tree walk started: "+theAu.getName());
+          long startTime = TimeBase.nowMs();
           nodeTreeWalk();
           long elapsedTime = TimeBase.msSince(startTime);
           updateEstimate(elapsedTime);
