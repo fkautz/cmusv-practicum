@@ -314,7 +314,7 @@ public class Deadline implements Comparable {
    * @return true if expired
    */
   public synchronized boolean expired() {
-    return (!now().before(expiration));
+    return expiration.getTime() <= TimeBase.nowMs();
   }
 
   /**
