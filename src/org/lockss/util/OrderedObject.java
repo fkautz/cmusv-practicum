@@ -55,6 +55,13 @@ public class OrderedObject implements Comparable {
     this(value, new Integer(order));
   }
 
+  /** Create an OrderedObject with the same value and order
+   */
+  public OrderedObject(Comparable value) {
+    this.value = value;
+    this.order = value;
+  }
+
   /** Returns the value */
   public Object getValue() {
     return value;

@@ -65,6 +65,9 @@ public class TestOrderedObject extends LockssTestCase {
     assertEquals("foo", o1.toString());
     assertEquals(new Integer(3), o1.getOrder());
     assertEquals("123", o2.toString());
+    OrderedObject o4 = new OrderedObject("bar");
+    assertEquals("bar", o4.getOrder());
+    assertEquals("bar", o4.getValue());
   }
 
   public void testSort() {
