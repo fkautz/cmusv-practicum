@@ -188,7 +188,7 @@ class VerifyPoll extends Poll {
                 + chal);
       return;
     }
-    byte[] verifier = m_pollmanager.makeVerifier();
+    byte[] verifier = m_pollmanager.makeVerifier(msg.getDuration());
     LcapMessage repmsg = LcapMessage.makeReplyMsg(msg,
         secret,
         verifier,

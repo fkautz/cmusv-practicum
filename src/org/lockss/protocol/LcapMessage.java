@@ -639,7 +639,8 @@ public class LcapMessage
 
     while (tokenizer.hasMoreTokens()) {
       String name = tokenizer.nextToken();
-      boolean hasContent = tokenizer.nextToken() == "\r" ? true : false;
+      String mark = tokenizer.nextToken();
+      boolean hasContent = mark.equals("\r") ? true : false;
       entries.add(new PollTally.NameListEntry(hasContent, name));
     }
     return entries;

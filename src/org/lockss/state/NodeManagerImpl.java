@@ -447,7 +447,7 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
             (PollTally.NameListEntry) masterIt.next();
         String url = entry.name;
         boolean hasContent = entry.hasContent;
-        logger.debug3("checking " + url + " hasContent=" + hasContent);
+        logger.debug2("checking " + url + " hasContent=" + hasContent);
         // compare against my list
         if (localSet.contains(entry)) {
           // removing from the set to leave only files for deletion
