@@ -659,7 +659,7 @@ public abstract class LockssServlet extends HttpServlet
     String since =
       StringUtil.timeIntervalToString(TimeBase.msSince(startDate.getTime()));
     table.add(getMachineName() + " at " +
-	      headerDf.format(new Date()) + ", up " + since + "</center>");
+	      headerDf.format(new Date()) + ", up " + since);
 
 //     table.newCell("valign=center align=right width=\"25%\"");
     table.newCell("valign=center align=center width=\"20%\"");
