@@ -102,6 +102,10 @@ public class IpAccessControl extends LockssServlet {
       throws IOException {
     Vector incl = getListFromParam(PARAM_IP_INCLUDE);
     Vector excl = getListFromParam(PARAM_IP_EXCLUDE);
+    // hack to remove possibly duplicated first element from platform subnet
+    if (incl.size() >= 2 && incl.get(0).equals(incl.get(1))) {
+      incl.remove(0);
+    }
     displayPage(incl, excl, null, null);
   }
 
