@@ -90,4 +90,13 @@ public class MockLogTarget implements LogTarget{
     mset.addAll(messages);
     return mset.contains(str);
   }
+
+  public void dumpMessages() {
+    Iterator it = messageIterator();
+    while (it.hasNext())
+    {
+      System.out.println((String)it.next());
+    }
+  }
+
 }
