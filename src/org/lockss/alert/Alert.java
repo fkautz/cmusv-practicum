@@ -405,19 +405,6 @@ public class Alert {
     sb.append("\n");
   }
 
-  private static Map argMap(String key, Object val) {
-    Map map = new HashMap();
-    map.put(key, val);
-    return map;
-  }
-
-  private static Map argMap(String key1, Object val1,
-			    String key2, Object val2) {
-    Map map = argMap(key1, val1);
-    map.put(key2, val2);
-    return map;
-  }
-
   private static Alert cAlert(String name) {
     return new Alert(name).setAttribute(ATTR_IS_CONTENT, true);
   }
