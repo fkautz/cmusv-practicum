@@ -55,4 +55,7 @@ public interface Constants {
   /** The RE string matching the EOL string */
   public static String EOL_RE = StringUtil.escapeNonAlphaNum(EOL);
 
+  /** The default encoding used when none is detected */
+  public static String DEFAULT_ENCODING = "ISO-8859-1";
+
 }
