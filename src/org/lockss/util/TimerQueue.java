@@ -50,13 +50,6 @@ public class TimerQueue implements Serializable {
     return singleton.add(deadline, callback, cookie);
   }
 
-  private void someDeadlineChanged() {
-    queue.sort();
-    if (timerThread != null) {
-      timerThread.interrupt();
-    }
-  }
-
   private boolean add(Deadline deadline, Callback callback, Object cookie) {
     Request req = new Request(deadline, callback, cookie);
     req.deadline.registerCallback(req.deadlineCb);
@@ -117,6 +110,13 @@ public class TimerQueue implements Serializable {
     }
   }
 
+  private void someDeadlineChanged() {
+    queue.sort();
+    if (timerThread != null) {
+      timerThread.interrupt();
+    }
+  }
+
   // Timer thread
   private class TimerThread extends Thread {
     private boolean goOn = false;
@@ -142,7 +142,7 @@ public class TimerQueue implements Serializable {
 	    }
 	  }
 	} catch (InterruptedException e) {
-	  // no action - expected when stopping
+	  // no action - expected when stopping or when queue reordered
 	} catch (Exception e) {
 	  log.error("Unexpected exception caught in TimerQueue thread", e);
 	}
