@@ -123,4 +123,8 @@ public class PollState implements Comparable {
     }
   }
 
+  public boolean equals(Object obj) {
+    return compareTo(obj)==0;
+  }
+
 }

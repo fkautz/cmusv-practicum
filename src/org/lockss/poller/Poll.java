@@ -370,6 +370,14 @@ public abstract class Poll implements Serializable {
     return m_urlSet;
   }
 
+  /**
+   * get the VoteTally for this Poll
+   * @return VoteTally for this poll
+   */
+  public VoteTally getVoteTally() {
+    return m_tally;
+  }
+
 
   /**
    * Return a hasher preinited with the challenge and verifier

@@ -185,7 +185,7 @@ public class NodeManagerImpl implements NodeManager {
       String key = (String)entry.getKey();
       NodeState node = (NodeState)entry.getValue();
 
-      // if it
+      // if it is in a directory under a deleted directory, skip it
       if ((deleteSub!=null) && (key.startsWith(deleteSub))) {
         //XXX mark deleted?
         continue;
@@ -200,6 +200,10 @@ public class NodeManagerImpl implements NodeManager {
             deleteSub += File.separator;
           }
           continue;
+        case CrawlState.BACKGROUND_CRAWL:
+        case CrawlState.NEW_CONTENT_CRAWL:
+        case CrawlState.REPAIR_CRAWL:
+
           //XXX schedule crawls if it's been too long
           // check with plugin for scheduling
       }
@@ -288,7 +292,7 @@ public class NodeManagerImpl implements NodeManager {
     }
   }
 
-  private void handleContentPoll(PollState pollState, Poll.VoteTally results,
+  void handleContentPoll(PollState pollState, Poll.VoteTally results,
                                  NodeState nodeState) {
     if (results.didWinPoll()) {
       // if agree
@@ -335,7 +339,7 @@ public class NodeManagerImpl implements NodeManager {
     }
   }
 
-  private void handleNamePoll(PollState pollState, Poll.VoteTally results,
+  void handleNamePoll(PollState pollState, Poll.VoteTally results,
                               NodeState nodeState) {
     if (results.didWinPoll()) {
       // if agree
@@ -344,8 +348,8 @@ public class NodeManagerImpl implements NodeManager {
         try {
           callContentPollOnSubNodes(nodeState, results);
           pollState.status = PollState.WON;
-        } catch (IOException ioe) {
-          logger.error("Error scheduling content polls.", ioe);
+        } catch (Exception e) {
+          logger.error("Error scheduling content polls.", e);
           pollState.status = PollState.ERR_IO;
         }
       } else {
