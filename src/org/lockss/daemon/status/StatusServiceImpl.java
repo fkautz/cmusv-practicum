@@ -146,7 +146,8 @@ public class StatusServiceImpl
 						       objRefAccessor);
       objRefAccessors.put(tableName, spec);
     }
-    logger.debug("Registered statusAccessor for table "+tableName);
+    logger.debug("Registered ObjectReferenceAccessor for table "+tableName +
+		 ", class " + cls);
   }
 
   public void
