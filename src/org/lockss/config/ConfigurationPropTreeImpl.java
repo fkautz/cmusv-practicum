@@ -59,21 +59,6 @@ public class ConfigurationPropTreeImpl extends Configuration {
     return props;
   }
 
-  /**
-   * Load plain text Java properties.
-   */
-  boolean loadTextProperties(InputStream istr) throws IOException {
-    props.load(istr);
-    return true;
-  }
-
-  /**
-   * Load LOCKSS XML properties
-   */
-  boolean loadXmlProperties(InputStream istr) throws IOException {
-    return XmlPropertyLoader.load(props, istr);
-  }
-
   boolean store(OutputStream ostr, String header) throws IOException {
     SortedProperties.fromProperties(props).store(ostr, header);
 //     props.store(ostr, header);

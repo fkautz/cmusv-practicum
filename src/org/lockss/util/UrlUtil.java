@@ -257,6 +257,11 @@ public class UrlUtil {
       StringUtil.startsWithIgnoreCase(url, "https:");
   }
 
+  /** Return true if a file: url */
+  public static boolean isFileUrl(String url) {
+    return StringUtil.startsWithIgnoreCase(url, "file:");
+  }
+
   /**
    * @param urlStr string representation of a url
    * @return urlStr up to but not including the path
