@@ -56,9 +56,9 @@ public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
   public void setCrawlSpec(CrawlSpec spec) {
     this.crawlSpec = spec;
   }
-  
-  public void setConfiguration(Configuration config) 
-      throws ConfigurationException {
+
+  public void setConfiguration(Configuration config)
+      throws ArchivalUnit.ConfigurationException {
     super.setConfiguration(config);
     this.config = config;
   }

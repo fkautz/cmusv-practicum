@@ -85,7 +85,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   }
 
   private void checkLegalConfigChange(Configuration newConfig)
-      throws ConfigurationException {
+      throws ArchivalUnit.ConfigurationException {
     Collection defKeys = plugin.getDefiningConfigKeys();
     for (Iterator it = defKeys.iterator(); it.hasNext();) {
       String curKey = (String)it.next();

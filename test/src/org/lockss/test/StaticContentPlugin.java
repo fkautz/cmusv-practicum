@@ -81,7 +81,7 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
   public void unregisterArchivalUnit(ArchivalUnit au) {
     aus.remove(au);
   }
-  
+
   public Collection getDefiningConfigKeys() {
     return Collections.EMPTY_LIST;
   }
@@ -92,8 +92,8 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
       super(myPlugin);
     }
 
-    public void setConfiguration(Configuration config) 
-	throws ConfigurationException {
+    public void setConfiguration(Configuration config)
+	throws ArchivalUnit.ConfigurationException {
       super.setConfiguration(config);
     }
 
