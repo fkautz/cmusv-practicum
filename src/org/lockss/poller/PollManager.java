@@ -429,6 +429,10 @@ public class PollManager  extends BaseLockssManager {
       theLog.warning("Attempt to close unknown poll : " + key);
       return;
     }
+    if(pme.isPollCompleted()) {
+      theLog.warning("Attempt to close- previously closed poll: " + key);
+      return;
+    }
     // mark the poll completed because if we need to call a repair poll
     // we don't want this one to be in conflict with it.
     PollTally tally = pme.poll.getVoteTally();

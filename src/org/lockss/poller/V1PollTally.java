@@ -53,6 +53,7 @@ import org.lockss.daemon.status.*;
  */
 public class V1PollTally extends PollTally {
   private static final int STATE_SUSPENDED = 10;
+  private static final int STATE_TALLIED = 11;
 
   double voteMargin = 0;    // the margin by which we must win or lose
   double trustedWeight = 0;// the min ave. weight of the winners, when we lose.
@@ -170,7 +171,7 @@ public class V1PollTally extends PollTally {
   }
 
   void tallyVotes() {
-    log.debug3("checking for tally for verify poll results.");
+    log.debug3("checking for tally of verify poll results.");
     if(type == Poll.VERIFY_POLL) {
       verifyTally();
       return;
