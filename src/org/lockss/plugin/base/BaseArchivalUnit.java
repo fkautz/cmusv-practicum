@@ -194,6 +194,9 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   }
 
   public boolean shouldCrawlForNewContent(AuState aus) {
+    if (aus.getLastCrawlTime() <= 0) {
+      return true;
+    }
     return false;
   }
 
