@@ -64,7 +64,11 @@ public class MockCrawlManager implements CrawlManager, LockssManager {
 
   public void scheduleRepair(ArchivalUnit au, List urls,
 			     CrawlManager.Callback cb, Object cookie) {
-    throw new UnsupportedOperationException("Not implemented");
+    Iterator urlIt = urls.iterator();
+    while (urlIt.hasNext()) {
+      URL url = (URL)urlIt.next();
+      scheduledRepairs.put(url.toString(), SCHEDULED);
+    }
   }
 
   /**
