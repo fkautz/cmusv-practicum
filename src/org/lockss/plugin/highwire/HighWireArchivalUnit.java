@@ -77,16 +77,14 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
    * Standard constructor for HighWireArchivalUnit.
    *
    * @param myPlugin owner plugin
-   * @param config configuration info for AU
-   * @throws ArchivalUnit.ConfigurationException
    */
   public HighWireArchivalUnit(Plugin myPlugin) {
     super(myPlugin);
   }
 
 
-  public void setConfiguration(Configuration config) 
-      throws ConfigurationException {
+  public void setConfiguration(Configuration config)
+      throws ArchivalUnit.ConfigurationException {
     super.setConfiguration(config);
 
     if (config == null) {
@@ -108,9 +106,9 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
     try {
       this.base = new URL(urlStr);
       this.volume = Integer.parseInt(volStr);
-      
+
     } catch (MalformedURLException murle) {
-      throw new 
+      throw new
 	ArchivalUnit.ConfigurationException(HighWirePlugin.AUPARAM_BASE_URL+
 					    " set to a bad url "+
 					    urlStr, murle);
@@ -123,7 +121,7 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
       throw new ArchivalUnit.ConfigurationException("Url has illegal path: "+
 						    base.getPath());
     }
- 
+
    try {
       this.crawlSpec = makeCrawlSpec(base, volume);
     } catch (REException e) {
