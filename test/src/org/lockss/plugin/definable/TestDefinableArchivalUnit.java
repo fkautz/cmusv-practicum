@@ -223,7 +223,7 @@ public class TestDefinableArchivalUnit extends LockssTestCase {
     map.putString(DefinableArchivalUnit.AU_URL_NORMALIZER_KEY,
 		  "org.lockss.plugin.definable.TestDefinableArchivalUnit$MyNormalizer");
     UrlNormalizer urlNormalizer = cau.makeUrlNormalizer();
-    assertTrue(urlNormalizer instanceof org.lockss.plugin.definable.TestDefinableArchivalUnit$MyNormalizer);
+    assertTrue(urlNormalizer instanceof org.lockss.plugin.definable.TestDefinableArchivalUnit.MyNormalizer);
   }
 
   public static class NegativeCrawlRuleFactory
