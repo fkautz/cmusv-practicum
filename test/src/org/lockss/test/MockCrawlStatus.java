@@ -38,7 +38,9 @@ public class MockCrawlStatus extends Crawler.Status {
   private static final int UNDEFINED_TYPE = -1;
 
   String crawlStatus = null;
-  
+  boolean crawlEndSignaled = false;
+
+
   public MockCrawlStatus(int type) {
     super(null, null, type);
   }
@@ -73,6 +75,15 @@ public class MockCrawlStatus extends Crawler.Status {
 
   public void setAu(ArchivalUnit au) {
     this.au = au;
+  }
+
+  public void signalCrawlEnded() {
+    super.signalCrawlEnded();
+    crawlEndSignaled = true;
+  }
+
+  public boolean crawlEndSignaled() {
+    return crawlEndSignaled;
   }
 
   public void setType(int type) {
