@@ -60,6 +60,10 @@ public class LocalServletManager extends BaseServletManager {
   static final String DEFAULT_HELP_URL =
     "http://documents.lockss.org/publicdocs/release/";
 
+  /** If set, fetches of the UI root (http://cache:8081/) will be
+   * redirected to this path (on same host and port) instead of serving the
+   * index page of the root context.  This is used to replace the UI home
+   * with a servlet. */
   public static final String PARAM_REDIRECT_ROOT = PREFIX + "redirectRoot";
   public static final String DEFAULT_REDIRECT_ROOT = null;
 
