@@ -434,6 +434,8 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
               new RangeCachedUrlSetSpec(baseUrl + url));
           markNodeForRepair(newCus, results);
           // only try one repair per poll
+          //XXX instead, allow multi-URL repair crawls and schedule one
+          // from a list of repairs
           repairMarked = true;
         }
       }
@@ -594,7 +596,7 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
   }
 
   protected void setConfig(Configuration newConfig,
-                           Configuration oldConfig,
+                           Configuration prevConfig,
                            Set changedKeys) {
     recallDelay = newConfig.getTimeInterval(PARAM_RECALL_DELAY,
                                             DEFAULT_RECALL_DELAY);

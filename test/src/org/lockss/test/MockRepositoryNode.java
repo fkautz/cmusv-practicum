@@ -78,12 +78,10 @@ public class MockRepositoryNode implements RepositoryNode {
   }
 
   public Properties getState() {
-    //XXX implement
     return null;
   }
 
   public void storeState(Properties newProps) {
-    //XXX implement
   }
 
   public boolean isLeaf() {

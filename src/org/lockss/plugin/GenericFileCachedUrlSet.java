@@ -131,8 +131,6 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
     if (spec instanceof SingleNodeCachedUrlSetSpec) {
       // return only this node
       logger.debug3("Returning singleton iterator...");
-      //XXX deprecated
-      //  return new SingletonIterator(makeCachedUrl(getUrl()));
       ArrayList list = new ArrayList(1);
       list.add(makeCachedUrl(getUrl()));
       return list.iterator();

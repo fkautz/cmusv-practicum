@@ -116,7 +116,6 @@ public class LockssRepositoryImpl implements LockssRepository {
    * @see org.lockss.app.LockssManager#stopService()
    */
   public void stopService() {
-    //XXX checkpoint here.
     theRepository = null;
   }
 
