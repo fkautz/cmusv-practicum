@@ -70,7 +70,7 @@ public interface Plugin {
   public String getVersion();
 
   /**
-   * Return the humad-readable name of the plugin
+   * Return the human-readable name of the plugin
    * @return the name
    */
   public String getPluginName();
