@@ -114,7 +114,9 @@ public abstract class BasePoll implements Poll {
    */
   public boolean isMyPoll() {
     boolean ret = idMgr.isLocalIdentity(m_callerID);
-    log.debug("isMyPoll(" + m_callerID.toString() + ") = " + ret);
+    if (log.isDebug2()) {
+      log.debug2("isMyPoll(" + m_callerID.toString() + ") = " + ret);
+    }
     return ret;
   }
 
