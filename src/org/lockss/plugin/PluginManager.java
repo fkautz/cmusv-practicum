@@ -580,8 +580,8 @@ public class PluginManager extends BaseLockssManager {
   }
 
   /**
-   * Return the config tree for an AU id (from the loaded config, not the
-   * au itself).
+   * Return the config tree for an AU id (from the local au config file,
+   * not the au itself).
    * @param auid the AU's id.
    * @return the AU's Configuration, with unprefixed keys.
    */
