@@ -47,7 +47,7 @@ import org.lockss.plugin.AuUrl;
  */
 public class AuNodeImpl extends RepositoryNodeImpl {
   AuNodeImpl(String url, String nodeLocation,
-                     LockssRepositoryImpl repository) {
+             LockssRepositoryImpl repository) {
     super(url, nodeLocation, repository);
   }
 
@@ -56,6 +56,7 @@ public class AuNodeImpl extends RepositoryNodeImpl {
    * @return false
    */
   public boolean hasContent() {
+    if (nodeRootFile==null) loadNodeRoot();
     return false;
   }
 
