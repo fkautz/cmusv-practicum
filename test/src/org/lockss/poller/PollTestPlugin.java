@@ -64,6 +64,12 @@ public class PollTestPlugin {
       return duration;
     }
 
+    public Iterator flatSetIterator() {
+      ArrayList al = new ArrayList();
+      al.add(this);
+      return al.iterator();
+    }
+
     /** Set the actual hash duration and size.
      * @param duration the number of milliseconds the hash will take
      * @param bytes the number of bytes that must be hashed
