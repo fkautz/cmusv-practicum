@@ -241,6 +241,32 @@ public class TestBaseArchivalUnit extends LockssTestCase {
     assertTrue(mbau.checkCrawlPermission(reader));
   }
 
+  public void testGetContentParserReturnsNullForNullMimeTupe() {
+    assertNull(mbau.getContentParser(null));
+  }
+
+  public void testGetContentParserReturnsNullForMissingMimeType() {
+    assertNull(mbau.getContentParser(""));
+  }
+
+  public void testGetContentParserReturnsGoslingHtmlParser() {
+    assertTrue(mbau.getContentParser("text/html")
+	       instanceof org.lockss.crawler.GoslingHtmlParser);
+
+    assertTrue(mbau.getContentParser("Text/Html")
+	       instanceof org.lockss.crawler.GoslingHtmlParser);
+  }
+
+  public void testReturnsGHPWithJunkAfterContentType() {
+    assertTrue(mbau.getContentParser("text/html blah")
+	       instanceof org.lockss.crawler.GoslingHtmlParser);
+  }
+
+  public void testGetContentParserReturnsSameGoslingHtmlParser() {
+    assertSame(mbau.getContentParser("text/html"),
+	       mbau.getContentParser("text/html"));
+  }
+
   public static void main(String[] argv) {
     String[] testCaseList = { TestBaseArchivalUnit.class.getName()};
     junit.swingui.TestRunner.main(testCaseList);
