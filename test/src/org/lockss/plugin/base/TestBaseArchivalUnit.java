@@ -67,6 +67,7 @@ public class TestBaseArchivalUnit extends LockssTestCase {
   }
 
   public void testCheckNextPollInterval() {
+    TimeBase.setSimulated();
     for (int ii=0; ii<10; ii++) {
       mbau.nextPollInterval = -1;
       mbau.checkNextPollInterval();
