@@ -148,8 +148,8 @@ public class HashSpeedTest extends LockssTestCase {
     System.out.println("  Byte/step: "+byteStep+"bytes");
     CachedUrlSetHasher hasher = sau.getAuCachedUrlSet().getContentHasher(digest);
 
-    SystemMetrics metrics = SystemMetrics.getSystemMetrics();
-    double estimate = metrics.getBytesPerMsHashEstimate(hasher, digest);
+    SystemMetrics metrics = theDaemon.getSystemMetrics();
+    double estimate = metrics.measureHashSpeed(hasher, digest);
     System.out.println("Estimate-");
     System.out.println("  Bytes/ms: "+estimate);
     System.out.println("  GB/hr: "+
