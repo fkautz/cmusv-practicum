@@ -39,6 +39,7 @@ public class MockFile extends File {
 
   String path;
   boolean isDirectory = false;
+  boolean isFile = false;
   List children = new ArrayList();
 
   public MockFile(String path) {
@@ -107,7 +108,11 @@ public class MockFile extends File {
   }
 
   public boolean isFile() {
-    throw new UnsupportedOperationException("Not implemented");
+    return isFile;
+  }
+
+  public void setIsFile(boolean isFile) {
+    this.isFile = isFile;
   }
 
   public boolean isHidden() {
