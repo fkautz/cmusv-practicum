@@ -875,6 +875,7 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
             }
           } else {
             logger.debug2("Unfinished poll not mine, so not recalling.");
+            nodeState.setState(NodeState.INITIAL);
           }
         }
         return false;
