@@ -83,12 +83,20 @@ public interface StatusAccessor {
    * @throws StatusService.NoSuchTableException if we get a key that we don't 
    * recognize or have a table for
    */
-  public String getTitle(String key) 
-      throws StatusService.NoSuchTableException;
+  public String getTitle(String key) throws StatusService.NoSuchTableException;
 
   /**
    * @returns true if a key is required
    */
   public boolean requiresKey();
+
+  /**
+   * Returns a list of {@link StatusTable.Header} objects for the given key
+   * @param key optional key to identify the desired table
+   * @return list of {@link StatusTable.Header}s
+   * @throws StatusService.NoSuchTableException if we get a key that we don't 
+   * recognize or have a table for
+   */
+  public List getHeaders(String key) throws StatusService.NoSuchTableException;
 
 }
