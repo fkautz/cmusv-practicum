@@ -49,6 +49,7 @@ public class MockCachedUrlSet implements CachedUrlSet {
   private CachedUrlSetSpec spec;
 
   private Vector urls = null;
+  private Iterator flatIterator = null;
 
   public MockCachedUrlSet(ArchivalUnit owner, CachedUrlSetSpec spec) {
     this.spec = spec;
@@ -76,7 +77,11 @@ public class MockCachedUrlSet implements CachedUrlSet {
   }
 
   public Iterator flatSetIterator() {
-    return null;
+    return flatIterator;
+  }
+
+  public void setFlatIterator(Iterator it){
+    flatIterator = it;
   }
 
   public Iterator treeSetIterator() {
