@@ -41,7 +41,11 @@ import org.lockss.protocol.*;
  * @version 1.0
  */
 public class MemoryBoundFunctionVoteFactory {
-  private static String[] names = {
+  /*
+   * The following arrays must be edited whenever a new implementation
+   * is introduced.  This should be an infrequent event.
+   */
+  private static String[] implNames = {
     "MBFV2",
     "MOCK"
   };
@@ -62,8 +66,8 @@ public class MemoryBoundFunctionVoteFactory {
     throws NoSuchAlgorithmException {
     classToUse = null;
     implToUse = null;
-    for (int i = 0; i < names.length; i++) {
-      if (names[i].equals(impl))
+    for (int i = 0; i < implNames.length; i++) {
+      if (implNames[i].equals(impl))
 	implToUse = impls[i];
     }
     if (implToUse != null){
@@ -90,12 +94,12 @@ public class MemoryBoundFunctionVoteFactory {
    * @throws MemoryBoundFunctionException failure to create object
    * @throws NoSuchAlgorithmException no such implementation
    */
-  public MemoryBoundFunctionVote generator(MemoryBoundFunctionFactory fact,
-					   byte[] nVal,
-					   int eVal,
-					   CachedUrlSet cusVal,
-					   byte[] pollID,
-					   LcapIdentity voterID)
+  public MemoryBoundFunctionVote makeGenerator(MemoryBoundFunctionFactory fact,
+					       byte[] nVal,
+					       int eVal,
+					       CachedUrlSet cusVal,
+					       byte[] pollID,
+					       LcapIdentity voterID)
     throws NoSuchAlgorithmException, MemoryBoundFunctionException {
     MemoryBoundFunctionVote ret = null;
     try {
@@ -125,14 +129,14 @@ public class MemoryBoundFunctionVoteFactory {
    * @throws MemoryBoundFunctionException failure to create object
    * @throws NoSuchAlgorithmException no such implementation
    */
-  public MemoryBoundFunctionVote verifier(MemoryBoundFunctionFactory fact,
-					  byte[] nVal,
-					  int eVal,
-					  CachedUrlSet cusVal,
-					  int[][] sVals,
-					  byte[][] hashVals,
-					  byte[] pollID,
-					  LcapIdentity voterID)
+  public MemoryBoundFunctionVote makeVerifier(MemoryBoundFunctionFactory fact,
+					      byte[] nVal,
+					      int eVal,
+					      CachedUrlSet cusVal,
+					      int[][] sVals,
+					      byte[][] hashVals,
+					      byte[] pollID,
+					      LcapIdentity voterID)
     throws NoSuchAlgorithmException, MemoryBoundFunctionException {
     MemoryBoundFunctionVote ret = null;
     try {

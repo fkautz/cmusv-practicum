@@ -38,6 +38,8 @@ import java.security.*;
 import org.lockss.util.*;
 
 /**
+ * @author David S. H. Rosenthal
+ * @version 1.0
  */
 public class MBF1 extends MemoryBoundFunction {
   private static final String algRand = "SHA1PRNG";
@@ -88,6 +90,11 @@ public class MBF1 extends MemoryBoundFunction {
    * Cynthia Dwork, Andrew Goldberg and Moni Naor, "On Memory-
    * Bound Functions for Fighting Spam", in "Advances in Cryptology
    * (CRYPTO 2003)".
+   * @param nVal a byte array containing the nonce
+   * @param eVal the effort sizer (# of low-order zeros in destination)
+   * @param lVal the effort sizer (length of each path)
+   * @param sVal an array of ints containing the proof
+   * @param maxPathVal maximum number of steps to verify
    */
   protected void initialize(byte[] nVal,
 			    long eVal,

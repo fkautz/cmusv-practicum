@@ -56,6 +56,11 @@ public class MockMemoryBoundFunction extends MemoryBoundFunction {
 
   /**
    * Initialize an object that will generate or verify a proof of effort
+   * @param nVal a byte array containing the nonce
+   * @param eVal the effort sizer (# of low-order zeros in destination)
+   * @param lVal the effort sizer (length of each path)
+   * @param sVal an array of ints containing the proof
+   * @param maxPathVal maximum number of steps to verify
    */
   protected void initialize(byte[] nVal,
 			    long eVal,
@@ -82,6 +87,7 @@ public class MockMemoryBoundFunction extends MemoryBoundFunction {
    * as the current path.  Move up to "n" steps along the current path.
    * Set finished if appropriate.
    * @param n number of steps to move.
+   * @return true if there is still work to do
    * 
    */
   public boolean computeSteps(int n) throws MemoryBoundFunctionException {
