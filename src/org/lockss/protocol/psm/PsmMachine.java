@@ -118,9 +118,6 @@ public class PsmMachine {
 
   /** Find the state with the given name */
   public PsmState getState(String name) {
-    if (stateMap == null) {
-      buildStateMap();
-    }
     return (PsmState)stateMap.get(name);
   }
 
@@ -136,12 +133,5 @@ public class PsmMachine {
       }
       stateMap = newmap;
     }
-  }
-
-  // prototype for List.toArray() calls
-  static final PsmState[] EMPTY_PSM_STATE_ARRAY = new PsmState[0];
-
-  PsmState[] stateArray(List lst) {
-    return (PsmState[])lst.toArray(EMPTY_PSM_STATE_ARRAY);
   }
 }

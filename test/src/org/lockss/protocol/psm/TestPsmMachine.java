@@ -72,16 +72,25 @@ public class TestPsmMachine extends LockssTestCase {
       fail("Bad initial state");
     } catch (PsmException.IllegalStateMachine e) { }
     try {
-      new PsmMachine("Test1", states1, new PsmState("Test1"));
+      new PsmMachine("Test1", states1, new PsmState("Foo"));
       fail("Bad initial state");
     } catch (PsmException.IllegalStateMachine e) { }
   }
 
   public void testIllTrans() {
-    PsmState[] states = {
-      new PsmState("Start",
-		   new PsmResponse(PsmEvents.Else, "Foo")),
+    PsmState[] statesOk = {
+      new PsmState("Start", new PsmResponse(PsmEvents.Else, "Foo")),
+      new PsmState("Foo"),
     };
+    PsmState[] statesBad = {
+      new PsmState("Start", new PsmResponse(PsmEvents.Else, "Bar")),
+      new PsmState("Foo"),
+    };
+    new PsmMachine("Test1", statesOk, "Start");
+    try {
+      new PsmMachine("Test1", statesBad, "Start");
+      fail("Tansition to nonexistent state");
+    } catch (PsmException.IllegalStateMachine e) { }
   }
 
   public void testLegalMachine() {

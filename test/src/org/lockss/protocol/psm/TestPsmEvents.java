@@ -46,7 +46,7 @@ public class TestPsmEvents extends LockssTestCase {
     assertSame(PsmEvents.Event, PsmEvents.Else);
     assertTrue(PsmEvents.Event.isa(PsmEvents.Event));
     assertTrue(PsmEvents.Start.isa(PsmEvents.Event));
-    assertFalse(PsmEvents.Event.isa(PsmEvents.Start));
+    assertIsBelow(PsmEvents.Start, PsmEvents.Event);
     assertIsBelow(PsmEvents.MsgEvent, PsmEvents.Event);
     assertIsBelow(PsmEvents.Timeout, PsmEvents.Error);
   }

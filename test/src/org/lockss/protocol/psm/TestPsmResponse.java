@@ -47,19 +47,23 @@ public class TestPsmResponse extends LockssTestCase {
     try {
       new PsmResponse(null, action);
       fail("null event should throw");
-    } catch (RuntimeException e) { }
+    } catch (PsmException.IllegalStateMachine e) { }
     try {
       new PsmResponse(null);
       fail("null event should throw");
-    } catch (RuntimeException e) { }
+    } catch (PsmException.IllegalStateMachine e) { }
     try {
       new PsmResponse(PsmEvents.MsgEvent, (PsmAction)null);
       fail("null action should throw");
-    } catch (RuntimeException e) { }
+    } catch (PsmException.IllegalStateMachine e) { }
     try {
       new PsmResponse(PsmEvents.MsgEvent, (String)null);
       fail("null next state should throw");
-    } catch (RuntimeException e) { }
+    } catch (PsmException.IllegalStateMachine e) { }
+    try {
+      new PsmResponse(PsmEvents.MsgEvent, "");
+      fail("null next state should throw");
+    } catch (PsmException.IllegalStateMachine e) { }
   }
 
   public void testAccessors() {

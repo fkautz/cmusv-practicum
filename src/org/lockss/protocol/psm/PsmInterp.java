@@ -146,8 +146,6 @@ public class PsmInterp {
     } else if (resp.isTransition()) {
       String newStateName = resp.getNewState();
       PsmState newState = machine.getState(newStateName);
-      if (newState == null) {
-      }
       enterState(newState, event, eventCtr);
     } else {
       PsmAction action = resp.getAction();

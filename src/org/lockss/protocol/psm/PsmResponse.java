@@ -52,15 +52,14 @@ public class PsmResponse {
    * signalled.
    */
   public PsmResponse(PsmEvent event, String newState) {
-    if (event == null)
+    if (event == null) {
       throw new PsmException.IllegalStateMachine("event is null");
-    if (newState == null)
-      throw new PsmException.IllegalStateMachine("event is null");
+    }
+    if (StringUtil.isNullString(newState)) {
+      throw new PsmException.IllegalStateMachine("newState is null string");
+    }
     this.event = event;
     this.newState = newState;
-    if (newState.equalsIgnoreCase("wait")) {
-      isWait = true;
-    }
   }
 
   /** Create a response that maps the event to the specified action.
