@@ -170,7 +170,12 @@ public class PlatformInfo {
   }
 
   int getInt(String s) throws NumberFormatException{
-    return Integer.parseInt(s);
+    try {
+      return Integer.parseInt(s);
+    } catch (NumberFormatException e) {
+      log.warning("Illegal number in DF output: " + s);
+      return 0;
+    }
   }
 
   static Runtime rt() {

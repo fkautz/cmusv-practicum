@@ -87,6 +87,29 @@ public class TestPlatformInfo extends LockssTestCase {
     assertEquals(.39, df.getPercent(), .0000001);
   }
 
+  public void testMakeDFIll1() throws Exception {
+    String str = "/dev/hda2  26667896   9849640  -1546    39% /";
+    PlatformInfo.DF df = info.makeDFFromLine(str);
+    assertNotNull(df);
+    assertEquals(26667896, df.getSize());
+    assertEquals(9849640, df.getUsed());
+    assertEquals(-1546, df.getAvail());
+    assertEquals("39%", df.getPercentString());
+    assertEquals(.39, df.getPercent(), .0000001);
+  }
+
+  public void testMakeDFIll2() throws Exception {
+    // linux df running under linux emul on OpenBSD can produce this
+    String str = "-  26667896   9849640  4294426204    101% /";
+    PlatformInfo.DF df = info.makeDFFromLine(str);
+    assertNotNull(df);
+    assertEquals(26667896, df.getSize());
+    assertEquals(9849640, df.getUsed());
+    assertEquals(0, df.getAvail());
+    assertEquals("101%", df.getPercentString());
+    assertEquals(1.01, df.getPercent(), .0000001);
+  }
+
   public void xtestThreadDump() throws Exception {
     info.threadDump();
   }
