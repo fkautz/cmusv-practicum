@@ -470,7 +470,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
    * @return a LockssAuManager
    * @throws IllegalArgumentException if the manager is not available.
    */
-  public LockssAuManager getAuManager(String key, ArchivalUnit au) {
+  public static LockssAuManager getAuManager(String key, ArchivalUnit au) {
     LockssAuManager mgr = null;
     SequencedHashMap auMgrMap =
       (SequencedHashMap)auManagerMaps.get(au);
