@@ -65,6 +65,24 @@ public class TestCollectionUtil extends TestCase {
     }
   }
 
+  public void testIsDisjoint() {
+    // empty sets are disjoint, as intersection is empty
+    assertTrue(CollectionUtil.isDisjoint(Collections.EMPTY_LIST,
+					 Collections.EMPTY_LIST));
+    assertTrue(CollectionUtil.isDisjoint(ListUtil.list("1"),
+					 Collections.EMPTY_LIST));
+    assertFalse(CollectionUtil.isDisjoint(ListUtil.list("1"),
+					  ListUtil.list("1")));
+    assertFalse(CollectionUtil.isDisjoint(ListUtil.list("1", "2"),
+					  ListUtil.list("1", "2")));
+    assertFalse(CollectionUtil.isDisjoint(ListUtil.list("1", "2"),
+					  ListUtil.list("2", "3")));
+    assertTrue(CollectionUtil.isDisjoint(ListUtil.list("1"),
+					 ListUtil.list("2")));
+    assertTrue(CollectionUtil.isDisjoint(ListUtil.list("1", "2"),
+					  ListUtil.list("3", "4")));
+  }
+
   public void testIsoIter() {
     Vector v = new Vector();
     List l = new ArrayList();

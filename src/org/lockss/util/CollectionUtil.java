@@ -43,6 +43,11 @@ public class CollectionUtil {
   public static final Iterator EMPTY_ITERATOR =
     Collections.unmodifiableList(Collections.EMPTY_LIST).iterator();
 
+  /** Return true iff the two Collections are disjoint */
+  public static boolean isDisjoint(Collection a, Collection b) {
+    return !org.apache.commons.collections.CollectionUtils.containsAny(a, b);
+  }
+
   /** Return true iff the two iterators enumerate collections of the same
    * size, whose elements are pairwise equal.  The collections need not be of
    * the same type.
