@@ -130,7 +130,7 @@ public class NullPlugin {
     public void addToList(CachedUrlSetSpec spec) {
     }
 
-    public long duration(long elapsed, boolean success) {
+    public long duration(long elapsed, Exception err) {
       return 0;
     }
 

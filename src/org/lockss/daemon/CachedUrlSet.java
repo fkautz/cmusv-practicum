@@ -125,9 +125,10 @@ public interface CachedUrlSet {
      * Provide the measured duration of a hash attempt and an
      * indication of success or failure.
      * @param elapsed the measured duration of a hash attempt.
-     * @param success <code>true</code> if the attempt succeeded.
+     * @param err the exception that terminated the hash, or null if it
+     * succeeded
      */
-    public long duration(long elapsed, boolean success);
+    public long duration(long elapsed, Exception err);
 
     // Methods used by readers
 
