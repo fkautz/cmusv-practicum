@@ -120,16 +120,6 @@ public class NamePoll
     }
   }
 
-  /**
-   * finish the poll once the deadline has expired. we update our poll record
-   * and prevent any more activity in this poll.
-   */
-  void stopPoll() {
-    if(!m_tally.didWinPoll()) {
-      buildPollLists(m_tally.pollVotes.iterator());
-    }
-    super.stopPoll();
-  }
 
   ArrayList getEntries() {
     if (m_entries == null) {

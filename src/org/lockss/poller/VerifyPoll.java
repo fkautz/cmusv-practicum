@@ -49,6 +49,8 @@ import org.mortbay.util.B64Code;
  */
 class VerifyPoll extends Poll {
 
+  Poll originalPoll;
+
   public VerifyPoll(LcapMessage msg, PollSpec pollspec, PollManager pm) {
     super(msg, pollspec, pm);
     m_replyOpcode = LcapMessage.VERIFY_POLL_REP;
@@ -144,6 +146,8 @@ class VerifyPoll extends Poll {
       log.debug("vote disowned.");
       idMgr.changeReputation(id, IdentityManager.VOTE_DISOWNED);
     }
+    // now we need to update the tally for the poll which triggered this verify
+
   }
 
 
