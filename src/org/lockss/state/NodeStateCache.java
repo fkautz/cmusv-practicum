@@ -78,7 +78,7 @@ public class NodeStateCache {
    * @param urlKey the url key
    * @return the {@link NodeState}
    */
-  public NodeState get(String urlKey) {
+  public NodeState getState(String urlKey) {
     NodeState node = (NodeState)lruMap.get(urlKey);
     if (node!=null) {
       cacheHits++;
@@ -101,11 +101,10 @@ public class NodeStateCache {
    * Puts a NodeState in the cache.
    * @param urlKey the url
    * @param node the {@link NodeState}
-   * @return the previous value, if any
    */
-  public NodeState put(String urlKey, NodeState node) {
+  public void putState(String urlKey, NodeState node) {
     refMap.put(urlKey, node);
-    return (NodeState)lruMap.put(urlKey, node);
+    lruMap.put(urlKey, node);
   }
 
   int getCacheHits() { return cacheHits; }
