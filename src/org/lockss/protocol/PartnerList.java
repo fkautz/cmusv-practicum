@@ -174,8 +174,10 @@ class PartnerList {
   }
 
   void addFromDefaultList() {
-    int ix = random.nextInt(defaultPartnerList.size());
-    partners.put(defaultPartnerList.get(ix), nowLong());
+    if (!defaultPartnerList.isEmpty()) {
+      int ix = random.nextInt(defaultPartnerList.size());
+      partners.put(defaultPartnerList.get(ix), nowLong());
+    }
   }
 
   Long nowLong() {
