@@ -543,7 +543,7 @@ public abstract class LockssServlet extends HttpServlet
     for (Iterator iter = props.keySet().iterator(); iter.hasNext(); ) {
       String key = (String)iter.next();
       String val = props.getProperty(key);
-      list.add(key + "=" + val);
+      list.add(key + "=" + urlEncode(val));
     }
     return StringUtil.separatedString(list, "&");
   }
