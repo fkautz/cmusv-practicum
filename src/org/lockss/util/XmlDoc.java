@@ -43,6 +43,7 @@ import javax.xml.parsers.*;
 import org.w3c.dom.*;
 import org.xml.sax.*;
 import java.io.*;
+import java.util.*;
 
 public class XmlDoc {
 
@@ -122,5 +123,13 @@ public class XmlDoc {
   public boolean hasTag(String tag) {
     return (doc.getElementsByTagName(tag).getLength() > 0);
   }
+
+  public static void putAttrFromNodeListIntoSet(
+      NodeList list, Set set, String attr) {
+    for (int i = 0; i < list.getLength(); i++) {
+      set.add(getNodeAttrText(list.item(i), attr));
+    }
+  }
+
 
 }

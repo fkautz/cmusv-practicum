@@ -99,6 +99,14 @@ public class TestXmlDoc extends LockssTestCase {
     assertFalse(doc.hasTag("tag101"));
   }
 
+  public void testPutAttrFromNodeListIntoSet() {
+    NodeList list = doc.getNodeList("tag1");
+    Set set = new HashSet();
+    XmlDoc.putAttrFromNodeListIntoSet(list,set,"name");
+    assertTrue(set.contains("name1"));
+    assertTrue(set.contains("name2"));
+  }
+
   public static Test suite() {
     return new TestSuite(TestXmlDoc.class);
   }
