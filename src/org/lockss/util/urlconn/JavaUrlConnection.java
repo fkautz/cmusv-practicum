@@ -81,10 +81,6 @@ public class JavaUrlConnection extends BaseLockssUrlConnection {
     urlConn.setRequestProperty(key, value);
   }
 
-  public void setUserAgent(String value) {
-    setRequestProperty("user-agent", value);
-  }
-
   public void setRequestIfModifiedSince(long ifmodifiedsince) {
     urlConn.setIfModifiedSince(ifmodifiedsince);
   }

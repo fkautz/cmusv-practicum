@@ -98,6 +98,10 @@ public abstract class BaseLockssUrlConnection implements LockssUrlConnection {
     gmtDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
   }
 
+  public void setUserAgent(String value) {
+    setRequestProperty("user-agent", value);
+  }
+
   public void setRequestPropertyDate(String key, long time) {
     assertNotExecuted();
     Date date = new Date(time);
