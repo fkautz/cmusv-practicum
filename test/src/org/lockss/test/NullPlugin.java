@@ -210,10 +210,13 @@ public class NullPlugin {
       return false;
     }
 
-    public void cache() throws IOException {
+    public void setForceRefetch(boolean force) {
     }
 
-    public void forceCache() throws IOException {
+    public void setRedirectScheme(int scheme) {
+    }
+
+    public void cache() throws IOException {
     }
 
     public void storeContent(InputStream input,
