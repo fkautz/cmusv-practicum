@@ -184,9 +184,9 @@ public class Deadline implements Comparable {
   */
   public synchronized long getSleepTime() {
     if (TimeBase.isSimulated()) {
-      return 5;
+      return expired() ? 0 : 5;
     } else {
-      return (expired() ? 0 : expiration.getTime() - nowMs());
+      return getRemainingTime();
     }
   }
 
