@@ -144,7 +144,7 @@ public class MockArchivalUnit implements ArchivalUnit {
 //     return ((MockCachedUrlSet)owner).makeUrlCacher(url);
 //   }
 
-  protected void addUrlToBeCached(String url) {
+  public void addUrlToBeCached(String url) {
     urlsToCache.add(url);
   }
 
