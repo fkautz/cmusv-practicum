@@ -167,7 +167,7 @@ public class NewContentCrawler extends CrawlerImpl {
   /** We always want our UrlCacher to store all redirected copies */
   protected UrlCacher makeUrlCacher(CachedUrlSet cus, String url) {
     UrlCacher uc = super.makeUrlCacher(cus, url);
-    uc.setRedirectScheme(UrlCacher.REDIRECT_SCHEME_STORE_ALL);
+    uc.setRedirectScheme(UrlCacher.REDIRECT_SCHEME_STORE_ALL_IN_SPEC);
     return uc;
   }
 

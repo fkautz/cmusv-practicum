@@ -214,7 +214,7 @@ public class NullPlugin {
     public void setForceRefetch(boolean force) {
     }
 
-    public void setRedirectScheme(int scheme) {
+    public void setRedirectScheme(RedirectScheme scheme) {
     }
 
     public void cache() throws IOException {
