@@ -174,9 +174,21 @@ public class BaseCachedUrl implements CachedUrl {
     }
   }
 
+  private String trimMime(String mimeType) {
+    if (mimeType == null) {
+      return null;
+    }
+    int idx = mimeType.indexOf(";");
+    if (idx < 0) {
+      return mimeType;
+    }
+    return mimeType.substring(0, idx);
+  }
+
+
   private InputStream getFilteredStream() {
     CIProperties props = getProperties();
-    String mimeType = props.getProperty(PROPERTY_CONTENT_TYPE);
+    String mimeType = trimMime(props.getProperty(PROPERTY_CONTENT_TYPE));
     FilterRule fr = au.getFilterRule(mimeType);
     if (fr != null) {
       Reader rd = fr.createFilteredReader(openForReading());
