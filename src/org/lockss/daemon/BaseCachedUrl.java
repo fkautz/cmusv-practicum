@@ -55,6 +55,13 @@ public abstract class BaseCachedUrl implements CachedUrl {
   }
 
   /**
+   * Overrides normal <code>toString()</code> to return the url for this cacher
+   */
+  public String toString(){
+    return url;
+  }
+
+  /**
    * Return the CachedUrlSet to which this CachedUrl belongs.
    */
   public CachedUrlSet getCachedUrlSet() {
