@@ -60,7 +60,7 @@ public class BinarySemaphore {
       while (!state && !timer.expired()) {
 	try {
 	  timer.registerCallback(cb);
-	  this.wait(timer.getRemainingTime());
+	  this.wait(timer.getSleepTime());
 	} finally {
 	  timer.unregisterCallback(cb);
 	}

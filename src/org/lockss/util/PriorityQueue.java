@@ -119,7 +119,7 @@ public class PriorityQueue implements Queue {
     while (queue.isEmpty() && !timer.expired()) {
       try {
 	timer.registerCallback(cb);
-	this.wait(timer.getRemainingTime());
+	this.wait(timer.getSleepTime());
       } finally {
 	timer.unregisterCallback(cb);
       }
