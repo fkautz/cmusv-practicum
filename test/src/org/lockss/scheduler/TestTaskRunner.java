@@ -439,7 +439,7 @@ public class TestTaskRunner extends LockssTestCase {
 			     new BERec(151, t3, Schedule.EventType.START),
 			     new BERec(201, t1, Schedule.EventType.FINISH),
 			     new BERec(201, t3, Schedule.EventType.FINISH),
-			     new BERec(202, t2, Schedule.EventType.FINISH));
+			     new BERec(201, t2, Schedule.EventType.FINISH));
     assertEquals(exp, rec);
   }
 
