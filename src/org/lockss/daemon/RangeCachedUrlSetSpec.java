@@ -214,7 +214,7 @@ public class RangeCachedUrlSetSpec implements CachedUrlSetSpec {
   }
 
   public String toString() {
-    StringBuffer sb = new StringBuffer("[RangedCUSS: ");
+    StringBuffer sb = new StringBuffer("[CUSS: ");
     sb.append(prefix);
 
     if (lowerBound != null || upperBound != null) {
