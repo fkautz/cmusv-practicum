@@ -208,6 +208,38 @@ public class TestBaseArchivalUnit extends LockssTestCase {
     assertFalse(mbau.checkCrawlPermission(reader));
   }
 
+  public void testCheckCrawlPermissionWithHtml() {
+    int firstWS = BaseArchivalUnit.PERMISSION_STRING.indexOf(' ');
+    if (firstWS <=0) {
+      fail("No spaces in permission string, or starts with space");
+    }
+
+    String subStr1 = BaseArchivalUnit.PERMISSION_STRING.substring(0, firstWS);
+    String subStr2 = BaseArchivalUnit.PERMISSION_STRING.substring(firstWS+1);
+
+    // single
+    StringBuffer sb = new StringBuffer("laa-dee-dah-LOCK-KCOL\n\n");
+    sb.append(subStr1);
+    sb.append("<br>");
+    sb.append(subStr2);
+    sb.append("\n\nTheEnd!");
+    String testStr = sb.toString();
+
+    Reader reader = new StringReader(testStr);
+    assertTrue(mbau.checkCrawlPermission(reader));
+
+    // multiple, with mixed case
+    sb = new StringBuffer("laa-dee-dah-LOCK-KCOL\n\n");
+    sb.append(subStr1);
+    sb.append("<BR>&nbsp;<p>");
+    sb.append(subStr2);
+    sb.append("\n\nTheEnd!");
+    testStr = sb.toString();
+
+    reader = new StringReader(testStr);
+    assertTrue(mbau.checkCrawlPermission(reader));
+  }
+
   public static void main(String[] argv) {
     String[] testCaseList = { TestBaseArchivalUnit.class.getName()};
     junit.swingui.TestRunner.main(testCaseList);
