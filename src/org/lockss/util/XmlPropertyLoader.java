@@ -370,7 +370,7 @@ public class XmlPropertyLoader {
       } else if (m_inOr) {
 	m_evalIf |= evaluateAttributes(attrs);
       } else if (m_inNot) {
-	m_evalIf ^= evaluateAttributes(attrs);
+	m_evalIf &= !evaluateAttributes(attrs);
       }
     }
 

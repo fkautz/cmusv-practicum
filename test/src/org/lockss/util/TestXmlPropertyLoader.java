@@ -232,6 +232,8 @@ public class TestXmlPropertyLoader extends LockssTestCase {
     assertEquals("foo", m_props.get("org.lockss.not.c"));
     assertNull(m_props.get("org.lockss.or.d"));
     assertEquals("bar", m_props.get("org.lockss.not.e"));
+    assertEquals("foo", m_props.get("org.lockss.not.f"));
+    assertEquals("bar", m_props.get("org.lockss.not.g"));
   }
 
 }
