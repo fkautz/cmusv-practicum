@@ -139,10 +139,6 @@ public class LockssRepositoryServiceImpl implements LockssRepositoryService {
   public synchronized void addLockssRepository(ArchivalUnit au) {
     LockssRepository lockssRepo = (LockssRepository)auMap.get(au);
     if (lockssRepo==null) {
-        if (cacheLocation==null) {
-          logger.error("Couldn't get "+PARAM_CACHE_LOCATION+" from Configuration");
-          throw new LockssRepository.RepositoryStateException("Couldn't load param.");
-        }
       lockssRepo = new LockssRepositoryImpl(
             LockssRepositoryServiceImpl.mapAuToFileLocation(cacheLocation, au),
             au);
