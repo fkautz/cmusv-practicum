@@ -29,48 +29,43 @@ be used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from Stanford University.
 
 */
+
 package org.lockss.crawler;
+import org.lockss.test.*;
 
-/**
- * This sturcture keep the perission page's URL of a host 
- * and the permission status for crawling that host 
- *
- * @author Chun D. Fok
- * @version 0.0
- */
-public class PermissionRecord{
-  public static final int PERMISSION_UNCHECKED = 0;
-  public static final int PERMISSION_OK = 1;
-  public static final int PERMISSION_NOT_OK = 2;
-  public static final int FETCH_PERMISSION_FAILED = 3;
-  public static final int PERMISSION_MISSING = 4;
+public class TestPermissionMap extends LockssTestCase {
+  private PermissionMap pMap;
+  private String permissionUrl1 = "http://www.example.com/index.html";
+  private String url1 = "http://www.example.com/link1.html";
 
-  private String permissionUrl="";
-  private int permissionStatus=PERMISSION_UNCHECKED;
-  
-  public PermissionRecord(String permissionUrl,int permissionStatus){
-    if (permissionUrl == null) {
-      throw new IllegalArgumentException("Called with null permissionUrl");
-    }
-     
-    setPermissionUrl(permissionUrl);
-    setPermissionStatus(permissionStatus);
+  public void setUp() throws Exception {
+    super.setUp();
+    pMap = new PermissionMap();
+    pMap.putStatus(permissionUrl1, PermissionMap.PERMISSION_OK);
   }
   
-  public String getPermissionUrl(){
-    return permissionUrl;
-  }
-  
-  public void setPermissionUrl(String permissionUrl){
-    this.permissionUrl=permissionUrl;
+  public void testGetPermissionUrl() throws Exception {
+    assertEquals(permissionUrl1, pMap.getPermissionUrl(url1));
   }
 
-  public int getPermissionStatus(){
-    return permissionStatus;
-  }
-  
-  public void setPermissionStatus(int permissionStatus){
-    this.permissionStatus=permissionStatus;
+  public void testGetStatus()throws Exception {
+    assertEquals(PermissionMap.PERMISSION_OK, pMap.getStatus(url1));
   }
 
+  public void testPutMoreStatus()throws Exception {
+    String permissionUrl2 = "http://www.foo.com/index.html";
+    String url2 = "http://www.foo.com/link2.html";
+
+    pMap.putStatus(permissionUrl2, PermissionMap.PERMISSION_NOT_OK);
+    assertEquals(permissionUrl2, pMap.getPermissionUrl(url2));
+    assertEquals(PermissionMap.PERMISSION_NOT_OK, pMap.getStatus(url2));
+    
+    assertEquals(permissionUrl1, pMap.getPermissionUrl(url1));
+    assertEquals(PermissionMap.PERMISSION_OK, pMap.getStatus(url1));
+  }
+
+  public void testPutStatusOverwrite() throws Exception {
+    pMap.putStatus(permissionUrl1, PermissionMap.FETCH_PERMISSION_FAILED);
+    assertEquals(PermissionMap.FETCH_PERMISSION_FAILED, pMap.getStatus(url1));
+  }
 }
