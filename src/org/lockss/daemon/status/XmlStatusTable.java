@@ -33,7 +33,6 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.daemon.status;
 
 import java.util.*;
-import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 
 import org.lockss.util.*;
@@ -313,7 +312,7 @@ public class XmlStatusTable {
           SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
           return sdf.format(date);
         case ColumnDescriptor.TYPE_IP_ADDRESS:
-          return ((InetAddress)object).getHostAddress();
+          return ((IPAddr)object).getHostAddress();
         case ColumnDescriptor.TYPE_TIME_INTERVAL:
           long milli = ((Number)object).longValue();
           return StringUtil.timeIntervalToString(milli);
