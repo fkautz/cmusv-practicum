@@ -67,6 +67,33 @@ public class ExternalizableMap {
     }
   }
 
+  public void loadMapFromResource(String mapLocation) {
+
+    try {
+      InputStream mapStream = getClass().getResourceAsStream(mapLocation);
+      if (mapStream == null) {
+        descrMap = new HashMap();
+        return;
+      }
+      Reader reader = new BufferedReader(new InputStreamReader(mapStream));
+      Unmarshaller unmarshaller = new Unmarshaller(ExtMapBean.class);
+      unmarshaller.setMapping(getMapping());
+      ExtMapBean emp = (ExtMapBean) unmarshaller.unmarshal(reader);
+      descrMap = emp.getMapFromLists();
+      reader.close();
+    }
+    catch (org.exolab.castor.xml.MarshalException me) {
+      // we have a damaged file
+      logger.error(me.toString());
+      descrMap = new HashMap();
+    }
+    catch (Exception e) {
+      // some other error occured
+      logger.error(e.toString());
+      descrMap = new HashMap();
+    }
+  }
+
   public void loadMap(String mapLocation, String mapName) {
     File mapFile = null;
     try {

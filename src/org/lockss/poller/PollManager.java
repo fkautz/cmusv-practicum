@@ -181,6 +181,7 @@ public class PollManager  extends BaseLockssManager {
       ArchivalUnit pau = pme.poll.m_cus.getArchivalUnit();
       if (pau == au) {
         if (!pme.isPollCompleted()) {
+          theHashService.cancelAuHashes(pau);
           pme.poll.stopPoll();
         }
       }
