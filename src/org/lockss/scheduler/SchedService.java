@@ -62,7 +62,7 @@ public class SchedService extends BaseLockssManager {
 	  return new SortScheduler(tasks);
 	}});
     runner.init();
-    getDaemon().getStatusService().
+    getApp().getStatusService().
       registerStatusAccessor("SchedQ", runner.getStatusAccessor());
   }
 
@@ -73,7 +73,7 @@ public class SchedService extends BaseLockssManager {
   public void stopService() {
     // TODO: checkpoint here.
     if (runner != null) {
-      getDaemon().getStatusService().unregisterStatusAccessor("TaskRunner");
+      getApp().getStatusService().unregisterStatusAccessor("TaskRunner");
       runner.stopThread();
     }
     runner = null;

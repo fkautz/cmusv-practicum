@@ -48,7 +48,7 @@ public class StartProxy {
     try {
       manager.initService(null);
     }
-    catch (LockssDaemonException ex) {
+    catch (LockssAppException ex) {
       System.err.println("Init called twice!");
     }
 //    System.out.println("pm.findArchivalUnit(http://foo.bar/one) = " +

@@ -46,7 +46,7 @@ public class MockIdentityManager extends IdentityManager {
   public Map agreeMap = new HashMap();
 
   public MockIdentityManager() { }
-  public void initService(LockssDaemon daemon) throws LockssDaemonException {
+  public void initService(LockssDaemon daemon) throws LockssAppException {
     localIdentityStr = "127.1.2.3";
     makeLocalIdentity();
   }

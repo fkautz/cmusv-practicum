@@ -32,13 +32,13 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.app;
 
-public class LockssDaemonException extends RuntimeException {
+public class LockssAppException extends RuntimeException {
 
-  public LockssDaemonException() {
+  public LockssAppException() {
     super();
   }
 
-  public LockssDaemonException(String msg) {
+  public LockssAppException(String msg) {
     super(msg);
   }
 }

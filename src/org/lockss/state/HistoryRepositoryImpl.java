@@ -49,7 +49,7 @@ import org.lockss.protocol.*;
  * actual storage of NodeStates.
  */
 public class HistoryRepositoryImpl
-  extends BaseLockssManager implements HistoryRepository {
+  extends BaseLockssDaemonManager implements HistoryRepository {
 
   /**
    * Configuration parameter name for Lockss history location.
@@ -102,7 +102,7 @@ public class HistoryRepositoryImpl
 //     if (rootLocation==null) {
 //       String msg = PARAM_HISTORY_LOCATION + " not configured";
 //       logger.error(msg);
-//       throw new LockssDaemonException(msg);
+//       throw new LockssAppException(msg);
 //     }
     // check if file updates are needed
     checkFileChange();

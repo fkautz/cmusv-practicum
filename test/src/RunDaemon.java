@@ -92,7 +92,7 @@ public class RunDaemon
   }
 
   public void runDaemon() throws Exception {
-    super.runDaemon();
+    super.startDaemon();
 
     boolean testPoll = Configuration.getBooleanParam(PARAM_CALL_POLL,
         false);

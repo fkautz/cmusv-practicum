@@ -47,7 +47,7 @@ import org.lockss.plugin.*;
  * between LOCKSS caches.  The packets sent at this level are {@link
  * LockssDatagram}s.  They are sent and received via {@link LcapSocket}s.
  */
-public class LcapComm extends BaseLockssManager {
+public class LcapComm extends BaseLockssDaemonManager {
 
   static final String PARAM_LOCAL_IPS =
     Configuration.PREFIX + "platform.localIPs";

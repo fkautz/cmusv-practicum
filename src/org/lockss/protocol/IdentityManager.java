@@ -46,7 +46,7 @@ import org.lockss.app.*;
  * @author Claire Griffin
  * @version 1.0
  */
-public class IdentityManager extends BaseLockssManager {
+public class IdentityManager extends BaseLockssDaemonManager {
   static Logger log = Logger.getLogger("IdentityManager");
 
   public static final String PARAM_LOCAL_IP =
@@ -132,20 +132,20 @@ public class IdentityManager extends BaseLockssManager {
       log.error(PARAM_LOCAL_IP +
 		" is not set - IdentityManager cannot start.");
       throw new
-	LockssDaemonException(PARAM_LOCAL_IP +
+	LockssAppException(PARAM_LOCAL_IP +
 			      " is not set - IdentityManager cannot start.");
     }
     makeLocalIdentity();
   }
 
-  protected void makeLocalIdentity() throws LockssDaemonException {
+  protected void makeLocalIdentity() throws LockssAppException {
     try {
       IPAddr addr = IPAddr.getByName(localIdentityStr);
       theLocalIdentity = new LcapIdentity(addr);
     } catch (UnknownHostException uhe) {
       log.error("Could not resolve: " + localIdentityStr, uhe);
       throw new
-	LockssDaemonException("Could not resolve: " + localIdentityStr);
+	LockssAppException("Could not resolve: " + localIdentityStr);
     }
   }
 

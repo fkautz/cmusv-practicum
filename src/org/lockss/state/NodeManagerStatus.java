@@ -37,7 +37,7 @@ import org.lockss.app.*;
 /**
  * Collect and report the status of the NodeManager
  */
-public class NodeManagerStatus extends BaseLockssManager {
+public class NodeManagerStatus extends BaseLockssDaemonManager {
   public static final String SERVICE_STATUS_TABLE_NAME =
       "NodeManagerServiceTable";
   public static final String MANAGER_STATUS_TABLE_NAME = "NodeManagerTable";

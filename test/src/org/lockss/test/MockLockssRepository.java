@@ -55,7 +55,7 @@ public class MockLockssRepository implements LockssRepository {
     nodeCache = new HashMap();
   }
 
-  public void initService(LockssDaemon daemon) throws LockssDaemonException {
+  public void initService(LockssApp app) throws LockssAppException {
 
   }
 
@@ -65,7 +65,7 @@ public class MockLockssRepository implements LockssRepository {
   public void stopService() {
   }
 
-  public LockssDaemon getDaemon() {
+  public LockssApp getApp() {
     throw new UnsupportedOperationException("Not implemented");
   }
 

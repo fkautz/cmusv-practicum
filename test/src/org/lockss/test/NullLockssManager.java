@@ -40,7 +40,7 @@ import org.lockss.daemon.Configuration;
  */
 
 public class NullLockssManager implements LockssManager {
-  public void initService(LockssDaemon daemon) throws LockssDaemonException {
+  public void initService(LockssApp app) throws LockssAppException {
     throw new UnsupportedOperationException("Unsupported operation.");
   }
 
@@ -52,21 +52,7 @@ public class NullLockssManager implements LockssManager {
     throw new UnsupportedOperationException("Unsupported operation.");
   }
 
-  public LockssDaemon getDaemon() {
-    throw new UnsupportedOperationException("Unsupported operation.");
-  }
-
-  protected boolean isDaemonInited() {
-    throw new UnsupportedOperationException("Unsupported operation.");
-  }
-
-  protected void resetConfig() {
-    throw new UnsupportedOperationException("Unsupported operation.");
-  }
-
-  protected  void setConfig(Configuration newConfig,
-                            Configuration prevConfig,
-                            Set changedKeys) {
+  public LockssApp getApp() {
     throw new UnsupportedOperationException("Unsupported operation.");
   }
 }

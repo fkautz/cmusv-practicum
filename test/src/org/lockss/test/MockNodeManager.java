@@ -50,8 +50,8 @@ public class MockNodeManager implements NodeManager {
   private HashMap nodeMap = new HashMap();
   public HashMap hashCalls = new HashMap();
 
-  public void initService(LockssDaemon daemon)
-      throws LockssDaemonException {
+  public void initService(LockssApp app)
+      throws LockssAppException {
     throw new UnsupportedOperationException("Not implemented");
   }
 
@@ -63,7 +63,7 @@ public class MockNodeManager implements NodeManager {
     logger.debug3("Service stopped");
   }
 
-  public LockssDaemon getDaemon() {
+  public LockssApp getApp() {
     throw new UnsupportedOperationException("Not implemented");
   }
 

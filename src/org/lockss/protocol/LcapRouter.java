@@ -49,7 +49,7 @@ import org.mortbay.util.B64Code;
  * Routing involves decisions about using unicast to supplement multicast,
  * including forwarding received unicast packets.
  */
-public class LcapRouter extends BaseLockssManager {
+public class LcapRouter extends BaseLockssDaemonManager {
   static final String PREFIX = Configuration.PREFIX + "comm.router.";
   static final String ORIGRATE_PREFIX = PREFIX + "maxOriginateRate.";
   static final String PARAM_ORIG_PKTS_PER_INTERVAL = ORIGRATE_PREFIX+"packets";

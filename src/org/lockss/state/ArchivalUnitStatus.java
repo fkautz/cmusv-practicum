@@ -39,7 +39,7 @@ import org.lockss.repository.*;
 /**
  * Collect and report the status of the ArchivalUnits
  */
-public class ArchivalUnitStatus extends BaseLockssManager {
+public class ArchivalUnitStatus extends BaseLockssDaemonManager {
   /**
    * The maximum number of nodes to display in a single page of the ui.
    */

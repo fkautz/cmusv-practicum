@@ -53,7 +53,7 @@ public class MockPollManager extends PollManager {
   public MockPollManager() {
     super();
   }
-  public void initService(LockssDaemon daemon) throws LockssDaemonException {
+  public void initService(LockssDaemon daemon) throws LockssAppException {
     super.initService(daemon);
   }
   public void startService() {

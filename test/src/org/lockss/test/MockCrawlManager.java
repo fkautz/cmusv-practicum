@@ -48,14 +48,14 @@ public class MockCrawlManager implements CrawlManager, LockssManager {
   public static final String SCHEDULED = "scheduled";
   public boolean shouldCrawlNewContent = true;
 
-  public void initService(LockssDaemon daemon) throws LockssDaemonException { }
+  public void initService(LockssApp app) throws LockssAppException { }
   public void startService() { }
   public void stopService() {
     scheduledRepairs = new HashMap();
     scheduledCrawls = new HashMap();
   }
 
-  public LockssDaemon getDaemon() {
+  public LockssApp getApp() {
     throw new UnsupportedOperationException("Not implemented");
   }
 

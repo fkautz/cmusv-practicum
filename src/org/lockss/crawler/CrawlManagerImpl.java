@@ -46,7 +46,7 @@ import org.lockss.plugin.*;
  * This is the interface for the object that will sit between the crawler
  * and the rest of the world.  It mediates the different crawl types.
  */
-public class CrawlManagerImpl extends BaseLockssManager
+public class CrawlManagerImpl extends BaseLockssDaemonManager
     implements CrawlManager, CrawlManager.StatusSource {
 
   /**

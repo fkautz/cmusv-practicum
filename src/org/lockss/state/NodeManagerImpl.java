@@ -44,7 +44,7 @@ import org.lockss.alert.*;
  * Implementation of the NodeManager.
  */
 public class NodeManagerImpl
-  extends BaseLockssManager implements NodeManager {
+  extends BaseLockssDaemonManager implements NodeManager {
   /**
    * This parameter indicates the size of the {@link NodeStateCache} used by the
    * node manager.

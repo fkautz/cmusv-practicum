@@ -48,7 +48,7 @@ import org.lockss.plugin.*;
  * the SchedService to execute tasks.
  */
 public class HashSvcSchedImpl
-  extends BaseLockssManager implements HashService {
+  extends BaseLockssDaemonManager implements HashService {
 
   protected static Logger log = Logger.getLogger("HashSvcSchedImpl");
 

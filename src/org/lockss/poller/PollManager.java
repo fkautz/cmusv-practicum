@@ -55,7 +55,7 @@ import org.lockss.alert.*;
  * @version 1.0
  */
 
-public class PollManager  extends BaseLockssManager {
+public class PollManager  extends BaseLockssDaemonManager {
   static final String PARAM_RECENT_EXPIRATION = Configuration.PREFIX +
       "poll.expireRecent";
   static final String PARAM_VERIFY_EXPIRATION = Configuration.PREFIX +

@@ -49,7 +49,7 @@ import org.lockss.plugin.*;
  * not lock out smaller requests.
  */
 public class HashSvcQueueImpl
-  extends BaseLockssManager implements HashService {
+  extends BaseLockssDaemonManager implements HashService {
 
   protected static Logger log = Logger.getLogger("HashSvcQueueImpl");
 

@@ -44,7 +44,7 @@ import org.lockss.protocol.LcapMessage;
  * A singleton class which provides access to various system calculations, such
  * as hash speed estimates.
  */
-public class SystemMetrics extends BaseLockssManager {
+public class SystemMetrics extends BaseLockssDaemonManager {
   static final String PREFIX = Configuration.PREFIX + "metrics.";
 
   /**

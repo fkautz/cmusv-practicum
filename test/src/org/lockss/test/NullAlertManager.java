@@ -42,7 +42,7 @@ import org.lockss.app.*;
 /**
  * Null version of the AlertManager.
  */
-public class NullAlertManager extends BaseLockssManager
+public class NullAlertManager extends BaseLockssDaemonManager
   implements AlertManager {
   private static Logger log = Logger.getLogger("NullAlertManager");
 

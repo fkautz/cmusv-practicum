@@ -46,7 +46,7 @@ import org.apache.commons.collections.ReferenceMap;
  * variety of daemon status and services using only datastructure-like
  * classes that are easy to serialize.
  */
-public class RemoteApi extends BaseLockssManager {
+public class RemoteApi extends BaseLockssDaemonManager {
   private static Logger log = Logger.getLogger("RemoteApi");
   static final String PARAM_AU_TREE = PluginManager.PARAM_AU_TREE;
   static final String AU_PARAM_DISPLAY_NAME =

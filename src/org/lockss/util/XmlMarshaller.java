@@ -37,7 +37,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.HashMap;
 
-import org.lockss.app.LockssDaemonException;
+import org.lockss.app.LockssAppException;
 
 import org.exolab.castor.xml.*;
 import org.exolab.castor.mapping.*;
@@ -223,7 +223,7 @@ public class XmlMarshaller {
       mappingFileMap.put(fileName, mapping);
     } else if (mapping.getRoot().getClassMappingCount()==0) {
       logger.error("Mapping file is empty.");
-      throw new LockssDaemonException("Mapping file is empty.");
+      throw new LockssAppException("Mapping file is empty.");
     }
     return mapping;
   }
@@ -240,7 +240,7 @@ public class XmlMarshaller {
       mappingFileMap.put(fileNames, mapping);
     } else if (mapping.getRoot().getClassMappingCount()==0) {
       logger.error("Mapping file is empty.");
-      throw new LockssDaemonException("Mapping file is empty.");
+      throw new LockssAppException("Mapping file is empty.");
     }
     return mapping;
   }
@@ -254,7 +254,7 @@ public class XmlMarshaller {
     URL mappingLoc = getClass().getResource(fileName);
     if (mappingLoc==null) {
       logger.error("Couldn't find resource '"+fileName+"'");
-      throw new LockssDaemonException("Couldn't find mapping file.");
+      throw new LockssAppException("Couldn't find mapping file.");
     }
     Mapping mapping = new Mapping();
     try {
@@ -262,7 +262,7 @@ public class XmlMarshaller {
       return mapping;
     } catch (Exception e) {
       logger.error("Couldn't load mapping file '"+mappingLoc+"'", e);
-      throw new LockssDaemonException("Couldn't load mapping file.");
+      throw new LockssAppException("Couldn't load mapping file.");
     }
   }
 
@@ -278,13 +278,13 @@ public class XmlMarshaller {
       URL mappingLoc = getClass().getResource(fileNames[ii]);
       if (mappingLoc == null) {
         logger.error("Couldn't find resource '" + fileNames[ii] + "'");
-        throw new LockssDaemonException("Couldn't find mapping file.");
+        throw new LockssAppException("Couldn't find mapping file.");
       }
       try {
         mapping.loadMapping(mappingLoc);
       } catch (Exception e) {
         logger.error("Couldn't load mapping file '" + mappingLoc + "'", e);
-        throw new LockssDaemonException("Couldn't load mapping file.");
+        throw new LockssAppException("Couldn't load mapping file.");
       }
     }
     return mapping;

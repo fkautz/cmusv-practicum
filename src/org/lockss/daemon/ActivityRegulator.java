@@ -45,7 +45,7 @@ import org.lockss.app.*;
  * the state to reflect the new activity.
  */
 public class ActivityRegulator
-  extends BaseLockssManager implements LockssAuManager {
+  extends BaseLockssDaemonManager implements LockssAuManager {
 
 // AU level
   /**

@@ -52,7 +52,7 @@ import org.apache.commons.collections.ReferenceMap;
  * removed from the cache on finalize()).
  */
 public class LockssRepositoryImpl
-  extends BaseLockssManager implements LockssRepository {
+  extends BaseLockssDaemonManager implements LockssRepository {
 
   /**
    * Configuration parameter name for Lockss cache location.
