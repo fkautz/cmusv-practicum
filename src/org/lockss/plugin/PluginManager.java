@@ -1384,7 +1384,11 @@ public class PluginManager
 	    try {
 	      repoNode = repo.getNode(url);
 	      curVersion = new Integer(repoNode.getCurrentVersion());
-	    } catch (MalformedURLException ignore) { continue; }
+	    } catch (MalformedURLException ex) {
+	      log.error("Malformed URL: Unable to get repository node " +
+			"for cu URL " + url + ", skipping.");
+	      continue;
+	    }
 
 	    if (cuNodeVersionMap.get(url) == null) {
 	      cuNodeVersionMap.put(url, new Integer(-1));
