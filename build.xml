@@ -146,7 +146,7 @@ Other targets:
   </target>
 
   <!-- ==================================================================== -->
-  <target name="junit"
+  <target name="tests"
    depends="test.prepare,check.junit.task,check.junit,test-jar"
    description="Run all the junit tests" >
     <echo>
