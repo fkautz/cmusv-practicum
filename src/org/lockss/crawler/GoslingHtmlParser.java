@@ -280,11 +280,16 @@ public class GoslingHtmlParser implements ContentParser {
       if (StringUtil.getIndexIgnoringCase(returnStr, "https") == 0) {
 	logger.debug3("Ignoring https url: "+returnStr);
         return null;
+      } 
+      try {
+	URL retUrl = new URL(srcUrl, returnStr);
+	returnStr = retUrl.toString();
+      } catch (MalformedURLException e) {
+	logger.debug("Got a bad URL", e);
+	return null;
       }
-      URL retUrl = new URL(srcUrl, returnStr);
-      returnStr = retUrl.toString();
       logger.debug3("Parsed: " + returnStr);
-     return returnStr;
+      return returnStr;
     }
     return null;
   }
