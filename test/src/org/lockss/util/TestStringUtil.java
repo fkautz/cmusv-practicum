@@ -136,6 +136,7 @@ public class TestStringUtil extends LockssTestCase {
     assertEquals("", StringUtil.csvEncode(""));
     assertSame("foo", StringUtil.csvEncode("foo"));
     assertEquals("foo\\\\bar\\,x", StringUtil.csvEncode("foo\\bar,x"));
+    assertEquals("key\\=val\\,k", StringUtil.csvEncode("key=val,k"));
   }
 
   public void testCountOccurences() {
