@@ -41,6 +41,7 @@ import org.lockss.crawler.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.state.*;
+import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
 
 /**
@@ -173,8 +174,8 @@ public class NullPlugin {
       return new byte[0];
     }
 
-    public Properties getProperties() {
-      return new Properties();
+    public CIProperties getProperties() {
+      return new CIProperties();
     }
   }
 
@@ -185,7 +186,7 @@ public class NullPlugin {
   public static class UrlCacher implements org.lockss.plugin.UrlCacher {
     private String url;
     private String contents = null;
-    private Properties props = new Properties();
+    private CIProperties props = new CIProperties();
 
     protected UrlCacher() {
     }
@@ -220,15 +221,15 @@ public class NullPlugin {
     }
 
     public void storeContent(InputStream input,
-			     Properties headers) throws IOException {
+			     CIProperties headers) throws IOException {
     }
 
     public InputStream getUncachedInputStream() {
       return new StringInputStream("");
     }
 
-    public Properties getUncachedProperties() {
-      return new Properties();
+    public CIProperties getUncachedProperties() {
+      return new CIProperties();
     }
 
     public void setConnectionPool(LockssUrlConnectionPool connectionPool) {

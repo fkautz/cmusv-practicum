@@ -169,13 +169,14 @@ public class CuUrl {
       } catch (IOException e) {
 	return null;
       }
-      Properties props = cu.getProperties();
-      String val = searchProps(props, name);
-      if (val != null) return val;
-      val = searchProps(props, CachedUrl.HEADER_PREFIX + name);
-      if (val != null) return val;
-      // old header prefix
-      val = searchProps(props, "_header" + name);
+      CIProperties props = cu.getProperties();
+      String val = props.getProperty(name);
+      // If we're looking for content type and there's no explicit
+      // content-type header, use the one we inferred when we fetched the
+      // contents.
+      if (val == null && "content-type".equalsIgnoreCase(name)) {
+	val = props.getProperty(CachedUrl.PROPERTY_CONTENT_TYPE);
+      }
       return val;
     }
 
@@ -186,19 +187,6 @@ public class CuUrl {
 	return null;
       }
       return getHeaderField(HttpFields.__ContentType);
-    }
-
-    // need case-independent prop lookup
-    private String searchProps(Properties props, String name) {
-      String val = props.getProperty(name);
-      if (val != null) return val;
-      for (Iterator iter = props.keySet().iterator(); iter.hasNext(); ) {
-	String key = (String)iter.next();
-	if (name.equalsIgnoreCase(key)) {
-	  return props.getProperty(key);
-	}
-      }
-      return null;
     }
   }
 }

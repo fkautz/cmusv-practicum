@@ -189,7 +189,7 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
 
   public class SCU extends BaseCachedUrl {
     private String contents = null;
-    private Properties props = new Properties();
+    private CIProperties props = new CIProperties();
 
     public SCU(CachedUrlSet owner, String url) {
       super(owner, url);
@@ -206,7 +206,7 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
 	       String type, String contents) {
       this(owner, url);
       setContents(contents);
-      props.setProperty("Content-Type", type);
+      props.setProperty(CachedUrl.PROPERTY_CONTENT_TYPE, type);
     }
 
     private void setContents(String s) {
@@ -247,7 +247,7 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
       return bigInt.toByteArray();
     }
 
-    public Properties getProperties() {
+    public CIProperties getProperties() {
       return props;
     }
   }
