@@ -262,18 +262,6 @@ public class TestNodeManagerImpl extends LockssTestCase {
     assertNull(nodeManager.treeWalkThread);
   }
 
-  public void testEstimatedTreeWalk() {
-    //XXX fix using simulated time
-    nodeManager.startService();
-    long estimate = nodeManager.getEstimatedTreeWalkDuration();
-    assertTrue(estimate > 0);
-    long newEstimate = 100;
-    nodeManager.updateEstimate(newEstimate);
-    long expectedEst = (estimate + newEstimate) / 2;
-    assertEquals(expectedEst, nodeManager.getEstimatedTreeWalkDuration());
-    nodeManager.stopService();
-  }
-
   public void testMapErrorCodes() {
     assertEquals(PollState.ERR_HASHING,
                  nodeManager.mapResultsErrorToPollError(Poll.ERR_HASHING));

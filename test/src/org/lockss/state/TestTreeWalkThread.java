@@ -338,8 +338,14 @@ public class TestTreeWalkThread extends LockssTestCase {
 
   public void testEstimatedTreeWalk() {
     //XXX fix using simulated time
+    TreeWalkThread.EstimationThread estThread = treeWalkThread.getTestThread();
+    estThread.run();
     long estimate = treeWalkThread.getEstimatedTreeWalkDuration();
     assertTrue(estimate > 0);
+    long newEstimate = 100;
+    treeWalkThread.updateEstimate(newEstimate);
+    long expectedEst = (estimate + newEstimate) / 2;
+    assertEquals(expectedEst, treeWalkThread.getEstimatedTreeWalkDuration());
   }
 
   private Poll createPoll(String url, boolean isContentPoll, int numAgree,
