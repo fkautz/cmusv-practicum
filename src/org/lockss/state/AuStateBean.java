@@ -50,14 +50,6 @@ public class AuStateBean extends AuState {
   }
 
   /**
-   * Sets the archival unit
-   * @param au the au
-   */
-  void setArchivalUnit(ArchivalUnit au) {
-    this.au = au;
-  }
-
-  /**
    * Sets the last crawl time to a new value.
    * @param newCrawlTime in ms
    */
