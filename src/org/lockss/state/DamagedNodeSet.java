@@ -120,6 +120,19 @@ public class DamagedNodeSet {
     return false;
   }
 
+  synchronized public boolean hasLocalizedDamage(CachedUrlSet cus) {
+    if(cus.isLeaf()) {
+      Iterator damagedIt = nodesWithDamage.iterator();
+      while (damagedIt.hasNext()) {
+        String url = (String) damagedIt.next();
+        if(cus.containsUrl(url)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   synchronized public void clearDamage(CachedUrlSet cus) {
       Iterator damagedIt = nodesWithDamage.iterator();
       ArrayList clearList = new ArrayList();

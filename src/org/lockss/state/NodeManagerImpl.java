@@ -267,7 +267,7 @@ public class NodeManagerImpl
     }
 
     // make sure not damaged (if not my poll)
-    if (!state.isMyPoll() && damagedNodes.hasDamage(cus)) {
+    if (!state.isMyPoll() && damagedNodes.hasLocalizedDamage(cus)) {
       logger.info("CUS has damage, not starting poll: " + cus);
       return false;
     }
