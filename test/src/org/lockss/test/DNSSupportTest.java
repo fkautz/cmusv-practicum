@@ -30,7 +30,7 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.devtools;
+package org.lockss.test;
 import java.io.*;
 import java.util.*;
 import java.net.*;
