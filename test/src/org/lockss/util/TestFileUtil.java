@@ -52,20 +52,47 @@ public class TestFileUtil extends LockssTestCase {
     assertEquals(expectedStr, FileUtil.sysIndepPath(testStr));
   }
 
-  public void testPath() {
-    // all paths assumed to start with '/', as in URL.getPath()
-    assertTrue(FileUtil.isLegalPath("/var/foo"));
-    assertTrue(FileUtil.isLegalPath("/var/../foo"));
-    assertTrue(FileUtil.isLegalPath("/var/.."));
-    assertTrue(FileUtil.isLegalPath("/var/../foo/.."));
-    assertTrue(FileUtil.isLegalPath("var/./foo"));
-    assertTrue(FileUtil.isLegalPath("var/."));
-    assertTrue(FileUtil.isLegalPath("/."));
-    assertFalse(FileUtil.isLegalPath("/var/../.."));
-    assertFalse(FileUtil.isLegalPath("/./../"));
-    assertFalse(FileUtil.isLegalPath("/var/../../foo"));
-    assertFalse(FileUtil.isLegalPath("/var/.././.."));
-    assertFalse(FileUtil.isLegalPath("/.."));
+  boolean isLegal(String x) {
+    return FileUtil.isLegalPath(x);
+  }
+
+  public void testIsLegalPath() {
+    assertTrue(isLegal("."));
+    assertTrue(isLegal("/"));
+    assertTrue(isLegal("/."));
+    assertTrue(isLegal("./"));
+    assertTrue(isLegal("//"));
+
+    assertFalse(isLegal(".."));
+    assertFalse(isLegal("../"));
+    assertFalse(isLegal("..//"));
+    assertFalse(isLegal("/.."));
+    assertFalse(isLegal("//.."));
+    assertFalse(isLegal("./.."));
+    assertFalse(isLegal("./../"));
+    assertFalse(isLegal("/./../"));
+    assertFalse(isLegal("/./././.."));
+    assertTrue(isLegal("/./././x/.."));
+
+    assertTrue(isLegal("/var"));
+    assertTrue(isLegal("/var/"));
+    assertTrue(isLegal("/var/foo"));
+    assertTrue(isLegal("/var/../foo"));
+    assertTrue(isLegal("/var/.."));
+    assertTrue(isLegal("/var/../foo/.."));
+
+    assertTrue(isLegal("var/./foo"));
+    assertTrue(isLegal("var/."));
+
+    assertFalse(isLegal("/var/../.."));
+    assertFalse(isLegal("/var/../../foo"));
+    assertFalse(isLegal("/var/.././.."));
+    assertFalse(isLegal("/var/.././..///"));
+
+    assertFalse(isLegal("var/../.."));
+    assertFalse(isLegal("var/../../foo"));
+    assertFalse(isLegal("var/.././.."));
+    assertFalse(isLegal("var/.././..///"));
   }
 
 }
