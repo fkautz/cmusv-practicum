@@ -211,6 +211,12 @@ public class TestStringUtil extends LockssTestCase {
     assertFalse(StringUtil.equalStrings("foo", "bar"));
   }
 
+  public void testIsNullString() {
+    assertTrue(StringUtil.isNullString(null));
+    assertTrue(StringUtil.isNullString(""));
+    assertFalse(StringUtil.isNullString(" "));
+  }
+
   public void testGensym() {
     String base = "foo";
     String g1 = StringUtil.gensym(base);

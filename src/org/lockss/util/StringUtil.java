@@ -318,6 +318,15 @@ public class StringUtil {
   }
 
   /**
+   * Test whether a string is null or the empty string
+   * @param s the string
+   * @return true if s is null or the empty string
+   */
+  public static boolean isNullString(String s) {
+    return s == null || "".equals(s);
+  }
+
+  /**
    * Compare two strings for equality or both null.
    * @param s1 string 1
    * @param s2 string 2
