@@ -261,6 +261,7 @@ Args:
     <copy todir="${classes}" >
        <fileset dir="${src}" >
           <include name="**/*.xml"/>
+          <include name="**/*.props"/>
           <include name="**/*.gif"/>  <!-- should be more selective.  now -->
           <include name="**/*.html"/>  <!-- gets files in gimp-created dirs -->
        </fileset>
