@@ -425,6 +425,7 @@ public class TestPollManager extends LockssTestCase {
     addRequiredConfig(p);
     ConfigurationUtil.setCurrentConfigFromProps(p);
 
+    theDaemon.getSchedService().startService();
     theDaemon.getHashService().startService();
     theDaemon.getRouterManager().startService();
 
