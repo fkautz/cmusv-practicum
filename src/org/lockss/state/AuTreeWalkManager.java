@@ -144,7 +144,9 @@ public class AuTreeWalkManager
 	try {
 	  removeTask(task);
 	  // Do any action that was deferred until after the task ended
-	  walker.doDeferredAction();
+	  if (happened) {
+	    walker.doDeferredAction();
+	  }
 	} catch (Exception e) {
 	  log.warning("Unexpected exception", e);
 	}
