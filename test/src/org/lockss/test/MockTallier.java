@@ -241,4 +241,41 @@ public class MockTallier implements Tallier {
   public void setStatus(int status) {
     m_status = status;
   }
+
+  public boolean stateIsActive() {
+    throw new RuntimeException("foo");
+  }
+
+  public boolean stateIsFinished() {
+    throw new RuntimeException("foo");
+  }
+
+  public boolean stateIsError() {
+    throw new RuntimeException("foo");
+  }
+
+  public boolean stateIsNoQuorum() {
+    throw new RuntimeException("foo");
+  }
+
+  public boolean stateIsInconclusive() {
+    throw new RuntimeException("foo");
+  }
+
+  public boolean stateIsLost() {
+    throw new RuntimeException("foo");
+  }
+
+  public boolean stateIsWon() {
+    throw new RuntimeException("foo");
+  }
+
+  public boolean stateIsSuspended() {
+    throw new RuntimeException("foo");
+  }
+
+  public void setStateSuspended() {
+    throw new RuntimeException("foo");
+  }
+
 }
