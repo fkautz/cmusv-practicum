@@ -31,9 +31,10 @@ in this Software without prior written authorization from Stanford University.
 */
 
 package org.lockss.util;
+
 import java.util.*;
 
-/** 
+/**
  * Constants of general use
  */
 public interface Constants {
@@ -47,4 +48,11 @@ public interface Constants {
   public static final long DAY = 24 * HOUR;
   /** The number of milliseconds in a week */
   public static final long WEEK = 7 * DAY;
+
+  /** The line separator string on this system */
+  public static String EOL = System.getProperty("line.separator");
+
+  /** The RE string matching the EOL string */
+  public static String EOL_RE = StringUtil.escapeNonAlphaNum(EOL);
+
 }
