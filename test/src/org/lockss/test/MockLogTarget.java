@@ -90,9 +90,7 @@ public class MockLogTarget implements LogTarget{
   }
 
   public boolean hasMessage(String str) {
-    Set mset = new HashSet();
-    mset.addAll(messages);
-    return mset.contains(str);
+    return messages.contains(str);
   }
 
   public void dumpMessages() {

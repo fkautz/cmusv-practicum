@@ -53,8 +53,8 @@ public class FuncCommonsLoggingLogger extends LockssTestCase {
     assertEmpty(target.getMessages());
     log.warn(msg);
     List m = target.getMessages();
-    assertEquals(1, m.size());
-    String m0 = (String)m.get(0);
+    assertEquals(2, m.size());
+    String m0 = (String)m.get(1);
     assertNotEquals(-1, m0.indexOf(msg));
   }
 }
