@@ -210,14 +210,14 @@ public class TestPoll extends LockssTestCase {
     assertEquals(5, np.m_tally.numAgree);
     assertEquals(1, np.m_tally.numDisagree);
 
-    assertEquals(PollTally.STATE_WON, np.m_tally.getStatus());
+    assertTrue(np.m_tally.stateIsWon());
 
     // test a name poll we lost with a dissenting vote
     np = makeCompletedNamePoll(1,8,1);
 
     assertEquals(2, np.m_tally.numAgree);
     assertEquals(9, np.m_tally.numDisagree);
-    assertEquals(PollTally.STATE_LOST, np.m_tally.getStatus());
+    assertTrue(np.m_tally.stateIsLost());
 
     // build a master list
     np.buildPollLists(np.m_tally.pollVotes.iterator());

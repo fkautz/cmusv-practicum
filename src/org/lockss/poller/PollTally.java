@@ -52,18 +52,6 @@ import org.lockss.daemon.status.*;
  * votes within a poll.
  */
 public abstract class PollTally implements Tallier{
-  public static final int STATE_POLLING = 0;
-  public static final int STATE_ERROR = 1;
-  public static final int STATE_NOQUORUM = 2;
-  public static final int STATE_RESULTS_TOO_CLOSE = 3;
-  public static final int STATE_RESULTS_UNTRUSTED = 4;
-  public static final int STATE_WON = 5;
-  public static final int STATE_LOST = 6;
-  public static final int STATE_UNVERIFIED = 7;
-  public static final int STATE_VERIFIED = 8;
-  public static final int STATE_DISOWNED = 9;
-  public static final int STATE_SUSPENDED = 10;
-
   PollSpec pollSpec;
   String key;
   int type;
@@ -210,14 +198,6 @@ public abstract class PollTally implements Tallier{
    */
   abstract public String getErrString();
 
-
-  /**
-   * get the current value of the poll tally status
-   * @return the status
-   */
-  public int getStatus() {
-    return status;
-  }
 
   /**
    * get the current value of the poll tally status
