@@ -1,10 +1,11 @@
+
 lockss-ant.jar
-lockss-tools.jar
-lockss-test.jar
+lockss-generated-test.jar
+lockss-generated.jar
+lockss-plugins-test.jar
 lockss-plugins.jar
+lockss-test.jar
+lockss-tools-test.jar
+lockss-tools.jar
 lockss.jar
 run-classpath
-lockss-tools-test.jar
-lockss-generated.jar
-lockss-generated-test.jar
-

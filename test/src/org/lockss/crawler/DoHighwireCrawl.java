@@ -38,7 +38,6 @@ import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.plugin.definable.*;
-import org.lockss.plugin.highwire.*;
 import org.lockss.test.*;
 import org.lockss.util.*;
 import org.lockss.plugin.base.*;

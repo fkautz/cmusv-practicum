@@ -37,7 +37,6 @@ import java.io.*;
 import org.lockss.test.*;
 import org.lockss.util.*;
 import org.lockss.plugin.*;
-import org.lockss.plugin.highwire.*;
 
 public class TimeHtmlTagFilter extends LockssTiming {
   private static Logger log = Logger.getLogger("TimeHtmlTagFilter");
