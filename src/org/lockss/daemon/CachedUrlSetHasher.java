@@ -1,5 +1,6 @@
-package org.lockss.daemon;
-import java.io.IOException;
+/*
+ * $Id$
+ */
 
 /*
 
@@ -28,6 +29,9 @@ be used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from Stanford University.
 
 */
+
+package org.lockss.daemon;
+import java.io.IOException;
 
 /**
  * An object encapsulating a hash in progress on a <code>CachedUrlSet</code>.

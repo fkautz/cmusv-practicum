@@ -1,6 +1,6 @@
-package org.lockss.daemon;
-import java.io.IOException;
-import java.security.MessageDigest;
+/*
+ * $Id$
+ */
 
 /*
 
@@ -29,6 +29,10 @@ be used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from Stanford University.
 
 */
+
+package org.lockss.daemon;
+import java.io.IOException;
+import java.security.MessageDigest;
 
 /**
  * This interface is implemented by elections in the generic LOCKSS
