@@ -457,7 +457,7 @@ Test results in ${test.results}
   </target>
 
   <!-- ==================================================================== -->
-  <target name="pre-commit-check" depends="rebuild-all"
+  <target name="pre-commit-test" depends="rebuild-all"
    description="Synonym for rebuild-all." />
 
   <target name="post-commit-test" depends="checkout-and-build"
