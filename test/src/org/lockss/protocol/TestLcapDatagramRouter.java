@@ -103,7 +103,7 @@ public class TestLcapDatagramRouter extends LockssTestCase {
     ConfigurationUtil.setCurrentConfigFromProps(p);
   }
 
-  LcapMessage createTestMsg(String originator, int hopCount)
+  V1LcapMessage createTestMsg(String originator, int hopCount)
       throws IOException {
     try {
       testaddr = IPAddr.getByName(originator);
@@ -131,7 +131,7 @@ public class TestLcapDatagramRouter extends LockssTestCase {
     testmsg.m_multicast = false;
     testmsg.m_hopCount = (byte)hopCount;
 
-    testmsg.m_ttl = 5;
+    // testmsg.m_ttl = 5;
     testmsg.m_challenge = testbytes;
     testmsg.m_verifier = testbytes;
     testmsg.m_hashed = testbytes;

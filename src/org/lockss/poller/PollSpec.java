@@ -56,10 +56,16 @@ public class PollSpec {
    */
   public static final String SINGLE_NODE_LWRBOUND = ".";
 
-  public static final String PARAM_USE_POLL_VERSION =
+  // XXX:  public static final String PARAM_USE_V1_POLL_VERSION =
+  //    Configuration.PREFIX + "protocol.useV1PollVersion";
+  public static final String PARAM_USE_V1_POLL_VERSION =
     Configuration.PREFIX + "protocol.usePollVersion";
+  public static final String PARAM_USE_V3_POLL_VERSION =
+    Configuration.PREFIX + "protocol.useV3PollVersion";
 
-  public static final int DEFAULT_USE_POLL_VERSION = 1;
+  public static final int DEFAULT_USE_V1_POLL_VERSION = 1;
+  public static final int DEFAULT_USE_V3_POLL_VERSION = 1;
+
   static final String DEFAULT_PLUGIN_VERSION = "1";
 
   private static Logger theLog=Logger.getLogger("PollSpec");
@@ -215,8 +221,8 @@ public class PollSpec {
   }
 
   protected int getDefaultPollVersion() {
-    return Configuration.getIntParam(PARAM_USE_POLL_VERSION,
-				     DEFAULT_USE_POLL_VERSION);
+    return Configuration.getIntParam(PARAM_USE_V1_POLL_VERSION,
+				     DEFAULT_USE_V1_POLL_VERSION);
   }
 
   public CachedUrlSet getCachedUrlSet() {

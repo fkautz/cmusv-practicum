@@ -33,9 +33,7 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.poller;
 
 import org.mortbay.util.B64Code;
-import org.lockss.protocol.PeerIdentity;
-import org.lockss.protocol.IdentityManager;
-import org.lockss.protocol.LcapMessage;
+import org.lockss.protocol.*;
 import java.util.Arrays;
 import java.net.UnknownHostException;
 import org.lockss.app.LockssDaemon;
@@ -69,8 +67,16 @@ public class Vote {
   }
 
   Vote(LcapMessage msg, boolean agree) {
-    this(msg.getChallenge(), msg.getVerifier(), msg.getHashed(),
-         msg.getOriginatorId(), agree);
+    // XXX: Split into V1Vote and V3Vote.  Stubbed for V3.
+    if (msg instanceof V1LcapMessage) {
+      this.voterID = ((V1LcapMessage)msg).getOriginatorId();
+      this.agree = agree;
+      this.activeInfo =
+	new V1ActiveVote(((V1LcapMessage)msg).getChallenge(),
+			 ((V1LcapMessage)msg).getVerifier(),
+			 ((V1LcapMessage)msg).getHashed());
+
+    }
   }
 
   public static void setIdentityManager(IdentityManager im) {
