@@ -35,6 +35,10 @@ package org.lockss.test;
 /** A RuntimeException to use in tests where the exception is expected, to
  * emphasize that fact in the log */
 public class ExpectedRuntimeException extends RuntimeException {
+  public ExpectedRuntimeException() {
+    super();
+  }
+
   public ExpectedRuntimeException(String message) {
     super(message);
   }
