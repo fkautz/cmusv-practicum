@@ -34,6 +34,7 @@ package org.lockss.test;
 
 import java.util.*;
 import java.io.*;
+import java.net.*;
 import org.lockss.util.*;
 import junit.framework.TestCase;
 
@@ -151,4 +152,14 @@ public class LockssTestCase extends TestCase {
     fail(formatted+"expected:<"+expected+"> but was:<"+actual+">");
   }
 
+  /** Asserts that the two DatagramPackets have equal contents */
+  public static void assertEqualPkts(DatagramPacket expected,
+				     DatagramPacket actual) {
+    assertEquals(expected.getAddress(), actual.getAddress());
+    assertEquals(expected.getPort(), actual.getPort());
+    assertEquals(expected.getLength(), actual.getLength());
+    assertEquals(expected.getOffset(), actual.getOffset());
+    assertEquals(expected.getData(), actual.getData());
+  }
+  
 }
