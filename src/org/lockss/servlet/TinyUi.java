@@ -54,13 +54,14 @@ import org.mortbay.html.*;
  * the application is running, so must not reply on any services.
  */
 public class TinyUi extends BaseServletManager {
+  public static final String SERVER_NAME = "TinyUi";
   private static Logger log = Logger.getLogger("TinyUi");
 
   private HashUserRealm realm;
   private String[] tinyData;
 
   public TinyUi() {
-    super("TinyUI");
+    super(SERVER_NAME);
   }
 
   public TinyUi(String[] tinyData) {

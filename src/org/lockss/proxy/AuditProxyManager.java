@@ -47,13 +47,18 @@ import org.mortbay.http.handler.*;
  * cache, useful for auditing the content.
  */
 public class AuditProxyManager extends BaseProxyManager {
-
+  public static final String SERVER_NAME = "AuditProxy";
   private static Logger log = Logger.getLogger("AuditProxy");
+
   public static final String PREFIX = Configuration.PREFIX + "proxy.audit.";
   public static final String PARAM_START = PREFIX + "start";
   public static final boolean DEFAULT_START = false;
 
   public static final String PARAM_PORT = PREFIX + "port";
+
+  protected String getServerName() {
+    return SERVER_NAME;
+  }
 
   public void setConfig(Configuration config, Configuration prevConfig,
 			Configuration.Differences changedKeys) {
@@ -71,7 +76,7 @@ public class AuditProxyManager extends BaseProxyManager {
       port = config.getInt(PARAM_PORT, -1);
       start = config.getBoolean(PARAM_START, DEFAULT_START);
       if (start) {
-	if (!isServerRunning() && getDaemon().isDaemonRunning()) {
+	if (getDaemon().isDaemonRunning()) {
 	  startProxy();
 	}
       } else if (isServerRunning()) {

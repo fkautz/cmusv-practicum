@@ -47,12 +47,13 @@ import org.mortbay.jetty.servlet.*;
  * Local UI servlet starter
  */
 public class LocalServletManager extends BaseServletManager {
+  public static final String SERVER_NAME = "LocalUI";
   private static Logger log = Logger.getLogger("ServletMgr");
 
   private HashUserRealm realm;
 
   public LocalServletManager() {
-    super("UI");
+    super(SERVER_NAME);
   }
 
   public void startServlets() {
