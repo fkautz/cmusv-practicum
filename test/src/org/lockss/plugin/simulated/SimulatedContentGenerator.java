@@ -405,7 +405,7 @@ public class SimulatedContentGenerator {
     if ((directory==null) || (!directory.exists()) || (!directory.isDirectory())) {
       return "";
     }
-    String fullName = directory.getPath() + File.separator + filename;
+    String fullName = directory.getName() + File.separator + filename;
     String file_content = "<HTML><HEAD><TITLE>" + fullName + "</TITLE></HEAD><BODY>";
     file_content += "<B>"+fullName+"</B>";
 
