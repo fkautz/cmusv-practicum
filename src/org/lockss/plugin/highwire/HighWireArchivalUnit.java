@@ -76,9 +76,11 @@ public class HighWireArchivalUnit extends ConfigurableArchivalUnit {
     super(myPlugin);
   }
 
-  public FilterRule getFilterRule(String mimeType) {
-    if ("text/html".equals(mimeType)) {
-      return new HighWireFilterRule();
+  protected FilterRule constructFilterRule(String mimeType) {
+    if (mimeType!=null) {
+      if (StringUtil.startsWithIgnoreCase(mimeType, "text/html")) {
+        return new HighWireFilterRule();
+      }
     }
     return null;
   }

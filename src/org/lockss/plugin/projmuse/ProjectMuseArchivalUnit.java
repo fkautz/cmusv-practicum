@@ -78,9 +78,11 @@ public class ProjectMuseArchivalUnit extends ConfigurableArchivalUnit {
    * @param mimeType the mime type
    * @return the FilterRule if 'text/html', else null
    */
-  public FilterRule getFilterRule(String mimeType) {
-    if ("text/html".equals(mimeType)) {
-      return new ProjectMuseFilterRule();
+  protected FilterRule constructFilterRule(String mimeType) {
+    if (mimeType!=null) {
+      if (StringUtil.startsWithIgnoreCase(mimeType, "text/html")) {
+        return new ProjectMuseFilterRule();
+      }
     }
     return null;
   }
