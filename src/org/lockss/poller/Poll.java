@@ -256,7 +256,7 @@ public abstract class Poll implements Serializable {
     LcapIdentity local_id = idMgr.getLocalIdentity();
     long remainingTime = m_deadline.getRemainingTime();
     try {
-      msg = LcapMessage.makeReplyMsg(m_msg, m_hash, m_verifier, m_replyOpcode,
+      msg = LcapMessage.makeReplyMsg(m_msg, m_hash, m_verifier, null,m_replyOpcode,
                                      remainingTime, local_id);
       log.debug("vote:" + msg.toString());
       m_pollmanager.sendMessage(msg,m_arcUnit);
