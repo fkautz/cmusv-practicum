@@ -53,7 +53,7 @@ public class AuStateBean extends AuState {
    * Sets the archival unit
    * @param au the au
    */
-  public void setArchivalUnit(ArchivalUnit au) {
+  void setArchivalUnit(ArchivalUnit au) {
     this.au = au;
   }
 
