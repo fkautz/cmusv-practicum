@@ -328,6 +328,9 @@ public class CrawlManagerImpl extends BaseLockssManager
           lock.expire();
         }
       }
+      synchronized(runningCrawls) {
+ 	runningCrawls.remove(crawler.getAu(), crawler);
+      }
       if (cb != null) {
 	try {
 	  cb.signalCrawlAttemptCompleted(crawlSuccessful, cookie);

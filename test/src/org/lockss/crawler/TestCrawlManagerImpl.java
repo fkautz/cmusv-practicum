@@ -151,6 +151,19 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     assertTrue(crawler.wasAborted());
   }
 
+  public void testStoppingCrawlDoesntAbortCompletedCrawl() {
+    SimpleBinarySemaphore sem = new SimpleBinarySemaphore();
+
+    crawlManager.startNewContentCrawl(mau, new TestCrawlCB(sem), null, null);
+
+    waitForCrawlToFinish(sem);
+    assertTrue("doCrawl() not called", crawler.doCrawlCalled());
+
+    crawlManager.cancelAuCrawls(mau);
+
+    assertFalse(crawler.wasAborted());
+  }
+
   public void testStoppingCrawlAbortsRepairCrawl() {
     String url1 = "http://www.example.com/index1.html";
     String url2 = "http://www.example.com/index2.html";
