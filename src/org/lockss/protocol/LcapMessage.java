@@ -419,9 +419,9 @@ public class LcapMessage {
     m_challenge = m_props.getByteArray("challenge", EMPTY_BYTE_ARRAY);
     m_verifier = m_props.getByteArray("verifier", EMPTY_BYTE_ARRAY);
     m_hashed = m_props.getByteArray("hashed", EMPTY_BYTE_ARRAY);
-    m_entries = stringToEntries(m_props.getProperty("entries"));
     m_lwrRem = m_props.getProperty("lwrRem");
     m_uprRem = m_props.getProperty("uprRem");
+    m_entries = stringToEntries(m_props.getProperty("entries"));
     m_pluginVersion = m_props.getProperty("plugVer");
     // calculate start and stop times
     long now = TimeBase.nowMs();
