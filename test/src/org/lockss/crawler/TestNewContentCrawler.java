@@ -111,6 +111,26 @@ public class TestNewContentCrawler extends LockssTestCase {
     assertEquals(Crawler.NEW_CONTENT, crawler.getType());
   }
 
+  public void testMakeUrlCacher() {
+    MyMockCachedUrlSet cus = (MyMockCachedUrlSet)mau.getAuCachedUrlSet();
+    cus.addUrl(startUrl);
+    crawler.makeUrlCacher(cus, startUrl);
+    MyMockUrlCacher mmuc = cus.lastMmuc;
+    assertNull(mmuc.proxyHost);
+  }
+
+  public void testMakeUrlCacherProxy() {
+    ConfigurationUtil.setFromArgs(NewContentCrawler.PARAM_PROXY_HOST, "pr.wub",
+				  NewContentCrawler.PARAM_PROXY_PORT, "27");
+    crawler.setCrawlConfig(ConfigManager.getCurrentConfig());
+    MyMockCachedUrlSet cus = (MyMockCachedUrlSet)mau.getAuCachedUrlSet();
+    cus.addUrl(startUrl);
+    crawler.makeUrlCacher(cus, startUrl);
+    MyMockUrlCacher mmuc = cus.lastMmuc;
+    assertEquals("pr.wub", mmuc.proxyHost);
+    assertEquals(27, mmuc.proxyPort);
+  }
+
   //Will try to fetch startUrl, content parser will return no urls,
   //so we should only cache the start url
   public void testDoCrawlOnePageNoLinks() {
@@ -922,6 +942,7 @@ public class TestNewContentCrawler extends LockssTestCase {
   }
 
   private class MyMockCachedUrlSet extends MockCachedUrlSet {
+    MyMockUrlCacher lastMmuc;
 
     public MyMockCachedUrlSet(MockArchivalUnit owner, CachedUrlSetSpec spec) {
       super(owner, spec);
@@ -929,13 +950,16 @@ public class TestNewContentCrawler extends LockssTestCase {
 
     protected MockUrlCacher makeMockUrlCacher(String url,
  					      MockCachedUrlSet parent) {
-      return new MyMockUrlCacher(url, parent);
+      lastMmuc = new MyMockUrlCacher(url, parent);
+      return lastMmuc;
     }
 
   }
 
   private class MyMockUrlCacher extends MockUrlCacher {
     private boolean abortCrawl = false;
+    String proxyHost = null;
+    int proxyPort;
 
     public MyMockUrlCacher(String url, MockCachedUrlSet cus) {
       super(url, cus);
@@ -953,6 +977,10 @@ public class TestNewContentCrawler extends LockssTestCase {
       if (abortCrawl) {
 	crawler.abortCrawl();
       }
+    }
+    public void setProxy(String proxyHost, int proxyPort) {
+      this.proxyHost = proxyHost;
+      this.proxyPort = proxyPort;
     }
   }
 
