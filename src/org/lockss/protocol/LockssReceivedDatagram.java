@@ -60,6 +60,11 @@ public class LockssReceivedDatagram extends LockssDatagram {
     return packet;
   }
 
+  /** Return the sender's InetAddress */
+  public InetAddress getSender() {
+    return packet.getAddress();
+  }
+
   /** Return the data portion of the received packet */
   public byte[] getData() {
     if (payload == null) {
