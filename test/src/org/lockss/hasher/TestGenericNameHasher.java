@@ -42,8 +42,7 @@ import org.lockss.plugin.*;
 
 public class TestGenericNameHasher extends LockssTestCase {
   private static final byte CUSN_NO_CONTENT=0;
-  private static final byte CUSN_CONTENT_LEAF=1;
-  private static final byte CUSN_CONTENT_NOT_LEAF=2;
+  private static final byte CUSN_CONTENT=1;
 
   public TestGenericNameHasher(String msg) {
     super(msg);
@@ -218,8 +217,7 @@ public class TestGenericNameHasher extends LockssTestCase {
     byte[] returnArray = new byte[name.length() + sizeBytes.length + 2];
 
     if (cusn.hasContent()) {
-      returnArray[0] =
-	cusn.isLeaf() ? CUSN_CONTENT_LEAF : CUSN_CONTENT_NOT_LEAF;
+      returnArray[0] = CUSN_CONTENT;
     } else {
       returnArray[0] = CUSN_NO_CONTENT;
     }

@@ -42,8 +42,7 @@ import org.lockss.plugin.*;
  */
 public class GenericNameHasher extends GenericHasher {
   private static final byte NO_CONTENT=0;
-  private static final byte CONTENT_LEAF=1;
-  private static final byte CONTENT_NOT_LEAF=2;
+  private static final byte CONTENT=1;
 
   byte[] nameBytes = null;
   int nameIdx = -1;
@@ -69,7 +68,7 @@ public class GenericNameHasher extends GenericHasher {
       nameIdx = 0;
 
       if (element.hasContent()) {
-	digest.update(element.isLeaf() ? CONTENT_LEAF : CONTENT_NOT_LEAF);
+ 	digest.update(CONTENT);
       } else {
 	digest.update(NO_CONTENT);
       }
