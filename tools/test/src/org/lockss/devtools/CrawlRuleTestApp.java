@@ -118,7 +118,7 @@ public class CrawlRuleTestApp {
                                      config.getInt("BASE_CRAWL_DEPTH", 1));
       CrawlRuleTester tester = new CrawlRuleTester(output_file, crawl_depth,
           delay, base_url, spec);
-      tester.runTest();
+      tester.run();
     }
     catch (Exception ex) {
       System.err.println("Error occured while processing properties:" + ex);
