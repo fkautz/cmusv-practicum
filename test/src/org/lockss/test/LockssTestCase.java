@@ -760,6 +760,19 @@ public class LockssTestCase extends TestCase {
 	       CollectionUtils.isEqualCollection(expected, actual));
   }
 
+  /**
+   * Asserts that a string matches the content of a reader
+   */
+  public static void assertReaderMatchesString(String expected, Reader reader)
+      throws IOException{
+    StringBuffer actual = new StringBuffer(expected.length());
+    int kar;
+    while ((kar = reader.read()) != -1) {
+      actual.append((char)kar);
+    }
+    assertEquals(expected, actual.toString());
+  }
+
   /** Abstraction to do something in another thread, after a delay,
    * unless cancelled.  If the sceduled activity is still pending when the
    * test completes, it is cancelled by tearDown().
