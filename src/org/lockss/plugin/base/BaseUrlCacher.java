@@ -113,6 +113,7 @@ public abstract class BaseUrlCacher implements UrlCacher {
    * @throws IOException
    */
   public void cache() throws IOException {
+    getArchivalUnit().pauseBeforeFetch();
     InputStream input = getUncachedInputStream();
     Properties headers = getUncachedProperties();
     if (input==null) {
