@@ -240,7 +240,6 @@ public class TestAuTreeWalkManager extends LockssTestCase {
   }
 
   public void testWalkerRunsTooLong() {
-    log.debug("testWalkerRunsTooLong");
     TimeBase.setSimulated(1000);
     autwm.initService(theDaemon);
     autwm.walkWaitSem.take();
