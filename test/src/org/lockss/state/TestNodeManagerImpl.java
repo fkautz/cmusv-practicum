@@ -113,6 +113,11 @@ public class TestNodeManagerImpl extends LockssTestCase {
     assertTrue(node==null);
   }
 
+  public void testGetAuState() {
+    AuState auState = nodeManager.getAuState();
+    assertEquals(mau.getAUId(), auState.getArchivalUnit().getAUId());
+  }
+
   public void testGetActiveCrawledNodes() throws Exception {
     Iterator nodeIt = nodeManager.getActiveCrawledNodes(mau.getAUCachedUrlSet());
     assertTrue(!nodeIt.hasNext());
@@ -395,10 +400,8 @@ public class TestNodeManagerImpl extends LockssTestCase {
     return p;
   }
 
-
   public static void main(String[] argv) {
     String[] testCaseList = {TestNodeManagerImpl.class.getName()};
     junit.swingui.TestRunner.main(testCaseList);
   }
-
 }

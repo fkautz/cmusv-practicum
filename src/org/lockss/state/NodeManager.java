@@ -60,6 +60,12 @@ public interface NodeManager {
   public NodeState getNodeState(CachedUrlSet cus);
 
   /**
+   * Returns the au state for the managed ArchivalUnit
+   * @return the au state
+   */
+  public AuState getAuState();
+
+  /**
    * Returns an iterator of all node states currently being crawled
    * @param cus the cached url set used to identify the top node
    * @return an Iterator of NodeStates
@@ -97,7 +103,6 @@ public interface NodeManager {
    * Returns the estimated time it will take to walk a given
    * {@link ArchivalUnit}.  This can be used to finetune the tree walk
    * parameter settings in the Configuration.
-   * @param au the ArchivalUnit to treewalk
    * @return estimated time in ms
    */
   public long getEstimatedTreeWalkDuration();
