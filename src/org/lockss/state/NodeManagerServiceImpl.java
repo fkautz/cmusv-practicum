@@ -65,6 +65,8 @@ public class NodeManagerServiceImpl extends BaseLockssManager
     statusServ.registerStatusAccessor(NodeManagerStatus.MANAGER_STATUS_TABLE_NAME,
                                       new NodeManagerStatus.ManagerStatus());
 
+    statusServ.registerStatusAccessor(NodeManagerStatus.POLLHISTORY_STATUS_TABLE_NAME,
+                                      new NodeManagerStatus.PollHistoryStatus());
   }
 
   public void stopService() {
@@ -73,6 +75,7 @@ public class NodeManagerServiceImpl extends BaseLockssManager
     StatusService statusServ = theDaemon.getStatusService();
     statusServ.unregisterStatusAccessor(NodeManagerStatus.SERVICE_STATUS_TABLE_NAME);
     statusServ.unregisterStatusAccessor(NodeManagerStatus.MANAGER_STATUS_TABLE_NAME);
+    statusServ.unregisterStatusAccessor(NodeManagerStatus.POLLHISTORY_STATUS_TABLE_NAME);
 
     stopAllManagers();
     super.stopService();
