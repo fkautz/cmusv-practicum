@@ -327,17 +327,32 @@ public class CacheException extends IOException {
   }
   /** Unretryable errors that are not expected to happen in normal
    * operation and might warrant a message or alert. */
-  public static class UnexpectedNoRetryException
+  public static class UnexpectedNoRetryFailException
       extends UnretryableException {
-    public UnexpectedNoRetryException() {
+    public UnexpectedNoRetryFailException() {
       super();
     }
 
-    public UnexpectedNoRetryException(String message) {
+    public UnexpectedNoRetryFailException(String message) {
       super(message);
     }
   }
 
+  public static class UnexpectedNoRetryNoFailException
+      extends UnretryableException {
+    public UnexpectedNoRetryNoFailException() {
+      super();
+    }
+
+    public UnexpectedNoRetryNoFailException(String message) {
+      super(message);
+    }
+    
+    protected void setAtrributes() {
+      attributeBits.clear(ATTRIBUTE_FAIL);
+    }
+  }
+  
   public static class NoRetryHostException
       extends UnretryableException {
     public NoRetryHostException() {
