@@ -344,7 +344,15 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   }
 
   public String toString() {
-    return "[BAU: "+getAuId()+"]";
+    StringBuffer sb = new StringBuffer(80);
+    sb.append("[AU: ");
+    if (StringUtil.isNullString(auName)) {
+      sb.append(getAuId());
+    } else {
+      sb.append(auName);
+    }
+    sb.append("]");
+    return sb.toString();
   }
 
   public String getManifestPage() {
