@@ -35,6 +35,7 @@ import java.util.Enumeration;
 import java.util.Vector;
 import java.util.Locale;
 import java.text.DecimalFormatSymbols;
+import java.util.*;
 
 /**
  * PrintfFormat allows the formatting of an array of
@@ -514,6 +515,11 @@ public class PrintfFormat {
       }
     }
   }
+
+  Collection getFormatElements() {
+    return Collections.unmodifiableCollection(vFmt);
+  }
+
   /**
    * Return a substring starting at
    * <code>start</code> and ending at either the end
@@ -626,6 +632,7 @@ public class PrintfFormat {
     }
     return sb.toString();
   }
+
   /**
    * Format an int.
    * @param x The int to format.
@@ -814,7 +821,7 @@ public class PrintfFormat {
    * optional L does not imply conversion to a long
    * long double.
    */
-  private class ConversionSpecification {
+  public class ConversionSpecification {
     /**
      * Constructor.  Used to prepare an instance
      * to hold a literal, not a control string.
