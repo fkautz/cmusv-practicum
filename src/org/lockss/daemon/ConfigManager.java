@@ -473,11 +473,8 @@ public class ConfigManager implements LockssManager {
   private void logConfig(Configuration config,
 			 Configuration oldConfig,
 			 Configuration.Differences diffs) {
-    SortedSet keys = new TreeSet(diffs.getDifferenceSet());
-    if (keys == null) {
-      // this should never happen; just being paranoid
-      return;
-    }
+    Set diffSet = diffs.getDifferenceSet();
+    SortedSet keys = new TreeSet(diffSet != null ? diffSet : config.keySet());
     for (Iterator iter = keys.iterator(); iter.hasNext(); ) {
       String key = (String)iter.next();
       if (log.isDebug2() || !key.startsWith(PARAM_TITLE_DB)) {

@@ -98,7 +98,7 @@ public class ConfigurationPropTreeImpl extends Configuration {
    * @param otherConfig the config to compare with.  May be null.
    */
   public Configuration.Differences differences(Configuration otherConfig) {
-    if (otherConfig == null) {
+    if (otherConfig == null || otherConfig.isEmpty()) {
       return Configuration.DIFFERENCES_ALL;
     }
     ConfigurationPropTreeImpl oc = (ConfigurationPropTreeImpl)otherConfig;
