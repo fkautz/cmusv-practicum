@@ -112,12 +112,17 @@ public class MockNodeManager implements NodeManager {
     throw new UnsupportedOperationException("Not implemented");
   }
 
-
-  public void startTreeWalk() {
-    throw new UnsupportedOperationException("Not implemented");
-  }
-
   public void newContentCrawlFinished() {
     aus.newCrawlFinished();
   }
+
+  public void forceTreeWalk() {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
+  public void forceTopLevelPoll() {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
+
 }
