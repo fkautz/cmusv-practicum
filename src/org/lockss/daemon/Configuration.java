@@ -54,9 +54,13 @@ public abstract class Configuration {
   public static final String PLATFORM = PREFIX + "platform.";
   public static final String DAEMON = PREFIX + "daemon.";
 
+  /** Daemon version string (i.e., 1.4.3, 1.5.0-test). */
   public static final String PARAM_DAEMON_VERSION = DAEMON + "version";
+  /** Platform version string as a 36-bit integer (i.e., 135a, 136, 137-test). */
   public static final String PARAM_PLATFORM_VERSION = PLATFORM + "version";
+  /** Platform group. */
   public static final String PARAM_PLATFORM_GROUP = PLATFORM + "group";
+  /** Platform host name. */
   public static final String PARAM_PLATFORM_HOSTNAME =
     ConfigManager.PARAM_PLATFORM_FQDN;
 
