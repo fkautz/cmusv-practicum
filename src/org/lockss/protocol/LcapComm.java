@@ -41,10 +41,9 @@ import org.lockss.app.*;
 import org.lockss.plugin.*;
 
 /**
- * LcapComm implements the routing parts of the LCAP protocol, using
- * {@link LcapSocket} to send and receive packets.
- * Routing involves decisions about using unicast to supplement multicast,
- * including forwarding received unicast packets.
+ * LcapComm supports datagram (multicast and/or unicast) communication
+ * between LOCKSS caches.  The packets sent at this level are {@link
+ * LockssDatagram}s.  They are sent and received via {@link LcapSocket}s.
  */
 public class LcapComm extends BaseLockssManager {
 
