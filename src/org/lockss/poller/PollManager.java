@@ -575,8 +575,8 @@ public class PollManager  extends BaseLockssManager {
     return m_quorum;
   }
 
-  protected void setConfig(Configuration oldConfig,
-                           Configuration newConfig,
+  protected void setConfig(Configuration newConfig,
+                           Configuration oldConfig,
                            Set changedKeys) {
     long aveDuration = newConfig.getTimeInterval(PARAM_NAMEPOLL_DEADLINE,
                                                   DEFAULT_NAMEPOLL_DEADLINE);
