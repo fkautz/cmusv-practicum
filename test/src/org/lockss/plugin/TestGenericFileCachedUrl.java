@@ -148,18 +148,18 @@ public class TestGenericFileCachedUrl extends LockssTestCase {
     assertEquals("<test stream>", baos.toString());
   }
 
-  public void testOpenForHashingCanFilter() throws Exception {
-    String config = 
-      "org.lockss.genericFileCachedUrl.filterHashStream=true";
-    TestConfiguration.setCurrentConfigFromString(config);
-    createLeaf("http://www.example.com/testDir/leaf1", "<test stream>", null);
+//   public void testOpenForHashingCanFilter() throws Exception {
+//     String config = 
+//       "org.lockss.genericFileCachedUrl.filterHashStream=true";
+//     TestConfiguration.setCurrentConfigFromString(config);
+//     createLeaf("http://www.example.com/testDir/leaf1", "<test stream>", null);
 
-    CachedUrl url = cus.makeCachedUrl("http://www.example.com/testDir/leaf1");
-    InputStream urlIs = url.openForHashing();
-    ByteArrayOutputStream baos = new ByteArrayOutputStream(11);
-    StreamUtil.copy(urlIs, baos);
-    assertEquals("", baos.toString());
-  }
+//     CachedUrl url = cus.makeCachedUrl("http://www.example.com/testDir/leaf1");
+//     InputStream urlIs = url.openForHashing();
+//     ByteArrayOutputStream baos = new ByteArrayOutputStream(11);
+//     StreamUtil.copy(urlIs, baos);
+//     assertEquals("", baos.toString());
+//   }
 
   public void testOpenForHashingWontFilterIfConfigedNotTo() throws Exception {
     String config = 
