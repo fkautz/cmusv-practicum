@@ -150,10 +150,10 @@ public class LockssDatagram {
 
   boolean isCompressed() {
     Configuration config = Configuration.getCurrentConfig();
-    return (config.getBoolean(LcapComm.PARAM_COMPRESS_PACKETS,
-			      LcapComm.DEFAULT_COMPRESS_PACKETS) &&
-	    payload.length >= config.getInt(LcapComm.PARAM_COMPRESS_MIN,
-					    LcapComm.DEFAULT_COMPRESS_MIN));
+    return (config.getBoolean(LcapDatagramComm.PARAM_COMPRESS_PACKETS,
+			      LcapDatagramComm.DEFAULT_COMPRESS_PACKETS) &&
+	    payload.length >= config.getInt(LcapDatagramComm.PARAM_COMPRESS_MIN,
+					    LcapDatagramComm.DEFAULT_COMPRESS_MIN));
   }
 
 

@@ -79,7 +79,7 @@ public class LcapDatagramRouter
 
   static Logger log = Logger.getLogger("Router");
 
-  private LcapComm comm;
+  private LcapDatagramComm comm;
   private PollManager pollMgr;
   private IdentityManager idMgr;
   private RateLimiter fwdRateLimiter;
@@ -97,13 +97,13 @@ public class LcapDatagramRouter
   public void startService() {
     super.startService();
     LockssDaemon daemon = getDaemon();
-    comm = daemon.getCommManager();
+    comm = daemon.getDatagramCommManager();
     idMgr = daemon.getIdentityManager();
     pollMgr = daemon.getPollManager();
     partnerList = new PartnerList(idMgr);
     resetConfig();
     comm.registerMessageHandler(LockssDatagram.PROTOCOL_LCAP,
-				new LcapComm.MessageHandler() {
+				new LcapDatagramComm.MessageHandler() {
 				    public void
 				      handleMessage(LockssReceivedDatagram rd){
 				      processIncomingMessage(rd);

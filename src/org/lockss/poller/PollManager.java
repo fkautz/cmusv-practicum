@@ -105,7 +105,7 @@ public class PollManager
     theAlertManager = theDaemon.getAlertManager();
 
     // register a message handler with the router
-    theRouter = theDaemon.getRouterManager();
+    theRouter = theDaemon.getDatagramRouterManager();
     m_msgHandler =  new RouterMessageHandler();
     theRouter.registerMessageHandler(m_msgHandler);
 
