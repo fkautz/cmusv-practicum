@@ -239,7 +239,12 @@ public class HttpClientUrlConnection extends BaseLockssUrlConnection {
 
   public String getActualUrl() {
     try {
-      URI uri = new URI(new URI(urlString), new URI(method.getPath()));
+      String path = method.getPath();
+      String query = method.getQueryString();
+      if (!StringUtil.isNullString(query)) {
+	path = path + "?" + query;
+      }
+      URI uri = new URI(new URI(urlString), new URI(path));
       return uri.toString();
     } catch(URIException e) {
       log.warning("getActualUrl(): ", e);
