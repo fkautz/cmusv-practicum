@@ -81,6 +81,10 @@ public class MockPollSpec extends PollSpec {
 	  lwrBound, uprBound, pollType);
   }
 
+  public MockPollSpec(PollSpec ps, int pollType) {
+    super(ps, pollType);
+  }
+
   public String getPluginVersion() {
     return (overridePluginVersion != null)
       ? overridePluginVersion : super.getPluginVersion();

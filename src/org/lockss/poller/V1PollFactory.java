@@ -179,6 +179,7 @@ public class V1PollFactory implements PollFactory {
   /**
    * createPoll is invoked when an incoming message requires a new
    * Poll to be created.
+   * @param msg the LcapMessage that caused the new poll
    * @param pollspec the PollSpec for the poll.
    * @param pm the PollManager that called this method
    * @return a Poll object describing the new poll.

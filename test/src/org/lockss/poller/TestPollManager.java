@@ -392,7 +392,7 @@ public class TestPollManager extends LockssTestCase {
   /** test for method suspendPoll(...) */
   public void testSuspendPoll() throws Exception {
     BasePoll p1 = null;
-    p1 = TestPoll.createCompletedPoll(theDaemon, testau, testmsg[0], 7, 2);
+    p1 = TestPoll.createCompletedPoll(theDaemon, testau, testmsg[0], 7, 2, pollmanager);
     pollmanager.addPoll(p1);
     // give it a pointless lock to avoid a null pointer
     ActivityRegulator.Lock lock = theDaemon.getActivityRegulator(testau).
