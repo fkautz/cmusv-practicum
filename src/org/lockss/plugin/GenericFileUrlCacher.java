@@ -57,7 +57,7 @@ public abstract class GenericFileUrlCacher extends BaseUrlCacher {
   }
 
   public void storeContent(InputStream input, Properties headers) throws IOException {
-    LeafNode leaf = repository.createLeafNode(url);
+    RepositoryNode leaf = repository.createNewNode(url);
     leaf.makeNewVersion();
     try {
       if (input != null) {
