@@ -53,6 +53,9 @@ public class Logger {
   static final String PARAM_LOG_LEVEL = PREFIX + "<logname>.level";
   static final String PARAM_LOG_TARGETS = PREFIX + "targets";
 
+  /** prefix for target-specific params */
+  public static final String TARGET_PREFIX = PREFIX + "target.";
+
   /** Critical errors require immediate attention from a human. */
   public static final int LEVEL_CRITICAL = 1;
   /** Errors indicate that the system may not operate correctly, but won't
