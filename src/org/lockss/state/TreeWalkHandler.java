@@ -113,6 +113,7 @@ public class TreeWalkHandler {
         // query the AU if a top level poll should be started
         if (theAu.shouldCallTopLevelPoll(manager.getAuState())) {
           manager.callTopLevelPoll();
+          logger.debug("Requested top level poll.  Aborting...");
         } else {
           // do the actual treewalk
           logger.debug("Tree walk started: "+theAu.getName());
@@ -121,7 +122,11 @@ public class TreeWalkHandler {
           long elapsedTime = TimeBase.msSince(startTime);
           updateEstimate(elapsedTime);
         }
+      } else {
+        logger.debug("Crawl manager active.  Aborting...");
       }
+    } else {
+      logger.debug("Top level poll active.  Aborting...");
     }
     //alert the AuState
     manager.getAuState().setLastTreeWalkTime();
