@@ -221,7 +221,11 @@ public class HistoryRepositoryImpl implements HistoryRepository, LockssManager {
     String auLoc = FileLocationUtil.mapAuToFileLocation(buffer.toString(),
         cus.getArchivalUnit());
     String urlStr = (String)cus.getUrl();
-    return FileLocationUtil.mapUrlToFileLocation(auLoc, urlStr);
+    if (AuUrl.isAuUrl(urlStr)) {
+      return auLoc;
+    } else {
+      return FileLocationUtil.mapUrlToFileLocation(auLoc, urlStr);
+    }
   }
 
   protected String getAuLocation(ArchivalUnit au) {

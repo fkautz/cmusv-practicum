@@ -565,6 +565,12 @@ public class NodeManagerImpl implements NodeManager, LockssManager {
     PollHistory history = new PollHistory(pollState, duration, votes);
     ((NodeStateImpl)nodeState).closeActivePoll(history);
     repository.storePollHistories(nodeState);
+    // if this is an AU top-level content poll
+    // update the AuState to indicate the poll is finished
+    if ((AuUrl.isAuUrl(nodeState.getCachedUrlSet().getUrl())) &&
+        (pollState.getType() == Poll.CONTENT_POLL)) {
+      getAuState().newPollFinished();
+    }
   }
 
   private PollState getPollState(NodeState state, Poll.VoteTally results) {

@@ -58,7 +58,8 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
    * This is the root of the url which the SimAU pretends to be.
    * It is replaced with the actual directory root.
    */
-  public static final String SIMULATED_URL_ROOT = "http://www.example.com";
+  public static final String SIMULATED_URL_ROOT = AuUrl.PROTOCOL_COLON +
+      "//www.example.com";
 
   private String fileRoot; //root directory for the generated content
   private SimulatedContentGenerator scgen;
