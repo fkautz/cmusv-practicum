@@ -150,12 +150,9 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     if(config == null) {
       throw new ConfigurationException("Null Configuration");
     }
-    // TODO: Fix this hack put in for Simulated Plugin support
-    if(okToConfig()) {
-      loadDefiningConfig(config);
-      setAuParams(config);
-      setBaseAuParams(config);
-    }
+    loadDefiningConfig(config);
+    setAuParams(config);
+    setBaseAuParams(config);
   }
 
   public Configuration getConfiguration() {
@@ -176,18 +173,18 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
       }
     }
   }
-  private boolean okToConfig() {
-    List descrList = plugin.getAuConfigProperties();
-    Iterator it = descrList.iterator();
-    if(it.hasNext() && it.next() instanceof ConfigParamDescr)
-      return true;
-    return false;
-  }
 
   void loadDefiningConfig(Configuration config) throws ConfigurationException {
     List descrList = plugin.getAuConfigProperties();
     for (Iterator it = descrList.iterator(); it.hasNext(); ) {
-      ConfigParamDescr descr = (ConfigParamDescr) it.next();
+      Object next = it.next();
+      // check for simulated plugin configuration
+      if (!(next instanceof ConfigParamDescr)){
+        logger.debug("AU config properties are not of type ConfigParamDescr" +
+                     "- skipping configuration map storage.");
+        return;
+      }
+      ConfigParamDescr descr = (ConfigParamDescr) next;
       String key = descr.getKey();
       switch (descr.getType()) {
         case ConfigParamDescr.TYPE_INT:
