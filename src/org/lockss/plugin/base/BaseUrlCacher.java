@@ -327,8 +327,10 @@ public class BaseUrlCacher implements UrlCacher {
       CIProperties props = new CIProperties();
       // set header properties in which we have interest
 
-      props.setProperty(CachedUrl.PROPERTY_CONTENT_TYPE,
-			conn.getResponseContentType());
+      String ctype = conn.getResponseContentType();
+      if (ctype != null) {
+	props.setProperty(CachedUrl.PROPERTY_CONTENT_TYPE, ctype);
+      }
       props.setProperty(CachedUrl.PROPERTY_FETCH_TIME,
 			Long.toString(TimeBase.nowMs()));
       if (origUrl != fetchUrl &&

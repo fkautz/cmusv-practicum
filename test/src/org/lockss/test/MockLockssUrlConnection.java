@@ -133,10 +133,7 @@ public class MockLockssUrlConnection extends BaseLockssUrlConnection {
   }
 
   public String getResponseContentType() {
-    if (respContentType != null) {
-      return respContentType;
-    }
-    throw new UnsupportedOperationException();
+    return respContentType;
   }
 
   public String getResponseContentEncoding() {

@@ -244,6 +244,31 @@ public class TestBaseUrlCacher extends LockssTestCase {
     return mconn;
   }
 
+  public void testGetUncachedProperties() throws IOException {
+    TimeBase.setSimulated(555666);
+    MockConnectionMockBaseUrlCacher muc =
+      new MockConnectionMockBaseUrlCacher(mau, TEST_URL);
+    MyMockLockssUrlConnection mconn = makeConn(200, "", null, "foo");
+    muc.addConnection(mconn);
+    muc.getUncachedInputStream();
+    Properties props = muc.getUncachedProperties();
+    assertEquals("", props.get(CachedUrl.PROPERTY_CONTENT_TYPE));
+    assertEquals("555666", props.get(CachedUrl.PROPERTY_FETCH_TIME));
+  }
+
+  public void testGetUncachedPropertiesNull() throws IOException {
+    TimeBase.setSimulated(555666);
+    MockConnectionMockBaseUrlCacher muc =
+      new MockConnectionMockBaseUrlCacher(mau, TEST_URL);
+    MyMockLockssUrlConnection mconn = makeConn(200, "", null, "foo");
+    mconn.setResponseContentType(null);
+    muc.addConnection(mconn);
+    muc.getUncachedInputStream();
+    Properties props = muc.getUncachedProperties();
+    assertEquals(null, props.get(CachedUrl.PROPERTY_CONTENT_TYPE));
+    assertEquals("555666", props.get(CachedUrl.PROPERTY_FETCH_TIME));
+  }
+
   public void testMalformedUrlException() throws IOException {
     MockConnectionMockBaseUrlCacher muc =
       new MockConnectionMockBaseUrlCacher(mau, TEST_URL);
