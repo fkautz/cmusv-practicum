@@ -132,6 +132,10 @@ public class ProxyManager extends JettyManager {
       // Create a context
       HttpContext context = server.getContext(null, "/");
 
+      // In this environment there is no point in consuming memory with
+      // cached resources
+      context.setMaxCachedFileSize(0);
+
       // IpAccessHandler is first
       accessHandler = new IpAccessHandler("Proxy");
       setIpFilter();
