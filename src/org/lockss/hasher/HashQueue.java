@@ -31,7 +31,6 @@ in this Software without prior written authorization from Stanford University.
 */
 
 // todo
-// disregard overrunners in insert()?  curEst() = 0 isn't enough
 // locking needed on currently running req?  what if dequeued by remove()
 //  while it's running.  Can't happen?
 
