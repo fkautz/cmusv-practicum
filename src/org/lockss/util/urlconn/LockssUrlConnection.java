@@ -73,8 +73,11 @@ public interface LockssUrlConnection {
   /** Set a request header to a time value */
   public void setRequestPropertyDate(String key, long time);
 
-  /** Set a request header */
+  /** Set a request header, overwriting any previous value */
   public void setRequestProperty(String key, String value);
+
+  /** Add a request header */
+  public void addRequestProperty(String key, String value);
 
   /** Set the followRedirects flag. */
   public void setFollowRedirects(boolean followRedirects);
@@ -84,6 +87,12 @@ public interface LockssUrlConnection {
 
   /** Return response message */
   public String getResponseMessage();
+
+  /** Return the value of the nth header field */
+  public String getResponseHeaderFieldVal(int n);
+
+  /** Return the key of the nth header field */
+  public String getResponseHeaderFieldKey(int n);
 
   /** Return the Date: from the response header */
   public long getResponseDate();

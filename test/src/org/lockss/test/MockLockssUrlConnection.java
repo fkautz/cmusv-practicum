@@ -79,6 +79,14 @@ public class MockLockssUrlConnection extends BaseLockssUrlConnection {
     throw new UnsupportedOperationException();
   }
 
+  public String getResponseHeaderFieldVal(int n) {
+    throw new UnsupportedOperationException();
+  }
+
+  public String getResponseHeaderFieldKey(int n) {
+    throw new UnsupportedOperationException();
+  }
+
   public long getResponseDate() {
     throw new UnsupportedOperationException();
   }

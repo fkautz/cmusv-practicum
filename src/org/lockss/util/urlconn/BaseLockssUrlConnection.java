@@ -104,6 +104,10 @@ public abstract class BaseLockssUrlConnection implements LockssUrlConnection {
     setRequestProperty(key, gmtDateFormat.format(date));
   }
 
+  public void addRequestProperty(String key, String value) {
+    throw new UnsupportedOperationException();
+  }
+
   public String getActualUrl() {
     assertExecuted();
     return urlString;

@@ -97,6 +97,16 @@ public class JavaUrlConnection extends BaseLockssUrlConnection {
     throw new UnsupportedOperationException();
   }
 
+  public String getResponseHeaderFieldVal(int n) {
+    assertExecuted();
+    return urlConn.getHeaderField(n);
+  }
+
+  public String getResponseHeaderFieldKey(int n) {
+    assertExecuted();
+    return urlConn.getHeaderFieldKey(n);
+  }
+
   public long getResponseDate() {
     assertExecuted();
     return urlConn.getDate();
