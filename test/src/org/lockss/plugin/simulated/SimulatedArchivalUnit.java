@@ -225,9 +225,6 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     if ((lastSlashIdx >= lastPeriodIdx) ||
         (StringUtil.countOccurences(url, File.separator)==2)) {
       StringBuffer buffer = new StringBuffer(url);
-      if (!url.endsWith(File.separator)) {
-        buffer.append(File.separator);
-      }
       return buffer.toString();
     } else {
       return url;

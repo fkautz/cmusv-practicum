@@ -108,18 +108,4 @@ public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
   public List getNewContentCrawlUrls() {
     throw new UnsupportedOperationException("Not implemented");
   }
-
-  // Methods used by the crawler
-
-  public CachedUrlSet makeCachedUrlSet(CachedUrlSetSpec cuss) {
-    return cachedUrlSetFactory(this, cuss);
-  }
-
-  public CachedUrlSet makeCachedUrlSet(String url, String lwrBound, String uprBound) {
-    try {
-      return cachedUrlSetFactory(this, new RangeCachedUrlSetSpec(url, lwrBound, uprBound));
-    } catch (Exception e) {
-      return null;
-    }
-  }
 }
