@@ -170,7 +170,6 @@ public class TestCrawlManagerImpl extends LockssTestCase {
   }
 
   public void testStoppingCrawlAbortsRepairCrawl() {
-    System.err.println("STOP1");
     String url1 = "http://www.example.com/index1.html";
     String url2 = "http://www.example.com/index2.html";
     List urls = ListUtil.list(url1, url2);
@@ -193,7 +192,6 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     crawlManager.cancelAuCrawls(mau);
 
     assertTrue(crawler.wasAborted());
-    System.err.println("STOP2");
   }
 
 
