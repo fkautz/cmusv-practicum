@@ -114,7 +114,7 @@ public class ConfigParamDescrEditor extends JDialog
       descriptionTextArea.setText(descr == null ? "" : descr);
       descriptionTextArea.setEditable(editable);
       definitionCheckBox.setSelected(cpd.isDefinitional());
-      definitionCheckBox.setEnabled(editable);
+      definitionCheckBox.setEnabled(true);
     }
   }
 

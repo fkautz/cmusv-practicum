@@ -39,7 +39,7 @@ public class EDPInspectorTableModel extends AbstractTableModel
     implements ChangeListener {
   static EDPInspectorCellEditor inspectorCellEditor = new EDPInspectorCellEditor();
   static final String[] cols = {
-      "Field", "Value"};
+      "Plugin Field", "Assigned Value"};
   static final class InspectorEntry {
     String m_pluginKey;
     String m_title;
@@ -135,6 +135,10 @@ public class EDPInspectorTableModel extends AbstractTableModel
    */
   public int getColumnCount() {
     return cols.length;
+  }
+
+  public String getColumnName(int colIndex) {
+    return cols[colIndex];
   }
 
   /**

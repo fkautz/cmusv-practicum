@@ -143,7 +143,7 @@ public class EDPCellData {
 
   public String toString() {
     if(m_displayString == null) {
-      if (m_data instanceof Collection) {
+      if (m_data instanceof Collection || m_data instanceof Map) {
         m_displayString = ELLIPSIS;
       }
       else if (m_data == null) {
