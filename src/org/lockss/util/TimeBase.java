@@ -85,6 +85,9 @@ public class TimeBase {
       throw new IllegalStateException("Can't step TimeBase when in real mode");
     }
     simulatedTime += n;
+    // ensure that all timer queue events whose time has come get executed
+    // before this returns
+    TimerQueue.runAllExpired();
   }
 
   /** Step simulated time base by 1 tick */
