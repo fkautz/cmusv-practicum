@@ -98,7 +98,6 @@ public class FuncSimulatedContent extends LockssTestCase {
 
     sau =
       (SimulatedArchivalUnit)theDaemon.getPluginManager().getAuFromId(auId);
-    List aus = theDaemon.getPluginManager().getAllAus();
 
     theDaemon.getPluginManager().startService();
 
