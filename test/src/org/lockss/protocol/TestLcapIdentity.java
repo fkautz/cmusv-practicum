@@ -74,7 +74,7 @@ public class TestLcapIdentity extends LockssTestCase {
     String host = "1.2.3.4";
     String prop = "org.lockss.localIPAddress="+host;
     ConfigurationUtil.
-      setCurrentConfigFromUrlList(ListUtil.list(FileUtil.urlOfString(prop)));
+      setCurrentConfigFromUrlList(ListUtil.list(FileTestUtil.urlOfString(prop)));
     idmgr = daemon.getIdentityManager();
     try {
       fakeId = new LcapIdentity(InetAddress.getByName(fakeIdString));

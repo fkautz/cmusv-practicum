@@ -52,8 +52,8 @@ public class TestMailTarget extends LockssTestCase {
     String s2 = MailTarget.PARAM_EMAIL_TO + "=target@t.com";
     String s3 = MailTarget.PARAM_EMAIL_FROM + "=source@s.com";
     ConfigurationUtil.setCurrentConfigFromUrlList(ListUtil.list(
-        FileUtil.urlOfString(s), FileUtil.urlOfString(s2),
-        FileUtil.urlOfString(s3)));
+        FileTestUtil.urlOfString(s), FileTestUtil.urlOfString(s2),
+        FileTestUtil.urlOfString(s3)));
     target = new MailTarget();
     System.err.println("Ignore IdentityManager error:");
     target.init();
@@ -74,9 +74,9 @@ public class TestMailTarget extends LockssTestCase {
     String s4 = MailTarget.PARAM_EMAIL_FROM + "=source2@s.com";
     String s5 = MailTarget.PARAM_EMAIL_ENABLED + "=false";
     ConfigurationUtil.setCurrentConfigFromUrlList(ListUtil.list(
-        FileUtil.urlOfString(s), FileUtil.urlOfString(s2),
-        FileUtil.urlOfString(s3), FileUtil.urlOfString(s4),
-        FileUtil.urlOfString(s5)));
+        FileTestUtil.urlOfString(s), FileTestUtil.urlOfString(s2),
+        FileTestUtil.urlOfString(s3), FileTestUtil.urlOfString(s4),
+        FileTestUtil.urlOfString(s5)));
     target = new MailTarget();
     System.err.println("Ignore IdentityManager error:");
     target.init();

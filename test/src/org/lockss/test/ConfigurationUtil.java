@@ -48,7 +48,7 @@ public class ConfigurationUtil {
    */
   public static Configuration fromString(String s)
       throws IOException {
-    List l = ListUtil.list(FileUtil.urlOfString(s));
+    List l = ListUtil.list(FileTestUtil.urlOfString(s));
     return mgr().readConfig(l);
   }
 
@@ -74,7 +74,7 @@ public class ConfigurationUtil {
     } catch (InstantiationException e) {
       // because I don't want to change all the callers of this
       throw new RuntimeException(e.toString());
-    }      
+    }
   }
 
   /** Create a Configuration from the contents of the URLs in the list

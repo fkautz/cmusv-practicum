@@ -82,7 +82,7 @@ public class TestWatchdogService extends LockssTestCase {
 
   public void testCreate() throws Exception {
     // arrange for a file that doesn't exist
-    File tmpfile = FileUtil.tempFile("wdog");
+    File tmpfile = FileTestUtil.tempFile("wdog");
     tmpfile.delete();
     assertFalse(tmpfile.exists());
 
@@ -95,7 +95,7 @@ public class TestWatchdogService extends LockssTestCase {
   }
 
   public void testWdogOn() throws Exception {
-    File tmpfile = FileUtil.tempFile("wdog");
+    File tmpfile = FileTestUtil.tempFile("wdog");
 
     // configure a 10 second watchdog
     config(tmpfile.toString(), "10s");
@@ -117,7 +117,7 @@ public class TestWatchdogService extends LockssTestCase {
   }
 
   public void testDisable() throws Exception {
-    File tmpfile = FileUtil.tempFile("wdog");
+    File tmpfile = FileTestUtil.tempFile("wdog");
 
     // configure a 10 second watchdog
     config(tmpfile.toString(), "10s");
