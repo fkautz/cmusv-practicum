@@ -108,7 +108,7 @@ public abstract class Configuration {
    * @return a copy
    */
   public Configuration copy() {
-    Configuration copy = new ConfigurationPropTreeImpl();
+    Configuration copy = ConfigManager.newConfiguration();
     for (Iterator iter = keyIterator(); iter.hasNext(); ) {
       String key = (String)iter.next();
       copy.put(key, get(key));
