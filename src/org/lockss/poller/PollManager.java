@@ -194,7 +194,7 @@ public class PollManager  extends BaseLockssManager {
    * @param msg the message used to generate the poll
    * @throws IOException thrown if the poll was unsucessfully created
    */
-  void handleMessage(LcapMessage msg) throws IOException {
+  void handleIncomingMessage(LcapMessage msg) throws IOException {
     theLog.info("Got a message: " + msg);
     String key = msg.getKey();
     PollManagerEntry pme = (PollManagerEntry)thePolls.get(key);
@@ -272,14 +272,17 @@ public class PollManager  extends BaseLockssManager {
     ret_poll = createPoll(msg, spec);
 
     if (ret_poll != null) {
+      NodeManager nm = theDaemon.getNodeManager(cus.getArchivalUnit());
       if (!msg.isVerifyPoll()) {
-        NodeManager nm = theDaemon.getNodeManager(cus.getArchivalUnit());
-        if (!nm.startPoll(cus, ret_poll.getVoteTally())) {
+        if (!nm.shouldStartPoll(cus, ret_poll.getVoteTally())) {
           return null;
         }
       }
       thePolls.put(ret_poll.m_key, new PollManagerEntry(ret_poll));
       ret_poll.startPoll();
+      if(!msg.isVerifyPoll()) {
+        nm.startPoll(cus, ret_poll.getVoteTally());
+      }
       theLog.debug2("Started new poll: " + ret_poll.m_key);
       return ret_poll;
     }
@@ -337,17 +340,12 @@ public class PollManager  extends BaseLockssManager {
       long expiration = 0;
       Deadline d;
       if (replayNeeded) {
-
         NodeManager nm = theDaemon.getNodeManager(tally.getArchivalUnit());
-        if(nm.startPoll(tally.getCachedUrlSet(), tally)) {
-          theLog.debug2("replaying poll " + (String) key);
-          expiration = m_replayPollExpireTime;
-          d = Deadline.in(expiration);
-          tally.startReplay(d);
-        }
-        else {
-          theLog.warning("nodemanager refused request to replay poll " + key);
-        }
+        nm.startPoll(tally.getCachedUrlSet(), tally);
+        theLog.debug2("replaying poll " + (String) key);
+        expiration = m_replayPollExpireTime;
+        d = Deadline.in(expiration);
+        tally.startReplay(d);
       }
 
       // now we want to make sure we add it to the recent polls.
@@ -672,7 +670,7 @@ public class PollManager  extends BaseLockssManager {
     public void handleMessage(LcapMessage msg) {
       theLog.debug3("received from router message:" + msg.toString());
       try {
-	PollManager.this.handleMessage(msg);
+	handleIncomingMessage(msg);
       }
       catch (IOException ex) {
 	theLog.error("handle incoming message failed.");

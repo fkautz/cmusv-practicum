@@ -48,10 +48,18 @@ public interface NodeManager extends LockssManager {
    * Starts a new poll on a particular CachedUrlSet.
    * @param cus the CachedUrlSet being polled
    * @param state the new PollState
+   */
+  public void startPoll(CachedUrlSet cus, PollTally state);
+
+  /**
+   * Should we allow a poll on this cached url set
+   * @param cus the cached url set that represents the poll we want
+   * to run.
+   * @param state the polly tally representing the poll state
    * @returns false if the poll has no matching node state or
    * the poll would include damaged content.
    */
-  public boolean startPoll(CachedUrlSet cus, PollTally state);
+  public boolean shouldStartPoll(CachedUrlSet cus, PollTally state);
 
   /**
    * Update a node state with current poll results
