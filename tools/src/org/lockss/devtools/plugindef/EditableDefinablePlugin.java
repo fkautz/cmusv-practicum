@@ -31,7 +31,6 @@ in this Software without prior written authorization from Stanford University.
 */
 package org.lockss.devtools.plugindef;
 
-import java.lang.reflect.*;
 import java.util.*;
 
 import org.lockss.daemon.*;
