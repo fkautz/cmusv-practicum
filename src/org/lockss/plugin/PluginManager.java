@@ -953,6 +953,8 @@ public class PluginManager
 	  }
 	} catch (MalformedURLException ignore) {
 	  // ignored
+	} catch (PluginBehaviorException ignore) {
+	  // ignored
 	}
       }
     }

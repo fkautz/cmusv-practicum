@@ -558,6 +558,8 @@ public class NewContentCrawler extends CrawlerImpl {
 	}
       } catch (MalformedURLException e) {
 	logger.warning("Normalizing", e);
+      } catch (PluginBehaviorException e) {
+	logger.warning("Normalizing", e);
       }
     }
   }
