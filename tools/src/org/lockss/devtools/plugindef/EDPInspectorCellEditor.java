@@ -74,14 +74,14 @@ public class EDPInspectorCellEditor extends AbstractCellEditor
       null, // plugin name
       null, // plugin version
       new CellEditorEntry(PICKER, paramPicker, pickerButton), // configuration parameters
-      new CellEditorEntry(CRAWLRULE,rulesEditor,rulesButton), // crawl rules
-      new CellEditorEntry(TEMPLATE,templateEditor,templateButton), // start url template
       new CellEditorEntry(TEMPLATE,templateEditor,templateButton),  // au name template
+      new CellEditorEntry(TEMPLATE,templateEditor,templateButton), // start url template
+      new CellEditorEntry(CRAWLRULE,rulesEditor,rulesButton), // crawl rules
+      new CellEditorEntry(TIME,timeEditor, timeButton), // pause between fetch
+      new CellEditorEntry(TIME,timeEditor, timeButton), // content crawl interval
       null, // crawl depth
       null, // crawl window class
       new CellEditorEntry(FILTERS,filtersEditor, filtersButton),// filter classes
-      new CellEditorEntry(TIME,timeEditor, timeButton), // pause between fetch
-      new CellEditorEntry(TIME,timeEditor, timeButton), // content crawl interval
       null, // crawl exception class
       new CellEditorEntry(EXCEPTIONS,exceptionsEditor,exceptionsButton) // exception remappings
   };
