@@ -28,6 +28,7 @@ package org.lockss.plugin.base;
 
 import java.util.*;
 import org.lockss.util.*;
+import org.lockss.util.urlconn.*;
 import org.lockss.app.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
@@ -57,7 +58,8 @@ public abstract class BasePlugin
   protected PluginManager pluginMgr;
   protected Collection aus = new ArrayList();
   protected Map titleConfigMap;
-  protected CacheExceptionMap exceptionMap = new CacheExceptionMap();
+  // XXX need to generalize this
+  protected CacheResultMap resultMap = new HttpResultMap();
 
   /**
    * Must invoke this constructor in plugin subclass.
@@ -245,11 +247,11 @@ public abstract class BasePlugin
   }
 
   /**
-   * return the CacheExceptionMap to use with this plugin
-   * @return CacheExceptionMap
+   * return the CacheResultMap to use with this plugin
+   * @return CacheResultMap
    */
-  public CacheExceptionMap getExceptionMap() {
-    return exceptionMap;
+  public CacheResultMap getCacheResultMap() {
+    return resultMap;
   }
 
   protected void installCacheExceptionHandler() {
