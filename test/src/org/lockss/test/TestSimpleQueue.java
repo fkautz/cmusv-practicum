@@ -80,6 +80,7 @@ public class TestSimpleQueue extends LockssTestCase {
 
   public void testEmpty() {
     SimpleQueue.Fifo fifo = new SimpleQueue.Fifo();
+    assertTrue(fifo.isEmpty());
     Interrupter intr = null;
     try {
       intr = interruptMeIn(500);
@@ -97,6 +98,7 @@ public class TestSimpleQueue extends LockssTestCase {
   public void testNotEmpty() {
     SimpleQueue.Fifo fifo = new SimpleQueue.Fifo();
     fifo.put(O1);
+    assertTrue(!fifo.isEmpty());
     Interrupter intr = null;
     try {
       intr = interruptMeIn(1000);

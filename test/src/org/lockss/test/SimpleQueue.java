@@ -65,6 +65,12 @@ public abstract class SimpleQueue {
    */
   public abstract Object peek();
 
+  /** 
+   * Test if the queue is empty
+   * @return true if the queue is empty
+   */
+  public abstract boolean isEmpty();
+
   /**
    * Simple FIFO queue
    */
@@ -143,6 +149,14 @@ public abstract class SimpleQueue {
       } else {
 	return null;
       }
+    }
+
+    /** 
+     * Test if the queue is empty
+     * @return true if the queue is empty
+     */
+    public boolean isEmpty() {
+      return queue.isEmpty();
     }
 
     /** 
