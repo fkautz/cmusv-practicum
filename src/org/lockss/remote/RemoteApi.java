@@ -685,8 +685,11 @@ public class RemoteApi extends BaseLockssDaemonManager {
     Set res = new HashSet();
     for (Iterator iter = sets.iterator(); iter.hasNext(); ) {
       TitleSet ts = (TitleSet)iter.next();
-      res.addAll(ts.getTitles());
-      Collection l = ts.getTitles();
+      try {
+	res.addAll(ts.getTitles());
+      } catch (Exception e) {
+	log.error("Error evaluating TitleSet", e);
+      }
     }
     return res;
   }
