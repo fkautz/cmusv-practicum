@@ -55,8 +55,9 @@ public abstract class Configuration {
   static final String MYPREFIX = PREFIX + "config.";
 
   static final String PARAM_RELOAD_INTERVAL = PREFIX + "config.reloadInterval";
-  static final String PARAM_DISK_SPACE_LIST = PREFIX + "diskSpaceList";
-  static final String PARAM_CONFIG_PATH = MYPREFIX + "configPath";
+  static final String PARAM_DISK_SPACE_LIST =
+    PREFIX + "platform.diskSpacePaths";
+  static final String PARAM_CONFIG_PATH = MYPREFIX + "configFilePath";
 
   // MUST pass in explicit log level to avoid recursive call back to
   // Configuration to get Config log level.  (Others should NOT do this.)

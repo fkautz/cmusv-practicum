@@ -51,10 +51,10 @@ public class LcapComm implements LockssManager {
   static final String PREFIX = Configuration.PREFIX + "comm.";
   static final String PARAM_MULTI_GROUP = PREFIX + "multicast.group";
   static final String PARAM_MULTI_PORT = PREFIX + "multicast.port";
+  static final String PARAM_MULTI_VERIFY = PREFIX + "multicast.verify";
   static final String PARAM_UNI_PORT = PREFIX + "unicast.port";
   static final String PARAM_UNI_PORT_SEND = PREFIX + "unicast.sendToPort";
   static final String PARAM_UNI_ADDR_SEND = PREFIX + "unicast.sendToAddr";
-  static final String PARAM_VERIFY_MULTICAST = PREFIX + "verifyMulticast";
 
   private static LockssDaemon theDaemon = null;
   private static LcapComm theManager = null;
@@ -163,7 +163,7 @@ public class LcapComm implements LockssManager {
       uniPort = config.getInt(PARAM_UNI_PORT); //
       uniSendToPort = config.getInt(PARAM_UNI_PORT_SEND, uniPort);
       uniSendToName = config.get(PARAM_UNI_ADDR_SEND);
-      verifyMulticast = config.getBoolean(PARAM_VERIFY_MULTICAST, false);
+      verifyMulticast = config.getBoolean(PARAM_MULTI_VERIFY, false);
     } catch (Configuration.InvalidParam e) {
       log.critical("Config error, not started", e);
     }
