@@ -46,9 +46,7 @@ public class Oai_dcHandler extends BaseOaiMetadataHandler {
    * in oai_dc format properly.
    */
   public Oai_dcHandler()    {
-    metadataPrefix = "oai_dc";
-    metadataNamespaceUrl = "http://purl.org/dc/elements/1.1/";
-    urlContainerTagName = "identifier";
+    super("oai_dc", "http://purl.org/dc/elements/1.1/", "identifier");
   }
 
 }
