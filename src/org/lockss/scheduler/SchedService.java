@@ -62,8 +62,8 @@ public class SchedService extends BaseLockssManager {
 	  return new SortScheduler(tasks);
 	}});
     runner.init();
-//     getDaemon().getStatusService().
-//       registerStatusAccessor("TaskRunner", runner.getStatusAccessor());
+    getDaemon().getStatusService().
+      registerStatusAccessor("TaskQ", runner.getStatusAccessor());
   }
 
   /**
