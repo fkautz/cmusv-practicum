@@ -103,8 +103,10 @@ public class TestTimerQueue extends LockssTestCase {
   public void testCancel() {
     final SimpleQueue.Fifo q = new SimpleQueue.Fifo();
     // a request that we will cancel, which fails if it gets run
+    Deadline dl = Deadline.in(100);
+    long dlexp = dl.getExpirationTime();
     TimerQueue.Request req =
-      TimerQueue.schedule(Deadline.in(100),
+      TimerQueue.schedule(dl,
 			  new TimerQueue.Callback() {
 			    public void timerExpired(Object cookie) {
 			      fail("This timer request was cancelled, " +
@@ -124,5 +126,7 @@ public class TestTimerQueue extends LockssTestCase {
     TimerQueue.cancel(req);
     TimeBase.step(201);
     assertEquals("bar", q.get(500));
+    // verify that the deadline didn't change
+    assertEquals(dlexp, dl.getExpirationTime());
   }
 }
