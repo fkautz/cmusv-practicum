@@ -767,9 +767,11 @@ class TaskRunner implements Serializable {
       int scheme = parseSortScheme(key);
 
       table.setTitleFootnote(getTitleFootnote(scheme));
-      table.setColumnDescriptors(statusColDescs);
-      table.setDefaultSortRules(statusSortRules);
-      table.setRows(getRows(scheme));
+      if (!table.getOptions().get(StatusTable.OPTION_NO_ROWS)) {
+	table.setColumnDescriptors(statusColDescs);
+	table.setDefaultSortRules(statusSortRules);
+	table.setRows(getRows(scheme));
+      }
       table.setSummaryInfo(getSummaryInfo(key));
     }
 

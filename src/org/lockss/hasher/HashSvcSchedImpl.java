@@ -422,9 +422,11 @@ public class HashSvcSchedImpl
     public void populateTable(StatusTable table) {
       String key = table.getKey();
       table.setTitleFootnote(FOOT_TITLE);
-      table.setColumnDescriptors(statusColDescs);
-      table.setDefaultSortRules(statusSortRules);
-      table.setRows(getRows(key));
+      if (!table.getOptions().get(StatusTable.OPTION_NO_ROWS)) {
+	table.setColumnDescriptors(statusColDescs);
+	table.setDefaultSortRules(statusSortRules);
+	table.setRows(getRows(key));
+      }
       table.setSummaryInfo(getSummaryInfo(key));
     }
 
