@@ -74,7 +74,8 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
   }
 
   public void testFileLocation() throws Exception {
-    tempDirPath += "cache/none/";
+    // tk will have to change when AUId -> path uses some encoding
+    tempDirPath += "cache/" + mau.getAUId() + "/";
     File testFile = new File(tempDirPath);
     assertTrue(!testFile.exists());
 

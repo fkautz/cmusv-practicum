@@ -49,7 +49,8 @@ public class TestFileLocationUtil extends LockssTestCase {
 
   public void testMapAuToFileLocation() {
     ArchivalUnit mau = new MockArchivalUnit();
-    String expectedStr = "root/none/";
+    // tk will have to change when AUId -> path uses some encoding
+    String expectedStr = "root/" + mau.getAUId() + "/";
     assertEquals(expectedStr,
                  FileLocationUtil.mapAuToFileLocation("root", mau));
   }
