@@ -354,8 +354,6 @@ public class PollManager  extends BaseLockssManager {
       long expiration = 0;
       Deadline d;
       if (replayNeeded) {
-        NodeManager nm = theDaemon.getNodeManager(tally.getArchivalUnit());
-        nm.startPoll(tally.getCachedUrlSet(), tally);
         theLog.debug2("replaying poll " + (String) key);
         expiration = m_replayPollExpireTime;
         d = Deadline.in(expiration);

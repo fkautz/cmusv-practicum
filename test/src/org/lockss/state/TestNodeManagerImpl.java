@@ -447,8 +447,11 @@ public class TestNodeManagerImpl
     historyCheckTest(PollState.UNREPAIRABLE, nodeState, false);
     ( (MockPollManager) theDaemon.getPollManager()).thePolls.remove(TEST_URL);
 
-    // this always true
-    historyCheckTest(PollState.LOST, nodeState, true);
+    // this true for lost content polls, false for name polls
+    historyCheckTest(Poll.CONTENT_POLL, PollState.LOST, nodeState, true);
+    ( (MockPollManager) theDaemon.getPollManager()).thePolls.remove(TEST_URL);
+
+    historyCheckTest(Poll.NAME_POLL, PollState.LOST, nodeState, false);
     ( (MockPollManager) theDaemon.getPollManager()).thePolls.remove(TEST_URL);
 
     // this is true, since we called the poll
@@ -456,9 +459,9 @@ public class TestNodeManagerImpl
     ( (MockPollManager) theDaemon.getPollManager()).thePolls.remove(TEST_URL);
   }
 
-  private void historyCheckTest(int pollState, NodeState node,
+  private void historyCheckTest(int pollType, int pollState, NodeState node,
                                 boolean shouldSchedule) {
-    PollHistory history = new PollHistory(Poll.NAME_POLL, null, null,
+    PollHistory history = new PollHistory(pollType, null, null,
                                           pollState, 123,
                                           123, null,
                                           true);
@@ -472,6 +475,11 @@ public class TestNodeManagerImpl
     else {
       assertFalse(nodeManager.checkLastHistory(history, node));
     }
+  }
+
+  private void historyCheckTest(int pollState, NodeState node,
+                                boolean shouldSchedule) {
+    historyCheckTest(Poll.NAME_POLL, pollState, node, shouldSchedule);
   }
 
   private void reputationChangeTest(PollTally results) {
