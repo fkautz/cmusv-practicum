@@ -53,6 +53,7 @@ public class EditableDefinablePlugin
       = DefinablePlugin.CM_EXCEPTION_HANDLER_KEY;
   static final protected String CM_EXCEPTION_LIST_KEY
       = DefinablePlugin.CM_EXCEPTION_LIST_KEY;
+  static final protected String PLUGIN_IDENTIFIER = "plugin_identifier";
 
   static final protected String AU_START_URL
       = DefinableArchivalUnit.CM_AU_START_URL_KEY;
@@ -318,6 +319,18 @@ public class EditableDefinablePlugin
 
   public void removePluginName() {
     definitionMap.removeMapElement(PLUGIN_NAME);
+  }
+
+  public void setPluginIdentifier(String name) {
+    definitionMap.putString(PLUGIN_IDENTIFIER, name);
+  }
+
+  public String getPluginIdentifier() {
+    return definitionMap.getString(PLUGIN_IDENTIFIER, "UNKNOWN");
+  }
+
+  public void removePluginIdentifier() {
+    definitionMap.removeMapElement(PLUGIN_IDENTIFIER);
   }
 
   public void setPluginVersion(String version) {

@@ -72,10 +72,11 @@ public class EDPInspectorCellEditor extends AbstractCellEditor
 
   protected CellEditorEntry[] editorEntries = {
       null, // plugin name
+      null, // plugin id
       null, // plugin version
       new CellEditorEntry(PICKER, paramPicker, pickerButton), // configuration parameters
-      new CellEditorEntry(TEMPLATE,templateEditor,templateButton),  // au name template
       new CellEditorEntry(TEMPLATE,templateEditor,templateButton), // start url template
+      new CellEditorEntry(TEMPLATE,templateEditor,templateButton),  // au name template
       new CellEditorEntry(CRAWLRULE,rulesEditor,rulesButton), // crawl rules
       new CellEditorEntry(TIME,timeEditor, timeButton), // pause between fetch
       new CellEditorEntry(TIME,timeEditor, timeButton), // content crawl interval
