@@ -218,4 +218,15 @@ public class TestStringUtil extends LockssTestCase {
     assertTrue(g1.startsWith(base));
     assertNotEquals(g1, g2);
   }
+
+  public void testTrinHostName() {
+    assertEquals("foo", StringUtil.trimHostName("www.foo.com"));
+    assertEquals("foo", StringUtil.trimHostName("foo.com"));
+    assertEquals("foo.bar", StringUtil.trimHostName("www.foo.bar.com"));
+    assertEquals("foo.bar", StringUtil.trimHostName("foo.bar.com"));
+    assertEquals("www.com", StringUtil.trimHostName("www.com"));
+    assertEquals("foo", StringUtil.trimHostName("foo"));
+    assertEquals("", StringUtil.trimHostName(""));
+    assertNull(StringUtil.trimHostName(null));
+  }
 }

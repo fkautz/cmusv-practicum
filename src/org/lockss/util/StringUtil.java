@@ -342,5 +342,25 @@ public class StringUtil {
   public static String gensym(String base) {
     return base + (gensymCtr++);
   }
+
+  /**
+   * Trim a hostname, removing "www" from the front, if present, and the
+   * TLD from the end.
+   * @param a hostname
+   * @return the trimmed hostname
+   */
+  public static String trimHostName(String hostname) {
+    if (hostname == null) return null;
+    int start = 0;
+    if (hostname.regionMatches(true, 0, "www.", 0, 4)) {
+      start = 4;
+    }
+    int end = hostname.lastIndexOf('.');
+    if (end < start) {
+      // if trimming www left nothing but TLD, return whole name
+      return hostname;
+    }
+    return hostname.substring(start, end);
+  }
 }
 
