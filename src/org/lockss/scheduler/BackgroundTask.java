@@ -38,7 +38,10 @@ import org.lockss.util.*;
 /** Description of a background task that reduces the CPU time available to
  * a foreground (stepped) task. */
 public class BackgroundTask extends SchedulableTask {
+  public static final int LOAD_MULTIPLIER = 1000;
+
   final double loadFactor;
+//   final int loadFactor0;
   final TaskCallback callback;
   TaskRunner runner = null;
 
@@ -75,6 +78,12 @@ public class BackgroundTask extends SchedulableTask {
   public void taskIsFinished() {
     if (runner != null) {
       runner.backgroundTaskIsFinished(this);
+    }
+  }
+
+  public void cancel() {
+    if (runner != null) {
+      runner.cancelTask(this);
     }
   }
 

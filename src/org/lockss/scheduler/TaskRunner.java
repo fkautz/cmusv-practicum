@@ -86,7 +86,8 @@ class TaskRunner implements Serializable {
   private static final int STAT_COMPLETED = 2;
   private static final int STAT_EXPIRED = 3;
   private static final int STAT_OVERRUN = 4;
-  private static final int NUM_STATS = 5;
+  private static final int STAT_CANCELLED = 5;
+  private static final int NUM_STATS = 6;
 
   private int backgroundStats[] = new int[NUM_STATS];
   private int foregroundStats[] = new int[NUM_STATS];
@@ -217,6 +218,22 @@ class TaskRunner implements Serializable {
 	pokeThread();
       }
     }
+  }
+
+  /** Called by BackgroundTask.cancel() */
+  synchronized void cancelTask(SchedulableTask task) {
+    // prevent any pending events from taking action
+    task.setFinished();
+    task.setNotified();
+    // remove all traces of task    
+    acceptedTasks.remove(task);
+    if (task.isBackgroundTask()) {
+      removeFromBackgroundTasks((BackgroundTask)task);
+    } else {
+      // don't bother poking stepper - it will notice the task is finished
+      // just as soon on its own
+    }
+    addStats(task, STAT_CANCELLED);
   }
 
   synchronized void stopThread() {
