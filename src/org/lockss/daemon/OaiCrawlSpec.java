@@ -47,16 +47,24 @@ public class OaiCrawlSpec extends BaseCrawlSpec {
 
   //XXXOAI for testing purposes ------------------------
   public OaiCrawlSpec(String oaiRequestHandlerUrl, CrawlRule rule) {
-    this(new OaiRequestData(oaiRequestHandlerUrl,
-			 "http://purl.org/dc/elements/1.1/",
-			 "identifier",
-			 "",
-			 "oai_dc"), 
+    this(new OaiRequestData(oaiRequestHandlerUrl, "", new Oai_dcHandler()), 
 	 ListUtil.list("http://171.66.236.27:8181/html/permission.html"),
 	 Collections.EMPTY_LIST,
  	 rule,
  	 false);
   }
+
+//   public OaiCrawlSpec(String oaiRequestHandlerUrl, CrawlRule rule) {
+//     this(new OaiRequestData(oaiRequestHandlerUrl,
+// 			 "http://purl.org/dc/elements/1.1/",
+// 			 "identifier",
+// 			 "",
+// 			 "oai_dc"), 
+// 	 ListUtil.list("http://171.66.236.27:8181/html/permission.html"),
+// 	 Collections.EMPTY_LIST,
+//  	 rule,
+//  	 false);
+//   }
 
   public OaiCrawlSpec(String oaiRequestHandlerUrl, CrawlRule rule, List permissionList, boolean follow) {
     this(new OaiRequestData(oaiRequestHandlerUrl,
