@@ -185,7 +185,6 @@ public class TestPluginManager extends LockssTestCase {
 
   public void testEnsurePluginLoadedXml() throws Exception {
     String pname = "org.lockss.foo.FooPlugin";
-    String xmlname = "/org/lockss/foo/FooPlugin.xml";
     ConfigurationUtil.setFromArgs(PluginManager.PARAM_PLUGIN_XML_PLUGINS,
 				  pname);
     String key = PluginManager.pluginKeyFromId(pname);
@@ -198,7 +197,7 @@ public class TestPluginManager extends LockssTestCase {
     assertEquals(1, initArgs.size());
     List args = (List)initArgs.get(0);
     assertEquals(2, args.size());
-    assertEquals(xmlname, args.get(1));
+    assertEquals(pname, args.get(1));
   }
 
   public void testStop() throws Exception {
