@@ -70,7 +70,7 @@ public class TestHighWirePlugin extends LockssTestCase {
     Properties props = new Properties();
     props.setProperty(HighWirePlugin.AUPARAM_BASE_URL, "http://www.example.com/");
     props.setProperty(HighWirePlugin.AUPARAM_VOL, "32");
-
+    props.setProperty(ConfigParamDescr.YEAR.getKey(), "2004");
     ConfigurableArchivalUnit au = null;
     try {
       au = makeAuFromProps(props);
@@ -91,6 +91,7 @@ public class TestHighWirePlugin extends LockssTestCase {
     Properties props = new Properties();
     props.setProperty(HighWirePlugin.AUPARAM_VOL, "322");
     props.setProperty(HighWirePlugin.AUPARAM_BASE_URL, "blah");
+    props.setProperty(ConfigParamDescr.YEAR.getKey(), "2004");
 
     try {
       ConfigurableArchivalUnit au = makeAuFromProps(props);
@@ -107,6 +108,7 @@ public class TestHighWirePlugin extends LockssTestCase {
     Properties props = new Properties();
     props.setProperty(AUPARAM_VOL, "322");
     props.setProperty(AUPARAM_BASE_URL, "http://www.example.com/");
+    props.setProperty(ConfigParamDescr.YEAR.getKey(), "2004");
 
     ConfigurableArchivalUnit au = makeAuFromProps(props);
     assertEquals("www.example.com, vol. 322", au.getName());
@@ -119,7 +121,8 @@ public class TestHighWirePlugin extends LockssTestCase {
 
   public void testGetAuConfigProperties() {
     assertEquals(ListUtil.list(ConfigParamDescr.BASE_URL,
-			       ConfigParamDescr.VOLUME_NUMBER),
+			       ConfigParamDescr.VOLUME_NUMBER,
+                               ConfigParamDescr.YEAR),
 		 plugin.getAuConfigDescrs());
   }
 }

@@ -49,10 +49,10 @@ import java.io.FileNotFoundException;
 
 public class ConfigurablePlugin extends BasePlugin {
   // configuration map keys
-  static final protected String CM_NAME_KEY = "plugin_name";
-  static final protected String CM_VERSION_KEY = "plugin_version";
-  static final protected String CM_CONFIG_PROPS_KEY = "plugin_config_props";
-  protected static final String CM_EXCEPTION_HANDLER_KEY =
+  static final public String CM_NAME_KEY = "plugin_name";
+  static final public String CM_VERSION_KEY = "plugin_version";
+  static final public String CM_CONFIG_PROPS_KEY = "plugin_config_props";
+  static final public String CM_EXCEPTION_HANDLER_KEY =
       "plugin_exception_handler";
   static final String DEFAULT_PLUGIN_VERSION = "1";
 
