@@ -491,9 +491,12 @@ public class PluginManager extends BaseLockssManager {
   }
 
   // Plugin registry
+  // List the plugins that should always be listed in UI menus.
+  // Other plugins that were loaded because of an configured AU will
+  // be included automatically
   private String builtinPluginNames[] = {
     "org.lockss.plugin.highwire.HighWirePlugin",
-    "org.lockss.plugin.simulated.SimulatedPlugin",
+//     "org.lockss.plugin.simulated.SimulatedPlugin",
   };
 
   public Collection getRegisteredPlugins() {
