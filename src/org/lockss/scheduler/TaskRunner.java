@@ -763,6 +763,7 @@ class TaskRunner implements Serializable {
     }
 
     public void populateTable(StatusTable table) {
+      table.setResortable(false);
       String key = table.getKey();
       int scheme = parseSortScheme(key);
 

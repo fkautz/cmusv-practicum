@@ -76,7 +76,7 @@ public class HashSvcSchedImpl
     log.debug("startService()");
     sched = getDaemon().getSchedService();
     getDaemon().getStatusService().registerStatusAccessor("HashQ",
- 							  new Status());
+							  new Status());
   }
 
   /**
@@ -129,7 +129,7 @@ public class HashSvcSchedImpl
 			     Deadline deadline,
 			     Callback callback,
 			     Serializable cookie) {
-    HashTask task = 
+    HashTask task =
       new HashTask(urlset, hasher, deadline, callback, cookie,
 		   urlset.getContentHasher(hasher),
 		   urlset.estimatedHashDuration(),
@@ -161,7 +161,7 @@ public class HashSvcSchedImpl
 			   Deadline deadline,
 			   Callback callback,
 			   Serializable cookie) {
-    HashTask task = 
+    HashTask task =
       new HashTask(urlset, hasher, deadline, callback, cookie,
 			    // tk - get better duration estimate
 		   urlset.getNameHasher(hasher), nameHashEstimate, NAME_HASH);
@@ -420,6 +420,7 @@ public class HashSvcSchedImpl
     }
 
     public void populateTable(StatusTable table) {
+      table.setResortable(false);
       String key = table.getKey();
       table.setTitleFootnote(FOOT_TITLE);
       if (!table.getOptions().get(StatusTable.OPTION_NO_ROWS)) {
@@ -457,7 +458,7 @@ public class HashSvcSchedImpl
 
     private Map makeRow(HashTask task, boolean done, int qpos) {
       Map row = new HashMap();
-      row.put("sort", 
+      row.put("sort",
 	      new Long((done ? -task.getFinishDate().getTime() :
 			task.getLatestFinish().getExpiration().getTime())));
       row.put("sort2", new Long(task.hashReqSeq));
