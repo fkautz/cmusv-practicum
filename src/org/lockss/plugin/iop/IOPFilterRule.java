@@ -44,6 +44,9 @@ import org.lockss.plugin.FilterRule;
 public class IOPFilterRule implements FilterRule {
   public Reader createFilteredReader(Reader reader) {
     List tagList = ListUtil.list(
+	//hackish, but this will remove the links to the refs, which change
+	//over time
+        new HtmlTagFilter.TagPair("<span class=\"smltxt\">", "</span>", true),
         new HtmlTagFilter.TagPair("<!--", "-->", true),
         new HtmlTagFilter.TagPair("<script", "</script>", true),
         new HtmlTagFilter.TagPair("<", ">")
