@@ -172,7 +172,7 @@ public class PrivilegedAccessor {
 	}
       }
     }
-    if (l.size() == 0) {
+    if (l.isEmpty()) {
       throw new NoSuchMethodException(methodName);
     }
     if (l.size() == 1) {
