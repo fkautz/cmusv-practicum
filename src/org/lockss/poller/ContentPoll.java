@@ -82,8 +82,8 @@ public class ContentPoll extends Poll {
    */
   boolean scheduleHash(MessageDigest hasher, Deadline timer, Serializable key,
                                 HashService.Callback callback) {
-    HashService hs = m_pollmanager.getDaemon().getHashService();
-    return hs.hashContent( m_urlSet, hasher, timer, callback, key);
+    HashService hs = m_pollmanager.getHashService();
+    return hs.hashContent( m_cus, hasher, timer, callback, key);
   }
 
 

@@ -48,7 +48,7 @@ public class PollSpec {
   private String uprBound = null;
   private String lwrBound = null;
   private CachedUrlSet cus = null;
-  private static PluginManager pluginMgr = null;
+  private PluginManager pluginMgr = null;
 
   /**
    * constructor for a "mock" poll spec
