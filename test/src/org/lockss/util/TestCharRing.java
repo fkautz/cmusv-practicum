@@ -252,6 +252,11 @@ public class TestCharRing extends LockssTestCase {
     assertEquals('x', cr2.remove());
     assertEquals('y', cr2.remove());
     assertEquals(0, cr2.size());
+
+    cr2.add(chars, 1, 2);
+    assertEquals('x', cr2.remove());
+    assertEquals('y', cr2.remove());
+    assertEquals(0, cr2.size());
   }
 
   public void testAddArrayShorterThanCharRing()

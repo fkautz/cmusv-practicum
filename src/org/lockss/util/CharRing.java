@@ -135,7 +135,7 @@ public class CharRing {
     System.arraycopy(newChars, pos, chars, tail, addToEnd);
     System.arraycopy(newChars, pos+addToEnd, chars, 0, addToStart);
 
-    incrementTail(newChars.length);
+    incrementTail(length);
     size += length;
   }
 
