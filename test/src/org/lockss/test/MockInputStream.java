@@ -46,6 +46,13 @@ public class MockInputStream extends InputStream {
   private int zeroInterval = 0;
   private int curInterval = 0;
 
+  /**
+   * Signals that the InputStream should reset
+   */
+  public void regenerate() {
+    is = null;
+    isClosed = false;
+  }
 
   public void setZeroInterval(int zeroInterval) {
     this.zeroInterval = zeroInterval;
