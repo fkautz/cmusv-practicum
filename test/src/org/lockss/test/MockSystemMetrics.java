@@ -55,6 +55,25 @@ public class MockSystemMetrics extends SystemMetrics {
     return hashSpeed;
   }
 
+  public int getBytesPerMsHashEstimate(CachedUrlSetHasher hasher,
+                                       MessageDigest digest)
+      throws IOException {
+    if (hashSpeed >= 0) {
+      return hashSpeed;
+    } else {
+      return super.getBytesPerMsHashEstimate(hasher, digest);
+    }
+  }
+
+  public int getBytesPerMsHashEstimate()
+      throws NoHashEstimateAvailableException {
+    if (hashSpeed >= 0) {
+      return hashSpeed;
+    } else {
+      return super.getBytesPerMsHashEstimate();
+    }
+  }
+
   public int measureHashSpeed(CachedUrlSetHasher hasher, MessageDigest digest)
       throws IOException {
     if (hashSpeed >= 0) {
