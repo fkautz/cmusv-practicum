@@ -366,7 +366,7 @@ public class ProxyHandler extends AbstractHttpHandler {
     try {
       conn =
 	UrlUtil.openConnection(LockssUrlConnection.METHOD_PROXY,
-			       urlString,
+			       UrlUtil.minimallyEncodeUrl(urlString),
 			       (isInCache ? quickFailConnPool : connPool));
 
       conn.setFollowRedirects(false);
