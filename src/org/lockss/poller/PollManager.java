@@ -504,9 +504,9 @@ public class PollManager
 
       thePolls.put(ret_poll.m_key, new PollManagerEntry(ret_poll));
       if (spec.getPollType() != Poll.VERIFY_POLL) {
-        nm.startPoll(cus, ret_poll.getVoteTally(), false);
         // set the activity lock in the tally
         ret_poll.getVoteTally().setActivityLock(lock);
+        nm.startPoll(cus, ret_poll.getVoteTally(), false);
       }
 
       ret_poll.startPoll();

@@ -265,6 +265,16 @@ public abstract class PollTally implements Tallier{
       this.name = name;
     }
 
+    public String toString() {
+      StringBuffer sb = new StringBuffer();
+      sb.append("[NameListEntry:");
+      sb.append(name);
+      sb.append(" - ");
+      sb.append(hasContent ? "has content" : "no content");
+      sb.append("]");
+      return sb.toString();
+    }
+
     /**
      * Overrides Object.equals().
      * Returns true if the obj is the same object and the names are the same
