@@ -194,8 +194,8 @@ public class LockssRepositoryImpl implements LockssRepository {
       try {
         URL testUrl = new URL(url);
         String path = testUrl.getPath();
-        if (path.indexOf("..")>=0) {
-          // filtering to remove urls including '..' and such
+        if (path.indexOf("/.")>=0) {
+          // filtering to remove urls including '..' and '.'
           path = TEST_PREFIX + path;
           File testFile = new File(path);
           String canonPath = testFile.getCanonicalPath();

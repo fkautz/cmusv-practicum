@@ -242,7 +242,7 @@ public class HistoryRepositoryImpl implements HistoryRepository, LockssManager {
       try {
         URL testUrl = new URL(urlStr);
         String path = testUrl.getPath();
-        if (path.indexOf("..")>=0) {
+        if (path.indexOf("/.")>=0) {
           // filtering to remove urls including '..' and such
           path = TEST_PREFIX + path;
           File testFile = new File(path);

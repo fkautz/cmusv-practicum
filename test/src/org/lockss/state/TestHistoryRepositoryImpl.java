@@ -83,7 +83,7 @@ public class TestHistoryRepositoryImpl extends LockssTestCase {
     assertEquals(expected, location);
   }
 
-  public void testDoubleDotUrlHandling() throws Exception {
+  public void testDotUrlHandling() throws Exception {
     //testing correction of nodes with bad '..'-including urls,
     //filtering the first '..' but resolving the second
     // should filter out the first '..' line but resolve the second
@@ -91,12 +91,23 @@ public class TestHistoryRepositoryImpl extends LockssTestCase {
         "http://www.example.com/branch/test/../test2", null);
     MockCachedUrlSet mcus = new MockCachedUrlSet(mau, mspec);
     String location = repository.getNodeLocation(mcus);
-    String expected = tempDirPath + repository.HISTORY_ROOT_NAME;
-    expected = LockssRepositoryServiceImpl.mapAuToFileLocation(expected, mau);
-    expected = LockssRepositoryServiceImpl.mapUrlToFileLocation(expected,
-        "http://www.example.com/branch/test2");
+    String expectedStart = tempDirPath + repository.HISTORY_ROOT_NAME;
+    expectedStart = LockssRepositoryServiceImpl.mapAuToFileLocation(
+        expectedStart, mau);
+    String expected = LockssRepositoryServiceImpl.mapUrlToFileLocation(
+        expectedStart, "http://www.example.com/branch/test2");
 
     assertEquals(expected, location);
+
+    mspec = new MockCachedUrlSetSpec(
+        "http://www.example.com/branch/./test", null);
+    mcus = new MockCachedUrlSet(mau, mspec);
+    location = repository.getNodeLocation(mcus);
+    expected = LockssRepositoryServiceImpl.mapUrlToFileLocation(expectedStart,
+        "http://www.example.com/branch/test");
+
+    assertEquals(expected, location);
+
 
     try {
       mspec = new MockCachedUrlSetSpec("http://www.example.com/..", null);
