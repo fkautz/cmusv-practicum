@@ -212,6 +212,7 @@ public abstract class CrawlerImpl implements Crawler {
         err = Crawler.STATUS_WINDOW_CLOSED;
       }
       else {
+	// go off to fetch the url and check for the permission statement
         if(checkPermission(permissionPage)) {
           crawl_ok = PermissionMap.PERMISSION_OK;
            if (crawlStatus.getCrawlError() == err) {
