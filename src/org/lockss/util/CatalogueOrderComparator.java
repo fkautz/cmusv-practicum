@@ -39,7 +39,10 @@ import org.lockss.remote.*;
 
 /**
  * Comparator that implements a suitable ordering for titles in a library
- * catalogue.
+ * catalogue.  Punctuation and initial determiners are removed, then a
+ * case-independent comparison is done.  The translated sort keys are
+ * cached, so performance will be enhanced by reusing the same instance of
+ * the comparator.
  */
 
 public class CatalogueOrderComparator implements Comparator {
