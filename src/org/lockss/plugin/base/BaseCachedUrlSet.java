@@ -82,7 +82,7 @@ public abstract class BaseCachedUrlSet implements CachedUrlSet {
    * @return true if is within the scope
    */
   public boolean containsUrl(String url) {
-    return (makeCachedUrl(url) != null);
+    return spec.matches(url);
   }
 
   /**

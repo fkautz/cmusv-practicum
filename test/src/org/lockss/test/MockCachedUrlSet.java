@@ -104,7 +104,7 @@ public class MockCachedUrlSet implements CachedUrlSet {
   }
 
   public boolean containsUrl(String url) {
-    return url.startsWith((String)spec.getUrl());
+    return spec.matches(url);
   }
 
   public boolean hasContent() {
