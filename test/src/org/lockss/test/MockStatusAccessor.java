@@ -45,6 +45,10 @@ public class MockStatusAccessor implements StatusAccessor {
   private Map summaryInfo = new HashMap();
 
 
+  public String getDisplayName() {
+    return "MockStatusAccessor";
+  }
+
   public void setColumnDescriptors(List columnDescriptors, String key) {
     this.columnDescriptors.put(key, columnDescriptors);
   }
