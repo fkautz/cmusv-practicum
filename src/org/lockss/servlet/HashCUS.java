@@ -119,6 +119,11 @@ public class HashCUS extends LockssServlet {
   private String errMsg;
   private String statusMsg;
 
+  protected void resetLocals() {
+    resetVars();
+    super.resetLocals();
+  }
+
   void resetVars() {
     auid = null;
     url = null;
@@ -169,7 +174,6 @@ public class HashCUS extends LockssServlet {
 	}
       }
     displayPage();
-    resetVars();
   }
 
   boolean sendStream() {
@@ -257,14 +261,6 @@ public class HashCUS extends LockssServlet {
     }
     log.debug(""+cus);
     return true;
-  }
-
-  private String getParameter(String key) {
-    String val = req.getParameter(key);
-    if (StringUtil.isNullString(val)) {
-      return null;
-    }
-    return val;
   }
 
   private byte[] getB64Param(String key) {
