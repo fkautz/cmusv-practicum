@@ -129,10 +129,10 @@ class VerifyPoll extends Poll {
     log.info(m_msg.toString() + " tally " + toString());
     LcapIdentity id = m_caller;
 
-    if ((m_tally.numYes + m_tally.numNo) < 1) {
+    if ((m_tally.numAgree + m_tally.numDisagree) < 1) {
       log.debug("vote failed to verify");
       idMgr.changeReputation(id, IdentityManager.VOTE_NOTVERIFIED);
-    } else if (m_tally.numYes > 0 && m_tally.numNo == 0) {
+    } else if (m_tally.numAgree > 0 && m_tally.numDisagree == 0) {
       log.debug("vote sucessfully verified");
       idMgr.changeReputation(id, IdentityManager.VOTE_VERIFIED);
     } else {

@@ -37,12 +37,13 @@ import org.lockss.protocol.LcapIdentity;
 import org.lockss.protocol.LcapMessage;
 import java.util.Arrays;
 import org.lockss.protocol.IdentityManager;
+import java.io.Serializable;
 
 /**
  * Vote stores the information need to replay a single vote. These are needed
  * to run a repair poll.
  */
-public class Vote {
+public class Vote implements Serializable {
   private LcapIdentity id;
   protected boolean agree;
   private byte[] challenge;
@@ -70,6 +71,11 @@ public class Vote {
     this.challenge = challenge;
     this.verifier = verifier;
     this.hash = hash;
+  }
+
+  Vote(Vote vote) {
+    this(vote.getChallenge(),vote.getVerifier(),vote.getHash(),
+         vote.getIdentity(),vote.agree);
   }
 
   Vote(LcapMessage msg, boolean agree) {
