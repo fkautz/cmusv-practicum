@@ -265,7 +265,9 @@ public class TestPollManager extends LockssTestCase {
     try {
       p1 = TestPoll.createCompletedPoll(theDaemon, testau, testmsg[0], 7, 2);
       pollmanager.addPoll(p1);
-
+      // give it a pointless lock to avoid a null pointer
+      p1.getVoteTally().setActivityLock(
+          theDaemon.getActivityRegulator(testau).getAuActivityLock(-1, 123));
     }
     catch (Exception ex) {
       fail("unable to make a test poll");
