@@ -59,6 +59,9 @@ public class HashService extends BaseLockssManager {
   private static final int DEFAULT_ESTIMATE_PAD_CONSTANT = 10;
   private static final int DEFAULT_ESTIMATE_PAD_PERCENT = 10;
 
+  public static final int CONTENT_HASH = 1;
+  public static final int NAME_HASH = 2;
+
   protected static Logger log = Logger.getLogger("HashService");
 
   // Queue of outstanding hash requests.  The currently executing request,
@@ -135,7 +138,7 @@ public class HashService extends BaseLockssManager {
 			    callback, cookie,
 			    urlset.getContentHasher(hasher),
 			    padEstimate(urlset.estimatedHashDuration()),
-			    "C");
+			    CONTENT_HASH);
     return scheduleReq(req);
   }
 
@@ -167,7 +170,7 @@ public class HashService extends BaseLockssManager {
       new HashQueue.Request(urlset, hasher, deadline,
 			    callback, cookie,
 			    // tk - get better duration estimate
-			    urlset.getNameHasher(hasher), 1000, "N");
+			    urlset.getNameHasher(hasher), 1000, NAME_HASH);
     return scheduleReq(req);
   }
 
