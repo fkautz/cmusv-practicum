@@ -81,23 +81,24 @@ public class TestLogger extends LockssTestCase {
     }
   }
 
-  public void testAntTaskTarget() {
-    // Skip this test if not running under Ant.  AntHalper will throw
-    // during creation if it can't find the Ant environment
-    try {
-      new org.lockss.ant.AntHelper();
-    } catch (Exception e) {
-      return;
-    }
-    String deftgtprop = System.getProperty(Logger.SYSPROP_DEFAULT_LOG_TARGET);
-    try {
-      System.setProperty(Logger.SYSPROP_DEFAULT_LOG_TARGET,
-			 "org.lockss.util.AntTaskTarget");
-      assertTrue(Logger.getDefaultTarget() instanceof AntTaskTarget);
-    } finally {
-      System.setProperty(Logger.SYSPROP_DEFAULT_LOG_TARGET, deftgtprop);
-    }
-  }
+  // This needs the ant hierarchy to compile, which breaks under JBuilder, etc.
+//   public void testAntTaskTarget() {
+//     // Skip this test if not running under Ant.  AntHelper will throw
+//     // during creation if it can't find the Ant environment
+//     try {
+//       new org.lockss.ant.AntHelper();
+//     } catch (Exception e) {
+//       return;
+//     }
+//     String deftgtprop = System.getProperty(Logger.SYSPROP_DEFAULT_LOG_TARGET);
+//     try {
+//       System.setProperty(Logger.SYSPROP_DEFAULT_LOG_TARGET,
+// 			 "org.lockss.util.AntTaskTarget");
+//       assertTrue(Logger.getDefaultTarget() instanceof AntTaskTarget);
+//     } finally {
+//       System.setProperty(Logger.SYSPROP_DEFAULT_LOG_TARGET, deftgtprop);
+//     }
+//   }
 
   public void testNames() {
     assertEquals("Critical", Logger.nameOf(Logger.LEVEL_CRITICAL));
