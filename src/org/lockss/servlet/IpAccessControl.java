@@ -262,7 +262,7 @@ public abstract class IpAccessControl extends LockssServlet {
   }
 
   /**
-   * Save the ip addresses to the cluster.txt property file
+   * Save the include and exclude lists to the access control file
    * @param incIPsList vector of ip addresses to include
    * @param excIPsList vector of ip addresses to exclude
    * @return whether the save was successful
