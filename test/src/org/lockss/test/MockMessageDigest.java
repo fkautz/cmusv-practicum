@@ -122,6 +122,10 @@ public class MockMessageDigest extends MessageDigest {
     return length;
   }
 
+  public String toString() {
+    return "[MockMessageDigest: "+inputList+"]";
+  }
+
   /**
    * Return the number of bytes we have left
    */
