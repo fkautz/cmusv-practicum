@@ -182,8 +182,8 @@ public class TestPluginManager extends LockssTestCase {
 
   public void testFindCUS() throws Exception {
     String url = "http://foo.bar/";
-    String lower = "lll";
-    String upper = "hhh";
+    String lower = "abc";
+    String upper = "xyz";
 
     doConfig();
     MockPlugin mpi = (MockPlugin)mgr.getPlugin(mockPlugKey);
