@@ -39,6 +39,7 @@ import org.mortbay.tools.*;
 /** Utilities for Configuration and ConfigManager
  */
 public class ConfigurationUtil {
+  public static Logger log = Logger.getLogger("ConfigUtil");
 
   private static ConfigManager mgr() {
     return ConfigManager.getConfigManager();
@@ -144,7 +145,6 @@ public class ConfigurationUtil {
   /** Install the supplied Configuration as the current configuration.
    */
   public static boolean installConfig(Configuration config) {
-    ConfigCache.reset();  // For testing, always start with a clean cache.
     try {
       PrivilegedAccessor.invokeMethod(mgr(), "installConfig", config);
     } catch (Exception e) {
