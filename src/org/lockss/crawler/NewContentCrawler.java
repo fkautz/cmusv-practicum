@@ -91,7 +91,7 @@ public class NewContentCrawler extends FollowLinkCrawler {
 	String url = (String)it.next();
 	//catch and warn if there's a url in the start urls
 	//that we shouldn't cache
-	logger.debug3("Trying to process " +url);
+	logger.debug2("Trying to process " +url);
 
         // check crawl window during crawl
 	if (!withinCrawlWindow()) {
