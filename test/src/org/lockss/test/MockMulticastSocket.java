@@ -143,7 +143,9 @@ public class MockMulticastSocket
    * @see #close
    */
   public boolean isClosed(){
-    return mds.isClosed();
+    // Java 1.4 MulticastSocket calls this from within its constructor, before
+    // we have set mds
+    return mds != null && mds.isClosed();
   }
 
   /**
