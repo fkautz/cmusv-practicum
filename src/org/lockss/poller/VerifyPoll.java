@@ -145,7 +145,7 @@ class VerifyPoll extends Poll {
     int weight = msg.getOriginID().getReputation();
     byte[] challenge = msg.getChallenge();
     byte[] hashed = msg.getHashed();
-    MessageDigest hasher = m_pollmanager.getHasher();
+    MessageDigest hasher = m_pollmanager.getHasher(msg);
     // check this vote verification hashed in the message should
     // hash to the challenge, which is the verifier of the poll
     // thats being verified

@@ -365,7 +365,7 @@ public abstract class Poll implements Serializable {
    * @return a MessageDigest
    */
   MessageDigest getInitedHasher(byte[] challenge, byte[] verifier) {
-    MessageDigest hasher = m_pollmanager.getHasher();
+    MessageDigest hasher = m_pollmanager.getHasher(m_msg);
     hasher.update(challenge, 0, challenge.length);
     hasher.update(verifier, 0, verifier.length);
     log.debug("hashing: C[" +String.valueOf(B64Code.encode(challenge)) + "] "
