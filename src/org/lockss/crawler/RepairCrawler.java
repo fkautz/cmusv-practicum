@@ -172,6 +172,7 @@ public class RepairCrawler extends CrawlerImpl {
 	logger.debug3("Trying to fetch from publisher");
 	cache(uc);
       }
+      crawlStatus.signalUrlFetched();
       numUrlsFetched++;
     } catch (CacheException e) {
       if (e.isAttributeSet(CacheException.ATTRIBUTE_FAIL)) {
