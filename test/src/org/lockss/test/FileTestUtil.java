@@ -70,6 +70,12 @@ public class FileTestUtil {
     return file.toURL().toString();
   }
 
+  /** Return the (absolute) url for the (possibly relative) file name */
+  public static String urlOfFile(String s) throws IOException {
+    File file = new File(s);
+    return file.toURL().toString();
+  }
+
   private static final Object tmpFileLock = new Object();
   private static int tmpFileCnt = -1; /* Protected by tmpFileLock */
 

@@ -186,6 +186,12 @@ public class TestFileTestUtil extends LockssTestCase {
     File root = new File("/other/directory");
     assertNull(FileTestUtil.getPathUnderRoot(src, root));
   }
+
+  public void testUrlOfFile() throws IOException {
+    String s = "foo/bar.txt";
+    assertEquals("file:" + new File(s).getAbsolutePath(),
+		 FileTestUtil.urlOfFile(s));
+  }
 }
 
 
