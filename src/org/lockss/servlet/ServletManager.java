@@ -146,6 +146,7 @@ public class ServletManager extends JettyManager {
       log.debug("Resource URL: " + resourceUrl);
 
       context.setResourceBase(resourceUrl.toString());
+      // Now add handlers in the order they should be tried.
       context.addHandler(new ResourceHandler());
 
       // Create a servlet container

@@ -182,9 +182,13 @@ public abstract class LockssServlet extends HttpServlet
   private ServletDescr findServletDescr(Object o) {
     ServletDescr d = (ServletDescr)servletToDescr.get(o.getClass());
     if (d != null) return d;
+    // if not in map, o might be an instance of a subclass of a servlet class
+    // that's in the map.
     for (int i = 0; i < servletDescrs.length; i++) {
       d = servletDescrs[i];
       if (d.cls.isInstance(o)) {
+	// found a descr that describes a superclass.  Add actual class to map
+	servletToDescr.put(o.getClass(), d);
 	return d;
       }
     }
@@ -605,7 +609,7 @@ public abstract class LockssServlet extends HttpServlet
   }
 
   /** Servlets must implement this method. */
-  protected abstract void lockssHandle() throws ServletException, IOException;
+  protected abstract void lockssHandleRequest() throws ServletException, IOException;
 
   /** Common request handling. */
   public void service(HttpServletRequest req, HttpServletResponse resp)
@@ -629,7 +633,7 @@ public abstract class LockssServlet extends HttpServlet
       if (clientAddr == null) {
 	clientAddr = getLocalIPAddr();
       }
-      lockssHandle();
+      lockssHandleRequest();
     }
     finally {
       // Don't hold on to stuff forever
