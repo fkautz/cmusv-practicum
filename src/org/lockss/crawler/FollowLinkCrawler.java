@@ -252,6 +252,7 @@ public abstract class FollowLinkCrawler extends CrawlerImpl {
     // now in background (crawl) thread since it's likely to be necessary, to
     // make it more likely to be already computed when accessed from the UI.
     AuUtil.getAuContentSize(au);
+    AuUtil.getAuDiskUsage(au);
   }
 
   /**
