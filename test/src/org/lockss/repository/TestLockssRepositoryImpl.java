@@ -240,7 +240,7 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
     assertEquals(1, leaf.getCurrentVersion());
 
     try {
-      leaf.getNodeContents();
+      leaf.getNodeContents().getInputStream();
       fail("Should have thrown state exception.");
     } catch (LockssRepository.RepositoryStateException rse) { }
 
