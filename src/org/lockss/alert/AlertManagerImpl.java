@@ -132,13 +132,12 @@ public class AlertManagerImpl extends BaseLockssManager
       return new AlertConfig();
     } catch (Exception e) {
       log.error("Couldn't load alert config", e);
-      throw 
+      throw
 	new RuntimeException("Couldn't load alert config: " + e.getMessage());
     }
   }
-  
-  //  static final String MAPPING_FILE_NAME = "/org/lockss/alert/alertconfig.xml";
-  static final String MAPPING_FILE_NAME = "/org/lockss/state/pollmapping.xml";
+
+  static final String MAPPING_FILE_NAME = "/org/lockss/alert/alertmapping.xml";
 
 
   static final String[] MAPPING_FILES = {
@@ -271,7 +270,7 @@ public class AlertManagerImpl extends BaseLockssManager
     void scheduleTimer() {
       trigger = Deadline.in(getMaxPendTime());
       log.debug3("Action timer " + trigger);
-      TimerQueue.schedule(trigger, 
+      TimerQueue.schedule(trigger,
 			  new TimerQueue.Callback() {
 			    public void timerExpired(Object cookie) {
 			      AlertManagerImpl.this.log.debug3("Timer");

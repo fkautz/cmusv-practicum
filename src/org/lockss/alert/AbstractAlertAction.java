@@ -33,7 +33,7 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.alert;
 
 import java.util.*;
-import org.lockss.daemon.*;
+
 import org.lockss.app.*;
 
 /** AbstractAlertAction has common code for AlertActions */
