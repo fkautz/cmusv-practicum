@@ -149,6 +149,8 @@ public class RepairCrawler extends CrawlerImpl {
 //     logger.info("Beginning crawl of "+au);
 //     crawlStatus.signalCrawlStarted();
     CachedUrlSet cus = au.getAuCachedUrlSet();
+    List urlsFetched = new ArrayList();
+
 
     Iterator it = getStartingUrls();
 
@@ -170,6 +172,7 @@ public class RepairCrawler extends CrawlerImpl {
 	} catch (RuntimeException e) {
 	  logger.warning("Unexpected exception in crawl", e);
 	  crawlRes = Crawler.STATUS_ERROR;
+	  crawlStatus.signalErrorForUrl(url, "Unexpected Exception");
 	}
 	if (crawlRes != null) {
 	  if (crawlStatus.getCrawlError() == null) {
@@ -268,7 +271,11 @@ public class RepairCrawler extends CrawlerImpl {
 	  }
 	}
       }
-      crawlStatus.signalUrlFetched();
+      if (error == null) {
+	crawlStatus.signalUrlFetched(uc.getUrl());
+      } else {
+	crawlStatus.signalErrorForUrl(uc.getUrl(), error);
+      }
 
     } catch (CacheException e) {
       if (e.isAttributeSet(CacheException.ATTRIBUTE_FAIL)) {
