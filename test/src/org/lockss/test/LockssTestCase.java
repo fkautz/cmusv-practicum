@@ -157,7 +157,7 @@ public class LockssTestCase extends TestCase {
    * @see #successRateTearDown()
    */
   protected void assertSuccessRate(double rate, int maxRepetitions) {
-    if (successMaxRepetitions == 0) {
+    if (successMaxFailures == 0) {
       successRate = rate;
       successMaxRepetitions = maxRepetitions;
       successMaxFailures = maxRepetitions - ((int)(rate * maxRepetitions));
@@ -206,6 +206,7 @@ public class LockssTestCase extends TestCase {
    * case that uses assertSuccessRate().  (setUp() is called before each
    * repetition.) */
   protected void successRateSetUp() {
+    successMaxFailures = 0;
   }
 
   /** Called once (after tearDown()) after a set of repetitions of a test
