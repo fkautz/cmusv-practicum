@@ -382,6 +382,9 @@ public class PluginManager extends BaseLockssManager {
     // RemoteAPI, etc.)
     auMap.remove(auid);
 
+    theDaemon.getPollManager().cancelAuPolls(au);
+    theDaemon.getCrawlManager().cancelAuCrawls(au);
+
     try {
 //     Plugin plugin = au.getPlugin();
 //     plugin.removeAu(au);
