@@ -564,6 +564,16 @@ class HashQueue implements Serializable {
       }
       return res;
     }
+
+    public StatusTable getStatusTable(String key) {
+      StatusTable table = new StatusTable(key, getTitle(key),
+					  getColumnDescriptors(key),
+					  getDefaultSortRules(key),
+					  getRows(key), getSummaryInfo(key));
+      return table;
+    }
+
+
   }
 
   static class ReqState implements Comparable {
