@@ -88,8 +88,12 @@ public abstract class Configuration {
     for (Iterator iter = configChangedCallbacks.iterator();
 	 iter.hasNext();) {
       Callback c = (Callback)iter.next();
-      c.configurationChanged(oldConfig, newConfig,
-			     newConfig.differentKeys(oldConfig));
+      try {
+	c.configurationChanged(oldConfig, newConfig,
+			       newConfig.differentKeys(oldConfig));
+      } catch (Exception e) {
+	log.error("callback threw", e);
+      }
     }
   }
 
