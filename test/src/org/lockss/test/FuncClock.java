@@ -86,9 +86,8 @@ public class FuncClock extends LockssTestCase {
     for (int ix = 0, len = sleeps.length; ix < len; ix++) {
       long sleep = sleeps[ix];
       long start = System.currentTimeMillis();
-      Interrupter intr = null;
       try {
-	intr = interruptMeIn(100);
+	Interrupter intr = interruptMeIn(100);
 	t.sleep(sleep);
 	intr.cancel();
       } catch (InterruptedException e) {
