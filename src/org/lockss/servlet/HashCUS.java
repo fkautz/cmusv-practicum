@@ -357,10 +357,8 @@ public class HashCUS extends LockssServlet {
     sel.add("", auid == null, "");
     for (Iterator iter = pluginMgr.getAllAus().iterator(); iter.hasNext(); ) {
       ArchivalUnit au = (ArchivalUnit)iter.next();
-      if (!(au instanceof RegistryArchivalUnit)) {
-	String id = au.getAuId();
-	sel.add(au.getName(), id.equals(auid), id);
-      }
+      String id = au.getAuId();
+      sel.add(au.getName(), id.equals(auid), id);
     }
     autbl.newRow(); autbl.newCell();
     setTabOrder(sel);
