@@ -448,6 +448,7 @@ public class HashCUS extends LockssServlet {
       if (isHash) {
 	hasher = LcapMessage.getDefaultHasher();
 	if (hasher == null) {
+	  errMsg = "Can't get default hasher";
 	  return;
 	}
  	if (isRecord) {
