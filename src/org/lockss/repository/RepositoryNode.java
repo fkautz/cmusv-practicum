@@ -204,8 +204,8 @@ public interface RepositoryNode {
    * RepositoryNodeContents is used to obtain Properties and InputStream.
    * This is intended to ensure props and stream reflect a consistent view
    * of a single version, but see the comments in
-   * RepositoryNodeImpl#RepositoryNodeContentsImpl.
-   * @see RepositoryNodeImpl#RepositoryNodeContentsImpl
+   * RepositoryNodeImpl.RepositoryNodeContentsImpl.
+   * @see RepositoryNodeImpl.RepositoryNodeContentsImpl
    */
   public interface RepositoryNodeContents {
     /** Return an InputStream */

@@ -199,7 +199,7 @@ public class DamagedNodeSet {
   }
 
   /**
-   * Accessor for marshalling the repair map.  Converts to {@link ExtMapbean}.
+   * Accessor for marshalling the repair map.  Converts to {@link ExtMapBean}.
    * @return ExtMapBean the map bean
    */
   public ExtMapBean getRepairNodeBean() {
