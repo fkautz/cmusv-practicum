@@ -53,6 +53,7 @@ public class MockUrlCacher implements UrlCacher {
   private Properties uncachedProp;
 
   private boolean shouldBeCached = false;
+  private IOException cachingException = null;
 
 
   public MockUrlCacher(String url){
@@ -119,7 +120,15 @@ public class MockUrlCacher implements UrlCacher {
     cachedProp = headers;
   }
 
+  public void setCachingException(IOException e) {
+    this.cachingException = e;
+  }
+
+
   public void cache() throws IOException {
+    if (cachingException != null) {
+      throw cachingException;
+    }
     if (cus != null) {
       cus.addCachedUrl(url);
     } 

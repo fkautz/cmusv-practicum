@@ -31,6 +31,7 @@ in this Software without prior written authorization from Stanford University.
 */
 
 package org.lockss.crawler;
+import java.io.*;
 import java.util.*;
 import java.net.*;
 import junit.framework.TestCase;
@@ -280,6 +281,39 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     assertTrue("Crawl didn't finish in 10 seconds", sem.take(TEN_SECONDS));
     assertNotEquals(lastCrawlTime, maus.getLastCrawlTime());
   }
+
+  public void testCompletedCrawlDoesntUpdateLastCrawlTimeIfExceptionThrown() {
+    MockAuState maus = new MockAuState();
+    long lastCrawlTime = maus.getLastCrawlTime();
+    nodeManager.setAuState(maus);
+
+    MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAUCachedUrlSet();
+    cus.addUrl(startUrl, new IOException("Test exception"));
+
+    SimpleBinarySemaphore sem = new SimpleBinarySemaphore();
+    TestCrawlCB cb = new TestCrawlCB(sem);
+    crawlManager.isCrawlingAU(mau, cb, null);
+
+    assertTrue("Crawl didn't finish in 10 seconds", sem.take(TEN_SECONDS));
+    assertEquals(lastCrawlTime, maus.getLastCrawlTime());
+  }
+
+  public void testCompletedCrawlUpdatesLastCrawlTimeIfFNFExceptionThrown() {
+    MockAuState maus = new MockAuState();
+    long lastCrawlTime = maus.getLastCrawlTime();
+    nodeManager.setAuState(maus);
+
+    MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAUCachedUrlSet();
+    cus.addUrl(startUrl, new FileNotFoundException("Test exception"));
+
+    SimpleBinarySemaphore sem = new SimpleBinarySemaphore();
+    TestCrawlCB cb = new TestCrawlCB(sem);
+    crawlManager.isCrawlingAU(mau, cb, null);
+
+    assertTrue("Crawl didn't finish in 10 seconds", sem.take(TEN_SECONDS));
+    assertNotEquals(lastCrawlTime, maus.getLastCrawlTime());
+  }
+
 
   public void testCompletedCrawlNoted() {
     MockAuState maus = new MockAuState();
