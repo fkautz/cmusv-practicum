@@ -110,7 +110,6 @@ public class IdentityManager extends BaseLockssManager {
    */
   public void startService() {
     super.startService();
-    registerDefaultConfigCallback();
     reloadIdentities();
     log.info("Local identity: " + getLocalIdentity());
     getDaemon().getStatusService().registerStatusAccessor("Identities",
@@ -397,7 +396,7 @@ public class IdentityManager extends BaseLockssManager {
   }
 
   private static final List statusSortRules =
-    ListUtil.list(new StatusTable.SortRule("id", true));
+    ListUtil.list(new StatusTable.SortRule("ip", true));
 
   private static final List statusColDescs =
     ListUtil.list(
