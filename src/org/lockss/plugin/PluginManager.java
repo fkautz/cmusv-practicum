@@ -64,9 +64,13 @@ public class PluginManager extends BaseLockssManager {
 
   static final String PARAM_TITLE_DB = ConfigManager.PARAM_TITLE_DB;
 
-  static final String AU_PARAM_WRAPPER = "reserved.wrapper";
-  public static final String AU_PARAM_DISABLED = "reserved.disabled";
-  public static final String AU_PARAM_DISPLAY_NAME = "reserved.displayName";
+  // prefix for non-plugin AU params 
+  public static final String AU_PARAM_RESERVED = "reserved";
+  // per AU params known to and processed by daemon, not plugin
+  static final String AU_PARAM_WRAPPER = AU_PARAM_RESERVED + ".wrapper";
+  public static final String AU_PARAM_DISABLED = AU_PARAM_RESERVED + ".disabled";
+  public static final String AU_PARAM_REPOSITORY = AU_PARAM_RESERVED + ".repository";
+  public static final String AU_PARAM_DISPLAY_NAME = AU_PARAM_RESERVED + ".displayName";
 
   static final String CONFIGURABLE_PLUGIN_NAME =
     DefinablePlugin.class.getName();
@@ -506,6 +510,7 @@ public class PluginManager extends BaseLockssManager {
   public ArchivalUnit createAndSaveAuConfiguration(Plugin plugin,
 						   Configuration auConf)
       throws ArchivalUnit.ConfigurationException, IOException {
+    auConf.put(AU_PARAM_DISABLED, "false");
     ArchivalUnit au = createAu(plugin, auConf);
     updateAuConfigFile(au, auConf);
     return au;
