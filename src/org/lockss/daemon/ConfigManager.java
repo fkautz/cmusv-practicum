@@ -87,7 +87,8 @@ public class ConfigManager implements LockssManager {
     PLATFORM + "diskSpacePaths";
 
   static final String PARAM_PLATFORM_VERSION = PLATFORM + "version";
-  static final String PARAM_PLATFORM_ADMIN_EMAIL = PLATFORM + "sysadminemail";
+  public static final String PARAM_PLATFORM_ADMIN_EMAIL =
+    PLATFORM + "sysadminemail";
   static final String PARAM_PLATFORM_LOG_DIR = PLATFORM + "logdirectory";
   static final String PARAM_PLATFORM_LOG_FILE = PLATFORM + "logfile";
 
