@@ -142,7 +142,7 @@ public class EncodedProperty extends Properties {
 
   public byte[] encodeString(String str) {
     try {
-      return str.getBytes(DEFAULT_ENCODING);;
+      return str.getBytes(DEFAULT_ENCODING);
     }
     catch (UnsupportedEncodingException ex) {
       return null;
