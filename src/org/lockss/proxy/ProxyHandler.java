@@ -422,7 +422,9 @@ public class ProxyHandler extends AbstractHttpHandler
 		String urlString) throws IOException {
 
     try {
-      LockssUrlConnection conn = UrlUtil.openConnection(urlString, connPool);
+      LockssUrlConnection conn =
+	UrlUtil.openConnection(LockssUrlConnection.METHOD_PROXY,
+			       urlString, connPool);
 
       // XXX
       conn.setFollowRedirects(false);

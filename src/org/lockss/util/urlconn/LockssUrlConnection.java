@@ -38,6 +38,11 @@ import java.io.*;
  * particular protocol hander throw UnsupportedOperationException
  */
 public interface LockssUrlConnection {
+  /** Send GET */
+  public static int METHOD_GET = 1;
+  /** Send GET but don't mess with request headers */
+  public static int METHOD_PROXY = 2;
+
   /** Return true if an http or https connection */
   public boolean isHttp();
 

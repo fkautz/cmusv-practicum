@@ -159,6 +159,22 @@ public class UrlUtil {
   public static LockssUrlConnection
     openConnection(String urlString, LockssUrlConnectionPool connectionPool)
       throws IOException {
+    return openConnection(LockssUrlConnection.METHOD_GET, urlString,
+			  connectionPool);
+  }
+
+  /** Create and Return a LockssUrlConnection appropriate for the url
+   * protocol.  If url is http or https, uses Jakarta HttpClient, else Java
+   * URLConnection.
+   * @param urlString the url
+   * @param connectionPool optional connection pool
+   * @return a LockssUrlConnection wrapper for the actual url connection
+   * @throws IOException
+   */
+  public static LockssUrlConnection
+    openConnection(int methodCode, String urlString,
+		   LockssUrlConnectionPool connectionPool)
+      throws IOException {
     LockssUrlConnection luc;
     if (isHttpUrl(urlString)) {
       boolean useHttpClient =
@@ -171,7 +187,7 @@ public class UrlUtil {
 	} else {
 	  client = new HttpClient();
 	}
-	luc = new HttpClientUrlConnection(urlString, client);
+	luc = new HttpClientUrlConnection(methodCode, urlString, client);
       } else {
 	luc = new JavaHttpUrlConnection(urlString);
       }
