@@ -168,7 +168,7 @@ public class TestSimulatedContentGenerator extends LockssTestCase {
     assertFalse(testDir.exists());
     scgen.setTreeDepth(1);
     scgen.setNumFilesPerBranch(1);
-    scgen.generateContentTree();
+    assertEquals(testDir.toString(), scgen.generateContentTree());
     assertTrue(testDir.exists());
     String testStr = tempDirPath + "file1.txt";
     testDir = new File(testStr);

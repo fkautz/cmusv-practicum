@@ -306,8 +306,9 @@ public class SimulatedContentGenerator {
  * directory contains the set number of files X number of file types (so
  * for numFiles=2, types=TXT + HTML, each directory would contain 2 txt
  * files, 2 html files, the index file, and any subdirectories).
+ * @return the filename of the tree root
  */
-  public void generateContentTree() {
+  public String generateContentTree() {
     // make an appropriate file tree
     File treeRoot = new File(contentRoot);
     if (!treeRoot.exists()) {
@@ -329,7 +330,9 @@ public class SimulatedContentGenerator {
 		   (alterFile && (jj==getAbnormalFileNumber())));
     }
     generateIndexFile(treeRoot, BaseArchivalUnit.PERMISSION_STRING);
+    return treeRoot.toString();
   }
+
   private void recurseGenerateBranch(File parentDir, int branchNum,
 				     int depth, boolean onAbnormalPath) {
     // generates this branch, its files, and its subbranches (if any)
