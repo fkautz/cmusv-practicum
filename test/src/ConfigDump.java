@@ -38,8 +38,8 @@ import org.lockss.plugin.*;
 import org.lockss.test.*;
 
 /**
- * Utility to create title db property files.  Queries user for plugin and
- * parameter values, or dumps all entries known by known plugins.
+ * Utility to load and dump config files in a canonical form, for easy
+ * diffing.
  */
 public class ConfigDump {
 
