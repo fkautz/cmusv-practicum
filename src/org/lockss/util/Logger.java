@@ -311,7 +311,7 @@ public class Logger {
    * Return true if this log is logging at or above specified level
    * @param level name
    */
-  boolean isLevel(String level) {
+  public boolean isLevel(String level) {
     return this.level >= levelOf(level);
   }
 
