@@ -117,7 +117,6 @@ public abstract class Configuration {
       log.warning("attempt to install null Configuration");
     }
     currentConfig = newConfig;
-    haveConfig.fill();
   }
 
   static void runCallback(Callback cb,
@@ -202,6 +201,7 @@ public abstract class Configuration {
       newConfig.logConfig();
     }
     runCallbacks(newConfig, oldConfig);
+    haveConfig.fill();
     return true;
   }
 
