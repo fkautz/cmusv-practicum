@@ -36,8 +36,8 @@ import java.io.*;
 import java.util.*;
 
 import org.lockss.app.*;
-import org.lockss.mail.*;
 import org.lockss.hasher.*;
+import org.lockss.mail.*;
 import org.lockss.protocol.*;
 import org.lockss.proxy.*;
 import org.lockss.repository.*;

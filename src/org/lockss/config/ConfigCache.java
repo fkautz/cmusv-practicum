@@ -32,10 +32,10 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.config;
 
-import java.util.*;
 import java.io.*;
-import java.net.*;
-import org.apache.commons.collections.SequencedHashMap;
+import java.util.*;
+
+import org.apache.commons.collections.*;
 import org.lockss.util.*;
 
 /**

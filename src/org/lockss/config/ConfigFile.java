@@ -34,7 +34,7 @@ package org.lockss.config;
 
 import java.io.*;
 import java.net.*;
-import java.util.*;
+
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
 
