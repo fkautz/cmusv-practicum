@@ -865,8 +865,8 @@ public class NodeManagerImpl
       throws IOException {
     // only log when in treewalk (once) or updating results
     if ((reportOnly) || (results!=null)) {
-      logger.debug2("Checking node: " + nodeState.getCachedUrlSet().getUrl());
-      logger.debug2("State: " + nodeState.getStateString());
+      logger.debug3("Checking node: " + nodeState.getCachedUrlSet().getUrl());
+      logger.debug3("State: " + nodeState.getStateString());
     }
     switch (nodeState.getState()) {
       case NodeState.NEEDS_POLL:
