@@ -253,7 +253,8 @@ public class TreeWalkHandler {
     long lastTreeWalkTime = manager.getAuState().getLastTreeWalkTime();
     long timeSinceLastTW = TimeBase.msSince(lastTreeWalkTime);
     logger.debug3(timeSinceLastTW+" since last treewalk");
-    logger.debug2("Treewalks should happen every "+treeWalkInterval+"ms");
+    logger.debug3("Treewalks should happen every "+
+                  StringUtil.timeIntervalToString(treeWalkInterval));
     return treeWalkInterval - timeSinceLastTW;
   }
 
@@ -272,7 +273,7 @@ public class TreeWalkHandler {
    * Starts the treewalk process.
    */
   public void start() {
-    logger.debug3("TreeWalkHandler started.");
+    logger.debug2("TreeWalkHandler started.");
     treeWalkAborted = false;
     if (treeWalkThread==null) {
       treeWalkThread = new TreeWalkThread();
