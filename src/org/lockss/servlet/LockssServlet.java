@@ -59,6 +59,8 @@ public abstract class LockssServlet extends HttpServlet
 //     Configuration.PREFIX + "clusterAdmin";
   static final String PARAM_CONTACT_ADDR =
     Configuration.PREFIX + "admin.contactEmail";
+  static final String DEFAULT_CONTACT_ADDR = "contactnotset@notset";
+
   static final String PARAM_PLATFORM_VERSION =
     Configuration.PREFIX + "platform.version";
   static final String PARAM_ADMIN_ADDRESS =
@@ -465,7 +467,7 @@ public abstract class LockssServlet extends HttpServlet
     navTable.newCell();
     navTable.cell().attribute("COLSPAN=\"3\"");
     String contactAddr =
-      Configuration.getParam(PARAM_CONTACT_ADDR, "contactnotset@notset");
+      Configuration.getParam(PARAM_CONTACT_ADDR, DEFAULT_CONTACT_ADDR);
     navTable.add(new Link("mailto:" + contactAddr, "Contact Us"));
     return navTable;
   }

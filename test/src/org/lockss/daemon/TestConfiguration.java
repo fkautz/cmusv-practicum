@@ -357,4 +357,17 @@ public class TestConfiguration extends LockssTestCase {
     assertEquals("/a/b", config.get("org.lockss.history.location"));
     assertEquals("/a/b/iddb", config.get("org.lockss.id.database.dir"));
   }
+
+  public void testPlatformSmtp() throws Exception {
+    Properties props = new Properties();
+    props.put("org.lockss.platform.smtphost", "smtp.example.com");
+    props.put("org.lockss.platform.smtpport", "25");
+    ConfigurationUtil.setCurrentConfigFromProps(props);
+    Configuration config = Configuration.getCurrentConfig();
+    assertEquals("smtp.example.com", 
+		 config.get("org.lockss.log.target.MailTarget.smtphost"));
+    assertEquals("25", 
+		 config.get("org.lockss.log.target.MailTarget.smtpport"));
+  }
+
 }

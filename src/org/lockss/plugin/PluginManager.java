@@ -50,7 +50,6 @@ public class PluginManager extends BaseLockssManager {
   public static final String PARAM_AU_TREE = Configuration.PREFIX + "au";
   private static String PARAM_PLUGIN_LOCATION =
     Configuration.PREFIX + "platform.pluginDir";
-  private static String DEFAULT_PLUGIN_LOCATION = "./plugins";
 
   private static Logger log = Logger.getLogger("PluginMgr");
 
@@ -92,7 +91,7 @@ public class PluginManager extends BaseLockssManager {
 
   protected void setConfig(Configuration config, Configuration oldConfig,
 			   Set changedKeys) {
-    pluginDir = config.get(PARAM_PLUGIN_LOCATION, DEFAULT_PLUGIN_LOCATION);
+    pluginDir = config.get(PARAM_PLUGIN_LOCATION);
     // Don't load and start plugins until the daemon is running.
     // Because we don't necessarily process the config, we must keep track
     // of the previous config ourselves.

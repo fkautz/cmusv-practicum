@@ -54,7 +54,7 @@ class PartnerList {
 
   static final long DEFAULT_MIN_PARTNER_REMOVE_INTERVAL = Constants.HOUR;
   static final int DEFAULT_MAX_PARTNERS = 3;
-  static final long DEFAULT_RECENT_MULTICAST_INTERVAL = Constants.HOUR;
+  static final long DEFAULT_RECENT_MULTICAST_INTERVAL = 90 * Constants.MINUTE;
 
   static Logger log = Logger.getLogger("PartnerList");
 

@@ -55,6 +55,8 @@ public class LockssDaemon {
   private static String PARAM_DAEMON_EXIT =
     Configuration.PREFIX + "daemon.exit";
 
+  private static boolean DEFAULT_DAEMON_EXIT = false;
+
   private static String MANAGER_PREFIX = Configuration.PREFIX + "manager.";
 
   /* the parameter strings that represent our managers */
@@ -171,7 +173,8 @@ public class LockssDaemon {
     try {
       LockssDaemon daemon = new LockssDaemon(urls);
       daemon.runDaemon();
-      if (Configuration.getBooleanParam(PARAM_DAEMON_EXIT, true)) {
+      if (Configuration.getBooleanParam(PARAM_DAEMON_EXIT, 
+					DEFAULT_DAEMON_EXIT)) {
 	daemon.stop();
       }
     } catch (Throwable e) {
@@ -188,7 +191,8 @@ public class LockssDaemon {
   }
 
   /**
-   * Return a lockss manager this will need to be cast to the appropriate class.
+   * Return a lockss manager this will need to be cast to the appropriate 
+   * class.
    * @param managerKey the name of the manager
    * @return a lockss manager
    * @throws IllegalArgumentException if the manager is not available.

@@ -51,6 +51,8 @@ public class LcapComm extends BaseLockssManager {
   static final String PARAM_MULTI_GROUP = PREFIX + "multicast.group";
   static final String PARAM_MULTI_PORT = PREFIX + "multicast.port";
   static final String PARAM_MULTI_VERIFY = PREFIX + "multicast.verify";
+  static final boolean DEFAULT_MULTI_VERIFY = false;
+
   static final String PARAM_UNI_PORT = PREFIX + "unicast.port";
   static final String PARAM_UNI_PORT_SEND = PREFIX + "unicast.sendToPort";
   static final String PARAM_UNI_ADDR_SEND = PREFIX + "unicast.sendToAddr";
@@ -142,7 +144,8 @@ public class LcapComm extends BaseLockssManager {
       uniPort = config.getInt(PARAM_UNI_PORT); //
       uniSendToPort = config.getInt(PARAM_UNI_PORT_SEND, uniPort);
       uniSendToName = config.get(PARAM_UNI_ADDR_SEND);
-      verifyMulticast = config.getBoolean(PARAM_MULTI_VERIFY, false);
+      verifyMulticast = config.getBoolean(PARAM_MULTI_VERIFY, 
+					  DEFAULT_MULTI_VERIFY);
     } catch (Configuration.InvalidParam e) {
       log.critical("Config error, not started: " + e);
     }

@@ -45,8 +45,12 @@ public abstract class JettyManager extends BaseLockssManager {
   static final String PREFIX = Configuration.PREFIX + "jetty.debug";
 
   static final String PARAM_JETTY_DEBUG = PREFIX;
+  static final boolean DEFAULT_JETTY_DEBUG = false;
+
   static final String PARAM_JETTY_DEBUG_PATTERNS = PREFIX + ".patterns";
+
   static final String PARAM_JETTY_DEBUG_VERBOSE = PREFIX + ".verbose";
+  static final int DEFAULT_JETTY_DEBUG_VERBOSE = 0;
 //   static final String PARAM_JETTY_DEBUG_OPTIONS = PREFIX + ".options";
 
   private static Logger log = Logger.getLogger("JettyMgr");
@@ -79,7 +83,8 @@ public abstract class JettyManager extends BaseLockssManager {
 			   Set changedKeys) {
     if (jettyLogInited) {
       if (changedKeys.contains(PARAM_JETTY_DEBUG)) {
-	boolean deb = config.getBoolean(PARAM_JETTY_DEBUG, false);
+	boolean deb = config.getBoolean(PARAM_JETTY_DEBUG, 
+					DEFAULT_JETTY_DEBUG);
 	log.info("Turning Jetty DEBUG " + (deb ? "on." : "off."));
 	Code.setDebug(deb);
       }
@@ -89,7 +94,8 @@ public abstract class JettyManager extends BaseLockssManager {
 	Code.setDebugPatterns(pat);
       }
       if (changedKeys.contains(PARAM_JETTY_DEBUG_VERBOSE)) {
-	int ver = config.getInt(PARAM_JETTY_DEBUG_VERBOSE, 0);
+	int ver = config.getInt(PARAM_JETTY_DEBUG_VERBOSE, 
+				DEFAULT_JETTY_DEBUG_VERBOSE);
 	log.info("Setting Jetty verbosity to: " + ver);
 	Code.setVerbose(ver);
       }

@@ -81,7 +81,8 @@ public class TestSystemMetrics extends LockssTestCase {
 
     assertTrue(estimate < byteCount);
     // minimum amount of time would be delay * number of hash steps
-    int expectedMin = (byteCount * 10) / SystemMetrics.DEFAULT_HASH_TEST_BYTE_STEP;
+    int expectedMin = 
+      (byteCount * 10) / SystemMetrics.DEFAULT_HASH_TEST_BYTE_STEP;
     assertTrue(duration > expectedMin);
   }
 
