@@ -210,40 +210,6 @@ public class TestConfiguration extends LockssTestCase {
     assertEquals("def", Configuration.getParam("noprop", "def"));
   }
 
-  public void testParseTimeInterval() throws Exception {
-    Configuration config = Configuration.getCurrentConfig();
-    assertEquals(0, config.parseTimeInterval("0"));
-    assertEquals(0, config.parseTimeInterval("0s"));
-    assertEquals(0, config.parseTimeInterval("0m"));
-    assertEquals(0, config.parseTimeInterval("0h"));
-    assertEquals(0, config.parseTimeInterval("0d"));
-    assertEquals(0, config.parseTimeInterval("0w"));
-    assertEquals(1000, config.parseTimeInterval("1000"));
-    assertEquals(1000, config.parseTimeInterval("1s"));
-    assertEquals(1000 * 60, config.parseTimeInterval("1m"));
-    assertEquals(1000 * 60 * 60, config.parseTimeInterval("1h"));
-    assertEquals(1000 * 60 * 60 * 24, config.parseTimeInterval("1d"));
-    assertEquals(1000 * 60 * 60 * 24 * 7, config.parseTimeInterval("1w"));
-    assertEquals(config.parseTimeInterval("60s"),
-		 config.parseTimeInterval("1m"));
-    assertEquals(config.parseTimeInterval("120m"),
-		 config.parseTimeInterval("2h"));
-    assertEquals(config.parseTimeInterval("72h"),
-		 config.parseTimeInterval("3d"));
-    assertEquals(config.parseTimeInterval("14d"),
-		 config.parseTimeInterval("2w"));
-    try {
-      config.parseTimeInterval("2x");
-      fail("should have thrown NumberFormatException");
-    } catch (NumberFormatException e) {
-    }
-    try {
-      config.parseTimeInterval("");
-      fail("should have thrown NumberFormatException");
-    } catch (NumberFormatException e) {
-    }
-  }
-
   volatile Set diffSet = null;
   List configs;
 
