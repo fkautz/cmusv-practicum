@@ -40,7 +40,9 @@ import org.lockss.plugin.configurable.*;
 
 public class TestEmlsArchivalUnit extends LockssTestCase {
   private MockLockssDaemon theDaemon;
-  private MockArchivalUnit mau;
+  static final String BASE_URL_KEY = ConfigParamDescr.BASE_URL.getKey();
+  static final String VOL_KEY = ConfigParamDescr.VOLUME_NUMBER.getKey();
+
 
   static final String ROOT_URL = "http://www.shu.ac.uk/emls/";
 
@@ -62,9 +64,9 @@ public class TestEmlsArchivalUnit extends LockssTestCase {
   private ConfigurableArchivalUnit makeAu(URL url, int volume)
       throws Exception {
     Properties props = new Properties();
-    props.setProperty(EmlsPlugin.AUPARAM_VOL, ""+volume);
+    props.setProperty(VOL_KEY, ""+volume);
     if (url!=null) {
-      props.setProperty(EmlsPlugin.AUPARAM_BASE_URL, url.toString());
+      props.setProperty(BASE_URL_KEY, url.toString());
     }
     Configuration config = ConfigurationUtil.fromProps(props);
     ConfigurablePlugin ap = new ConfigurablePlugin();

@@ -42,6 +42,8 @@ import org.lockss.plugin.configurable.*;
 
 public class TestEmlsPlugin extends LockssTestCase {
   private ConfigurablePlugin plugin;
+  static final String BASE_URL_KEY = ConfigParamDescr.BASE_URL.getKey();
+  static final String VOL_KEY = ConfigParamDescr.VOLUME_NUMBER.getKey();
 
   public void setUp() throws Exception {
     super.setUp();
@@ -66,8 +68,8 @@ public class TestEmlsPlugin extends LockssTestCase {
   public void testGetAuHandlesBadUrl()
       throws ArchivalUnit.ConfigurationException, MalformedURLException {
     Properties props = new Properties();
-    props.setProperty(EmlsPlugin.AUPARAM_BASE_URL, "blah");
-    props.setProperty(EmlsPlugin.AUPARAM_VOL, "3");
+    props.setProperty(BASE_URL_KEY, "blah");
+    props.setProperty(VOL_KEY, "3");
 
     try {
       ConfigurableArchivalUnit au = makeAuFromProps(props);
@@ -82,9 +84,9 @@ public class TestEmlsPlugin extends LockssTestCase {
   public void testGetAuConstructsProperAu()
       throws ArchivalUnit.ConfigurationException, MalformedURLException {
     Properties props = new Properties();
-    props.setProperty(EmlsPlugin.AUPARAM_BASE_URL,
+    props.setProperty(BASE_URL_KEY,
                       "http://www.example.com/emls/");
-    props.setProperty(EmlsPlugin.AUPARAM_VOL, "3");
+    props.setProperty(VOL_KEY, "3");
 
     ConfigurableArchivalUnit au = makeAuFromProps(props);
     assertEquals("www.example.com, vol. 3", au.getName());

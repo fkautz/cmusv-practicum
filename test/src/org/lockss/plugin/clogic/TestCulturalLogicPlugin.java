@@ -42,6 +42,9 @@ import org.lockss.plugin.configurable.*;
 
 public class TestCulturalLogicPlugin extends LockssTestCase {
   private ConfigurablePlugin plugin;
+  static final String BASE_URL_KEY = ConfigParamDescr.BASE_URL.getKey();
+  static final String YEAR_KEY = ConfigParamDescr.YEAR.getKey();
+
 
   public void setUp() throws Exception {
     super.setUp();
@@ -66,8 +69,8 @@ public class TestCulturalLogicPlugin extends LockssTestCase {
   public void testGetAuHandlesBadUrl()
       throws ArchivalUnit.ConfigurationException, MalformedURLException {
     Properties props = new Properties();
-    props.setProperty(CulturalLogicPlugin.AUPARAM_BASE_URL, "blah");
-    props.setProperty(CulturalLogicPlugin.AUPARAM_YEAR, "2002");
+    props.setProperty(BASE_URL_KEY, "blah");
+    props.setProperty(YEAR_KEY, "2002");
 
     try {
       ConfigurableArchivalUnit au = makeAuFromProps(props);
@@ -82,9 +85,9 @@ public class TestCulturalLogicPlugin extends LockssTestCase {
   public void testGetAuConstructsProperAU()
       throws ArchivalUnit.ConfigurationException, MalformedURLException {
     Properties props = new Properties();
-    props.setProperty(CulturalLogicPlugin.AUPARAM_BASE_URL,
+    props.setProperty(BASE_URL_KEY,
                       "http://www.example.com/clogic/");
-    props.setProperty(CulturalLogicPlugin.AUPARAM_YEAR, "2002");
+    props.setProperty(YEAR_KEY, "2002");
 
     ConfigurableArchivalUnit au = makeAuFromProps(props);
     assertEquals("www.example.com/clogic/, 2002", au.getName());
