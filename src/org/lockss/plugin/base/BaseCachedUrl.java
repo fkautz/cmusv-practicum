@@ -178,9 +178,7 @@ public class BaseCachedUrl implements CachedUrl {
     CIProperties props = getProperties();
     String contentType = props.getProperty(PROPERTY_CONTENT_TYPE);
     logger.debug3("Getting filtered stream for "+contentType);
-    String mimeType = HeaderUtil.getMimeTypeFromContentType(contentType);
-    logger.debug3("Mime type is "+mimeType);
-    FilterRule fr = au.getFilterRule(mimeType);
+    FilterRule fr = au.getFilterRule(contentType);
     if (fr != null) {
       Reader rd = fr.createFilteredReader(openForReading());
       return new ReaderInputStream(rd);
