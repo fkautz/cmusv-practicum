@@ -94,6 +94,18 @@ public class ProxyHandler extends AbstractHttpHandler {
       return;
     }
 
+    boolean isRepairRequest =
+      org.lockss.util.StringUtil.equalStrings(request.getField("user-agent"),
+					      LockssDaemon.getUserAgent());
+    if (isRepairRequest) {
+      // This should never happen, as it should have been caught by the
+      // ProcyAccessHandler.  But we never want to forward repair request
+      // from another LOCKSS cache, so we check here just to make sure.
+      response.sendError(HttpResponse.__404_Not_Found);
+      request.setHandled(true);
+      return; 
+    }
+
     Socket socket = null;
     try {
       String host= uri.getHost();
