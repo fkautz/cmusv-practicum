@@ -79,7 +79,9 @@ public abstract class GenericHasher implements CachedUrlSetHasher {
       return 0;
     }
 
-    log.debug3(numBytes+" bytes left to hash in this step");
+    if (log.isDebug3()) {
+      log.debug3(numBytes+" bytes left to hash in this step");
+    }
 
     int totalBytesHashed = 0;
     while (bytesLeftToHash > 0) {
