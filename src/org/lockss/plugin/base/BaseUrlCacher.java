@@ -81,6 +81,7 @@ public class BaseUrlCacher implements UrlCacher {
   private PermissionMap permissionMap;
   private String proxyHost = null;
   private int proxyPort;
+  private Properties reqProps;
 
   public BaseUrlCacher(CachedUrlSet owner, String url) {
     this.cus = owner;
@@ -156,6 +157,13 @@ public class BaseUrlCacher implements UrlCacher {
 
   public void setForceRefetch(boolean force) {
     this.forceRefetch = force;
+  }
+
+  public void setRequestProperty(String key, String value) {
+    if (reqProps == null) {
+      reqProps = new Properties();
+    }
+    reqProps.put(key, value);
   }
 
   public void setRedirectScheme(RedirectScheme scheme) {
@@ -413,6 +421,12 @@ public class BaseUrlCacher implements UrlCacher {
 	if (logger.isDebug3()) logger.debug3("Proxying through " + proxyHost
 					     + ":" + proxyPort);
 	conn.setProxy(proxyHost, proxyPort);
+      }
+      if (reqProps != null) {
+	for (Iterator iter = reqProps.keySet().iterator(); iter.hasNext(); ) {
+	  String key = (String)iter.next();
+	  conn.setRequestProperty(key, reqProps.getProperty(key));
+	}
       }
       conn.setFollowRedirects(isRedirectOption(REDIRECT_OPTION_FOLLOW_AUTO));
       conn.setRequestProperty("user-agent", LockssDaemon.getUserAgent());

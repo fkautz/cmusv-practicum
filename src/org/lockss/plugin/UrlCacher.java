@@ -125,6 +125,9 @@ public interface UrlCacher {
    */
   public void setForceRefetch(boolean force);
 
+  /** Set a request header, overwriting any previous value */
+  public void setRequestProperty(String key, String value);
+
   /** Determines the behavior if a redirect response is received. */
   public void setRedirectScheme(RedirectScheme scheme);
 

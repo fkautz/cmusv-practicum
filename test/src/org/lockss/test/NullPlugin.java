@@ -214,6 +214,9 @@ public class NullPlugin {
     public void setForceRefetch(boolean force) {
     }
 
+    public void setRequestProperty(String key, String value) {
+    }
+
     public void setRedirectScheme(RedirectScheme scheme) {
     }
 

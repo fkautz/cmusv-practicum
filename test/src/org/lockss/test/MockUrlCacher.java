@@ -108,6 +108,9 @@ public class MockUrlCacher implements UrlCacher {
     this.forceRefetch = force;
   }
 
+  public void setRequestProperty(String key, String value) {
+  }
+
   public void setRedirectScheme(RedirectScheme scheme) {
   }
 
