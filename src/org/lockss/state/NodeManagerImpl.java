@@ -250,7 +250,7 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
     }
 
     if (!state.isMyPoll() && hasDamage(cus, state.getType())) {
-      logger.info("Poll has damaged node: " + cus);
+      logger.info("CUS has damage, not starting poll: " + cus);
       return false;
     }
 
