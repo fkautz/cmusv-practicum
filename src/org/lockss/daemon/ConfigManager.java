@@ -484,7 +484,7 @@ public class ConfigManager implements LockssManager {
       throw new RuntimeException("No cache config dir");
     }
     File cfile = new File(cacheConfigDir, cacheConfigFileName);
-    log.debug2("Reasding cache config file: " + cfile.toString());
+    log.debug2("Reading cache config file: " + cfile.toString());
     InputStream is = new FileInputStream(cfile);
     Configuration res = newConfiguration();
     res.load(is);
