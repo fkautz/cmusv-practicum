@@ -179,7 +179,7 @@ public class ArchivalUnitStatus extends BaseLockssManager {
     new StatusTable.DisplayedValue("Damaged");
 
   static {
-    DAMAGE_STATE_OK.setColor("green");
+//     DAMAGE_STATE_OK.setColor("green");
     DAMAGE_STATE_DAMAGED.setColor("red");
   }
 
