@@ -58,7 +58,7 @@ public class PollHistory {
   /**
    * Returns the type of the poll.
    * @return an int representing the type
-   * @see LcapMessage
+   * @see org.lockss.protocol.LcapMessage
    */
   public int getType() {
     return type;
