@@ -49,9 +49,9 @@ public interface NodeState {
 
   /**
    * Returns the current crawl state.
-   * @return an int representing the crawl state
+   * @return a CrawlState
    */
-  public int getCrawlState();
+  public CrawlState getCrawlState();
 
   /**
    * Returns an Iterator of the polls active on this node, if any.

@@ -55,8 +55,8 @@ public class PollHistoryBean extends PollHistory {
    * Sets the regular expression.
    * @param regexp the new regexp
    */
-  public void setRegExp(String regexp) {
-    super.regExp = regexp;
+  public void setRegExp(String regExp) {
+    super.regExp = regExp;
   }
 
   /**
@@ -64,7 +64,7 @@ public class PollHistoryBean extends PollHistory {
    * @param status the new status
    */
   public void setStatus(int status) {
-    this.status = status;
+    super.status = status;
   }
 
   /**
@@ -84,12 +84,19 @@ public class PollHistoryBean extends PollHistory {
   }
 
   /**
-   * Sets the vote list.
-   * @param votes an ArrayList of Poll.Vote objects
+   * Gets the vote list.  This is used purely for marshalling purposes, since
+   * the votes Collection must be reached in a mutable fashion.
+   * @return a Collection of Poll.Vote objects
    */
-  public void setVotes(ArrayList votes) {
+  public Collection getMutableVotes() {
+    return votes;
+  }
+  /**
+   * Sets the vote list.  This is used purely for marshalling purposes, since
+   * the votes Collection must be reached in a mutable fashion.
+   * @param votes a Collection of Poll.Vote objects
+   */
+  public void setMutableVotes(Collection votes) {
     super.votes = votes;
   }
-
-
 }

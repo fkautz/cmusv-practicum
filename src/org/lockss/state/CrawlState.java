@@ -33,51 +33,55 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.state;
 
-import java.util.*;
-import org.lockss.protocol.LcapIdentity;
+import java.util.Iterator;
+import org.lockss.daemon.CachedUrlSet;
+import org.lockss.util.Deadline;
 
 /**
- * PollHistory contains the information for a completed poll.
+ * PollState contains the state information for a poll current to a node.
+ * There may be more than one active poll per node.
  */
-public class PollHistory extends PollState {
-  long duration;
-  Collection votes;
-  Collection immutableVotes;
+public class CrawlState {
+  public static final int NEW_CONTENT_CRAWL = 1;
+  public static final int REPAIR_CRAWL = 2;
+  public static final int BACKGROUND_CRAWL = 4;
 
-  /**
-   * Empty constructor used for marshalling.  Needed to create the
-   * PollHistoryBean.
-   */
-  public PollHistory() {
-    super(-1, null, -1, 0, null);
-    duration = 0;
-    votes = null;
-    immutableVotes = null;
+  public static final int SCHEDULED = 1;
+  public static final int RUNNING = 2;
+  public static final int FINISHED = 4;
+
+  int type;
+  int status;
+  long startTime;
+
+  CrawlState(int type, int status, long startTime) {
+    this.type = type;
+    this.status = status;
+    this.startTime = startTime;
   }
-
-  PollHistory(PollState state, long duration, Collection votes) {
-    super(state.type, state.regExp, state.status, state.startTime, null);
-    this.duration = duration;
-    this.votes = votes;
-    immutableVotes = null;
-  }
-
   /**
-   * Returns the duration the poll took.
-   * @return the duration in ms
+   * Returns the poll type.
+   * @return an int representing the type
+   * @see org.lockss.protocol.LcapMessage
    */
-  public long getDuration() {
-    return duration;
+  public int getType() {
+    return type;
   }
 
   /**
-   * Returns a collection of Votes.
-   * @return a Collection of Poll.Vote objects.
+   * Returns the status of the poll.
+   * @return an int representing the current status
    */
-  public Collection getVotes() {
-    if (immutableVotes==null) {
-      immutableVotes = Collections.unmodifiableCollection(votes);
-    }
-    return immutableVotes;
+  public int getStatus() {
+    return status;
   }
+
+  /**
+   * Returns the start time of the poll.
+   * @return the start time in ms
+   */
+  public long getStartTime() {
+    return startTime;
+  }
+
 }
