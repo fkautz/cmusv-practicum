@@ -114,7 +114,6 @@ public class LcapSocket {
 	sock.receive(pkt);
 	LockssReceivedDatagram dg = new LockssReceivedDatagram(pkt);
 	dg.setReceiveSocket(this);
-	log.debug("Received " + dg);
 	processReceivedDatagram(dg);
       } catch (InterruptedIOException e) {
       }
@@ -175,6 +174,7 @@ public class LcapSocket {
     /* Mark the packet as unicast, add to the queue */
     void processReceivedDatagram(LockssReceivedDatagram dg) {
       dg.setMulticast(false);
+      log.debug("Received " + dg);
       rcvQ.put(dg);
     }
 
@@ -212,6 +212,7 @@ public class LcapSocket {
     /** Mark the packet as multicast, add to the queue */
     void processReceivedDatagram(LockssReceivedDatagram dg) {
       dg.setMulticast(true);
+      log.debug("Received " + dg);
       rcvQ.put(dg);
     }
 
