@@ -272,17 +272,13 @@ public class CrawlManagerImpl extends BaseLockssManager
 
   protected Crawler makeNewContentCrawler(ArchivalUnit au, CrawlSpec spec) {
     NodeManager nodeManager = theDaemon.getNodeManager(au);
-    return
-      CrawlerImpl.makeNewContentCrawler(au, spec,
-					nodeManager.getAuState());
+    return new NewContentCrawler(au, spec, nodeManager.getAuState());
   }
 
   protected Crawler makeRepairCrawler(ArchivalUnit au, CrawlSpec spec,
 				      Collection  repairUrls) {
     NodeManager nodeManager = theDaemon.getNodeManager(au);
-    return CrawlerImpl.makeRepairCrawler(au, spec,
-					 nodeManager.getAuState(),
-					 repairUrls);
+    return new RepairCrawler(au, spec, nodeManager.getAuState(), repairUrls);
   }
 
   public class CrawlThread extends Thread {
