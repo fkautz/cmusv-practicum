@@ -137,7 +137,6 @@ Args:
     <pathelement path="${castor.jar}" />
     <pathelement path="${xerces.jar}" />
     <pathelement path="${xmlparser.jar}" />
-    <pathelement path="${lockss.ant.jar}" />
   </path>
 
   <path id="run.classpath">
@@ -155,6 +154,7 @@ Args:
   <path id="test.run.classpath">
     <path refid="test.compile.classpath" />
     <pathelement path="${lockss.test.jar}" />
+    <pathelement path="${lockss.ant.jar}" />
   </path>
 
   <path id="doclet.compile.classpath">
