@@ -1316,9 +1316,9 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
     } else {
       logger.debug2("scheduling "+urls.size()+" repairs");
     }
-    theDaemon.getCrawlManager().scheduleRepair(managedAu, urls,
-                                               new ContentRepairCallback(),
-                                               pollKey);
+    theDaemon.getCrawlManager().startRepair(managedAu, urls,
+					    new ContentRepairCallback(),
+					    pollKey);
   }
 
   private void deleteNode(CachedUrlSet cus) throws IOException {

@@ -55,8 +55,8 @@ public class MockCrawlManager implements CrawlManager, LockssManager {
     scheduledCrawls = new HashMap();
   }
 
-  public void scheduleRepair(ArchivalUnit au, Collection urls,
-			     CrawlManager.Callback cb, Object cookie) {
+  public void startRepair(ArchivalUnit au, Collection urls,
+			  CrawlManager.Callback cb, Object cookie) {
     Iterator urlIt = urls.iterator();
     while (urlIt.hasNext()) {
       scheduledRepairs.put(urlIt.next(), SCHEDULED);
