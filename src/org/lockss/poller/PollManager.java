@@ -178,7 +178,8 @@ public class PollManager  extends BaseLockssManager {
     Iterator it = thePolls.values().iterator();
     while (it.hasNext()) {
       PollManagerEntry pme = (PollManagerEntry) it.next();
-      if (pme.spec.getAuId().equals(au.getAuId())) {
+      ArchivalUnit pau = pme.poll.m_cus.getArchivalUnit();
+      if (pau == au) {
         if (!pme.isPollCompleted()) {
           pme.poll.stopPoll();
         }
