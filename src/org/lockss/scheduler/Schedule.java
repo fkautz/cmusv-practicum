@@ -111,11 +111,20 @@ public class Schedule {
 
   abstract static class Event {
     protected Deadline start;
+    private Exception error;
 
     abstract public boolean isBackgroundEvent();
 
     public Deadline getStart() {
       return start;
+    }
+
+    public void setError(Exception e) {
+      error = e;
+    }
+
+    public Exception getError() {
+      return error;
     }
   }      
 
@@ -213,6 +222,10 @@ public class Schedule {
 
     public long getRunTime() {
       return runTime;
+    }
+
+    public double getLoadFactor() {
+      return ((double)runTime) / ((double)finish.minus(start));
     }
 
     public void setTaskEnd() {

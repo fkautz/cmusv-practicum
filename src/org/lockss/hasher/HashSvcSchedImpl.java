@@ -419,7 +419,7 @@ public class HashSvcSchedImpl
       row.put("au", task.urlset.getArchivalUnit().getName());
       row.put("cus", task.urlset.getSpec());
       row.put("type", getType(task));
-      row.put("deadline", task.getLatestFinish().getExpiration());
+      row.put("deadline", task.getLatestFinish());
       row.put("estimate", new Long(task.getOrigEst()));
       Object used = new Long(task.getTimeUsed());
       if (task.hasOverrun()) {

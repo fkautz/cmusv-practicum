@@ -100,6 +100,12 @@ public class SchedService extends BaseLockssManager {
     return runner.isTaskSchedulable(task);
   }
 
+  /** Return true if the SchedService has nothing to do.  Useful in unit
+   * tests. */
+  public boolean isIdle() {
+    return runner.isIdle();
+  }
+
   private void checkRunner() {
     if (runner == null) {
       throw
