@@ -49,12 +49,12 @@ public class MockCrawlManagerStatusSource
     this.activeAus = activeAus;
   }
 
-  public Collection getCrawls(String auid) {
+  public Collection getCrawlStatus(String auid) {
     return (Collection) map.get(auid);
   }
 
-  public void setCrawls(Collection crawls, String auid) {
-    map.put(auid, crawls);
+  public void setCrawlStatus(Collection crawlStatus, String auid) {
+    map.put(auid, crawlStatus);
   }
 
 }
