@@ -127,7 +127,7 @@ public class TestProxyInfo extends LockssTestCase {
   }
 
   public static void main(String[] argv) {
-    String[] testCaseList = { TestSystemMetrics.class.getName()};
+    String[] testCaseList = { TestProxyInfo.class.getName()};
     junit.swingui.TestRunner.main(testCaseList);
   }
 }
