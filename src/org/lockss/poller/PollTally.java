@@ -143,7 +143,7 @@ public abstract class PollTally implements Tallier{
         localEntries.iterator();
   }
 
-  public ActivityRegulator.Lock getActivityLock() {
+  ActivityRegulator.Lock getActivityLock() {
     return activityLock;
   }
 

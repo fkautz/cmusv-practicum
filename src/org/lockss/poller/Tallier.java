@@ -138,10 +138,4 @@ public interface Tallier {
    */
   public int getTallyResult();
 
-  /**
-   * Returns the ActivityRegulator.Lock that this poll is using.
-   * @return the lock
-   */
-  public ActivityRegulator.Lock getActivityLock();
-
 }

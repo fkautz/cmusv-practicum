@@ -262,9 +262,14 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
     try {
       return Class.forName(className, true, classLoader).newInstance();
     }
-    catch (Throwable t) {
+    catch (Exception ex) {
       throw new InvalidDefinitionException(
-          auName + " unable to create " + description + ": " + className, t);
+          auName + " unable to create " + description + ": " + className, ex);
+    }
+    catch (LinkageError le) {
+      throw new InvalidDefinitionException(
+          auName + " unable to create " + description + ": " + className, le);
+
     }
   }
 
