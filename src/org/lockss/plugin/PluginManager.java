@@ -1279,13 +1279,12 @@ public class PluginManager
 	log.error("Unable to load keystore!  Loadable plugins will " +
 		  "not be available.");
       } else {
-
 	keystore = KeyStore.getInstance("JKS", "SUN");
-	if (keystoreLoc == DEFAULT_KEYSTORE_LOCATION) {
-	  keystore.load(getClass().getResourceAsStream(keystoreLoc),
+	if (keystoreLoc.startsWith(File.separator)) {
+	  keystore.load(new FileInputStream(new File(keystoreLoc)),
 			keystorePass.toCharArray());
 	} else {
-	  keystore.load(new FileInputStream(new File(keystoreLoc)),
+	  keystore.load(getClass().getClassLoader().getResourceAsStream(keystoreLoc),
 			keystorePass.toCharArray());
 	}
       }
