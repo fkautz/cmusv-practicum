@@ -262,4 +262,13 @@ public class DamagedNodeSet {
   public void setRepairNodeBean(ExtMapBean mapBean) {
     cusToRepair = mapBean.getMap();
   }
+
+  public String toString() { 
+    StringBuffer sb = new StringBuffer();
+    sb.append("[DamagedNodeSet: ");
+    sb.append("nodesWithDamage="+cusToRepair);
+    sb.append("]");
+    return sb.toString();
+  }
+
 }
