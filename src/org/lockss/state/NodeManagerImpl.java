@@ -69,7 +69,7 @@ public class NodeManagerImpl implements NodeManager {
   private AuState auState;
   Map nodeMap;
   int maxMapSize;
-  private Logger logger = Logger.getLogger("NodeManager");
+  private static Logger logger = Logger.getLogger("NodeManager");
   TreeWalkThread treeWalkThread;
 
   Configuration.Callback configCallback;
@@ -555,7 +555,9 @@ public class NodeManagerImpl implements NodeManager {
 
   private void markNodeForRepair(CachedUrlSet cus, Poll.VoteTally tally)
       throws IOException {
+    logger.debug2("suspending poll " + tally.getPollKey());
     theDaemon.getPollManager().suspendPoll(tally.getPollKey());
+    logger.debug2("scheduling repair");
     theDaemon.getCrawlManager().scheduleRepair(managedAu,
         new URL(cus.getUrl()), new ContentRepairCallback(),
                                  tally.getPollKey());
@@ -704,6 +706,7 @@ public class NodeManagerImpl implements NodeManager {
      * attempt this is
      */
     public void signalCrawlAttemptCompleted(boolean success, Object cookie) {
+      logger.debug("Content crawl completed repair on " + cookie);
       theDaemon.getPollManager().resumePoll(success, cookie);
     }
   }

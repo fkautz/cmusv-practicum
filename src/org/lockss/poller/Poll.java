@@ -273,8 +273,6 @@ public abstract class Poll implements Serializable {
   void startPoll() {
     if(m_pollstate != PS_INITING)
       return;
-    NodeManager nm = m_pollmanager.getDaemon().getNodeManager(m_arcUnit);
-    nm.startPoll(m_urlSet, m_tally);
     Deadline pt = Deadline.in(m_msg.getDuration());
     MessageDigest hasher = getInitedHasher(m_challenge, m_verifier);
     m_pollstate = PS_WAIT_HASH;
