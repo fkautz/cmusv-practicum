@@ -171,6 +171,12 @@ public class PollManager  extends BaseLockssManager {
   }
 
 
+  /** Cancel all polls on the specified AU.
+   * @param au the AU
+   */
+  public void cancelAuPolls(ArchivalUnit au) {
+  }
+
   /**
    * make an election by sending a request packet.  This is only
    * called from the tree walk. The poll remains pending in the
