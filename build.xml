@@ -960,6 +960,28 @@ java -classpath &quot;${tmp.ptool.clspth.unix}&quot; org.lockss.devtools.plugind
   </target>
 
   <!-- ==================================================================== -->
+  <target name="jcftp" depends="jcover,jcftp1"
+   description="Run JCoverage and invoke script to copy results somewhere.">
+  </target>
+
+  <target name="jcftp1" >
+
+    <property name="doctar" value="/tmp/lockss-jcoverage.tgz" />
+    <property name="script" value="lockss-jdftp" />
+
+    <tar destfile="${doctar}" compression="gzip">
+      <tarfileset dir="${test.results}" prefix="jcoverage" excludes="TEST-*" />
+    </tar>
+
+    <echo message="Invoking '${script} ${doctar}'"/>
+    <exec executable="${script}" dir="${basedir}"
+          failonerror="true" >
+      <arg line="${doctar}"/>
+    </exec>
+    <delete file="${doctar}" quiet="true"/>
+  </target>
+
+  <!-- ==================================================================== -->
   <target name="index" depends="jar-tools"
    description="Print an index for a .java file">
     <tempfile property="index.file" destdir="${java.io.tmpdir}"
