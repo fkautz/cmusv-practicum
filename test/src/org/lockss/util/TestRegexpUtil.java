@@ -78,4 +78,16 @@ public class TestRegexpUtil extends LockssTestCase {
 
   }
 
+  public void testIsMatchRe() throws Exception {
+    assertTrue(RegexpUtil.isMatchRe("foobar", "ob"));
+    assertTrue(RegexpUtil.isMatchRe("foobar", "bar$"));
+    assertTrue(RegexpUtil.isMatchRe("foobar", "^foobar$"));
+    // repeat to ensure that compiled-pattern caching doesn't break anything
+    // (should also test that cache works)
+    assertTrue(RegexpUtil.isMatchRe("foobar", "^foobar$"));
+    assertFalse(RegexpUtil.isMatchRe("foobar", "^obar"));
+    // repeat
+    assertFalse(RegexpUtil.isMatchRe("foobar", "^obar"));
+  }
+
 }
