@@ -34,6 +34,7 @@ package org.lockss.daemon.status;
 
 public class XmlStatusConstants {
   public static final String COLUMNDESCRIPTOR = "columndescriptor";
+  public static final String COLUMN_NAME = "columnname";
   public static final String NAME = "name";
   public static final String KEY = "key";
   public static final String TABLE = "table";
