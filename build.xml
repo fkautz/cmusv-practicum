@@ -1250,12 +1250,13 @@ Test results in ${tools.test.results}
       </fileset>
     </instrument>
     <property name="jcoverage.ser" value="jcoverage.ser" />
+    <property name="tests" value="${include}Test*" />
     <junit1 fork="no" printsummary="yes"
          haltonfailure="${halt}" failureproperty="failed"
          filtertrace="${filtertrace}" showoutput="${showoutput}">
       <batchtest fork="${fork}" todir="${test.results}">
         <fileset dir="${test.src}">
-          <include name="${include}Test*"/>
+          <include name="${tests}"/>
         </fileset>
       </batchtest>
       <formatter type="plain" usefile="true" />
