@@ -84,7 +84,7 @@ public class HashService {
       new HashQueue.Request(urlset, hasher, deadline,
 			    callback, cookie,
 			    urlset.getContentHasher(hasher),
-			    urlset.hashDuration()); 
+			    urlset.estimatedHashDuration()); 
     return scheduleReq(req);
   }
 

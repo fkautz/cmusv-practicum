@@ -31,23 +31,23 @@ in this Software without prior written authorization from Stanford University.
 */
 
 package org.lockss.daemon;
+import java.util.List;
 
 /**
- * Class returned by <code>Enumeration</code> of the list of entries
- * in a <code>CachedUrlSet</code>.
- *
- * @author  David S. H. Rosenthal
- * @version 0.0
+ * Specifies a set of URLs.  Used by <code>CachedUrlSet</code> to determine
+ * which URLs are included, and to enumerate starting points.
  */
 public interface CachedUrlSetSpec {
-    /**
-     * @return       the prefix url shared by all matches to this
-     *               <code>CachedUrlSetSpec</code>.
-     */
-    public String urlPrefix();
-    /**
-     * @return       teh regular expression that matches to this
-     *               <code>CachedUrlSetSpec</code> must satisfy.
-     */
-    public String regExp();
+  /**
+   * Determine whether a url is part of this <code>CachedUrlSetSpec</code>.
+   * @param url The url.
+   * @return true iff the url matches the spec
+   */
+  public boolean matches(String url);
+
+  /**
+   * Get the URLPrefix list.
+   * @return the list of URL prefixes, as Strings
+   */
+  public List getPrefixList();
 }

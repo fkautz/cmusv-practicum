@@ -90,7 +90,7 @@ class HashQueue implements Serializable {
       log.debug(msg + ((req.e != null) ? (req.e + ": ") : "") + req);
     }
     iter.remove();
-    req.urlset.duration(req.timeUsed, req.e);
+    req.urlset.storeActualHashDuration(req.timeUsed, req.e);
     done.add(req);
   }
 

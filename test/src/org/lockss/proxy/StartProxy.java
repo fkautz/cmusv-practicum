@@ -38,7 +38,7 @@ import org.lockss.plugin.*;
 
 public class StartProxy {
   public static void main(String args[]) {
-    CachedUrlSet cus = PTestPlugin.makeTest();
+    PTestPlugin.makeTest();
     System.out.println("Plugin.findArchivalUnit(http://foo.bar/one) = " +
 		       Plugin.findArchivalUnit("http://foo.bar/one"));
     ProxyHandler.startProxy();

@@ -50,12 +50,12 @@ public class HashServiceTestPlugin {
     private long duration = 0;
     private int bytes = 0;
 
-    /** Set the duration that will be returned by hashDuration() */
+    /** Set the duration that will be returned by estimatedHashDuration() */
     public void setHashEstimate(long duration) {
       this.duration = duration;
     }
 
-    public long hashDuration() {
+    public long estimatedHashDuration() {
       return duration;
     }
 

@@ -31,9 +31,7 @@ in this Software without prior written authorization from Stanford University.
 */
 
 package org.lockss.daemon;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 /**
@@ -57,7 +55,7 @@ public interface CachedUrl {
      * Return the url being represented
      * @return the <code>String</code> url being represented.
      */
-    public String toString();
+    public String getUrl();
     /**
      * Return <code>true</code> if the object describes a url that
      * exists in the cache.
