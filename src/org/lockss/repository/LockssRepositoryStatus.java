@@ -134,18 +134,20 @@ public class LockssRepositoryStatus extends BaseLockssManager {
     private void addRows(Collection rows, String root) {
       File dir = new File(root);
       File[] subs = dir.listFiles();
-      for (int ix = 0; ix < subs.length; ix++) {
-	File sub = subs[ix];
-	String auid = null;
-	if (sub.isDirectory()) {
-	  File auidfile = new File(sub, LockssRepositoryImpl.AU_ID_FILE);
-	  if (auidfile.exists()) {
-	    Properties props = propsFromFile(auidfile);
-	    if (props != null) {
-	      auid = props.getProperty(LockssRepositoryImpl.AU_ID_PROP);
+      if (subs != null) {
+	for (int ix = 0; ix < subs.length; ix++) {
+	  File sub = subs[ix];
+	  String auid = null;
+	  if (sub.isDirectory()) {
+	    File auidfile = new File(sub, LockssRepositoryImpl.AU_ID_FILE);
+	    if (auidfile.exists()) {
+	      Properties props = propsFromFile(auidfile);
+	      if (props != null) {
+		auid = props.getProperty(LockssRepositoryImpl.AU_ID_PROP);
+	      }
 	    }
+	    rows.add(makeRow(sub, auid));
 	  }
-	  rows.add(makeRow(sub, auid));
 	}
       }
     }
