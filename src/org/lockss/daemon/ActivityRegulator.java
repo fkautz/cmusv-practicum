@@ -511,7 +511,7 @@ public class ActivityRegulator extends BaseLockssManager {
     public int activity;
     Deadline expiration;
 
-    private Lock(int activity, long expireIn) {
+    public Lock(int activity, long expireIn) {
       this.activity = activity;
       expiration = Deadline.in(expireIn);
     }
