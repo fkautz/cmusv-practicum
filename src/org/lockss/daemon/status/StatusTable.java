@@ -35,7 +35,7 @@ package org.lockss.daemon.status;
 import java.util.*;
 
 /**
- * Returned by {@link StatusService#getTable(String, Object)} 
+ * Returned by {@link StatusService#getTable(String, String)} 
  */
 public class StatusTable {
   public static final int TYPE_INT=0;
