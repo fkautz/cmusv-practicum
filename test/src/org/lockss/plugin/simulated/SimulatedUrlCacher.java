@@ -38,6 +38,7 @@ import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.plugin.*;
 import org.lockss.plugin.base.*;
+import org.lockss.test.StringInputStream;
 
 /**
  * This is the UrlCacher object for the SimulatedPlugin
@@ -70,7 +71,17 @@ public class SimulatedUrlCacher extends GenericFileUrlCacher {
       contentName = buffer.toString();
     }
     contentFile = new File(contentName);
-    return new BufferedInputStream(new FileInputStream(contentFile));
+    if (contentFile.isDirectory()) {
+      File dirContentFile = new File(
+          SimulatedContentGenerator.getDirectoryContentFile(contentName));
+      if (dirContentFile.exists()) {
+        return new BufferedInputStream(new FileInputStream(dirContentFile));
+      } else {
+        return null;
+      }
+    } else {
+      return new BufferedInputStream(new FileInputStream(contentFile));
+    }
   }
 
 
@@ -88,6 +99,8 @@ public class SimulatedUrlCacher extends GenericFileUrlCacher {
       props.setProperty("content-type", "application/pdf");
     } else if (fileName.endsWith(".jpg")) {
       props.setProperty("content-type", "image/jpeg");
+    } else {
+      props.setProperty("content-type", "text/plain");
     }
     props.setProperty("content-url", url);
     return props;

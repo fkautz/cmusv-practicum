@@ -223,7 +223,6 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
       if (!url.endsWith(File.separator)) {
         buffer.append(File.separator);
       }
-      buffer.append("index.html");
       return buffer.toString();
     } else {
       return url;

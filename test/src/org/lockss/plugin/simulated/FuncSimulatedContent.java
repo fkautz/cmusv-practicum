@@ -113,6 +113,7 @@ public class FuncSimulatedContent extends LockssTestCase {
     scgen.setNumFilesPerBranch(2);
     scgen.setFileTypes(scgen.FILE_TYPE_HTML+scgen.FILE_TYPE_TXT);
     scgen.setAbnormalFile("1,1", 1);
+    scgen.setOddBranchesHaveContent(true);
 
     sau.generateContentTree();
     assertTrue(scgen.isContentTree());
@@ -120,7 +121,7 @@ public class FuncSimulatedContent extends LockssTestCase {
 
   private void crawlContent() {
     CrawlSpec spec = new CrawlSpec(sau.SIMULATED_URL_START, null);
-    Crawler crawler = 
+    Crawler crawler =
       new GoslingCrawlerImpl(sau, spec.getStartingUrls(), true);
     crawler.doCrawl(Deadline.NEVER);
   }
