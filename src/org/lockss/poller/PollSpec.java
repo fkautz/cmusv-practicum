@@ -262,8 +262,7 @@ public class PollSpec {
 
   boolean canSchedulePoll(long pollTime, long neededTime, PollManager pm) {
     Deadline when = Deadline.in(pollTime);
-    long timeAvail = pm.getAvailableHashTimeBefore(when);
-    return timeAvail >= neededTime;
+    return pm.canHashBeScheduledBefore(neededTime, when);
   }
 
   long getAdjustedEstimate(long estTime, PollManager pm) {

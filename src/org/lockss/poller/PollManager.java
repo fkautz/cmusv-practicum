@@ -822,8 +822,8 @@ public class PollManager  extends BaseLockssManager {
     return theSystemMetrics.getBytesPerMsHashEstimate();
   }
 
-  static long getAvailableHashTimeBefore(Deadline when) {
-    return theHashService.getAvailableHashTimeBefore(when);
+  static boolean canHashBeScheduledBefore(long duration, Deadline when) {
+    return theHashService.canHashBeScheduledBefore(duration, when);
   }
 
 // ----------------  Callbacks -----------------------------------
