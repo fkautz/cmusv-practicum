@@ -92,4 +92,11 @@ public class FifoQueue implements Queue {
   public synchronized Object peek() {
     return (queue.isEmpty() ? null : queue.firstElement());
   }
+
+  /** 
+   * Return true iff the queue is empty
+   */
+  public boolean isEmpty() {
+    return queue.isEmpty();
+  }
 }

@@ -55,4 +55,9 @@ public interface Queue {
    * @return The element at the head of the queue, or null if queue is empty
    */
   public Object peek();
+
+  /** 
+   * Return true iff the queue is empty
+   */
+  public boolean isEmpty();
 }
