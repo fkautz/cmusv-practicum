@@ -36,7 +36,6 @@ import java.util.*;
 import java.security.MessageDigest;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
-import org.lockss.test.MockCachedUrlSetSpec;
 
 /**
  * This is a mock version of <code>ArchivalUnit</code> used for testing
@@ -47,7 +46,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   private String pluginId = "mock";
   private String auId = "none";
   private CachedUrlSet cus = null;
-
+  private MockObjectCallback pauseCallback = null;
 
   public MockArchivalUnit(){
   }
@@ -117,7 +116,13 @@ public class MockArchivalUnit implements ArchivalUnit {
   }
 
   public void pause() {
+    if (pauseCallback != null) {
+      pauseCallback.callback();
+    }
   }
 
+  public void setPauseCallback(MockObjectCallback callback) {
+    this.pauseCallback = callback;
+  }
 }
 
