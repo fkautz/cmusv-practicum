@@ -133,8 +133,7 @@ public class DaemonStatus extends LockssServlet {
     java.util.List colList = statTable.getColumnDescriptors();
     java.util.List rowList = statTable.getSortedRows();
     String title = statTable.getTitle();
-//     String titleFoot = statTable.getTitleFootnote();
-    String titleFoot = null;
+    String titleFoot = statTable.getTitleFootnote();
 
     Table table = null;
 
