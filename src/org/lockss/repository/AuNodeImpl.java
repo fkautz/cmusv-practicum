@@ -133,7 +133,7 @@ public class AuNodeImpl extends RepositoryNodeImpl {
   /**
    * Overriden to throw an UnsupportedOperationException.
    */
-  public synchronized void deactivate() {
+  public synchronized void deactivateContent() {
     throw new UnsupportedOperationException("Can't deactivate a top-level AuCUS.");
   }
 }

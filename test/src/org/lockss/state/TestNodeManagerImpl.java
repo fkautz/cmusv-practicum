@@ -516,7 +516,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     RepositoryNode delNode = TestRepositoryNodeImpl.createLeaf(
         theDaemon.getLockssRepository(mau), TEST_URL + deleteUrl,
         "test stream", null);
-    assertFalse(delNode.isInactive());
+    assertFalse(delNode.isDeleted());
     assertNull(theDaemon.getLockssRepository(mau).getNode(TEST_URL +
         createUrl));
 
@@ -531,7 +531,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     assertNotNull(theDaemon.getLockssRepository(mau).getNode(TEST_URL +
         createUrl));
     // node deleted
-    assertTrue(delNode.isInactive());
+    assertTrue(delNode.isDeleted());
   }
 
   public void testHandleAuPolls() throws Exception {
@@ -706,7 +706,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
         theDaemon.getLockssRepository(mau), deleteUrl, "test stream", null);
     nodeState.setState(NodeState.WRONG_NAMES);
     stateCheckTest(nodeState, Poll.NAME_POLL, false, false, true,  false);
-    assertTrue(delNode.isInactive());
+    assertTrue(delNode.isDeleted());
 
     // history only, so recall name poll
     nodeState.setState(NodeState.WRONG_NAMES);

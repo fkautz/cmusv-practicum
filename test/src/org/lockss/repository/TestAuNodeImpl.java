@@ -101,7 +101,7 @@ public class TestAuNodeImpl extends LockssTestCase {
       fail("Cannot make version for AuNode.");
     } catch (UnsupportedOperationException uoe) { }
     try {
-      auNode.deactivate();
+      auNode.deactivateContent();
       fail("Cannot deactivate AuNode.");
     } catch (UnsupportedOperationException uoe) { }
   }

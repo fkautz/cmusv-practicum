@@ -154,8 +154,19 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
 
     RepositoryNode node = repo.getNode("http://www.example.com/test1");
     assertTrue(node.hasContent());
-    assertFalse(node.isInactive());
+    assertFalse(node.isDeleted());
     repo.deleteNode("http://www.example.com/test1");
+    assertFalse(node.hasContent());
+    assertTrue(node.isDeleted());
+  }
+
+  public void testDeactivateNode() throws Exception {
+    createLeaf("http://www.example.com/test1", "test stream", null);
+
+    RepositoryNode node = repo.getNode("http://www.example.com/test1");
+    assertTrue(node.hasContent());
+    assertFalse(node.isInactive());
+    repo.deactivateNode("http://www.example.com/test1");
     assertFalse(node.hasContent());
     assertTrue(node.isInactive());
   }

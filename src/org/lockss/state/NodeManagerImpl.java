@@ -584,12 +584,10 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
       try {
         CachedUrlSet extraCus = au.makeCachedUrlSet(
             new RangeCachedUrlSetSpec(childUrl));
-        if (entry.hasContent) {
-          logger.debug2("deleting node: " + url);
-          deleteNode(extraCus);
-        }
+        logger.debug2("deleting node: " + url);
+        deleteNode(extraCus);
         //set crawl status to DELETED
-        logger.debug("marking node: " + url + " deleted.");
+        logger.debug3("marking node: " + url + " deleted.");
         NodeState extraState = getNodeState(extraCus);
         extraState.getCrawlState().type = CrawlState.NODE_DELETED;
       } catch (Exception e) {

@@ -61,6 +61,13 @@ public interface LockssRepository extends LockssManager {
   public RepositoryNode createNewNode(String url) throws MalformedURLException;
 
   /**
+   * Deactivate the node.
+   * @param url the url to be deactivated
+   * @throws MalformedURLException
+   */
+  public void deactivateNode(String url) throws MalformedURLException;
+
+  /**
    * Delete the node.
    * @param url the url to be deleted
    * @throws MalformedURLException

@@ -83,7 +83,14 @@ public class MockLockssRepository implements LockssRepository {
   public void deleteNode(String url) throws MalformedURLException {
     RepositoryNode node = getNode(url, false);
     if (node!=null) {
-      node.deactivate();
+      node.markAsDeleted();
+    }
+  }
+
+  public void deactivateNode(String url) throws MalformedURLException {
+    RepositoryNode node = getNode(url, false);
+    if (node!=null) {
+      node.deactivateContent();
     }
   }
 
