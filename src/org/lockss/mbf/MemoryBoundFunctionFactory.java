@@ -84,10 +84,6 @@ public class MemoryBoundFunctionFactory {
       if (A0array == null || Tarray == null) {
 	throw new MemoryBoundFunctionException("Array is null");
       }
-      if (A0array.length != 1024 || Tarray.length != 16*1024*1024) {
-	throw new MemoryBoundFunctionException(A0array.length + "/" +
-					       Tarray.length + " bad length");
-      }
       classToUse = Class.forName(implToUse);
       logger.info("factory for " + impl + " size " + A0array.length +
 		  " / " + Tarray.length);

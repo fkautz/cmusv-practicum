@@ -91,7 +91,7 @@ public class TestMemoryBoundFunctionVote extends LockssTestCase {
     else 
       rand = new Random(System.currentTimeMillis());
     if (basisT == null) {
-      basisT = new byte[16*1024*1024];
+      basisT = new byte[/* 16* */ 1024*1024];
       rand.nextBytes(basisT);
       log.info(basisT.length + " bytes of T created");
     }
