@@ -177,7 +177,7 @@ public class RangeCachedUrlSetSpec implements CachedUrlSetSpec {
 
      if(upperBound != null) {
       String us = prefix + upperBound;
-      if(us.compareTo(url) < 0) {
+      if(us.compareTo(url) < 0) { //url is lexographically greater
         return false;
       }
     }
