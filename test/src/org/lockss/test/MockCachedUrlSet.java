@@ -114,7 +114,10 @@ public class MockCachedUrlSet implements CachedUrlSet {
       return this.hasContent;
     }
     CachedUrl cu = (CachedUrl)cuHash.get(getUrl());
-    return cu.hasContent();
+    if (cu != null)
+      return cu.hasContent();
+    else
+      return false;
   }
 
   public void setHasContent(boolean hasContent) {

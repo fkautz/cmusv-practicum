@@ -408,6 +408,10 @@ public class TestMemoryBoundFunction extends LockssTestCase {
     return (ret);
   }
 
+  static int[] goodProof = {
+    1, 2,
+  };
+
   /**
    * Functional test of generate/verify pair
    */
@@ -415,6 +419,7 @@ public class TestMemoryBoundFunction extends LockssTestCase {
     // Make sure its configured
     assertTrue(f != null);
     assertTrue(MemoryBoundFunction.basisSize() > 0);
+    MockMemoryBoundFunction.setProof(goodProof);
     long startTime = System.currentTimeMillis();
     byte[] nonce = new byte[64];
     rand.nextBytes(nonce);
