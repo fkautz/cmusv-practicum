@@ -84,7 +84,7 @@ public class FuncSimulatedContent extends LockssTestCase {
 
     theDaemon = getMockLockssDaemon();
     theDaemon.getAlertManager();
-    theDaemon.getPluginManager();
+    theDaemon.getPluginManager().setLoadablePluginsReady(true);
     theDaemon.getHashService();
     MockSystemMetrics metrics = new MyMockSystemMetrics();
     metrics.initService(theDaemon);

@@ -87,6 +87,7 @@ public class TestPluginManager extends LockssTestCase {
     mgr = new MockPluginManager();
     theDaemon.setPluginManager(mgr);
     theDaemon.setDaemonInited(true);
+    mgr.setLoadablePluginsReady(true);
     mgr.initService(theDaemon);
   }
 

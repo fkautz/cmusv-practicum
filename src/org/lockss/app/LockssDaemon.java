@@ -625,6 +625,9 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
     // startup all services
     initManagers();
 
+    // Install loadable plugin support
+    getPluginManager().startLoadablePlugins();
+
     log.info("Started");
   }
 
