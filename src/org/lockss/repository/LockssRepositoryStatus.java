@@ -87,9 +87,8 @@ public class LockssRepositoryStatus extends BaseLockssManager {
        new ColumnDescriptor("au", "AU", ColumnDescriptor.TYPE_STRING),
        new ColumnDescriptor("status", "Status", ColumnDescriptor.TYPE_STRING),
        new ColumnDescriptor("plugin", "Plugin", ColumnDescriptor.TYPE_STRING),
-       new ColumnDescriptor("params", "Params", ColumnDescriptor.TYPE_STRING) {
-	 { sortable=false; }
-       }
+       new ColumnDescriptor("params", "Params", ColumnDescriptor.TYPE_STRING)
+       .setSortable(false)
 //        new ColumnDescriptor("auid", "AU Key", ColumnDescriptor.TYPE_STRING)
        );
 
