@@ -76,7 +76,7 @@ public class CollectionUtil {
     return isIsomorphic(new ArrayIterator(a), b.iterator());
   }
 
-  /** Return true iff the two collections are isomorphic */
+  /** Return true iff the two arrays are isomorphic */
   public static boolean isIsomorphic(Object a[], Object b[]) {
     return isIsomorphic(new ArrayIterator(a), new ArrayIterator(b));
   }
