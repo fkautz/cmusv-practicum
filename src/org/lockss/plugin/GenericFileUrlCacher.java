@@ -53,7 +53,7 @@ public abstract class GenericFileUrlCacher extends BaseUrlCacher {
 
   public GenericFileUrlCacher(CachedUrlSet owner, String url) {
     super(owner, url);
-    repository = 
+    repository =
       LockssRepositoryImpl.repositoryFactory(owner.getArchivalUnit());
   }
 
@@ -77,7 +77,7 @@ public abstract class GenericFileUrlCacher extends BaseUrlCacher {
     leaf.sealNewVersion();
   }
 
-  protected abstract InputStream getUncachedInputStream();
-  protected abstract Properties getUncachedProperties();
+  protected abstract InputStream getUncachedInputStream() throws IOException;
+  protected abstract Properties getUncachedProperties() throws IOException;
 }
 
