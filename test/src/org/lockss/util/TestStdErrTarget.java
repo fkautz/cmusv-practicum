@@ -60,8 +60,10 @@ public class TestStdErrTarget extends TestCase{
 			   Logger.LEVEL_ERROR,
 			   errorMessage);
     
+//      RE regExp = 
+//        new RE("\\d(\\d)?:\\d\\d:\\d\\d (A|P)M: Error: "+errorMessage+"\n");
     RE regExp = 
-      new RE("\\d(\\d)?:\\d\\d:\\d\\d (A|P)M: Error: "+errorMessage+"\n");
+      new RE("\\d(\\d)?:\\d\\d:\\d\\d\\.\\d\\d\\d: Error: "+errorMessage+"\n");
     String debugString = baos.toString();
     assertTrue("Debug string: \""+debugString+"\" not of correct format."+
 	       " Should be <time>: <error-level>: <error message>",
