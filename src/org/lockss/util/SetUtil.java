@@ -178,6 +178,15 @@ public class SetUtil {
     return l;
   }
 
+  /** Create a set containing the elements of an array */
+  public static Set fromList(List list) {
+    Set l = set();
+    for (int i = 0; i < list.size(); i++) {
+      l.add(list.get(i));
+    }
+    return l;
+  }
+
   /** Create a set containing the elements of a comma separated string */
   public static Set fromCSV(String csv) {
     Set res = set();
