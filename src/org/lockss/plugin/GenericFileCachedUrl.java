@@ -39,6 +39,7 @@ import org.lockss.daemon.*;
 import org.lockss.repository.*;
 import org.lockss.util.Logger;
 import org.lockss.plugin.base.*;
+import org.lockss.app.*;
 
 /**
  * This is a generic file implementation of CachedUrl which uses the
@@ -73,9 +74,9 @@ public class GenericFileCachedUrl extends BaseCachedUrl {
 
   private void ensureLeafLoaded() {
     if (repository==null) {
-      //XXX fix to use demon
-      repository = (new LockssRepositoryImpl()).repositoryFactory(
-          cus.getArchivalUnit());
+      LockssRepository rep = (LockssRepository)LockssDaemon.getManager(
+          LockssDaemon.LOCKSS_REPOSITORY);
+      repository = rep.repositoryFactory(cus.getArchivalUnit());
     }
     if (leaf==null) {
       try {

@@ -61,7 +61,7 @@ import org.lockss.poller.Vote;
  * @version 1.0
  */
 
-public class IdentityManager {
+public class IdentityManager implements LockssManager {
 
   static final String PARAM_LOCAL_IP = Configuration.PREFIX + "localIPAddress";
   static final String PARAM_MAX_DELTA = Configuration.PREFIX + "id.maxReputationDelta";

@@ -52,6 +52,7 @@ import org.lockss.repository.TestRepositoryNodeImpl;
 public class TestGenericFileCachedUrlSet extends LockssTestCase {
   private LockssRepository repo;
   private MockGenericFileArchivalUnit mau;
+  private MockLockssDaemon theDaemon = new MockLockssDaemon(null);
 
   public TestGenericFileCachedUrlSet(String msg) {
     super(msg);
@@ -60,8 +61,9 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
     super.setUp();
     String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     TestLockssRepositoryImpl.configCacheLocation(tempDirPath);
+    LockssRepository rep = theDaemon.getLockssRepository(new MockArchivalUnit());
     mau = new MockGenericFileArchivalUnit(null);
-    repo = (new LockssRepositoryImpl()).repositoryFactory(mau);
+    repo = rep.repositoryFactory(mau);
   }
 
   public void testFlatSetIterator() throws Exception {

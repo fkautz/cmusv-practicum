@@ -47,12 +47,15 @@ import org.lockss.plugin.*;
 
 
 public class TestSimulatedUrlCacher extends LockssTestCase {
+  private MockLockssDaemon theDaemon = new MockLockssDaemon(null);
+
   public TestSimulatedUrlCacher(String msg) {
     super(msg);
   }
 
   public void setUp() throws Exception {
     TestLockssRepositoryImpl.configCacheLocation("null");
+    theDaemon.getLockssRepository(new MockArchivalUnit());
   }
 
   public void testHtmlProperties() throws Exception {

@@ -91,6 +91,7 @@ public class RunDaemon extends LockssDaemon {
 				    false);
 
     sau = new SimulatedArchivalUnit(dirPath);
+
     getPluginManager().registerArchivalUnit(sau);
 
     int poll_type = Configuration.getIntParam(PARAM_POLL_TYPE,
@@ -98,10 +99,11 @@ public class RunDaemon extends LockssDaemon {
 
     createContent();
     crawlContent();
+    getNodeManager(sau);
     if (shouldCallPoll) {
       try {
 	Thread.currentThread().sleep(1000);
-        String url = "http://www.example.com/";
+        String url = "http://www.example.com";
         ArchivalUnit au = getPluginManager().findArchivalUnit(url);
         CachedUrlSet cus = au.makeCachedUrlSet(url, null, null);
 	pollManager.requestPoll(cus, null, null, poll_type);

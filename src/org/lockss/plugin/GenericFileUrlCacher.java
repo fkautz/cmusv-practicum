@@ -38,6 +38,7 @@ import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.repository.*;
 import org.lockss.plugin.base.*;
+import org.lockss.app.*;
 
 /**
  * This is an abstract file implementation of UrlCacher which uses the
@@ -54,9 +55,9 @@ public abstract class GenericFileUrlCacher extends BaseUrlCacher {
 
   public GenericFileUrlCacher(CachedUrlSet owner, String url) {
     super(owner, url);
-    //XXX fix to use demon
-    repository = (new LockssRepositoryImpl()).repositoryFactory(
-        owner.getArchivalUnit());
+    LockssRepository rep = (LockssRepository)LockssDaemon.getManager(
+        LockssDaemon.LOCKSS_REPOSITORY);
+    repository = rep.repositoryFactory(owner.getArchivalUnit());
   }
 
   protected void storeContent(InputStream input, Properties headers)
