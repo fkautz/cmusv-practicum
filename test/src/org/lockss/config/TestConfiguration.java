@@ -444,6 +444,15 @@ public class TestConfiguration extends LockssTestCase {
     assertEquals("b", c3.get("foo.bar.p2"));
   }
 
+  public void testGroup() throws Exception {
+    Properties props = new Properties();
+    ConfigurationUtil.setCurrentConfigFromProps(props);
+    assertEquals("nogroup", Configuration.getPlatformGroup());
+    props.put(Configuration.PARAM_DAEMON_GROUP, "foog");
+    ConfigurationUtil.setCurrentConfigFromProps(props);
+    assertEquals("foog", Configuration.getPlatformGroup());
+  }
+
   private ConfigFile loadFCF(String url) throws IOException {
     ConfigFile cf = new FileConfigFile(url);
     cf.reload();
