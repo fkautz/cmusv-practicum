@@ -288,7 +288,7 @@ public abstract class Configuration {
 
   private void initCacheConfig() {
     String space = Configuration.getParam(PARAM_DISK_SPACE_LIST);
-    Vector v = StringUtil.breakAt(space, ':');
+    Vector v = StringUtil.breakAt(space, ';');
     if (v.size() == 0) {
       log.error(PARAM_DISK_SPACE_LIST + " not specified, not configuring");
       return;
