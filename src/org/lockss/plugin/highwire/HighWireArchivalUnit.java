@@ -213,7 +213,7 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
   }
 
   public List getNewContentCrawlUrls() {
-    return ListUtil.list(getBaseUrl().toString());
+    return ListUtil.list(makeStartUrl(base, volume));
   }
 
 
