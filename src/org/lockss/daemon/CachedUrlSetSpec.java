@@ -65,12 +65,6 @@ public interface CachedUrlSetSpec {
   public boolean equals(Object obj);
 
   /**
-   * Returns a unique id string.
-   * @return the unique id
-   */
-  public String getIdString();
-
-  /**
    * Returns the primary url referenced by the spec.
    * @return the url
    */

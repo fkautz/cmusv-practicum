@@ -169,6 +169,50 @@ public class SetUtil {
     return l;
   }
 
+  /** Check that all elements of the set are of the specified type, and
+   * return an unmodifiable copy of the set.
+   * @param set the set.
+   * @param type the class with which all items of the set
+   * must be assignment-compatible.
+   * @throws NullPointerException if the set is null or if any element
+   * is null
+   * @throws ClassCastException if an item is not of the proper type
+   */
+  public static Set immutableSetOfType(Set set, Class type) {
+    return immutableSetOfType(set, type, false);
+  }
+
+  /** Check that all elements of the set are either of the specified type
+   * or null, and
+   * return an unmodifiable copy of the set.
+   * @param set the set.
+   * @param type the class with which all items of the set
+   * must be assignment-compatible.
+   * @throws NullPointerException if the set is null
+   * @throws ClassCastException if an item is not of the proper type
+   */
+  public static Set immutableSetOfTypeOrNull(Set set, Class type) {
+    return immutableSetOfType(set, type, true);
+  }
+
+  private static Set immutableSetOfType(Set set, Class type,
+                                          boolean nullOk) {
+    Set s = new HashSet(set.size());
+    for (Iterator iter = set.iterator(); iter.hasNext(); ) {
+      Object item = iter.next();
+      if (item == null) {
+        if (!nullOk) {
+          throw new NullPointerException("item of list is null");
+        }
+      } else if (!type.isInstance(item)) {
+        throw new ClassCastException("item <" + item +
+                                     "> of list is not an instance of "
+                                     + type);
+      }
+      s.add(item);
+    }
+    return Collections.unmodifiableSet(s);
+  }
   /** Create a set containing the elements of an array */
   public static Set fromArray(Object array[]) {
     Set l = set();

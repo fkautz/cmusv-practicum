@@ -150,12 +150,6 @@ public interface CachedUrlSet {
     public UrlCacher makeUrlCacher(String url);
 
     /**
-     * Returns a unique identifier within the ArchivalUnit
-     * @return the unique id
-     */
-    public String getIdString();
-
-    /**
      * Returns the primary url referenced by the CachedUrlSet.
      * @return the url
      */

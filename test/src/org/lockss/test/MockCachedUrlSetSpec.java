@@ -66,14 +66,19 @@ public class MockCachedUrlSetSpec implements CachedUrlSetSpec {
     this.prefixList = prefixList;
   }
 
-  public String getIdString() {
-    return root + ":" + regExp;
-  }
-
   public String getPrimaryUrl() {
     return root;
   }
 
+  public boolean equals(Object obj) {
+    if (obj instanceof MockCachedUrlSetSpec) {
+      MockCachedUrlSetSpec spec = (MockCachedUrlSetSpec)obj;
+      return ((root.equals(spec.root)) &&
+              (regExp.equals(spec.regExp)));
+    } else {
+      return false;
+    }
+  }
 
   public boolean matches(String url) {
     return url.startsWith(root);

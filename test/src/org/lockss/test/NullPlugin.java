@@ -189,10 +189,6 @@ public class NullPlugin {
       return false;
     }
 
-    public String getIdString() {
-      return "null";
-    }
-
     public int hashCode() {
       return 0;
     }
@@ -233,15 +229,9 @@ public class NullPlugin {
     public void pause() {
     }
 
-    public String getIdString() {
-      return "null";
-    }
-
     public int hashCode() {
       return 0;
     }
-
-
   }
 
 /**
@@ -254,6 +244,7 @@ public class NullPlugin {
     public boolean finished() {
       return false;
     }
+
     public int hashStep(int numBytes) {
       return 0;
     }

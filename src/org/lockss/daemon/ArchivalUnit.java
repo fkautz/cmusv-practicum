@@ -90,13 +90,6 @@ public interface ArchivalUnit {
   public String getAUId();
 
   /**
-   * Returns a unique string identifier for the ArchivalUnit instance
-   * across all Plugins.
-   * @return a unique id
-   */
-  public String getIdString();
-
-  /**
    * Sleeps for the interval needed between requests to the server
    */
   public void pause();
