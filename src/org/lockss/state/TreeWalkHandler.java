@@ -85,7 +85,6 @@ public class TreeWalkHandler {
 
   long treeWalkEstimate = -1;
 
-
   Configuration.Callback configCallback;
 
   TreeWalkHandler(NodeManagerImpl manager, LockssDaemon theDaemon) {
@@ -172,7 +171,6 @@ public class TreeWalkHandler {
     manager.getAuState().setLastTreeWalkTime();
     logger.debug("Tree walk finished.");
   }
-
 
   private void nodeTreeWalk() {
     CachedUrlSet cus = theAu.getAUCachedUrlSet();
