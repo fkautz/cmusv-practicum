@@ -45,7 +45,7 @@ import org.lockss.daemon.*;
 public interface UrlCacher {
     /**
      * Return the url being represented
-     * @return the <code>String</code> url being represented.
+     * @return the {@link String} url being represented.
      */
     public String getUrl();
     /**
