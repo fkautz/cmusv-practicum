@@ -68,8 +68,7 @@ public class WhiteSpaceFilter extends FilterInputStream {
     return (read(b, 0, b.length));
   }
 
-  // Read bytes into array.  Remove everything between < and >, and
-  // collapse all whitespace to a single space
+  // Read bytes into array.  Collapses all whitespace to a single space
   public int read(byte[] b, int off, int len) throws IOException {
     if (hitEOF)
       return -1;
