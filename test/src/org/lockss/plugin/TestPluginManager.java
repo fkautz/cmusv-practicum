@@ -174,14 +174,6 @@ public class TestPluginManager extends LockssTestCase {
     assertTrue(mgr.getPlugin(mgr.pluginKeyFromName(n1)) instanceof MockPlugin);
   }
 
-  public void testInitTitleDB() {
-    Properties p = new Properties();
-    p.put("org.lockss.title.1.foo", "foo1");
-    p.put("org.lockss.title.1.bar", "bar1");
-    p.put("org.lockss.title.2.bar", "bar2");
-    ConfigurationUtil.setCurrentConfigFromProps(p);
-  }
-
   public void testStop() throws Exception {
     doConfig();
     MockPlugin mpi = (MockPlugin)mgr.getPlugin(mockPlugKey);
