@@ -56,11 +56,8 @@ public class LockssTestCase extends TestCase {
   List doLaters;
 
   public LockssTestCase(String msg) {
-    super(msg);
-    Integer timeout = Integer.getInteger("org.lockss.test.timeout.shouldnt");
-    if (timeout != null) {
-      TIMEOUT_SHOULDNT = timeout.intValue();
-    }
+    this();
+    setName(msg);
   }
 
   public LockssTestCase() {
