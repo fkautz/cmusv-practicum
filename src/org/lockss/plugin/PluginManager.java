@@ -95,7 +95,7 @@ public class PluginManager extends BaseLockssManager {
     super.startService();
     configMgr = getDaemon().getConfigManager();
     statusSvc = getDaemon().getStatusService();
-    statusSvc.registerStatusAccessor("AUS", new Status());
+//     statusSvc.registerStatusAccessor("AUS", new Status());
     resetConfig();   // causes setConfig to think previous config was empty
   }
 
