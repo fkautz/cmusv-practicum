@@ -168,8 +168,10 @@ public class MockLockssUrlConnection extends BaseLockssUrlConnection {
   public void storeResponseHeaderInto(Properties props, String prefix) {
     for (Iterator iter = respHeaders.keySet().iterator(); iter.hasNext(); ) {
       String key = (String)iter.next();
-      props.setProperty(prefix + key,
-			respHeaders.getProperty(key.toLowerCase()));
+      if (prefix != null) {
+	key = prefix + key;
+      }
+      props.setProperty(key, respHeaders.getProperty(key.toLowerCase()));
     }
   }
 
