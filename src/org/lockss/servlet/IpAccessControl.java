@@ -137,7 +137,7 @@ public abstract class IpAccessControl extends LockssServlet {
 
   private Vector getListFromParam(String param) {
     Configuration config = Configuration.getCurrentConfig();
-    return StringUtil.breakAt(config.get(param), ';');
+    return new Vector(config.getList(param));
   }
 
   /**
