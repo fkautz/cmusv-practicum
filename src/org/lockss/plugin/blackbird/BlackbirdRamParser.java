@@ -32,7 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.plugin.blackbird;
 import java.io.*;
-import org.lockss.util.*;
+
 import org.lockss.crawler.*;
 import org.lockss.plugin.*;
 
@@ -40,7 +40,7 @@ public class BlackbirdRamParser implements ContentParser {
   RamParser parser = null;
   private static final String source = "rtsp://video.vcu.edu/blackbird/";
   private static final String dest = "http://www.blackbird.vcu.edu/lockss_media/";
-    
+
   public BlackbirdRamParser() {
     parser = RamParser.makeTranslatingRamParser(source, dest);
   }

@@ -327,6 +327,7 @@ public class NullPlugin {
   public static class ArchivalUnit
     implements org.lockss.plugin.ArchivalUnit {
 
+
     public void setConfiguration(Configuration config) {
     }
 
@@ -415,6 +416,9 @@ public class NullPlugin {
 
     public FilterRule getFilterRule(String mimeType) {
       throw new UnsupportedOperationException("Not implemented");
+    }
+    public TypedEntryMap getProperties() {
+      return null;
     }
 
   }

@@ -64,6 +64,7 @@ public class MockArchivalUnit implements ArchivalUnit {
 
   private FilterRule filterRule = null;
   private ContentParser parser = null;
+  private TypedEntryMap propertyMap = null;
 
   public MockArchivalUnit(){
   }
@@ -117,6 +118,14 @@ public class MockArchivalUnit implements ArchivalUnit {
 
   public Configuration getConfiguration() {
     return config;
+  }
+
+  public void setPropertyMap(TypedEntryMap map) {
+    propertyMap = map;
+  }
+
+  public TypedEntryMap getProperties() {
+    return propertyMap;
   }
 
   /**
