@@ -39,7 +39,7 @@ import org.lockss.daemon.*;
 import org.apache.commons.collections.LRUMap;
 
 /**
- * Partner list implements the LCAP V1 unicast partner list.
+ * PartnerList implements the LCAP V1 unicast partner list.
  * Partners (IP addresses) can be added and removed, checked for presence,
  * and record the last time a message was received.
  */
