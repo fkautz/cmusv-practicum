@@ -83,4 +83,12 @@ public class TestLockssTestCase extends LockssTestCase {
     assertEquals(m1, m2);
     assertEquals(m2, m1);
   }
+
+  public void testTempDir() throws Exception {
+    File tmp = getTempDir();
+    assertTrue(tmp.exists());
+    assertTrue(tmp.isDirectory());
+    // how to test that it gets deleted by tearDown()?
+    System.out.println("Make sure " + tmp.getPath() + " is gone.");
+  }
 }
