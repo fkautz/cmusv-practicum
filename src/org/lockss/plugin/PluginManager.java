@@ -613,6 +613,7 @@ public class PluginManager extends BaseLockssManager {
   private String builtinPluginNames[] = {
     "org.lockss.plugin.highwire.HighWirePlugin",
     "org.lockss.plugin.projmuse.ProjectMusePlugin",
+    "org.lockss.plugin.acs.AcsPlugin"
 //     "org.lockss.plugin.simulated.SimulatedPlugin",
   };
 
