@@ -460,7 +460,7 @@ public class IdentityManager extends BaseLockssManager {
       if (isLocalIdentity(ip)) {
 	StatusTable.DisplayedValue val =
 	  new StatusTable.DisplayedValue(ip);
-	val.setColor("green");
+	val.setBold(true);
 	obj = val;
       }
       row.put("ip", obj);
