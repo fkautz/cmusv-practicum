@@ -111,9 +111,9 @@ public class MockCachedUrl implements CachedUrl {
 
   //mock specific acessors
 
-//   public void setInputStream(InputStream is){
-//     cachedIS = is;
-//   }
+  public void setInputStream(InputStream is){
+    cachedIS = is;
+  }
 
   public void setContent(String content) {
     this.content = content;
