@@ -490,6 +490,7 @@ public class LcapComm extends BaseLockssManager {
 	      timeout.expireIn(sleep);
 	    }
 	  }
+	  if (log.isDebug3()) log.debug3("socketInQ.get(" + timeout + ")");
 	  Object qObj = socketInQ.get(timeout);
 	  if (qObj != null) {
 	    if (qObj instanceof LockssReceivedDatagram) {
