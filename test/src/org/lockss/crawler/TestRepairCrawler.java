@@ -123,6 +123,29 @@ public class TestRepairCrawler extends LockssTestCase {
     assertTrue("cachedUrls: "+cachedUrls, cachedUrls.contains(repairUrl));
   }
 
+  public void testRepairCrawlPokesWatchdog() {
+    MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
+    String repairUrl1 = "http://example.com/forcecache1.html";
+    String repairUrl2 = "http://example.com/forcecache2.html";
+    String repairUrl3 = "http://example.com/forcecache3.html";
+    cus.addUrl(repairUrl1);
+    cus.addUrl(repairUrl2);
+    cus.addUrl(repairUrl3);
+    crawlRule.addUrlToCrawl(repairUrl1);
+    crawlRule.addUrlToCrawl(repairUrl2);
+    crawlRule.addUrlToCrawl(repairUrl3);
+
+    MockLockssWatchdog wdog = new MockLockssWatchdog();
+
+    List repairUrls = ListUtil.list(repairUrl1, repairUrl2, repairUrl3);
+    spec = new CrawlSpec(startUrls, crawlRule, 1);
+    crawler = new RepairCrawler(mau, spec, aus, repairUrls);
+    crawler.setWatchdog(wdog);
+    crawler.doCrawl(Deadline.MAX);
+
+    wdog.assertPoked(3);
+  }
+
   public void testRepairCrawlDoesntFollowLinks() {
     MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
     String repairUrl1 = "http://www.example.com/forcecache.html";

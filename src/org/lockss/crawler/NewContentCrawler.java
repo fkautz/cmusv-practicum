@@ -239,6 +239,9 @@ public class NewContentCrawler extends CrawlerImpl {
     while (true) {
       try {
 	logger.debug("caching "+uc);
+	if (wdog != null) {
+	  wdog.pokeWDog();
+	}
  	if (shouldForceCache) {
  	  uc.forceCache(); //IOException if there is a caching problem
  	} else {

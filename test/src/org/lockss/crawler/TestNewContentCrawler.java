@@ -345,6 +345,28 @@ public class TestNewContentCrawler extends LockssTestCase {
     aus.assertUpdatedCrawlListCalled(3); //not called for startUrl
   }
 
+  public void testWatchdogPokedForEachFetch() {
+    String url1= "http://www.example.com/link1.html";
+    String url2= "http://www.example.com/link2.html";
+    String url3= "http://www.example.com/link3.html";
+
+    MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
+    cus.addUrl(startUrl);
+    parser.addUrlSetToReturn(startUrl, SetUtil.set(url1, url2, url3));
+    cus.addUrl(url1);
+    cus.addUrl(url2);
+    cus.addUrl(url3);
+    crawlRule.addUrlToCrawl(url1);
+    crawlRule.addUrlToCrawl(url2);
+    crawlRule.addUrlToCrawl(url3);
+
+    MockLockssWatchdog wdog = new MockLockssWatchdog();
+    crawler.setWatchdog(wdog);
+    crawler.doCrawl(Deadline.MAX);
+    //Set expected = SetUtil.set(startUrl, url1);
+    wdog.assertPoked(4);
+  }
+
   public void testWillNotCrawlExpiredDeadline() {
     MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
     cus.addUrl(startUrl, false, true);

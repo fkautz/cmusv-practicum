@@ -141,6 +141,9 @@ public class RepairCrawler extends CrawlerImpl {
 
     // don't cache if already cached, unless overwriting
     try {
+      if (wdog != null) {
+	wdog.pokeWDog();
+      }
       if (shouldFetchFromCache()) {
 	fetchFromCache(uc);
       } else {
