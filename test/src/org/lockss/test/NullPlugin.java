@@ -41,6 +41,7 @@ import org.lockss.crawler.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.state.*;
+import org.lockss.util.urlconn.*;
 
 /**
  * Base class for test plugins that don't want to implement all the
@@ -226,6 +227,11 @@ public class NullPlugin {
     public Properties getUncachedProperties() {
       return new Properties();
     }
+
+    public void setConnectionPool(LockssUrlConnectionPool connectionPool) {
+      throw new UnsupportedOperationException();
+    }
+
   }
 
   /**

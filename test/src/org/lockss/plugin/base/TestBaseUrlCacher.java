@@ -179,7 +179,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
   }
 
   public void testCheckConnection() {
-    MyMockHttpURLConnection  conn = new MyMockHttpURLConnection();
+    MyMockLockssUrlConnection  conn = new MyMockLockssUrlConnection();
     conn.setResponseCode(200);
     conn.setResponseMessage("OK");
     try {
@@ -256,11 +256,11 @@ public class TestBaseUrlCacher extends LockssTestCase {
     }
   }
 
-  private class MyMockHttpURLConnection extends MockHttpURLConnection {
+  private class MyMockLockssUrlConnection extends MockLockssUrlConnection {
     private int m_responseCode;
     private String m_responseMessage;
 
-    public MyMockHttpURLConnection() {
+    public MyMockLockssUrlConnection() {
 
     }
 

@@ -60,6 +60,15 @@ public class TestUrlUtil extends LockssTestCase {
 				  new URL("http:81//foo.bar/xyz#tag")));
   }
 
+  public void testIsHttpUrl() {
+    assertTrue(UrlUtil.isHttpUrl("http://foo"));
+    assertTrue(UrlUtil.isHttpUrl("https://foo"));
+    assertTrue(UrlUtil.isHttpUrl("HTTP://foo"));
+    assertTrue(UrlUtil.isHttpUrl("HTTPS://foo"));
+    assertFalse(UrlUtil.isHttpUrl("ftp://foo"));
+    assertFalse(UrlUtil.isHttpUrl("file://foo"));
+  }
+
   public void testGetUrlPrefixNullUrl(){
     try{
       UrlUtil.getUrlPrefix(null);

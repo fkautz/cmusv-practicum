@@ -34,6 +34,7 @@ package org.lockss.test;
 
 import java.io.*;
 import java.util.*;
+import org.lockss.util.urlconn.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 
@@ -91,6 +92,9 @@ public class MockUrlCacher implements UrlCacher {
 
   public void setCachedUrl(MockCachedUrl cu) {
     this.cu = cu;
+  }
+
+  public void setConnectionPool(LockssUrlConnectionPool connectionPool) {
   }
 
   public void setupCachedUrl(String contents) {
