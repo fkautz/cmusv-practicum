@@ -180,7 +180,7 @@ public class IpFilter {
 	      }
 	    }
 	    if ("/".equals(tok)) {
-	      if (n < 4 || seenStar || !en.hasMoreTokens()) {
+	      if (n < 1 || seenStar || !en.hasMoreTokens()) {
 		throw new MalformedException("Illegal CIDR notation", s);
 	      }
 	      tok = en.nextToken();
@@ -191,6 +191,8 @@ public class IpFilter {
 	      if (en.hasMoreTokens()) {
 		throw new MalformedException("Junk at end", s);
 	      }
+	      addr <<= (4 - n) * 8;
+	      n = 4;
 	    }
 	  }
 	}
