@@ -144,6 +144,8 @@ public class TreeWalkHandler {
           long elapsedTime = TimeBase.msSince(startTime);
           updateEstimate(elapsedTime);
         }
+      } catch (Exception e) {
+        logger.error("Error in treewalk: ", e);
       }
       finally {
         if (!treeWalkAborted) {
