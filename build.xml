@@ -770,7 +770,7 @@ Test results in ${test.results}
   to ${temp.build.dir}</echo>
       </else>
      </if>
-     <cvs command="-z3Q checkout" package="lockss-daemon" dest="${temp.build.dir}"
+     <cvs command="-z3 -Q checkout" package="lockss-daemon" dest="${temp.build.dir}"
        tag="${cvstag}" failonerror="true"/>
      <echo>Building and testing in ${temp.build.dir}</echo>
 <!--
