@@ -485,10 +485,23 @@ public class TreeWalkHandler {
                             startDeadline.toString());
               break;
             } else {
-              // can't fit into existing schedule.  try adjusting by estimate length
-              start += est;
-              end = start + est;
-              logger.debug3("Schedule failed.  Trying new time.");
+	      if (Deadline.in(3 * Constants.WEEK).before(startDeadline)) {
+		// If can't fit it into schedule in next 3 weeks, give up
+		// and try again in an hour.  Prevents infinite looping
+		// trying to create a schedule.
+		logger.debug("Can't schedule, waiting for an hour");
+		start = chooseTimeToRun(extraDelay);
+		end = start + est;
+		try {
+		  Deadline.in(Constants.HOUR).sleep();
+		} catch (InterruptedException ie) { }
+	      } else {
+		// can't fit into existing schedule.  try adjusting by
+		// estimate length
+		logger.debug3("Schedule failed.  Trying new time.");
+		start += est;
+		end = start + est;
+	      }
             }
           }
         } else {
