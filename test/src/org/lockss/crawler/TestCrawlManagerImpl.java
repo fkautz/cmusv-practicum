@@ -407,8 +407,8 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     crawlManager.startNewContentCrawl(mau, new TestCrawlCB(sem), null);
 
     Collection actual = statusSource.getActiveAUs();
-    Collection expected = SetUtil.set(mau.getAUId());
-    assertEquals(expected, actual);
+    Collection expected = ListUtil.list(mau.getAUId());
+    assertSameElements(expected, actual);
     waitForCrawlToFinish(sem);
   }
 
@@ -417,8 +417,8 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     crawlManager.startRepair(mau, ListUtil.list(GENERIC_URL),
 			     new TestCrawlCB(sem), null);
     Collection actual = statusSource.getActiveAUs();
-    Collection expected = SetUtil.set(mau.getAUId());
-    assertEquals(expected, actual);
+    Collection expected = ListUtil.list(mau.getAUId());
+    assertSameElements(expected, actual);
     waitForCrawlToFinish(sem);
   }
 
@@ -437,8 +437,8 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     crawlManager.startNewContentCrawl(mau2, new TestCrawlCB(sem2), null);
 
     Collection actual = statusSource.getActiveAUs();
-    Collection expected = SetUtil.set(mau.getAUId(), mau2.getAUId());
-    assertEquals(expected, actual);
+    Collection expected = ListUtil.list(mau.getAUId(), mau2.getAUId());
+    assertSameElements(expected, actual);
     waitForCrawlToFinish(sem1);
     waitForCrawlToFinish(sem2);
   }
