@@ -118,14 +118,14 @@ public class ContentPoll extends Poll {
   void startVoteCheck(LcapMessage msg) {
     super.startVoteCheck();
 
-    if(prepareVoteCheck(msg)) {
+    if (prepareVoteCheck(msg)) {
       Vote vote = new Vote(msg, false);
 
       long dur = msg.getDuration();
       MessageDigest hasher = getInitedHasher(msg.getChallenge(),
-          msg.getVerifier());
+                                             msg.getVerifier());
 
-     if(!scheduleHash(hasher, Deadline.in(dur), new Vote(msg,false), new VoteHashCallback())) {
+      if (!scheduleHash(hasher, Deadline.in(dur), vote, new VoteHashCallback())) {
         log.info(m_key + " no time to hash vote " + dur + ":" + m_hashTime);
         stopVoteCheck();
       }

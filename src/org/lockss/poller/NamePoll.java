@@ -130,12 +130,12 @@ public class NamePoll
     super.startVoteCheck();
 
     if (prepareVoteCheck(msg)) {
+      Vote vote = new NameVote(msg, false);
       long dur = msg.getDuration();
       MessageDigest hasher = getInitedHasher(msg.getChallenge(),
                                              msg.getVerifier());
 
-      if (!scheduleHash(hasher, Deadline.in(dur), new NameVote(msg, false),
-                        new VoteHashCallback())) {
+      if (!scheduleHash(hasher, Deadline.in(dur), vote, new VoteHashCallback())) {
         log.info(m_key + " no time to hash vote " + dur + ":" + m_hashTime);
         stopVoteCheck();
       }
