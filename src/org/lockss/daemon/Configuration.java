@@ -57,7 +57,8 @@ public abstract class Configuration {
 
   // MUST pass in explicit log level to avoid recursive call back to
   // Configuration to get Config log level.  (Others should NOT do this.)
-  protected static Logger log = Logger.getLogger("Config", Logger.LEVEL_INFO);
+  protected static Logger log =
+    Logger.getLogger("Config", Logger.getInitialDefaultLevel());
 
   private static List configChangedCallbacks = new ArrayList();
 
@@ -180,8 +181,22 @@ public abstract class Configuration {
     setCurrentConfig(newConfig);
     log.info("Config updated from " +
 	     StringUtil.separatedString(newConfig.configUrlList, ", "));
+    if (log.isDebug()) {
+      newConfig.logConfig();
+    }
     runCallbacks(oldConfig, newConfig);
     return true;
+  }
+
+  private void logConfig() {
+    SortedSet keys = new TreeSet();
+    for (Iterator iter = keyIterator(); iter.hasNext(); ) {
+      keys.add((String)iter.next());
+    }
+    for (Iterator iter = keys.iterator(); iter.hasNext(); ) {
+      String key = (String)iter.next();
+      log.debug(key + " = " + (String)get(key));
+    }
   }
 
   /**
