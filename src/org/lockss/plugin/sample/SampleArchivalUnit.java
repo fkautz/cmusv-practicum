@@ -75,7 +75,7 @@ public class SampleArchivalUnit extends DefinableArchivalUnit {
       throws ConfigurationException {
     super.loadAuConfigDescrs(config);
     // get the volume string
-    volume = definitionMap.getInt(SamplePlugin.AUPARAM_VOL, -1);
+    volume = paramMap.getInt(SamplePlugin.AUPARAM_VOL, -1);
     if (volume <= 0) {
       throw new ConfigurationException("Invalid volume: "+volume);
     }

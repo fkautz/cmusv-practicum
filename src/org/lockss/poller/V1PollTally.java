@@ -196,6 +196,7 @@ public class V1PollTally extends PollTally {
 		" status " + result);
     if((type == Poll.NAME_POLL) && (result != RESULT_WON)) {
       log.debug2("lost a name poll, building poll list");
+      ((V1NamePoll)poll).clearEntryList();
       ((V1NamePoll)poll).buildPollLists(pollVotes.iterator());
     }
     log.debug3("completed tally.");
@@ -330,9 +331,6 @@ public class V1PollTally extends PollTally {
     numDisagree = 0;
     wtAgree = 0;
     wtDisagree = 0;
-    if(poll instanceof V1NamePoll) {
-      ((V1NamePoll)poll).clearEntryList();
-    }
     replayNextVote();
   }
 

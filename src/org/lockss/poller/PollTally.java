@@ -32,19 +32,12 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.poller;
 
-import java.io.*;
-import java.security.*;
 import java.util.*;
 
-import org.mortbay.util.B64Code;
 import org.lockss.daemon.*;
-import org.lockss.hasher.*;
 import org.lockss.plugin.*;
 import org.lockss.protocol.*;
 import org.lockss.util.*;
-import org.lockss.state.PollHistory;
-import org.lockss.state.NodeManager;
-import org.lockss.daemon.status.*;
 
 /**
  * PollTally is a struct-like class which maintains the current state of

@@ -56,6 +56,7 @@ public class TestEditableDefinablePlugin
   protected void setUp() throws Exception {
     super.setUp();
     edPlugin = new EditableDefinablePlugin();
+    edPlugin.initPlugin(new MockLockssDaemon());
     tempDirPath = getTempDir().getAbsolutePath() + File.separator;
   }
 
@@ -101,6 +102,7 @@ public class TestEditableDefinablePlugin
 
   public void testAddAndRemoveSingleExceptionHandler() throws
       ClassNotFoundException {
+
     // nothing installed should give the default
     String name =
         "org.lockss.util.urlconn.CacheException$NoRetryDeadLinkException";
@@ -195,7 +197,8 @@ public class TestEditableDefinablePlugin
     set.add(ConfigParamDescr.ISSUE_RANGE);
     set.add(ConfigParamDescr.NUM_ISSUE_RANGE);
     set.add(ConfigParamDescr.ISSUE_SET);
-
+    set.add(ConfigParamDescr.OAI_REQUEST_URL);
+    set.add(ConfigParamDescr.OAI_SPEC);
     Collection actualReturn = edPlugin.getKnownConfigParamDescrs();
     assertIsomorphic("default descrs", set, actualReturn);
 
