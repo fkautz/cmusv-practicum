@@ -171,7 +171,7 @@ public class GoslingCrawlerImpl implements Crawler {
     if (uc.shouldBeCached()) {
       if (overWrite || !cus.isCached(url)) {
 	try {
-	  logger.info("caching "+uc);
+	  logger.debug("caching "+uc);
 	  uc.cache(); //IOException if there is a caching problem
 	} catch (IOException ioe) {
 	  //XXX handle this better.  Requeue?
