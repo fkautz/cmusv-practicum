@@ -62,6 +62,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   private HashSet urlsToCache = new HashSet();
 
   private Plugin plugin;
+  private String name = "MockAU";
   private Hashtable ucHash = new Hashtable();
   private Hashtable cuHash = new Hashtable();
 
@@ -314,7 +315,11 @@ public class MockArchivalUnit implements ArchivalUnit {
   }
 
   public String getName() {
-    return "MockAU";
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public void setPluginId(String newId) {
