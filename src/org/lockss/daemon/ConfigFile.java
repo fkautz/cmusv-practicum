@@ -151,11 +151,7 @@ public class ConfigFile {
     }
 
     if (in != null) {
-      char[] buf = new char[1024];
-      int len;
-      while ((len = in.read(buf)) > 0) {
-	out.write(buf, 0, len);
-      }
+      StreamUtil.copy(in, out);
 
       out.flush();
       m_fileContents = out.toString();

@@ -343,10 +343,8 @@ public abstract class Configuration {
 
   /**
    * Return a list of values for the specified key.
-   * @throws Configuration.InvalidParam if the value is not castable to
-   * a list.
    */
-  public abstract List getList(String key) throws InvalidParam;
+  public abstract List getList(String key);
 
   /** Return the config value as a long.
    * @throws Configuration.InvalidParam if the value is missing or
