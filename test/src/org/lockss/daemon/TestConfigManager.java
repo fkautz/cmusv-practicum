@@ -366,6 +366,30 @@ public class TestConfigManager extends LockssTestCase {
     assertEquals("22", config.get("org.lockss.au.auid.bar"));
   }
 
+  public void testReadAuConfigFile() throws Exception {
+    String tmpdir = getTempDir().toString();
+    // establish cache config dir
+    ConfigurationUtil.setFromArgs(ConfigManager.PARAM_PLATFORM_DISK_SPACE_LIST,
+				  tmpdir);
+
+    Configuration c1 = mgr.readAuConfigFile();
+    assertTrue(c1.isEmpty());
+
+    Properties p = new Properties();
+    p.put("org.lockss.au.fooauid.foo", "111");
+    p.put("org.lockss.au.fooauid.bar", "222");
+    p.put("org.lockss.au.fooauid.baz", "333");
+
+    mgr.updateAuConfigFile(p, "org.lockss.au.fooauid");
+
+    Configuration c2 = mgr.readAuConfigFile();
+    assertFalse(c2.isEmpty());
+
+    assertEquals("111", c2.get("org.lockss.au.fooauid.foo"));
+    assertEquals("222", c2.get("org.lockss.au.fooauid.bar"));
+    assertEquals("333", c2.get("org.lockss.au.fooauid.baz"));
+  }
+
   public void testFromProperties() throws Exception {
     Properties props = new Properties();
     props.put("foo", "23");
