@@ -140,6 +140,9 @@ public abstract class Poll implements Serializable {
     m_caller = idMgr.findIdentity(msg.getOriginAddr());
     m_key = msg.getKey();
 
+    log.debug("I think poll "+m_challenge
+	      +" will take me this long to hash "+m_hashTime);
+
     m_createTime = TimeBase.nowMs();
 
     // make a new vote tally
