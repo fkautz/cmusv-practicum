@@ -67,6 +67,10 @@ public abstract class Configuration {
   /** Common prefix of platform config params */
   static final String PLATFORM = PREFIX + "platform.";
 
+  /** Local (routable) IP address, for lcap identity */
+  public static final String PARAM_PLATFORM_IP_ADDRESS =
+    PLATFORM + "localIPAddress";
+
   /** Local subnet set during config */
   public static final String PARAM_PLATFORM_ACCESS_SUBNET =
     PLATFORM + "accesssubnet";
@@ -234,7 +238,7 @@ public abstract class Configuration {
       setIfNotSet(FileTarget.PARAM_FILE, new File(logdir, logfile).toString());
     }
 
-    String ip = get("org.lockss.platform.localIPAddress");
+    String ip = get(PARAM_PLATFORM_IP_ADDRESS);
     if (ip != null) {
       setIfNotSet(IdentityManager.PARAM_LOCAL_IP, ip);
     }
@@ -249,8 +253,7 @@ public abstract class Configuration {
 	((String)StringUtil.breakAt(space, ';', 1).elementAt(0));
       setIfNotSet(LockssRepositoryServiceImpl.PARAM_CACHE_LOCATION,
 		  firstSpace);
-      setIfNotSet(HistoryRepositoryImpl.PARAM_HISTORY_LOCATION,
-		  firstSpace);
+      setIfNotSet(HistoryRepositoryImpl.PARAM_HISTORY_LOCATION, firstSpace);
     }
   }
 
