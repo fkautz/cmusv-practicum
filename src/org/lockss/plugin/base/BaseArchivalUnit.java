@@ -708,6 +708,12 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
       handlerMap.put(paramKey, handler);
     }
 
+    protected ParamHandler removeParamHandler(String paramKey) {
+      synchronized (handlerMap) {
+        return (ParamHandler) handlerMap.remove(paramKey);
+      }
+    }
+
     public Object getMapElement(String paramKey) {
       synchronized (handlerMap) {
         ParamHandler handler = (ParamHandler)handlerMap.get(paramKey);
