@@ -257,7 +257,7 @@ public class PollManager
       theLog.debug2("starting replay of poll " + key);
       int version = pme.poll.getVersion();
       if (version > 0 && version < pf.length) {
-	expiration = pf[version].getMaxContentPollDuration();
+	expiration = pf[version].getMaxPollDuration(Poll.CONTENT_POLL);
       } else {
 	expiration = 0; // XXX
       }

@@ -114,12 +114,8 @@ public interface PollFactory {
 			Configuration oldConfig,
 			Configuration.Differences changedKeys);
 
-  public long getMaxContentPollDuration();
+  public long getMaxPollDuration(int pollType);
 
-  public long getMinContentPollDuration();
-
-  public long getMaxNamePollDuration();
-
-  public long getMinNamePollDuration();
+  public long getMinPollDuration(int pollType);
 
 }
