@@ -131,10 +131,10 @@ public class ConfigDump {
     try {
       File localTxt = new File(FileTestUtil.createTempDir("configdump", null),
 			       "local.txt");
-      FileWriter out = new FileWriter(localTxt);
-      out.write(ConfigManager.PARAM_PLATFORM_FQDN + "=" + hostName);
-      out.flush();
-      out.close();
+      Properties localProps = new Properties();
+      localProps.setProperty(ConfigManager.PARAM_PLATFORM_FQDN,
+			     hostName);
+      localProps.store(new FileOutputStream(localTxt), null);
       result = localTxt.getAbsolutePath();
     } catch (IOException ex) {
       System.err.println("Unable to create local.txt temp file: " + ex);
