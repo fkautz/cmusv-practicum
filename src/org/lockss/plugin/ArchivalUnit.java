@@ -130,14 +130,6 @@ public interface ArchivalUnit {
   public List getPermissionPages();
 
   /**
-   * Returns true if this AU has permission to crawl based on the manifest page
-   * @param reader the Reader for the manifest page which should contain the
-   * permission statement.
-   * @return true iff the PERMISSION_STRING is found.
-   */
-  public boolean checkCrawlPermission(Reader reader);
-
-  /**
    * Sleeps for the interval needed between requests to the server
    */
   public void pauseBeforeFetch();

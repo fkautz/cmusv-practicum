@@ -399,10 +399,6 @@ public class NullPlugin {
       return null;
     }
 
-    public boolean checkCrawlPermission(Reader reader) {
-      return false;
-    }
-
     public ContentParser getContentParser(String mimeType) {
       throw new UnsupportedOperationException("not implemented");
     }
@@ -410,6 +406,7 @@ public class NullPlugin {
     public FilterRule getFilterRule(String mimeType) {
       throw new UnsupportedOperationException("Not implemented");
     }
+
   }
 
   /**

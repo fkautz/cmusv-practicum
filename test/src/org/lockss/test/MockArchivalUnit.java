@@ -56,7 +56,6 @@ public class MockArchivalUnit implements ArchivalUnit {
   private boolean shouldCallTopLevelPoll = true;
   private static Logger log = Logger.getLogger("MockArchivalUnit");
   private List permissionPages;
-  private boolean canCrawl = true;
 
   private HashSet urlsToCache = new HashSet();
 
@@ -173,14 +172,6 @@ public class MockArchivalUnit implements ArchivalUnit {
 
   public void setPermissionPages(List pageList) {
     permissionPages = pageList;
-  }
-
-  public boolean checkCrawlPermission(Reader reader) {
-    return canCrawl;
-  }
-
-  public void setCrawlPermission(boolean canCrawl) {
-    this.canCrawl = canCrawl;
   }
 
   public void setPlugin(Plugin plugin) {

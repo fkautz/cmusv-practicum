@@ -61,6 +61,9 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
       "au_def_new_content_crawl";
   static final public String CM_AU_DEFAULT_PAUSE_TIME = "au_def_pause_time";
   static final public String CM_AU_MANIFEST_KEY = "au_manifest";
+  static final public String CM_AU_MAX_SIZE_KEY = "au_maxsize";
+  static final public String CM_AU_MAX_FILE_SIZE_KEY = "au_max_file_size";
+
   static final public String CM_AU_PARSER_SUFFIX = "_parser";
   static final public String CM_AU_FILTER_SUFFIX = "_filter";
   static final public int DEFAULT_AU_CRAWL_DEPTH = 1;
@@ -148,6 +151,9 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
     defaultContentCrawlIntv =
         definitionMap.getLong(CM_AU_DEFAULT_NC_CRAWL_KEY,
                                  DEFAULT_NEW_CONTENT_CRAWL_INTERVAL);
+    maxAuSize = definitionMap.getLong(CM_AU_MAX_SIZE_KEY, 0);
+    maxAuFileSize = definitionMap.getLong(CM_AU_MAX_FILE_SIZE_KEY, 0);
+
   }
 
   protected String makeName() {
