@@ -51,6 +51,11 @@ public abstract class GenericHasher implements CachedUrlSetHasher {
   protected static Logger log = Logger.getLogger("GenericHasher");
 
   protected GenericHasher(CachedUrlSet cus, MessageDigest digest) {
+    if (digest == null) {
+      throw new IllegalArgumentException("Called with a null MessageDigest");
+    } else if (cus == null) {
+      throw new IllegalArgumentException("Called with a null CachedUrlSet");
+    }
     this.cus = cus;
     this.digest = digest;
   }
@@ -69,11 +74,6 @@ public abstract class GenericHasher implements CachedUrlSetHasher {
    * @throws IOException
    */
   public int hashStep(int numBytes) throws IOException {
-    if (digest == null || cus == null || iterator == null) {
-      log.warning("Called with a null value for digest, cus, or iterator");
-      isFinished = true;
-      return 0;
-    }
     int bytesLeftToHash = numBytes;
     log.debug(numBytes+" bytes left to hash in this step");
 

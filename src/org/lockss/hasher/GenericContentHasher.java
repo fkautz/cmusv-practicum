@@ -55,6 +55,10 @@ public class GenericContentHasher extends GenericHasher {
   public GenericContentHasher(CachedUrlSet cus, MessageDigest digest) {
     super(cus, digest);
     iterator = cus.treeIterator();
+    if (iterator == null) {
+      throw new IllegalArgumentException("Called with a CachedUrlSet that "+
+					 "gave me a null treeIterator");
+    }
   }
 
   protected int hashElementUpToNumBytes(CachedUrlSetNode element, int numBytes)
@@ -104,17 +108,21 @@ public class GenericContentHasher extends GenericHasher {
       }
       byte[] bytes = new byte[numBytes - totalHashed];
       int bytesHashed = is.read(bytes);
-      if (bytesHashed < 0) {
-	bytesHashed = 0;
-      }
-      digest.update(bytes, 0, bytesHashed);
-      if (bytesHashed < bytes.length) {
+      log.debug3("Read "+bytesHashed+" from the input stream");
+      if (bytesHashed >= 0) {
+	digest.update(bytes, 0, bytesHashed);
+      } 
+      if (bytesHashed != 0 && bytesHashed < bytes.length) {
 	log.debug("done hashing content: "+cu);
 	hashState = HASHING_NAME;
 	shouldGetNextElement = true;
+	is.close();
 	is = null;
       }
-      totalHashed += bytesHashed;
+      if (bytesHashed > 0) {
+	totalHashed += bytesHashed;
+      }
+      log.debug3(totalHashed+" bytes hashed in this step");
     }
     return totalHashed;
   }
