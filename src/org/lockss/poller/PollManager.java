@@ -426,7 +426,22 @@ public class PollManager  extends BaseLockssManager {
     }
 
     // create the appropriate poll for the message type
-    ret_poll = createPoll(msg, spec);
+    try {
+      ret_poll = createPoll(msg, spec);
+    }
+    catch (Exception ex) {
+      if(ex instanceof ProtocolException) {
+        throw (ProtocolException) ex;
+      }
+      else {
+        theLog.error("Failed to create poll:" + ex);
+        if (lock!=null) {
+          // clear the lock
+          lock.expire();
+        }
+        return null;
+      }
+    }
 
     if (ret_poll != null) {
       NodeManager nm = theDaemon.getNodeManager(cus.getArchivalUnit());
