@@ -144,6 +144,10 @@ public class NullPlugin {
       return openForReading();
     }
 
+    public Reader getReader() {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
     public byte[] getContentSize() {
       return new byte[0];
     }

@@ -94,6 +94,10 @@ public class PTestPlugin {
       return openForReading();
     }
 
+    public Reader getReader() {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
     public byte[] getContentSize() {
       return (new BigInteger(
           Integer.toString(contents.length()))).toByteArray();

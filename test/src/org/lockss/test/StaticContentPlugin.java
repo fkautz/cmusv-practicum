@@ -195,6 +195,10 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
       return openForReading();
     }
 
+    public Reader getReader() {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
     public byte[] getContentSize() {
       BigInteger bigInt = new BigInteger(Integer.toString(contents.length()));
       return bigInt.toByteArray();

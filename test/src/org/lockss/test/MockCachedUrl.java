@@ -32,9 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.test;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
@@ -71,6 +69,10 @@ public class MockCachedUrl implements CachedUrl {
 
   public String getUrl() {
     return url;
+  }
+
+  public Reader getReader() {
+    throw new UnsupportedOperationException("Not implemented");
   }
 
   public CachedUrlSet getCachedUrlSet() {
