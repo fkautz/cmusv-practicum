@@ -130,8 +130,8 @@ public class RepairCrawler extends CrawlerImpl {
 
   protected boolean doCrawl0() {
     boolean windowClosed = false;
-    logger.info("Beginning crawl of "+au);
-    crawlStatus.signalCrawlStarted();
+//     logger.info("Beginning crawl of "+au);
+//     crawlStatus.signalCrawlStarted();
     CachedUrlSet cus = au.getAuCachedUrlSet();
 
     Iterator it = getStartingUrls();

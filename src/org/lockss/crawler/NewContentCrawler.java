@@ -103,8 +103,8 @@ public class NewContentCrawler extends CrawlerImpl {
 
     logger.info("Max. crawl depth is set to be " + maxDepth);
 
-    logger.info("Beginning crawl of "+au);
-    crawlStatus.signalCrawlStarted();
+//     logger.info("Beginning crawl of "+au);
+//     crawlStatus.signalCrawlStarted();
     CachedUrlSet cus = au.getAuCachedUrlSet();
     Set parsedPages = new HashSet();
 
