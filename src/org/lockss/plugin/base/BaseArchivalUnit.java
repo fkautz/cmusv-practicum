@@ -282,22 +282,15 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     int p_index = 0;
     String matchstr = PERMISSION_STRING.toLowerCase();
 
-String str = "";
-    String closest = "";
     try {
       do {
         ch = reader.read();
         if(matchstr.charAt(p_index) == Character.toLowerCase((char)ch)) {
-          str += ch;
-          if (p_index > closest.length()) {
-            closest = str;
-          }
           if(++p_index == PERMISSION_STRING.length()) {
             return true;
           }
         }
         else {
-          str = "";
           p_index = 0;
         }
 
@@ -308,7 +301,7 @@ String str = "";
                      + ex.toString());
     }
 
-System.out.println("closest: "+closest);
+
     return crawl_ok;
   }
 
@@ -350,6 +343,7 @@ System.out.println("closest: "+closest);
   }
 
   /**
+   * @param mimeType the mime type
    * @return null, since we don't filter by default
    */
   public FilterRule getFilterRule(String mimeType) {
