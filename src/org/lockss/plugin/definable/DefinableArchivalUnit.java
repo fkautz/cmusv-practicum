@@ -236,7 +236,7 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
 // ---------------------------------------------------------------------
 //   VARIABLE ARGUMENT REPLACEMENT SUPPORT ROUTINES
 // ---------------------------------------------------------------------
-  private String[] getStringTokens(String tokenString) {
+  public String[] getStringTokens(String tokenString) {
     StringTokenizer st = new StringTokenizer(tokenString, "\n");
     int num_tokens = st.countTokens();
     String[] strs = new String[num_tokens];
