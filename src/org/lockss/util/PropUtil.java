@@ -132,6 +132,38 @@ public class PropUtil {
   }
 
   /**
+   * Turns the canonical string into properties
+   * @param s a string returned by propsToCanonicalEncodedString()
+   * @return Properties from which the canonical string was generated
+   */ 
+  public static Properties canonicalEncodedStringToProps(String s)
+      throws IllegalArgumentException {
+    Properties res = new Properties();
+    if (StringUtil.isNullString(s)) {
+      return res;
+    }
+    StringTokenizer tk = new StringTokenizer(s, "~&", true);
+    while (tk.hasMoreElements()) {
+      String key = tk.nextToken();
+      String tok = tk.nextToken();
+      if (!tok.equals("~")) {
+	throw new IllegalArgumentException("Delimiter not \"~\": " + tok);
+      }
+      String val = tk.nextToken();
+      res.setProperty(PropKeyEncoder.decode(key),
+		      PropKeyEncoder.decode(val));
+
+      if (tk.hasMoreElements()) {
+	tok = tk.nextToken();
+	if (!tok.equals("&")) {
+	  throw new IllegalArgumentException("Delimiter not \"&\": " + tok);
+	}
+      }
+    }
+    return res;
+  }
+
+  /**
    * Prints the Properties to the PrintStream
    * @param props properties to print
    * @param out stream to print to

@@ -159,4 +159,20 @@ public class TestPropUtil extends TestCase {
     assertEquals(expected, actual);
   }
 
+  void assertEncodedPropsInverse(Properties props) {
+    String s = PropUtil.propsToCanonicalEncodedString(props);    
+    Properties newProps = PropUtil.canonicalEncodedStringToProps(s);    
+    assertEquals(props, newProps);
+  }
+
+  public void testEncodedPropsInverse() {
+    assertEncodedPropsInverse(new Properties());
+
+    Properties props = new Properties();
+    props.setProperty("key&1", "val=1");
+    props.setProperty("key2", "val 2");
+    props.setProperty("key.3", "val:3");
+    props.setProperty("key4", "val.4");
+    assertEncodedPropsInverse(props);
+  }
 }
