@@ -48,6 +48,7 @@ public class StreamUtil {
    * It closes neither.
    */
    public static void copy(InputStream is, OutputStream os) throws IOException {
+     if ((is==null) || (os==null)) return;
      byte[] bytes = new byte[256];
      int byteCount;
      while ((byteCount = is.read(bytes))>0) os.write(bytes, 0, byteCount);
