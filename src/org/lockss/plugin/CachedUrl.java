@@ -60,6 +60,7 @@ public interface CachedUrl extends CachedUrlSetNode {
   */
   public static final String HEADER_PREFIX = null;
   public static final String PROPERTY_REDIRECTED_TO = "X-Lockss-redirected-to";
+  public static final String PROPERTY_REPAIR_FROM = "X-Lockss-repaired-from";
   public static final String PROPERTY_CONTENT_TYPE = "X-Lockss-content-type";
   public static final String PROPERTY_ORIG_URL = "X-Lockss-orig-url";
   public static final String PROPERTY_FETCH_TIME = "X_Lockss-server-date";
