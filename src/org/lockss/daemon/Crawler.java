@@ -47,6 +47,10 @@ import org.lockss.plugin.*;
  */
 public interface Crawler {
 
+  public static final int NEW_CONTENT = 0;
+  public static final int REPAIR = 1;
+  public static final int BACKGROUND = 2;
+
   /**
    * Initiate a crawl starting with all the urls in urls
    * @return true if the crawl was successful
@@ -83,5 +87,17 @@ public interface Crawler {
    * @return the AU that this crawler is crawling within
    */
   public ArchivalUnit getAU();
+
+  /**
+   * Returns the type of crawl
+   * @return crawl type
+   */
+  public int getType();
+
+  /**
+   * Returns the starting urls for this crawler
+   * @return starting urls for this crawler
+   */
+  public List getStartUrls();
 
 }
