@@ -97,4 +97,10 @@ public abstract class BaseUrlCacher implements UrlCacher {
     storeContent(getUncachedInputStream(),
 		 getUncachedProperties());
   }
+
+  protected abstract void storeContent(InputStream input, 
+				       Properties props)
+      throws IOException;
+  protected abstract InputStream getUncachedInputStream();
+  protected abstract Properties getUncachedProperties();
 }

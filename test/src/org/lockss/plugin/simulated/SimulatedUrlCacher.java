@@ -56,7 +56,7 @@ public class SimulatedUrlCacher extends GenericFileUrlCacher {
     this.fileRoot = contentRoot;
   }
 
-  public InputStream getUncachedInputStream() {
+  protected InputStream getUncachedInputStream() {
     if (contentFile!=null) {
       try {
         return new BufferedInputStream(new FileInputStream(contentFile));
@@ -83,7 +83,7 @@ public class SimulatedUrlCacher extends GenericFileUrlCacher {
   }
 
 
-  public Properties getUncachedProperties() {
+  protected Properties getUncachedProperties() {
     if (props!=null) {
       return props;
     }

@@ -62,7 +62,7 @@ public class HighWireUrlCacher extends BaseUrlCacher {
   
   // Write interface - used by the crawler.
   
-  public void storeContent(InputStream input,
+  protected void storeContent(InputStream input,
 			   Properties headers) throws IOException{
     if (input != null){
       File file = new File(mapUrlToFileName());
@@ -91,7 +91,7 @@ public class HighWireUrlCacher extends BaseUrlCacher {
     this.headers = headers;
   }
 
-  public InputStream getUncachedInputStream(){
+  protected InputStream getUncachedInputStream(){
     try{
       if (conn == null){
 	URL urlO = new URL(url);
@@ -105,7 +105,7 @@ public class HighWireUrlCacher extends BaseUrlCacher {
   }
 
 
-  public Properties getUncachedProperties(){
+  protected Properties getUncachedProperties(){
     Properties props = new Properties();
     try{
       if (conn == null){
