@@ -401,16 +401,8 @@ public class PollManager  implements LockssManager {
     poll.m_pollstate = Poll.PS_WAIT_TALLY;
   }
 
-  PluginManager getPluginManager() {
-    return theDaemon.getPluginManager();
-  }
-
-  HashService getHashService() {
-    return theDaemon.getHashService();
-  }
-
-  IdentityManager getIdentityManager() {
-    return theDaemon.getIdentityManager();
+  LockssDaemon getDaemon() {
+    return theDaemon;
   }
 
   /**

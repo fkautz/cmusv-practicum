@@ -526,15 +526,17 @@ public class NodeManagerImpl implements NodeManager, LockssManager {
   private void markNodeForRepair(CachedUrlSet cus, Poll.VoteTally tally)
       throws IOException {
     theDaemon.getPollManager().suspendPoll(tally.getPollKey());
-    theCrawlManager.scheduleRepair(managerAu, new URL(cus.getPrimaryUrl()),
-                                   new ContentRepairCallback(),
-                                   tally.getPollKey());
+    theDaemon.getCrawlManager().scheduleRepair(managerAu,
+        new URL(cus.getPrimaryUrl()), new ContentRepairCallback(),
+                                 tally.getPollKey());
+    cus.makeUrlCacher(cus.getPrimaryUrl()).cache();
   }
 
   private void deleteNode(CachedUrlSet cus) throws IOException {
     // delete the node from the LockssRepository
     LockssRepository repository =
-        theDaemon.getLockssRepository(managerAu).repositoryFactory(cus.getArchivalUnit());
+        theDaemon.getLockssRepository(managerAu).repositoryFactory(
+        cus.getArchivalUnit());
     repository.deleteNode(cus.getPrimaryUrl());
   }
 
