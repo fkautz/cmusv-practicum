@@ -53,35 +53,23 @@ public class StringUtil {
    */
   public static String replaceString(String line,
 				     String oldstr, String newstr) {
-    if (oldstr.compareTo(newstr) == 0){
+    int oldLen = oldstr.length();
+    if (oldLen == 0 || oldstr.equals(newstr)) {
       return line;
     }
-    StringBuffer sb = null;
-    if (oldstr.length() == newstr.length()){
-      sb = new StringBuffer(line);
-      int lastIdx = line.indexOf(oldstr);
-      if (lastIdx >= 0){
-	do{
-	  sb.replace(lastIdx, lastIdx+newstr.length(), newstr);
-	}while ((lastIdx = line.indexOf(oldstr, lastIdx+1)) >= 0);
-      }
-    }
-    else{
-      sb = new StringBuffer();
-      int oldStrIdx = 0;
-      int lastIdx = line.indexOf(oldstr);
-      if (lastIdx >= 0){
-	do{
-	  for (int ix=oldStrIdx; ix < lastIdx; ix++){
-	    sb.append(line.charAt(ix));
-	  }
-	  sb.append(newstr);
-	  oldStrIdx = lastIdx + oldstr.length();
-	}while ((lastIdx = line.indexOf(oldstr, lastIdx+1)) >= 0);
-      }
-      for (int ix=oldStrIdx; ix<line.length(); ix++){
+    int lineLen = line.length();
+    StringBuffer sb = new StringBuffer(lineLen);
+    int oldIdx = 0;
+    int thisIdx;
+    while ((thisIdx = line.indexOf(oldstr, oldIdx)) >= 0) {
+      for (int ix = oldIdx; ix < thisIdx; ix++) {
 	sb.append(line.charAt(ix));
       }
+      sb.append(newstr);
+      oldIdx = thisIdx + oldLen;
+    }
+    for (int ix = oldIdx; ix < lineLen; ix++) {
+      sb.append(line.charAt(ix));
     }
     return sb.toString();
   }
