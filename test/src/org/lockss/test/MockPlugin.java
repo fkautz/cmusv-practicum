@@ -54,6 +54,7 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
   private int initCtr = 0;
   private int stopCtr = 0;
   private Configuration auConfig;
+  private String pluginVer = null;
 
   public MockPlugin(){
     super();
@@ -91,12 +92,19 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
   }
 
   public String getVersion() {
+    if (pluginVer != null) {
+      return pluginVer;
+    }
     return "MockVersion";
   }
 
-    public String getPluginName() {
-      return "Mock Plugin";
-    }
+  public void setVersion(String ver) {
+    pluginVer = ver;
+  }
+
+  public String getPluginName() {
+    return "Mock Plugin";
+  }
 
   /**
    * Return the list of names of the Archival Units and volranges supported by
