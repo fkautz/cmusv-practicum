@@ -121,4 +121,12 @@ public class PsmException extends RuntimeException {
     }
   }
 
+  /** A null event was signalled.  Thrown by the state machine interpreter
+   * if an action returns null, or if null is passed to handleEvent() */
+  public static class NullEvent extends PsmException {
+    public NullEvent(String msg) {
+      super(msg);
+    }
+  }
+
 }

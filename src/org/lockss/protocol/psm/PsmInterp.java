@@ -125,8 +125,7 @@ public class PsmInterp {
       throw new IllegalStateException("hasn't been inited");
     }
     if (event == null) {
-      handleWait(event);
-      return;
+      throw new PsmException.NullEvent("Null event signalled");
     }
     if (eventCtr-- <= 0) {
       throw new
@@ -165,6 +164,9 @@ public class PsmInterp {
       event = action.run(triggerEvent, this);
     } catch (RuntimeException e) {
       throw new PsmException.ActionError("Action: " + action, e);
+    }
+    if (event == null) {
+      throw new PsmException.NullEvent("Action: " + action + " returned null");
     }
     handleEvent1(event, eventCtr);
   }

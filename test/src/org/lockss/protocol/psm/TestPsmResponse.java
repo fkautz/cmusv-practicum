@@ -49,6 +49,10 @@ public class TestPsmResponse extends LockssTestCase {
       fail("null event should throw");
     } catch (RuntimeException e) { }
     try {
+      new PsmResponse(null);
+      fail("null event should throw");
+    } catch (RuntimeException e) { }
+    try {
       new PsmResponse(PsmEvents.MsgEvent, (PsmAction)null);
       fail("null action should throw");
     } catch (RuntimeException e) { }
@@ -74,9 +78,9 @@ public class TestPsmResponse extends LockssTestCase {
     assertFalse(resp.isAction());
     assertFalse(resp.isWait());
 
-    resp = new PsmResponse(event, "wait");
+    resp = new PsmResponse(event);
     assertSame(event, resp.getEvent());
-    assertTrue(resp.isTransition());
+    assertFalse(resp.isTransition());
     assertFalse(resp.isAction());
     assertTrue(resp.isWait());
   }

@@ -76,6 +76,16 @@ public class PsmResponse {
     this.action = action;
   }
 
+  /** Create a wait response - causes the machine to wait for another event
+   * @param event the pattern event against which incoming events are matched
+   */
+  public PsmResponse(PsmEvent event) {
+    if (event == null)
+      throw new PsmException.IllegalStateMachine("event is null");
+    this.event = event;
+    isWait = true;
+  }
+
   /** Return the event against which incoming events are matched */
   public PsmEvent getEvent() {
     return event;
@@ -114,8 +124,12 @@ public class PsmResponse {
     sb.append(" -> ");
     if (isAction()) {
       sb.append(action);
-    } else {
+    } else if (isTransition()) {
       sb.append(newState);
+    } else if (isWait()) {
+      sb.append("[Wait]");
+    } else {
+      sb.append("[???]");
     }
     sb.append("]");
     return sb.toString();
