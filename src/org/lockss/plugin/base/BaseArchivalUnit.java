@@ -231,8 +231,8 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   public boolean shouldCallTopLevelPoll(AuState aus) {
     if (pollInterval==-1) {
       pollInterval =
-	Configuration.getLongParam(PARAM_TOP_LEVEL_POLL_INTERVAL,
-				   DEFAULT_TOP_LEVEL_POLL_INTERVAL);
+	Configuration.getTimeIntervalParam(PARAM_TOP_LEVEL_POLL_INTERVAL,
+					   DEFAULT_TOP_LEVEL_POLL_INTERVAL);
     }
     logger.debug("Deciding whether to call a top level poll");
     logger.debug3("Last poll at "+aus.getLastTopLevelPollTime());
