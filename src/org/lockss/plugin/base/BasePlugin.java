@@ -50,6 +50,7 @@ public abstract class BasePlugin
   static final String TITLE_PARAM_JOURNAL = "journalTitle";
   static final String TITLE_PARAM_PLUGIN = "plugin";
   static final String TITLE_PARAM_PLUGIN_VERSION = "pluginVersion";
+  static final String TITLE_PARAM_EST_SIZE = "estSize";
   static final String TITLE_PARAM_PARAM = "param";
   // Below org.lockss.title.xxx.param.n.
   static final String TITLE_PARAM_PARAM_KEY = "key";
@@ -163,6 +164,9 @@ public abstract class BasePlugin
     TitleConfig tc = new TitleConfig(title, this);
     tc.setPluginVersion(titleConfig.get(TITLE_PARAM_PLUGIN_VERSION));
     tc.setJournalTitle(titleConfig.get(TITLE_PARAM_JOURNAL));
+    if (titleConfig.containsKey(TITLE_PARAM_EST_SIZE)) {
+      tc.setEstimatedSize(titleConfig.getSize(TITLE_PARAM_EST_SIZE, 0));
+    }
     List params = new ArrayList();
     Configuration allParams = titleConfig.getConfigTree(TITLE_PARAM_PARAM);
     for (Iterator iter = allParams.nodeIterator(); iter.hasNext(); ) {

@@ -48,6 +48,7 @@ public class TitleConfig {
   private String journalTitle;
   private String pluginName;
   private String pluginVersion = null;
+  private long estSize = 0;
   private List params = null;
 
   /**
@@ -128,6 +129,21 @@ public class TitleConfig {
    */
   public String getPluginVersion() {
     return pluginVersion;
+  }
+
+  /**
+   * Set the estimated size
+   * @param size estimated size in bytes
+   */
+  public void setEstimatedSize(long size) {
+    this.estSize = size;
+  }
+
+  /**
+   * @return the estimated size
+   */
+  public long getEstimatedSize() {
+    return estSize;
   }
 
   /** Temporary until clients fixed */
