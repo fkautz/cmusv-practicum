@@ -57,6 +57,7 @@ public class SchedulableTask implements Serializable, Cloneable {
   boolean overrunAllowed = false;
   boolean hasBeenNotified = false;
   boolean hasStarted = false;
+  TaskRunner runner = null;
 
   int schedSeq = -1;
   Date schedDate;
@@ -170,6 +171,20 @@ public class SchedulableTask implements Serializable, Cloneable {
 
   void setStarted() {
     hasStarted = true;;
+  }
+
+  void setTaskRunner(TaskRunner runner) {
+    this.runner = runner;
+  }
+
+  TaskRunner getTaskRunner() {
+    return runner;
+  }
+
+  public void cancel() {
+    if (runner != null) {
+      runner.cancelTask(this);
+    }
   }
 
   public String getShortText() {

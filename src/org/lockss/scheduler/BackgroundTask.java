@@ -43,7 +43,6 @@ public class BackgroundTask extends SchedulableTask {
   final double loadFactor;
 //   final int loadFactor0;
   final TaskCallback callback;
-  TaskRunner runner = null;
 
   public BackgroundTask(Deadline start,
 			Deadline stop,
@@ -71,19 +70,9 @@ public class BackgroundTask extends SchedulableTask {
     return loadFactor;
   }
 
-  void setTaskRunner(TaskRunner runner) {
-    this.runner = runner;
-  }
-
   public void taskIsFinished() {
-    if (runner != null) {
-      runner.backgroundTaskIsFinished(this);
-    }
-  }
-
-  public void cancel() {
-    if (runner != null) {
-      runner.cancelTask(this);
+    if (getTaskRunner() != null) {
+      getTaskRunner().backgroundTaskIsFinished(this);
     }
   }
 
