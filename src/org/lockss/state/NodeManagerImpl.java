@@ -144,7 +144,8 @@ public class NodeManagerImpl implements NodeManager {
   }
 
   private void setConfig(Configuration config, Configuration oldConfig) {
-    maxMapSize = config.getInt(PARAM_NODESTATE_MAP_SIZE, DEFAULT_MAP_SIZE);
+    maxMapSize = config.getInt(this.PARAM_NODESTATE_CACHE_SIZE,
+                               DEFAULT_MAP_SIZE);
   }
 
   public void startPoll(CachedUrlSet cus, PollTally state) {
