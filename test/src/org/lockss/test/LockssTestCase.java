@@ -710,7 +710,7 @@ public class LockssTestCase extends TestCase {
 	sb.append(message);
 	sb.append(" ");
       }
-      sb.append("Expected empty Map, but containted ");
+      sb.append("Expected empty Map, but contained ");
       sb.append(map);
       fail(sb.toString());
     }
