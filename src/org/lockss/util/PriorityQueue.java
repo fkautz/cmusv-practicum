@@ -97,8 +97,8 @@ public class PriorityQueue implements Queue {
       try {
 	timer.setThread();
 	this.wait(timer.getRemainingTime());
-      } catch (InterruptedException e) {
-	break;
+//        } catch (InterruptedException e) {
+//  	  break;
 //  	  continue;
       } finally {
 	timer.clearThread();

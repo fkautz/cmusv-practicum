@@ -48,14 +48,16 @@ public class BinarySemaphore {
    * @return true if <code>take()</code> was successful (semaphore was or
    * became full), else false (timer expired).
    */
-  synchronized public boolean take(ProbabilisticTimer timer) {
+  synchronized public boolean take(ProbabilisticTimer timer)
+      throws InterruptedException {
     if (timer != null) {
       while (!state && !timer.expired()) {
 	try {
 	  timer.setThread();
 	  this.wait(timer.getRemainingTime());
-	} catch (InterruptedException e) {
-	  continue;
+//  	} catch (InterruptedException e) {
+//  	  break;
+//  	  continue;
 	} finally {
 	  timer.clearThread();
 	}
@@ -76,5 +78,9 @@ public class BinarySemaphore {
   synchronized public void give() {
     state = true;
     this.notifyAll();
+  }
+
+  public String toString() {
+    return "[sem: " + (state ? "full]" : "empty]");
   }
 }
