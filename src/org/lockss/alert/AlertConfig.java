@@ -92,7 +92,10 @@ public class AlertConfig {
   }
 
   public int hashCode() {
-    throw new UnsupportedOperationException();
+    if (filters == null) {
+      return 0;
+    }
+    return filters.hashCode();
   }
 
   public String toString() {
