@@ -299,7 +299,9 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
    * @return the spec
    */
   public CrawlSpec getCrawlSpec() {
-    return (CrawlSpec)paramMap.getMapElement(AU_CRAWL_SPEC);
+    // for speed we return the cached value
+    return crawlSpec;
+    //return (CrawlSpec)paramMap.getMapElement(AU_CRAWL_SPEC);
   }
 
   /**
