@@ -76,7 +76,7 @@ public class GenericFileCachedUrl extends BaseCachedUrl {
     }
     if (leaf==null) {
       try {
-        leaf = repository.getRepositoryNode(url);
+        leaf = repository.getNode(url);
         if (leaf==null) {
           leaf = repository.createNewNode(url);
         }

@@ -56,10 +56,7 @@ public class TestSimulatedContentGenerator extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
-    String tempDirPath = "";
-    try {
-      tempDirPath = super.getTempDir().getAbsolutePath() + File.separator;
-    } catch (Exception e) { fail("Couldn't get tempDir."); }
+    String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     scgen = new SimulatedContentGenerator(tempDirPath);
   }
 
@@ -99,7 +96,7 @@ public class TestSimulatedContentGenerator extends LockssTestCase {
   }
 
   public void testGetIndexContent() throws Exception {
-    File tempDir = super.getTempDir();
+    File tempDir = getTempDir();
     File directory = new File(tempDir, "testdir");
     makeDir(directory);
     makeFile(new File(directory, "testfile1.txt"), "test file 1");

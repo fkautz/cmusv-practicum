@@ -55,10 +55,7 @@ public class FuncSimulatedContent extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
-    String tempDirPath = "";
-    try {
-      tempDirPath = super.getTempDir().getAbsolutePath() + File.separator;
-    } catch (Exception e) { fail("Couldn't get tempDir."); }
+    String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     sau = new SimulatedArchivalUnit(tempDirPath);
     TestLockssRepositoryImpl.configCacheLocation(tempDirPath);
   }
@@ -88,10 +85,7 @@ public class FuncSimulatedContent extends LockssTestCase {
     byte[] nameH = getHash(set, true);
     byte[] contentH = getHash(set, false);
 
-    String tempDirPath = "";
-    try {
-      tempDirPath = super.getTempDir().getAbsolutePath() + File.separator;
-    } catch (Exception e) { fail("Couldn't get tempDir."); }
+    String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     sau = new SimulatedArchivalUnit(tempDirPath);
     TestLockssRepositoryImpl.configCacheLocation(tempDirPath);
 
