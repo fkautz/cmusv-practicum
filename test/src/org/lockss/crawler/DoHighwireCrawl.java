@@ -84,8 +84,7 @@ public class DoHighwireCrawl {
 
     }
     if (crawlFlg) {
-      Crawler crawler = 
-	CrawlerImpl.makeNewContentCrawler(au, au.getCrawlSpec(), null);
+      Crawler crawler = new NewContentCrawler(au, au.getCrawlSpec(), null);
       crawler.doCrawl(Deadline.MAX);
     }
   }
