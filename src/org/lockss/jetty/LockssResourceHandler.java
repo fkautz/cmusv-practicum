@@ -44,6 +44,7 @@ import java.util.*;
 import org.mortbay.http.*;
 import org.mortbay.http.handler.*;
 import org.mortbay.util.*;
+import org.lockss.plugin.*;
 
 
 /** Extension of ResourceHandler that allows flexibility in finding the
@@ -582,7 +583,7 @@ public class LockssResourceHandler extends AbstractHttpHandler {
 	// XXX should we copy more of the properties here?
 	if (resource instanceof CuUrlResource) {
 	  CuUrlResource cur = (CuUrlResource)resource;
-	  ctype = cur.getProperty("content-type");
+	  ctype = cur.getProperty(CachedUrl.PROPERTY_CONTENT_TYPE);
 	}
 	if (ctype == null) {
 	  ctype = metaData.getEncoding();

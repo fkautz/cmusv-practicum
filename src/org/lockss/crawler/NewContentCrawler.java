@@ -272,7 +272,7 @@ public class NewContentCrawler extends CrawlerImpl {
     Properties props = cu.getProperties();
     ArchivalUnit au = cu.getArchivalUnit();
     if (props != null) {
-      String contentType = props.getProperty("content-type");
+      String contentType = props.getProperty(CachedUrl.PROPERTY_CONTENT_TYPE);
       return au.getContentParser(contentType);
     }
     return null;

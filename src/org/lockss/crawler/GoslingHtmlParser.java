@@ -141,7 +141,7 @@ public class GoslingHtmlParser implements ContentParser {
   private static String getRedirectedTo(CachedUrl cu) {
     Properties props = cu.getProperties();
     if (props != null) {
-      return (String)props.get("redirected-to");
+      return (String)props.get(CachedUrl.PROPERTY_REDIRECTED_TO);
     }
     return null;
   }

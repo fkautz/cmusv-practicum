@@ -172,7 +172,7 @@ public class CuUrl {
       Properties props = cu.getProperties();
       String val = searchProps(props, name);
       if (val != null) return val;
-      val = searchProps(props, BaseUrlCacher.HEADER_PREFIX + name);
+      val = searchProps(props, CachedUrl.HEADER_PREFIX + name);
       if (val != null) return val;
       // old header prefix
       val = searchProps(props, "_header" + name);

@@ -428,7 +428,8 @@ public class TestGoslingHtmlParser extends LockssTestCase {
 
     MockCachedUrl mcu = new MockCachedUrl("http://www.example.com");
     Properties props = new Properties();
-    props.put("redirected-to", "http://www.example.com/extra_level/");
+    props.put(CachedUrl.PROPERTY_REDIRECTED_TO,
+	      "http://www.example.com/extra_level/");
     mcu.setContent(source);
     mcu.setProperties(props);
 

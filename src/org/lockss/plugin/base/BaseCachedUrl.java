@@ -153,7 +153,7 @@ public class BaseCachedUrl implements CachedUrl {
   private InputStream getFilteredStream() {
     ArchivalUnit au = getArchivalUnit();
     Properties props = getProperties();
-    String mimeType = props.getProperty("content-type");
+    String mimeType = props.getProperty(PROPERTY_CONTENT_TYPE);
     FilterRule fr = au.getFilterRule(mimeType);
     if (fr != null) {
       return fr.createFilteredInputStream(openForReading());

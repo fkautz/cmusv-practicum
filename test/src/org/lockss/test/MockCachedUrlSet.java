@@ -337,7 +337,7 @@ public class MockCachedUrlSet implements CachedUrlSet {
   public void addUrl(String url,
 		     boolean exists, boolean shouldCache) {
     Properties props = new Properties();
-    props.setProperty("content-type", "text/html");
+    props.setProperty(CachedUrl.PROPERTY_CONTENT_TYPE, "text/html");
     addUrl(url, exists, shouldCache, props);
   }
 
