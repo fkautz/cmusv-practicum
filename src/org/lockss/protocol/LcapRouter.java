@@ -132,6 +132,7 @@ public class LcapRouter extends BaseLockssManager {
       beaconInterval = config.getTimeInterval(PARAM_BEACON_INTERVAL, 0);
       if (beaconInterval != 0) {
 	ensureBeaconRunning();
+	updateBeacon();
       } else {
 	stopBeacon();
       }
