@@ -540,25 +540,26 @@ class HashQueue implements Serializable {
     /**
      * Returns null
      */
-    public List getHeaders(String key) {
+    public List getSummaryInfo(String key) {
       List res = new ArrayList();
-      res.add(new StatusTable.Header("Total bytes hashed",
-				     ColumnDescriptor.TYPE_INT,
-				     totalBytesHashed));
-      res.add(new StatusTable.Header("Total hash time",
-				     ColumnDescriptor.TYPE_TIME_INTERVAL,
-				     new Long(totalTime)));
+      res.add(new StatusTable.SummaryInfo("Total bytes hashed",
+					  ColumnDescriptor.TYPE_INT,
+					  totalBytesHashed));
+      res.add(new StatusTable.SummaryInfo("Total hash time",
+					  ColumnDescriptor.TYPE_TIME_INTERVAL,
+					  new Long(totalTime)));
       if (totalTime != 0) {
 	long bpms =
 	  totalBytesHashed.divide(BigInteger.valueOf(totalTime)).intValue();
 	if (bpms < (100 * Constants.SECOND)) {
-	  res.add(new StatusTable.Header("Bytes/ms",
-					 ColumnDescriptor.TYPE_INT,
-					 new Long(bpms)));
+	  res.add(new StatusTable.SummaryInfo("Bytes/ms",
+					      ColumnDescriptor.TYPE_INT,
+					      new Long(bpms)));
 	} else {
-	  res.add(new StatusTable.Header("Bytes/sec",
-					 ColumnDescriptor.TYPE_INT,
-					 new Long(bpms / Constants.SECOND)));
+	  res.add(new 
+		  StatusTable.SummaryInfo("Bytes/sec",
+					  ColumnDescriptor.TYPE_INT,
+					  new Long(bpms / Constants.SECOND)));
 	}
       }
       return res;

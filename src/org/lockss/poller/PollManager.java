@@ -790,7 +790,7 @@ public class PollManager  implements LockssManager {
     /**
      * Returns null
      */
-    public List getHeaders(String key) {
+    public List getSummaryInfo(String key) {
       return null;
     }
 
@@ -955,7 +955,7 @@ public class PollManager  implements LockssManager {
     /**
      * Returns null
      */
-    public List getHeaders(String key) {
+    public List getSummaryInfo(String key) {
       return null;
     }
 

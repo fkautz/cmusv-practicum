@@ -91,12 +91,14 @@ public interface StatusAccessor {
   public boolean requiresKey();
 
   /**
-   * Returns a list of {@link StatusTable.Header} objects for the given key
+   * Returns a list of {@link StatusTable.SummaryInfo} objects for the given 
+   * key
    * @param key optional key to identify the desired table
-   * @return list of {@link StatusTable.Header}s
+   * @return list of {@link StatusTable.SummaryInfo} objects
    * @throws StatusService.NoSuchTableException if we get a key that we don't 
    * recognize or have a table for
    */
-  public List getHeaders(String key) throws StatusService.NoSuchTableException;
+  public List getSummaryInfo(String key) 
+      throws StatusService.NoSuchTableException;
 
 }

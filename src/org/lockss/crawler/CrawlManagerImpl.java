@@ -345,7 +345,7 @@ public class CrawlManagerImpl implements CrawlManager, LockssManager {
       return false;
     }
 
-    public List getHeaders(String key) {
+    public List getSummaryInfo(String key) {
       return null;
     }
   }

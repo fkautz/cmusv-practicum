@@ -156,7 +156,7 @@ public class SimulatedStatusAccessor {
       return title;
     }
 
-    public List getHeaders(String key) {
+    public List getSummaryInfo(String key) {
       return null;
     }
     
