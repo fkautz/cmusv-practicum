@@ -175,4 +175,24 @@ public class FileUtil {
       }
     }
   }
+
+  /**
+   * Checks to see if a FileOutputStream can be created to a file containing
+   * the given char.  For example, '?' is illegal on Windows but not Unix.
+   * This function does not actually write to the output stream.
+   * @param location the location to attempt file creation in.
+   * @param testChar the char to test
+   * @return boolean true iff an output stream can be created
+   */
+  public static boolean canWriteToFileWithChar(String location, char testChar) {
+    File file = new File(location, "test"+testChar+"test");
+    try {
+      // should throw if this is an illegal destination
+      FileOutputStream fos = new FileOutputStream(file);
+      fos.close();
+      return true;
+    } catch (IOException ioe) {
+      return false;
+    }
+  }
 }
