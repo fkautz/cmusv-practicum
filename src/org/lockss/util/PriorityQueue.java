@@ -66,7 +66,7 @@ public class PriorityQueue implements Queue {
   }
 
   /**
-   * Add to the end of the queue. */
+   * Insert an object in the queue. */
   public synchronized Object put(Object obj) {
     if (obj == null) {
       throw new NullPointerException("Attempt to put null element on Queue");
