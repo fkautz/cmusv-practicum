@@ -46,6 +46,7 @@ import org.lockss.daemon.TestConfiguration;
 
 public class TestLockssRepositoryImpl extends LockssTestCase {
   private LockssRepository repo;
+  private String tempDirPath;
 
   public TestLockssRepositoryImpl(String msg) {
     super(msg);
@@ -53,10 +54,26 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
-    String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
+    tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     configCacheLocation(tempDirPath);
     MockArchivalUnit mau = new MockArchivalUnit();
     repo = LockssRepositoryImpl.repositoryFactory(mau);
+  }
+
+  public void testFileLocation() throws Exception {
+    tempDirPath += "cache/mock/none/";
+    File testFile = new File(tempDirPath);
+    assertTrue(!testFile.exists());
+
+    createLeaf("http://www.example.com/testDir/branch1/leaf1",
+               "test stream", null);
+    assertTrue(testFile.exists());
+    tempDirPath += "www.example.com/http/";
+    testFile = new File(tempDirPath);
+    assertTrue(testFile.exists());
+    tempDirPath += "testDir/branch1/leaf1/";
+    testFile = new File(tempDirPath);
+    assertTrue(testFile.exists());
   }
 
   public void testGetRepositoryNode() throws Exception {
