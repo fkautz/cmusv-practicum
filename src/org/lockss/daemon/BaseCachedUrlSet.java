@@ -75,4 +75,8 @@ public abstract class BaseCachedUrlSet implements CachedUrlSet {
   public boolean containsUrl(String url) {
     return (null != makeCachedUrl(url));
   }
+
+  public String toString() {
+    return "[BCUS: "+spec+"]";
+  }
 }
