@@ -37,6 +37,7 @@ import java.util.*;
 import java.net.MalformedURLException;
 import org.lockss.app.*;
 import org.lockss.crawler.*;
+import org.lockss.filter.*;
 import org.lockss.daemon.*;
 import org.lockss.repository.*;
 import org.lockss.util.*;
