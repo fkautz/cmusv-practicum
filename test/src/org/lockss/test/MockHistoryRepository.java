@@ -48,6 +48,9 @@ public class MockHistoryRepository implements HistoryRepository {
   public DamagedNodeSet theDamagedNodeSet;
   public HashMap storedNodes = new HashMap();
 
+  private List storedIdentityAgreement = null;
+  private List loadedIdentityAgreement = null;
+
   public MockHistoryRepository() { }
 
   public void initService(LockssDaemon daemon) throws LockssDaemonException { }
@@ -99,15 +102,19 @@ public class MockHistoryRepository implements HistoryRepository {
   }
 
   public void storeIdentityAgreement(List list) {
-    throw new UnsupportedOperationException("not implemented");
+    this.storedIdentityAgreement = list;
   }
 
   public List loadIdentityAgreement() {
-    throw new UnsupportedOperationException("not implemented");
+    return loadedIdentityAgreement;
+  }
+
+  public void setLoadedIdentityAgreement(List list) {
+    this.loadedIdentityAgreement = list;
   }
 
   public List getStoredIdentityAgreement() {
-    throw new UnsupportedOperationException("not implemented");
+    return storedIdentityAgreement;
   }
 
 }
