@@ -60,14 +60,13 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
-    String s = LockssRepositoryServiceImpl.PARAM_CACHE_LOCATION + "=" +
+    String s = LockssRepositoryImpl.PARAM_CACHE_LOCATION + "=" +
         tempDirPath +"\n";
     String s2 = HistoryRepositoryImpl.PARAM_HISTORY_LOCATION + "=" +
         tempDirPath;
     TestConfiguration.setCurrentConfigFromString(s + s2);
 
     theDaemon = new MockLockssDaemon();
-    theDaemon.getLockssRepositoryService().startService();
     theDaemon.getHistoryRepository().startService();
     hashService = theDaemon.getHashService();
     hashService.startService();
@@ -79,6 +78,8 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
     mgfau.setPlugin(plugin);
     repo = theDaemon.getLockssRepository(mgfau);
     nodeMan = theDaemon.getNodeManager(mgfau);
+    nodeMan.initService(theDaemon);
+    nodeMan.startService();
     ((NodeManagerImpl)nodeMan).killTreeWalk();
   }
 
@@ -86,7 +87,6 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
     repo.stopService();
     nodeMan.stopService();
     hashService.stopService();
-    theDaemon.getLockssRepositoryService().stopService();
     theDaemon.getHistoryRepository().stopService();
     theDaemon.stopDaemon();
     super.tearDown();

@@ -48,7 +48,7 @@ public class RunDaemon
   private static final String DEFAULT_DIR_PATH = "./";
 
   static final String PARAM_CACHE_LOCATION =
-      LockssRepositoryServiceImpl.PARAM_CACHE_LOCATION;
+      LockssRepositoryImpl.PARAM_CACHE_LOCATION;
 
   static final String PARAM_REG_SIMUL_STATUS_ACCESSOR =
     Configuration.PREFIX + "shouldRegisterSimSA";

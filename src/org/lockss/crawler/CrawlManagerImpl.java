@@ -255,7 +255,6 @@ public class CrawlManagerImpl extends BaseLockssManager
     if (cb != null) {
       callBackList.add(cb);
     }
-
     Crawler crawler = makeCrawler(au, au.getNewContentCrawlUrls(),
 				  Crawler.NEW_CONTENT, true);
     CrawlThread crawlThread = new CrawlThread(crawler, Deadline.MAX,
@@ -314,10 +313,10 @@ public class CrawlManagerImpl extends BaseLockssManager
 	logger.warning("Crawl thread priority less than zero, not set: "
 		       +crawlPriority);
       }
-      boolean crawlSucessful = crawler.doCrawl(deadline);
+      boolean crawlSuccessful = crawler.doCrawl(deadline);
       ArchivalUnit au = crawler.getAU();
       activeCrawls.remove(au);
- 
+
       // if followLinks is true, assume it's a new content crawl
       // free activity regulator so polls can resume
       ActivityRegulator ar = theDaemon.getActivityRegulator(au);
@@ -334,7 +333,7 @@ public class CrawlManagerImpl extends BaseLockssManager
 // 			       createSingleNodeCachedUrlSet(au, url));
       }
 
-      doCallbacks(callbacks, crawlSucessful, cookie);
+      doCallbacks(callbacks, crawlSuccessful, cookie);
     }
   }
 

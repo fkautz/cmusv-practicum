@@ -54,9 +54,8 @@ public abstract class GenericFileUrlCacher extends BaseUrlCacher {
 
   public GenericFileUrlCacher(CachedUrlSet owner, String url) {
     super(owner, url);
-    LockssRepositoryService repService = (LockssRepositoryService)
-        LockssDaemon.getManager(LockssDaemon.LOCKSS_REPOSITORY_SERVICE);
-    repository = repService.getLockssRepository(owner.getArchivalUnit());
+    repository = (LockssRepository)LockssDaemon.getAUSpecificManager(
+        LockssDaemon.LOCKSS_REPOSITORY, owner.getArchivalUnit());
   }
 
   protected void storeContent(InputStream input, Properties headers)

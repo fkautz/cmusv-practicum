@@ -36,7 +36,6 @@ import org.lockss.plugin.*;
 import org.lockss.poller.*;
 import org.lockss.protocol.*;
 import org.lockss.hasher.HashService;
-import org.lockss.repository.LockssRepositoryServiceImpl;
 import org.lockss.repository.*;
 import org.lockss.plugin.base.*;
 
@@ -61,8 +60,7 @@ public class TestTreeWalkHandler extends LockssTestCase {
     theDaemon = new MockLockssDaemon();
     tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     Properties props = new Properties();
-    props.setProperty(LockssRepositoryServiceImpl.PARAM_CACHE_LOCATION,
-                     tempDirPath);
+    props.setProperty(LockssRepositoryImpl.PARAM_CACHE_LOCATION, tempDirPath);
     props.setProperty(HistoryRepositoryImpl.PARAM_HISTORY_LOCATION,
                       tempDirPath);
     props.setProperty(TreeWalkHandler.PARAM_TREEWALK_INTERVAL, "100");
@@ -83,7 +81,6 @@ public class TestTreeWalkHandler extends LockssTestCase {
     pollMan = new MockPollManager();
     theDaemon.setPollManager(pollMan);
     theDaemon.setIdentityManager(new MockIdentityManager());
-    theDaemon.setLockssRepositoryService(new MockLockssRepositoryService());
     pollMan.initService(theDaemon);
     pollMan.startService();
 
