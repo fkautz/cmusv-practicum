@@ -77,6 +77,8 @@ public class MockMemoryBoundFunction extends MemoryBoundFunctionSPI {
     }
     dummyProof = (int) mbf.basisSize() - 2;
     useDummy = true;
+    logger.info("e " + mbf.e + " pathLen " + mbf.pathLen + " verify " +
+		mbf.verify + " steps " + stepsToDo);
   }
 
   /**
