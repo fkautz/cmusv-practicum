@@ -310,8 +310,8 @@ public class PollManager  implements LockssManager {
       Poll p = ((PollManagerEntry)iter.next()).poll;
 
       if(!p.getMessage().isVerifyPoll()) { // eliminate running verify polls
-        int rel_pos = theDaemon.getLockssRepository().cusCompare(cus,
-          p.getCachedUrlSet());
+        int rel_pos = theDaemon.getLockssRepository(
+            cus.getArchivalUnit()).cusCompare(cus, p.getCachedUrlSet());
         if(rel_pos != LockssRepository.SAME_LEVEL_NO_OVERLAP &&
            rel_pos != LockssRepository.NO_RELATION) {
           return p.getCachedUrlSet();
@@ -517,6 +517,7 @@ public class PollManager  implements LockssManager {
       default:
         throw new ProtocolException("Unknown opcode:" + msg.getOpcode());
     }
+    addPoll(ret_poll);
     return ret_poll;
   }
 

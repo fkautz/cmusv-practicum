@@ -41,7 +41,7 @@ import org.lockss.daemon.ArchivalUnit;
  */
 public class AuStateBean extends AuState {
   public AuStateBean() {
-    super(null, 0);
+    super(null, -1);
   }
 
   AuStateBean(AuState auState) {

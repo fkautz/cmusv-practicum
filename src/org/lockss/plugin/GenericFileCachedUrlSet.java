@@ -64,7 +64,8 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
 
   public GenericFileCachedUrlSet(ArchivalUnit owner, CachedUrlSetSpec spec) {
     super(owner, spec);
-    repository = LockssRepositoryImpl.repositoryFactory(owner);
+    //XXX fix to use demon
+    repository = (new LockssRepositoryImpl()).repositoryFactory(owner);
   }
 
   public Iterator flatSetIterator() {

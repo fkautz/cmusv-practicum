@@ -44,6 +44,20 @@ import org.lockss.util.Deadline;
  * system.
  */
 public interface NodeManager {
+  /**
+   * Creates a NodeManager for the given {@link ArchivalUnit} at
+   * a storage location specific to that archive.
+   * @param au ArchivalUnit to be cached
+   * @return a manager for the archive
+   */
+  public NodeManager managerFactory(ArchivalUnit au);
+
+  /**
+   * Starts a new poll on a particular CachedUrlSet.
+   * @param cus the CachedUrlSet being polled
+   * @param state the new PollState
+   */
+  public void startPoll(CachedUrlSet cus, Poll.VoteTally state);
 
   /**
    * update a node state with current poll results
@@ -106,5 +120,4 @@ public interface NodeManager {
    * @return estimated time in ms
    */
   public long getEstimatedTreeWalkDuration();
-
 }

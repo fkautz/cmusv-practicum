@@ -44,8 +44,8 @@ import org.lockss.plugin.*;
  */
 
 public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
-  private String pluginId = "mock";
-  private String auId = "null";
+  private String pluginId = "mock-file";
+  private String auId = "none-file";
 
   public MockGenericFileArchivalUnit(CrawlSpec spec) {
     super(spec);

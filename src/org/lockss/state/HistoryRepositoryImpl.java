@@ -188,7 +188,7 @@ public class HistoryRepositoryImpl implements HistoryRepository, LockssManager {
       File auFile = new File(getAuLocation(au) + File.separator + AU_FILE_NAME);
       if (!auFile.exists()) {
         logger.warning("No au file found.");
-        return new AuState(au, 0);
+        return new AuState(au, -1);
       }
       Unmarshaller unmarshaller = new Unmarshaller(AuStateBean.class);
       unmarshaller.setMapping(getMapping());

@@ -72,7 +72,9 @@ public class GenericFileCachedUrl extends BaseCachedUrl {
 
   private void ensureLeafLoaded() {
     if (repository==null) {
-      repository = LockssRepositoryImpl.repositoryFactory(cus.getArchivalUnit());
+      //XXX fix to use demon
+      repository = (new LockssRepositoryImpl()).repositoryFactory(
+          cus.getArchivalUnit());
     }
     if (leaf==null) {
       try {

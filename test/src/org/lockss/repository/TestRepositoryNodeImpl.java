@@ -53,7 +53,7 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
     tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     TestLockssRepositoryImpl.configCacheLocation(tempDirPath);
     MockArchivalUnit mau = new MockArchivalUnit(null);
-    repo = LockssRepositoryImpl.repositoryFactory(mau);
+    repo = (new LockssRepositoryImpl()).repositoryFactory(mau);
   }
 
   public void tearDown() throws Exception {
