@@ -39,10 +39,6 @@ public class TestNodeManagerServiceImpl extends LockssTestCase {
   private NodeManagerService nms;
   private MockArchivalUnit mau;
 
-  public TestNodeManagerServiceImpl(String msg) {
-    super(msg);
-  }
-
   public void setUp() throws Exception {
     super.setUp();
     String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
