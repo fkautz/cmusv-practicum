@@ -53,8 +53,12 @@ class VerifyPoll extends Poll implements Runnable {
     m_quorum = 1;
     m_seq++;
     m_thread = new Thread(this,"Verify Poll - "	+ m_seq);
-    m_thread.start();
   }
+
+
+	public boolean scheduleHash() {
+		return true;
+	}
 
   protected static void randomRequestVerify(Message msg, int pct)
       throws IOException {
@@ -83,7 +87,7 @@ class VerifyPoll extends Poll implements Runnable {
     Identity originator = msg.getOriginID();
     sendTo(reqmsg,originator.getAddress(), originator.getPort());
     Poll poll = findPoll(reqmsg);
-    poll.run();
+    poll.startPoll();
   }
 
   private void replyVerify(Message msg) throws IOException  {
@@ -159,7 +163,6 @@ class VerifyPoll extends Poll implements Runnable {
   }
 
   public void run() {
-    Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
 
     checkVote();
     try {

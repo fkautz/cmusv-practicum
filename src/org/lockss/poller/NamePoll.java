@@ -62,7 +62,6 @@ public class NamePoll extends Poll {
   }
 
   public void run()  {
-    Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
 
     if(m_msg.isLocal())	 {
       if(m_voteChecked)  {
