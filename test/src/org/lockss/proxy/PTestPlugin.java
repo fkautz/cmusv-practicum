@@ -112,7 +112,7 @@ class PTestPlugin {
 				      "this is one text\n"));
     au.storeCachedUrl(new CU("http://foo.bar/two", "text/html",
 				      "<html><h3>this is two html</h3></html>"));
-    org.lockss.plugin.Plugin.registerArchivalUnit(au);
+    org.lockss.plugin.PluginManager.registerArchivalUnit(au);
     return au;
   }
 }

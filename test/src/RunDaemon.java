@@ -98,7 +98,7 @@ public class RunDaemon {
 				    false);
 
     sau = new SimulatedArchivalUnit(dirPath);
-    org.lockss.plugin.Plugin.registerArchivalUnit(sau);
+    org.lockss.plugin.PluginManager.registerArchivalUnit(sau);
 
     int poll_type = Configuration.getIntParam(PARAM_POLL_TYPE,
         LcapMessage.CONTENT_POLL_REQ);

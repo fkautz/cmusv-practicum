@@ -40,7 +40,7 @@ public class StartProxy {
   public static void main(String args[]) {
     PTestPlugin.makeTest();
     System.out.println("Plugin.findArchivalUnit(http://foo.bar/one) = " +
-		       Plugin.findArchivalUnit("http://foo.bar/one"));
+		       PluginManager.findArchivalUnit("http://foo.bar/one"));
     ProxyHandler.startProxy();
     System.err.println("Proxy started");
   }

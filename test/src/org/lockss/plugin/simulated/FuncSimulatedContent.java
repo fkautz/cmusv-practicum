@@ -40,7 +40,7 @@ import org.lockss.test.*;
 import org.lockss.crawler.GoslingCrawlerImpl;
 import org.lockss.daemon.*;
 import org.lockss.repository.*;
-import org.lockss.plugin.Plugin;
+import org.lockss.plugin.PluginManager;
 import java.security.*;
 
 /**
@@ -66,12 +66,12 @@ public class FuncSimulatedContent extends LockssTestCase {
 
   public void testPluginRegistration() {
     MockArchivalUnit mau = new MockArchivalUnit(new CrawlSpec("http://www.mock.com", null));
-    Plugin.registerArchivalUnit(mau);
-    Plugin.registerArchivalUnit(sau);
+    PluginManager.registerArchivalUnit(mau);
+    PluginManager.registerArchivalUnit(sau);
     mau = new MockArchivalUnit(new CrawlSpec("http://www.mock2.com", null));
-    Plugin.registerArchivalUnit(mau);
+    PluginManager.registerArchivalUnit(mau);
 
-    ArchivalUnit au = Plugin.findArchivalUnit(SimulatedArchivalUnit.SIMULATED_URL_START);
+    ArchivalUnit au = PluginManager.findArchivalUnit(SimulatedArchivalUnit.SIMULATED_URL_START);
     assertTrue(au==sau);
   }
 
