@@ -46,20 +46,20 @@ public class NullCrawler implements Crawler {
     throw new UnsupportedOperationException("Not implemented");
   }
 
-  public long getEndTime() {
-    throw new UnsupportedOperationException("Not implemented");
-  }
+//   public long getEndTime() {
+//     throw new UnsupportedOperationException("Not implemented");
+//   }
 
-  public long getNumFetched() {
-    throw new UnsupportedOperationException("Not implemented");
-  }
-  public long getNumParsed() {
-    throw new UnsupportedOperationException("Not implemented");
-  }
+//   public long getNumFetched() {
+//     throw new UnsupportedOperationException("Not implemented");
+//   }
+//   public long getNumParsed() {
+//     throw new UnsupportedOperationException("Not implemented");
+//   }
 
-  public long getStartTime() {
-    throw new UnsupportedOperationException("Not implemented");
-  }
+//   public long getStartTime() {
+//     throw new UnsupportedOperationException("Not implemented");
+//   }
 
   public Collection getStartUrls() {
     throw new UnsupportedOperationException("Not implemented");
@@ -69,7 +69,7 @@ public class NullCrawler implements Crawler {
     throw new UnsupportedOperationException("Not implemented");
   }
 
-  public int getStatus() {
+  public Crawler.Status getStatus() {
     throw new UnsupportedOperationException("Not implemented");
   }
 
