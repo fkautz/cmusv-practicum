@@ -120,6 +120,9 @@ public class HashService {
   }
 
   private static boolean scheduleReq(HashQueue.Request req) {
+    if (theQueue == null) {
+      throw new IllegalStateException("HashService has not been initialized");
+    }
     return theQueue.scheduleReq(req);
   }
 
