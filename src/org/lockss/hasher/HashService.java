@@ -129,7 +129,7 @@ public class HashService implements LockssManager {
       new HashQueue.Request(urlset, hasher, deadline,
 			    callback, cookie,
 			    urlset.getContentHasher(hasher),
-			    urlset.estimatedHashDuration());
+			    urlset.estimatedHashDuration(), "C");
     return scheduleReq(req);
   }
 
@@ -161,7 +161,7 @@ public class HashService implements LockssManager {
       new HashQueue.Request(urlset, hasher, deadline,
 			    callback, cookie,
 			    // tk - get better duration estimate
-			    urlset.getNameHasher(hasher), 1000);
+			    urlset.getNameHasher(hasher), 1000, "N");
     return scheduleReq(req);
   }
 
