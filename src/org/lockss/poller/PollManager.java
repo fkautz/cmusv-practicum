@@ -531,12 +531,12 @@ public class PollManager  implements LockssManager {
     return Configuration.getIntParam(PARAM_QUORUM, DEFAULT_QUORUM);
   }
 
-  long calcDuration(int pollKind, CachedUrlSet cus) {
+  long calcDuration(int opcode, CachedUrlSet cus) {
     long ret = 0;
     int quorum = getQuorum();
-
-    switch (pollKind) {
-      case Poll.NAME_POLL:
+    switch (opcode) {
+      case LcapMessage.NAME_POLL_REQ:
+      case LcapMessage.NAME_POLL_REP:
          ret = Configuration.getLongParam(PARAM_NAMEPOLL_DEADLINE,
             DEFAULT_NAMEPOLL_DEADLINE);
          long range = ret/4;
@@ -545,7 +545,8 @@ public class PollManager  implements LockssManager {
 
         break;
 
-      case Poll.CONTENT_POLL:
+      case LcapMessage.CONTENT_POLL_REQ:
+      case LcapMessage.CONTENT_POLL_REP:
         long minContent = Configuration.getLongParam(PARAM_CONTENTPOLL_MIN,
             DEFAULT_CONTENTPOLL_MIN);
         long maxContent = Configuration.getLongParam(PARAM_CONTENTPOLL_MAX,
