@@ -128,9 +128,9 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
         CachedUrl newUrl = ((BaseArchivalUnit)au).cachedUrlFactory(this,
             child.getNodeUrl());
         set.add(newUrl);
-      } else {
-        recurseLeafFetch(child, set);
       }
+      // internal nodes could have content, so always recurse
+      recurseLeafFetch(child, set);
     }
   }
 
