@@ -102,14 +102,23 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
     node = repo.getNode("http://www.example.com/testDir/leaf4");
     assertTrue(node.hasContent());
     assertEquals("http://www.example.com/testDir/leaf4", node.getNodeUrl());
+  }
 
+  public void testDoubleDotUrlHandling() throws Exception {
     //testing correction of nodes with bad '..'-including urls,
     //filtering the first '..' but resolving the second
-    node = repo.createNewNode("http://www.example.com/../branch/test/../");
-    assertEquals("http://www.example.com/branch", node.getNodeUrl());
+    RepositoryNode node = repo.createNewNode(
+        "http://www.example.com/branch/test/../test2");
+    assertEquals("http://www.example.com/branch/test2", node.getNodeUrl());
 
-    node = repo.createNewNode("http://www.example.com/..");
-    assertEquals("http://www.example.com/", node.getNodeUrl());
+    try {
+      node = repo.createNewNode("http://www.example.com/..");
+      fail("Should have thrown MalformedURLException.");
+    } catch (MalformedURLException mue) { }
+    try {
+      node = repo.createNewNode("http://www.example.com/test/../../test2");
+      fail("Should have thrown MalformedURLException.");
+    } catch (MalformedURLException mue) { }
   }
 
   public void testGetAuNode() throws Exception {
