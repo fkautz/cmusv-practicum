@@ -507,6 +507,40 @@ public class TestIdentityManager extends LockssTestCase {
     }
   }
 
+  public void testIdentityAgreementEquals() {
+    IdentityManager.IdentityAgreement a1 = new MyIdentityAgreement("id1");
+    IdentityManager.IdentityAgreement a2 = new MyIdentityAgreement("id1");
+    IdentityManager.IdentityAgreement a3 = new MyIdentityAgreement("id3");
+    assertEquals(a1, a2);
+    assertNotEquals(a1, a3);
+    a1.setLastAgree(8);
+    assertNotEquals(a1, a2);
+    a2.setLastAgree(8);
+    assertEquals(a1, a2);
+    a1.setLastDisagree(12);
+    assertNotEquals(a1, a2);
+    a2.setLastDisagree(12);
+    assertEquals(a1, a2);
+  }    
+
+  public void testIdentityAgreementHash() {
+    IdentityManager.IdentityAgreement a1 = new MyIdentityAgreement("id1");
+    IdentityManager.IdentityAgreement a2 = new MyIdentityAgreement("id1");
+    assertEquals(a1.hashCode(), a2.hashCode());
+    a1.setLastAgree(8);
+    a2.setLastAgree(8);
+    a1.setLastDisagree(12);
+    a2.setLastDisagree(12);
+    assertEquals(a1.hashCode(), a2.hashCode());
+  }    
+
+  static class MyIdentityAgreement extends IdentityManager.IdentityAgreement {
+    MyIdentityAgreement(String id) {
+      super();
+      setId(id);
+    }
+  }
+
   public void testStoreIdentityAgreement() {
     try {
     MockArchivalUnit mau1 = new MockArchivalUnit();

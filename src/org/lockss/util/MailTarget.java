@@ -38,6 +38,7 @@ import java.net.*;
 import java.util.*;
 import org.lockss.protocol.IdentityManager;
 import org.lockss.config.Configuration;
+import org.lockss.app.LockssDaemon;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -95,8 +96,11 @@ public class MailTarget {
           loadConfiguration();
         }});
     try {
-      localHostName = IdentityManager.getLocalIPAddr().getHostName();
-
+      IdentityManager idMgr =
+	(IdentityManager)LockssDaemon.getManager(LockssDaemon.IDENTITY_MANAGER);
+      if (idMgr != null) {
+	localHostName = idMgr.getLocalIPAddr().getHostName();
+      }
       if (localHostName == null) {
 	logger.error("Couldn't find localhost from IdentityManager; "+
 		     "attempting to look up from IPAddr");

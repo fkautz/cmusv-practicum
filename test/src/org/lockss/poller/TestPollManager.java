@@ -254,8 +254,8 @@ public class TestPollManager extends LockssTestCase {
     // name poll duration is randomized so less predictable, but should
     // always be between min and max.
     long ndur = pf.calcDuration(LcapMessage.NAME_POLL_REQ, mcus, mpm);
-    assertTrue(ndur >= pf.getMinNamePollDuration());
-    assertTrue(ndur <= pf.getMaxNamePollDuration());
+    assertTrue(ndur >= pf.getMinPollDuration(Poll.NAME_POLL));
+    assertTrue(ndur <= pf.getMaxPollDuration(Poll.NAME_POLL));
   }
 
   public void testV1CanSchedulePoll() {
