@@ -167,7 +167,7 @@ public class MBF2 extends MemoryBoundFunction {
   }
 
   // Choose the next path to try
-  private void choosePath() throws MemoryBoundFunctionException {
+  private void choosePath() {
     // Set k to the index of the next path to try
     if (verify) {
       // XXX - should choose paths in random order
