@@ -248,6 +248,10 @@ public class SmtpMailService extends BaseLockssManager implements MailService {
 		}
 		break;
 	      case SmtpClient.RESULT_FAIL:
+ 		// XXX need better log here - client should record smtp
+ 		// transaction
+ 		log.warning("Send failed");
+ 		// fall through
 	      case SmtpClient.RESULT_OK:
 	      default:
 		queue.remove(req);
