@@ -68,7 +68,7 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
   ArchivalUnit managedAu;
   AuState auState;
   NodeStateCache nodeCache;
-  int maxMapSize;
+  int maxCacheSize;
   private static Logger logger = Logger.getLogger("NodeManager");
   TreeWalkHandler treeWalkHandler;
 
@@ -88,7 +88,7 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
     lockssRepo = theDaemon.getLockssRepository(managedAu);
     pollManager = theDaemon.getPollManager();
 
-    nodeCache = new NodeStateCache(maxMapSize);
+    nodeCache = new NodeStateCache(maxCacheSize);
 
     auState = historyRepo.loadAuState(managedAu);
 
@@ -418,8 +418,11 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
   protected void setConfig(Configuration newConfig,
                            Configuration oldConfig,
                            Set changedKeys) {
-    maxMapSize = newConfig.getInt(PARAM_NODESTATE_CACHE_SIZE,
-                                  DEFAULT_MAP_SIZE);
+    if (changedKeys.contains(PARAM_NODESTATE_CACHE_SIZE)) {
+      maxCacheSize = newConfig.getInt(PARAM_NODESTATE_CACHE_SIZE,
+                                    DEFAULT_MAP_SIZE);
+      nodeCache.setCacheSize(maxCacheSize);
+    }
   }
 
   static int mapResultsErrorToPollError(int resultsErr) {
