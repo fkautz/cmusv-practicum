@@ -110,11 +110,7 @@ public class TestJarValidator extends LockssTestCase {
     JarValidator validator =
       new JarValidator(pubKeystore, getTempDir());
     File f = null;
-    try {
-      f = validator.getBlessedJar(goodCu);
-    } catch (JarValidator.JarValidationException ex) {
-      fail("Should not have thrown.");
-    }
+    f = validator.getBlessedJar(goodCu);
     assertNotNull(f);
     assertTrue(f.exists());
   }
