@@ -68,4 +68,13 @@ public class TestAuUrl extends LockssTestCase {
     URL au = AuUrl.fromAuId(testConfigString);
     assertEquals(testConfigString, AuUrl.getAuId(au));
   }
+
+  public void testIsAuUrl() {
+    assertTrue(AuUrl.isAuUrl("lockssau://foo"));
+    assertTrue(AuUrl.isAuUrl("LOCKSSAU://foo"));
+    assertTrue(AuUrl.isAuUrl("lockssau:"));
+    assertTrue(AuUrl.isAuUrl("LOCKSSAU:"));
+    assertTrue(! AuUrl.isAuUrl("lockssau"));
+    assertTrue(! AuUrl.isAuUrl("http://foo"));
+  }
 }
