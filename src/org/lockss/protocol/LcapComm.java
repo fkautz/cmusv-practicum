@@ -239,6 +239,11 @@ public class LcapComm implements LockssManager {
 	   uniSendToPort);
   }
 
+  void sendTo(LockssDatagram ld, InetAddress addr)
+      throws IOException {
+    sendTo(ld, addr, uniSendToPort);
+  }
+
   void sendTo(LockssDatagram ld, InetAddress addr, int port)
       throws IOException {
     log.debug("sending "+ ld +" to "+ addr +":"+ port);
