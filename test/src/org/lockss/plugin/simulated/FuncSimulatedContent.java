@@ -283,7 +283,7 @@ public class FuncSimulatedContent
     CachedUrlSetHasher hasher = set.getContentHasher(dig);
     SystemMetrics metrics = theDaemon.getSystemMetrics();
     int estimate = metrics.getBytesPerMsHashEstimate(hasher, dig);
-    assertTrue(estimate > 0);
+    assertTrue("Estimate was: "+estimate, (estimate > 0));
     long estimatedTime = set.estimatedHashDuration();
     long size = ( (Long) PrivilegedAccessor.getValue(set, "totalNodeSize")).
       longValue();
