@@ -351,8 +351,13 @@ public class PollManager  implements LockssManager {
    */
   public void suspendPoll(String key) {
     PollManagerEntry pme = (PollManagerEntry)thePolls.get(key);
-    pme.setPollSuspended();
-    theLog.debug2("suspended poll " + key);
+    if(pme != null) {
+      pme.setPollSuspended();
+      theLog.debug2("suspended poll " + key);
+    }
+    else {
+      theLog.debug2("ignoring suspend request for unknown key " + key);
+    }
   }
 
 

@@ -46,7 +46,7 @@ import org.lockss.poller.*;
 /** JUnitTest case for class: org.lockss.protocol.Message */
 public class TestLcapMessage extends LockssTestCase {
 
-  private static String urlstr = "http://www.test.org";
+  private static String urlstr = "http://www.example.com";
   private static byte[] testbytes = {1,2,3,4,5,6,7,8,9,10};
   private static String lwrbnd = "test1.doc";
   private static String uprbnd = "test3.doc";

@@ -534,8 +534,8 @@ public abstract class Poll implements Serializable {
     ArrayList pollVotes;
     String hashAlgorithm; // the algorithm used to hash this poll
 
-    String[] localEntries = null;  // the local entries less the remaining RegExp
-    String[] votedEntries = null;  // entries which match the won votes in a poll
+    Object[] localEntries = null;  // the local entries less the remaining RegExp
+    Object[] votedEntries = null;  // entries which match the won votes in a poll
     private Deadline replayDeadline = null;
     private Iterator replayIter = null;
     private ArrayList originalVotes = null;

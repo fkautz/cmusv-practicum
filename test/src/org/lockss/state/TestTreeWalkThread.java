@@ -379,7 +379,7 @@ public class TestTreeWalkThread extends LockssTestCase {
       fail("can't create test name message" + ex.toString());
     }
     log.debug("daemon = " + theDaemon);
-    Poll p = TestPoll.createCompletedPoll(theDaemon,
+    Poll p = TestPoll.createCompletedPoll(theDaemon, mau,
                                           testmsg, numAgree, numDisagree);
     TestHistoryRepositoryImpl.configHistoryParams(tempDirPath);
     return p;
