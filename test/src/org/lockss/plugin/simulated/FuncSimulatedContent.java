@@ -67,6 +67,7 @@ public class FuncSimulatedContent extends LockssTestCase {
     theDaemon = new MockLockssDaemon(ListUtil.list(FileUtil.urlOfString(s),
       FileUtil.urlOfString(s2), FileUtil.urlOfString(s3)));
     theDaemon.getLockssRepository(new MockArchivalUnit());
+    theDaemon.getPluginManager();
   }
 
   public void testPluginRegistration() {
