@@ -253,7 +253,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
   }
 
   /**
-   * True if all managers have bee started.
+   * True if all managers have been started.
    * @return true iff all managers have been started */
   public boolean isDaemonRunning() {
     return daemonRunning;
