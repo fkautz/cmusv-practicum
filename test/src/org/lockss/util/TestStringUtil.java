@@ -85,6 +85,17 @@ public class TestStringUtil extends LockssTestCase {
 		 StringUtil.trimAfterChars("test\"blah", "! \""));
   }
 
+  public void testTruncateAt() {
+    assertEquals("test",
+		 StringUtil.truncateAt("test!blah", '!'));
+    assertEquals("",
+		 StringUtil.truncateAt("!blah", '!'));
+    assertEquals("test",
+		 StringUtil.truncateAt("test|", '|'));
+    assertEquals("test|blah",
+		 StringUtil.truncateAt("test|blah", '0'));
+  }
+
   public void testGetIndexIgnoringCaseNullString() {
     assertEquals(-1, StringUtil.getIndexIgnoringCase(null, "blah"));
   }
