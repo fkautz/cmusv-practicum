@@ -47,7 +47,7 @@ import org.lockss.util.*;
  */
 
 
-public class Crawler {
+public class GoslingCrawlerImpl {
   /**
    * TODO
    * 1) write state to harddrive using whatever system we come up for for the
@@ -71,7 +71,7 @@ public class Crawler {
   private static final String tdtag = "tc";
   private static final String backgroundsrc = "background";
 
-  private static Logger logger = Logger.getLogger("Crawler");
+  private static Logger logger = Logger.getLogger("GoslingCrawlerImpl");
 
   /**
    * Main method of the crawler; it loops through crawling and caching
