@@ -45,8 +45,8 @@ import org.apache.commons.collections.map.ReferenceMap;
 
 /**
  * API for use by UIs and other remote agents.  Provides access to a
- * variety of daemon status and services using only datastructure-like
- * classes that are easy to serialize.
+ * variety of daemon status and services using proxies object whose instance
+ * identity is unimportant.
  */
 public class RemoteApi extends BaseLockssDaemonManager {
   private static Logger log = Logger.getLogger("RemoteApi");
