@@ -257,6 +257,7 @@ public class LcapComm extends BaseLockssManager {
 	  log.info("2nd multicast socket started: " + mSock2);
 	} catch (IOException e) {
 	  log.warning("Can't create 2nd multicast socket, not detecting multicast spoofing", e);
+	  verifyMulticast = false;
 	}
       }
     } else {
