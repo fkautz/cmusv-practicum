@@ -101,7 +101,7 @@ class PartnerList {
       for (Iterator iter = stringList.iterator(); iter.hasNext(); ) try {
 	PeerIdentity partner = idMgr.stringToPeerIdentity((String)iter.next());
 	newDefaultList.add(partner);
-      } catch (UnknownHostException uhe) {
+      } catch (IdentityManager.MalformedIdentityKeyException uhe) {
 	log.error("default partner list throvi ws " + uhe);
       }
       if (newDefaultList.isEmpty()) {

@@ -564,7 +564,7 @@ public class TestPollManager extends LockssTestCase {
     try {
       testID = theDaemon.getIdentityManager().stringToPeerIdentity("127.0.0.1");
     }
-    catch (UnknownHostException ex) {
+    catch (IdentityManager.MalformedIdentityKeyException ex) {
       fail("can't open test host");
     }
   }

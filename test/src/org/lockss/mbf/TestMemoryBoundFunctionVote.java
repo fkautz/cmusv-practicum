@@ -156,7 +156,7 @@ public class TestMemoryBoundFunctionVote extends LockssTestCase {
     rand.nextBytes(pollID);
     try {
       voterID = idmgr.stringToPeerIdentity("127.0.0.1");
-    } catch (UnknownHostException ex) {
+    } catch (IdentityManager.MalformedIdentityKeyException ex) {
       fail("PeerIdentity throws: " + ex.toString());
     }
   }
