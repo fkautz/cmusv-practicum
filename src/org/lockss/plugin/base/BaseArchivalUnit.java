@@ -45,7 +45,7 @@ import org.lockss.daemon.*;
  */
 public abstract class BaseArchivalUnit implements ArchivalUnit {
   private static final int
-    DEFAULT_MILLISECONDS_BETWEEN_CRAWL_HTTP_REQUESTS = 10000;
+    DEFAULT_MILLISECONDS_BETWEEN_CRAWL_HTTP_REQUESTS = 10 * Constants.SECOND;
 
   private Plugin plugin;
   protected CrawlSpec crawlSpec;

@@ -180,7 +180,7 @@ public class TestConfiguration extends LockssTestCase {
     assertTrue(Configuration.getBooleanParam("prop.p3.a", false));
     assertEquals(12, Configuration.getIntParam("prop.p1"));
     assertEquals(554, Configuration.getIntParam("propnot.p1", 554));
-    assertEquals(1000*3600*24*14,
+    assertEquals(2 * Constants.WEEK,
 		 Configuration.getTimeIntervalParam("timeint", 554));
     assertEquals(554, Configuration.getTimeIntervalParam("noparam", 554));
   }

@@ -35,14 +35,13 @@ package org.lockss.test;
 import java.io.File;
 import java.security.MessageDigest;
 import org.lockss.daemon.*;
+import org.lockss.util.*;
+import org.lockss.plugin.*;
 import org.lockss.plugin.simulated.*;
 import org.lockss.repository.LockssRepositoryServiceImpl;
-import org.lockss.util.ListUtil;
 import org.lockss.poller.PollManager;
 import org.lockss.crawler.GoslingCrawlerImpl;
-import org.lockss.util.Deadline;
 import org.lockss.protocol.*;
-import org.lockss.plugin.*;
 
 public class HashSpeedTest extends LockssTestCase {
   private SimulatedArchivalUnit sau;
@@ -132,7 +131,7 @@ public class HashSpeedTest extends LockssTestCase {
     System.out.println("Estimate-");
     System.out.println("  Bytes/ms: "+estimate);
     System.out.println("  GB/hr: "+
-                       ((estimate*1000*60*60)/(1024*1024*1024)));
+                       ((estimate*Constants.HOUR)/(1024*1024*1024)));
   }
 }
 
