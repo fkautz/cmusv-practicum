@@ -116,7 +116,7 @@ public class TestSimulatedContentGenerator extends LockssTestCase {
     assertTrue(content.indexOf("<a href=\"file2.html\">file2.html</a>")>=0);
     assertTrue(content.indexOf("<a href=\"branch1/index.html\">branch1/index.html</a>")>=0);
     assertTrue(content.indexOf("<a href=\"branch2/index.html\">branch2/index.html</a>")>=0);
-    assertTrue(content.indexOf("<a href=\"testdir\">testdir</a>")>=0);
+    assertTrue(content.indexOf("<a href=\".\">.</a>")>=0);
     //test for no extra links
     assertEquals(5, StringUtil.countOccurences(content, "<a href="));
   }

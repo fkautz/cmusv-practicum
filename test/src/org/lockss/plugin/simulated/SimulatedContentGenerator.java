@@ -574,7 +574,7 @@ public class SimulatedContentGenerator {
         subLink += File.separator + SimulatedContentGenerator.INDEX_NAME;
       }
       if (subLink.equals(DIR_CONTENT_NAME)) {
-        subLink = directory.getName();
+        subLink = ".";
       }
       file_content += "<BR><A HREF=\"" + subLink + "\">" + subLink + "</A>";
     }
