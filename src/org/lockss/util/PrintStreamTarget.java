@@ -90,5 +90,6 @@ public class PrintStreamTarget implements LogTarget {
     sb.append(": ");
     sb.append(message);
     stream.println(sb.toString());
+    stream.flush();
   }
 }
