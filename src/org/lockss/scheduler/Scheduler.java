@@ -37,9 +37,12 @@ import java.util.*;
  * is passed to the constructor.
  */
 public interface Scheduler {
-  /** Try to create a Schedule.  Return true if successful. */
-  public boolean createSchedule();
+  /** Try to schedule the specified tasks.  Return true if successful. */
+  public boolean createSchedule(Collection tasks);
 
   /** Return the previously created schedule */
   public Schedule getSchedule();
+
+  /** Return the collection of tasks that was last scheduled */
+  public Collection getTasks();
 }

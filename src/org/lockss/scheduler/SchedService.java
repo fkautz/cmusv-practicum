@@ -58,8 +58,8 @@ public class SchedService extends BaseLockssManager {
     super.startService();
     log.debug("startService()");
     runner = new TaskRunner(new TaskRunner.SchedulerFactory () {
-	public Scheduler createScheduler(Collection tasks) {
-	  return new SortScheduler(tasks);
+	public Scheduler createScheduler() {
+	  return new SortScheduler();
 	}});
     runner.init();
     getApp().getStatusService().
