@@ -204,8 +204,8 @@ public class LcapDatagramRouter
   void processIncomingMessage(LockssReceivedDatagram dg) {
     LcapMessage msg;
     log.debug2("rcvd message: " + dg);
-    byte[] msgBytes = dg.getData();
     try {
+      byte[] msgBytes = dg.getData();
       msg = LcapMessage.decodeToMsg(msgBytes, dg.isMulticast());
     } catch (IOException e) {
       // XXX move the constants to IdentityManager

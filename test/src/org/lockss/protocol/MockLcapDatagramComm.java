@@ -306,7 +306,11 @@ public class MockLcapDatagramComm extends LcapDatagramComm {
   private void processReceivedPacket(LockssReceivedDatagram ld) {
     if (verifyPacket(ld)) {
       log.debug("Received " + ld);
-      runHandlers(ld);
+      try {
+	runHandlers(ld);
+      } catch (ProtocolException e) {
+	log.warning("Cannot process incoming packet", e);
+      }
     }
   }
 
@@ -318,7 +322,7 @@ public class MockLcapDatagramComm extends LcapDatagramComm {
     }
   }
 
-  private void runHandlers(LockssReceivedDatagram ld) {
+  private void runHandlers(LockssReceivedDatagram ld) throws ProtocolException {
     int proto = ld.getProtocol();
     MessageHandler handler;
     if (proto < messageHandlers.size() &&

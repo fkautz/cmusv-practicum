@@ -159,12 +159,12 @@ public class LockssDatagram {
 
 
   /** Return the data portion of the packet */
-  public byte[] getData() {
+  public byte[] getData() throws ProtocolException {
     return payload;
   }
 
   /** Return the protocol under which to send the packet */
-  public int getProtocol() {
+  public int getProtocol() throws ProtocolException {
     return protocol;
   }
 
@@ -174,7 +174,7 @@ public class LockssDatagram {
   }
 
   /** Return the size of the (uncompressed) data */
-  public int getDataSize() {
+  public int getDataSize() throws ProtocolException {
     return getData().length + HEADER_LENGTH;
   }
 
