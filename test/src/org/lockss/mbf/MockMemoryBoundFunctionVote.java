@@ -118,8 +118,11 @@ public class MockMemoryBoundFunctionVote extends MemoryBoundFunctionVote {
    */
   public boolean computeSteps(int n) throws MemoryBoundFunctionException {
     stepLimit -= n;
-    if (stepLimit <= 0)
+    if (stepLimit <= 0) {
+      logger.info("MockMemoryBoundFunctionVote: valid " + valid +
+		  " agreeing " + agreeing);
       finished = true;
+    }
     return (!finished);
   }
 
