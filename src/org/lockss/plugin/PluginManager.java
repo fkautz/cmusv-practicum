@@ -59,7 +59,7 @@ public class PluginManager implements LockssManager {
 
   /**
    * start the plugin manager.
-   * @see org.lockss.app.LockssManager.startService()
+   * @see org.lockss.app.LockssManager#startService()
    */
   public void startService() {
 
@@ -67,7 +67,7 @@ public class PluginManager implements LockssManager {
 
   /**
    * stop the plugin manager
-   * @see org.lockss.app.LockssManager.stopService()
+   * @see org.lockss.app.LockssManager#stopService()
    */
   public void stopService() {
 
