@@ -442,6 +442,15 @@ public class MockLockssDaemon extends LockssDaemon {
     theManagers.put(LockssDaemon.PROXY_MANAGER, proxyManager);
   }
 
+  /**
+   * Set the SystemMetrics
+   * @param sysMetrics the new metrics
+   */
+  public void setSystemMetrics(SystemMetrics sysMetrics) {
+    systemMetrics = sysMetrics;
+    theManagers.put(LockssDaemon.SYSTEM_METRICS, sysMetrics);
+  }
+
   private boolean daemonInited = false;
   private boolean daemonRunning = false;
 
