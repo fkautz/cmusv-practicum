@@ -500,7 +500,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
    */
   public ContentParser getContentParser(String mimeType) {
     if (mimeType != null) {
-      if (mimeType.toLowerCase().startsWith("text/html")) {
+      if (StringUtil.startsWithIgnoreCase(mimeType, "text/html")) {
 	if (goslingHtmlParser == null) {
 	  goslingHtmlParser =  new GoslingHtmlParser(this);
 	}

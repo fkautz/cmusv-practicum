@@ -395,7 +395,7 @@ System.out.println("s: "+s);
     assertEquals(st2, StringUtil.trimStackTrace(s1, st2));
   }
 
-  public void testndsWithIgnoreCaase() {
+  public void testEndsWithIgnoreCaase() {
     assertTrue(StringUtil.endsWithIgnoreCase("", ""));
     assertTrue(StringUtil.endsWithIgnoreCase("1", ""));
     assertTrue(StringUtil.endsWithIgnoreCase("1", "1"));
@@ -404,6 +404,17 @@ System.out.println("s: "+s);
     assertFalse(StringUtil.endsWithIgnoreCase("1", "2"));
     assertFalse(StringUtil.endsWithIgnoreCase("21", "2"));
     assertFalse(StringUtil.endsWithIgnoreCase("foo.opt", "xopt"));
+  }
+
+  public void testStartsWithIgnoreCaase() {
+    assertTrue(StringUtil.startsWithIgnoreCase("", ""));
+    assertTrue(StringUtil.startsWithIgnoreCase("1", ""));
+    assertTrue(StringUtil.startsWithIgnoreCase("1", "1"));
+    assertTrue(StringUtil.startsWithIgnoreCase("foo.opt", "foo."));
+    assertFalse(StringUtil.startsWithIgnoreCase("", "2"));
+    assertFalse(StringUtil.startsWithIgnoreCase("1", "2"));
+    assertFalse(StringUtil.startsWithIgnoreCase("12", "2"));
+    assertFalse(StringUtil.startsWithIgnoreCase("foo.opt", "foox"));
   }
 
   public void testTitleCase() {
