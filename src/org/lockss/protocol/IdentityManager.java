@@ -127,7 +127,7 @@ public class IdentityManager extends BaseLockssManager {
   public void initService(LockssDaemon daemon) {
     super.initService(daemon);
     localIdentityStr = Configuration.getParam(PARAM_LOCAL_IP);
-    theLog.error("localIdentityStr: " + localIdentityStr);
+    theLog.debug("localIdentityStr: " + localIdentityStr);
     if (localIdentityStr == null) {
       theLog.error(PARAM_LOCAL_IP +
 		   " is not set - IdentityManager cannot start.");
