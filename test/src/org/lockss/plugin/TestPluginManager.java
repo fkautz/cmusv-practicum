@@ -89,6 +89,7 @@ public class TestPluginManager extends LockssTestCase {
     theDaemon.setDaemonInited(true);
     mgr.setLoadablePluginsReady(true);
     mgr.initService(theDaemon);
+    mgr.startService();
   }
 
   public void tearDown() throws Exception {
@@ -98,7 +99,6 @@ public class TestPluginManager extends LockssTestCase {
   }
 
   private void doConfig() throws Exception {
-    mgr.startService();
     String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     Properties p = new Properties();
     p.setProperty(p1a1param+MockPlugin.CONFIG_PROP_1, "val1");
@@ -111,7 +111,6 @@ public class TestPluginManager extends LockssTestCase {
   }
 
   private void minimalConfig() throws Exception {
-    mgr.startService();
     String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     ConfigurationUtil.setFromArgs(LockssRepositoryImpl.PARAM_CACHE_LOCATION,
 				  tempDirPath,
@@ -509,7 +508,6 @@ public class TestPluginManager extends LockssTestCase {
   public void testWrappedAu() {
     if (!WrapperState.isUsingWrapping()) {
       try {
-        mgr.startService();
         String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
         Properties p = new Properties();
         p.setProperty(p1a1param + MockPlugin.CONFIG_PROP_1, "val1");
