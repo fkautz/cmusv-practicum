@@ -78,6 +78,10 @@ public class BackgroundTask extends SchedulableTask {
     }
   }
 
+  public String getShortText() {
+    return "Bckgnd";
+  }
+
   public String toString() {
     StringBuffer sb = new StringBuffer();
     sb.append("[BTask: ");
