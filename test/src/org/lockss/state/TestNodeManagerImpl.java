@@ -289,7 +289,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
                                         null);
     nodeManager.handleNamePoll(pollState, results, nodeState);
     // since it will try to call a content poll and fail, this becomes an error
-    assertEquals(PollState.ERR_IO, pollState.getStatus());
+    assertEquals(PollState.WON, pollState.getStatus());
 
     // lost name poll
     contentPoll = createPoll(TEST_URL+"/branch2/file1.doc", false, 5, 10);

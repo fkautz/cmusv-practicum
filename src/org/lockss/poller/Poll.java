@@ -316,6 +316,7 @@ public abstract class Poll implements Serializable {
         tally();
       }
     }
+
     m_pollmanager.closeThePoll(m_key);
     log.debug("closed the poll:" + m_key);
   }
@@ -693,6 +694,7 @@ public abstract class Poll implements Serializable {
 
     void addVote(Vote vote) {
       LcapIdentity id = vote.getIdentity();
+
       int weight = id.getReputation();
 
       synchronized (this) {
