@@ -99,6 +99,15 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
     return "local:" + path;
   }
 
+  public void testGetLocalRepositoryPath() throws Exception {
+    assertEquals("foo",
+		 LockssRepositoryImpl.getLocalRepositoryPath("local:foo"));
+    assertEquals("/cache/foo",
+		 LockssRepositoryImpl.getLocalRepositoryPath("local:/cache/foo"));
+    assertNull(LockssRepositoryImpl.getLocalRepositoryPath("other:foo"));
+    assertNull(LockssRepositoryImpl.getLocalRepositoryPath("foo"));
+  }
+
   public void testLocalRepository_GetAuMap() {
     Properties newProps = new Properties();
     mau.setAuId("barfoo");

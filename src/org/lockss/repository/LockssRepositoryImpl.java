@@ -343,16 +343,21 @@ public class LockssRepositoryImpl
     Configuration auConfig = au.getConfiguration();
     if (auConfig != null) {		// can be null in unit tests
       String repoSpec = auConfig.get(PluginManager.AU_PARAM_REPOSITORY);
-      if (repoSpec != null) {
-	if (repoSpec.startsWith("local:")) {
-	  root = repoSpec.substring(6);
-	}
-      }
+      root = getLocalRepositoryPath(repoSpec);
     }
     if (root == null) {
       root = Configuration.getParam(PARAM_CACHE_LOCATION);
     }
     return root;
+  }
+
+  public static String getLocalRepositoryPath(String repoSpec) {
+    if (repoSpec != null) {
+      if (repoSpec.startsWith("local:")) {
+	return repoSpec.substring(6);
+      }
+    }
+    return null;
   }
 
   static String getCacheLocation() {
