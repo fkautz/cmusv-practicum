@@ -114,7 +114,7 @@ public class NodeStateImpl implements NodeState {
     repository.storeNodeState(this);
   }
 
-  protected void closeActivePoll(PollHistory finished_poll) {
+  protected synchronized void closeActivePoll(PollHistory finished_poll) {
     if (pollHistories==null) {
       repository.loadPollHistories(this);
       Collections.sort(pollHistories);
@@ -132,7 +132,6 @@ public class NodeStateImpl implements NodeState {
     if (!added) {
       pollHistories.add(finished_poll);
     }
-    //XXX synchronize polls
     polls.remove(finished_poll);
     repository.storeNodeState(this);
   }
