@@ -362,8 +362,7 @@ public abstract class CrawlerImpl implements Crawler {
    * connection pool set. */
   protected UrlCacher makeUrlCacher(CachedUrlSet cus, String url) {
     ArchivalUnit au = cus.getArchivalUnit();
-    Plugin plugin = au.getPlugin();
-    UrlCacher uc = plugin.makeUrlCacher(cus, url);
+    UrlCacher uc = au.makeUrlCacher(cus, url);
     uc.setConnectionPool(connectionPool);
     //uc.setPermissionMap(permission
     return uc;

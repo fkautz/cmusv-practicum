@@ -388,8 +388,7 @@ public class TestGenericContentHasher extends LockssTestCase {
     switch (cusn.getType()) {
       case CachedUrlSetNode.TYPE_CACHED_URL_SET:
 	CachedUrlSet cus = (CachedUrlSet)cusn;
-	return cus.getArchivalUnit().getPlugin().makeCachedUrl(cus,
-							       cus.getUrl());
+	return cus.getArchivalUnit().makeCachedUrl(cus, cus.getUrl());
       case CachedUrlSetNode.TYPE_CACHED_URL:
 	return (CachedUrl)cusn;
     }

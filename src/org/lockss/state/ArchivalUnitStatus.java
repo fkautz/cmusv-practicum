@@ -311,7 +311,7 @@ public class ArchivalUnitStatus
           cus = (CachedUrlSet)cusn;
         } else {
           CachedUrlSetSpec spec = new RangeCachedUrlSetSpec(cusn.getUrl());
-          cus = au.getPlugin().makeCachedUrlSet(au, spec);
+          cus = au.makeCachedUrlSet(spec);
         }
         try {
 	  Map row = makeRow(repo.getNode(cus.getUrl()),

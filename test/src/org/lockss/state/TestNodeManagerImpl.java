@@ -769,7 +769,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     // XXX what state should this node be in?
     log.debug("5 node state " + nodeState.getStateString());
     assertEquals(NodeState.INITIAL, nodeState.getState());
-    
+
     // create erroneous SN name poll
     namePoll = createPoll(TEST_URL, ".", null, false, true, 15, 5);
     PollTally results = namePoll.getVoteTally();
@@ -1312,7 +1312,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
           break;
         case CachedUrlSetNode.TYPE_CACHED_URL:
           CachedUrlSetSpec rSpec = new RangeCachedUrlSetSpec(child.getUrl());
-          CachedUrlSet newSet = au.getPlugin().makeCachedUrlSet(au, rSpec);
+          CachedUrlSet newSet = au.makeCachedUrlSet(rSpec);
           nodeManager.createNodeState(newSet);
       }
     }

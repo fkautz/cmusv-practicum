@@ -181,6 +181,18 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     return auConfig;
   }
 
+  public CachedUrlSet makeCachedUrlSet(CachedUrlSetSpec cuss) {
+    return new BaseCachedUrlSet(this, cuss);
+  }
+
+  public CachedUrl makeCachedUrl(CachedUrlSet owner, String url) {
+    return new BaseCachedUrl(owner, url);
+  }
+
+  public UrlCacher makeUrlCacher(CachedUrlSet owner, String url) {
+    return new BaseUrlCacher(owner, url);
+  }
+
   private void checkLegalConfigChange(Configuration newConfig)
       throws ArchivalUnit.ConfigurationException {
     for (Iterator iter = plugin.getAuConfigDescrs().iterator();
@@ -374,7 +386,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
    */
   public CachedUrlSet getAuCachedUrlSet() {
     // tk - use singleton instance?
-    return getPlugin().makeCachedUrlSet(this, new AuCachedUrlSetSpec());
+    return makeCachedUrlSet(new AuCachedUrlSetSpec());
   }
 
   private Deadline nextFetchTime = Deadline.in(0);

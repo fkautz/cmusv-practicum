@@ -155,7 +155,7 @@ public class TestSampleArchivalUnit extends LockssTestCase {
    */
   private void shouldCacheTest(String url, boolean shouldCache,
                               ArchivalUnit au, CachedUrlSet cus) {
-   UrlCacher uc = au.getPlugin().makeUrlCacher(cus, url);
+   UrlCacher uc = au.makeUrlCacher(cus, url);
    assertTrue(uc.shouldBeCached()==shouldCache);
  }
 

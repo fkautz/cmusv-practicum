@@ -244,19 +244,6 @@ public abstract class BasePlugin
     return theDaemon;
   }
 
-  public CachedUrlSet makeCachedUrlSet(ArchivalUnit owner,
-                                       CachedUrlSetSpec cuss) {
-    return new BaseCachedUrlSet(owner, cuss);
-  }
-
-  public CachedUrl makeCachedUrl(CachedUrlSet owner, String url) {
-    return new BaseCachedUrl(owner, url);
-  }
-
-  public UrlCacher makeUrlCacher(CachedUrlSet owner, String url) {
-    return new BaseUrlCacher(owner, url);
-  }
-
   /**
    * return the CacheResultMap to use with this plugin
    * @return CacheResultMap

@@ -84,6 +84,12 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     this(new SimulatedPlugin());
   }
 
+  public UrlCacher makeUrlCacher(CachedUrlSet owner, String url) {
+    String fileRoot =
+      ((SimulatedArchivalUnit)owner.getArchivalUnit()).getRootDir();
+    return new SimulatedUrlCacher(owner, url, fileRoot);
+  }
+
 
   public String getName() {
     return makeName();

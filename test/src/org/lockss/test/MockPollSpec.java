@@ -127,9 +127,7 @@ public class MockPollSpec extends PollSpec {
       }
     }
     CachedUrlSet cus =
-      plug.makeCachedUrlSet(au, new RangeCachedUrlSetSpec(url,
-							  lwrBound,
-							  uprBound));
+      au.makeCachedUrlSet(new RangeCachedUrlSetSpec(url, lwrBound, uprBound));
     return cus;
   }
 }

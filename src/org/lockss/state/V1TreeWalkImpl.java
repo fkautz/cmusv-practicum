@@ -212,7 +212,7 @@ public class V1TreeWalkImpl implements TreeWalker {
 	Plugin plugin = theAu.getPlugin();
 	CachedUrlSetSpec cuss = new RangeCachedUrlSetSpec(node.getUrl());
 	NodeState state =
-	  nodeMgr.getNodeState(plugin.makeCachedUrlSet(theAu, cuss));
+	  nodeMgr.getNodeState(theAu.makeCachedUrlSet(cuss));
 	pContinue = checkNodeState(state);
       }
       if (treeWalkAborted) {

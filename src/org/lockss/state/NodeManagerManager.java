@@ -177,7 +177,7 @@ public class NodeManagerManager
 	NodeManager manager = (NodeManager)iter.next();
 	AuState auState = manager.getAuState();
         if (auState != null) {
-	  if (!includeInternalAus && 
+	  if (!includeInternalAus &&
 	      (auState.getArchivalUnit() instanceof RegistryArchivalUnit)) {
 	    continue;
 	  }
@@ -527,7 +527,7 @@ public class NodeManagerManager
       ArchivalUnit au = nodeManager.getAuState().getArchivalUnit();
       Plugin plugin = au.getPlugin();
       CachedUrlSet cus =
-	plugin.makeCachedUrlSet(au, new RangeCachedUrlSetSpec(url));
+	au.makeCachedUrlSet(new RangeCachedUrlSetSpec(url));
       NodeState state = nodeManager.getNodeState(cus);
       if (state == null) {
         logger.debug("unable to find a node state for " + url);

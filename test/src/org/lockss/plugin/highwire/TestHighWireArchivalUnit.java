@@ -111,13 +111,12 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
     URL base = new URL("http://shadow1.stanford.edu/");
     int volume = 322;
     ArchivalUnit hwAu = makeAu(base, volume);
-    Plugin plugin = hwAu.getPlugin();
+
     theDaemon.getLockssRepository(hwAu);
     theDaemon.getNodeManager(hwAu);
     CachedUrlSetSpec spec = new RangeCachedUrlSetSpec(base.toString());
     BaseCachedUrlSet cus = new BaseCachedUrlSet(hwAu, spec);
-    UrlCacher uc =
-        plugin.makeUrlCacher(cus, "http://shadow1.stanford.edu/");
+    UrlCacher uc = hwAu.makeUrlCacher(cus, "http://shadow1.stanford.edu/");
     assertFalse(uc.shouldBeCached());
   }
 
@@ -125,14 +124,13 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
     URL base = new URL("http://shadow1.stanford.edu/");
     int volume = 322;
     ArchivalUnit hwAu = makeAu(base, volume);
-    Plugin plugin = hwAu.getPlugin();
+
     theDaemon.getLockssRepository(hwAu);
     theDaemon.getNodeManager(hwAu);
     CachedUrlSetSpec spec = new RangeCachedUrlSetSpec(base.toString());
     BaseCachedUrlSet cus = new BaseCachedUrlSet(hwAu, spec);
-    UrlCacher uc =
-      plugin.makeUrlCacher(cus,
-			   "http://shadow2.stanford.edu/lockss-manifest/vol_322_manifest.dtl");
+    UrlCacher uc = hwAu.makeUrlCacher(cus,
+         "http://shadow2.stanford.edu/lockss-manifest/vol_322_manifest.dtl");
 
     assertFalse(uc.shouldBeCached());
   }

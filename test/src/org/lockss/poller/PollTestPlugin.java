@@ -130,9 +130,9 @@ public class PollTestPlugin {
       return new PTArchivalUnit(rootSpec);
     }
 
-//     public CachedUrlSet makeCachedUrlSet(CachedUrlSetSpec cuss) {
-//       return new PTCachedUrlSet(this,cuss);
-//     }
+     public CachedUrlSet makeCachedUrlSet(CachedUrlSetSpec cuss) {
+       return new PTCachedUrlSet(this, cuss);
+     }
 
 //     public CachedUrlSet makeCachedUrlSet(String url, String regexp) {
 //       return new PTCachedUrlSet(this,new MockCachedUrlSetSpec(url,regexp));
