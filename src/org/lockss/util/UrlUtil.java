@@ -148,5 +148,28 @@ public class UrlUtil {
     return sb.toString();
   }
 
+  /**
+   * Return a list of header fields (in the format "key;fieldValue") for conn
+   * @param conn URLConnection to get headers from
+   * @return list of header fields (in the format "key;fieldValue") for conn
+   * @throws IllegalArgumentException if a null conn is supplied
+   */
+  public static List getHeaders(URLConnection conn) {
+    if (conn == null) {
+      throw new IllegalArgumentException("Called with null URLConnection");
+    }
+    List returnList = new ArrayList();
+    boolean done = false;
+    for(int ix=0; !done; ix++) {
+      String headerField = conn.getHeaderField(ix);
+      String headerFieldKey = conn.getHeaderFieldKey(ix);
+      done = (headerField == null && headerFieldKey == null);
+      if (!done) {
+	returnList.add(headerFieldKey+";"+headerField);
+      }
+    }
+    return returnList;
+  }
+
 
 }
