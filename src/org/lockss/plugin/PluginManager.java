@@ -772,6 +772,9 @@ public class PluginManager
   public void deactivateAuConfiguration(ArchivalUnit au) throws IOException {
     log.debug("Deactivating AU: " + au);
     Configuration config = getStoredAuConfiguration(au);
+    if (config.isSealed()) {
+      config = config.copy();
+    }
     config.put(AU_PARAM_DISABLED, "true");
     updateAuConfigFile(au, config);
   }
