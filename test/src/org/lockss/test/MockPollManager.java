@@ -92,7 +92,7 @@ public class MockPollManager extends PollManager {
     return (String)thePolls.get(key);
   }
 
-  public Poll createPoll(LcapMessage msg, PollSpec pollspec) throws ProtocolException {
+  public BasePoll createPoll(LcapMessage msg, PollSpec pollspec) throws ProtocolException {
     try {
       sendPollRequest(msg.getOpcode(), pollspec);
     }

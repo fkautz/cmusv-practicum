@@ -49,8 +49,6 @@ public class TestTreeWalkHandler extends LockssTestCase {
   private MockPollManager pollMan;
   private MockCrawlManager crawlMan;
   private List urlList = null;
-  private Poll namePoll = null;
-  private Poll contentPoll = null;
   private Random random = new Random();
 
   private MockLockssDaemon theDaemon;

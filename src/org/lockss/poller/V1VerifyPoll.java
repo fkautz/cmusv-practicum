@@ -49,7 +49,7 @@ import org.mortbay.util.B64Code;
  */
 class V1VerifyPoll extends V1Poll {
 
-  Poll originalPoll;
+  BasePoll originalPoll;
 
   public V1VerifyPoll(LcapMessage msg,
 			      PollSpec pollspec, PollManager pm) {
