@@ -150,7 +150,7 @@ public class LcapComm {
     try {
       InetAddress local = InetAddress.getLocalHost();
       byte[] addr = local.getAddress();
-      return addr[3] + 1234;
+      return ((int)addr[3]) + 1234;
     } catch (UnknownHostException e) {
       log.error("Can't find local IP address, so can't use ip-addr-derived multicast port", e);
       return -1;
