@@ -54,9 +54,6 @@ public class TestConfiguration extends TestCase {
     super(msg);
   }
 
-//    public void setUp() {
-//    }
-
   private static final String c1 = "prop1=12\nprop2=foobar\nprop3=true\n" +
     "prop5=False\n"; 
   private static final String c1a = "prop2=xxx\nprop4=yyy\n"; 
@@ -186,6 +183,11 @@ public class TestConfiguration extends TestCase {
   public static boolean setCurrentConfigFromUrlList(List l) {
     Configuration config = Configuration.readConfig(l);
     return Configuration.installConfig(config);
+  }
+
+  public static boolean setCurrentConfigFromString(String s)
+      throws IOException {
+    return setCurrentConfigFromUrlList(ListUtil.list(FileUtil.urlOfString(s)));
   }
 
   public void testCurrentConfig() throws IOException {
