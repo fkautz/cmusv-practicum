@@ -128,12 +128,6 @@ public class ActivityRegulator
     super.stopService();
   }
 
-  protected void setConfig(Configuration newConfig,
-                           Configuration prevConfig,
-                           Configuration.Differences changedKeys) {
-    // nothing to config
-  }
-
   public void setAuConfig(Configuration auConfig) {
   }
 

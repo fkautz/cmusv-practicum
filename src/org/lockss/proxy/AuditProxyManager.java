@@ -54,8 +54,8 @@ public class AuditProxyManager extends BaseProxyManager {
 
   public static final String PARAM_PORT = PREFIX + "port";
 
-  protected void setConfig(Configuration config, Configuration prevConfig,
-			   Configuration.Differences changedKeys) {
+  public void setConfig(Configuration config, Configuration prevConfig,
+			Configuration.Differences changedKeys) {
     super.setConfig(config, prevConfig, changedKeys);
     if (changedKeys.contains(ProxyManager.PREFIX)) {
       includeIps = config.get(ProxyManager.PARAM_IP_INCLUDE, "");

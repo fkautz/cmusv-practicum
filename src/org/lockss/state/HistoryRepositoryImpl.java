@@ -113,10 +113,6 @@ public class HistoryRepositoryImpl
     super.stopService();
   }
 
-  protected void setConfig(Configuration config, Configuration oldConfig,
-			   Configuration.Differences changedKeys) {
-  }
-
   public void setAuConfig(Configuration auConfig) {
   }
 

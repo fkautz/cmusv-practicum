@@ -74,10 +74,6 @@ public class UrlManager extends BaseLockssDaemonManager {
     startCnt--;
   }
 
-  public void setConfig(Configuration config, Configuration prevConfig,
-			Configuration.Differences changedKeys) {
-  }
-
   /** A URLStreamHandlerFactory that returns URLStreamHandlers for
       locksscu: and lockssau: protocols. */
   private class LockssUrlFactory implements URLStreamHandlerFactory {

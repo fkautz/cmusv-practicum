@@ -74,10 +74,6 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
     super.stopService();
   }
 
-  protected void setConfig(Configuration config, Configuration oldConfig,
-                           Configuration.Differences changedKeys) {
-  }
-
   static class RepoStatusAccessor implements StatusAccessor {
     private static LockssDaemon daemon;
     private PluginManager pluginMgr;

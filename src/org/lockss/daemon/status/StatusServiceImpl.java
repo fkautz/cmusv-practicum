@@ -52,10 +52,6 @@ public class StatusServiceImpl
     registerStatusAccessor(ALL_TABLES_TABLE, new AllTableStatusAccessor());
   }
 
-  protected void setConfig(Configuration config, Configuration prevConfig,
-			   Configuration.Differences changedKeys) {
-  }
-
   public StatusTable getTable(String tableName, String key) 
       throws StatusService.NoSuchTableException {
     return getTable(tableName, key, null);

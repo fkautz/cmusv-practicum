@@ -57,7 +57,7 @@ public class TestV1TreeWalkImpl extends LockssTestCase {
 		      tempDirPath);
     props.setProperty(TreeWalkManager.PARAM_TREEWALK_INTERVAL_MIN, "100");
     props.setProperty(TreeWalkManager.PARAM_TREEWALK_INTERVAL_MAX, "100");
-    props.setProperty(NodeManagerImpl.PARAM_RECALL_DELAY, "5s");
+    props.setProperty(NodeManagerManager.PARAM_RECALL_DELAY, "5s");
     ConfigurationUtil.setCurrentConfigFromProps(props);
 
     mau = new MockArchivalUnit();

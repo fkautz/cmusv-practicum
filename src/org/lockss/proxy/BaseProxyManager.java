@@ -82,8 +82,8 @@ public abstract class BaseProxyManager extends JettyManager {
     return (LockssDaemon)getApp();
   }
 
-  protected void setConfig(Configuration config, Configuration prevConfig,
-			   Configuration.Differences changedKeys) {
+  public void setConfig(Configuration config, Configuration prevConfig,
+			Configuration.Differences changedKeys) {
     super.setConfig(config, prevConfig, changedKeys);
   }
 

@@ -47,7 +47,7 @@ import org.lockss.plugin.*;
  * and the rest of the world.  It mediates the different crawl types.
  */
 public class CrawlManagerImpl extends BaseLockssDaemonManager
-    implements CrawlManager, CrawlManager.StatusSource {
+    implements CrawlManager, CrawlManager.StatusSource, ConfigurableManager {
 
   /**
    * The expiration deadline for a new content crawl, in ms.
@@ -124,8 +124,8 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
     super.stopService();
   }
 
-  protected void setConfig(Configuration newConfig, Configuration prevConfig,
-			   Configuration.Differences changedKeys) {
+  public void setConfig(Configuration newConfig, Configuration prevConfig,
+			Configuration.Differences changedKeys) {
     contentCrawlExpiration =
       newConfig.getTimeInterval(PARAM_NEW_CONTENT_CRAWL_EXPIRATION,
 				DEFAULT_NEW_CONTENT_CRAWL_EXPIRATION);

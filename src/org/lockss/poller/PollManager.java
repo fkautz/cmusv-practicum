@@ -55,7 +55,9 @@ import org.lockss.alert.*;
  * @version 1.0
  */
 
-public class PollManager  extends BaseLockssDaemonManager {
+public class PollManager
+  extends BaseLockssDaemonManager implements ConfigurableManager {
+
   static final String PARAM_RECENT_EXPIRATION = Configuration.PREFIX +
       "poll.expireRecent";
   static final String PARAM_VERIFY_EXPIRATION = Configuration.PREFIX +
@@ -794,9 +796,9 @@ public class PollManager  extends BaseLockssDaemonManager {
   }
 
 
-  protected void setConfig(Configuration newConfig,
-                           Configuration oldConfig,
-                           Configuration.Differences changedKeys) {
+  public void setConfig(Configuration newConfig,
+			Configuration oldConfig,
+			Configuration.Differences changedKeys) {
     long aveDuration = newConfig.getTimeInterval(PARAM_NAMEPOLL_DEADLINE,
                                                   DEFAULT_NAMEPOLL_DEADLINE);
     m_minNamePollDuration = aveDuration - aveDuration / 4;

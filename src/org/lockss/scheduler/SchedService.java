@@ -81,10 +81,6 @@ public class SchedService extends BaseLockssManager {
     super.stopService();
   }
 
-  protected void setConfig(Configuration config, Configuration prevConfig,
-			   Configuration.Differences changedKeys) {
-  }
-
   /** Attempt to add a task to the schedule.
    * @param task the new task
    * @return true if the task was added to the schedule.

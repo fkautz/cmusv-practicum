@@ -49,7 +49,9 @@ import org.mortbay.util.B64Code;
  * Routing involves decisions about using unicast to supplement multicast,
  * including forwarding received unicast packets.
  */
-public class LcapRouter extends BaseLockssDaemonManager {
+public class LcapRouter
+  extends BaseLockssDaemonManager implements ConfigurableManager {
+
   static final String PREFIX = Configuration.PREFIX + "comm.router.";
   static final String ORIGRATE_PREFIX = PREFIX + "maxOriginateRate.";
   static final String PARAM_ORIG_PKTS_PER_INTERVAL = ORIGRATE_PREFIX+"packets";
@@ -115,8 +117,8 @@ public class LcapRouter extends BaseLockssDaemonManager {
     super.stopService();
   }
 
-  protected void setConfig(Configuration config, Configuration oldConfig,
-			   Configuration.Differences changedKeys) {
+  public void setConfig(Configuration config, Configuration oldConfig,
+			Configuration.Differences changedKeys) {
     fwdRateLimiter =
       RateLimiter.getConfiguredRateLimiter(config, fwdRateLimiter,
 					   PARAM_FWD_PKTS_PER_INTERVAL,

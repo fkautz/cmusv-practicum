@@ -102,12 +102,6 @@ public class AuTreeWalkManager
     }
   }
 
-  protected void setConfig(Configuration newConfig,
-			   Configuration prevConfig,
-			   Configuration.Differences changedKeys) {
-    // nothing to config
-  }
-
   public void setAuConfig(Configuration auConfig) {
   }
 
@@ -331,7 +325,7 @@ public class AuTreeWalkManager
   }
 
   void startThread(BackgroundTask task) {
-    TreeWalkRunner runner = new TreeWalkRunner(au, task);
+    TreeWalkRunner runner = newRunner(au, task);
     try {
       executeRunner(runner);
       runningRunner = runner;
@@ -347,6 +341,10 @@ public class AuTreeWalkManager
   protected void executeRunner(TreeWalkRunner runner)
       throws InterruptedException {
     twm.execute(runner);
+  }
+
+  protected TreeWalkRunner newRunner(ArchivalUnit au, BackgroundTask task) {
+    return new TreeWalkRunner(au, task);
   }
 
   protected TreeWalker newWalker(LockssDaemon daemon, ArchivalUnit au) {

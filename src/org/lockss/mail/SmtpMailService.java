@@ -38,7 +38,8 @@ import org.lockss.daemon.*;
 
 /** SmtpMailService is a MailService that sends mail directly over an smtp
  * connection, queuing it in memory */
-public class SmtpMailService extends BaseLockssManager implements MailService {
+public class SmtpMailService
+  extends BaseLockssManager implements MailService, ConfigurableManager {
   protected static Logger log = Logger.getLogger("Mail");
 
   static final String PRIORITY_PARAM_MAILQ = "MailQueue";
@@ -88,9 +89,9 @@ public class SmtpMailService extends BaseLockssManager implements MailService {
     super.stopService();
   }
 
-  protected synchronized void setConfig(Configuration config,
-					Configuration prevConfig,
-					Configuration.Differences changedKeys) {
+  public synchronized void setConfig(Configuration config,
+				     Configuration prevConfig,
+				     Configuration.Differences changedKeys) {
     // Unconditional: not under PREFIX
     localHostName = getLocalHostname();
 

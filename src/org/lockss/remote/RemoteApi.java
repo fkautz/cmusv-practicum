@@ -73,11 +73,6 @@ public class RemoteApi extends BaseLockssDaemonManager {
     configMgr = getDaemon().getConfigManager();
   }
 
-  /** No config */
-  protected void setConfig(Configuration config, Configuration oldConfig,
-			   Configuration.Differences changedKeys) {
-  }
-
   /** Create or return an AuProxy for the AU corresponding to the auid.
    * @param auid the auid
    * @return an AuProxy for the AU, or null if no AU exists with the given

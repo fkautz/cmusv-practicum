@@ -48,7 +48,7 @@ import org.lockss.plugin.*;
  * the SchedService to execute tasks.
  */
 public class HashSvcSchedImpl
-  extends BaseLockssDaemonManager implements HashService {
+  extends BaseLockssDaemonManager implements HashService, ConfigurableManager {
 
   protected static Logger log = Logger.getLogger("HashSvcSchedImpl");
 
@@ -88,8 +88,8 @@ public class HashSvcSchedImpl
     super.stopService();
   }
 
-  protected void setConfig(Configuration config, Configuration prevConfig,
-			   Configuration.Differences changedKeys) {
+  public void setConfig(Configuration config, Configuration prevConfig,
+			Configuration.Differences changedKeys) {
     estPadConstant = config.getLong(PARAM_ESTIMATE_PAD_CONSTANT,
 				    DEFAULT_ESTIMATE_PAD_CONSTANT);
     estPadPercent = config.getLong(PARAM_ESTIMATE_PAD_PERCENT,
