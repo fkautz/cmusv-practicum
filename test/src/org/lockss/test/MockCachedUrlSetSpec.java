@@ -43,18 +43,29 @@ import org.lockss.util.*;
  * @version 0.0
  */
 
-public class MockCachedUrlSetSpec implements CachedUrlSetSpec{
+public class MockCachedUrlSetSpec implements CachedUrlSetSpec {
   private String root = null;
   private String regExp = null;
+  private List prefixList = null;
+
+
+  public MockCachedUrlSetSpec() {
+  }
 
   public MockCachedUrlSetSpec(String root, String regExp) {
     this.root = root;
     this.regExp = regExp;
+    this.prefixList =  ListUtil.list(root);
   }
   
   public List getPrefixList() {
-    return ListUtil.list(root);
+    return prefixList;
   }
+  
+  public void setPrefixList(List prefixList) {
+    this.prefixList = prefixList;
+  }
+
 
   public boolean matches(String url) {
     return url.startsWith(root);
