@@ -478,6 +478,43 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
     assertTrue(testFile.exists());
   }
 
+  public void testIdenticalVersionFixesVersionError() throws Exception {
+    Properties props = new Properties();
+    MyMockRepositoryNode leaf = new MyMockRepositoryNode(
+        (RepositoryNodeImpl)createLeaf(
+        "http://www.example.com/testDir/test.cache", "test stream", props));
+    assertEquals(1, leaf.getCurrentVersion());
+
+    props = new Properties();
+    leaf.makeNewVersion();
+    leaf.setNewProperties(props);
+    // set to error state
+    leaf.currentVersion = 0;
+    writeToLeaf(leaf, "test stream");
+    assertEquals(0, leaf.currentVersion);
+    leaf.sealNewVersion();
+    // fixes error state, even though identical
+    assertEquals(1, leaf.getCurrentVersion());
+  }
+
+  public void testMakeNewVersionFixesVersionError() throws Exception {
+    Properties props = new Properties();
+    MyMockRepositoryNode leaf = new MyMockRepositoryNode(
+        (RepositoryNodeImpl)createLeaf(
+        "http://www.example.com/testDir/test.cache", "test stream", props));
+    assertEquals(1, leaf.getCurrentVersion());
+
+    props = new Properties();
+    leaf.makeNewVersion();
+    // set to error state
+    leaf.currentVersion = -1;
+    leaf.setNewProperties(props);
+    writeToLeaf(leaf, "test stream2");
+    leaf.sealNewVersion();
+    // fixes error state
+    assertEquals(1, leaf.getCurrentVersion());
+  }
+
   public void testGetInputStream() throws Exception {
     RepositoryNode leaf =
         createLeaf("http://www.example.com/testDir/test.cache",
