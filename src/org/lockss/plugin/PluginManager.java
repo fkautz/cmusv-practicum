@@ -205,6 +205,14 @@ public class PluginManager extends BaseLockssManager {
     return pluginKeyFromId(pluginId)+"&"+auKey;
   }
 
+  public static String auKeyFromAuId(String auid) {
+    int pos = auid.indexOf("&");
+    if (pos < 0) {
+      throw new IllegalArgumentException("Illegal AuId: " + auid);
+    }
+    return auid.substring(pos + 1);
+  }
+
   public static String pluginIdFromAuId(String auid) {
     int pos = auid.indexOf("&");
     if (pos < 0) {
