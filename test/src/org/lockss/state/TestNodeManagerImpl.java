@@ -77,6 +77,9 @@ public class TestNodeManagerImpl extends LockssTestCase {
     pollManager.initService(theDaemon);
     pollManager.startService();
 
+    // create au state so thread doesn't throw null pointers
+    theDaemon.getLockssRepository(mau).createNewNode(TEST_URL);
+
     nodeManager = new NodeManagerImpl(mau);
     nodeManager.initService(theDaemon);
     nodeManager.historyRepo = new HistoryRepositoryImpl(tempDirPath);
