@@ -53,8 +53,8 @@ public class V2ContentPoll extends V2Poll {
 
   V2ContentPoll(LcapMessage msg, PollSpec pollspec, PollManager pm) {
     super(msg, pollspec, pm);
-    log.warning("V2 content poll constructor: " + msg.toString() + " " +
-		pollspec.toString() + " " + pm.toString());
+    log.debug("V2 content poll constructor: " + msg + " " +
+	      pollspec + " " + pm);
   }
 
 

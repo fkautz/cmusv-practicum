@@ -53,8 +53,8 @@ public class V2NamePoll extends V2Poll {
 
   V2NamePoll(LcapMessage msg, PollSpec pollspec, PollManager pm) {
     super(msg, pollspec, pm);
-    log.warning("V2 name poll constructor: " + msg.toString() + " " +
-		pollspec.toString() + " " + pm.toString());
+    log.debug("V2 name poll constructor: " + msg + " " +
+	      pollspec + " " + pm);
   }
 
 
