@@ -88,6 +88,7 @@ public class NodeStateImpl implements NodeState {
 
   void setLastHashDuration(long newDuration) {
     hashDuration = newDuration;
+    repository.storeNodeState(this);
   }
 
   public Iterator getActivePolls() {
@@ -143,7 +144,10 @@ public class NodeStateImpl implements NodeState {
     if (!added) {
       pollHistories.add(finished_poll);
     }
-    polls.remove(finished_poll);
+    // remove this poll, and any lingering PollStates for it
+    while (polls.contains(finished_poll)) {
+      polls.remove(finished_poll);
+    }
     // checkpoint state, store histories
     repository.storeNodeState(this);
     repository.storePollHistories(this);

@@ -105,8 +105,10 @@ public class TestNodeStateImpl extends LockssTestCase {
     Iterator pollIt = state.getPollHistories();
     assertFalse(pollIt.hasNext());
 
+    assertEquals(3, state.polls.size());
     PollHistory history = new PollHistory(1, "lwr1", "upr1", 0, 456, 0, null, false);
     state.closeActivePoll(history);
+    assertEquals(2, state.polls.size());
 
     pollIt = state.getActivePolls();
     while (pollIt.hasNext()) {
@@ -143,6 +145,14 @@ public class TestNodeStateImpl extends LockssTestCase {
         "starttime=123",
     };
     assertIsomorphic(expectedA, histL);
+  }
+
+  public void testCloseAdditionalStates() {
+    state.polls.add(new PollState(1, "lwr1", "upr1", 1, 0, Deadline.MAX, false));
+    assertEquals(4, state.polls.size());
+    PollHistory history = new PollHistory(1, "lwr1", "upr1", 0, 456, 0, null, false);
+    state.closeActivePoll(history);
+    assertEquals(2, state.polls.size());
   }
 
   public void testGetLastPollHistory() {
