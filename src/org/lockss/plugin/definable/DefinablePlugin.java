@@ -56,7 +56,8 @@ public class DefinablePlugin extends BasePlugin {
       "plugin_cache_result_handler";
   static final public String CM_EXCEPTION_LIST_KEY =
       "plugin_cache_result_list";
-  static final String DEFAULT_PLUGIN_VERSION = "1";
+  static final public String DEFAULT_PLUGIN_VERSION = "1";
+  static final public String MAP_SUFFIX = ".xml";
 
   protected String mapName = null;
 
@@ -69,7 +70,7 @@ public class DefinablePlugin extends BasePlugin {
       throws FileNotFoundException {
     mapName = extMapName;
     // load the configuration map from jar file
-    String mapFile = "/" + mapName.replace('.', '/') + ".xml";
+    String mapFile = "/" + mapName.replace('.', '/') + MAP_SUFFIX;
 
     definitionMap.loadMapFromResource(mapFile);
 

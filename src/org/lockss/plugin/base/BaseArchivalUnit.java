@@ -69,28 +69,29 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
    */
   public static final String PARAM_TOPLEVEL_POLL_INTERVAL_MAX =
       TOPLEVEL_POLL_PREFIX + "interval.max";
-  static final long DEFAULT_TOPLEVEL_POLL_INTERVAL_MAX = 3 * Constants.WEEK;
+  public static final long DEFAULT_TOPLEVEL_POLL_INTERVAL_MAX =
+      3 * Constants.WEEK;
 
   /**
    * Configuration parameter name for top level poll initial probability.
    */
   public static final String PARAM_TOPLEVEL_POLL_PROB_INITIAL =
       TOPLEVEL_POLL_PREFIX + "prob.initial";
-  static final double DEFAULT_TOPLEVEL_POLL_PROB_INITIAL = .5;
+  public static final double DEFAULT_TOPLEVEL_POLL_PROB_INITIAL = .5;
 
   /**
    * Configuration parameter name for top level poll increment
    */
   public static final String PARAM_TOPLEVEL_POLL_PROB_INCREMENT =
       TOPLEVEL_POLL_PREFIX + "prob.increment";
-  static final double DEFAULT_TOPLEVEL_POLL_PROB_INCREMENT = .05;
+  public static final double DEFAULT_TOPLEVEL_POLL_PROB_INCREMENT = .05;
 
   /**
    * Configuration parameter name for top level poll max probability.
    */
   public static final String PARAM_TOPLEVEL_POLL_PROB_MAX =
       TOPLEVEL_POLL_PREFIX + "prob.max";
-  static final double DEFAULT_TOPLEVEL_POLL_PROB_MAX = 1.0;
+  public static final double DEFAULT_TOPLEVEL_POLL_PROB_MAX = 1.0;
 
 
   public static final long

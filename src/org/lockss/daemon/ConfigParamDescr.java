@@ -55,6 +55,9 @@ public class ConfigParamDescr implements Comparable {
   /** Value is a positive integer */
   public static final int TYPE_POS_INT = 6;
 
+  public static final String[] TYPE_STRINGS = {
+      "String", "Integer", "URL", "Year", "Boolean", "Positive Integer" };
+
   public static final ConfigParamDescr VOLUME_NUMBER = new ConfigParamDescr();
   static {
     VOLUME_NUMBER.setKey("volume");
