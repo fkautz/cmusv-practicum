@@ -168,12 +168,27 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
   }
 
   protected CrawlRule makeRules() throws LockssRegexpException {
+    Object rule = definitionMap.getMapElement(CM_AU_RULES_KEY);
+    
+    if (rule instanceof String) {
+      try {
+	return (CrawlRule) Class.forName((String)rule,
+					 true, classLoader).newInstance();
+      } catch (Exception e) {
+	throw new DefinablePlugin.InvalidDefinitionException(auName +
+							     " unable to create crawl rule: "
+							     + rule, e);
+      }
+    }
     List rules = new LinkedList();
-    List templates = (List) definitionMap.getCollection(CM_AU_RULES_KEY,
-        Collections.EMPTY_LIST);
+    
+//     List templates = (List) definitionMap.getCollection(CM_AU_RULES_KEY,
+//         Collections.EMPTY_LIST);
+    List templates = (List) rule;
     Iterator it = templates.iterator();
-    while (it.hasNext()) {
+  while (it.hasNext()) {
       String rule_template = (String) it.next();
+      
       rules.add(convertRule(rule_template));
     }
     if(rules.size() > 0)

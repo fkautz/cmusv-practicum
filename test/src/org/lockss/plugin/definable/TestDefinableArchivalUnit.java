@@ -180,4 +180,36 @@ public class TestDefinableArchivalUnit extends LockssTestCase {
     parser = cau.getContentParser("text/ram");
     assertTrue(parser instanceof org.lockss.plugin.blackbird.BlackbirdRamParser);
   }
+
+  public void testGetCrawlRule() throws LockssRegexpException {
+    map.putString(DefinableArchivalUnit.CM_AU_RULES_KEY,
+		  "org.lockss.test.NegativeCrawlRule");
+
+    CrawlRule rules = cau.makeRules();
+    assertEquals(CrawlRule.EXCLUDE,
+                 rules.match("http://www.example.com/mygif.gif"));
+    assertEquals(CrawlRule.EXCLUDE,
+                 rules.match("http://www.example.com/"));
+
+    map.putString(DefinableArchivalUnit.CM_AU_RULES_KEY,
+		  "org.lockss.test.PositiveCrawlRule");
+
+    rules = cau.makeRules();
+    assertEquals(CrawlRule.INCLUDE,
+                 rules.match("http://www.example.com/mygif.gif"));
+    assertEquals(CrawlRule.INCLUDE,
+                 rules.match("http://www.example.com/"));
+  }
+
+  public void testGetCrawlRuleThrowsOnBadClass() throws LockssRegexpException {
+    map.putString(DefinableArchivalUnit.CM_AU_RULES_KEY,
+		  "org.lockss.bogus.FakeClass");
+
+    try {
+      CrawlRule rules = cau.makeRules();
+      fail("Should have thrown on a non-existant class");
+    } catch (DefinablePlugin.InvalidDefinitionException e){
+    }
+  }
+
 }
