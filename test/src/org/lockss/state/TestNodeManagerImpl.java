@@ -397,7 +397,8 @@ public class TestNodeManagerImpl extends LockssTestCase {
         bytes,
         (isContentPoll ? LcapMessage.CONTENT_POLL_REQ : LcapMessage.NAME_POLL_REQ),
         123321,
-        testID);
+        testID,
+        "testplugin 1.0");
     } catch (IOException ex) {
       fail("can't create test name message" + ex.toString());
     }
