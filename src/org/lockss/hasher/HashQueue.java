@@ -361,7 +361,7 @@ class HashQueue implements Serializable {
 	   cnt > 0 && goOn.booleanValue() && req == head() && !req.finished();
 	   cnt--) {
 
-	if (log.isDebug()) log.debug("hashStep(" + nbytes + "): " + req);
+	if (log.isDebug3()) log.debug3("hashStep(" + nbytes + "): " + req);
 
 	bytesHashed += ush.hashStep(nbytes);
 
@@ -395,7 +395,7 @@ class HashQueue implements Serializable {
   boolean runAndNotify(int nsteps, int nbytes, Boolean goOn) {
     Request req = head();
     if (req == null) {
-      log.debug("runAndNotify no work");
+      log.debug2("runAndNotify no work");
       return false;
     }
     runNSteps(req, nsteps, nbytes, goOn);
@@ -429,6 +429,7 @@ class HashQueue implements Serializable {
 	  if (!runAndNotify(hashNumSteps, hashStepBytes, goOn)) {
 	    sem.take(Deadline.in(Constants.MINUTE));
 	  }
+// 	  Thread.yield();
 	}
       } catch (InterruptedException e) {
  	// no action - expected when stopping
