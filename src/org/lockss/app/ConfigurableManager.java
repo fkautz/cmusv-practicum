@@ -44,7 +44,7 @@ public interface ConfigurableManager {
    * unless isAppInited() is true.
    * @param newConfig the new {@link Configuration}
    * @param prevConfig the previous {@link Configuration}
-   * @param changedKeys the {@link Set} of changed keys
+   * @param changedKeys the keys whose values have changed
    */
   void setConfig(Configuration newConfig,
 		 Configuration prevConfig,

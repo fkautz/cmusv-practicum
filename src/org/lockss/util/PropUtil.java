@@ -145,7 +145,7 @@ public class PropUtil {
    * @param p2 second PropertyTree
    * @return Set of keys and prefixes whose values differ.  Returns empty
    * set if there are no differences.
-   * @throw NullPointerException if either PropertyTree is null
+   * @throws NullPointerException if either PropertyTree is null
    */
   public static Set differentKeysAndPrefixes(PropertyTree p1,
 					     PropertyTree p2) {

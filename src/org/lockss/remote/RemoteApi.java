@@ -512,7 +512,8 @@ public class RemoteApi extends BaseLockssDaemonManager {
   }
 
   /** Object describing results of AU config restore operation.  Basically
-   * a list of {@link RestoreStatus}, one for each AU restore attempted */
+   * a list of {@link RemoteApi.RestoreStatus}, one for each AU restore
+   * attempted */
   public static class RestoreAllStatus {
     static Comparator statusComparator = new RestoreStatusOrderComparator();
     private List statusList = new ArrayList();
