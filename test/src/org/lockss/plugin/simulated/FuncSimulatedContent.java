@@ -80,6 +80,30 @@ public class FuncSimulatedContent extends LockssTestCase {
     hashContent();
   }
 
+  public void testDualContentHash() throws Exception {
+    createContent();
+    crawlContent();
+    CachedUrlSet set = sau.getAUCachedUrlSet();
+    byte[] nameH = getHash(set, true);
+    byte[] contentH = getHash(set, false);
+
+    String tempDirPath = "";
+    try {
+      tempDirPath = super.getTempDir().getAbsolutePath() + File.separator;
+    } catch (Exception e) { fail("Couldn't get tempDir."); }
+    sau = new SimulatedArchivalUnit(tempDirPath);
+    TestLockssRepositoryImpl.configCacheLocation(tempDirPath);
+
+    createContent();
+    crawlContent();
+    set = sau.getAUCachedUrlSet();
+    byte[] nameH2 = getHash(set, true);
+    byte[] contentH2 = getHash(set, false);
+    assertTrue(Arrays.equals(nameH, nameH2));
+    assertTrue(Arrays.equals(contentH, contentH2));
+  }
+
+
   private void createContent() {
     SimulatedContentGenerator scgen = sau.getContentGenerator();
     scgen.setTreeDepth(2);
@@ -174,22 +198,21 @@ public class FuncSimulatedContent extends LockssTestCase {
 
   private void hashSet(boolean namesOnly) throws IOException {
     CachedUrlSet set = sau.getAUCachedUrlSet();
-    MockMessageDigest dig = new MockMessageDigest();
-    hash(set, dig, namesOnly);
-    byte[] hash = dig.digest();
-
-    dig = new MockMessageDigest();
-    hash(set, dig, namesOnly);
-    byte[] hash2 = dig.digest();
+    byte[] hash = getHash(set, namesOnly);
+    byte[] hash2 = getHash(set, namesOnly);
     assertTrue(Arrays.equals(hash, hash2));
 
     String parent = sau.SIMULATED_URL_ROOT + "/branch1";
     CachedUrlSetSpec spec = new RECachedUrlSetSpec(parent);
     set = sau.cachedUrlSetFactory(sau, spec);
-    dig = new MockMessageDigest();
-    hash(set, dig, namesOnly);
-    hash2 = dig.digest();
+    hash2 = getHash(set, namesOnly);
     assertTrue(!Arrays.equals(hash, hash2));
+  }
+
+  private byte[] getHash(CachedUrlSet set, boolean namesOnly) throws IOException {
+    MockMessageDigest dig = new MockMessageDigest();
+    hash(set, dig, namesOnly);
+    return dig.digest();
   }
 
   private void hash(CachedUrlSet set, MessageDigest dig, boolean namesOnly) throws IOException {
