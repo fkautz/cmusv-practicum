@@ -96,7 +96,7 @@ public class ProxyHandler extends NullHandler {
     System.err.println("URI="+uri);
 
     String urlString = uri.toString();
-    ArchivalUnit au = Plugin.findArchivalUnit(urlString);
+    ArchivalUnit au = PluginManager.findArchivalUnit(urlString);
     if (au != null) {
       CachedUrlSet cus = au.getAUCachedUrlSet();
       if (cus != null) {

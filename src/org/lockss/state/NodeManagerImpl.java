@@ -40,7 +40,7 @@ import java.net.InetAddress;
 import org.lockss.util.*;
 import org.lockss.daemon.*;
 import org.lockss.poller.*;
-import org.lockss.plugin.Plugin;
+import org.lockss.plugin.PluginManager;
 import org.lockss.protocol.LcapMessage;
 import org.lockss.protocol.IdentityManager;
 import org.lockss.repository.LockssRepository;
