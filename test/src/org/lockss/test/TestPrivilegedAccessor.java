@@ -104,6 +104,11 @@ public class TestPrivilegedAccessor extends TestCase {
   }
 
   public void testInstanceParam() throws Exception {
+    try {
+      new PrivilegedAccessor.Instance(String.class, new Float(5));
+      fail("PrivilegedAccessor.Instance should have thrown ClassCastException");
+    } catch (ClassCastException e) {
+    }
     MockParent parent = new MockParent();
     Object nullString = new PrivilegedAccessor.Instance(String.class, null);
     Boolean bool = 
