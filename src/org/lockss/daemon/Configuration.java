@@ -157,11 +157,19 @@ public abstract class Configuration {
       log.debug2("load file: " + url);
     }
     InputStream bis = new BufferedInputStream(istr);
-    load(bis);
+    if (url.toLowerCase().endsWith(".xml")) {
+      loadXmlProperties(bis);
+    } else {
+      loadTextProperties(bis);
+    }
+
     bis.close();
   }
 
-  abstract boolean load(InputStream istr)
+  abstract boolean loadXmlProperties(InputStream istr)
+      throws IOException;
+
+  abstract boolean loadTextProperties(InputStream istr)
       throws IOException;
 
   abstract boolean store(OutputStream ostr, String header)
@@ -271,6 +279,11 @@ public abstract class Configuration {
       return dfault;
     }
   }
+
+  /**
+   * Return a list of values for the specified key.
+   */
+  public abstract List getList(String key);
 
   /** Return the config value as a long.
    * @throws Configuration.InvalidParam if the value is missing or

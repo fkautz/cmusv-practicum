@@ -569,7 +569,13 @@ public class ConfigManager implements LockssManager {
     log.debug2("Reading cache config file: " + cfile.toString());
     InputStream is = new FileInputStream(cfile);
     Configuration res = newConfiguration();
-    res.load(is);
+
+    if (cacheConfigFileName.toLowerCase().endsWith(".xml")) {
+      res.loadXmlProperties(is);
+    } else {
+      res.loadTextProperties(is);
+    }
+
     is.close();
     return res;
   }
