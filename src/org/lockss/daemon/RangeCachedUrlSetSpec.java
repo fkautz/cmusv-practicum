@@ -88,7 +88,7 @@ public class RangeCachedUrlSetSpec implements CachedUrlSetSpec {
    * that node.
    */
   public boolean matches(String url) {
-    if (!url.startsWith(prefix)) {
+    if (!isInitialPathComponent(prefix, url)) {
       return false;
     }
     // if url length is same, it's this node
@@ -104,7 +104,10 @@ public class RangeCachedUrlSetSpec implements CachedUrlSetSpec {
       return false;
     } else {
       // and next char is '/' (so 'foo' doesn't start 'foobar' but does 'foo/bar')
-      return (ofPath.charAt(path.length()) == UrlUtil.URL_PATH_SEPARATOR_CHAR);
+      // or last char of path was '/'
+      return ((path.length() == ofPath.length()) ||
+              (path.charAt(path.length()-1) == UrlUtil.URL_PATH_SEPARATOR_CHAR) ||
+              (ofPath.charAt(path.length()) == UrlUtil.URL_PATH_SEPARATOR_CHAR));
     }
   }
 
