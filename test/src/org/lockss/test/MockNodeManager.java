@@ -64,8 +64,9 @@ public class MockNodeManager implements NodeManager {
     throw new UnsupportedOperationException("Not implemented");
   }
 
-  public void startPoll(CachedUrlSet cus, Poll.VoteTally state) {
+  public boolean startPoll(CachedUrlSet cus, Poll.VoteTally state) {
     logger.debug3("starting poll for cus: " + cus);
+    return true;
   }
 
   public void updatePollResults(CachedUrlSet cus, Poll.VoteTally results) {
