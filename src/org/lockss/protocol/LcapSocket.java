@@ -187,11 +187,11 @@ public class LcapSocket {
    */
   public static class Multicast extends RcvSocket {
 
-    /* Create a Multicast socket that receives packets sent to <i>port</i>,
+    /** Create a Multicast socket that receives packets sent to <i>port</i>,
      * and puts them on the specified queue.
-     @param rcvQ The queue onto which to put received packets
-     @param grp The multicast group to join
-     @param port The UDP port to which tobind the socket
+     * @param rcvQ The queue onto which to put received packets
+     * @param grp The multicast group to join
+     * @param port The UDP port to which to bind the socket
     */
     public Multicast(Queue rcvQ, InetAddress grp, int port)
 	throws IOException {
