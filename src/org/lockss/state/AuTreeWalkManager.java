@@ -290,10 +290,16 @@ public class AuTreeWalkManager
     if ((now - lastTreeWalkTime) > twm.paramTreeWalkIntervalMax) {
       return now + Constants.HOUR;
     }
-    Deadline target =
-      Deadline.atRandomRange(lastTreeWalkTime + twm.paramTreeWalkIntervalMin,
-			     lastTreeWalkTime + twm.paramTreeWalkIntervalMax);
-    return target.getExpirationTime();
+    try {
+      Deadline target =
+	Deadline.atRandomRange(lastTreeWalkTime + twm.paramTreeWalkIntervalMin,
+			       lastTreeWalkTime + twm.paramTreeWalkIntervalMax);
+      return target.getExpirationTime();
+    } catch (Exception e) {
+      log.warning("Computing deadline, min: " + twm.paramTreeWalkIntervalMin +
+		  ", max: " + twm.paramTreeWalkIntervalMax, e);
+      return now + twm.paramTreeWalkIntervalMin;
+    }
   }
 
   /*
