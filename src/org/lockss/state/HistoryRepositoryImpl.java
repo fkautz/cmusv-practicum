@@ -103,6 +103,11 @@ public class HistoryRepositoryImpl implements HistoryRepository {
     try {
       File nodeFile = new File(getNodeLocation(cus) + File.separator +
                                HISTORY_FILE_NAME);
+      if (!nodeFile.exists()) {
+        ((NodeStateImpl)nodeState).setPollHistoryBeanList(new ArrayList());
+        logger.warning("No history file found.");
+        return;
+      }
       Unmarshaller unmarshaller = new Unmarshaller(NodeHistoryBean.class);
       unmarshaller.setMapping(getMapping());
       NodeHistoryBean nhb = (NodeHistoryBean)unmarshaller.unmarshal(new FileReader(nodeFile));

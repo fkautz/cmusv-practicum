@@ -96,6 +96,9 @@ public class NodeStateImpl implements NodeState {
   }
 
   protected List getPollHistoryBeanList() {
+    if (pollHistories==null) {
+      return Collections.EMPTY_LIST;
+    }
     List histBeans = new ArrayList(pollHistories.size());
     Iterator histIter = pollHistories.iterator();
     while (histIter.hasNext()) {
@@ -104,4 +107,5 @@ public class NodeStateImpl implements NodeState {
     }
     return histBeans;
   }
+
 }

@@ -48,7 +48,8 @@ public interface NodeState {
   public CachedUrlSet getCachedUrlSet();
 
   /**
-   * Returns the current crawl state.
+   * Returns the current crawl state.  If the node has been deleted, it will
+   * have a CrawlState with type 'NODE_DELETED'.
    * @return a CrawlState
    */
   public CrawlState getCrawlState();
