@@ -92,6 +92,9 @@ public class DebugUtils {
       log.info("Thread dump requested, not supported in this environment", e);
       return;
     }
+    // thread dump is more likely to appear on System.err than
+    // wherever the current log is.
+    System.err.println("Thread dump at " + new Date());
     String cmd = "kill -QUIT " + pid;
     try {
       Process p = rt().exec(cmd);
