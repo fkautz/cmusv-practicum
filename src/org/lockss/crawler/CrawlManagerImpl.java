@@ -134,10 +134,12 @@ public class CrawlManagerImpl extends BaseLockssManager
   public void cancelAuCrawls(ArchivalUnit au) {
     synchronized(runningCrawls) {
       Collection crawls = (Collection) runningCrawls.get(au);
-      Iterator it = crawls.iterator();
-      while (it.hasNext()) {
-	Crawler crawler = (Crawler)it.next();
-	crawler.abortCrawl();
+      if (crawls != null) {
+	Iterator it = crawls.iterator();
+	while (it.hasNext()) {
+	  Crawler crawler = (Crawler)it.next();
+	  crawler.abortCrawl();
+	}
       }
     }
   }
