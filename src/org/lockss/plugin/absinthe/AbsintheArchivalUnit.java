@@ -63,8 +63,9 @@ public class AbsintheArchivalUnit extends ConfigurableArchivalUnit {
 
   private String year; // the year
 
-  protected AbsintheArchivalUnit(Plugin myPlugin) {
-    super(myPlugin);
+  protected AbsintheArchivalUnit(ConfigurablePlugin myPlugin,
+                                  ExternalizableMap map) {
+    super(myPlugin, map);
   }
 
   protected void loadAuConfigDescrs(Configuration config) throws

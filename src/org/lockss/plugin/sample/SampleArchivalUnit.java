@@ -65,8 +65,9 @@ public class SampleArchivalUnit extends ConfigurableArchivalUnit {
 
   private int volume; // the volume number
 
-  public SampleArchivalUnit(Plugin myPlugin) {
-    super(myPlugin);
+  public SampleArchivalUnit(ConfigurablePlugin myPlugin,
+                            ExternalizableMap map) {
+    super(myPlugin, map);
   }
 
 

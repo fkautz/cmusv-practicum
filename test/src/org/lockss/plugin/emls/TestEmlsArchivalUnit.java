@@ -60,7 +60,7 @@ public class TestEmlsArchivalUnit extends LockssTestCase {
   }
 
   private ConfigurableArchivalUnit makeAu(URL url, int volume)
-      throws ArchivalUnit.ConfigurationException {
+      throws Exception {
     Properties props = new Properties();
     props.setProperty(EmlsPlugin.AUPARAM_VOL, ""+volume);
     if (url!=null) {

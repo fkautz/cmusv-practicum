@@ -65,8 +65,9 @@ public class OtherVoicesArchivalUnit extends ConfigurableArchivalUnit {
 
   private int volume; // the volume index
 
-  protected OtherVoicesArchivalUnit(Plugin myPlugin) {
-    super(myPlugin);
+  protected OtherVoicesArchivalUnit(ConfigurablePlugin myPlugin,
+                                    ExternalizableMap map) {
+    super(myPlugin, map);
     defaultFetchDelay = DEFAULT_PAUSE_TIME;
   }
 

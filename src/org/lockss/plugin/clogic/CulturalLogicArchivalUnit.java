@@ -65,8 +65,9 @@ public class CulturalLogicArchivalUnit extends ConfigurableArchivalUnit {
 
   private String year;
 
-  protected CulturalLogicArchivalUnit(Plugin myPlugin) {
-    super(myPlugin);
+  protected CulturalLogicArchivalUnit(ConfigurablePlugin myPlugin,
+                                      ExternalizableMap map) {
+    super(myPlugin, map);
     defaultFetchDelay = DEFAULT_PAUSE_TIME;
     //override 'no path' setting from BaseArchivalUnit
     expectedUrlPath = "/clogic/";

@@ -64,8 +64,9 @@ public class EmlsArchivalUnit extends ConfigurableArchivalUnit {
 
   private int volume; // the volume number
 
-  public EmlsArchivalUnit(Plugin myPlugin) {
-    super(myPlugin);
+  public EmlsArchivalUnit(ConfigurablePlugin myPlugin,
+                          ExternalizableMap map) {
+    super(myPlugin, map);
     expectedUrlPath = "/emls/";
   }
 

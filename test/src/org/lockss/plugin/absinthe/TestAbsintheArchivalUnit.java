@@ -60,7 +60,7 @@ public class TestAbsintheArchivalUnit extends LockssTestCase {
   }
 
   private ConfigurableArchivalUnit makeAu(URL url, String year)
-      throws ArchivalUnit.ConfigurationException {
+      throws Exception {
     Properties props = new Properties();
     props.setProperty(AbsinthePlugin.AUPARAM_YEAR, year);
     if (url!=null) {

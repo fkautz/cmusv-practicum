@@ -180,7 +180,7 @@ public class TestPluginManager extends LockssTestCase {
   }
 
   public void testEnsurePluginLoadedXml() throws Exception {
-    String pname = "org.lockss.foo.FooPlugin";
+    String pname = "org.lockss.plugin.configurable.AbsinthePlugin";
     ConfigurationUtil.setFromArgs(PluginManager.PARAM_PLUGIN_XML_PLUGINS,
 				  pname);
     String key = PluginManager.pluginKeyFromId(pname);
@@ -326,14 +326,14 @@ public class TestPluginManager extends LockssTestCase {
   static class MockConfigurablePlugin extends ConfigurablePlugin {
     private List initArgs = new ArrayList();
 
-    public void initPlugin(LockssDaemon daemon, String extMapName) {
+    public void initPlugin(LockssDaemon daemon, String extMapName)
+    throws FileNotFoundException {
       initArgs.add(ListUtil.list(daemon, extMapName));
+
       super.initPlugin(daemon, extMapName);
+
     }
-    public void initPlugin(LockssDaemon daemon) {
-      initArgs.add(ListUtil.list(daemon));
-      super.initPlugin(daemon);
-    }
+
     List getInitArgs() {
       return initArgs;
     }

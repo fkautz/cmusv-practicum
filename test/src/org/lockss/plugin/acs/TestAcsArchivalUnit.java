@@ -68,8 +68,7 @@ public class TestAcsArchivalUnit
                                  URL issueUrl,
                                  String jkey,
                                  int volume,
-                                 int year) throws ArchivalUnit.
-      ConfigurationException {
+                                 int year) throws Exception {
 
     Properties props = new Properties();
 

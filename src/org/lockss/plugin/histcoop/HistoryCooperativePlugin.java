@@ -55,16 +55,16 @@ public class HistoryCooperativePlugin extends ConfigurablePlugin {
   public static final String AUPARAM_VOL = PD_VOL.getKey();
 
   public void initPlugin(LockssDaemon daemon){
-    configurationMap.putString(CM_NAME_KEY, PLUGIN_NAME);
-    configurationMap.putString(CM_VERSION_KEY, CURRENT_VERSION);
-    configurationMap.putCollection(CM_CONFIG_PROPS_KEY,
+    definitionMap.putString(CM_NAME_KEY, PLUGIN_NAME);
+    definitionMap.putString(CM_VERSION_KEY, CURRENT_VERSION);
+    definitionMap.putCollection(CM_CONFIG_PROPS_KEY,
                                    ListUtil.list(PD_BASE, PD_DIR, PD_VOL));
     super.initPlugin(daemon);
   }
 
   public ArchivalUnit createAu(Configuration auConfig) throws ArchivalUnit.
       ConfigurationException {
-    ArchivalUnit au = new HistoryCooperativeArchivalUnit(this);
+    ArchivalUnit au = new HistoryCooperativeArchivalUnit(this, definitionMap);
     au.setConfiguration(auConfig);
     return au;
   }

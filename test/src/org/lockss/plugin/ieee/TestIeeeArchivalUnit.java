@@ -64,8 +64,7 @@ public class TestIeeeArchivalUnit
 
   private ConfigurableArchivalUnit makeAu(URL volUrl,
                                  int pub,
-                                 int year) throws ArchivalUnit.
-      ConfigurationException {
+                                 int year) throws Exception {
 
     Properties props = new Properties();
 

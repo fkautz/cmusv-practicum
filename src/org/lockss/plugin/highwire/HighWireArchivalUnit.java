@@ -72,8 +72,9 @@ public class HighWireArchivalUnit extends ConfigurableArchivalUnit {
    *
    * @param myPlugin owner plugin
    */
-  public HighWireArchivalUnit(Plugin myPlugin) {
-    super(myPlugin);
+  public HighWireArchivalUnit(ConfigurablePlugin myPlugin,
+                              ExternalizableMap map) {
+    super(myPlugin, map);
   }
 
   protected FilterRule constructFilterRule(String mimeType) {

@@ -65,8 +65,9 @@ public class BlackbirdArchivalUnit extends ConfigurableArchivalUnit {
 
   private int volume; // the volume index
 
-  protected BlackbirdArchivalUnit(Plugin myPlugin) {
-    super(myPlugin);
+  protected BlackbirdArchivalUnit(ConfigurablePlugin myPlugin,
+                                  ExternalizableMap map) {
+    super(myPlugin, map);
     defaultFetchDelay = DEFAULT_PAUSE_TIME;
   }
 

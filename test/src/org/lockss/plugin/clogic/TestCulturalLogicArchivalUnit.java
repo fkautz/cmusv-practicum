@@ -62,7 +62,7 @@ public class TestCulturalLogicArchivalUnit extends LockssTestCase {
   }
 
   private ConfigurableArchivalUnit makeAu(URL url, String year)
-      throws ArchivalUnit.ConfigurationException {
+      throws Exception {
     Properties props = new Properties();
     props.setProperty(CulturalLogicPlugin.AUPARAM_YEAR, year);
     if (url!=null) {

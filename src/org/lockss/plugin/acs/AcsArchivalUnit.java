@@ -70,8 +70,9 @@ public class AcsArchivalUnit extends ConfigurableArchivalUnit {
   private String journalKey;        // the key used to specify the journal
   private int year;                 // the year of the volume
 
-  protected AcsArchivalUnit(Plugin myPlugin) {
-    super(myPlugin);
+  protected AcsArchivalUnit(ConfigurablePlugin myPlugin,
+                            ExternalizableMap map) {
+    super(myPlugin, map);
   }
 
 

@@ -66,7 +66,7 @@ public class TestHistoryCooperativeArchivalUnit extends LockssTestCase {
   }
 
   private ConfigurableArchivalUnit makeAu(URL url, int volume, String journalDir)
-      throws ArchivalUnit.ConfigurationException {
+      throws Exception {
     Properties props = new Properties();
     props.setProperty(HistoryCooperativePlugin.AUPARAM_VOL, Integer.toString(volume));
     if (url!=null) {

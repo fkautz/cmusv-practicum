@@ -94,8 +94,8 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   static final double DEFAULT_TOPLEVEL_POLL_PROB_MAX = 1.0;
 
 
-  private static final long
-    DEFAULT_MILLISECONDS_BETWEEN_CRAWL_HTTP_REQUESTS = 10 * Constants.SECOND;
+  public static final long
+    DEFAULT_MILLISECONDS_BETWEEN_CRAWL_HTTP_REQUESTS = 6 * Constants.SECOND;
 
   public static final String USE_CRAWL_WINDOW = "use_crawl_window";
   private static final boolean DEFAULT_USE_CRAWL_WINDOW = false;

@@ -66,7 +66,7 @@ public class TestOtherVoicesArchivalUnit extends LockssTestCase {
   }
 
   private ConfigurableArchivalUnit makeAu(URL url, int volume)
-      throws ArchivalUnit.ConfigurationException {
+      throws Exception {
     Properties props = new Properties();
     props.setProperty(OtherVoicesPlugin.AUPARAM_VOL, Integer.toString(volume));
     if (url!=null) {

@@ -65,8 +65,9 @@ public class HistoryCooperativeArchivalUnit extends ConfigurableArchivalUnit {
   private int volume; // the volume index
   private String journalDir;
 
-  protected HistoryCooperativeArchivalUnit(Plugin myPlugin) {
-    super(myPlugin);
+  protected HistoryCooperativeArchivalUnit(ConfigurablePlugin myPlugin,
+                                           ExternalizableMap map) {
+    super(myPlugin, map);
     defaultFetchDelay = DEFAULT_PAUSE_TIME;
   }
 

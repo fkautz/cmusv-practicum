@@ -62,7 +62,7 @@ public class TestBlackbirdArchivalUnit extends LockssTestCase {
   }
 
   private ConfigurableArchivalUnit makeAu(URL url, int volume)
-      throws ArchivalUnit.ConfigurationException {
+      throws Exception {
     Properties props = new Properties();
     props.setProperty(BlackbirdPlugin.AUPARAM_VOL, Integer.toString(volume));
     if (url!=null) {

@@ -69,7 +69,7 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
   }
 
   private ConfigurableArchivalUnit makeAu(URL url, int volume)
-      throws ArchivalUnit.ConfigurationException {
+      throws Exception {
     Properties props = new Properties();
     props.setProperty(HighWirePlugin.AUPARAM_VOL, Integer.toString(volume));
     if (url != null) {
