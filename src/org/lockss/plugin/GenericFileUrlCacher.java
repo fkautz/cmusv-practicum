@@ -35,7 +35,7 @@ package org.lockss.plugin;
 import java.io.*;
 import java.util.Properties;
 import org.lockss.daemon.*;
-import org.lockss.util.*;
+import org.lockss.util.StreamUtil;
 import org.lockss.repository.*;
 import org.lockss.plugin.base.*;
 import org.lockss.app.*;
@@ -51,7 +51,6 @@ import org.lockss.app.*;
 
 public abstract class GenericFileUrlCacher extends BaseUrlCacher {
   private LockssRepository repository;
-  protected static Logger logger = Logger.getLogger("UrlCacher");
 
   public GenericFileUrlCacher(CachedUrlSet owner, String url) {
     super(owner, url);

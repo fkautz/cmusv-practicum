@@ -77,6 +77,7 @@ public class SimulatedUrlCacher extends GenericFileUrlCacher {
       if (dirContentFile.exists()) {
         return new BufferedInputStream(new FileInputStream(dirContentFile));
       } else {
+        logger.error("Couldn't find file: "+dirContentFile.getAbsolutePath());
         return null;
       }
     } else {
