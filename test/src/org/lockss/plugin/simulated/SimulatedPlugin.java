@@ -138,6 +138,10 @@ public class SimulatedPlugin extends BasePlugin implements PluginTestable {
     return "SimulatedVersion";
   }
 
+  public String getPluginName() {
+    return "Simulated Content";
+  }
+
   /**
    * Return the list of names of the Archival Units and volranges supported by
    * this plugin

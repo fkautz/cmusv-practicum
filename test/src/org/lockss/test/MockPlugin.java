@@ -90,6 +90,10 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
     return "MockVersion";
   }
 
+    public String getPluginName() {
+      return "Mock Plugin";
+    }
+
   /**
    * Return the list of names of the Archival Units and volranges supported by
    * this plugin

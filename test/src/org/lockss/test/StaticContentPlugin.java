@@ -61,6 +61,10 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
     throw new UnsupportedOperationException("Not implemented");
   }
 
+  public String getPluginName() {
+    return "Static Content";
+  }
+
   public List getSupportedAUNames() {
     throw new UnsupportedOperationException("Not implemented");
   }

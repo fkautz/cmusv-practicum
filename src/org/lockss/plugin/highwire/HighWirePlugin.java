@@ -67,6 +67,10 @@ public class HighWirePlugin extends BasePlugin {
     return "Pre-release";
   }
 
+  public String getPluginName() {
+    return "HighWire Press";
+  }
+
   public List getSupportedAUNames() {
     throw new UnsupportedOperationException("Not implemented");
   }

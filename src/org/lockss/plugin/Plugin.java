@@ -70,6 +70,12 @@ public interface Plugin {
   public String getVersion();
 
   /**
+   * Return the humad-readable name of the plugin
+   * @return the name
+   */
+  public String getPluginName();
+
+  /**
    * Return the list of names of the {@link ArchivalUnit}s and volranges
    * supported by this plugin.
    * @return a List of Strings

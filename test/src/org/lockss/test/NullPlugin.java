@@ -71,6 +71,10 @@ public class NullPlugin {
       return "NullVersion";
     }
 
+    public String getPluginName() {
+      return "Null Plugin";
+    }
+
     public LockssDaemon getDaemon() {
       return null;
     }
