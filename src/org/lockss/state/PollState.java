@@ -30,6 +30,7 @@ package org.lockss.state;
 import java.util.Iterator;
 import org.lockss.plugin.CachedUrlSet;
 import org.lockss.util.Deadline;
+import org.lockss.poller.PollSpec;
 
 /**
  * PollState contains the state information for a poll current to a node.
@@ -121,6 +122,9 @@ public class PollState implements Comparable {
   }
 
   public String getRangeString() {
+    if ((lwrBound!=null) && (lwrBound.equals(PollSpec.SINGLE_NODE_LWRBOUND))) {
+      return "single node";
+    }
     if(lwrBound != null || uprBound != null) {
       return "[" + lwrBound + " - " + uprBound + "]";
     }

@@ -42,6 +42,13 @@ import org.lockss.protocol.*;
 import org.lockss.app.*;
 
 public class PollSpec {
+  /**
+   * A lower bound value which indicates the poll should use a
+   * {@link SingleNodeCachedUrlSetSpec} instead of a
+   * {@link RangeCachedUrlSetSpec}.
+   */
+  public static final String SINGLE_NODE_LWRBOUND = ".";
+
   private String auId;
   private String pluginId;
   private String url;
@@ -102,6 +109,10 @@ public class PollSpec {
       RangeCachedUrlSetSpec rcuss = (RangeCachedUrlSetSpec)cuss;
       lwrBound = rcuss.getLowerBound();
       uprBound = rcuss.getUpperBound();
+    } else if (cuss instanceof SingleNodeCachedUrlSetSpec) {
+      // not used, but needs to be set to allow this poll to overlap with
+      // other ranged polls
+      lwrBound = SINGLE_NODE_LWRBOUND;
     }
   }
 

@@ -97,7 +97,7 @@ public class CrawlState {
         str = "Node Deleted";
         break;
       default:
-        str = "Undefined";
+        str = "None";
     }
     return str;
   }

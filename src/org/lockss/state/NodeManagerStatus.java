@@ -26,11 +26,12 @@
 
 package org.lockss.state;
 
-import org.lockss.daemon.status.*;
 import java.util.*;
+import org.lockss.daemon.status.*;
 import org.lockss.plugin.*;
 import org.lockss.util.*;
 import org.lockss.poller.*;
+import org.lockss.daemon.RangeCachedUrlSetSpec;
 
 /**
  * Collect and report the status of the NodeManager
@@ -438,7 +439,7 @@ public class NodeManagerStatus {
       int pos = key.lastIndexOf("&");
       String url = key.substring(pos + 1);
       ArchivalUnit au = nodeManager.getAuState().getArchivalUnit();
-      CachedUrlSet cus = au.makeCachedUrlSet(url, null, null);
+      CachedUrlSet cus = au.makeCachedUrlSet(new RangeCachedUrlSetSpec(url));
       NodeState state = nodeManager.getNodeState(cus);
       if (state == null) {
         throw new StatusService.NoSuchTableException("No Node State for "

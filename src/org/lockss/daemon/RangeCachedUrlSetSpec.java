@@ -43,12 +43,6 @@ import org.lockss.util.*;
  */
 
 public class RangeCachedUrlSetSpec implements CachedUrlSetSpec {
-  /**
-   * The range for a content poll on a single node only, with no iteration
-   * below.
-   */
-  public static final String SINGLE_NODE_RANGE = ".";
-
   private String prefix;
   private String upperBound;
   private String lowerBound;
