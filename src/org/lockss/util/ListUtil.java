@@ -235,7 +235,10 @@ public class ListUtil {
     return Collections.unmodifiableList(l);
   }
 
-  /** Return a copy of the list, in reverse order */
+  /** Return a copy of the list, in reverse order.
+   * @param list the List to reverse.
+   * @return A new list with elements in reverse order of the original list.
+   */
   public static List reverseCopy(List list) {
     List res = new ArrayList(list);
     Collections.reverse(res);
