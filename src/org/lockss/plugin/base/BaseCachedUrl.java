@@ -158,7 +158,7 @@ public class BaseCachedUrl implements CachedUrl {
     if (fr != null) {
       return fr.createFilteredInputStream(getReader());
     } else {
-      logger.debug("No FilterRule, not filtering");
+      logger.debug2("No FilterRule, not filtering");
     }
     return openForReading();
   }
