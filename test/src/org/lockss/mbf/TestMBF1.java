@@ -53,15 +53,16 @@ public class TestMBF1 extends LockssTestCase {
       rand = new Random(100);
     else 
       rand = new Random(System.currentTimeMillis());
-    f = FileUtil.tempFile("mbf1test");
-    FileOutputStream fis = new FileOutputStream(f);
-    basis = new byte[16*1024*1024 + 1024];
-    rand.nextBytes(basis);
-    fis.write(basis);
-    fis.close();
-    if (f.exists()) {
-      log.debug(f.getPath() + " bytes " + f.length() + " long");
-    } else
+    if (f == null) {
+      f = FileUtil.tempFile("mbf1test");
+      FileOutputStream fis = new FileOutputStream(f);
+      basis = new byte[16*1024*1024 + 1024];
+      rand.nextBytes(basis);
+      fis.write(basis);
+      fis.close();
+      log.info(f.getPath() + " bytes " + f.length() + " long created");
+    }
+    if (!f.exists())
       log.warning(f.getPath() + " doesn't exist");
     MemoryBoundFunction.configure(f);
   }
