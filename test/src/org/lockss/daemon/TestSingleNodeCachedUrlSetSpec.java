@@ -94,6 +94,7 @@ public class TestSingleNodeCachedUrlSetSpec extends LockssTestCase {
     assertFalse(cuss1.isDisjoint(new SingleNodeCachedUrlSetSpec("a/b")));
     assertTrue(cuss1.isDisjoint(new SingleNodeCachedUrlSetSpec("a")));
     assertTrue(cuss1.isDisjoint(new SingleNodeCachedUrlSetSpec("a/b1")));
+    assertTrue(cuss1.isDisjoint(new SingleNodeCachedUrlSetSpec("a/c")));
 
     assertFalse(cuss1.isDisjoint(new AUCachedUrlSetSpec()));
 
@@ -117,6 +118,7 @@ public class TestSingleNodeCachedUrlSetSpec extends LockssTestCase {
     assertTrue(cuss.subsumes(new SingleNodeCachedUrlSetSpec("foo")));
     assertFalse(cuss.subsumes(new SingleNodeCachedUrlSetSpec("foo/bar")));
     assertFalse(cuss.subsumes(new SingleNodeCachedUrlSetSpec("fo")));
+    assertFalse(cuss.subsumes(new SingleNodeCachedUrlSetSpec("bar")));
 
     assertFalse(cuss.subsumes(new RangeCachedUrlSetSpec("foo")));
     assertFalse(cuss.subsumes(new RangeCachedUrlSetSpec("bar")));
