@@ -188,7 +188,8 @@ public class TestTreeWalkHandler extends LockssTestCase {
 
     TimerUtil.guaranteedSleep(100);
 
-    assertTrue(treeWalkHandler.timeUntilTreeWalkStart() <= 0);
+    long tutws = treeWalkHandler.timeUntilTreeWalkStart();
+    assertTrue(tutws + " > 0", tutws <= 0);
   }
 
   public void testCheckNodeStateCrawling() throws Exception {
