@@ -87,7 +87,7 @@ public class LcapComm {
       singleton.start();
     } catch (UnknownHostException e) {
       log.critical("Can't get group addr", e);
-    } catch (Configuration.Error e) {
+    } catch (Configuration.InvalidParam e) {
       log.critical("Multicast port not configured", e);
     }
   }
