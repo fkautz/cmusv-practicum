@@ -83,7 +83,6 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
   public void startService() {
     super.startService();
     logger.debug("NodeManager being started");
-    registerDefaultConfigCallback();
     historyRepo = theDaemon.getHistoryRepository();
     lockssRepo = theDaemon.getLockssRepository(managedAu);
     pollManager = theDaemon.getPollManager();

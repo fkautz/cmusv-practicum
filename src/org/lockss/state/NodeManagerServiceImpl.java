@@ -50,6 +50,10 @@ public class NodeManagerServiceImpl extends BaseLockssManager
   public NodeManagerServiceImpl() { }
 
 
+  protected void setConfig(Configuration config, Configuration oldConfig,
+			   Set changedKeys) {
+  }
+
   public void startService() {
     super.startService();
     // register our status

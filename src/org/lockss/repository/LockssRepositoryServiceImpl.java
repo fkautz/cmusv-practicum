@@ -78,18 +78,18 @@ public class LockssRepositoryServiceImpl implements LockssRepositoryService {
     if (theManager == null) {
       theDaemon = daemon;
       theManager = this;
+      cacheLocation = Configuration.getParam(PARAM_CACHE_LOCATION);
+      if (cacheLocation==null) {
+	logger.error("Couldn't get "+PARAM_CACHE_LOCATION+" from Configuration");
+	throw new LockssRepository.RepositoryStateException("Couldn't load param.");
+      }
+      cacheLocation = extendCacheLocation(cacheLocation);
     } else {
       throw new LockssDaemonException("Multiple Instantiation.");
     }
   }
 
   public void startService() {
-    cacheLocation = Configuration.getParam(PARAM_CACHE_LOCATION);
-    if (cacheLocation==null) {
-      logger.error("Couldn't get "+PARAM_CACHE_LOCATION+" from Configuration");
-      throw new LockssRepository.RepositoryStateException("Couldn't load param.");
-    }
-    cacheLocation = extendCacheLocation(cacheLocation);
   }
 
   public void stopService() {

@@ -34,6 +34,7 @@ package org.lockss.daemon.status;
 
 import java.util.*;
 import org.lockss.app.*;
+import org.lockss.daemon.*;
 import org.lockss.util.*;
 import gnu.regexp.*;
 
@@ -49,6 +50,10 @@ public class StatusServiceImpl
   public void startService() {
     super.startService();
     registerStatusAccessor(ALL_TABLES_TABLE, new AllTableStatusAccessor());
+  }
+
+  protected void setConfig(Configuration config, Configuration prevConfig,
+			   Set changedKeys) {
   }
 
   public StatusTable getTable(String tableName, String key) 

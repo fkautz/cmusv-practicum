@@ -108,8 +108,7 @@ public class TestLcapComm extends LockssTestCase {
 
     fact = new MockSocketFactory();
     config = Configuration.readConfig(ListUtil.list(FileUtil.urlOfString(c1)));
-    comm = new LcapComm(fact);
-    comm.configure(config);
+    comm = new LcapComm(fact, config);
     comm.start();
     ssock = ((MockDatagramSocket)fact.ssocks.get(0));
     usock = ((MockDatagramSocket)fact.usocks.get(0));
