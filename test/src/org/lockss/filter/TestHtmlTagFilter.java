@@ -103,7 +103,7 @@ public class TestHtmlTagFilter extends LockssTestCase {
     try {
       HtmlTagFilter filter =
 	new HtmlTagFilter(new StringReader("blah"),
-			  new HtmlTagFilter.TagPair("", "blah"));
+			  new HtmlTagFilter.TagPair(new String(), "blah"));
       fail("Trying to create a HtmlTagFilter with a TagPair with "+
 	   "an empty string should throw an IllegalArgumentException");
     } catch(IllegalArgumentException iae) {
@@ -112,7 +112,7 @@ public class TestHtmlTagFilter extends LockssTestCase {
     try {
       HtmlTagFilter filter =
 	new HtmlTagFilter(new StringReader("blah"),
-			  new HtmlTagFilter.TagPair("blah", ""));
+			  new HtmlTagFilter.TagPair("blah", new String()));
       fail("Trying to create a HtmlTagFilter with a TagPair with "+
 	   "an empty string should throw an IllegalArgumentException");
     } catch(IllegalArgumentException iae) {

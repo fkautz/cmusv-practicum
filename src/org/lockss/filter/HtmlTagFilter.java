@@ -92,7 +92,7 @@ public class HtmlTagFilter extends Reader {
     }
     startTag = pair.start;
     endTag = pair.end;
-    if (startTag == "" || endTag == "") {
+    if (StringUtil.isNullString(startTag) || StringUtil.isNullString(endTag)) {
       throw new IllegalArgumentException("Called with a tag pair with an "
 					 +"empty string: "+pair);
     }
