@@ -42,7 +42,7 @@ public class TestUrlUtil extends LockssTestCase {
 
   // For testing against the behavior of code extracted from Java 1.4 URI class
   static String normalizePath(String path) {
-    switch (2) {
+    switch (1) {
     case 1:
       try {
 	return UrlUtil.normalizePath(path, true);
