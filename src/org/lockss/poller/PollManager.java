@@ -871,7 +871,7 @@ public class PollManager
 	handleIncomingMessage(msg);
       }
       catch (IOException ex) {
-	theLog.error("handle incoming message failed.");
+	theLog.error("handleIncomingMessage() threw", ex);
       }
     }
   }

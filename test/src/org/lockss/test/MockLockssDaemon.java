@@ -137,6 +137,7 @@ public class MockLockssDaemon extends LockssDaemon {
     try {
       return initManager(desc);
     } catch (Exception e) {
+      log.error("Error creating manager", e);
       throw new LockssAppException("Can't load manager: " + e.toString());
     }
   }
@@ -540,8 +541,7 @@ public class MockLockssDaemon extends LockssDaemon {
       return mgr;
     } catch (Exception e) {
       log.error("Error starting au manager", e);
-      throw new LockssAppException("Can't load au manager: " +
-				      e.toString());
+      throw new LockssAppException("Can't load au manager: " + e.toString());
     }
   }
 
