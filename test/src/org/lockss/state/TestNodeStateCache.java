@@ -126,6 +126,29 @@ public class TestNodeStateCache extends LockssTestCase {
     assertEquals(1, cache.getCacheMisses());
   }
 
+  public void testSnapshot() throws Exception {
+    CachedUrlSet mcus = new MockCachedUrlSet("http://www.example.com");
+    NodeState node = new NodeStateImpl(mcus, null, null, repo);
+    cache.putState("http://www.example.com", node);
+
+    mcus = new MockCachedUrlSet("http://www.example.com/test1");
+    node = new NodeStateImpl(mcus, null, null, repo);
+    cache.putState("http://www.example.com/test1", node);
+
+    Iterator snapshot = cache.snapshot().iterator();
+    assertTrue(snapshot.hasNext());
+    snapshot.next();
+
+    mcus = new MockCachedUrlSet("http://www.example.com/test2");
+    node = new NodeStateImpl(mcus, null, null, repo);
+    cache.putState("http://www.example.com/test2", node);
+
+    assertTrue(snapshot.hasNext());
+    snapshot.next();
+
+    assertFalse(snapshot.hasNext());
+  }
+
   public static void main(String[] argv) {
     String[] testCaseList = { TestNodeStateCache.class.getName()};
     junit.swingui.TestRunner.main(testCaseList);
