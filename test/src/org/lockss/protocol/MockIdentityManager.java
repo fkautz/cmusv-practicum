@@ -29,11 +29,10 @@ be used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from Stanford University.
 
 */
-package org.lockss.test;
+package org.lockss.protocol;
 
 import java.util.*;
 import org.lockss.app.*;
-import org.lockss.protocol.*;
 import org.lockss.util.*;
 import org.lockss.config.*;
 import org.lockss.plugin.*;
@@ -98,6 +97,20 @@ public class MockIdentityManager extends IdentityManager {
     return (Map)agreeMap.get(au);
   }
   
+  /**
+   * getReputation returns the reputation of the peer
+   * @param id the PeerIdentity
+   * @return the reputation
+   */
+  public void setReputation(PeerIdentity peer, int reputation) {
+    try {
+      LcapIdentity lid = findLcapIdentity(peer, peer.getIdString());
+      lid.changeReputation(reputation - lid.getReputation());
+    } catch (IdentityManager.MalformedIdentityKeyException e) {
+      throw new RuntimeException(e.toString());
+    }
+  }
+
   public void setAgeedForAu(ArchivalUnit au, Map map) {
     agreeMap.put(au, map);
   }

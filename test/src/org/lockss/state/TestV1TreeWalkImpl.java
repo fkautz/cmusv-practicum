@@ -34,6 +34,7 @@ import org.lockss.util.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.poller.*;
+import org.lockss.protocol.*;
 import org.lockss.repository.*;
 
 public class TestV1TreeWalkImpl extends LockssTestCase {
