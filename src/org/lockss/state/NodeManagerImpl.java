@@ -154,7 +154,7 @@ public class NodeManagerImpl implements NodeManager {
     PollState pollState = new PollState(state.getType(), spec.getLwrBound(),
                                         spec.getUprBound(),
                                         PollState.RUNNING, state.getStartTime(),
-                                        null);
+                                        Deadline.in(state.getDuration()));
     ((NodeStateImpl)nodeState).addPollState(pollState);
   }
 
