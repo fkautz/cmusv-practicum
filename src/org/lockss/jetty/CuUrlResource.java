@@ -36,6 +36,7 @@ import java.io.*;
 import java.net.*;
 import java.security.Permission;
 import org.mortbay.util.*;
+import org.lockss.util.*;
 
 /** URLResource tailored to LOCKSS CuUrls
  */
@@ -92,7 +93,7 @@ public class CuUrlResource extends URLResource {
   }
 
   public boolean equals( Object o) {
-    return o instanceof CuUrlResource &&
-      _url.equals(((CuUrlResource)o)._url);
+    return (o instanceof CuUrlResource) &&
+      UrlUtil.equalUrls(_url,((CuUrlResource)o)._url);
   }
 }
