@@ -133,9 +133,9 @@ public abstract class BaseUrlCacher implements UrlCacher {
     getArchivalUnit().pauseBeforeFetch();
     logger.debug3("Done pausing");
     InputStream input = getUncachedInputStream(lastCached);
-    Properties headers = getUncachedProperties();
     if (input!=null) {
       // null input indicates unmodified content, so skip caching
+      Properties headers = getUncachedProperties();
       if (headers == null) {
         logger.error("Received null headers for url '" + url + "'.");
         throw new CachingException("Received null headers.");
