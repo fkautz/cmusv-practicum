@@ -33,8 +33,6 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.util;
 
 import java.util.*;
-import java.net.*;
-import junit.framework.TestCase;
 import org.lockss.test.*;
 
 /**
