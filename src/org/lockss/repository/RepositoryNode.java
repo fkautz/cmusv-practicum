@@ -190,10 +190,13 @@ public interface RepositoryNode {
   public class RepositoryNodeContents {
     public InputStream input;
     public Properties props;
+    public Reader reader;
 
-    public RepositoryNodeContents(InputStream input, Properties props) {
+    public RepositoryNodeContents(InputStream input, Properties props,
+				  Reader reader) {
       this.input = input;
       this.props = props;
+      this.reader = reader;
     }
   }
 }

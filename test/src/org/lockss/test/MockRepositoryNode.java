@@ -51,6 +51,7 @@ public class MockRepositoryNode implements RepositoryNode {
   public long contentSize = 0;
   public InputStream curInput;
   public Properties curProps;
+  public Reader curReader;
   public int currentVersion = -1;
 
   public String url;
@@ -143,7 +144,7 @@ public class MockRepositoryNode implements RepositoryNode {
     if (!hasContent()) {
       throw new UnsupportedOperationException("No content for url '"+url+"'");
     }
-    return new RepositoryNodeContents(curInput, curProps);
+    return new RepositoryNodeContents(curInput, curProps, curReader);
   }
 
   public OutputStream getNewOutputStream() {
