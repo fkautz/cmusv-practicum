@@ -41,6 +41,12 @@ import org.lockss.plugin.*;
 import org.lockss.protocol.*;
 import org.lockss.app.*;
 
+/**
+ * <p>Class implementing the concept of the set of URLs covered by a poll.</p>
+ * @author Claire Griffin
+ * @version 1.0
+ */
+
 public class PollSpec {
   /**
    * A lower bound value which indicates the poll should use a

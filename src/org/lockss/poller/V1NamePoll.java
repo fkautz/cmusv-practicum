@@ -37,6 +37,7 @@ import org.lockss.util.*;
 import org.lockss.plugin.*;
 
 /**
+ * <p>Implements a version one name poll.</p>
  * @author Claire Griffin
  * @version 1.0
  */

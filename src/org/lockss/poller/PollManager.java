@@ -50,6 +50,12 @@ import org.lockss.repository.LockssRepository;
 import org.lockss.daemon.status.*;
 import org.lockss.state.*;
 
+/**
+ * <p>Class that manages the polling process.</p>
+ * @author Claire Griffin
+ * @version 1.0
+ */
+
 public class PollManager  extends BaseLockssManager {
   static final String PARAM_RECENT_EXPIRATION = Configuration.PREFIX +
       "poll.expireRecent";

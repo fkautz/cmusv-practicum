@@ -50,7 +50,7 @@ import org.lockss.daemon.status.*;
 
 
 /**
- * <p>Abstract base class for all poll objects.</p>
+ * <p>Abstract base class for all version one poll objects.</p>
  * @author Claire Griffin
  * @version 1.0
  */
