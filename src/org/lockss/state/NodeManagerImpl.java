@@ -58,8 +58,8 @@ public class NodeManagerImpl implements NodeManager {
    * This parameter indicates the size of the {@link NodeStateCache} used by the
    * node manager.
    */
-  public static final String PARAM_NODESTATE_MAP_SIZE =
-      Configuration.PREFIX + "state.nodemap.size";
+  public static final String PARAM_NODESTATE_CACHE_SIZE =
+      Configuration.PREFIX + "state.cache.size";
   static final int DEFAULT_MAP_SIZE = 100;
 
   private static LockssDaemon theDaemon;
