@@ -79,6 +79,10 @@ public class StatusServiceImpl
       tableOpts.xor(tableOpts);
       tableOpts.or(options);
     }
+    if (statusAccessor.requiresKey() && table.getKey() == null) {
+      throw new StatusService.NoSuchTableException(tableName +
+						   " requires a key value");
+    }
     statusAccessor.populateTable(table);
     if (table.getTitle() == null) {
       try {
