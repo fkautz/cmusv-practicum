@@ -71,6 +71,11 @@ public class LockssServletTestCase extends LockssTestCase {
   protected void initServletRunner() {
     sRunner = new LockssServletRunner();
     sRunner.setServletContextAttribute("LockssApp", theDaemon);
+    // Tell LockssServlet to include javascript directly in the page rather
+    // than linking to it, because this little servlet runner can't acess
+    // other server files
+    sRunner.setServletContextAttribute(LockssServlet.ATTR_INCLUDE_SCRIPT,
+				       "true");
     sClient = sRunner.newClient();
   }
 
