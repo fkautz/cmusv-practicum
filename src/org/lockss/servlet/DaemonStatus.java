@@ -103,7 +103,7 @@ public class DaemonStatus extends LockssServlet {
 
     if (!isHtml) {
       wrtr = resp.getWriter();
-      resp.setContentType(isText ? "text/html" : "text/xml");
+      resp.setContentType(isText ? "text/plain" : "text/xml");
     } else {
       resp.setContentType("text/html");
     }
