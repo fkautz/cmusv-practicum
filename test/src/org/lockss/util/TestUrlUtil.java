@@ -78,4 +78,28 @@ public class TestUrlUtil extends TestCase{
     assertEquals(root, UrlUtil.getUrlPrefix(root));
   }
 
+  public void testGetHost() throws Exception {
+    assertEquals("xx.foo.bar", UrlUtil.getHost("http://xx.foo.bar/123"));
+    assertEquals("foo", UrlUtil.getHost("http://foo/123"));
+    assertEquals("foo.", UrlUtil.getHost("http://foo./123"));
+    try{
+      UrlUtil.getHost("garbage://xx.foo.bar/123");
+      fail("Should have thrown MalformedURLException");
+    }
+    catch (MalformedURLException mue) {
+    }
+  }
+
+  public void testGetDomain() throws Exception {
+    assertEquals("foo.bar", UrlUtil.getDomain("http://xx.foo.bar/123"));
+    assertEquals("foo", UrlUtil.getDomain("http://foo/123"));
+    assertEquals("foo.", UrlUtil.getDomain("http://foo./123"));
+    try{
+      UrlUtil.getDomain("garbage://xx.foo.bar/123");
+      fail("Should have thrown MalformedURLException");
+    }
+    catch (MalformedURLException mue) {
+    }
+  }
+
 }

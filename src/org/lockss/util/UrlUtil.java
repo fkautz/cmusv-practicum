@@ -86,6 +86,31 @@ public class UrlUtil {
     return url2.toString();
   }
 
+  /**
+   * @param urlStr string representation of a url
+   * @return the host portion of the url
+   * @throws MalformedURLException if urlStr is not a well formed URL
+   */
+  public static String getHost(String urlStr) throws MalformedURLException {
+    URL url = new URL(urlStr);
+    return url.getHost();
+  }
+
+  /**
+   * @param urlStr string representation of a url
+   * @return the domain portion of the hostname
+   * @throws MalformedURLException if urlStr is not a well formed URL
+   */
+  public static String getDomain(String urlStr) throws MalformedURLException {
+    String host = getHost(urlStr);
+    int pos = host.indexOf('.');
+    if (pos == -1 || pos == (host.length() - 1)) {
+      return host;
+    } else {
+      return host.substring(pos + 1);
+    }
+  }
+
   /** Reconstructs the URL the client used to make the request, using
    * information in the HttpServletRequest object. The returned URL
    * contains a protocol, server name, port number, and server path, but it
