@@ -417,7 +417,6 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
       Iterator masterIt = results.getCorrectEntries();
       Iterator localIt = results.getLocalEntries();
       Set localSet = createUrlSetFromCusIterator(localIt);
-      System.out.println("local size: "+localSet.size());
       ArchivalUnit au = nodeState.getCachedUrlSet().getArchivalUnit();
       // iterate through master list
       boolean repairMarked = false;
