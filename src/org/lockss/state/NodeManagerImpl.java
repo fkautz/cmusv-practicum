@@ -83,9 +83,9 @@ public class NodeManagerImpl implements NodeManager {
   static HistoryRepository repository;
   private static CrawlManager theCrawlManager = null;
   private static HashMap auEstimateMap = new HashMap();
-  static long treeWalkInterval;
-  static long topPollInterval;
-  static long treeWalkTestDuration;
+  long treeWalkInterval;
+  long topPollInterval;
+  long treeWalkTestDuration;
 
   private ArchivalUnit managerAu;
   private AuState auState;
@@ -95,6 +95,15 @@ public class NodeManagerImpl implements NodeManager {
 
   NodeManagerImpl(ArchivalUnit au) {
     managerAu = au;
+  }
+
+  /**
+   * For testing only!  Returns a NodeManager.
+   * @param au the ArchivalUnit
+   * @return the NodeManager
+   */
+  public static NodeManager getTestNodeManager(ArchivalUnit au) {
+    return new NodeManagerImpl(au);
   }
 
   /**

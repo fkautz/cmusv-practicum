@@ -81,7 +81,7 @@ public class LockssDaemon {
   private static String DEFAULT_HISTORY_REPOSITORY
       = "org.lockss.state.HistoryRepositoryImpl";
   private static String DEFAULT_NODE_MANAGER_SERVICE =
-      "org.lockss.state.NodeManagerService";
+      "org.lockss.state.NodeManagerServiceImpl";
   private static String DEFAULT_PROXY_HANDLER = "org.lockss.proxy.ProxyHandler";
 
 
@@ -210,14 +210,21 @@ public class LockssDaemon {
 
   /**
    * return the node manager instance
+   * @return the NodeManager
+   * @throws IllegalArgumentException if the manager is not available.
+   */
+  public NodeManagerService getNodeManagerService() {
+    return (NodeManagerService) getManager(NODE_MANAGER_SERVICE);
+  }
+
+  /**
+   * return the node manager instance
    * @param au the ArchivalUnit
    * @return the NodeManager
    * @throws IllegalArgumentException if the manager is not available.
    */
   public NodeManager getNodeManager(ArchivalUnit au) {
-    NodeManagerService nms = (NodeManagerService)getManager(
-        NODE_MANAGER_SERVICE);
-    return nms.managerFactory(au);
+    return getNodeManagerService().getNodeManager(au);
   }
 
   /**

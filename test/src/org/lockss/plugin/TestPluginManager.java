@@ -48,6 +48,8 @@ import org.lockss.test.*;
  */
 
 public class TestPluginManager extends LockssTestCase {
+  private MockLockssDaemon theDaemon = new MockLockssDaemon(null);
+
   static String mockPlugId = "org|lockss|test|MockPlugin";
   static String mauauid1 = "val1|val2";
   static String mauauidkey1 = "val1|val2";
@@ -75,7 +77,16 @@ public class TestPluginManager extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     mgr = new PluginManager();
+    mgr.initService(theDaemon);
   }
+
+  public void tearDown() throws Exception {
+    mgr.stopService();
+    theDaemon.stopDaemon();
+    super.tearDown();
+  }
+
+
 
   private void doConfig() throws Exception {
     mgr.startService();

@@ -88,16 +88,24 @@ public class TestNodeManagerImpl extends LockssTestCase {
   }
 
   public void testManagerFactory() {
-    NodeManagerService nms = new NodeManagerService();
+    NodeManagerService nms = new NodeManagerServiceImpl();
     String auId = mau.getAUId();
-    NodeManager node1 = nms.managerFactory(mau);
+    nms.addNodeManager(mau);
+    NodeManager node1 = nms.getNodeManager(mau);
     assertNotNull(node1);
     mau.setAuId(auId + "test");
-    NodeManager node2 = nms.managerFactory(mau);
+    nms.addNodeManager(mau);
+    NodeManager node2 = nms.getNodeManager(mau);
     assertTrue(node1 != node2);
     mau.setAuId(auId);
-    node2 = nms.managerFactory(mau);
+    node2 = nms.getNodeManager(mau);
     assertEquals(node1, node2);
+
+    mau.setAuId(auId + "test2");
+    try {
+      nms.getNodeManager(mau);
+      fail("Should throw IllegalArgumentException.");
+    } catch (IllegalArgumentException iae) { }
   }
 
   public void testGetNodeState() throws Exception {
