@@ -37,11 +37,11 @@ package org.lockss.daemon;
  * It simply provides a mechanism for easily getting the urls of lists of those
  * classes.
  */
-public interface NamedElement {
+public interface UrlElement {
 
   /**
    * Returns the name of this element (typically the url).
    * @return the name
    */
-  public String getName();
+  public String getUrl();
 }
