@@ -249,6 +249,15 @@ public class Deadline implements Comparable {
   }
 
   /**
+   * Return the number of milliseconds by which this Deadline exceeds the
+   * other.
+   * @return the differecne between the two Deadlines.
+   */
+  public long minus(Deadline other) {
+    return expiration.getTime() - other.getExpirationTime();
+  }
+
+  /**
    * Return the expiration time as a Date
    * @return the Date
    */
