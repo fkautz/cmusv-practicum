@@ -154,8 +154,8 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
       childL.add(((CachedUrlSetNode)setIt.next()).getUrl());
     }
     // should be sorted
+    // no longer includes itself as CachedUrl
     expectedA = new String[] {
-      "http://www.example.com/testDir/branch1",
       "http://www.example.com/testDir/branch1/leaf1",
       "http://www.example.com/testDir/branch1/leaf2",
       };

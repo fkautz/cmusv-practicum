@@ -284,19 +284,35 @@ public class NodeManagerImpl
         // if repair poll, can't be repaired
         pollState.status = PollState.UNREPAIRABLE;
         updateReputations(results);
-      }
-      else if (nodeState.isInternalNode()) {
-        logger.debug2("lost content poll, state = lost, calling name poll.");
-        // if internal node, we need to call a name poll
-        pollState.status = PollState.LOST;
-        callNamePoll(new PollSpec(results.getCachedUrlSet()));
-      }
-      else {
-        logger.debug2(
-            "lost content poll, state = repairing, marking for repair.");
-        // if leaf node, we need to repair
-        pollState.status = PollState.REPAIRING;
-        markNodeForRepair(nodeState.getCachedUrlSet(), results);
+      } else {
+        // otherwise, schedule repair or name poll
+        boolean doRepair = true;
+        if (nodeState.isInternalNode()) {
+          // if internal node, probably don't do repair
+          doRepair = false;
+          CachedUrlSetSpec spec = results.getCachedUrlSet().getSpec();
+          if (spec instanceof RangeCachedUrlSetSpec) {
+            RangeCachedUrlSetSpec rSpec = (RangeCachedUrlSetSpec)spec;
+            if ((rSpec.getLowerBound()!=null) &&
+                (rSpec.getLowerBound().equals(
+                RangeCachedUrlSetSpec.SINGLE_NODE_RANGE))) {
+              // repair only if this was a content poll with range '.', which
+              // indicates a single-node content poll
+              doRepair = true;
+            }
+          }
+        }
+        if (doRepair) {
+          logger.debug2("lost content poll, state = repairing, marking for repair.");
+          // if leaf node, we need to repair
+          pollState.status = PollState.REPAIRING;
+          markNodeForRepair(nodeState.getCachedUrlSet(), results);
+        } else {
+          logger.debug2("lost content poll, state = lost, calling name poll.");
+          // if internal node, we need to call a name poll
+          pollState.status = PollState.LOST;
+          callNamePoll(new PollSpec(results.getCachedUrlSet()));
+        }
       }
     }
   }
@@ -568,6 +584,11 @@ public class NodeManagerImpl
         callContentPoll(new PollSpec( (CachedUrlSet) childList.get(i)));
       }
     }
+    // content poll for this node's content alone
+    PollSpec pspec = new PollSpec(cus, RangeCachedUrlSetSpec.SINGLE_NODE_RANGE,
+                                  null);
+    logger.debug2("calling single node content poll on " + pspec);
+    pollManager.requestPoll(LcapMessage.CONTENT_POLL_REQ, pspec);
   }
 
   private List convertChildrenToCUSList(Iterator children) {

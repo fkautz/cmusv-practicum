@@ -122,12 +122,6 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
     String prefix = spec.getUrl();
     try {
       RepositoryNode intNode = repository.getNode(prefix);
-      // if this CUS has content, add it as a CachedUrl
-      if (intNode.hasContent()) {
-        CachedUrl thisContent = ((BaseArchivalUnit)au).cachedUrlFactory(this,
-            intNode.getNodeUrl());
-        treeSet.add(thisContent);
-      }
       Iterator children = intNode.listNodes(spec, false);
       while (children.hasNext()) {
         // add all nodes to tree iterator, regardless of content

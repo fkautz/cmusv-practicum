@@ -86,6 +86,10 @@ public class MockCachedUrlSet implements CachedUrlSet {
     return spec;
   }
 
+  public void setSpec(CachedUrlSetSpec newSpec) {
+    spec = newSpec;
+  }
+
   public ArchivalUnit getArchivalUnit() {
     return au;
   }
