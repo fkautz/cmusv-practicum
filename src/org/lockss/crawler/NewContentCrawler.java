@@ -183,7 +183,8 @@ public class NewContentCrawler extends CrawlerImpl {
 	  logger.debug3("Already failed to cache "+uc+". Not retrying.");
 	} else {
 	  cacheWithRetries(uc, Configuration.getIntParam(PARAM_RETRY_TIMES,
-							 DEFAULT_RETRY_TIMES));
+							 DEFAULT_RETRY_TIMES),
+			   overWrite);
 	  numUrlsFetched++;
 	}
       } catch (FileNotFoundException e) {
@@ -231,13 +232,18 @@ public class NewContentCrawler extends CrawlerImpl {
     return (error == 0);
   }
 
-  private void cacheWithRetries(UrlCacher uc, int maxRetries)
+  private void cacheWithRetries(UrlCacher uc, int maxRetries,
+				boolean shouldForceCache)
       throws IOException {
     int numRetries = 0;
     while (true) {
       try {
 	logger.debug("caching "+uc);
-	uc.cache(); //IOException if there is a caching problem
+ 	if (shouldForceCache) {
+ 	  uc.forceCache(); //IOException if there is a caching problem
+ 	} else {
+	  uc.cache(); //IOException if there is a caching problem
+ 	}
 	crawlStatus.signalUrlFetched();
 	return; //cache didn't throw
       } catch (IOException e) {
