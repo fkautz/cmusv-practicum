@@ -73,4 +73,14 @@ public class TestLockssTestCase extends LockssTestCase {
     assertIsomorphic(a1, v1.iterator());
     assertIsomorphic(v1, v1);
   }
+
+  public void testMap() {
+    Map m1 = new HashMap();
+    Map m2 = new Hashtable();
+    assertEquals(m1, m2);
+    m1.put("1", "one");
+    m2.put("1", "one");
+    assertEquals(m1, m2);
+    assertEquals(m2, m1);
+  }
 }
