@@ -223,6 +223,14 @@ public class TestNodeManagerImpl extends LockssTestCase {
     assertIsomorphic(expectedA, histL);
   }
 
+  public void testTreeWalk() {
+
+  }
+
+  public void testEstimatedTreeWalk() {
+
+  }
+
   public void testMapErrorCodes() {
     assertEquals(PollState.ERR_HASHING, nodeManager.mapResultsErrorToPollError(Poll.ERR_HASHING));
     assertEquals(PollState.ERR_IO, nodeManager.mapResultsErrorToPollError(Poll.ERR_IO));
