@@ -8,4 +8,6 @@ lockss-test.jar
 lockss-tools-test.jar
 lockss-tools.jar
 lockss.jar
+packing-list
 run-classpath
+run-props
