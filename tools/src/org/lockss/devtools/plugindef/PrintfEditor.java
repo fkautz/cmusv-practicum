@@ -223,6 +223,7 @@ public class PrintfEditor extends JDialog
    */
   public void setCellData(EDPCellData data) {
     m_data = data;
+    paramKeys = data.getPlugin().getPrintfDescrs();
     data.getPlugin().addParamListener(this);
     setTemplate( (PrintfTemplate) data.getData());
     m_needsMatchPanel = data.getKey().equals(EditableDefinablePlugin.AU_RULES);
