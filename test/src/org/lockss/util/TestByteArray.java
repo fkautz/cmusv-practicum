@@ -61,6 +61,17 @@ public class TestByteArray extends LockssTestCase {
     assertEquals("FFFFFFFF", ByteArray.toHexString(t2));
   }
 
+  public void testFromHexString() {
+    byte t1[] = {1, 0x42, 0x7e, (byte)0xff};
+    byte t2[] = {(byte)255, (byte)255, (byte)255, (byte)255};
+    byte t3[] = {(byte)143, (byte)255, (byte)255, (byte)255};
+    byte t4[] = {(byte)127, (byte)255, (byte)255, (byte)255};
+    assertEquals(t1, ByteArray.fromHexString("01427EFF"));
+    assertEquals(t2, ByteArray.fromHexString("FFFFFFFF"));
+    assertEquals(t3, ByteArray.fromHexString("8FFFFFFF"));
+    assertEquals(t4, ByteArray.fromHexString("7FFFFFFF"));
+  }
+
   public void testEncode() {
     byte exp1[] = {0, 0, 1, 5};
     byte exp2[] = {42, 75, 1, (byte)255};

@@ -93,6 +93,17 @@ public class ByteArray {
     return new String(buf);
   }
 
+  /** Return hex representation of bytes in array */
+  public static byte[] fromHexString(String hex) {
+    byte[] a = new BigInteger(hex, 16).toByteArray();
+    if (a.length == ((hex.length() + 1) / 2)) {
+      return a;
+    }
+    byte[] res = new byte[a.length - 1];
+    System.arraycopy(a, 1, res, 0, res.length);
+    return res;
+  }
+
   public static byte[] encodeLong(long n) {
     BigInteger bigI = new BigInteger(Long.toString(n));
     // note that this byte array has a sign bit, which should be removed
