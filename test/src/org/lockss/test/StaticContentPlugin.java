@@ -207,7 +207,7 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
       throw new UnsupportedOperationException("Not implemented");
     }
 
-    public byte[] getContentSize() {
+    public byte[] getUnfilteredContentSize() {
       BigInteger bigInt = new BigInteger(Integer.toString(contents.length()));
       return bigInt.toByteArray();
     }

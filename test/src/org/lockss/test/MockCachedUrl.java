@@ -108,7 +108,7 @@ public class MockCachedUrl implements CachedUrl {
     return openForReading();
   }
 
-  public byte[] getContentSize() {
+  public byte[] getUnfilteredContentSize() {
     String content;
     if (this.content == null) {
       content = "";

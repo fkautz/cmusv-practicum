@@ -152,7 +152,7 @@ public class NullPlugin {
       throw new UnsupportedOperationException("Not implemented");
     }
 
-    public byte[] getContentSize() {
+    public byte[] getUnfilteredContentSize() {
       return new byte[0];
     }
 

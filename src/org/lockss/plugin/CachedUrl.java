@@ -83,10 +83,10 @@ public interface CachedUrl extends CachedUrlSetNode {
     public Properties getProperties();
 
     /**
-     * Return the content size.
+     * Return the unfiltered content size.
      * @return a byte[]
      */
-    public byte[] getContentSize();
+    public byte[] getUnfilteredContentSize();
 
     /**
      * Return the ArchivalUnit to which this CachedUrl belongs.

@@ -98,7 +98,7 @@ public class PTestPlugin {
       throw new UnsupportedOperationException("Not implemented");
     }
 
-    public byte[] getContentSize() {
+    public byte[] getUnfilteredContentSize() {
       return (new BigInteger(
           Integer.toString(contents.length()))).toByteArray();
     }
