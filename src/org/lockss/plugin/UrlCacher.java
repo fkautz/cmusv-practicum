@@ -35,6 +35,7 @@ import java.io.*;
 import java.util.Properties;
 
 import org.lockss.daemon.*;
+import org.lockss.util.urlconn.*;
 
 /**
  * UrlCacher is used to store the contents and
@@ -69,6 +70,9 @@ public interface UrlCacher {
    * @return {@link CachedUrl} for the content stored.
    */
   public CachedUrl getCachedUrl();
+
+  /** Set the shared connection pool object to be used by this UrlCacher */
+  public void setConnectionPool(LockssUrlConnectionPool connectionPool);
 
   /**
    * Copies the content and properties from the source into the cache.
