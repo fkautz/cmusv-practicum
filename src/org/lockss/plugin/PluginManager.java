@@ -679,7 +679,8 @@ public class PluginManager
       if (!auConf.isSealed()) {
 	auConf.put(AU_PARAM_DISPLAY_NAME, au.getName());
       } else if (StringUtil.isNullString(auConf.get(AU_PARAM_DISPLAY_NAME))) {
-	log.debug("Can't add name to sealed AU config", new Throwable());
+	log.debug("Can't add name to sealed AU config: " + auConf,
+		  new Throwable());
       }
     }
     updateAuConfigFile(au.getAuId(), auConf);

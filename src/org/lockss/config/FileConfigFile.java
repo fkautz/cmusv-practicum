@@ -74,6 +74,7 @@ public class FileConfigFile extends ConfigFile {
   public void storedConfig(Configuration newConfig) throws IOException {
     ConfigurationPropTreeImpl nc = new ConfigurationPropTreeImpl();
     nc.copyFrom(newConfig);
+    nc.seal();
     m_config = nc;
     m_lastModified = Long.toString(m_fileFile.lastModified());
     log.debug2("storedConfig at: " + m_lastModified);

@@ -795,6 +795,9 @@ public class ConfigManager implements LockssManager {
     } catch (FileNotFoundException e) {
       fileConfig = newConfiguration();
     }
+    if (fileConfig.isSealed()) {
+      fileConfig = fileConfig.copy();
+    }
     // first remove all existing values for the AU
     if (auPropKey != null) {
       fileConfig.removeConfigTree(auPropKey);

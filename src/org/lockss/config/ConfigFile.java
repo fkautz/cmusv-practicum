@@ -120,6 +120,7 @@ public abstract class ConfigFile {
       newConfig.getPropertyTree().load(in);
     }
     // update stored configuration atomically
+    newConfig.seal();
     m_config = newConfig;
   }
 
