@@ -82,7 +82,8 @@ public class FuncSimulatedContent extends LockssTestCase {
     props.setProperty("org.lockss.au." + auId2Str + ".branch", "2");
     props.setProperty("org.lockss.au." + auId2Str + ".numFiles", "2");
 
-    theDaemon = new MockLockssDaemon();
+    theDaemon = getMockLockssDaemon();
+    theDaemon.getAlertManager();
     theDaemon.getPluginManager();
     theDaemon.getHashService();
     MockSystemMetrics metrics = new MyMockSystemMetrics();

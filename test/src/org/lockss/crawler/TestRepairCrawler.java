@@ -64,6 +64,8 @@ public class TestRepairCrawler extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
+    new MockLockssDaemon().getAlertManager();
+
     mau = new MockArchivalUnit();
     crawlRule = new MockCrawlRule();
 

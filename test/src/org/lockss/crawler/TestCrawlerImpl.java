@@ -89,6 +89,7 @@ public class TestCrawlerImpl extends LockssTestCase {
     crawlRule = new MockCrawlRule();
     crawlRule.addUrlToCrawl(startUrl);
     spec = new CrawlSpec(startUrls, crawlRule);
+    new MockLockssDaemon().getAlertManager();
     crawler = new NewContentCrawler(mau, spec, aus);
 //     crawler = new MyCrawler(mau, spec, aus);
 

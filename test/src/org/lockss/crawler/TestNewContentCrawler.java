@@ -56,6 +56,8 @@ public class TestNewContentCrawler extends LockssTestCase {
     super.setUp();
     TimeBase.setSimulated(10);
 
+    new MockLockssDaemon().getAlertManager();
+
     mau = new MockArchivalUnit();
     mau.setPlugin(new MockPlugin());
 
