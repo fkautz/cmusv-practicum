@@ -320,6 +320,7 @@ public class PollManager
     }
     BasePoll p = findPoll(msg);
     if (p != null) {
+      p.setMessage(msg);
       p.receiveMessage(msg);
     }
   }

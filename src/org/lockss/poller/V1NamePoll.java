@@ -66,6 +66,10 @@ public class V1NamePoll extends V1Poll {
    * cast our vote for this poll
    */
   void castOurVote() {
+    if (m_msg == null) {
+      log.error("No vote to cast for " + this);
+      return;
+    }
     LcapMessage msg;
     PeerIdentity local_id = idMgr.getLocalPeerIdentity(Poll.V1_POLL);
     long remainingTime = m_deadline.getRemainingTime();
@@ -90,6 +94,10 @@ public class V1NamePoll extends V1Poll {
   void receiveMessage(LcapMessage msg) {
     int opcode = msg.getOpcode();
 
+    if (m_msg == null) {
+      m_msg = msg;
+      log.debug("Setting message for " + this + " from " + msg);
+    }
     if (opcode == LcapMessage.NAME_POLL_REP) {
       startVoteCheck(msg);
     }

@@ -75,6 +75,10 @@ public class V1ContentPoll extends V1Poll {
   void receiveMessage(LcapMessage msg) {
     int opcode = msg.getOpcode();
 
+    if (m_msg == null) {
+      m_msg = msg;
+      log.debug("Setting message for " + this + " from " + msg);
+    }
     if(opcode == LcapMessage.CONTENT_POLL_REP) {
       startVoteCheck(msg);
     }

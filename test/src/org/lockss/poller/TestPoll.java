@@ -553,6 +553,8 @@ public class TestPoll extends LockssTestCase {
     for (int i = 0; i < testV1polls.length; i++) {
       log.debug3("initTestPolls: V1 " + i);
       BasePoll p = pollmanager.makePoll(testV1msg[i]);
+      assertNotNull(p);
+      assertNotNull(p.getMessage());
       log.debug("initTestPolls: V1 " + i + " returns " + p);
       assertTrue(p instanceof V1Poll);
       switch (i) {

@@ -105,7 +105,10 @@ public abstract class BasePoll implements Poll {
   }
 
   public void setMessage(LcapMessage msg) {
-    m_msg = msg;
+    if (m_msg == null) {
+      m_msg = msg;
+      log.debug("Setting message for " + this + " from " + msg);
+    }
   }
 
   /**

@@ -274,6 +274,10 @@ public abstract class V1Poll extends BasePoll {
    * cast our vote for this poll
    */
   void castOurVote() {
+    if (m_msg == null) {
+      log.error("no vote to cast for " + this);
+      return;
+    }
     LcapMessage msg;
     PeerIdentity local_id = idMgr.getLocalPeerIdentity(Poll.V1_POLL);
     long remainingTime = m_deadline.getRemainingTime();
