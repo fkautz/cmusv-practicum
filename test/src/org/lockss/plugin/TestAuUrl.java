@@ -65,7 +65,7 @@ public class TestAuUrl extends LockssTestCase {
     URL url = new URL("http://example.com/path");
     assertTrue(!AuUrl.isAuUrl(url));
 
-    URL au = AuUrl.fromAuConfig(testConfigString);
-    assertEquals(testConfigString, AuUrl.getAuConfig(au));
+    URL au = AuUrl.fromAuId(testConfigString);
+    assertEquals(testConfigString, AuUrl.getAuId(au));
   }
 }
