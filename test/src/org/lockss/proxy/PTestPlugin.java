@@ -155,6 +155,10 @@ class PTestPlugin {
     public CachedUrl makeCachedUrl(String url) {
       return (CachedUrl)map.get(url);
     }
+
+    public UrlCacher makeUrlCacher(String url) {
+      return (UrlCacher)map.get(url);
+    }
   }
 
   public static CachedUrlSet makeTest() {
