@@ -356,7 +356,7 @@ public class PollManager
     }
 
     // check for conflicts
-    if (!pf[pollVersion].pollShouldBeCreated(msg, spec, this, theIDManager)) {
+    if (!pf[pollVersion].shouldPollBeCreated(msg, spec, this, theIDManager)) {
       theLog.debug("Poll request ignored");
       return null;
     }
