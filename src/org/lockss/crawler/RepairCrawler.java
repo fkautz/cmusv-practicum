@@ -55,8 +55,6 @@ public class RepairCrawler extends CrawlerImpl {
   public static final String PARAM_FETCH_FROM_OTHER_CACHE =
       Configuration.PREFIX + "crawler.fetch_from_other_caches";
 
-  private static final String HEADER_PREFIX = "_header_";
-
   private float percentFetchFromCache = 0;
 
   public RepairCrawler(ArchivalUnit au, CrawlSpec spec,
@@ -215,7 +213,7 @@ public class RepairCrawler extends CrawlerImpl {
     props.setProperty("content-type", conn.getResponseContentType());
     props.setProperty("date", Long.toString(conn.getResponseDate()));
     props.setProperty("content-url", url);
-    conn.storeResponseHeaderInto(props, HEADER_PREFIX);
+    conn.storeResponseHeaderInto(props, BaseUrlCacher.HEADER_PREFIX);
     String actualURL = conn.getActualUrl();
     if (!url.equals(actualURL)) {
       logger.info("setProperty(\"redirected-to\", " + actualURL + ")");

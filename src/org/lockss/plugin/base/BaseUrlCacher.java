@@ -55,7 +55,7 @@ public class BaseUrlCacher implements UrlCacher {
   protected static Logger logger = Logger.getLogger("UrlCacher");
   private LockssRepository repository;
   private CacheResultMap resultMap;
-  private static final String HEADER_PREFIX = "_header_";
+  public static final String HEADER_PREFIX = "_header_";
 
 
   public BaseUrlCacher(CachedUrlSet owner, String url) {
