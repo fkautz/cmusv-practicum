@@ -54,10 +54,7 @@ public class TimerQueue implements Serializable {
     Request req = new Request(deadline, callback, cookie);
     req.deadline.registerCallback(req.deadlineCb);
     queue.put(req);
-    ensureQRunner();
-    if (timerThread != null) {
-      timerThread.interrupt();
-    }
+    startOrKickThread();
     return true;
   }
 
@@ -102,11 +99,13 @@ public class TimerQueue implements Serializable {
   }
 
   // tk add watchdog
-  synchronized void ensureQRunner() {
+  synchronized void startOrKickThread() {
     if (timerThread == null) {
       log.info("Starting thread");
       timerThread = new TimerThread("TimerQ");
       timerThread.start();
+    } else {
+      timerThread.interrupt();
     }
   }
 
