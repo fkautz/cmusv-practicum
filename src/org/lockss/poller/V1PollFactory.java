@@ -313,7 +313,9 @@ public class V1PollFactory implements PollFactory {
     }
     while(iter.hasNext()) {
       PollSpec ps = (PollSpec)iter.next();
-      theLog.debug("compare " + cus + " with " + ps.getCachedUrlSet());
+      if (theLog.isDebug2()) {
+	theLog.debug2("compare " + cus + " with " + ps.getCachedUrlSet());
+      }
       if (ps.getPollType() != Poll.VERIFY_POLL) {
 	CachedUrlSet pcus = ps.getCachedUrlSet();
         int rel_pos = cus.cusCompare(pcus);
