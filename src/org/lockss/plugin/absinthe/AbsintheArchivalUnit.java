@@ -41,8 +41,8 @@ import org.lockss.plugin.base.*;
 import gnu.regexp.REException;
 
 /**
- * <p>AbsintheArchivalUnit: The Archival Unit Class for Absinthe Literary
- * Review</p>
+ * AbsintheArchivalUnit: The Archival Unit Class for Absinthe Literary
+ * Review
  * @author Emil Aalto
  * @version 1.0
  */

@@ -40,10 +40,7 @@ import org.lockss.poller.*;
 import org.lockss.daemon.ActivityRegulator;
 
 /**
- * <p>Title: </p>
- * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2003</p>
- * <p>Company: </p>
+ * Mock vote tallier.
  * @author Claire Griffin
  * @version 1.0
  */

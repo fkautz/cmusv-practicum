@@ -44,8 +44,8 @@ import org.lockss.state.*;
 import org.lockss.daemon.Configuration.*;
 
 /**
- * <p>AcsArchivalUnit: The Archival Unit Class for American Chemical Society
- * Plugin</p>
+ * AcsArchivalUnit: The Archival Unit Class for American Chemical Society
+ * Plugin
  * @author Claire Griffin
  * @version 1.0
  */

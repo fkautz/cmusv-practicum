@@ -125,8 +125,8 @@ public interface NodeState {
   public static final int UNREPAIRABLE_NAMES_NEEDS_POLL = 19;
 
   /**
-   * Returns the last hash duration.  -1 if no hash yet.
-   * @return the hash duration
+   * Returns the last hash duration.
+   * @return the hash duration, or -1 if no hash yet.
    */
   public long getAverageHashDuration();
 

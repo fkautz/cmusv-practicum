@@ -449,7 +449,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
 
   /**
    * return the {@link org.lockss.daemon.status.StatusService} instance
-   * @returns {@link org.lockss.daemon.status.StatusService} instance
+   * @return {@link org.lockss.daemon.status.StatusService} instance
    * @throws IllegalArgumentException if the manager is not available.
    */
   public StatusService getStatusService() {
@@ -458,7 +458,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
 
   /**
    * return the SystemMetrics instance.
-   * @returns SystemMetrics instance.
+   * @return SystemMetrics instance.
    * @throws IllegalArgumentException if the manager is not available.
    */
   public SystemMetrics getSystemMetrics() {

@@ -45,10 +45,7 @@ import org.exolab.castor.mapping.Mapping;
 import org.exolab.castor.mapping.*;
 
 /**
- * <p>Title: </p>
- * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2000-2003</p>
- * <p>Company: </p>
+ * Abstraction for identity of a LOCKSS cache.  Currently wraps an IP address.
  * @author Claire Griffin
  * @version 1.0
  */

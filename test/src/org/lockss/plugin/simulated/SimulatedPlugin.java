@@ -171,7 +171,7 @@ public class SimulatedPlugin extends BasePlugin implements PluginTestable {
   /**
    * Create an ArchivalUnit for the AU specified by the configuration.
    * @param auConfig Configuration object with values for all properties
-   * returned by {@link #getAUConfigProperties()}
+   * returned by {@link #getDefiningConfigKeys()}
    * @return an {@link ArchivalUnit}
    * @throws ArchivalUnit.ConfigurationException if the configuration is
    * illegal in any way.

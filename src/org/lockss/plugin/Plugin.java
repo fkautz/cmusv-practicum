@@ -109,7 +109,7 @@ public interface Plugin {
    * Create or (re)configure an {@link ArchivalUnit} from the specified
    * configuration.
    * @param config {@link Configuration} object with values for all properties
-   * returned by {@link #getAuConfigProperties()}
+   * returned by {@link #getDefiningConfigKeys()}
    * @param au {@link ArchivalUnit} if one already exists
    * @return a configured {@link ArchivalUnit}
    * @throws ArchivalUnit.ConfigurationException if unable to configure au
@@ -121,7 +121,7 @@ public interface Plugin {
    * Create an ArchivalUnit for the AU specified by the configuration.
    * @param auConfig {@link Configuration} object with values for all
    * properties
-   * returned by {@link #getAUConfigProperties()}
+   * returned by {@link #getDefiningConfigKeys()}
    * @return an {@link ArchivalUnit}
    * @throws ArchivalUnit.ConfigurationException
    */

@@ -39,8 +39,8 @@ import org.lockss.plugin.*;
 import org.lockss.protocol.*;
 
 /**
- * <p>Description: Provides support for the PollManager and Polls to present
- * the current status information</p>
+ * Description: Provides support for the PollManager and Polls to present
+ * the current status information
  * @author Claire Griffin
  * @version 1.0
  */

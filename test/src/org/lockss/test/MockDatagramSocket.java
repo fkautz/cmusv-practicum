@@ -66,7 +66,7 @@ public class MockDatagramSocket
   /**
    * @param port this is ignored and only here to override the 
    * DatagramSocket contructor
-   * @param host ditto
+   * @param laddr ditto.
    */
   public MockDatagramSocket(int port, InetAddress laddr)
       throws SocketException{

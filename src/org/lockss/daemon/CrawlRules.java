@@ -137,7 +137,7 @@ public class CrawlRules {
     }
   
     /**
-     * @param str String to check against this rule
+     * @param url URL string to check against this rule
      * @return FETCH if the string matches and should be fetched, IGNORE 
      * if str matches and should not be fetched, IGNORE if str doesn't
      * match.

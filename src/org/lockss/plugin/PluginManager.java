@@ -160,7 +160,7 @@ public class PluginManager extends BaseLockssManager {
    * properties.
    * @param pluginId plugin id (with . not escaped)
    * @param auDefProps defining properties for the au
-   * {@see Plugin.getDefiningConfigKeys}
+   * @see Plugin#getDefiningConfigKeys
    */
   public static String generateAuId(String pluginId, Properties auDefProps) {
     return generateAuId(pluginId,

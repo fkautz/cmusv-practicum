@@ -40,7 +40,7 @@ import org.lockss.daemon.Configuration;
 
 /**
  * This class is used to filter all content from a reader between two string
- * (for instance "<!--" and "-->"
+ * (for instance "<&excl;-- and "-->"
  */
 public class HtmlTagFilter extends Reader {
   /**

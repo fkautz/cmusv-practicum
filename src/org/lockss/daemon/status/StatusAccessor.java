@@ -53,7 +53,7 @@ public interface StatusAccessor {
   public void populateTable(StatusTable table) 
       throws StatusService.NoSuchTableException;
   /**
-   * @returns true if a key is required
+   * @return true if a key is required
    */
   public boolean requiresKey();
 }

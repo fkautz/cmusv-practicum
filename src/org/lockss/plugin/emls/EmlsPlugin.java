@@ -40,7 +40,7 @@ import org.lockss.app.LockssDaemon;
 import java.util.List;
 
 /**
- * <p>EmlsPlugin: Plugin class for the Early Modern Literary Studies Plugin</p>
+ * EmlsPlugin: Plugin class for the Early Modern Literary Studies Plugin
  * @author Emil Aalto
  * @version 1.0
  */

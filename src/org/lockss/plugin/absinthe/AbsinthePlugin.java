@@ -33,7 +33,7 @@ import org.lockss.util.ListUtil;
 import org.lockss.app.LockssDaemon;
 
 /**
- * <p>AbsinthePlugin: Plugin class for the Absinthe Literary Review Plugin</p>
+ * AbsinthePlugin: Plugin class for the Absinthe Literary Review Plugin
  * @author Emil Aalto
  * @version 1.0
  */

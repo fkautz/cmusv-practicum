@@ -76,7 +76,7 @@ public class EncodedProperty extends Properties {
 
   /**
    * decode the string to a property table using the given char set.
-   * @param s the string to decode
+   * @param encodedBytes the string to decode
    * @param charset the charecter set to use in decoding the string
    */
   public void decode(byte[] encodedBytes, String charset)

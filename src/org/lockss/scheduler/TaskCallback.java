@@ -43,7 +43,8 @@ public interface TaskCallback extends Serializable {
    * Called to indicate that a task has changed state.  Normally
    * implemented by the task creator.
    * @param task the task
-   * @param event one of START, FINISH
+   * @param type one of {@link Schedule.EventType#START}, {@link
+   * Schedule.EventType#FINISH}
    */
   public void taskEvent(SchedulableTask task, Schedule.EventType type)
       throws Abort;

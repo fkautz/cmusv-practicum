@@ -179,13 +179,13 @@ public class StringUtil {
    * Concatenate elements of collection into string, adding separators,
    * delimitig each element
    * @param c - Collection of object (on which toString() will be called)
-   * @param separator - String to put between elements
    * @param separatorFirst - String to place before first element
    * @param separatorInner - String with which to separate elements
    * @param separatorLast - String to place after last element
    * @return Concatenated string
    */
-  public static StringBuffer separatedString(Collection c, String separatorFirst,
+  public static StringBuffer separatedString(Collection c,
+					     String separatorFirst,
                                              String separatorInner,
                                              String separatorLast,
                                              StringBuffer sb) {
@@ -432,7 +432,7 @@ public class StringUtil {
    * Trim a hostname, removing "www." from the front, if present, and the
    * TLD from the end.  If this would result in an empty string, the entire
    * name is returned.
-   * @param a hostname
+   * @param hostname a hostname string
    * @return the trimmed hostname
    */
   public static String trimHostName(String hostname) {
@@ -453,7 +453,7 @@ public class StringUtil {
    * integer with an optional suffix.  No suffix means milliseconds, s, m,
    * h, d, w indicates seconds, minutes, hours, days and weeks
    * respectively.
-   * @param the interval
+   * @param str the interval string
    * @return interval in milliseconds
    */
   // tk - extend to accept combinations: xxHyyMzzS, etc.

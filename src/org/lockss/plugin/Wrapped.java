@@ -33,9 +33,8 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.plugin;
 
 /**
- * <p>Title: Wrapped</p>
- * <p>Description: Wrapped classes must implement this interface.  This serves
- * as a convenient way to identify them, and to retrieve basic information. </p>
+ * Wrapped classes must implement this interface.  This serves as a
+ * convenient way to identify them, and to retrieve basic information.
  * @author Tyrone Nicholas
  */
 

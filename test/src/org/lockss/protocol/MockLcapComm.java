@@ -410,14 +410,14 @@ public class MockLcapComm extends LcapComm {
 
   /**
    * The <code>LcapComm.MessageHandler</code> interface defines the
-   * callback registered by clients of {@link LcapComm} who want to process
-   * incoming messages
+   * callback registered by clients of {@link org.lockss.protocol.LcapComm}
+   * who want to process incoming messages
    */
   public interface MessageHandler {
     /**
      * Callback used to inform clients that a message has been received.
      * @param ld  the received LockssReceivedDatagram
-     * @see LcapComm#registerMessageHandler */
+     * @see org.lockss.protocol.LcapComm#registerMessageHandler */
     public void handleMessage(LockssReceivedDatagram ld);
   }
 

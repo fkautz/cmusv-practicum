@@ -41,7 +41,7 @@ import java.util.Collection;
 import org.lockss.app.*;
 
 /**
- * <p>IeeePlugin: Plugin class for the Ieee Explore Plugin</p>
+ * IeeePlugin: Plugin class for the Ieee Explore Plugin
  * @author Claire Griffin
  * @version 1.0
  */

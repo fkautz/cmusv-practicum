@@ -139,7 +139,7 @@ public class MBFV2 extends MemoryBoundFunctionVote {
    * and hashes.
    * @param nVal a byte array containing the nonce
    * @param eVal the effort sizer (# of low-order zeros in destination)
-   * @param cus the CachedUrlSet containing the content to be voted on
+   * @param cusVal the CachedUrlSet containing the content to be voted on
    * @param sVals the starting points chosen by the prover for each block
    * @param hashes the hashes of each block
    *

@@ -255,8 +255,7 @@ public abstract class PollTally implements Tallier{
   abstract void adjustReputation(LcapIdentity voterID, int repDelta);
 
   /**
-   * <p>PollTally.NameListEntry </p>
-   * <p>Description: a class for the entries returned in a Name poll </p>
+   * Description: a class for the entries returned in a Name poll
    */
   public static class NameListEntry {
     public boolean hasContent;

@@ -41,7 +41,7 @@ import java.util.Collection;
 import org.lockss.app.*;
 
 /**
- * <p>AcsPlugin: Plugin class for the American Chemical Society Plugin</p>
+ * AcsPlugin: Plugin class for the American Chemical Society Plugin
  * @author Claire Griffin
  * @version 1.0
  */

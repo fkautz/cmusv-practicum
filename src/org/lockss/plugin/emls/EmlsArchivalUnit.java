@@ -41,8 +41,8 @@ import org.lockss.plugin.base.*;
 import gnu.regexp.REException;
 
 /**
- * <p>EmlsArchivalUnit: The Archival Unit Class for Early Modern Literary
- * Studies</p>
+ * EmlsArchivalUnit: The Archival Unit Class for Early Modern Literary
+ * Studies
  * @author Emil Aalto
  * @version 1.0
  */

@@ -168,6 +168,7 @@ public class CrawlManagerStatus implements StatusAccessor {
   }
   
   /**
+   * Fill in the crawl status table.
    * @param table StatusTable to populate
    * @throws IllegalArgumentException if called with a null StatusTable
    */
