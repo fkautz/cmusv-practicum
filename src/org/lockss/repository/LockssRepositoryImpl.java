@@ -245,8 +245,8 @@ public class LockssRepositoryImpl
    */
   void deactivateInconsistentNode(RepositoryNodeImpl node) {
     logger.warning("Inconsistent node state found; node content deactivated.");
-    if (!node.cacheLocationFile.exists()) {
-      node.cacheLocationFile.mkdirs();
+    if (!node.contentDir.exists()) {
+      node.contentDir.mkdirs();
     }
     // manually deactivate
     node.deactivateContent();
@@ -546,7 +546,7 @@ public class LockssRepositoryImpl
    * @return the escaped path
    */
   static String escapePath(String path) {
-    //XXX escaping disabled
+    //XXX escaping disabled because of URL encoding
     if (false && path.indexOf(ESCAPE_CHAR) >= 0) {
       return StringUtil.replaceString(path, ESCAPE_STR, ESCAPE_STR+ESCAPE_STR);
     } else {

@@ -254,7 +254,7 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
       fail("Should have thrown state exception.");
     } catch (LockssRepository.RepositoryStateException rse) { }
 
-    assertTrue(leaf.cacheLocationFile.exists());
+    assertTrue(leaf.contentDir.exists());
     assertEquals(RepositoryNodeImpl.INACTIVE_VERSION, leaf.getCurrentVersion());
     assertFalse(leaf.hasContent());
   }

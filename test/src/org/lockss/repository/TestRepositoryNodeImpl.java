@@ -816,7 +816,7 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
     String resultStr = getLeafContent(leaf);
     assertEquals("test stream 2", resultStr);
 
-    File lastProps = new File(leaf.cacheLocationFile, "1.props");
+    File lastProps = new File(leaf.contentDir, "1.props");
     assertTrue(lastProps.exists());
     InputStream is =
         new BufferedInputStream(new FileInputStream(lastProps));
