@@ -162,7 +162,7 @@ public class TestLcapDatagramComm extends LockssTestCase {
 
   public void testUnicastSend() throws Exception {
     assertTrue(ssock.getSentPackets().isEmpty());
-    comm.sendTo(testSend, testID, testPort);
+    comm.sendTo(testSend, testID, testPort, null);
     DatagramPacket sent = (DatagramPacket)ssock.getSentPackets().elementAt(0);
     assertEquals(testAddr, new IPAddr(sent.getAddress()));
     assertEquals(testPort, sent.getPort());
@@ -171,7 +171,7 @@ public class TestLcapDatagramComm extends LockssTestCase {
 
   public void testMulticastSend() throws Exception {
     assertTrue(ssock.getSentPackets().isEmpty());
-    comm.send(testSend, (ArchivalUnit)null);
+    comm.send(testSend, (ArchivalUnit)null, null);
     DatagramPacket sent = (DatagramPacket)ssock.getSentPackets().elementAt(0);
     assertEquals(IPAddr.getByName(config.get(PARAM_MULTI_GROUP)),
 		 new IPAddr(sent.getAddress()));
