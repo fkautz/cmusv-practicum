@@ -53,14 +53,10 @@ public class TestInternalNodeImpl extends LockssTestCase {
     String tempDirPath = "";
     try {
       tempDirPath = super.getTempDir().getAbsolutePath() + File.separator;
-    } catch (Exception ex) { assertTrue("Couldn't get tempDir.", false); }
+    } catch (Exception e) { fail("Couldn't get tempDir."); }
+    TestLockssRepositoryImpl.configCacheLocation(tempDirPath);
     MockArchivalUnit mau = new MockArchivalUnit(null);
-    mau.setPluginId(tempDirPath);
     repo = LockssRepositoryImpl.repositoryFactory(mau);
-  }
-
-  public void tearDown() throws Exception {
-    super.tearDown();
   }
 
   public void testRepositoryImpl() {

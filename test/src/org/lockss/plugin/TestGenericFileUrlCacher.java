@@ -38,6 +38,7 @@ import org.lockss.test.*;
 import java.io.*;
 import java.util.Properties;
 import org.lockss.util.StreamUtil;
+import org.lockss.repository.TestLockssRepositoryImpl;
 
 /**
  * This is the test class for org.lockss.plugin.simulated.GenericFileUrlCacher
@@ -59,13 +60,9 @@ public class TestGenericFileUrlCacher extends LockssTestCase {
     String tempDirPath = "";
     try {
       tempDirPath = super.getTempDir().getAbsolutePath() + File.separator;
-    } catch (Exception ex) { assertTrue("Couldn't get tempDir.", false); }
+    } catch (Exception e) { fail("Couldn't get tempDir."); }
     mau = new MockGenericFileArchivalUnit(new CrawlSpec(tempDirPath, null));
-    mau.setPluginId(tempDirPath);
-  }
-
-  public void tearDown() throws Exception {
-    super.tearDown();
+    TestLockssRepositoryImpl.configCacheLocation(tempDirPath);
   }
 
   public void testCache() throws IOException {
