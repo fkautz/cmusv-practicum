@@ -521,7 +521,15 @@ public class ActivityRegulator extends BaseLockssManager {
     }
   }
 
-    // lock is created for new activity, returned to caller
-    // caller can change activity, prod to keep from expiring, ask if expired
+  // lock is created for new activity, returned to caller
+  // caller can change activity, prod to keep from expiring, ask if expired
 
+  /**
+   * Factory method to create ActivityRegulator instances.
+   * @param au the {@link ArchivalUnit}
+   * @return the ActivityRegulator instance for that au
+   */
+  public static ActivityRegulator createNewActivityRegulator(ArchivalUnit au) {
+    return new ActivityRegulator(au);
+  }
 }
