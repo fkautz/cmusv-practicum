@@ -307,20 +307,34 @@ public class DaemonStatus extends LockssServlet {
       }
       return str;
     } else {
-      return getDisplayString2(val, type);
+      return convertDisplayString(val, type);
     }
   }
 
+  static NumberFormat bigIntFmt = NumberFormat.getInstance();
+  static {
+    if (bigIntFmt instanceof DecimalFormat) {
+//       ((DecimalFormat)bigIntFmt).setDecimalSeparatorAlwaysShown(true);
+    }
+  };
+
   // turn a value into a display string
-  private String getDisplayString2(Object val, int type) {
+  String convertDisplayString(Object val, int type) {
     if (val == null) {
       return "";
     }
     try {
       switch (type) {
+      case ColumnDescriptor.TYPE_INT:
+	if (val instanceof Number) {
+	  long lv = ((Number)val).longValue();
+	  if (lv >= 1000000) {
+	    return bigIntFmt.format(lv);
+	  }
+	}
+	// fall thru
       case ColumnDescriptor.TYPE_STRING:
       case ColumnDescriptor.TYPE_FLOAT:
-      case ColumnDescriptor.TYPE_INT:
       default:
 	return val.toString();
       case ColumnDescriptor.TYPE_PERCENT:
