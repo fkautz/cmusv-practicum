@@ -344,7 +344,7 @@ public class IdentityManager {
         mapping = map;
       }
       catch (Exception ex) {
-        theLog.error("Loading of mapfile failed:" + mappingFile, ex);
+        theLog.error("Loading of mapfile failed:" + mappingFile);
       }
     }
     return mapping;

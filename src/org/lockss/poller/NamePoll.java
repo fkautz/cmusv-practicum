@@ -193,7 +193,7 @@ public class NamePoll extends Poll {
       }
     }
 
-    // find the "difinitive" list
+    // find the "definitive" list
     Iterator it = winners.values().iterator();
     NameVoteCounter winningCounter = null;
     while(it.hasNext()) {
@@ -208,7 +208,7 @@ public class NamePoll extends Poll {
       }
     }
 
-    // the "difinitive list is in winningCounter
+    // the "definitive" list is in winningCounter
 
     if(winningCounter != null) {
       m_tally.votedEntries = winningCounter.getKnownEntries();
@@ -244,6 +244,10 @@ public class NamePoll extends Poll {
         }
       }
     }
+  }
+
+  NameVote makeVote(LcapMessage msg, boolean agree) {
+    return new NameVote(msg,agree);
   }
 
   class NameVote extends Vote {
