@@ -41,7 +41,7 @@ import org.lockss.test.*;
 /**
  * Test class for <code>EncodedProperty</code>.
  */
-public class TestEncodedProperty extends TestCase {
+public class TestEncodedProperty extends LockssTestCase {
   public static Class testedClasses[] = {
     org.lockss.util.EncodedProperty.class
   };
@@ -87,7 +87,7 @@ public class TestEncodedProperty extends TestCase {
     catch (IOException ex) {
       fail("prop decoding failed\n");
     }
-    assertTrue(PropUtil.equalProps(props1,props2));
+    assertEquals(props1,props2);
   }
 
   public void testTransformation() {
@@ -106,8 +106,7 @@ public class TestEncodedProperty extends TestCase {
     catch (IOException ex) {
       fail("prop decoding UTF-16 failed\n");
     }
-    assertTrue(PropUtil.equalProps(props1,props2));
-
+    assertEquals(props1,props2);
   }
 
 
