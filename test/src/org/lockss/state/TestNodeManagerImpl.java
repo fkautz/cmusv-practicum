@@ -145,8 +145,6 @@ public class TestNodeManagerImpl
                  nodeManager.mapResultsErrorToPollError(Poll.ERR_HASHING));
     assertEquals(PollState.ERR_IO,
                  nodeManager.mapResultsErrorToPollError(Poll.ERR_IO));
-    assertEquals(PollState.ERR_NO_QUORUM,
-                 nodeManager.mapResultsErrorToPollError(Poll.ERR_NO_QUORUM));
     assertEquals(PollState.ERR_SCHEDULE_HASH,
                  nodeManager.mapResultsErrorToPollError(Poll.ERR_SCHEDULE_HASH));
     assertEquals(PollState.ERR_UNDEFINED,

@@ -196,7 +196,7 @@ public class NamePoll
         // we call a new poll on the remaining entries and set the regexp
         try {
           PollSpec spec = new PollSpec(m_pollspec.getCachedUrlSet(),lwrRem, uprRem);
-          m_pollmanager.requestPoll(LcapMessage.NAME_POLL_REQ, spec);
+          m_pollmanager.sendPollRequest(LcapMessage.NAME_POLL_REQ, spec);
         }
         catch (IOException ex) {
           log.error("Unable to create new poll request", ex);

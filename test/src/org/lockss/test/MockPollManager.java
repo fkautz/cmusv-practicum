@@ -65,7 +65,7 @@ public class MockPollManager extends PollManager {
     thePolls = new Hashtable();
   }
 
-  public void requestPoll(int opcode, PollSpec ps) throws IOException {
+  public void sendPollRequest(int opcode, PollSpec ps) throws IOException {
     // note: uses a different key than the other two, since we're not
     // creating an actual challenge and verifier to key off of.
     if (opcode == LcapMessage.CONTENT_POLL_REQ) {
@@ -94,7 +94,7 @@ public class MockPollManager extends PollManager {
 
   public Poll createPoll(LcapMessage msg, PollSpec pollspec) throws ProtocolException {
     try {
-      requestPoll(msg.getOpcode(), pollspec);
+      sendPollRequest(msg.getOpcode(), pollspec);
     }
     catch (IOException ex) {
     }
