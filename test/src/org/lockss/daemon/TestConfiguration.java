@@ -291,4 +291,15 @@ public class TestConfiguration extends LockssTestCase {
     System.out.println(Configuration.getCurrentConfig().toString());
 
   }
+
+  public void testPlatformProps() throws Exception {
+    Properties props = new Properties();
+    props.put("org.lockss.platform.localIPAddress", "1.2.3.4");
+    props.put("org.lockss.platform.logdirectory", "/var/log/foo");
+    props.put("org.lockss.platform.logfile", "bar");
+    ConfigurationUtil.setCurrentConfigFromProps(props);
+    Configuration config = Configuration.getCurrentConfig();
+    assertEquals("1.2.3.4", config.get("org.lockss.localIPAddress"));
+    assertEquals("/var/log/foo/bar", config.get(FileTarget.PARAM_FILE));
+  }
 }

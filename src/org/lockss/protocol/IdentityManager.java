@@ -56,7 +56,8 @@ import org.exolab.castor.mapping.*;
 public class IdentityManager extends BaseLockssManager {
   protected static Logger log = Logger.getLogger("IDMgr");
 
-  static final String PARAM_LOCAL_IP = Configuration.PREFIX + "localIPAddress";
+  public static final String PARAM_LOCAL_IP =
+    Configuration.PREFIX + "localIPAddress";
 
   static final String PREFIX = Configuration.PREFIX + "id.";
   static final String PARAM_MAX_DELTA = PREFIX + "maxReputationDelta";

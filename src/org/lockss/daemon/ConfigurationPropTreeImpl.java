@@ -45,6 +45,7 @@ import org.mortbay.tools.*;
  */
 public class ConfigurationPropTreeImpl extends Configuration {
   private PropertyTree props;
+  private boolean isSealed = false;
 
   ConfigurationPropTreeImpl() {
     super();
@@ -94,6 +95,17 @@ public class ConfigurationPropTreeImpl extends Configuration {
 
   public String get(String key) {
     return (String)props.get(key);
+  }
+
+  public void put(String key, String val) {
+    if (isSealed) {
+      throw new IllegalStateException("Can't modify sealed configuration");
+    }
+    props.setProperty(key, val);
+  }
+
+  public void seal() {
+    isSealed = true;
   }
 
   public Configuration getConfigTree(String key) {
