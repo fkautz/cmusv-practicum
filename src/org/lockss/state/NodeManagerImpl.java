@@ -227,7 +227,6 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
   }
 
   NodeState createNodeState(CachedUrlSet cus) {
-    logger.debug2("Loading NodeState: " + cus.getUrl());
     // load from file cache, or get a new one
     NodeState state = historyRepo.loadNodeState(cus);
 
