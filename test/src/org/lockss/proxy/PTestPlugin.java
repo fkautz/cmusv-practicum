@@ -132,7 +132,7 @@ class PTestPlugin {
 				      "<html><h3>this is two html</h3></html>"));
 
     MockLockssDaemon daemon = new MockLockssDaemon(null);
-    daemon.getPluginManager().registerArchivalUnit(au);
+    PluginUtil.registerArchivalUnit(au);
     return au;
   }
 }

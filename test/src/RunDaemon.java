@@ -92,7 +92,7 @@ public class RunDaemon extends LockssDaemon {
 
     sau = new SimulatedArchivalUnit(dirPath);
 
-    getPluginManager().registerArchivalUnit(sau);
+    PluginUtil.registerArchivalUnit(sau);
 
     int poll_type = Configuration.getIntParam(PARAM_POLL_TYPE,
         LcapMessage.CONTENT_POLL_REQ);

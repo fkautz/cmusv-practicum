@@ -74,9 +74,8 @@ public class DoHighwireCrawl {
     ArchivalUnit au = makeAU(base, volume);
     MockLockssDaemon daemon = new MockLockssDaemon(null);
     daemon.startDaemon();
-    daemon.getPluginManager().registerArchivalUnit(au);
+    PluginUtil.registerArchivalUnit(au);
     if (proxyFlg) {
-      daemon.getPluginManager().registerArchivalUnit(au);
 //  This should already be started now.
 //      daemon.getProxyHandler().startProxy();
       System.err.println("Proxy started");

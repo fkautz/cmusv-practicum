@@ -59,7 +59,7 @@ public class PollSpec {
    * @param uprBound the upper bound of the url
    * @param cus the cached url set
    */
-  public PollSpec(String auId, String pluginId, String url,
+  public PollSpec(String pluginId, String auId, String url,
                   String lwrBound, String uprBound, CachedUrlSet cus) {
     this.auId = auId;
     this.pluginId = pluginId;
@@ -150,6 +150,10 @@ public class PollSpec {
     return pluginMgr;
   }
 
+  public String toString() {
+    return "[PS: pid=" + pluginId + ", auid=" + auId + ", url=" + url
+      + ", l=" + lwrBound + ", u=" + uprBound + "]";
+  }
 }
 
 

@@ -71,10 +71,10 @@ public class FuncSimulatedContent extends LockssTestCase {
 
   public void testPluginRegistration() {
     MockArchivalUnit mau = new MockArchivalUnit(new CrawlSpec("http://www.mock.com", null));
-    theDaemon.getPluginManager().registerArchivalUnit(mau);
-    theDaemon.getPluginManager().registerArchivalUnit(sau);
+    PluginUtil.registerArchivalUnit(mau);
+    PluginUtil.registerArchivalUnit(sau);
     mau = new MockArchivalUnit(new CrawlSpec("http://www.mock2.com", null));
-    theDaemon.getPluginManager().registerArchivalUnit(mau);
+    PluginUtil.registerArchivalUnit(mau);
 
     ArchivalUnit au = theDaemon.getPluginManager().findArchivalUnit(SimulatedArchivalUnit.SIMULATED_URL_START);
     assertTrue(au==sau);

@@ -161,7 +161,8 @@ public class TestLcapMessage extends LockssTestCase {
   public void testRequestMessageCreation() {
     LcapMessage req_msg = null;
     try {
-      PollSpec spec = new PollSpec(archivalID, pluginID,urlstr, lwrbnd, uprbnd,null);
+      PollSpec spec = new PollSpec(pluginID, archivalID,urlstr,
+				   lwrbnd, uprbnd,null);
       req_msg = LcapMessage.makeRequestMsg(spec,
                                            testentries,
                                            testbytes,
