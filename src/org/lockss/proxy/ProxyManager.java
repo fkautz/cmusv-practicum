@@ -59,7 +59,7 @@ public class ProxyManager extends JettyManager {
   public static final String PARAM_IP_EXCLUDE = IP_ACCESS_PREFIX + "exclude";
   public static final String PARAM_LOG_FORBIDDEN =
     IP_ACCESS_PREFIX + "logForbidden";
-  public static final boolean DEFAULT_LOG_FORBIDDEN = false;
+  public static final boolean DEFAULT_LOG_FORBIDDEN = true;
 
   private int port;
   private boolean start;
