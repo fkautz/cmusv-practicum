@@ -113,6 +113,10 @@ public class JarValidator {
 
       Manifest manifest = jstr.getManifest();
 
+      if (manifest == null) {
+	throw new JarValidationException("No manifest");
+      }
+
       // Iterate across all the JAR entries, validating each
       // one.
       JarEntry je;

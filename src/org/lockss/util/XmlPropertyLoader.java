@@ -259,9 +259,9 @@ public class XmlPropertyLoader {
 	endTestTag();
       } else if (TAG_LOCKSSCONFIG.equals(qName)) {
 	; // do nothing
-      } else {
-	throw new IllegalArgumentException("Unexpected tag: " + qName);
       }
+      // Don't need to throw here.  Unsupported tags will have already
+      // thrown in startElement().
     }
 
     /**

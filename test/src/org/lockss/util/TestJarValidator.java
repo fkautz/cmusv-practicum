@@ -58,6 +58,8 @@ public class TestJarValidator extends LockssTestCase {
   private String goodJar = "org/lockss/test/good-plugin.jar";
   private String badJar = "org/lockss/test/bad-plugin.jar";
   private String unsignedJar = "org/lockss/test/unsigned-plugin.jar";
+  private String tamperedJar = "org/lockss/test/tampered-plugin.jar";
+  private String noManifestJar = "org/lockss/test/nomanifest-plugin.jar";
 
   private String pubKeystoreName = "org/lockss/test/public.keystore";
   private KeyStore pubKeystore;
@@ -131,6 +133,41 @@ public class TestJarValidator extends LockssTestCase {
     }
     assertNull(f);
   }
+
+  /**
+   * Ensure that a tampered jar will not load.
+   */
+  public void testTamperedJar() throws Exception {
+    MockCachedUrl tamperedCu =
+      new MockCachedUrl("http://foo.com/tampered.jar", tamperedJar, true);
+    JarValidator validator =
+      new JarValidator(pubKeystore, getTempDir());
+    File f = null;
+    try {
+      f = validator.getBlessedJar(tamperedCu);
+    } catch (JarValidator.JarValidationException ignore) {
+      ;
+    }
+    assertNull(f);
+  }
+
+  /**
+   * Ensure that a jar with no manifest will not load.
+   */
+  public void testNoManifestJar() throws Exception {
+    MockCachedUrl noManifestCu =
+      new MockCachedUrl("http://foo.com/nomanifest.jar", noManifestJar, true);
+    JarValidator validator =
+      new JarValidator(pubKeystore, getTempDir());
+    File f = null;
+    try {
+      f = validator.getBlessedJar(noManifestCu);
+    } catch (JarValidator.JarValidationException ignore) {
+      ;
+    }
+    assertNull(f);
+  }
+  
 
   public void testUnsignedJar() throws Exception {
     // Don't sign the test jar.
