@@ -398,7 +398,7 @@ public class TestCrawlerImpl extends LockssTestCase {
       return counter;
     }
 
-    public boolean canCrawl() {
+    public boolean canCrawl() { 
       if (counter > 0) {
         counter--;
         return true;
