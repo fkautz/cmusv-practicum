@@ -139,6 +139,47 @@ public class TestXmlPropertyLoader extends LockssTestCase {
   }
 
   /**
+   * This test is meant to validate the test 'testListEntities()',
+   * which is only meaningful if the XML library currently being used
+   * chooses to split character data chunks on entity boundaries
+   * (&amp;amp;, &amp;nbsp;, and the like).  Our current library (as
+   * of August 2004) exhibits this behavior.  This test will fail if
+   * that ever becomes false, and if this test fails, then the
+   * 'testListEntities()' test may or may not be meaningful.
+   */
+  public void testValidateListEntitiesTest() throws Exception {
+    PropertyTree props = new PropertyTree();
+    SAXParserFactory factory = SAXParserFactory.newInstance();
+
+    factory.setValidating(false);
+    factory.setNamespaceAware(false);
+
+    SAXParser parser = factory.newSAXParser();
+
+    StringBuffer sb = new StringBuffer();
+    sb.append("<test>a&amp;b&amp;c&amp;d</test>");
+
+    InputStream istr =
+      new ReaderInputStream(new StringReader(sb.toString()));
+
+    class TestHandler extends DefaultHandler {
+      public int charCallCount = 0;
+
+      public void characters(char[] ch, int start, int len) {
+	charCallCount++;
+      }
+    }
+
+    TestHandler handler = new TestHandler();
+
+    parser.parse(istr, handler);
+
+    // Should have been called 7 times, may be library
+    // dependant:   a, &, b, &, c, &, d
+    assertEquals(7, handler.charCallCount);
+  }
+
+  /**
    * Test to be sure that XML entities don't split list
    * entries.
    */
