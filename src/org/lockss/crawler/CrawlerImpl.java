@@ -156,24 +156,28 @@ public abstract class CrawlerImpl implements Crawler {
           // check for the permission on the page without storing
           InputStream is =
 	    new BufferedInputStream(uc.getUncachedInputStream());
-	  // allow us to reread contents if reasonable size
-	  is.mark(PERM_BUFFER_MAX);
-          // set the reader to our default encoding
-          //XXX try to extract encoding from source
-          Reader reader =
-	    new InputStreamReader(is, Constants.DEFAULT_ENCODING);
-          crawl_ok = au.checkCrawlPermission(reader);
-          if (!crawl_ok) {
-            logger.error("Couldn't start crawl due to missing permission.");
-          } else {
-            logger.debug2("Permission granted. Caching permission page.");
-	    try {
-	      is.reset();
-	      uc.storeContent(is, uc.getUncachedProperties());
-	    } catch (IOException e) {
-	      uc.cache();
+	  try {
+	    // allow us to reread contents if reasonable size
+	    is.mark(PERM_BUFFER_MAX);
+	    // set the reader to our default encoding
+	    //XXX try to extract encoding from source
+	    Reader reader =
+	      new InputStreamReader(is, Constants.DEFAULT_ENCODING);
+	    crawl_ok = au.checkCrawlPermission(reader);
+	    if (!crawl_ok) {
+	      logger.error("Couldn't start crawl due to missing permission.");
+	    } else {
+	      logger.debug2("Permission granted. Caching permission page.");
+	      try {
+		is.reset();
+		uc.storeContent(is, uc.getUncachedProperties());
+	      } catch (IOException e) {
+		uc.cache();
+	      }
 	    }
-          }
+	  } finally {
+	    is.close();
+	  }
         } else {
           logger.debug("Couldn't start crawl due to crawl window restrictions.");
           err = Crawler.STATUS_WINDOW_CLOSED;
