@@ -94,7 +94,7 @@ public class TestLcapMessage extends TestCase {
   }
 
   public void testEntriesTranslation() {
-    String encstr = testmsg.entriesToString();
+    String encstr = testmsg.entriesToString(500);
     String[] decoded = testmsg.stringToEntries(encstr);
     assertTrue(Arrays.equals(testmsg.m_entries,decoded));
   }

@@ -46,7 +46,6 @@ import org.mortbay.util.B64Code;
 
 public class EncodedProperty extends Properties {
 
-  /* private members */
   private static String DEFAULT_ENCODING = "UTF-8";
 
 
@@ -140,6 +139,25 @@ public class EncodedProperty extends Properties {
     return out.toString().getBytes(charset);
 
   }
+
+  public byte[] encodeString(String str) {
+    try {
+      return str.getBytes(DEFAULT_ENCODING);;
+    }
+    catch (UnsupportedEncodingException ex) {
+      return null;
+    }
+  }
+
+  public byte[] encodeString(String str, String charset) {
+    try {
+      return str.getBytes(charset);
+    }
+    catch (UnsupportedEncodingException ex) {
+      return null;
+    }
+  }
+
   /*
    * the following methods parallel those which can be found in 1.4
    * Preferences which supercedes the use of Properties.
