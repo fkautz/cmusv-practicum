@@ -37,6 +37,7 @@ import java.util.Properties;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
+import org.lockss.crawler.*;
 
 /**
  * UrlCacher is used to store the contents and
@@ -143,6 +144,7 @@ public interface UrlCacher {
   public void storeContent(InputStream input, CIProperties headers)
       throws IOException;
 
+  public void setPermissionMap(PermissionMap permissionMap);
 
   public static class RedirectScheme {
     private int options = 0;

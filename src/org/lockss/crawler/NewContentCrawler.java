@@ -311,6 +311,7 @@ public class NewContentCrawler extends CrawlerImpl {
   protected UrlCacher makeUrlCacher(CachedUrlSet cus, String url) {
     UrlCacher uc = super.makeUrlCacher(cus, url);
     uc.setRedirectScheme(UrlCacher.REDIRECT_SCHEME_STORE_ALL_IN_SPEC);
+    uc.setPermissionMap(permissionMap);
     return uc;
   }
 

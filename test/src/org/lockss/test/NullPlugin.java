@@ -236,6 +236,15 @@ public class NullPlugin {
       throw new UnsupportedOperationException();
     }
 
+    /**
+     * setPermissionMap
+     *
+     * @param permissionMap PermissionMap
+     */
+    public void setPermissionMap(PermissionMap permissionMap) {
+      throw new UnsupportedOperationException();
+    }
+
   }
 
   /**

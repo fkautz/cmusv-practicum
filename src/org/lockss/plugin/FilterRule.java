@@ -34,5 +34,5 @@ package org.lockss.plugin;
 import java.io.*;
 
 public interface FilterRule {
-  public InputStream createFilteredInputStream(Reader reader);
+  public Reader createFilteredReader(Reader reader);
 }

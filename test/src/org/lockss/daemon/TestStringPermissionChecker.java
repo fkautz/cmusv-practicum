@@ -144,8 +144,8 @@ public class TestStringPermissionChecker extends LockssTestCase {
 
 
   static private class WhiteSpaceFilterRule implements FilterRule {
-    public InputStream createFilteredInputStream(Reader reader) {
-      return new WhiteSpaceFilter(new ReaderInputStream(reader));
+    public Reader createFilteredReader(Reader reader) {
+      return new WhiteSpaceFilter(reader);
     }
   }
 

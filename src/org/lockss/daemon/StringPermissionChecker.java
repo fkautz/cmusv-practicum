@@ -80,8 +80,7 @@ public class StringPermissionChecker implements PermissionChecker {
     }
     try {
       if (m_filter != null) {
-        reader = new InputStreamReader(m_filter.createFilteredInputStream(reader),
-                                       m_encoding);
+        reader = m_filter.createFilteredReader(reader);
       }
       do {
         ch = reader.read();

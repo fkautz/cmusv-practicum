@@ -35,14 +35,14 @@ import java.io.*;
 import org.lockss.plugin.FilterRule;
 
 public class MockFilterRule implements FilterRule {
-  InputStream is = null;
-  
-  public InputStream createFilteredInputStream(Reader reader) {
-    return is;
+  Reader filteredReader = null;
+
+  public Reader createFilteredReader(Reader reader) {
+    return filteredReader;
   }
 
-  public void setFilteredInputStream(InputStream is) {
-    this.is = is;
+  public void setFilteredReader(Reader reader) {
+    filteredReader = reader;
   }
 
 }

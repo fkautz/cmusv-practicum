@@ -144,7 +144,7 @@ public class BaseCachedUrl implements CachedUrl {
 	("Couldn't create InputStreamReader:" + e.toString());
     }
   }
- 
+
  public CIProperties getProperties() {
     ensureRnc();
     return CIProperties.fromProperties(rnc.getProperties());
@@ -166,7 +166,7 @@ public class BaseCachedUrl implements CachedUrl {
     ArchivalUnit au = getArchivalUnit();
     repository = au.getPlugin().getDaemon().getLockssRepository(au);
   }
-  
+
   private void ensureLeafLoaded() {
     if (repository==null) {
       getRepository();
@@ -187,7 +187,8 @@ public class BaseCachedUrl implements CachedUrl {
     String mimeType = props.getProperty(PROPERTY_CONTENT_TYPE);
     FilterRule fr = au.getFilterRule(mimeType);
     if (fr != null) {
-      return fr.createFilteredInputStream(openForReading());
+      Reader rd = fr.createFilteredReader(openForReading());
+      return new ReaderInputStream(rd);
     } else {
       logger.debug2("No FilterRule, not filtering");
     }

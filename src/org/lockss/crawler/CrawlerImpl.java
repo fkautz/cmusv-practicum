@@ -287,6 +287,7 @@ public abstract class CrawlerImpl implements Crawler {
     Plugin plugin = au.getPlugin();
     UrlCacher uc = plugin.makeUrlCacher(cus, url);
     uc.setConnectionPool(connectionPool);
+    //uc.setPermissionMap(permission
     return uc;
   }
 
@@ -323,10 +324,10 @@ public abstract class CrawlerImpl implements Crawler {
   }
 
   static public class CrawlerFilterRule implements FilterRule {
-    public InputStream createFilteredInputStream(Reader reader) {
+    public Reader createFilteredReader(Reader reader) {
       Reader filteredReader = StringFilter.makeNestedFilter(reader,
           new String[][] { {"<br>", " "} , {"&nbsp;", " "} } , true);
-      return new WhiteSpaceFilter(new ReaderInputStream(filteredReader));
+      return new WhiteSpaceFilter(filteredReader);
     }
   }
 }
