@@ -638,7 +638,9 @@ public class LcapMessage
 
   public String toString() {
     StringBuffer sb = new StringBuffer();
-    sb.append("[LcapMessage: ");
+    sb.append("[LcapMessage: from ");
+    sb.append(m_originAddr.getHostAddress());
+    sb.append(", ");
     if (isNoOp()) {
       sb.append(POLL_OPCODES[m_opcode]);
     } else {
