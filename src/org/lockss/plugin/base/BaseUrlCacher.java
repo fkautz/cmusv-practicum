@@ -113,7 +113,9 @@ public abstract class BaseUrlCacher implements UrlCacher {
    * @throws IOException
    */
   public void cache() throws IOException {
+    logger.debug3("Pausing before fetching content");
     getArchivalUnit().pauseBeforeFetch();
+    logger.debug3("Done pausing");
     InputStream input = getUncachedInputStream();
     Properties headers = getUncachedProperties();
     if (input==null) {
