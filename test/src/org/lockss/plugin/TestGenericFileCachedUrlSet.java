@@ -138,6 +138,23 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
       "http://www.example.com/testDir/leaf4"
       };
     assertIsomorphic(expectedA, childL);
+
+    // add content to an internal node
+    createLeaf("http://www.example.com/testDir/branch1", "test stream", null);
+    rSpec = new RangeCachedUrlSetSpec("http://www.example.com/testDir/branch1");
+    fileSet = mgfau.makeCachedUrlSet(rSpec);
+    setIt = fileSet.treeIterator();
+    childL = new ArrayList(4);
+    while (setIt.hasNext()) {
+      childL.add(((CachedUrlSetNode)setIt.next()).getUrl());
+    }
+    // should be sorted
+    expectedA = new String[] {
+      "http://www.example.com/testDir/branch1",
+      "http://www.example.com/testDir/branch1/leaf1",
+      "http://www.example.com/testDir/branch1/leaf2",
+      };
+    assertIsomorphic(expectedA, childL);
   }
 
   public void testTreeIteratorClassCreation() throws Exception {

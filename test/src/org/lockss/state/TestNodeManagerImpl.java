@@ -218,7 +218,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     String[] expectedA = new String[] {
         "type=1:status=1",
         "type=2:status=2",
-        "type=3:status=3",
+        "type=3:status=3"
     };
     assertIsomorphic(expectedA, histL);
   }
@@ -246,8 +246,8 @@ public class TestNodeManagerImpl extends LockssTestCase {
       histL.add("type=" + hist.type + ":start=" + hist.startTime);
     }
     String[] expectedA = new String[] {
-        "type=3:start=200",
-        "type=4:start=250"
+        "type=4:start=250",
+        "type=3:start=200"
     };
     assertIsomorphic(expectedA, histL);
   }

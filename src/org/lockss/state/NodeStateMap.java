@@ -100,7 +100,9 @@ public class NodeStateMap extends LRUMap {
    * @param urlKey the reference key url
    */
   synchronized void removeReference(String urlKey) {
-    refMap.remove(urlKey);
+    if (refMap!=null) {
+      refMap.remove(urlKey);
+    }
   }
 
   int getCacheHits() { return cacheHits; }

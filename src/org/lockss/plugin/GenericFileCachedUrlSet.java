@@ -117,6 +117,12 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
     String prefix = spec.getUrl();
     try {
       RepositoryNode intNode = repository.getNode(prefix);
+      // if this CUS has content, add it as a CachedUrl
+      if (intNode.hasContent()) {
+        CachedUrl thisContent = ((BaseArchivalUnit)au).cachedUrlFactory(this,
+            intNode.getNodeUrl());
+        treeSet.add(thisContent);
+      }
       Iterator children = intNode.listNodes(spec, false);
       while (children.hasNext()) {
         // add all nodes to tree iterator, regardless of content
@@ -254,7 +260,7 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
     return buffer.toString();
   }
 
-  private class UrlComparator implements Comparator {
+  private static class UrlComparator implements Comparator {
     public int compare(Object o1, Object o2) {
       String prefix = null;
       String prefix2 = null;
