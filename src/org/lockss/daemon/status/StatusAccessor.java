@@ -33,6 +33,11 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.daemon.status;
 import java.util.*;
 
+/**
+ * Objects wishing to provide status information to {@link StatusService} must
+ * create an object which implements this.
+ */
+
 public interface StatusAccessor {
   /**
    * Get the description (name, title and type) for the fields this 

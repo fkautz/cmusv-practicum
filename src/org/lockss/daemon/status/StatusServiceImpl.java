@@ -35,9 +35,7 @@ package org.lockss.daemon.status;
 import java.util.*;
 
 /**
- * This object sits between the daemon and the UI code.  Basically, it 
- * functions as a centralized place to query for status information on the 
- * system.
+ * Main implementation of {@link StatusService}
  */
 public class StatusServiceImpl implements StatusService {
   private Map statusAccessors;
@@ -63,8 +61,6 @@ public class StatusServiceImpl implements StatusService {
 		      statusAccessor.getColumnDescriptors(key),
 		      statusAccessor.getDefaultSortRules(key),
 		      statusAccessor.getRows(key));
-    //    table.addRows(statusAccessor.getRows(key));
-
     return table;
   }
 
