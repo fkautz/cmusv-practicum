@@ -118,4 +118,8 @@ public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
     throw new UnsupportedOperationException("Not implemented.");
   }
 
+  public FilterRule getFilterRule(String mimeType) {
+    //no filtering
+    return null;
+  }
 }

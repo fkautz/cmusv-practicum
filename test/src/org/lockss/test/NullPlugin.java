@@ -372,6 +372,9 @@ public class NullPlugin {
       return false;
     }
 
+    public FilterRule getFilterRule(String mimeType) {
+      throw new UnsupportedOperationException("Not implemented");
+    }
   }
 
   /**

@@ -241,6 +241,10 @@ public class MockArchivalUnit implements ArchivalUnit {
     shouldCallTopLevelPoll = val;
   }
 
+  public FilterRule getFilterRule(String mimeType) {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
   public String toString() {
     StringBuffer sb = new StringBuffer();
     sb.append("[MockArchivalUnit: auId=");

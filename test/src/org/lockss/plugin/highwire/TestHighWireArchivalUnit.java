@@ -191,6 +191,24 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
       makeAU(new URL("http://www.bmj.com/"), 42);
     assertEquals("www.bmj.com, vol. 42", au1.getName());
   }
+ 
+ public void testGetFilterRuleNoContentType() throws Exception {
+    HighWireArchivalUnit au =
+      makeAU(new URL("http://shadow1.stanford.edu/"), 42);
+    assertNull(au.getFilterRule(null));
+  }
+
+  public void testGetFilterRuleNonHtmlContentType() throws Exception {
+    HighWireArchivalUnit au =
+      makeAU(new URL("http://shadow1.stanford.edu/"), 42);
+    assertNull(au.getFilterRule("jpg"));
+  }
+
+  public void testGetFilterRuleHtmlContentType() throws Exception {
+    HighWireArchivalUnit au =
+      makeAU(new URL("http://shadow1.stanford.edu/"), 42);
+    assertTrue(au.getFilterRule("text/html") instanceof HighWireFilterRule);
+  }
 
   public static void main(String[] argv) {
     String[] testCaseList = {TestHighWireArchivalUnit.class.getName()};

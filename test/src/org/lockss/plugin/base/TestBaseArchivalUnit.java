@@ -194,5 +194,9 @@ public class TestBaseArchivalUnit extends LockssTestCase {
       throw new UnsupportedOperationException("Not implemented");
     }
 
+    public FilterRule getFilterRule(String mimeType) {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
   }
 }

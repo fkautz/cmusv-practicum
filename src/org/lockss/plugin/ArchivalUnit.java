@@ -195,6 +195,16 @@ public interface ArchivalUnit {
    */
   public boolean shouldCallTopLevelPoll(AuState aus);
 
+
+  /**
+   * Return the {@link FilterRule} for the given mimeType or null if there
+   * is none
+   * @param mimeType mime type of the content we are going to filter
+   * @return {@link FilterRule} for the given mimeType or null if there
+   * is none
+   */ 
+  public FilterRule getFilterRule(String mimeType);
+
   public class ConfigurationException extends Exception {
     private Throwable nestedException;
 

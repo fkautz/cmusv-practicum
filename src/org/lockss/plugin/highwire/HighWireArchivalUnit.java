@@ -142,6 +142,13 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
     logger.debug3("Set new content crawl interval to "+ncCrawlInterval);
   }
 
+  public FilterRule getFilterRule(String mimeType) {
+    if ("text/html".equals(mimeType)) {
+      return new HighWireFilterRule();
+    }
+    return null;
+  }
+
 
   public CachedUrlSet cachedUrlSetFactory(ArchivalUnit owner,
 					  CachedUrlSetSpec cuss) {
@@ -149,7 +156,7 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
   }
 
   public CachedUrl cachedUrlFactory(CachedUrlSet owner, String url) {
-    return new HighWireCachedUrl(owner, url);
+    return new GenericFileCachedUrl(owner, url);
   }
 
   public UrlCacher urlCacherFactory(CachedUrlSet owner, String url) {
