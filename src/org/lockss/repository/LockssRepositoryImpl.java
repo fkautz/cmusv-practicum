@@ -181,11 +181,30 @@ public class LockssRepositoryImpl implements LockssRepository {
 
   private synchronized RepositoryNode getNode(String url, boolean create)
       throws MalformedURLException {
-    String urlKey = url;
+    String urlKey;
     boolean isAuUrl = false;
     if (AuUrl.isAuUrl(url)) {
       urlKey = AuUrl.PROTOCOL;
       isAuUrl = true;
+    } else {
+      try {
+        URL testUrl = new URL(url);
+        String path = testUrl.getPath();
+        if (!path.equals("")) {
+          // filtering to remove urls including '..' and such
+          File testFile = new File(path);
+          urlKey = testUrl.getProtocol() + "://" + testUrl.getHost().toLowerCase()
+              + testFile.getCanonicalPath();
+        } else {
+          // no path, no test needed
+          // (otherwise testFile would return a relative path, which is bad)
+          urlKey = url;
+        }
+        url = urlKey;
+      } catch (IOException ie) {
+        logger.error("Error testing URL: "+ie);
+        throw new MalformedURLException ("Error testing URL.");
+      }
     }
     // check LRUMap cache for node
     RepositoryNode node = (RepositoryNode)nodeCache.get(urlKey);

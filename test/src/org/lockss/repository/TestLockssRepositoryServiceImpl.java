@@ -171,6 +171,12 @@ public class TestLockssRepositoryServiceImpl extends LockssTestCase {
                  LockssRepositoryServiceImpl.mapUrlToFileLocation("root",
         testStr));
 
+    testStr = "hTTp://www.exaMPLE.com/branch1/branch2/index.html";
+    expectedStr = "root/www.example.com/http/branch1/branch2/index.html";
+    assertEquals(expectedStr,
+                 LockssRepositoryServiceImpl.mapUrlToFileLocation("root",
+        testStr));
+
     try {
       testStr = ":/brokenurl.com/branch1/index/";
       LockssRepositoryServiceImpl.mapUrlToFileLocation("root", testStr);

@@ -203,7 +203,7 @@ public class LockssRepositoryServiceImpl implements LockssRepositoryService {
     if (!rootLocation.endsWith(File.separator)) {
       buffer.append(File.separator);
     }
-    buffer.append(url.getHost());
+    buffer.append(url.getHost().toLowerCase());
     buffer.append(File.separator);
     buffer.append(url.getProtocol());
     buffer.append(StringUtil.replaceString(url.getPath(), "/", File.separator));
