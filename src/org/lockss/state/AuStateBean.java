@@ -37,7 +37,8 @@ import org.lockss.plugin.ArchivalUnit;
 
 /**
  * AuStateBean is a settable version of AuState used purely for
- * marshalling purposes.
+ * marshalling purposes.  Notice there is no need to marshal the treewalk time,
+ * because any time the server is restarted a treewalk should be run.
  */
 public class AuStateBean extends AuState {
   public AuStateBean() {
@@ -64,13 +65,4 @@ public class AuStateBean extends AuState {
   public void setLastTopLevelPollTime(long newPollTime) {
     lastTopLevelPoll = newPollTime;
   }
-
-  /**
-   * Sets the last treewalk time to a new value.
-   * @param newTreeWalkTime in ms
-   */
-  public void setLastTreeWalkTime(long newTreeWalkTime) {
-    lastTreeWalk = newTreeWalkTime;
-  }
-
 }

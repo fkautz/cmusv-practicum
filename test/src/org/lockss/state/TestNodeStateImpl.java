@@ -188,7 +188,7 @@ public class TestNodeStateImpl extends LockssTestCase {
   }
 
   public void testIsInternalNode() {
-    MockCachedUrlSet mcus = new MockCachedUrlSet(null, null);
+    MockCachedUrlSet mcus = new MockCachedUrlSet(null, "");
     Vector childV = new Vector();
     mcus.setFlatIterator(childV.iterator());
     state = new NodeStateImpl(mcus, -1, null, null, null);

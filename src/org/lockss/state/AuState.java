@@ -106,11 +106,12 @@ public class AuState {
   }
 
   /**
-   * Sets the last treewalk time to the current time.  Saves itself to disk.
+   * Sets the last treewalk time to the current time.  Does not save itself
+   * to disk, as it is desireable for the treewalk to run every time the
+   * server restarts.  Consequently, it is non-persistent.
    */
   void setLastTreeWalkTime() {
     lastTreeWalk = TimeBase.nowMs();
-    historyRepo.storeAuState(this);
   }
 
 
