@@ -168,7 +168,7 @@ public class TestHistoryCooperativeArchivalUnit extends LockssTestCase {
 
     String expectedStr = ROOT_URL+"journals/"+DIR+"/lockss-volume108.html";
     DefinableArchivalUnit hcAu = makeAu(url, 108, DIR);
-    assertEquals(expectedStr, hcAu.getManifestPage());
+    assertEquals(expectedStr, (String)hcAu.getPermissionPages().get(0));
   }
 
   public void testGetUrlStems() throws Exception {

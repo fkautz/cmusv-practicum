@@ -55,7 +55,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   private boolean shouldCrawlForNewContent = true;
   private boolean shouldCallTopLevelPoll = true;
   private static Logger log = Logger.getLogger("MockArchivalUnit");
-  private String manifestPage;
+  private List permissionPages;
   private boolean canCrawl = true;
 
   private HashSet urlsToCache = new HashSet();
@@ -163,12 +163,12 @@ public class MockArchivalUnit implements ArchivalUnit {
     return pluginId;
   }
 
-  public String getManifestPage() {
-    return manifestPage;
+  public List getPermissionPages() {
+    return permissionPages;
   }
 
-  public void setManifestPage(String url) {
-    manifestPage = url;
+  public void setPermissionPages(List pageList) {
+    permissionPages = pageList;
   }
 
   public boolean checkCrawlPermission(Reader reader) {

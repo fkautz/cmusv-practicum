@@ -85,7 +85,7 @@ public class TestCrawlerImpl extends LockssTestCase {
     startUrls = ListUtil.list(startUrl);
     MockCachedUrlSet cus = new MyMockCachedUrlSet(mau, null);
     mau.setAuCachedUrlSet(cus);
-    mau.setManifestPage(startUrl);
+    mau.setPermissionPages(ListUtil.list(startUrl));
     crawlRule = new MockCrawlRule();
     crawlRule.addUrlToCrawl(startUrl);
     spec = new CrawlSpec(startUrls, crawlRule);

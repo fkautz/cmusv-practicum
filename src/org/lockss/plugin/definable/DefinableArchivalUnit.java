@@ -83,16 +83,16 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
     this.definitionMap = definitionMap;
   }
 
-  public String getManifestPage() {
+  public List getPermissionPages() {
     String manifestString =
         definitionMap.getString(CM_AU_MANIFEST_KEY, null);
     if(manifestString == null)  {
-     return super.getManifestPage();
+     return super.getPermissionPages();
     }
     manifestString = convertVariableString(manifestString);
     log.debug2("overriding manifest page with " + manifestString);
-
-    return manifestString;
+    // TODO: add support for a real list here.
+    return ListUtil.list(manifestString);
   }
 
   protected String makeStartUrl() {

@@ -161,7 +161,7 @@ public class TestDefinableArchivalUnit extends LockssTestCase {
     map.putString(DefinableArchivalUnit.CM_AU_MANIFEST_KEY,
             "\"http://%s/contents-by-date.%d.shtml\", HOST, YEAR");
     String expectedReturn = "http://www.example.com/contents-by-date.2003.shtml";
-    String actualReturn = cau.getManifestPage();
+    String actualReturn = (String)cau.getPermissionPages().get(0);
     assertEquals("return valuse", expectedReturn, actualReturn);
   }
 

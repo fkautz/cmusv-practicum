@@ -390,7 +390,8 @@ public class NullPlugin {
     public boolean shouldCallTopLevelPoll(AuState aus) {
       return false;
     }
-    public String getManifestPage() {
+
+    public List getPermissionPages() {
       return null;
     }
 

@@ -106,7 +106,7 @@ public abstract class CrawlerImpl implements Crawler {
     this.spec = spec;
     this.aus = aus;
     connectionPool = new LockssUrlConnectionPool();
-    
+
     long connectTimeout =
       Configuration.getTimeIntervalParam(PARAM_CONNECT_TIMEOUT,
 					 DEFAULT_CONNECT_TIMEOUT);
@@ -151,7 +151,9 @@ public abstract class CrawlerImpl implements Crawler {
     String err = Crawler.STATUS_PUB_PERMISSION;
 
     // fetch and cache the manifest page
-    String manifest = au.getManifestPage();
+    List permissionList = au.getPermissionPages();
+    // TODO - fix this to do the right thing for the list of permission pages
+    String manifest = (String)permissionList.get(0);
     UrlCacher uc = makeUrlCacher(ownerCus, manifest);
     logger.debug("Checking for permissions on " + manifest);
     uc.setRedirectScheme(UrlCacher.REDIRECT_SCHEME_FOLLOW);

@@ -96,8 +96,8 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     return SIMULATED_URL_START;
   }
 
-  public String getManifestPage() {
-    return SIMULATED_URL_START;
+  public List getPermissionPages() {
+    return ListUtil.list(SIMULATED_URL_START);
   }
 
 

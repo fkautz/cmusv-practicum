@@ -185,17 +185,17 @@ public class TestProjectMuseArchivalUnit extends LockssTestCase {
     // 2 digit
     String expectedStr = ROOT_URL+"journals/"+DIR+"/v060/";
     DefinableArchivalUnit pmAu = makeAu(url, 60, DIR);
-    assertEquals(expectedStr, pmAu.getManifestPage());
+    assertEquals(expectedStr, (String)pmAu.getPermissionPages().get(0));
 
     // 3 digit
     expectedStr = ROOT_URL+"journals/"+DIR+"/v601/";
     pmAu = makeAu(url, 601, DIR);
-    assertEquals(expectedStr, pmAu.getManifestPage());
+    assertEquals(expectedStr, (String)pmAu.getPermissionPages().get(0));
 
     // 1 digit
     expectedStr = ROOT_URL+"journals/"+DIR+"/v006/";
     pmAu = makeAu(url, 6, DIR);
-    assertEquals(expectedStr, pmAu.getManifestPage());
+    assertEquals(expectedStr, (String)pmAu.getPermissionPages().get(0));
   }
 
   public void testGetUrlStems() throws Exception {
