@@ -412,6 +412,21 @@ public class MockLockssDaemon extends LockssDaemon {
   }
 
   /**
+   * Set the ActivityRegulator for a given AU.  Requires a MocKActivityRegulatorService.
+   * @param actReg the new regulator
+   * @param au the ArchivalUnit
+   */
+  public void setActivityRegulator(ActivityRegulator actReg, ArchivalUnit au) {
+    getActivityRegulatorService();
+    if (activityRegulatorService instanceof MockActivityRegulatorService) {
+      ((MockActivityRegulatorService)activityRegulatorService).auMaps.put(au, actReg);
+    } else {
+      throw new UnsupportedOperationException("Couldn't setActivityRegulator with "+
+                                              "a non-Mock service.");
+    }
+  }
+
+  /**
    * Set the WatchdogService
    * @param wdogService the new service
    */
