@@ -939,6 +939,10 @@ public class PrintfFormat {
       }
       return fmt;
     }
+
+    String getFormat() {
+      return fmt;
+    }
     /**
      * Get the conversion character that tells what
      * type of control character this instance has.
