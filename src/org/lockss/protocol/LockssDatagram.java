@@ -85,4 +85,8 @@ public class LockssDatagram {
   public int getProtocol() {
     return protocol;
   }
+
+  public String toString() {
+    return "[LDG: proto=" + protocol + ", size=" + payload.length + "]";
+  }
 }

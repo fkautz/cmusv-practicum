@@ -146,4 +146,9 @@ public class LockssReceivedDatagram extends LockssDatagram {
     return hash;
   }
 
+  public String toString() {
+    return "[LRDG: proto=" + protocol + ", " +
+      (isMulticast() ? "M" : "R") +
+      " from " + packet.getAddress() + "]";
+  }
 }
