@@ -90,7 +90,7 @@ public class TreeWalkHandler {
    */
   public static final String PARAM_TREEWALK_USE_SCHEDULER =
       TREEWALK_PREFIX + "use.scheduler";
-  static final boolean DEFAULT_TREEWALK_USE_SCHEDULER = false;
+  static final boolean DEFAULT_TREEWALK_USE_SCHEDULER = true;
 
   /**
    * Configuration parameter name for occasional sleep interval, when
