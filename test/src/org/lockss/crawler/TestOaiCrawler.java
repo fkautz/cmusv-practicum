@@ -228,6 +228,10 @@ public class TestOaiCrawler extends LockssTestCase {
     protected void setUrlsToFollow(Set urls){
       updatedUrls = urls;
     }
+
+    /** suppress these actions */
+    protected void doCrawlEndActions() {
+    }
   }//end of MyOaiCrawler
 
   public static void main(String[] argv) {

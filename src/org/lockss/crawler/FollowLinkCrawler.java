@@ -241,7 +241,18 @@ public abstract class FollowLinkCrawler extends CrawlerImpl {
     }
 
     logCrawlSpecCacheRate();
+
+    doCrawlEndActions();
     return (crawlStatus.getCrawlError() == null);
+  }
+
+  /** Separate method for easy overridability in unit tests, where
+   * necessary environment may not be set up */
+  protected void doCrawlEndActions() {
+    // Recompute the content tree size.  This can take a while, so do it
+    // now in background (crawl) thread since it's likely to be necessary, to
+    // make it more likely to be already computed when accessed from the UI.
+    PluginManager.getAuContentSize(au);
   }
 
   /**
