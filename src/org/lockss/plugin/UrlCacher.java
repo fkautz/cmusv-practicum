@@ -137,7 +137,7 @@ public interface UrlCacher {
 
   public static class RedirectScheme {
     private int options = 0;
-    public RedirectScheme(int options) {
+    private RedirectScheme(int options) {
       this.options = options;
     }
     public int getOptions() {
