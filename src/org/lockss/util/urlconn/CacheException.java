@@ -168,7 +168,7 @@ public class CacheException extends IOException {
     }
   }
 
-  /** Permenent redirect */
+  /** Permanent redirect */
   public static class RetryPermUrlException
       extends RetryNewUrlException {
     public RetryPermUrlException() {
@@ -192,7 +192,7 @@ public class CacheException extends IOException {
     }
   }
 
-  /** An error that is likely permenent and not likely to succeed if
+  /** An error that is likely permanent and not likely to succeed if
    * retried.
    */
   public static class UnretryableException
