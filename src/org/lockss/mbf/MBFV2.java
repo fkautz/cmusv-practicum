@@ -370,6 +370,12 @@ paths in the range.
     } catch (NoSuchAlgorithmException ex) {
       throw new MemoryBoundFunctionException("factory throws " +
 					     ex.toString());
+    } catch (InstantiationException ex) {
+      throw new MemoryBoundFunctionException("factory throws " +
+					     ex.toString());
+    } catch (IllegalAccessException ex) {
+      throw new MemoryBoundFunctionException("factory throws " +
+					     ex.toString());
     }
     index = 0;
     setState(BlockProofGeneration);
@@ -447,6 +453,13 @@ paths in the range.
       throw new MemoryBoundFunctionException("factory throws " +
 					     ex.toString() + " in " +
 					     stateName[currentState]);
+    } catch (InstantiationException ex) {
+      throw new MemoryBoundFunctionException("factory throws " +
+					     ex.toString() + " in " +
+					     stateName[currentState]);
+    } catch (IllegalAccessException ex) {
+      throw new MemoryBoundFunctionException("factory throws " +
+					     ex.toString());
     } else {
       if (thisProof != null)
 	throw new MemoryBoundFunctionException("thisProof should be null in " +
@@ -501,6 +514,13 @@ paths in the range.
       throw new MemoryBoundFunctionException("factory throws " +
 					     ex.toString() + " in " +
 					     stateName[currentState]);
+    } catch (InstantiationException ex) {
+      throw new MemoryBoundFunctionException("factory throws " +
+					     ex.toString() + " in " +
+					     stateName[currentState]);
+    } catch (IllegalAccessException ex) {
+      throw new MemoryBoundFunctionException("factory throws " +
+					     ex.toString());
     }
     setState(BlockProofVerification);
   }
@@ -594,6 +614,13 @@ paths in the range.
       throw new MemoryBoundFunctionException("factory throws " +
 					     ex.toString() + " in " +
 					     stateName[currentState]);
+    } catch (InstantiationException ex) {
+      throw new MemoryBoundFunctionException("factory throws " +
+					     ex.toString() + " in " +
+					     stateName[currentState]);
+    } catch (IllegalAccessException ex) {
+      throw new MemoryBoundFunctionException("factory throws " +
+					     ex.toString());
     }
     if (thisProof == null)
       throw new MemoryBoundFunctionException("thisProof should not be null in " +

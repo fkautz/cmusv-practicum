@@ -54,7 +54,7 @@ public abstract class MemoryBoundFunction {
   protected long maxPath;
 
   protected MemoryBoundFunction() {
-    }
+  }
 
   /**
    * Initialize an instance - called by the factory
@@ -68,7 +68,9 @@ public abstract class MemoryBoundFunction {
 			    long eVal,
 			    int lVal,
 			    int[] sVal,
-			    long  maxPathVal)
+			    long  maxPathVal,
+			    byte[] A0array,
+			    byte[] Tarray)
     throws MemoryBoundFunctionException {
     setup(nVal, eVal, lVal);
     if (sVal == null) {
@@ -142,20 +144,6 @@ public abstract class MemoryBoundFunction {
    */
   public static long basisSize() {
     return basisLength;
-  }
-
-  // configuration
-  protected static void configure() {
-    // XXX get from Configuration
-    // configure(new File("/dev/zero"), 1024);
-  }
-
-  // test-only configuration
-  protected static void configure(File f) {
-    basisFile = f;
-    basisLength = basisFile.length();
-    logger.debug("configuration file " + basisFile.getPath() +
-		   " length " + basisLength);
   }
 
   /**

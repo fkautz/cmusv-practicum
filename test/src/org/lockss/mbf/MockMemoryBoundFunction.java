@@ -61,14 +61,18 @@ public class MockMemoryBoundFunction extends MemoryBoundFunction {
    * @param lVal the effort sizer (length of each path)
    * @param sVal an array of ints containing the proof
    * @param maxPathVal maximum number of steps to verify
+   * @param A0array basis byte array A0
+   * @param Tarray basis byte array T
    */
   protected void initialize(byte[] nVal,
 			    long eVal,
 			    int lVal,
 			    int[] sVal,
-			    long  maxPathVal)
+			    long  maxPathVal,
+			    byte[] A0array,
+			    byte[] Tarray)
     throws MemoryBoundFunctionException {
-    super.initialize(nVal, eVal, lVal, sVal, maxPathVal);
+    super.initialize(nVal, eVal, lVal, sVal, maxPathVal, A0array, Tarray);
     basisLength = 16*1024*1024;
     stepsToDo = e * pathLen;
     if (verify) {
