@@ -49,6 +49,7 @@ public class NamePoll extends Poll {
   public NamePoll(LcapMessage msg, CachedUrlSet urlSet, PollManager pm) {
     super(msg, urlSet, pm);
     m_replyOpcode = LcapMessage.NAME_POLL_REP;
+    m_tally.type = NAME_POLL;
   }
 
 

@@ -53,6 +53,7 @@ class VerifyPoll extends Poll {
     super(msg, urlSet, pm);
     m_replyOpcode = LcapMessage.VERIFY_POLL_REP;
     m_tally.quorum = 1;
+    m_tally.type = VERIFY_POLL;
   }
 
 
