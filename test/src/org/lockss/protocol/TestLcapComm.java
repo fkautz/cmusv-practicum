@@ -153,7 +153,7 @@ public class TestLcapComm extends LockssTestCase {
     System.err.println(ByteArray.toHexString(testPacket.getData()));
     usock.addToReceiveQueue(testPacket);
     LockssReceivedDatagram rd = (LockssReceivedDatagram)rcvdMsgs.get(TIMEOUT);
-    assertTrue(!rd.isMulticast());
+    assertFalse(rd.isMulticast());
     assertTrue(rcvdMsgs.isEmpty());
   }
 
@@ -176,7 +176,7 @@ public class TestLcapComm extends LockssTestCase {
     // and make sure we get that one.  ensures multi isn't just slow to
     // arrive
     rd = (LockssReceivedDatagram)rcvdMsgs.get(TIMEOUT);
-    assertTrue(!rd.isMulticast());
+    assertFalse(rd.isMulticast());
     assertEquals(testPort - 1, rd.getPacket().getPort());
     assertTrue(rcvdMsgs.isEmpty());
   }

@@ -100,13 +100,13 @@ public class TestCrawlSpec extends LockssTestCase {
       new CrawlSpec("foo", new CrawlRules.RE("foo[12]*",
 					     CrawlRules.RE.MATCH_INCLUDE));
     try {
-      assertTrue(!cs1.isIncluded(null));
+      assertFalse(cs1.isIncluded(null));
       fail("CrawlSpec.inIncluded(null) should throw");
     } catch (NullPointerException e) {
     }
     assertTrue(cs1.isIncluded("foo"));
     assertTrue(cs1.isIncluded("foo22"));
-    assertTrue(!cs1.isIncluded("bar"));
+    assertFalse(cs1.isIncluded("bar"));
   }
 }
 

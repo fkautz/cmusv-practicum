@@ -86,13 +86,13 @@ public class TestRateLimiter extends LockssTestCase {
     TimeBase.step(5);
     assertTrue(lim.isEventOk());
     lim.event();
-    assertTrue(!lim.isEventOk());
+    assertFalse(lim.isEventOk());
     TimeBase.step(4);
-    assertTrue(!lim.isEventOk());
+    assertFalse(lim.isEventOk());
     TimeBase.step(1);
     assertTrue(lim.isEventOk());
     lim.event();
-    assertTrue(!lim.isEventOk());
+    assertFalse(lim.isEventOk());
   }
 
 }

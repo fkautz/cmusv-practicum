@@ -205,10 +205,10 @@ public class TestStringUtil extends LockssTestCase {
 
   public void testEqualStrings() {
     assertTrue(StringUtil.equalStrings(null, null));
-    assertTrue(!StringUtil.equalStrings("1", null));
-    assertTrue(!StringUtil.equalStrings(null, "1"));
+    assertFalse(StringUtil.equalStrings("1", null));
+    assertFalse(StringUtil.equalStrings(null, "1"));
     assertTrue(StringUtil.equalStrings("foo", "foo"));
-    assertTrue(!StringUtil.equalStrings("foo", "bar"));
+    assertFalse(StringUtil.equalStrings("foo", "bar"));
   }
 
   public void testGensym() {
@@ -216,6 +216,6 @@ public class TestStringUtil extends LockssTestCase {
     String g1 = StringUtil.gensym(base);
     String g2 = StringUtil.gensym(base);
     assertTrue(g1.startsWith(base));
-    assertTrue(!g1.equals(g2));
+    assertNotEquals(g1, g2);
   }
 }

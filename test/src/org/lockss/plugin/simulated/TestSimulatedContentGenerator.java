@@ -80,7 +80,7 @@ public class TestSimulatedContentGenerator extends LockssTestCase {
     assertTrue("setFillOutFilenamesFully() failed.",
                scgen.isFillingOutFilenamesFully());
 
-    assertTrue(!scgen.isAbnormalFile());
+    assertFalse(scgen.isAbnormalFile());
     scgen.setAbnormalFile("2,3", 4);
     assertEquals("getAbnormalBranchString() failed.", "2,3",
                  scgen.getAbnormalBranchString());
@@ -158,7 +158,7 @@ public class TestSimulatedContentGenerator extends LockssTestCase {
   public void testFileLocation() throws IOException {
     tempDirPath += "simcontent/";
     File testDir = new File(tempDirPath);
-    assertTrue(!testDir.exists());
+    assertFalse(testDir.exists());
     scgen.setTreeDepth(1);
     scgen.setNumFilesPerBranch(1);
     scgen.generateContentTree();
@@ -331,7 +331,7 @@ public class TestSimulatedContentGenerator extends LockssTestCase {
     scgen.setNumFilesPerBranch(2);
     scgen.generateContentTree();
     scgen.deleteContentTree();
-    assertTrue(!scgen.isContentTree());
+    assertFalse(scgen.isContentTree());
   }
 
   private void makeFile(File file, String content) throws Exception {

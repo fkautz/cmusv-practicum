@@ -121,20 +121,20 @@ public class TestLockssDatagram extends LockssTestCase {
     d1.setReceiveSocket(new LcapSocket());
     assertTrue(d1.equals(d2));
     pkt2.setLength(pkt2.getLength() - 1);
-    assertTrue(!d1.equals(d2));
+    assertNotEquals(d1, d2);
     pkt2.setLength(pkt2.getLength() + 1);
     assertTrue(d1.equals(d2));
     pkt2.setPort(testPort + 1);
-    assertTrue(!d1.equals(d2));
+    assertNotEquals(d1, d2);
     pkt2.setPort(testPort);
     assertTrue(d1.equals(d2));
     pkt2.setAddress(InetAddress.getByName("127.0.0.2"));
-    assertTrue(!d1.equals(d2));
+    assertNotEquals(d1, d2);
     pkt2.setAddress(testAddr);
     assertTrue(d1.equals(d2));
     otherData[0] = 'X';
     pkt2.setData(otherData);
-    assertTrue(!d1.equals(d2));
+    assertNotEquals(d1, d2);
   }
 
   // Testing hashCode not equal is a bit dicey, as it needn't necessarily

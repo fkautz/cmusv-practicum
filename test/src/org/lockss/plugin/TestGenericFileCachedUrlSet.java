@@ -176,7 +176,7 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
     if (isCus) {
       assertEquals(CachedUrlSetNode.TYPE_CACHED_URL_SET, element.getType());
       assertTrue(element instanceof CachedUrlSet);
-      assertTrue(!element.isLeaf());
+      assertFalse(element.isLeaf());
     } else {
       assertEquals(CachedUrlSetNode.TYPE_CACHED_URL, element.getType());
       assertTrue(element instanceof CachedUrl);

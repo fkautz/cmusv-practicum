@@ -84,7 +84,7 @@ public class TestSmtpMailer extends LockssTestCase {
 
     assertTrue(mailer.checkReply("220"));
     System.err.println("Ignore the following error: ");
-    assertTrue(!mailer.checkReply("220"));
+    assertFalse(mailer.checkReply("220"));
     assertTrue(mailer.checkReply("354"));
   }
 

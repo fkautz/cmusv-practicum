@@ -91,10 +91,10 @@ public class TestDeadline extends LockssTestCase {
   public void testCompare() {
     Deadline p1 = Deadline.in(100);
     Deadline p2 = Deadline.in(200);
-    assertTrue(!p1.before(p1));
+    assertFalse(p1.before(p1));
     assertTrue(p1.before(p2));
-    assertTrue(!p2.before(p1));
-  }    
+    assertFalse(p2.before(p1));
+  }
 
   public void testSleep() {
     Interrupter intr = null;

@@ -88,9 +88,9 @@ public class TestAuNodeImpl extends LockssTestCase {
 
   public void testIllegalOperations() throws Exception {
     RepositoryNode auNode = new AuNodeImpl("lockssAu:test", "", null);
-    assertTrue(!auNode.hasContent());
-    assertTrue(!auNode.isLeaf());
-    assertTrue(!auNode.isInactive());
+    assertFalse(auNode.hasContent());
+    assertFalse(auNode.isLeaf());
+    assertFalse(auNode.isInactive());
     try {
       auNode.makeNewVersion();
       fail("Cannot make version for AuNode.");

@@ -93,7 +93,7 @@ public class TestNodeManagerServiceImpl extends LockssTestCase {
 
     nms.stopService();
     // once stopped, the thread should be null
-    assertTrue(node.treeWalkThread == null);
+    assertNull(node.treeWalkThread);
   }
 
   public static void main(String[] argv) {

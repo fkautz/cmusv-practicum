@@ -100,7 +100,7 @@ public class TestLcapSocket extends LockssTestCase {
     DatagramPacket sent = (DatagramPacket)dskt.getSentPackets().elementAt(0);
     assertEquals(testPacket, sent);
   }
-  
+
   static Logger log = Logger.getLogger("SockTest");
 
   public void testUnicastReceive() throws Exception {
@@ -111,7 +111,7 @@ public class TestLcapSocket extends LockssTestCase {
     Interrupter intr;
     intr = interruptMeIn(TIMEOUT_SHOULDNT, true);
     PrivilegedAccessor.invokeMethod(lskt, "receivePacket");
-    assertTrue(!rcvQ.isEmpty());
+    assertFalse(rcvQ.isEmpty());
     LockssReceivedDatagram rcvd =
       (LockssReceivedDatagram)rcvQ.get(Deadline.in(0));
     assertEquals(testPacket, rcvd.getPacket());
@@ -126,7 +126,7 @@ public class TestLcapSocket extends LockssTestCase {
     mskt.addToReceiveQueue(testPacket);
     Interrupter intr = interruptMeIn(500);
     PrivilegedAccessor.invokeMethod(lskt, "receivePacket");
-    assertTrue(!rcvQ.isEmpty());
+    assertFalse(rcvQ.isEmpty());
     LockssReceivedDatagram rcvd =
       (LockssReceivedDatagram)rcvQ.get(Deadline.in(0));
     assertEquals(testPacket, rcvd.getPacket());

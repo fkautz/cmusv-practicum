@@ -98,7 +98,7 @@ public class TestSimpleQueue extends LockssTestCase {
   public void testNotEmpty() {
     SimpleQueue.Fifo fifo = new SimpleQueue.Fifo();
     fifo.put(O1);
-    assertTrue(!fifo.isEmpty());
+    assertFalse(fifo.isEmpty());
     Interrupter intr = null;
     try {
       intr = interruptMeIn(TIMEOUT_SHOULDNT, true);
