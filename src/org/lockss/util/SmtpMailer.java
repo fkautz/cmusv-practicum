@@ -38,7 +38,6 @@ import java.net.*;
 
 /**
  * Simple SMTP client.
- * Reads smtp server name from ssmtp config in /etc/ssmtp/ssmtp.conf
  */
 public class SmtpMailer {
   private static String smtpHost = null;

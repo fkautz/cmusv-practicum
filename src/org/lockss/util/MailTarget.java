@@ -42,8 +42,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 /**
- * Simple SMTP client.
- * Reads smtp server name from ssmtp config in /etc/ssmtp/ssmtp.conf
+ * Log target for email logging.  Utilizes SmtpMailer.
  */
 public class MailTarget {
   /**
