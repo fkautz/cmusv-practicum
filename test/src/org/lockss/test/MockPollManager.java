@@ -76,6 +76,10 @@ public class MockPollManager extends PollManager {
     }
   }
 
+  public boolean isPollRunning(int opcode, PollSpec ps) {
+    return thePolls.get(ps.getUrl()) != null;
+  }
+
   public void suspendPoll(String key) {
     thePolls.put(key, SUSPENDED);
   }
