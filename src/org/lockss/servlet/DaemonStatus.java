@@ -139,7 +139,7 @@ public class DaemonStatus extends LockssServlet {
       (StatusTable.ColumnDescriptor [])colList.toArray(new StatusTable.ColumnDescriptor[0]);
     int cols = cds.length;
     Iterator rowIter = rowList.iterator();
-    if (rowIter.hasNext()) {
+    if (true || rowIter.hasNext()) {
       // if table not empty, output column headings
 //       table = new Table(0, "CELLSPACING=2 CELLPADDING=0 WIDTH=\"100%\"");
       table = new Table(0, "CELLSPACING=2 CELLPADDING=0");
