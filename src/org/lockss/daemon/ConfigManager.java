@@ -176,7 +176,7 @@ public class ConfigManager implements LockssManager {
   }
 
   /** Factory to create instance of appropriate class */
-  static Configuration newConfiguration() {
+  public static Configuration newConfiguration() {
     return new ConfigurationPropTreeImpl();
   }
 
