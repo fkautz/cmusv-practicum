@@ -80,14 +80,6 @@ public class SimulatedPlugin extends BasePlugin implements PluginTestable {
     stopCtr++;
   }
 
-  public String getPluginId() {
-    return pluginId;
-  }
-
-  public void setPluginId(String id) {
-    pluginId = id;
-  }
-
   public String getVersion() {
     return "SimulatedVersion";
   }
