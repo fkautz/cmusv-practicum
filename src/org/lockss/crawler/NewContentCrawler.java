@@ -74,7 +74,7 @@ public class NewContentCrawler extends CrawlerImpl {
     Configuration.PREFIX + "CrawlerImpl.abortWhilePermissionOtherThanOk";
   public static final boolean DEFAULT_ABORT_WHILE_PERMISSION_OTHER_THAN_OK = false;
 
-  protected static PermissionMap permissionMap = new PermissionMap();
+  private PermissionMap permissionMap = new PermissionMap();
   
   private boolean alwaysReparse;
   private boolean usePersistantList;
