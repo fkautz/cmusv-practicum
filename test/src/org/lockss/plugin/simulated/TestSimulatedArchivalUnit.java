@@ -62,5 +62,9 @@ public class TestSimulatedArchivalUnit extends TestCase {
     String testStr = SimulatedArchivalUnit.SIMULATED_URL + "/branch1/branch2";
     String expectedStr = SimulatedContentGenerator.ROOT_NAME + "/branch1/branch2/index.html";
     assertTrue(SimulatedArchivalUnit.mapUrlToContentFileName(testStr).equals(expectedStr));
+
+    testStr = "ftp://www.wrong.com/branch2/branch3";
+    expectedStr = "ftp://www.wrong.com/branch2/branch3/index.html";
+    assertTrue(SimulatedArchivalUnit.mapUrlToContentFileName(testStr).equals(expectedStr));
   }
 }

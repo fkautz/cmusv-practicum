@@ -78,6 +78,7 @@ public class TestSimulatedContentGenerator extends TestCase {
 
  /* public void testContentTree() {
     //XXX get root dir from system props
+  //XXX bug: will fail if more than one file type
     SimulatedContentGenerator scgen = new SimulatedContentGenerator("");
     scgen.setTreeDepth(2);
     scgen.setNumBranches(2);
