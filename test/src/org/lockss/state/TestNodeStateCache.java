@@ -74,6 +74,16 @@ public class TestNodeStateCache extends LockssTestCase {
     cache.setCacheSize(10);
     assertEquals(10, cache.getCacheSize());
     assertEquals(10, cache.lruMap.size());
+
+    try {
+      cache.setCacheSize(0);
+      fail("Should have thrown IllegalArgumentException.");
+    } catch (IllegalArgumentException iae) { }
+
+    try {
+      cache = new NodeStateCache(0);
+      fail("Should have thrown IllegalArgumentException.");
+    } catch (IllegalArgumentException iae) { }
   }
 
   public void testCaching() throws Exception {
