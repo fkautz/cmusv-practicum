@@ -36,6 +36,7 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+import org.lockss.app.LockssDaemon;
 import org.lockss.util.*;
 
 /** <code>Configuration</code> provides access to the LOCKSS configuration
@@ -58,8 +59,6 @@ public abstract class Configuration {
   public static final String PARAM_DAEMON_VERSION = DAEMON + "version";
   /** Platform version string as a 36-bit integer (i.e., 135a, 136, 137-test). */
   public static final String PARAM_PLATFORM_VERSION = PLATFORM + "version";
-  /** Platform group. */
-  public static final String PARAM_PLATFORM_GROUP = PLATFORM + "group";
   /** Platform host name. */
   public static final String PARAM_PLATFORM_HOSTNAME =
     ConfigManager.PARAM_PLATFORM_FQDN;
@@ -122,7 +121,7 @@ public abstract class Configuration {
   }
 
   public static String getPlatformGroup() {
-    return getPlatformConfig().get(PARAM_PLATFORM_GROUP);
+    return LockssDaemon.getTestGroup();
   }
 
   public static String getPlatformHostname() {
