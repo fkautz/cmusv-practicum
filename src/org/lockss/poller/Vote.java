@@ -129,8 +129,10 @@ public class Vote {
       byte[] hash = ((V1ActiveVote) activeInfo).getHash();
       agree = Arrays.equals(hash, new_hash);
     }
-
-    return agree;
+    else {
+     theLog.debug("No active info returning value: " + agree);
+    }
+   return agree;
   }
 
   public String toString() {
