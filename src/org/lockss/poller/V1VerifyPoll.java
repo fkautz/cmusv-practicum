@@ -166,7 +166,7 @@ class V1VerifyPoll extends V1Poll {
       log.debug("vote failed to verify");
       idMgr.changeReputation(id, IdentityManager.VOTE_NOTVERIFIED);
     } else if (m_tally.numAgree > 0 && m_tally.numDisagree == 0) {
-      log.debug("vote sucessfully verified");
+      log.debug("vote successfully verified");
       idMgr.changeReputation(id, IdentityManager.VOTE_VERIFIED);
     } else {
       log.debug("vote disowned.");
