@@ -41,6 +41,7 @@ import org.lockss.daemon.*;
 import org.lockss.hasher.*;
 import org.lockss.protocol.*;
 import org.lockss.util.*;
+import org.mortbay.util.B64Code;
 
 /**
  * class which represents a content poll
@@ -121,10 +122,10 @@ public class ContentPoll extends Poll {
     MessageDigest hasher = PollManager.getHasher();
     hasher.update(challenge, 0, challenge.length);
     hasher.update(verifier, 0, verifier.length);
-
+    log.debug("hashing: C[" +String.valueOf(B64Code.encode(challenge)) + "] "
+              +"V[" + String.valueOf(B64Code.encode(verifier)) + "]");
     if(prepareVoteCheck(msg)) {
-      if(!scheduleHash(hasher, Deadline.in(dur), msg,
-                       new VoteHashCallback())) {
+      if(!scheduleHash(hasher, Deadline.in(dur), msg, new VoteHashCallback())) {
         log.info(m_key + " no time to hash vote " + dur + ":" + m_hashTime);
         stopVote();
       }
