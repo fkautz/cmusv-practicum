@@ -164,6 +164,17 @@ public class HashSvcQueueImpl
     return scheduleReq(req);
   }
 
+  /** Cancel all hashes on the specified AU.  Temporary until a better
+   * cancel mechanism is implemented.
+   * @param au the AU
+   */
+  public void cancelAuHashes(ArchivalUnit au) {
+    if (theQueue == null) {
+      throw new IllegalStateException("HashService has not been initialized");
+    }
+    theQueue.cancelAuHashes(au);
+  }
+
   /** Return the average hash speed, or -1 if not known.
    * @param digest the hashing algorithm
    * @return hash speed in bytes/ms, or -1 if not known

@@ -147,6 +147,12 @@ public interface HashService extends LockssManager {
    * tests. */
   public boolean isIdle();
 
+  /** Cancel all hashes on the specified AU.  Temporary until a better
+   * cancel mechanism is implemented.
+   * @param au the AU
+   */
+  public void cancelAuHashes(ArchivalUnit au);
+
   /**
    * <code>HashService.Callback</code> is used to notify hash requestors
    * that their hash has succeeded or failed.
