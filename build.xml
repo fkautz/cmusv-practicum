@@ -197,6 +197,7 @@ Args:
     <pathelement path="${castor.jar}" />
     <pathelement path="${xerces.jar}" />
     <pathelement path="${xmlparser.jar}" />
+    <pathelement path="${oro.jar}" />
   </path>
 
   <path id="run.classpath">
@@ -877,6 +878,21 @@ The target you have selected requires compiling under JDK 1.4.  Use the rant -1.
     </apply>
     <property name="tagsfile" location="TAGS" />
     <echo>Tags written to ${tagsfile}</echo>
+  </target>
+
+  <!-- ==================================================================== -->
+  <target name="javap" depends="jar-tests"
+   description="Disassemble the class named by class prop, with additional args in args prop" >
+    <property name="args" value="" />
+    <pathconvert refid="test.run.classpath" property="tmp.test.clspth"
+      targetos="${detected.os}" />
+    <exec executable="javap" dir="${basedir}"
+          failonerror="true" >
+      <arg value="-classpath"/>
+      <arg value="${tmp.test.clspth}"/>
+      <arg line="${args}" />
+      <arg value="${class}"/>
+    </exec>
   </target>
 
   <!-- ==================================================================== -->
