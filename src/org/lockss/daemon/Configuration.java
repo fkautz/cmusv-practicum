@@ -51,7 +51,7 @@ public abstract class Configuration {
   /** The common prefix string of all LOCKSS configuration parameters. */
   public static final String PREFIX = "org.lockss.";
 
-  static final String PLATFORM = PREFIX + "platform.";
+  public static final String PLATFORM = PREFIX + "platform.";
 
   // MUST pass in explicit log level to avoid recursive call back to
   // Configuration to get Config log level.  (Others should NOT do this.)
