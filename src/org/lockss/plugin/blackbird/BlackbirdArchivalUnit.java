@@ -92,7 +92,7 @@ public class BlackbirdArchivalUnit extends ConfigurableArchivalUnit {
     String ret;
     StringBuffer sb = new StringBuffer();
     sb.append(baseUrl.toString());
-    sb.append("lockss-volume");
+    sb.append("lockss/lockss-volume");
     sb.append(volume);
     sb.append(".htm");
     ret = sb.toString();
