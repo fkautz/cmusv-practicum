@@ -583,14 +583,14 @@ public class XmlPropertyLoader {
       /*
        * Daemon version checking.
        */
-      if (daemonMin != null && daemonMax != null) {
+      if (daemonMin != null || daemonMax != null) {
 	returnVal &= compareVersion(m_sysDaemonVer, daemonMin, daemonMax);
       }
       
       /*
        * Platform version checking.
        */
-      if (platformMin != null && platformMax != null) {
+      if (platformMin != null || platformMax != null) {
 	returnVal &= compareVersion(m_sysPlatformVer, platformMin, platformMax);
       }
       
