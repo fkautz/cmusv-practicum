@@ -336,7 +336,7 @@ public class NodeManagerImpl implements NodeManager {
       throw new UnsupportedOperationException("Updating state for invalid "
                                               +"results type.");
     }
-    bumpLRUMap(state);
+    refreshInLRUMap(state);
   }
 
   void handleContentPoll(PollState pollState, Poll.VoteTally results,
@@ -612,7 +612,7 @@ public class NodeManagerImpl implements NodeManager {
     return set;
   }
 
-  void bumpLRUMap(NodeState node) {
+  void refreshInLRUMap(NodeState node) {
     if (nodeMap!=null) {
       nodeMap.put(node.getCachedUrlSet().getUrl(), node);
     }
