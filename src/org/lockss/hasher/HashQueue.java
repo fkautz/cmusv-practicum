@@ -200,12 +200,12 @@ class HashQueue implements Serializable {
 
   boolean scheduleReq(Request req) {
     if (!insert(req)) {
-      log.debug("Can't schedule hash");
+      log.debug("Can't schedule hash: " + req);
       return false;
     }
     ensureQRunner();
     sem.give();
-    log.debug("Scheduled hash:" +req);
+    log.debug("Scheduled hash: " + req);
     return true;
   }
 
