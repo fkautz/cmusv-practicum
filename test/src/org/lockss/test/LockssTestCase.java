@@ -448,8 +448,10 @@ public class LockssTestCase extends TestCase {
 
     public final void run() {
       try {
-	if (doLaters == null) {
-	  doLaters = new LinkedList();
+	synchronized (LockssTestCase.this) {
+	  if (doLaters == null) {
+	    doLaters = Collections.synchronizedList(new LinkedList());
+	  }
 	}
 	doLaters.add(this);
 	if (wait != 0) {
