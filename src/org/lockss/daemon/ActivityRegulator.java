@@ -313,8 +313,9 @@ public class ActivityRegulator extends BaseLockssManager {
       case BACKGROUND_CRAWL:
       case REPAIR_CRAWL:
         if (relation==RELATION_SAME) {
-          // only one action on a CUS at a time
-          return false;
+          // only one action on a CUS at a time except for name polls
+          // (resuming after repair crawl)
+          return (newActivity==STANDARD_NAME_POLL);
         } else if (relation==RELATION_PARENT) {
           // if this CUS is a parent, any action allowed
           return true;
@@ -328,9 +329,8 @@ public class ActivityRegulator extends BaseLockssManager {
         if (relation==RELATION_SAME) {
           // only one action on a CUS at a time unless it's a name poll or
           // a repair crawl
-          return ((cusActivity==STANDARD_CONTENT_POLL) &&
-                  ((newActivity==STANDARD_NAME_POLL) ||
-                   (newActivity==REPAIR_CRAWL)));
+          return ((newActivity==STANDARD_NAME_POLL) ||
+                  (newActivity==REPAIR_CRAWL));
         } else if (relation==RELATION_PARENT) {
           // if this CUS is a parent, allow content polls and repair crawls on
           // sub-nodes
