@@ -72,6 +72,9 @@ public class PluginManager extends BaseLockssManager {
   public static final String AU_PARAM_REPOSITORY = AU_PARAM_RESERVED + ".repository";
   public static final String AU_PARAM_DISPLAY_NAME = AU_PARAM_RESERVED + ".displayName";
 
+  public static final List NON_USER_SETTABLE_AU_PARAMS =
+    Collections.unmodifiableList(ListUtil.list(AU_PARAM_WRAPPER));
+
   static final String CONFIGURABLE_PLUGIN_NAME =
     DefinablePlugin.class.getName();
 
