@@ -527,6 +527,8 @@ public class PollManager  extends BaseLockssManager {
         int rel_pos = repo.cusCompare(cus, pcus);
         if(rel_pos != LockssRepository.SAME_LEVEL_NO_OVERLAP &&
            rel_pos != LockssRepository.NO_RELATION) {
+          theLog.debug2("Conflict between new poll '"+cus+"' and running poll '"+
+                        pcus+"'");
           return pcus;
         }
       }
