@@ -147,7 +147,7 @@ public class TestTreeWalkThread extends LockssTestCase {
     // finish top-level poll
     TimeBase.setSimulated(123);
     contentPoll = createPoll(auUrl, true, 10, 5);
-    Poll.VoteTally results = contentPoll.getVoteTally();
+    PollTally results = contentPoll.getVoteTally();
     PollSpec spec = results.getPollSpec();
     NodeStateImpl nodeState = (NodeStateImpl)nodeManager.getNodeState(mcus);
     PollState pollState = new PollState(results.getType(),

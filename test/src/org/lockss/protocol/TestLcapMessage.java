@@ -123,6 +123,50 @@ public class TestLcapMessage extends LockssTestCase {
 
   }
 
+  public void testNoOpMessageCreation() {
+    LcapMessage noop_msg = null;
+
+    try {
+      noop_msg = LcapMessage.makeNoOpMsg(testID);
+
+    }
+    catch(IOException ex) {
+      fail("noop message creation failed");
+    }
+
+    // now check the fields we expect to be valid
+    assertEquals(noop_msg.m_originAddr, testaddr);
+    assertEquals(noop_msg.m_opcode,LcapMessage.NO_OP);
+  }
+
+  public void testNoOpEncoding() {
+
+    byte[] msgbytes = new byte[0];
+    LcapMessage noop_msg = null;
+
+    try {
+      noop_msg = LcapMessage.makeNoOpMsg(testID);
+    }
+    catch(IOException ex) {
+      fail("noop message creation failed");
+    }
+    try {
+      msgbytes = noop_msg.encodeMsg();
+    }
+    catch (IOException ex) {
+      fail("encode failed!");
+    }
+
+    try {
+      LcapMessage msg = new LcapMessage(msgbytes);
+      // now test to see if we got back what we started with
+      assertEquals(msg.m_originAddr, testaddr);
+      assertEquals(msg.m_opcode,LcapMessage.NO_OP);
+    }
+    catch (IOException ex) {
+      fail("message decode failed");
+    }
+  }
 
   public void testReplyMessageCreation() {
     LcapMessage rep_msg = null;

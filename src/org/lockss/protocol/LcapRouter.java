@@ -314,7 +314,7 @@ public class LcapRouter extends BaseLockssManager {
 	  return true;
 	}
       }
-    }      
+    }
     return false;
   }
 
@@ -353,12 +353,7 @@ public class LcapRouter extends BaseLockssManager {
   }
 
   InetAddress getLocalIdentityAddr() {
-    try {
-      return idMgr.getLocalIdentity().getAddress();
-    } catch (UnknownHostException e) {
-      // can't happen
-      return null;
-    }
+    return idMgr.getLocalIdentity().getAddress();
   }
 
   private BeaconThread beaconThread;
