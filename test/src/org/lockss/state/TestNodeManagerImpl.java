@@ -962,11 +962,12 @@ public class TestNodeManagerImpl extends LockssTestCase {
 
     NodeManagerImpl nodeManager2 = new NodeManagerImpl(new MockArchivalUnit());
     assertTrue(nodeManager2.registeredAccessors);
-    nodeManager2.initService(theDaemon);
-    nodeManager2.startService();
+    // unregister is disabled, so are its tests
+//     nodeManager2.initService(theDaemon);
+//     nodeManager2.startService();
 
-    nodeManager2.stopService();
-    assertFalse(nodeManager2.registeredAccessors);
+//     nodeManager2.stopService();
+//     assertFalse(nodeManager2.registeredAccessors);
   }
 
   private void stateCheckTest(NodeState node, int pollType,
