@@ -56,7 +56,8 @@ public class MockCrawlManager implements CrawlManager, LockssManager {
   }
 
   public void startRepair(ArchivalUnit au, Collection urls,
-			  CrawlManager.Callback cb, Object cookie) {
+			  CrawlManager.Callback cb, Object cookie,
+                          ActivityRegulator.Lock lock) {
     Iterator urlIt = urls.iterator();
     while (urlIt.hasNext()) {
       scheduledRepairs.put(urlIt.next(), SCHEDULED);
@@ -82,7 +83,7 @@ public class MockCrawlManager implements CrawlManager, LockssManager {
   }
 
   public void startNewContentCrawl(ArchivalUnit au, CrawlManager.Callback cb,
-                                   Object cookie) {
+                                   Object cookie, ActivityRegulator.Lock lock) {
     scheduleNewContentCrawl(au, cb, cookie);
   }
 
