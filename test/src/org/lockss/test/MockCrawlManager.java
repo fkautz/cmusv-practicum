@@ -55,6 +55,10 @@ public class MockCrawlManager implements CrawlManager, LockssManager {
     scheduledCrawls = new HashMap();
   }
 
+  public LockssDaemon getDaemon() {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
   public void startRepair(ArchivalUnit au, Collection urls,
 			  CrawlManager.Callback cb, Object cookie,
                           ActivityRegulator.Lock lock) {

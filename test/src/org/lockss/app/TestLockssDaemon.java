@@ -114,6 +114,10 @@ public class TestLockssDaemon extends LockssTestCase {
 
     public void stopService() {
     }
+    public LockssDaemon getDaemon() {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
     boolean isInited() {
       return isInited;
     }
@@ -240,9 +244,13 @@ public class TestLockssDaemon extends LockssTestCase {
       events.add(new Event(this, "startService"));
     }
   
-  public void stopService() {
+    public void stopService() {
       events.add(new Event(this, "stopService"));
     }
+    public LockssDaemon getDaemon() {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
     public void setAuConfig(Configuration auConfig) {
       events.add(new Event(this, "setAuConfig", auConfig));
     }

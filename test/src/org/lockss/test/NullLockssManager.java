@@ -52,7 +52,7 @@ public class NullLockssManager implements LockssManager {
     throw new UnsupportedOperationException("Unsupported operation.");
   }
 
-  protected LockssDaemon getDaemon() {
+  public LockssDaemon getDaemon() {
     throw new UnsupportedOperationException("Unsupported operation.");
   }
 

@@ -172,6 +172,9 @@ public class ConfigManager implements LockssManager {
     haveConfig = new OneShotSemaphore();
   }
 
+  public LockssDaemon getDaemon() {
+    return theDaemon;
+  }
   private static ConfigManager theMgr;
 
   public static ConfigManager makeConfigManager() {

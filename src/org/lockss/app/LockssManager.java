@@ -58,4 +58,8 @@ public interface LockssManager {
    */
   public void stopService();
 
+  /**
+   * Return the daemon instance in which this manager is running
+   */
+  public LockssDaemon getDaemon();
 }

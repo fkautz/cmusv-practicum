@@ -65,6 +65,10 @@ public class MockLockssRepository implements LockssRepository {
   public void stopService() {
   }
 
+  public LockssDaemon getDaemon() {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
   public void setAuConfig(Configuration auConfig) {
     throw new UnsupportedOperationException("Not implemented");
   }

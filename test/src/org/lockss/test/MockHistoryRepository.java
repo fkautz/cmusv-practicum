@@ -61,6 +61,10 @@ public class MockHistoryRepository implements HistoryRepository {
     theDamagedNodeSet = null;
     storedNodes = new HashMap();
   }
+  public LockssDaemon getDaemon() {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
   public void setAuConfig(Configuration auConfig) {
   }
 
