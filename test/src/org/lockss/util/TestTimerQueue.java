@@ -62,8 +62,9 @@ public class TestTimerQueue extends LockssTestCase {
     TimeBase.setSimulated();
   }
 
-  public void tearDown() {
+  public void tearDown() throws Exception {
     TimeBase.setReal();
+    super.tearDown();
   }
 
   public void testQueue() {

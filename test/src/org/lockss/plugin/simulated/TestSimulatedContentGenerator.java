@@ -61,8 +61,8 @@ public class TestSimulatedContentGenerator extends LockssTestCase {
     scgen = new SimulatedContentGenerator(tempDirPath);
   }
 
-  public void tearDown() {
-
+  public void tearDown() throws Exception {
+    super.tearDown();
   }
 
   public void testAccessors() {

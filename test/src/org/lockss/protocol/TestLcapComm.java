@@ -124,6 +124,7 @@ public class TestLcapComm extends LockssTestCase {
       comm = null;
       fact = null;
     }
+    super.tearDown();
   }
 
   public void testUnicastSend() throws Exception {
