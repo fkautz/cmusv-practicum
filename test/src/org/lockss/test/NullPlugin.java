@@ -315,7 +315,11 @@ public class NullPlugin {
       return "null_name";
     }
 
-    public void pause() {
+    public void pauseBeforeFetch() {
+    }
+
+    public long getFetchDelay() {
+      return 0;
     }
 
     public int hashCode() {

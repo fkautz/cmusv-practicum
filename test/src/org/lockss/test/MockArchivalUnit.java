@@ -175,10 +175,14 @@ public class MockArchivalUnit implements ArchivalUnit {
     auId = newId;
   }
 
-  public void pause() {
+  public void pauseBeforeFetch() {
     if (pauseCallback != null) {
       pauseCallback.callback();
     }
+  }
+
+  public long getFetchDelay() {
+    return 0;
   }
 
   public void setPauseCallback(MockObjectCallback callback) {

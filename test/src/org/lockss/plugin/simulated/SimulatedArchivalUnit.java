@@ -201,7 +201,7 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     getContentGenerator().deleteContentTree();
   }
 
-  public void pause() {
+  public void pauseBeforeFetch() {
     // no pauses since this is a test unit
   }
 

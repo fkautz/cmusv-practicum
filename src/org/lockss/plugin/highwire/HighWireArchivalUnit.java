@@ -196,8 +196,8 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
     return new CrawlRules.FirstMatch(rules);
   }
 
-  public void pause() {
-    pause(pauseMS);
+  public long getFetchDelay() {
+    return pauseMS;
   }
 
   public String getName() {

@@ -111,8 +111,14 @@ public interface ArchivalUnit {
   /**
    * Sleeps for the interval needed between requests to the server
    */
-  // tk - shouldn't be here
-  public void pause();
+  public void pauseBeforeFetch();
+
+  /**
+   * Returns the minimum delay between page fetches from the publisher's
+   * server.
+   * @return the delay between fetches, in milliseconds
+   */
+  public long getFetchDelay();
 
   /**
    * Needs to be overridden to hash <code>ArchivalUnit</code>s properly.
