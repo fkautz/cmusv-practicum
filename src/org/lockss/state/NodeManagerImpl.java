@@ -315,8 +315,7 @@ public class NodeManagerImpl implements NodeManager {
   }
 
   void doTreeWalk() {
-    if (theCrawlManager.canTreeWalkStart(managerAu,
-					 getAuState(), null, null)) {
+    if (theCrawlManager.canTreeWalkStart(managerAu, null, null)) {
       long startTime = TimeBase.nowMs();
       // if it's been too long, start a top level poll
       //XXX ask the Plugin
