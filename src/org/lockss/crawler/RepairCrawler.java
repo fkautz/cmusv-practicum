@@ -189,6 +189,7 @@ public class RepairCrawler extends CrawlerImpl {
 
     
     HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+    conn.setRequestProperty("user-agent", LockssDaemon.getUserAgent());
     uc.storeContent(conn.getInputStream(),
 		    getPropertiesFromConn(conn, uc.getUrl()));
   }
