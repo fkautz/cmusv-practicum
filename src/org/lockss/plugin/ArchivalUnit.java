@@ -101,6 +101,14 @@ public interface ArchivalUnit {
   public String getAUId();
 
   /**
+   * Returns a human-readable name for the ArchivalUnit.  This is used in
+   * messages, so it is desirable that it succinctly identify the AU, but it
+   * is not essential that it be unique.
+   * @return the AU name
+   */
+  public String getName();
+
+  /**
    * Sleeps for the interval needed between requests to the server
    */
   // tk - shouldn't be here

@@ -307,6 +307,10 @@ public class NullPlugin {
       return "null";
     }
 
+    public String getName() {
+      return "null";
+    }
+
     public void pause() {
     }
 

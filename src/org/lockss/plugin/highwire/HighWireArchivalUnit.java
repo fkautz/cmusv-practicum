@@ -188,6 +188,11 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
     return HighWirePlugin.constructAUId(base, volume);
   }
 
+  public String getName() {
+    String host = StringUtil.trimHostName(base.getHost());
+    return host + ", vol. " + volume;
+  }
+
   public int getVolumeNumber() {
     return volume;
   }

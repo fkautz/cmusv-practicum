@@ -141,6 +141,10 @@ public class MockArchivalUnit implements ArchivalUnit {
     return auId;
   }
 
+  public String getName() {
+    return "MockAU";
+  }
+
   public void setPluginId(String newId) {
     pluginId = newId;
   }

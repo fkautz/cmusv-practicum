@@ -92,6 +92,10 @@ public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
     return auId;
   }
 
+  public String getName() {
+    return "MockGenericFileAU";
+  }
+
   public void setPluginId(String newId) {
     pluginId = newId;
   }

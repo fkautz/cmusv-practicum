@@ -130,6 +130,10 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     return fileRoot;
   }
 
+  public String getName() {
+    return fileRoot;
+  }
+
   // public methods
 
   /**
