@@ -32,7 +32,6 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.test;
 
-import java.util.*;
 import java.io.*;
 import org.lockss.test.*;
 import org.lockss.util.*;
@@ -189,8 +188,13 @@ public class TestFileTestUtil extends LockssTestCase {
 
   public void testUrlOfFile() throws IOException {
     String s = "foo/bar.txt";
-    assertEquals("file:" + new File(s).getAbsolutePath(),
-		 FileTestUtil.urlOfFile(s));
+    StringBuffer buffer = new StringBuffer("file:");
+    String path = FileUtil.sysIndepPath(new File(s).getAbsolutePath());
+    if (!path.startsWith("/")) {
+      buffer.append("/");
+    }
+    buffer.append(path);
+    assertEquals(buffer.toString(), FileTestUtil.urlOfFile(s));
   }
 }
 
