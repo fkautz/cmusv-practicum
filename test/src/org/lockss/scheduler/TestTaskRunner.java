@@ -131,7 +131,7 @@ public class TestTaskRunner extends LockssTestCase {
     fact.setResult(null);
     StepTask t1 = task(100, 200, 50);
     assertFalse(tr.addToSchedule(t1));
-    assertNull(tr.getAcceptedTasks());
+    assertEmpty(tr.getAcceptedTasks());
   }
 
   // ensure addToSchedule updates structures if (Mock)Scheduler returns true
