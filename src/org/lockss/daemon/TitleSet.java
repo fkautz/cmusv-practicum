@@ -36,17 +36,18 @@ import java.util.*;
 /** Enumerates a set of titles ({@link TitleConfig}), presumably for AU
  * configuration purposes */
 public interface TitleSet extends Comparable {
+  public static final int SET_ADDABLE = 1;
+  public static final int SET_DELABLE = 2;
+  public static final int SET_REACTABLE = 4;
+
   /** Return the human-readable name of the set of titles.
-   * @return the name */
+   * @return the set's name */
   String getName();
 
   /** Return the titles in the set.
    * @return a collection of {@link TitleConfig} */
   Collection getTitles();
 
-  /** @return true iff set is appropriate for delete operations only */
-  boolean isDelOnly();
-
-  /** @return true iff set is appropriate for add operations only */
-  boolean isAddOnly();
+  /** return true iff set appropriate for specified action */
+  boolean isSetActionable(int action);
 }

@@ -55,10 +55,8 @@ public class TitleSetAllTitles extends BaseTitleSet {
     return allTitles;
   }
 
-  /** Set of all titles is only appripriate for adding, not deleting.
-   * @return true */
-  public boolean isAddOnly() {
-    return true;
+  protected int getActionables() {
+    return SET_ADDABLE;
   }
 
   /** Causes this set to sort first */

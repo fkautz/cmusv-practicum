@@ -94,9 +94,13 @@ public class TitleSetXpath extends BaseTitleSet {
     return xpath;
   }
 
-  /** Sort these third */
+  /** Return all the actionable bits for the set. */
+  protected int getActionables() {
+    return SET_DELABLE + SET_ADDABLE + SET_REACTABLE;
+  }
+
   protected int getMajorOrder() {
-    return 3;
+    return 4;
   }
 
   public boolean equals(Object o) {

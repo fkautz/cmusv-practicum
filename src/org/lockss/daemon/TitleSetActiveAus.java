@@ -109,10 +109,8 @@ public class TitleSetActiveAus extends BaseTitleSet {
       new UnsupportedOperationException("This method should never be called");
   }
 
-  /** Set of all AUs on cache is only appripriate for deleting, not adding.
-   * @return true */
-  public boolean isDelOnly() {
-    return true;
+  protected int getActionables() {
+    return SET_DELABLE;
   }
 
   /** Sort this second */
