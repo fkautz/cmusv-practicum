@@ -213,7 +213,7 @@ public abstract class Poll implements Serializable {
    * only interested in how long we have remaining.
    */
   void scheduleVote() {
-    long remainingTime = m_deadline.getRemainingTime();
+    long remainingTime = m_deadline.getRemainingTime() *95/100;
     long minTime = TimeBase.nowMs() + (remainingTime/2) - (remainingTime/4);
     long maxTime = TimeBase.nowMs() + (remainingTime/2) + (remainingTime/4);
     m_voteTime = Deadline.atRandomRange(minTime, maxTime);

@@ -97,7 +97,8 @@ public class ContentPoll extends Poll {
     if (shouldCheckVote(msg)) {
       Vote vote = new Vote(msg, false);
 
-      long dur = msg.getDuration();
+      long dur = m_deadline.getRemainingTime() * 95 /100;
+
       MessageDigest hasher = getInitedHasher(msg.getChallenge(),
                                              msg.getVerifier());
 
