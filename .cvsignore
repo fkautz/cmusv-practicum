@@ -1,5 +1,6 @@
 .depend
 classes
+instrumented
 javadoc
+jcoverage.ser
 tempbuild
-
