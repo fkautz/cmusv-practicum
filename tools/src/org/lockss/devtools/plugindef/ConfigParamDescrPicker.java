@@ -90,8 +90,8 @@ public class ConfigParamDescrPicker
     }
   }
 
-  public ConfigParamDescrPicker() {
-    this(null, "", false);
+  public ConfigParamDescrPicker(Frame frame) {
+    this(frame, "Configuration Parameter Picker", false);
   }
 
   private void jbInit() throws Exception {
@@ -281,6 +281,7 @@ public class ConfigParamDescrPicker
     plugin = data.getPlugin();
     initLists();
   }
+
 }
 
 class ConfigParamDescrPicker_RemoveButton_actionAdapter

@@ -105,7 +105,8 @@ public class EDPInspectorTableModel extends AbstractTableModel
   Object[][] data;
   EditableDefinablePlugin m_plugin;
 
-  public EDPInspectorTableModel() {
+  public EDPInspectorTableModel(JFrame parentFrame) {
+    inspectorCellEditor.initEditors(parentFrame);
     int numEntries = inspectorEntries.length;
     data = new Object[numEntries][cols.length];
     for (int i = 0; i < numEntries; i++) {
