@@ -32,15 +32,14 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.plugin.othervoices;
 
-import java.net.*;
 import java.util.*;
+
 import org.lockss.daemon.*;
-import org.lockss.util.*;
 import org.lockss.plugin.*;
-import org.lockss.state.AuState;
-import org.lockss.plugin.base.BaseArchivalUnit;
-import gnu.regexp.REException;
+import org.lockss.plugin.ArchivalUnit.*;
 import org.lockss.plugin.configurable.*;
+import org.lockss.util.*;
+import gnu.regexp.*;
 
 /**
  * This is a first cut at making an Other Voices plugin

@@ -73,17 +73,13 @@ public class CulturalLogicArchivalUnit extends ConfigurableArchivalUnit {
     expectedUrlPath = "/clogic/";
   }
 
-  protected void setAuParams(Configuration config)
-      throws ConfigurationException {
-    if (config == null) {
-      throw new ConfigurationException("Null configInfo");
+  protected void setAuParams(Configuration config) throws
+      ConfigurationException {
+    int i_year = configurationMap.getInt(CulturalLogicPlugin.AUPARAM_YEAR, -1);
+    if (i_year < 0) {
+      throw new ConfigurationException("Year Out of Range: " + i_year);
     }
-    // get the year string
-    year = config.get(CulturalLogicPlugin.AUPARAM_YEAR);
-    // turn them into appropriate types
-    if ( (year.length() != 4) && (year.length() != 2)) {
-      throw new ConfigurationException("Invalid year: " + year);
-    }
+    year = Integer.toString(i_year);
 
   }
 

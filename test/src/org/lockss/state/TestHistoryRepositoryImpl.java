@@ -34,17 +34,15 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.state;
 
 import java.io.*;
+import java.net.*;
 import java.util.*;
-import java.net.MalformedURLException;
+
+import org.lockss.daemon.*;
+import org.lockss.plugin.*;
+import org.lockss.protocol.*;
+import org.lockss.repository.*;
 import org.lockss.test.*;
 import org.lockss.util.*;
-import org.lockss.plugin.CachedUrlSet;
-import org.lockss.daemon.TestConfiguration;
-import org.lockss.daemon.RangeCachedUrlSetSpec;
-import org.lockss.protocol.LcapIdentity;
-import org.lockss.protocol.IdentityManager;
-import org.lockss.repository.LockssRepositoryImpl;
-import org.exolab.castor.mapping.Mapping;
 
 public class TestHistoryRepositoryImpl extends LockssTestCase {
   private String tempDirPath;

@@ -25,13 +25,11 @@
  */
 package org.lockss.plugin.absinthe;
 
-import java.util.*;
+import org.lockss.app.*;
 import org.lockss.daemon.*;
-import org.lockss.plugin.base.BasePlugin;
-import org.lockss.plugin.ArchivalUnit;
-import org.lockss.util.ListUtil;
-import org.lockss.app.LockssDaemon;
+import org.lockss.plugin.*;
 import org.lockss.plugin.configurable.*;
+import org.lockss.util.*;
 
 /**
  * AbsinthePlugin: Plugin class for the Absinthe Literary Review Plugin

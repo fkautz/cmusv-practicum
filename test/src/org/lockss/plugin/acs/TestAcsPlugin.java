@@ -67,11 +67,11 @@ public class TestAcsPlugin extends LockssTestCase {
       AcsArchivalUnit au = makeAuFromProps(props);
       fail ("Didn't throw InstantiationException when given a bad url");
     } catch (ArchivalUnit.ConfigurationException auie) {
-      MalformedURLException murle =
-	(MalformedURLException)auie.getNestedException();
+      ConfigParamDescr.InvalidFormatException murle =
+        (ConfigParamDescr.InvalidFormatException)auie.getNestedException();
       assertNotNull(auie.getNestedException());
     }
-  }
+ }
 
   public void testGetAuConstructsProperAU()
       throws ArchivalUnit.ConfigurationException, MalformedURLException {

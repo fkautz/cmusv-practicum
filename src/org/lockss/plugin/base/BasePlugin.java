@@ -54,7 +54,8 @@ public abstract class BasePlugin
   protected LockssDaemon theDaemon;
   protected PluginManager pluginMgr;
   protected Collection aus = new ArrayList();
-  protected Map titleConfigMap;/**
+  protected Map titleConfigMap;
+  /**
    * Must invoke this constructor in plugin subclass.
    */
   protected BasePlugin() {

@@ -51,8 +51,8 @@ public class TestAbsinthePlugin extends LockssTestCase {
 
   public void testCreateAu() {
     Properties props = new Properties();
-    props.setProperty(AbsinthePlugin.AUPARAM_BASE_URL, "http://www.example.com/");
-    props.setProperty(AbsinthePlugin.AUPARAM_YEAR, "2003");
+    //props.setProperty(AbsinthePlugin.AUPARAM_BASE_URL, "http://www.example.com/");
+    //props.setProperty(AbsinthePlugin.AUPARAM_YEAR, "2003");
 
     AbsintheArchivalUnit au = null;
     try {
@@ -85,8 +85,8 @@ public class TestAbsinthePlugin extends LockssTestCase {
       AbsintheArchivalUnit au = makeAuFromProps(props);
       fail ("Didn't throw InstantiationException when given a bad url");
     } catch (ArchivalUnit.ConfigurationException auie) {
-      MalformedURLException murle =
-        (MalformedURLException)auie.getNestedException();
+      ConfigParamDescr.InvalidFormatException murle =
+        (ConfigParamDescr.InvalidFormatException)auie.getNestedException();
       assertNotNull(auie.getNestedException());
     }
   }

@@ -121,11 +121,6 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
       throw new UnsupportedOperationException("Not Implemented");
     }
 
-    protected void setAuParams(Configuration config)
-        throws ConfigurationException {
-     // do nothing - don't throw
-    }
-
     public boolean shouldBeCached(String url) {
       return cuMap.containsKey(url);
     }

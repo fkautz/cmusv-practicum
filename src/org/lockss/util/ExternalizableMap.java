@@ -62,7 +62,12 @@ public class ExternalizableMap {
 
   public void setMapElement(String descrKey, Object descrElement) {
     synchronized(descrMap) {
-      descrMap.put(descrKey, descrElement);
+      if(descrElement instanceof URL) {
+        descrMap.put(descrKey, descrElement.toString());
+      }
+      else {
+        descrMap.put(descrKey, descrElement);
+      }
     }
   }
 

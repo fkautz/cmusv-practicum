@@ -158,7 +158,7 @@ public class TestConfigurablePlugin extends LockssTestCase {
     }
     assertEquals("ConfigurablePlugin", configurablePlugin.getPluginName());
 
-    extMapName = "org.lockss.plugin.absinthe.AbsinthePlugin";
+    extMapName = "org.lockss.plugin.configurable.AbsinthePlugin";
     configurablePlugin.initPlugin(daemon, extMapName);
     assertEquals("Absinthe Literary Review",
                  configurablePlugin.getPluginName());

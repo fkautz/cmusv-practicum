@@ -283,9 +283,13 @@ public class TestPoll extends LockssTestCase {
   public void testScheduleOurHash() {
     V1Poll p = testV1polls[0];
     p.m_pollstate = BasePoll.PS_WAIT_HASH;
+    // no time has elapsed - so we should be able to schedule our hash
     assertTrue(p.scheduleOurHash());
+    // half the time has elapsed so we should be able to schedule our hash
     TimeBase.step(p.m_deadline.getRemainingTime()/2);
     assertTrue(p.scheduleOurHash());
+
+    // all of the time has elapsed we should not be able to schedule our hash
     TimeBase.step(p.m_deadline.getRemainingTime()- 1000);
     assertFalse(p.scheduleOurHash());
     p.m_pollstate = BasePoll.PS_COMPLETE;
@@ -488,7 +492,7 @@ public class TestPoll extends LockssTestCase {
     p.setProperty(ConfigManager.PARAM_NEW_SCHEDULER, "false");
     ConfigurationUtil.setCurrentConfigFromProps(p);
     idmgr = theDaemon.getIdentityManager();
-//     theDaemon.getSchedService().startService();
+    //theDaemon.getSchedService().startService();
     theDaemon.getHashService().startService();
     theDaemon.getRouterManager().startService();
     theDaemon.getSystemMetrics().startService();
