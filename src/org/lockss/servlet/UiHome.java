@@ -79,7 +79,7 @@ public class UiHome extends LockssServlet {
   }
 
   protected Table getMainNavTable() {
-    Table navTable = new Table(0, " cellspacing=2 cellpadding=4 align=center");
+    Table navTable = new Table(0, "cellspacing=2 cellpadding=4 align=center");
 
     for (int i = 0; i < servletDescrs.length; i++) {
       ServletDescr d = servletDescrs[i];
