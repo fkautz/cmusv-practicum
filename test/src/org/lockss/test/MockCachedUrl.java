@@ -103,8 +103,13 @@ public class MockCachedUrl implements CachedUrl {
   }
 
   public byte[] getContentSize() {
-    return (new BigInteger(
-        Integer.toString(content.length()))).toByteArray();
+    String content;
+    if (this.content == null) {
+      content = "";
+    } else {
+      content = this.content;
+    }
+    return (new BigInteger(Integer.toString(content.length()))).toByteArray();
   }
 
 
@@ -141,5 +146,4 @@ public class MockCachedUrl implements CachedUrl {
     sb.append("]");
     return sb.toString();
   }
-
 }
