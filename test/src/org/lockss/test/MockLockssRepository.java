@@ -97,6 +97,9 @@ public class MockLockssRepository implements LockssRepository {
     }
   }
 
+  public void nodeConsistencyCheck() {
+  }
+
   private synchronized RepositoryNode getNode(String url, boolean create)
       throws MalformedURLException {
     String urlKey;

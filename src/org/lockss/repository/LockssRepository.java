@@ -76,8 +76,7 @@ public interface LockssRepository extends LockssAuManager {
    * Traverses the node hierarchy and tests internal state consistency for each
    * node.  Corrects and logs any correctable errors it encounters.
    */
-  //XXX implement proper 'fsck' sometime
-//  public void nodeConsistencyCheck();
+  public void nodeConsistencyCheck();
 
   /**
    * Thrown when an unexpected error is encountered while caching.
