@@ -427,7 +427,7 @@ class HashQueue implements Serializable {
       try {
 	while (goOn.booleanValue()) {
 	  if (!runAndNotify(hashNumSteps, hashStepBytes, goOn)) {
-	    sem.take(Deadline.in(60000));
+	    sem.take(Deadline.in(Constants.MINUTE));
 	  }
 	}
       } catch (InterruptedException e) {

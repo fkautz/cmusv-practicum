@@ -132,7 +132,7 @@ public class TimerQueue implements Serializable {
 
       while (goOn) {
 	try {
-	  Request req = (Request)queue.peekWait(Deadline.in(60000));
+	  Request req = (Request)queue.peekWait(Deadline.in(Constants.MINUTE));
 	  if (req != null) {
 	    req.deadline.sleep();
 	    // check that this request is still at the head of the queue

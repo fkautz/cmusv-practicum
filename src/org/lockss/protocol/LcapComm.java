@@ -410,7 +410,7 @@ public class LcapComm implements LockssManager {
   // Receive thread
   private class ReceiveThread extends Thread {
     private boolean goOn = true;
-    private int sleep = 60000;
+    private int sleep = Constants.MINUTE;
     private Deadline timeout = Deadline.in(sleep);
 
     private ReceiveThread(String name) {
