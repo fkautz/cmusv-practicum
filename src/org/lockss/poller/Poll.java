@@ -136,8 +136,10 @@ public abstract class Poll implements Serializable {
     // now copy the msg elements we need
     m_hashTime = m_cus.estimatedHashDuration();
     m_deadline = Deadline.in(msg.getDuration());
-    m_hashDeadline =
-      Deadline.at(m_deadline.getExpirationTime() - Constants.MINUTE);
+    if(!msg.isVerifyPoll()) {
+      m_hashDeadline =
+          Deadline.at(m_deadline.getExpirationTime() - Constants.MINUTE);
+    }
 
     m_challenge = msg.getChallenge();
     m_verifier = m_pollmanager.makeVerifier();
