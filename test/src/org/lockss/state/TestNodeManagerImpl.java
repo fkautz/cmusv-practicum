@@ -1330,7 +1330,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     PeerIdentity testID = null;
     LcapMessage testmsg = null;
     if (isLocal) {
-      testID = idManager.getLocalPeerIdentity();
+      testID = idManager.getLocalPeerIdentity(Poll.V1_POLL);
     } else {
       try {
         IPAddr testAddr = IPAddr.getByName("123.3.4.5");
