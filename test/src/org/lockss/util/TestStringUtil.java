@@ -305,4 +305,15 @@ public class TestStringUtil extends LockssTestCase {
     String st2 = s2a + "\n" + s3;
     assertEquals(st2, StringUtil.trimStackTrace(s1, st2));
   }
+
+  public void testndsWithIgnoreCaase() {
+    assertTrue(StringUtil.endsWithIgnoreCase("", ""));
+    assertTrue(StringUtil.endsWithIgnoreCase("1", ""));
+    assertTrue(StringUtil.endsWithIgnoreCase("1", "1"));
+    assertTrue(StringUtil.endsWithIgnoreCase("foo.opt", ".opt"));
+    assertFalse(StringUtil.endsWithIgnoreCase("", "2"));
+    assertFalse(StringUtil.endsWithIgnoreCase("1", "2"));
+    assertFalse(StringUtil.endsWithIgnoreCase("21", "2"));
+    assertFalse(StringUtil.endsWithIgnoreCase("foo.opt", "xopt"));
+  }
 }
