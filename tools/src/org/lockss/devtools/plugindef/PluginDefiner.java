@@ -99,7 +99,7 @@ public class PluginDefiner extends JFrame {
     contentPane.setLayout(borderLayout1);
     this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     this.setSize(new Dimension(380, 320));
-    this.setTitle("Plugin Configuration");
+    this.setTitle("LOCKSS Plugin Definer");
     jMenuFile.setMnemonic('F');
     jMenuFile.setText("File");
     jMenuFileNew.setIcon(newIcon);
