@@ -163,6 +163,9 @@ public class NullPlugin {
     public CIProperties getProperties() {
       return new CIProperties();
     }
+
+    public void release() {
+    }
   }
 
   /**

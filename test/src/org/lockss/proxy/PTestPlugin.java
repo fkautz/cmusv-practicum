@@ -107,6 +107,9 @@ public class PTestPlugin {
     public CIProperties getProperties() {
       return props;
     }
+
+    public void release() {
+    }
   }
 
   static class AU extends NullPlugin.ArchivalUnit {

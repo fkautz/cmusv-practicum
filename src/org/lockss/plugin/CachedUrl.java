@@ -127,4 +127,9 @@ public interface CachedUrl extends CachedUrlSetNode {
    * @return the ArchivalUnit
    */
   public ArchivalUnit getArchivalUnit();
+
+  /**
+   * Release resources.  Temporary.
+   */
+  public void release();
 }

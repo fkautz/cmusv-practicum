@@ -401,6 +401,7 @@ public abstract class FollowLinkCrawler extends CrawlerImpl {
 	    parsedPages.add(uc.getUrl());
 	  }
 	}
+	cu.release();
       }
     } catch (IOException ioe) {
       //XXX handle this better.  Requeue?

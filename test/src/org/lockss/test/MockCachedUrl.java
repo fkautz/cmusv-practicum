@@ -181,6 +181,9 @@ public class MockCachedUrl implements CachedUrl {
     cachedProp = prop;
   }
 
+  public void release() {
+  }
+
   public String toString() {
     StringBuffer sb = new StringBuffer(url.length()+17);
     sb.append("[MockCachedUrl: ");

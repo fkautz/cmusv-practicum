@@ -181,6 +181,7 @@ public class BaseUrlCacher implements UrlCacher {
 	CIProperties cachedProps = cachedVersion.getProperties();
 	lastModified =
 	  cachedProps.getProperty(CachedUrl.PROPERTY_LAST_MODIFIED);
+	cachedVersion.release();
       }
     }
     return cache(lastModified);

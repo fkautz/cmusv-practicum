@@ -149,6 +149,12 @@ public class BaseCachedUrl implements CachedUrl {
     return ByteArray.encodeLong(leaf.getContentSize());
   }
 
+  public void release() {
+    if (rnc != null) {
+      rnc.release();
+    }
+  }
+
   private void ensureRnc() {
     ensureLeafLoaded();
     if (rnc == null) {
