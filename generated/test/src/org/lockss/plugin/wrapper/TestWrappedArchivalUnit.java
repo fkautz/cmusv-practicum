@@ -37,7 +37,6 @@ package org.lockss.plugin.wrapper;
 import java.io.File;
 import java.net.*;
 import java.util.*;
-import gnu.regexp.*;
 
 import org.lockss.config.Configuration;
 import org.lockss.daemon.*;

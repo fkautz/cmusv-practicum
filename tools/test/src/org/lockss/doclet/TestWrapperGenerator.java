@@ -69,10 +69,6 @@ public class TestWrapperGenerator extends LockssTestCase {
 
   public void tearDown() throws Exception {
     super.tearDown();
-    if (!debug) {
-      File tempDir = new File(tempDirPath);
-      tempDir.delete();
-    }
   }
 
   public void testAll() throws Exception {
