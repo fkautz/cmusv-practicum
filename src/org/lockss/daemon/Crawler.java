@@ -32,6 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.daemon;
 import java.io.IOException;
+import org.lockss.util.Deadline;
 
 /**
  * This interface is implemented by the generic LOCKSS daemon.
@@ -57,5 +58,5 @@ public interface Crawler {
      * @exception java.io.IOException on any number of IO problems.
      */
     public CachedUrlSet fetch(CachedUrlSet target,
-			      DeadLine deadline) throws IOException;
+			      Deadline deadline) throws IOException;
 }
