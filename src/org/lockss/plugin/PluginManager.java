@@ -779,7 +779,9 @@ public class PluginManager extends BaseLockssManager {
 	Collection titles = p.getSupportedTitles();
 	for (Iterator iter2 = titles.iterator(); iter2.hasNext();) {
 	  String title = (String)iter2.next();
-	  map.put(title, p);
+	  if (title != null) {
+	    map.put(title, p);
+	  }
 	}
       }
     }
