@@ -1604,7 +1604,7 @@ public class PluginManager
    * A simple class that wraps information about a loadable plugin,
    * used during the loading process.
    */
-  private class PluginInfo {
+  private static class PluginInfo {
     private Plugin plugin;
     private PluginVersion version;
     private ClassLoader classLoader;
