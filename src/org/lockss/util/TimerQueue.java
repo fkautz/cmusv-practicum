@@ -61,6 +61,7 @@ public class TimerQueue implements Serializable {
     Request req = new Request(deadline, callback, cookie);
     req.deadline.registerCallback(req.deadlineCb);
     queue.put(req);
+    ensureQRunner();
     if (timerThread != null) {
       timerThread.interrupt();
     }
