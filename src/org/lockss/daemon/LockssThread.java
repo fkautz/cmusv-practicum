@@ -74,7 +74,11 @@ public abstract class LockssThread extends Thread implements LockssWatchdog {
 	if (interval != 0) {
 	  threadHung();
 	}
-      }};
+      }
+      public String toString() {
+	return "Thread Watchdog: " + getName();
+      }
+    };
 
   private static boolean watchdogDisabled = false;
 

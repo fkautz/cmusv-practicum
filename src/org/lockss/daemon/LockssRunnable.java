@@ -75,7 +75,11 @@ public abstract class LockssRunnable  implements LockssWatchdog, Runnable {
 	if (interval != 0) {
 	  threadHung();
 	}
-      }};
+      }
+      public String toString() {
+	return "Thread Watchdog: " + getName();
+      }
+    };
 
   private static boolean watchdogDisabled = false;
 

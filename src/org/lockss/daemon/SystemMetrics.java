@@ -256,7 +256,11 @@ public class SystemMetrics
     new TimerQueue.Callback() {
       public void timerExpired(Object cookie) {
 	doMemLog();
-      }};
+      }
+      public String toString() {
+	return "Memory logger";
+      }
+    };
 
   // Log the current memory usage
   private void doMemLog() {
