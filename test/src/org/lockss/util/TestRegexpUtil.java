@@ -90,4 +90,9 @@ public class TestRegexpUtil extends LockssTestCase {
     assertFalse(RegexpUtil.isMatchRe("foobar", "^obar"));
   }
 
+  public void testXPathIsMatchRe() throws Exception {
+    assertTrue(RegexpUtil.XpathUtil.isMatchRe("foobar", "ob"));
+    assertFalse(RegexpUtil.XpathUtil.isMatchRe("foobar", ""));
+  }
+
 }
