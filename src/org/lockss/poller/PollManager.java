@@ -179,7 +179,9 @@ public class PollManager  implements LockssManager {
     Poll p = findPoll(msg);
     if (p != null) {
       p.receiveMessage(msg);
-      // NodeManager.updatePollState(???);
+      CachedUrlSet cus = p.getCachedUrlSet();
+      theDaemon.getNodeManager(p.getArchivalUnit()).startPoll(cus,
+          p.getVoteTally());
     }
     else {
       theLog.info("Unable to create poll for Message: " + msg.toString());
