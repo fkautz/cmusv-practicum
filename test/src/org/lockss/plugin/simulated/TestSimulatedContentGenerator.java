@@ -110,7 +110,7 @@ public class TestSimulatedContentGenerator extends LockssTestCase {
     makeDir(new File(directory, "branch2"));
 
     String content = SimulatedContentGenerator.getIndexContent(directory,
-        "index.html").toLowerCase();
+        "index.html", null).toLowerCase();
     //test for correct links
     assertTrue(content.indexOf("<a href=\"file1.txt\">file1.txt</a>")>=0);
     assertTrue(content.indexOf("<a href=\"file2.html\">file2.html</a>")>=0);

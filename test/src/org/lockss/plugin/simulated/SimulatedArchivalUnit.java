@@ -154,6 +154,10 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     return "Simulated Content: " + fileRoot;
   }
 
+  public String getManifestPage() {
+    return SIMULATED_URL_START;
+  }
+
   // public methods
 
   /**

@@ -196,6 +196,11 @@ public class ProjectMuseArchivalUnit extends BaseArchivalUnit {
     return new CrawlSpec(makeStartUrl(base, journalDir, volume), rule);
   }
 
+  public String getManifestPage() {
+    return makeStartUrl(baseUrl, journalDir, volume);
+  }
+
+
   //Todo: return the correct starting url here
   String makeStartUrl(URL base, String journal, int volume) {
     String ret;

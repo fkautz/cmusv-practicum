@@ -89,6 +89,7 @@ public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
       return null;
     }
   }
+
   public String getPluginId() {
     return pluginId;
   }
@@ -111,6 +112,10 @@ public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
 
   public Collection getUrlStems() {
     throw new UnsupportedOperationException("Not implemented");
+  }
+
+  public String getManifestPage() {
+    throw new UnsupportedOperationException("Not implemented.");
   }
 
 }

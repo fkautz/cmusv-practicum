@@ -364,6 +364,13 @@ public class NullPlugin {
     public boolean shouldCallTopLevelPoll(AuState aus) {
       return false;
     }
+    public String getManifestPage() {
+      return null;
+    }
+
+    public boolean checkCrawlPermission(Reader reader) {
+      return false;
+    }
 
   }
 

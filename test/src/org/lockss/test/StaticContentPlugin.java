@@ -145,6 +145,10 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
       throw new UnsupportedOperationException("Not implemented");
     }
 
+    public String getManifestPage() {
+      throw new UnsupportedOperationException("Not Implemented");
+    }
+
     /**
      * Create a CU with content and store it in AU
      * @param owner the CUS owner
