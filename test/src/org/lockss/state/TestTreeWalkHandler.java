@@ -126,13 +126,39 @@ public class TestTreeWalkHandler extends LockssTestCase {
 
   public void testTreeWalkStartNoCrawlYesPoll() {
     //should allow walk but schedule top level poll
-    mau.setShouldCallTopLevelPoll(true);
     mau.setShouldCrawlForNewContent(false);
+    mau.setShouldCallTopLevelPoll(true);
 
     treeWalkHandler.doTreeWalk();
     assertNull(crawlMan.getAuStatus(mau));
     assertEquals(MockPollManager.CONTENT_REQUESTED,
 		 pollMan.getPollStatus(mau.getAUCachedUrlSet().getUrl()));
+  }
+
+  public void testTreeWalkSkipTopLevelPoll() {
+    TimeBase.setSimulated(10000);
+    //should allow walk but schedule top level poll
+    mau.setShouldCrawlForNewContent(false);
+    mau.setShouldCallTopLevelPoll(true);
+
+    // set up damage in tree
+    CachedUrlSet subCus = (CachedUrlSet)
+        mau.getAUCachedUrlSet().flatSetIterator().next();
+    NodeStateImpl node = (NodeStateImpl)nodeManager.getNodeState(subCus);
+    PollHistory pollHist = new PollHistory(Poll.NAME_POLL, "", "",
+                                           PollState.RUNNING, 123, 1,
+                                           null, true);
+    node.closeActivePoll(pollHist);
+
+    // should find damage and schedule
+    treeWalkHandler.doTreeWalk();
+    assertNull(crawlMan.getAuStatus(mau));
+    assertEquals(pollMan.getPollStatus(subCus.getUrl()),
+                 MockPollManager.NAME_REQUESTED);
+    // no top-level poll run
+    assertNull(pollMan.getPollStatus(mau.getAUCachedUrlSet().getUrl()));
+
+    TimeBase.setReal();
   }
 
   public void testTreeWalkStartYesCrawl() {

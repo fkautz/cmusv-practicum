@@ -128,13 +128,6 @@ public class TreeWalkHandler {
           theCrawlManager.startNewContentCrawl(theAu, null, null);
           logger.debug("Requested new content crawl.  Aborting...");
         }
-        else if (theAu.shouldCallTopLevelPoll(manager.getAuState())) {
-          // query the AU if a top level poll should be started
-          theRegulator.auActivityFinished(ActivityRegulator.TREEWALK, theAu);
-          treeWalkAborted = true;
-          manager.callTopLevelPoll();
-          logger.debug("Requested top level poll.  Aborting...");
-        }
         else {
           // do the actual treewalk
           logger.debug("Tree walk started: " + theAu.getName());
@@ -142,6 +135,16 @@ public class TreeWalkHandler {
           nodeTreeWalk();
           long elapsedTime = TimeBase.msSince(startTime);
           updateEstimate(elapsedTime);
+        }
+        // after finishing treewalk successfully, check if we should schedule
+        // a top-level poll (this way we handle damage first)
+        if (!treeWalkAborted &&
+            (theAu.shouldCallTopLevelPoll(manager.getAuState()))) {
+          // query the AU if a top level poll should be started
+          theRegulator.auActivityFinished(ActivityRegulator.TREEWALK, theAu);
+          treeWalkAborted = true;
+          manager.callTopLevelPoll();
+          logger.debug("Requested top level poll...");
         }
       }
       finally {
