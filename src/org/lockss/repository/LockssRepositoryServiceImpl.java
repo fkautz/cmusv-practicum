@@ -158,6 +158,7 @@ public class LockssRepositoryServiceImpl implements LockssRepositoryService {
             LockssRepositoryServiceImpl.mapAuToFileLocation(cacheLocation, au),
             au);
       auMap.put(au, lockssRepo);
+      logger.debug("Adding LockssRepository for au: "+au);
       lockssRepo.initService(theDaemon);
       lockssRepo.startService();
     }

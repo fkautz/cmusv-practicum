@@ -107,7 +107,7 @@ public class SystemMetrics {
       }
       timeTaken = TimeBase.nowMs() - startTime;
       if (timeTaken==0) {
-        logger.error("Test finished in zero time: using bytesHashed estimate.");
+        logger.warning("Test finished in zero time: using bytesHashed estimate.");
         return (int)bytesHashed;
       }
       estimate = new Integer((int)(bytesHashed / timeTaken));
