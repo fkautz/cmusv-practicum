@@ -207,4 +207,14 @@ public class TestUrlUtil extends LockssTestCase {
     assertEquals(ListUtil.list("null;field1", "key2;null"),
 		 UrlUtil.getHeaders(conn));
   }
+
+  public void testIsAbsoluteUrl() {
+    assertFalse(UrlUtil.isAbsoluteUrl(null));
+    assertFalse(UrlUtil.isAbsoluteUrl(""));
+    assertTrue(UrlUtil.isAbsoluteUrl("http://www.example.com/"));
+    assertTrue(UrlUtil.isAbsoluteUrl("http://www.example.com/blah/"));
+    assertFalse(UrlUtil.isAbsoluteUrl("www.example.com/"));
+    assertFalse(UrlUtil.isAbsoluteUrl("blah/blah"));
+  }
+
 }

@@ -177,6 +177,18 @@ public class UrlUtil {
     }
   }
 
+  public static boolean isAbsoluteUrl(String url) {
+    if (url != null) {
+      try {
+	org.apache.commons.httpclient.URI resultURI =
+	  new org.apache.commons.httpclient.URI(url.toCharArray());
+	return resultURI.isAbsoluteURI();
+      } catch (URIException e) {
+      }
+    }
+    return false;
+  }
+
   /**
    * Return a list of header fields (in the format "key;fieldValue") for conn
    * @param conn URLConnection to get headers from
