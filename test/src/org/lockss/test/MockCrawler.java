@@ -82,6 +82,10 @@ public class MockCrawler extends NullCrawler {
     return doCrawlCalled;
   }
 
+  public void setDoCrawlCalled(boolean val) {
+    doCrawlCalled = val;
+  }
+
   public ArchivalUnit getAu() {
     return au;
   }
