@@ -116,7 +116,6 @@ public class TestCrawlManagerImpl extends LockssTestCase {
   }
 
   public void testNewCrawlDeadlineIsMax() {
-//     mau.setNewContentCrawlUrls(ListUtil.list("http://www.example.com/"));
     SimpleBinarySemaphore sem = new SimpleBinarySemaphore();
 
     crawlManager.startNewContentCrawl(mau, new TestCrawlCB(sem), null, null);
@@ -496,14 +495,20 @@ public class TestCrawlManagerImpl extends LockssTestCase {
 
   private static class TestableCrawlManagerImpl extends CrawlManagerImpl {
     private MockCrawler mockCrawler;
-    protected Crawler makeCrawler(ArchivalUnit au, Collection urls,
-				  int type, boolean followLinks,
-				  int refetchDepth) {
-
+    protected Crawler makeNewContentCrawler(ArchivalUnit au, CrawlSpec spec) {
       mockCrawler.setAu(au);
-      mockCrawler.setUrls(urls);
-      mockCrawler.setFollowLinks(followLinks);
-      mockCrawler.setType(type);
+      mockCrawler.setUrls(spec.getStartingUrls());
+      mockCrawler.setFollowLinks(true);
+      mockCrawler.setType(GoslingCrawlerImpl.NEW_CONTENT);
+      return mockCrawler;
+    }
+
+    protected Crawler makeRepairCrawler(ArchivalUnit au, CrawlSpec spec,
+					Collection repairUrls) {
+      mockCrawler.setAu(au);
+      mockCrawler.setUrls(repairUrls);
+      mockCrawler.setFollowLinks(false);
+      mockCrawler.setType(GoslingCrawlerImpl.REPAIR);
       return mockCrawler;
     }
 
