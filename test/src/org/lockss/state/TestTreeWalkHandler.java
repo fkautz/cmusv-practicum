@@ -87,6 +87,7 @@ public class TestTreeWalkHandler extends LockssTestCase {
     nodeManager = new NodeManagerImpl(mau);
     nodeManager.initService(theDaemon);
     HistoryRepository historyRepo = new HistoryRepositoryImpl(tempDirPath);
+    historyRepo.startService();
     nodeManager.historyRepo = historyRepo;
     theDaemon.setHistoryRepository(historyRepo);
 

@@ -36,12 +36,13 @@ package org.lockss.state;
 import java.util.List;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
+import org.lockss.app.LockssManager;
 
 /**
  * HistoryRepository is an inner layer of the NodeManager which handles the actual
  * storage of NodeStates.
  */
-public interface HistoryRepository {
+public interface HistoryRepository extends LockssManager {
 
   /**
    * Stores the current node state info, except the histories.

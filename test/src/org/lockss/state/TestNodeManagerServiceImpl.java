@@ -56,6 +56,7 @@ public class TestNodeManagerServiceImpl extends LockssTestCase {
     theDaemon = new MockLockssDaemon();
     theDaemon.setLockssRepositoryService(new MockLockssRepositoryService());
     theDaemon.setHistoryRepository(new HistoryRepositoryImpl(tempDirPath));
+    theDaemon.getHistoryRepository().startService();
 
     // create au state so thread doesn't throw null pointers
     theDaemon.getLockssRepository(mau).createNewNode(TEST_URL);

@@ -128,9 +128,8 @@ public class TreeWalkHandler {
     } else {
       logger.debug("Top level poll active.  Aborting...");
     }
-    //alert the AuState
+    //alert the AuState (it writes through)
     manager.getAuState().setLastTreeWalkTime();
-    manager.historyRepo.storeAuState(manager.getAuState());
     logger.debug("Tree walk finished.");
   }
 
