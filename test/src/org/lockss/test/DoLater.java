@@ -125,6 +125,7 @@ public abstract class DoLater extends Thread {
 	}
       }
     } catch (InterruptedException e) {
+      // exit thread
     }
   }
 
