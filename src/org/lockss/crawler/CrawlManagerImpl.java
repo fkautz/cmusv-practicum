@@ -193,10 +193,10 @@ public class CrawlManagerImpl
 
   private void addNewContentCrawl(ArchivalUnit au, Crawler crawler) {
     synchronized (newContentCrawls) {
-      List crawlsForAu = (List)newContentCrawls.get(au.getGloballyUniqueId());
+      List crawlsForAu = (List)newContentCrawls.get(au.getAUId());
       if (crawlsForAu == null) {
 	crawlsForAu = new ArrayList();
-	newContentCrawls.put(au.getGloballyUniqueId(), crawlsForAu);
+	newContentCrawls.put(au.getAUId(), crawlsForAu);
       }
       crawlsForAu.add(crawler);
     }

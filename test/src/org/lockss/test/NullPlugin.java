@@ -83,22 +83,18 @@ public class NullPlugin {
       return null;
     }
 
-    public String getAUIdFromConfig(Configuration config)
-	throws org.lockss.plugin.ArchivalUnit.ConfigurationException {
-      return null;
+    public Collection getDefiningConfigKeys() {
+      return Collections.EMPTY_LIST;
     }
 
-    public org.lockss.plugin.ArchivalUnit configureAU(Configuration config)
+    public org.lockss.plugin.ArchivalUnit configureAU(Configuration config,
+						      org.lockss.plugin.ArchivalUnit au)
 	throws org.lockss.plugin.ArchivalUnit.ConfigurationException {
       return null;
     }
 
     public org.lockss.plugin.ArchivalUnit createAU(Configuration auConfig)
 	throws org.lockss.plugin.ArchivalUnit.ConfigurationException {
-      return null;
-    }
-
-    public org.lockss.plugin.ArchivalUnit getAU(String auId) {
       return null;
     }
 
@@ -313,10 +309,6 @@ public class NullPlugin {
 
     public String getAUId() {
       return "null_au_id";
-    }
-
-    public String getGloballyUniqueId() {
-      return "null_global_unique_id";
     }
 
     public String getName() {

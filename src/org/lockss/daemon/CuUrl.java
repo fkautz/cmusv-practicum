@@ -146,7 +146,7 @@ public class CuUrl {
 	  log.warning("connect: no PluginManager");
 	  throw new FileNotFoundException(urlString);
 	}
-	ArchivalUnit au = pluginManager.getAu(pluginId, auId);
+	ArchivalUnit au = pluginManager.getAuFromId(auId);
 	if (au == null) {
 	  throw new FileNotFoundException(urlString);
 	}

@@ -48,17 +48,18 @@ import org.lockss.plugin.base.*;
 public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
   private Configuration config;
   private String pluginId = "mock-file";
-  private String auId = "none-file";
 
   public MockGenericFileArchivalUnit() {
-    super(null, null);
+    super(null);
   }
 
-  public MockGenericFileArchivalUnit(CrawlSpec spec) {
-    super(null, spec);
+  public void setCrawlSpec(CrawlSpec spec) {
+    this.crawlSpec = spec;
   }
-
-  public void setConfiguration(Configuration config) {
+  
+  public void setConfiguration(Configuration config) 
+      throws ConfigurationException {
+    super.setConfiguration(config);
     this.config = config;
   }
 
@@ -92,10 +93,6 @@ public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
     return pluginId;
   }
 
-  public String getAUId() {
-    return auId;
-  }
-
   public String getName() {
     return "MockGenericFileAU";
   }
@@ -104,8 +101,8 @@ public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
     pluginId = newId;
   }
 
-  public void setAuId(String newId) {
-    auId = newId;
+  public void setPlugin(Plugin plugin) {
+    this.plugin = plugin;
   }
 
   public List getNewContentCrawlUrls() {

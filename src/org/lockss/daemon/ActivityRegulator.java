@@ -416,7 +416,7 @@ public class ActivityRegulator extends BaseLockssManager {
   }
 
   static String getAuKey(ArchivalUnit au) {
-    return au.getGloballyUniqueId();
+    return au.getAUId();
   }
 
   static String getCusKey(CachedUrlSet cus) {

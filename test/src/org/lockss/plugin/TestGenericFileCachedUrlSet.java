@@ -65,6 +65,9 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
     theDaemon.setNodeManagerService(new MockNodeManagerService());
 
     mgfau = new MockGenericFileArchivalUnit();
+    MockPlugin plugin = new MockPlugin();
+    plugin.setDefiningConfigKeys(Collections.EMPTY_LIST);
+    mgfau.setPlugin(plugin);
     repo = theDaemon.getLockssRepository(mgfau);
     theDaemon.getNodeManager(mgfau);
   }
