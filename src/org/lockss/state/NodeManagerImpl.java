@@ -79,7 +79,7 @@ public class NodeManagerImpl implements NodeManager {
   static final int DEFAULT_TOP_LEVEL_POLL_INTERVAL = 14*24*60*60*1000; //2 weeks
 
   private static LockssDaemon theDaemon;
-  private static NodeManager theManager = null;
+  private NodeManager theManager = null;
   static HistoryRepository repository;
   private static CrawlManager theCrawlManager = null;
   private static HashMap auEstimateMap = new HashMap();
@@ -157,6 +157,7 @@ public class NodeManagerImpl implements NodeManager {
     // checkpoint here
     if (treeWalkThread!=null) {
       treeWalkThread.interrupt();
+      treeWalkThread = null;
     }
     theManager = null;
   }

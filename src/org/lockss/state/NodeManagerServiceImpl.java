@@ -101,6 +101,7 @@ public class NodeManagerServiceImpl implements NodeManagerService {
     if (nodeManager==null) {
       nodeManager = new NodeManagerImpl(au);
       auMaps.put(au, nodeManager);
+      nodeManager.initService(theDaemon);
       nodeManager.startService();
     }
   }
