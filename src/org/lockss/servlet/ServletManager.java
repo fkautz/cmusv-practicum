@@ -59,9 +59,6 @@ public class ServletManager extends JettyManager {
   public static final String PARAM_LOG_FORBIDDEN =
     IP_ACCESS_PREFIX + "logForbidden";
 
-  public static final String PARAM_PLATFORM_ACCESS_SUBNET =
-    Configuration.PARAM_PLATFORM_ACCESS_SUBNET;
-
   public static final String PARAM_LOGDIR =
     Configuration.PREFIX +  "platform.logdirectory";
 
@@ -119,10 +116,8 @@ public class ServletManager extends JettyManager {
 
     if (changedKeys.contains(PARAM_IP_INCLUDE) ||
 	changedKeys.contains(PARAM_IP_EXCLUDE) ||
-	changedKeys.contains(PARAM_PLATFORM_ACCESS_SUBNET) ||
 	changedKeys.contains(PARAM_LOG_FORBIDDEN)) {
-      includeIps = config.get(PARAM_IP_INCLUDE,
-			      config.get(PARAM_PLATFORM_ACCESS_SUBNET, ""));
+      includeIps = config.get(PARAM_IP_INCLUDE, "");
       excludeIps = config.get(PARAM_IP_EXCLUDE, "");
       logForbidden = config.getBoolean(PARAM_LOG_FORBIDDEN, false);
       log.debug("Installing new ip filter: incl: " + includeIps +
