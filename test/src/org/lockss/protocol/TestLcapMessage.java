@@ -173,7 +173,7 @@ public class TestLcapMessage extends LockssTestCase {
       msgbytes = noop_msg.encodeMsg();
     }
     catch (IOException ex) {
-      fail("encode failed!");
+      fail("encode failed!" + ex.toString());
     }
 
     try {
@@ -225,6 +225,7 @@ public class TestLcapMessage extends LockssTestCase {
     LcapMessage req_msg = null;
     try {
       PollSpec spec = new PollSpec(archivalID,urlstr, lwrbnd, uprbnd,null);
+      assertEquals(spec.getVersion(), 1);
       req_msg = LcapMessage.makeRequestMsg(spec,
                                            testentries,
                                            testbytes,
@@ -232,6 +233,7 @@ public class TestLcapMessage extends LockssTestCase {
                                            LcapMessage.CONTENT_POLL_REQ,
                                            100000,
                                            testID);
+      assertEquals(req_msg.getVersion(), 1);
     }
     catch (Exception ex) {
       fail("message request creation failed.");
@@ -256,7 +258,7 @@ public class TestLcapMessage extends LockssTestCase {
       msgbytes = testmsg.encodeMsg();
     }
     catch (IOException ex) {
-      fail("encode failed!");
+      fail("encode failed! " + ex.toString());
     }
 
     try {
