@@ -1187,7 +1187,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     }
     else {
       try {
-        InetAddress testAddr = InetAddress.getByName("123.3.4.5");
+        IPAddr testAddr = IPAddr.getByName("123.3.4.5");
         testID = idManager.findIdentity(testAddr);
       }
       catch (UnknownHostException ex) {

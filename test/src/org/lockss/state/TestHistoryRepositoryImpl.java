@@ -35,7 +35,6 @@ package org.lockss.state;
 
 import java.io.*;
 import java.util.*;
-import java.net.InetAddress;
 import java.net.MalformedURLException;
 import org.lockss.test.*;
 import org.lockss.util.*;
@@ -368,7 +367,7 @@ public class TestHistoryRepositoryImpl extends LockssTestCase {
   }
 
   private String createIdentityKey() throws Exception {
-    theDaemon.getIdentityManager().findIdentity(InetAddress.getByName("127.0.0.1"));
+    theDaemon.getIdentityManager().findIdentity(IPAddr.getByName("127.0.0.1"));
     return "127.0.0.1";
   }
 

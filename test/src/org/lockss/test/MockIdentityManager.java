@@ -34,7 +34,7 @@ package org.lockss.test;
 import java.util.HashMap;
 import org.lockss.app.*;
 import org.lockss.protocol.*;
-import java.net.InetAddress;
+import org.lockss.util.*;
 
 /**
  * Mock override of IdentityManager.
@@ -52,11 +52,11 @@ public class MockIdentityManager extends IdentityManager {
     idMap = new HashMap();
   }
 
-  public void changeReputation(InetAddress id, int changeKind) {
+  public void changeReputation(IPAddr id, int changeKind) {
     idMap.put(id, new Integer(changeKind));
   }
 
-  public int lastChange(InetAddress id) {
+  public int lastChange(IPAddr id) {
     Integer change = (Integer)idMap.get(id);
     if (change==null) {
       return -1;

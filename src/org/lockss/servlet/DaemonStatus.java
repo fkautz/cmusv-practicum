@@ -415,7 +415,7 @@ public class DaemonStatus extends LockssServlet {
 	}
 	return dateString(d);
       case ColumnDescriptor.TYPE_IP_ADDRESS:
-	return ((InetAddress)val).getHostAddress();
+	return ((IPAddr)val).getHostAddress();
       case ColumnDescriptor.TYPE_TIME_INTERVAL:
 	long millis = ((Number)val).longValue();
 	return StringUtil.timeIntervalToString(millis);

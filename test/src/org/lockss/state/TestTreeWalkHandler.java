@@ -342,7 +342,7 @@ public class TestTreeWalkHandler extends LockssTestCase {
     LcapIdentity testID = null;
     LcapMessage testmsg = null;
     try {
-      InetAddress testAddr = InetAddress.getByName("127.0.0.1");
+      IPAddr testAddr = IPAddr.getByName("127.0.0.1");
       testID = theDaemon.getIdentityManager().findIdentity(testAddr);
     }
     catch (UnknownHostException ex) {

@@ -63,7 +63,7 @@ public class TestPollManager extends LockssTestCase {
   protected static ArchivalUnit testau;
   private MockLockssDaemon theDaemon;
 
-  protected InetAddress testaddr;
+  protected IPAddr testaddr;
   protected LcapIdentity testID;
   protected LcapMessage[] testmsg;
   protected PollManager pollmanager;
@@ -447,7 +447,7 @@ public class TestPollManager extends LockssTestCase {
 
   private void initTestAddr() {
     try {
-      testaddr = InetAddress.getByName("127.0.0.1");
+      testaddr = IPAddr.getByName("127.0.0.1");
       testID = theDaemon.getIdentityManager().findIdentity(testaddr);
     }
     catch (UnknownHostException ex) {

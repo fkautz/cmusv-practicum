@@ -63,9 +63,9 @@ public class LockssReceivedDatagram extends LockssDatagram {
     return packet;
   }
 
-  /** Return the sender's InetAddress */
-  public InetAddress getSender() {
-    return packet.getAddress();
+  /** Return the sender's IPAddr */
+  public IPAddr getSender() {
+    return new IPAddr(packet.getAddress());
   }
 
   /** Return the data portion of the received packet */

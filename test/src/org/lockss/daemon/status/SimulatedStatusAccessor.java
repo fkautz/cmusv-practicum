@@ -111,7 +111,7 @@ public class SimulatedStatusAccessor {
 	return new Float(1.0 / row);
       case ColumnDescriptor.TYPE_IP_ADDRESS:
 	try {
-	  return InetAddress.getByName("10.1.0.42");
+	  return IPAddr.getByName("10.1.0.42");
 	} catch (UnknownHostException e) {
 	  return null;
 	}

@@ -102,7 +102,7 @@ public class TestPollSpec extends LockssTestCase {
     PollSpec ps = new PollSpec(cus);
     LcapIdentity id = null;
     try {
-      InetAddress addr = InetAddress.getByName("127.0.0.1");
+      IPAddr addr = IPAddr.getByName("127.0.0.1");
       id = theDaemon.getIdentityManager().findIdentity(addr);
     }
     catch (UnknownHostException ex) {

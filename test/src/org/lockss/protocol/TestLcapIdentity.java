@@ -48,7 +48,7 @@ public class TestLcapIdentity extends LockssTestCase {
 
   static String fakeIdString = "127.0.0.1";
   static LcapIdentity fakeId = null;
-  InetAddress testAddress;
+  IPAddr testAddress;
   int testReputation;
   Object testIdKey;
   LcapMessage testMsg= null;
@@ -77,8 +77,8 @@ public class TestLcapIdentity extends LockssTestCase {
       setCurrentConfigFromUrlList(ListUtil.list(FileTestUtil.urlOfString(prop)));
     idmgr = daemon.getIdentityManager();
     try {
-      fakeId = new LcapIdentity(InetAddress.getByName(fakeIdString));
-      testAddress = InetAddress.getByName("127.0.0.1");
+      fakeId = new LcapIdentity(IPAddr.getByName(fakeIdString));
+      testAddress = IPAddr.getByName("127.0.0.1");
     }
     catch (UnknownHostException ex) {
       fail("can't open test host");

@@ -95,14 +95,14 @@ public class LockssDatagram {
    * @param port the destination port
    * @return the packet
    */
-  public DatagramPacket makeSendPacket(InetAddress addr, int port)
+  public DatagramPacket makeSendPacket(IPAddr addr, int port)
       throws IOException {
     return makeSendPacket(getPacketData(), addr, port);
   }
 
-  DatagramPacket makeSendPacket(byte[] data, InetAddress addr, int port)
+  DatagramPacket makeSendPacket(byte[] data, IPAddr addr, int port)
       throws IOException {
-    return new DatagramPacket(data, data.length, addr, port);
+    return new DatagramPacket(data, data.length, addr.getInetAddr(), port);
   }
 
   /** Encode the data for sending in a packet.  The packet itself contains
