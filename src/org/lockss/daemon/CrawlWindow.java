@@ -52,12 +52,4 @@ public interface CrawlWindow {
    * @return true iff permitted
    */
   public boolean canCrawl(Date date);
-
-  /**
-   * Returns true if, for this window, a crawl is *ever* possible.  This protects
-   * against windows with mutally exclusive elements (i.e. 'Monday AND Wednesday'
-   * rather than 'Monday OR Wednesday').
-   * @return true iff a crawl is possible
-   */
-  public boolean crawlIsPossible();
 }
