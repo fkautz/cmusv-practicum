@@ -50,7 +50,12 @@ public class LockssDatagram {
   /** Maximum data size */
   public static final int MAX_SIZE = 1422; /* 1450 - 28 */
   public static final int PROTOCOL_TEST = 1;
-  public static final int PROTOCOL_LCAP = 2;
+  // V1 rev1 was used across a protocol change (hash filtering turned on)
+  // in 8/03.  Switched to V1 rev2 11/03 to avoid poll disagreements with
+  // old versions.
+  public static final int PROTOCOL_LCAP_V1_R1 = 2;
+  public static final int PROTOCOL_LCAP_V1_R2 = 3;
+  public static final int PROTOCOL_LCAP = PROTOCOL_LCAP_V1_R2;
   static final int HEADER_LENGTH = 4;
 
   byte[] pktData;			// packet data (poss. compressed)
