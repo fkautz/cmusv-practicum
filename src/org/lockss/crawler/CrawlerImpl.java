@@ -69,6 +69,7 @@ public abstract class CrawlerImpl implements Crawler {
 
   protected boolean crawlAborted = false;
 
+  protected LockssWatchdog wdog = null;
 
   protected abstract boolean doCrawl0(Deadline deadline);
   public abstract int getType();
@@ -176,6 +177,7 @@ public abstract class CrawlerImpl implements Crawler {
   }
 
   public void setWatchdog(LockssWatchdog wdog) {
+    this.wdog = wdog;
   }
 
   public String toString() {
