@@ -109,6 +109,12 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     }
   }
 
+  public void testShouldRecrawlReturnsFalse() {
+    //for now shouldRecrawl() should always return false
+    assertFalse(crawlManager.shouldRecrawl(mau, null));
+  }
+
+
   private void waitForCrawlToFinish(SimpleBinarySemaphore sem) {
     if (!sem.take(TIMEOUT_SHOULDNT)) {
       fail("Crawl didn't finish in 10 seconds");
