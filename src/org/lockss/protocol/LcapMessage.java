@@ -56,6 +56,8 @@ public class LcapMessage
   public static final int VERIFY_POLL_REP = 5;
   public static final int NO_OP = 6;
 
+  static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
+
   public static final String PARAM_HASH_ALGORITHM = Configuration.PREFIX +
       "protocol.hashAlgorithm";
   public static final String PARAM_MAX_PKT_SIZE = Configuration.PREFIX +
@@ -412,9 +414,9 @@ public class LcapMessage
     m_targetUrl = m_props.getProperty("url");
     m_lwrBound = m_props.getProperty("lwrBnd");
     m_uprBound = m_props.getProperty("uprBnd");
-    m_challenge = m_props.getByteArray("challenge", new byte[0]);
-    m_verifier = m_props.getByteArray("verifier", new byte[0]);
-    m_hashed = m_props.getByteArray("hashed", new byte[0]);
+    m_challenge = m_props.getByteArray("challenge", EMPTY_BYTE_ARRAY);
+    m_verifier = m_props.getByteArray("verifier", EMPTY_BYTE_ARRAY);
+    m_hashed = m_props.getByteArray("hashed", EMPTY_BYTE_ARRAY);
     m_entries = stringToEntries(m_props.getProperty("entries"));
     m_lwrRem = m_props.getProperty("lwrRem");
     m_uprRem = m_props.getProperty("uprRem");
