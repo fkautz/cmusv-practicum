@@ -263,6 +263,8 @@ public class ServletManager extends JettyManager {
 		       "org.lockss.servlet.AdminIpAccess");
     handler.addServlet("ProxyIpAccess", "/ProxyIpAccess",
 		       "org.lockss.servlet.ProxyIpAccess");
+    handler.addServlet("Hash CUS", "/HashCUS",
+		       "org.lockss.servlet.HashCUS");
     addServletIfAvailable(handler, "ThreadDump", "/ThreadDump",
 			  "org.lockss.servlet.ThreadDump");
     addServletIfAvailable(handler, "Api", "/Api",
