@@ -390,7 +390,6 @@ public class LockssResourceHandler extends AbstractHttpHandler {
       // so issue the redirect.
       if (!pathInContext.endsWith("/")) {
 	URI nodeUri = new URI(nodeUrl);
-	Code.warning("nodeUri: " + nodeUri);
 	if (nodeUri.getPath().endsWith("/")) {
 	  sendLockssRedirect(request, response, pathInContext,
 			     pathParams, resource, nodeUrl);
