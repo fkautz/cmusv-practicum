@@ -50,12 +50,7 @@ import java.util.Properties;
  * @author  David S. H. Rosenthal
  * @see UrlCacher
  * @version 0.0 */
-public interface CachedUrl extends NamedElement {
-    /**
-     * Return the url being represented
-     * @return the <code>String</code> url being represented.
-     */
-    public String getUrl();
+public interface CachedUrl extends UrlElement {
     /**
      * Return <code>true</code> if the object describes a url that
      * exists in the cache.

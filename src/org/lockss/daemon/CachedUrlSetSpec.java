@@ -34,8 +34,9 @@ package org.lockss.daemon;
 import java.util.List;
 
 /**
- * Specifies a set of URLs.  Used by <code>CachedUrlSet</code> to determine
- * which URLs are included, and to enumerate starting points.
+ * Specifies a set of URLs, starting at a single root.  Used by
+ * <code>CachedUrlSet</code> to determine which URLs are included, and to
+ * enumerate starting points.
  */
 public interface CachedUrlSetSpec {
   /**
@@ -44,12 +45,6 @@ public interface CachedUrlSetSpec {
    * @return true iff the url matches the spec
    */
   public boolean matches(String url);
-
-  /**
-   * Get the URLPrefix list.
-   * @return the list of URL prefixes, as Strings
-   */
-  public List getPrefixList();
 
   /**
    * This needs to be overridden to hash CachedUrlSets properly.
@@ -65,8 +60,8 @@ public interface CachedUrlSetSpec {
   public boolean equals(Object obj);
 
   /**
-   * Returns the primary url referenced by the spec.
+   * Returns the url referenced by the spec.
    * @return the url
    */
-  public String getPrimaryUrl();
+  public String getUrl();
 }

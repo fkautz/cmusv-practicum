@@ -164,7 +164,7 @@ public class TestGenericContentHasher extends LockssTestCase {
       Object element = it.next();
       if (element instanceof CachedUrlSet) {
         CachedUrlSet cus2 = (CachedUrlSet)element;
-        cu = cus2.makeCachedUrl(cus.getPrimaryUrl());
+        cu = cus2.makeCachedUrl(cus.getUrl());
       } else if (element instanceof CachedUrl) {
         cu = (CachedUrl)element;
       }

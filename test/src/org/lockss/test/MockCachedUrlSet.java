@@ -79,11 +79,11 @@ public class MockCachedUrlSet implements CachedUrlSet {
   }
 
   public boolean containsUrl(String url) {
-    return url.startsWith((String)spec.getPrimaryUrl());
+    return url.startsWith((String)spec.getUrl());
   }
 
   public boolean isCached(String url) {
-    CachedUrl cu = (CachedUrl) cuHash.get(url);
+    CachedUrl cu = (CachedUrl)cuHash.get(url);
     return cu.exists();
   }
 
@@ -214,16 +214,16 @@ public class MockCachedUrlSet implements CachedUrlSet {
     addUrl(source, url, exists, shouldCache, props);
   }
 
-  public String getPrimaryUrl() {
+  public String getUrl() {
     if (spec!=null) {
-      return spec.getPrimaryUrl();
+      return spec.getUrl();
     } else {
       return null;
     }
   }
 
   public String getName() {
-    return getPrimaryUrl();
+    return getUrl();
   }
 
 

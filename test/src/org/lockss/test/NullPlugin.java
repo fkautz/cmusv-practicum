@@ -65,10 +65,6 @@ public class NullPlugin {
       return null;
     }
 
-    public String getName() {
-      return getUrl();
-    }
-
     public boolean exists() {
       return false;
     }
@@ -198,14 +194,9 @@ public class NullPlugin {
       return 0;
     }
 
-    public String getPrimaryUrl() {
+    public String getUrl() {
       return "null";
     }
-
-    public String getName() {
-      return getPrimaryUrl();
-    }
-
   }
 
   public static class ArchivalUnit

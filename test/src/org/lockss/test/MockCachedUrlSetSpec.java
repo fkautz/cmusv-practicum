@@ -55,18 +55,9 @@ public class MockCachedUrlSetSpec implements CachedUrlSetSpec {
   public MockCachedUrlSetSpec(String root, String regExp) {
     this.root = root;
     this.regExp = regExp;
-    this.prefixList =  ListUtil.list(root);
   }
 
-  public List getPrefixList() {
-    return prefixList;
-  }
-
-  public void setPrefixList(List prefixList) {
-    this.prefixList = prefixList;
-  }
-
-  public String getPrimaryUrl() {
+  public String getUrl() {
     return root;
   }
 

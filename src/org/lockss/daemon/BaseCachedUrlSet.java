@@ -98,20 +98,8 @@ public abstract class BaseCachedUrlSet implements CachedUrlSet {
     return "[BCUS: "+spec+"]";
   }
 
-  /**
-   * Returns the main url of the spec.
-   * @return the url
-   */
-  public String getPrimaryUrl() {
-    return spec.getPrimaryUrl();
-  }
-
-  /**
-   * Returns the main url.
-   * @return the url
-   */
-  public String getName() {
-    return getPrimaryUrl();
+  public String getUrl() {
+    return spec.getUrl();
   }
 
   /**

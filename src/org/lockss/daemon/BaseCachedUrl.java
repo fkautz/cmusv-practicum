@@ -62,14 +62,6 @@ public abstract class BaseCachedUrl implements CachedUrl {
   }
 
   /**
-   * Returns the url.
-   * @return the url
-   */
-  public String getName() {
-    return getUrl();
-  }
-
-  /**
    * Overrides normal <code>toString()</code> to return a string like "BCU: <url>"
    * @return the string form
    */

@@ -143,7 +143,7 @@ public class PollManager  implements LockssManager {
     ArchivalUnit au = cus.getArchivalUnit();
     byte[] challenge = makeVerifier();
     byte[] verifier = makeVerifier();
-    LcapMessage msg = LcapMessage.makeRequestMsg(cus.getPrimaryUrl(),
+    LcapMessage msg = LcapMessage.makeRequestMsg(cus.getUrl(),
         lwrBound,
         uprBound,
         null,

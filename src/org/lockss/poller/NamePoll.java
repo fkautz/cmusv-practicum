@@ -157,9 +157,9 @@ public class NamePoll
     if (m_entries == null) {
       Iterator it = m_urlSet.flatSetIterator();
       ArrayList alist = new ArrayList();
-      String baseUrl = m_urlSet.getSpec().getPrimaryUrl();
+      String baseUrl = m_urlSet.getSpec().getUrl();
       while(it.hasNext()) {
-        String name = ((NamedElement)it.next()).getName();
+        String name = ((UrlElement)it.next()).getUrl();
         if(name.startsWith(baseUrl)) {
           name = name.substring(name.length());
         }

@@ -61,10 +61,10 @@ public class MockPollManager extends PollManager {
     // note: uses a different key than the other two, since we're not
     // creating an actual challenge and verifier to key off of.
     if (opcode == LcapMessage.CONTENT_POLL_REQ) {
-      thePolls.put(cus.getPrimaryUrl(), CONTENT_REQUESTED);
+      thePolls.put(cus.getUrl(), CONTENT_REQUESTED);
     }
     else if (opcode == LcapMessage.NAME_POLL_REQ) {
-      thePolls.put(cus.getPrimaryUrl(), NAME_REQUESTED);
+      thePolls.put(cus.getUrl(), NAME_REQUESTED);
     }
   }
 
