@@ -194,6 +194,12 @@ public class TestDeadline extends LockssTestCase {
     assertEquals(Deadline.MAX, Deadline.latest(Deadline.MAX, p1));
   }
 
+  public void testGetSleepTime() {
+    Deadline t = Deadline.in(0);
+    assertTrue(t.expired());
+    assertTrue(t.getSleepTime() > 0);
+  }
+
   public void testSleep() {
     Interrupter intr = null;
     try {
