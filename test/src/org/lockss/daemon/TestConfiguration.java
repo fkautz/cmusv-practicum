@@ -209,7 +209,7 @@ public class TestConfiguration extends TestCase {
     setCurrentConfigFromUrlList(ListUtil.list(FileUtil.urlOfString(c1),
 					      FileUtil.urlOfString(c1a)));
     System.out.println(Configuration.getCurrentConfig().toString());
-    Configuration.registerConfigurationCallback(new ConfigurationCallback() {
+    Configuration.registerConfigurationCallback(new Configuration.Callback() {
 	public void configurationChanged(Configuration oldConfig,
 					 Configuration newConfig,
 					 Set changedKeys) {
