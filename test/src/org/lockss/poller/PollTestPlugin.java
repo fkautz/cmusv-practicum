@@ -124,9 +124,9 @@ public class PollTestPlugin {
       super(spec);
     }
 
-    public static MockArchivalUnit createFromListOfRootUrls(String[] rootUrls){
+    public static MockArchivalUnit createFromListOfRootUrls(String[] rootUrls) {
       CrawlSpec rootSpec =
-	new CrawlSpec(ListUtil.fromArray(rootUrls), null, 1);
+	new CrawlSpec(ListUtil.fromArray(rootUrls), null, null, 1);
       return new PTArchivalUnit(rootSpec);
     }
 

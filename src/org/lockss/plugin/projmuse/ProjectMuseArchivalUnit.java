@@ -181,7 +181,7 @@ public class ProjectMuseArchivalUnit extends BaseArchivalUnit {
   private CrawlSpec makeCrawlSpec(URL base, int volume) throws REException {
 
     CrawlRule rule = makeRules(base, journalDir, volume);
-    return new CrawlSpec(makeStartUrl(base, journalDir, volume), rule, 1);
+    return new CrawlSpec(makeStartUrl(base, journalDir, volume), rule, null, 1);
   }
 
   public String getManifestPage() {
