@@ -128,6 +128,17 @@ public class PollSpec {
     cus = getPluginManager().findCachedUrlSet(this);
   }
 
+  /**
+   * Construct a PollSpec from explicit args
+   */
+  public PollSpec(String auId, String url, String lower, String upper) {
+    this.auId = auId;
+    this.url = url;
+    uprBound = upper;
+    lwrBound = lower;
+    cus = getPluginManager().findCachedUrlSet(this);
+  }
+
   /** Setup common to most constructors */
   private void commonSetup(CachedUrlSet cus,
 			   String lwrBound,
