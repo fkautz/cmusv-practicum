@@ -108,11 +108,11 @@ public class NodeStateCache {
   }
 
   /**
-   * Returns a snapshot iterator of the cache's entries.
-   * @return an {@link Iterator} of {@link NodeState}s
+   * Returns a snapshot set of the cache's entries.
+   * @return an {@link Set} of {@link NodeState}s
    */
-  public synchronized Collection snapshot() {
-    return new ArrayList(lruMap.entrySet());
+  public synchronized Set snapshot() {
+    return new HashSet(lruMap.values());
   }
 
   int getCacheHits() { return cacheHits; }
