@@ -699,6 +699,23 @@ public class LockssTestCase extends TestCase {
     }
   }
 
+  public static void assertEmpty(Map map) {
+    assertEmpty(null, map);
+  }
+
+  public static void assertEmpty(String message, Map map) {
+    if (map.size() > 0) {
+      StringBuffer sb = new StringBuffer();
+      if (message != null) {
+	sb.append(message);
+	sb.append(" ");
+      }
+      sb.append("Expected empty Map, but containted ");
+      sb.append(map);
+      fail(sb.toString());
+    }
+  }
+
   public static void assertContainsAll(Collection coll,
                                              Object[] elements) {
     for (int i = 0; i < elements.length; i++) {
