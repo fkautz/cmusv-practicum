@@ -33,6 +33,7 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.util;
 import java.util.*;
 import java.lang.reflect.*;
+import gnu.regexp.*;
 
 /**
  * This is a class to contain generic string utilities
@@ -233,5 +234,14 @@ public class StringUtil {
       "." + method.getName();
   }
 
+  static RE alphanum = new UncheckedRE("([^a-zA-Z0-9])");
+
+  /** Return a copy of the string with all non-alphanumeric chars
+   * escaped by backslash.  Useful when embedding an unknown string in
+   * a regexp
+   */
+  public static String escapeNonAlphaNum(String str) {
+    return alphanum.substituteAll(str, "\\$1");
+  }
 }
 
