@@ -33,6 +33,8 @@ in this Software without prior written authorization from Stanford University.
 import java.io.*;
 import java.util.*;
 import org.lockss.util.*;
+import org.lockss.config.ConfigManager;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.test.*;

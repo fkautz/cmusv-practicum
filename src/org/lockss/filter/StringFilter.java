@@ -34,6 +34,7 @@ package org.lockss.filter;
 import java.io.*;
 import java.util.*;
 
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 

@@ -36,6 +36,7 @@ import java.util.*;
 import org.lockss.plugin.*;
 import org.lockss.util.*;
 import org.lockss.app.*;
+import org.lockss.config.Configuration;
 
 /**
  * The ActivityRegulator is queried by the various managers when they wish to

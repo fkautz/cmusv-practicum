@@ -32,7 +32,8 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.util;
 import java.util.*;
-import org.lockss.daemon.Configuration;
+
+import org.lockss.config.Configuration;
 
 /**
  * RateLimiter is used to limit the rate at which some class of events occur.

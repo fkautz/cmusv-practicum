@@ -32,6 +32,9 @@ package org.lockss.test;
 
 import java.io.*;
 import java.util.*;
+
+import org.lockss.config.ConfigManager;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.mortbay.tools.*;
@@ -59,7 +62,7 @@ public class ConfigurationUtil {
     PropertyTree tree = new PropertyTree(props);
     try {
       return (Configuration)PrivilegedAccessor.
-	invokeConstructor("org.lockss.daemon.ConfigurationPropTreeImpl", tree);
+	invokeConstructor("org.lockss.config.ConfigurationPropTreeImpl", tree);
     } catch (ClassNotFoundException e) {
       // because I don't want to change all the callers of this
       throw new RuntimeException(e.toString());

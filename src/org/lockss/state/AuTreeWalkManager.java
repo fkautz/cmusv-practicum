@@ -37,6 +37,7 @@ import EDU.oswego.cs.dl.util.concurrent.*;
 import org.lockss.app.*;
 import org.lockss.util.*;
 import org.lockss.plugin.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.scheduler.*;
 

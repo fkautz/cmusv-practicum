@@ -35,6 +35,7 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 import org.lockss.util.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.apache.commons.collections.LRUMap;
 import org.lockss.app.*;

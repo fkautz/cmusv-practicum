@@ -33,7 +33,7 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.util;
 
 import org.lockss.test.*;
-import org.lockss.daemon.TestConfiguration;
+import org.lockss.config.TestConfiguration;
 
 /**
  * Test class for functional tests on the mail target.

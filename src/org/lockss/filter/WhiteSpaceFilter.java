@@ -34,6 +34,7 @@ package org.lockss.filter;
 import java.util.*;
 import java.io.*;
 import org.lockss.util.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 
 /** A FilterInputStream that canonicalizes white space.

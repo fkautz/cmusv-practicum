@@ -42,7 +42,7 @@ import org.lockss.util.*;
 import org.lockss.util.TestXmlPropertyLoader;
 
 /**
- * Test class for <code>org.lockss.daemon.ConfigCache</code>
+ * Test class for <code>org.lockss.config.ConfigCache</code>
  */
 
 public class TestConfigCache extends LockssTestCase {

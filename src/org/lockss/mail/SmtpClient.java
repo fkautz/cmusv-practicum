@@ -38,6 +38,7 @@ import java.net.*;
 import sun.net.TransferProtocolClient;
 import sun.net.NetworkClient;
 import org.lockss.util.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 
 /**

@@ -46,6 +46,7 @@ import org.lockss.repository.*;
 import org.lockss.state.*;
 import org.lockss.proxy.*;
 import org.lockss.servlet.*;
+import org.lockss.config.Configuration;
 import org.lockss.crawler.*;
 import org.lockss.remote.*;
 import org.apache.commons.collections.SequencedHashMap;

@@ -36,7 +36,7 @@ import java.io.*;
 import java.util.*;
 import org.apache.commons.collections.*;
 import org.lockss.util.*;
-import org.lockss.daemon.Configuration;
+import org.lockss.config.Configuration;
 
 /**
  * This class is used to filter all content from a reader between two string

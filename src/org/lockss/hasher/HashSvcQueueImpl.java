@@ -34,6 +34,8 @@ package org.lockss.hasher;
 import java.io.*;
 import java.util.*;
 import java.security.MessageDigest;
+
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.daemon.status.*;
 import org.lockss.util.*;

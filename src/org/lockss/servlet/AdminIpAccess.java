@@ -32,6 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.servlet;
 
+import org.lockss.config.ConfigManager;
 import org.lockss.daemon.*;
 
 /** Display and update admin UI IP access control lists.

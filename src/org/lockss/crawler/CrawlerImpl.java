@@ -36,6 +36,8 @@ import java.io.*;
 import java.util.*;
 
 import org.lockss.alert.*;
+import org.lockss.config.ConfigManager;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.state.*;

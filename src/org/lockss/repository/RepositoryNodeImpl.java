@@ -36,6 +36,7 @@ import java.io.*;
 import java.util.*;
 import java.net.MalformedURLException;
 import org.lockss.util.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.plugin.AuUrl;
 

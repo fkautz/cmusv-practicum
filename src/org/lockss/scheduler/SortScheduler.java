@@ -34,6 +34,7 @@ package org.lockss.scheduler;
 
 import java.util.*;
 import org.lockss.util.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 
 /** This scheduler assigns tasks to intervals preferentially based on their

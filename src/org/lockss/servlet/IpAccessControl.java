@@ -41,6 +41,8 @@ import java.text.*;
 import org.mortbay.html.*;
 import org.mortbay.tools.*;
 import org.lockss.util.*;
+import org.lockss.config.ConfigManager;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.daemon.status.*;
 

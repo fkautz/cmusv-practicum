@@ -35,6 +35,8 @@ package org.lockss.remote;
 import java.io.*;
 import java.util.*;
 import junit.framework.*;
+
+import org.lockss.config.ConfigManager;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.poller.*;

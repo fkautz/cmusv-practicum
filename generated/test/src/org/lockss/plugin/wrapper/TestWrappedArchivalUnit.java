@@ -38,6 +38,8 @@ import java.io.File;
 import java.net.*;
 import java.util.*;
 import gnu.regexp.*;
+
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.state.*;

@@ -35,6 +35,7 @@ package org.lockss.poller;
 import java.io.*;
 import java.security.*;
 
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.hasher.*;
 import org.lockss.plugin.*;

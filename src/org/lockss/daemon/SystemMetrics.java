@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.util.*;
 import java.security.MessageDigest;
 import org.lockss.app.*;
+import org.lockss.config.Configuration;
 import org.lockss.util.*;
 import org.lockss.hasher.*;
 import org.lockss.protocol.LcapMessage;

@@ -37,6 +37,7 @@ import java.util.*;
 import java.security.KeyStore;
 import junit.framework.*;
 import org.lockss.app.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.plugin.definable.*;
 import org.lockss.poller.*;

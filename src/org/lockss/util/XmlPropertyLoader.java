@@ -38,7 +38,7 @@ import javax.xml.parsers.*;
 import org.mortbay.tools.PropertyTree;
 import org.xml.sax.*;
 import org.xml.sax.helpers.*;
-import org.lockss.daemon.Configuration;
+import org.lockss.config.Configuration;
 
 public class XmlPropertyLoader {
 

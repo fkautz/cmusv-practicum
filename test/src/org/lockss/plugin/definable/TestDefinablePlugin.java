@@ -33,6 +33,7 @@ package org.lockss.plugin.definable;
 
 import org.lockss.test.*;
 import org.lockss.plugin.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import java.util.*;
 import org.lockss.util.*;

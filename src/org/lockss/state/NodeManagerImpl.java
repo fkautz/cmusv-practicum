@@ -37,6 +37,7 @@ import org.lockss.poller.*;
 import org.lockss.plugin.*;
 import org.lockss.protocol.*;
 import org.lockss.repository.*;
+import org.lockss.config.Configuration;
 import org.lockss.crawler.CrawlManager;
 import org.lockss.alert.*;
 import java.util.ArrayList;

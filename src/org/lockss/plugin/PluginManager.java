@@ -45,6 +45,8 @@ import org.lockss.repository.*;
 import org.lockss.util.*;
 import org.lockss.app.BaseLockssDaemonManager;
 import org.lockss.plugin.definable.DefinablePlugin;
+import org.lockss.config.ConfigManager;
+import org.lockss.config.Configuration;
 import org.lockss.crawler.CrawlManager;
 
 /**

@@ -35,6 +35,7 @@ package org.lockss.daemon;
 import java.io.IOException;
 import java.util.*;
 import org.lockss.app.*;
+import org.lockss.config.ConfigManager;
 import org.lockss.util.*;
 import org.lockss.protocol.*;
 import org.lockss.plugin.*;

@@ -37,6 +37,7 @@ import java.util.Properties;
 import org.lockss.test.*;
 import org.lockss.util.ListUtil;
 import org.lockss.plugin.ArchivalUnit;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 
 public class TestSamplePlugin extends LockssTestCase {

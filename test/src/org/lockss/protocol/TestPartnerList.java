@@ -36,6 +36,9 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 import junit.framework.TestCase;
+
+import org.lockss.config.ConfigManager;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.test.*;

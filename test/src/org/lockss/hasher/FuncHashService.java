@@ -36,6 +36,8 @@ import java.util.*;
 import java.io.*;
 import java.security.MessageDigest;
 import junit.framework.*;
+
+import org.lockss.config.ConfigManager;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.test.*;

@@ -32,6 +32,7 @@ package org.lockss.daemon;
 import java.io.*;
 import java.util.*;
 import org.lockss.app.*;
+import org.lockss.config.Configuration;
 import org.lockss.util.*;
 
 /** LockssThread abstracts out common features of LOCKSS daemon threads,

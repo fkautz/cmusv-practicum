@@ -36,6 +36,7 @@ import java.security.*;
 import java.util.*;
 
 import org.lockss.alert.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.hasher.*;
 import org.lockss.plugin.*;

@@ -33,6 +33,7 @@ package org.lockss.poller;
 
 import org.lockss.protocol.*;
 import org.lockss.util.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 

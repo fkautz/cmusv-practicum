@@ -36,6 +36,7 @@ import java.net.*;
 import javax.servlet.http.HttpServletRequest;
 import org.lockss.plugin.*;
 import org.lockss.util.urlconn.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.*;

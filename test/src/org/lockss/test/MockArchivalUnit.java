@@ -35,6 +35,7 @@ package org.lockss.test;
 import java.io.*;
 import java.util.*;
 import org.lockss.daemon.*;
+import org.lockss.config.Configuration;
 import org.lockss.crawler.*;
 import org.lockss.util.*;
 import org.lockss.state.*;

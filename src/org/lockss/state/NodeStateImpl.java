@@ -37,7 +37,7 @@ import java.util.*;
 import org.lockss.util.*;
 import org.lockss.app.LockssDaemon;
 import org.lockss.plugin.CachedUrlSet;
-import org.lockss.daemon.Configuration;
+import org.lockss.config.Configuration;
 
 /**
  * NodeState contains the current state information for a node, as well as the

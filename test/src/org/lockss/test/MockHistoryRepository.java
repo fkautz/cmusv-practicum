@@ -37,7 +37,7 @@ import java.util.*;
 import org.lockss.app.*;
 import org.lockss.state.*;
 import org.lockss.plugin.*;
-import org.lockss.daemon.Configuration;
+import org.lockss.config.Configuration;
 
 /**
  * MockHistoryRepository is a mock implementation of the HistoryRepository.

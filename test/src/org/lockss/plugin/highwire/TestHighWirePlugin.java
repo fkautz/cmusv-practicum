@@ -36,6 +36,7 @@ import java.util.*;
 import org.lockss.test.*;
 import org.lockss.util.*;
 import org.lockss.plugin.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.plugin.ArchivalUnit.*;
 import org.lockss.plugin.definable.*;

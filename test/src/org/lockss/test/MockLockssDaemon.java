@@ -43,6 +43,7 @@ import org.lockss.poller.*;
 import org.lockss.state.*;
 import org.lockss.repository.*;
 import org.lockss.proxy.*;
+import org.lockss.config.Configuration;
 import org.lockss.crawler.*;
 import org.lockss.plugin.*;
 import org.lockss.app.*;

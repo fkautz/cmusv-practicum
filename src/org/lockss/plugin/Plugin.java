@@ -35,6 +35,7 @@ package org.lockss.plugin;
 import java.util.*;
 
 import org.lockss.app.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 
 /**

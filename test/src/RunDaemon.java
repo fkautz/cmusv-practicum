@@ -36,6 +36,7 @@ import org.lockss.test.*;
 import org.lockss.protocol.*;
 import org.lockss.poller.*;
 import org.lockss.util.*;
+import org.lockss.config.Configuration;
 import org.lockss.crawler.*;
 import org.lockss.repository.*;
 import org.lockss.app.*;

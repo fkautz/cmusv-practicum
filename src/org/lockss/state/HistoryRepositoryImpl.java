@@ -41,7 +41,7 @@ import org.lockss.app.*;
 import org.lockss.util.*;
 import org.lockss.plugin.*;
 import org.lockss.repository.*;
-import org.lockss.daemon.Configuration;
+import org.lockss.config.Configuration;
 import org.lockss.protocol.*;
 
 /**

@@ -35,6 +35,8 @@ package org.lockss.plugin;
 import java.io.*;
 import java.util.*;
 import junit.framework.*;
+
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.test.*;

@@ -33,7 +33,7 @@ package org.lockss.test;
 
 import java.util.Set;
 import org.lockss.app.*;
-import org.lockss.daemon.Configuration;
+import org.lockss.config.Configuration;
 
 /**
  * Null implementation of LockssManager

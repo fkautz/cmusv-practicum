@@ -33,6 +33,7 @@ package org.lockss.util.urlconn;
 import java.io.*;
 import java.util.*;
 import org.lockss.util.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.*;

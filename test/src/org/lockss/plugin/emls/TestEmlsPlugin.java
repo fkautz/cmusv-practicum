@@ -35,6 +35,7 @@ package org.lockss.plugin.emls;
 import java.net.*;
 import java.util.Properties;
 import org.lockss.test.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.util.ListUtil;
 import org.lockss.plugin.ArchivalUnit;

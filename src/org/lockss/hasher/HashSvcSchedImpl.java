@@ -36,6 +36,8 @@ import java.util.*;
 import java.text.*;
 import java.math.*;
 import java.security.MessageDigest;
+
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.daemon.status.*;
 import org.lockss.scheduler.*;

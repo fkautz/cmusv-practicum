@@ -34,6 +34,8 @@ package org.lockss.util;
 
 import java.text.*;
 import java.io.*;
+
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 
 /** A <code>LogTarget</code> implementation that outputs to a file, which

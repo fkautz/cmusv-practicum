@@ -33,6 +33,7 @@ package org.lockss.plugin.definable;
 import java.net.*;
 import java.util.*;
 
+import org.lockss.config.Configuration;
 import org.lockss.crawler.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;

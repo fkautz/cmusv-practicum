@@ -42,13 +42,10 @@ import org.lockss.config.Configuration;
 import org.lockss.test.*;
 
 /**
- * Test class for <code>org.lockss.util.ConfigManager</code>
+ * Test class for <code>org.lockss.config.ConfigManager</code>
  */
 
 public class TestConfigManager extends LockssTestCase {
-//   public static Class testedClasses[] = {
-//     org.lockss.daemon.ConfigManager.class
-//   };
 
   ConfigManager mgr;
 

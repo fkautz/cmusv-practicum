@@ -36,6 +36,7 @@ import java.net.*;
 import java.util.*;
 import org.lockss.plugin.*;
 import org.lockss.state.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.daemon.status.*;
 import org.lockss.util.*;

@@ -37,6 +37,7 @@ import java.text.*;
 import java.util.*;
 
 import org.apache.commons.collections.*;
+import org.lockss.config.Configuration;
 import org.lockss.crawler.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;

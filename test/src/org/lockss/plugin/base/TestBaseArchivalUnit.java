@@ -38,7 +38,7 @@ import org.lockss.daemon.*;
 import org.lockss.test.*;
 import org.lockss.plugin.*;
 import org.lockss.util.*;
-import org.lockss.daemon.Configuration;
+import org.lockss.config.Configuration;
 import org.lockss.crawler.*;
 import org.lockss.plugin.ArchivalUnit.*;
 import java.net.*;

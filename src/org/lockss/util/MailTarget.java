@@ -37,7 +37,8 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 import org.lockss.protocol.IdentityManager;
-import org.lockss.daemon.Configuration;
+import org.lockss.config.Configuration;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 

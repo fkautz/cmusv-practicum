@@ -31,7 +31,7 @@ in this Software without prior written authorization from Stanford University.
 */
 package org.lockss.app;
 
-import org.lockss.daemon.Configuration;
+import org.lockss.config.Configuration;
 import org.lockss.plugin.ArchivalUnit;
 
 /**

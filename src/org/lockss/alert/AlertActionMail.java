@@ -36,6 +36,8 @@ import java.util.*;
 import java.text.*;
 
 import org.lockss.app.*;
+import org.lockss.config.ConfigManager;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.mail.*;
 import org.lockss.util.*;

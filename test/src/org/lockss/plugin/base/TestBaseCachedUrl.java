@@ -36,6 +36,7 @@ import java.io.*;
 import java.util.*;
 import java.math.BigInteger;
 import org.lockss.plugin.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.test.*;
 import org.lockss.util.*;

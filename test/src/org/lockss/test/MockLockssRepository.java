@@ -35,6 +35,7 @@ package org.lockss.test;
 import java.net.*;
 import java.util.*;
 import org.lockss.app.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.repository.*;

@@ -33,7 +33,8 @@ import java.util.StringTokenizer;
 import org.lockss.util.*;
 import java.io.*;
 import org.mortbay.util.B64Code;
-import org.lockss.daemon.Configuration;
+import org.lockss.config.Configuration;
+
 import java.security.*;
 import org.lockss.app.LockssDaemon;
 import org.lockss.poller.*;

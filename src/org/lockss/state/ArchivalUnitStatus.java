@@ -28,6 +28,8 @@ package org.lockss.state;
 
 import java.util.*;
 import java.net.MalformedURLException;
+
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.daemon.status.*;
 import org.lockss.plugin.*;

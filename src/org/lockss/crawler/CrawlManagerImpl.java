@@ -34,6 +34,7 @@ package org.lockss.crawler;
 
 import java.util.*;
 import org.apache.commons.collections.*;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.daemon.status.*;
 import org.lockss.state.NodeState;

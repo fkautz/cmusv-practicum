@@ -31,6 +31,8 @@ in this Software without prior written authorization from Stanford University.
 */
 package org.lockss.app;
 
+import org.lockss.config.ConfigManager;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import java.util.*;
 import org.lockss.util.*;

@@ -44,6 +44,8 @@ import org.mortbay.servlet.MultiPartRequest;
 import org.lockss.util.*;
 import org.lockss.plugin.*;
 import org.lockss.remote.*;
+import org.lockss.config.ConfigManager;
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.daemon.status.*;
 

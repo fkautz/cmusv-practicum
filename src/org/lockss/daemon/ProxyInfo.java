@@ -36,6 +36,8 @@ import java.net.*;
 import java.io.*;
 import org.apache.oro.text.regex.*;
 import org.lockss.app.*;
+import org.lockss.config.ConfigManager;
+import org.lockss.config.Configuration;
 import org.lockss.util.*;
 import org.lockss.plugin.*;
 import org.lockss.proxy.*;

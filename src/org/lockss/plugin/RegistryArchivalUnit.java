@@ -38,6 +38,7 @@ import org.lockss.daemon.*;
 import org.lockss.state.*;
 import org.lockss.plugin.*;
 import org.lockss.plugin.base.*;
+import org.lockss.config.Configuration;
 import org.lockss.crawler.*;
 
 /**

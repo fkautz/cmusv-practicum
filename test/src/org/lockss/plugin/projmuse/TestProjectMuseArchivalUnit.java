@@ -35,6 +35,8 @@ package org.lockss.plugin.projmuse;
 import java.io.File;
 import java.net.URL;
 import java.util.Properties;
+
+import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.test.*;
