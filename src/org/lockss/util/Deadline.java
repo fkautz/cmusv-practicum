@@ -38,7 +38,8 @@ import java.text.*;
  */
 public class Deadline implements Comparable {
   /** A long time from now (but not really never). */
-  public static final Deadline NEVER = new Deadline(Long.MAX_VALUE);
+  public static final Deadline NEVER =
+    new Deadline(new ConstantDate(TimeBase.NEVER));
 
   protected static Logger log = Logger.getLogger("Deadline");
 

@@ -96,6 +96,36 @@ public class TestDeadline extends LockssTestCase {
     assertFalse(p2.before(p1));
   }
 
+  public void testNever() {
+    Deadline never = Deadline.NEVER;
+    try {
+      never.expire();
+      fail("Constant deadline allowed modification");
+    } catch (UnsupportedOperationException e) {
+    }
+    try {
+      never.expireIn(20);
+      fail("Constant deadline allowed modification");
+    } catch (UnsupportedOperationException e) {
+    }
+    try {
+      never.expireAt(40);
+      fail("Constant deadline allowed modification");
+    } catch (UnsupportedOperationException e) {
+    }
+    try {
+      never.later(45);
+      fail("Constant deadline allowed modification");
+    } catch (UnsupportedOperationException e) {
+    }
+    try {
+      never.sooner(45);
+      fail("Constant deadline allowed modification");
+    } catch (UnsupportedOperationException e) {
+    }
+    assertFalse(never.expired());
+  }
+
   public void testSleep() {
     Interrupter intr = null;
     try {
