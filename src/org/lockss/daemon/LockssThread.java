@@ -230,6 +230,9 @@ public abstract class LockssThread extends Thread implements LockssWatchdog {
       log.error(msg + ": " + getName());
       exitImm = Configuration.getBooleanParam(PARAM_THREAD_WDOG_EXIT_IMM,
 					      DEFAULT_THREAD_WDOG_EXIT_IMM);
+      if (exitImm) {
+	log.error("Daemon exiting.");
+      }
     } finally {
       if (exitImm) {
 	System.exit(1);
