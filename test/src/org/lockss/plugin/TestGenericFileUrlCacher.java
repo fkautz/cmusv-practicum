@@ -58,6 +58,7 @@ public class TestGenericFileUrlCacher extends LockssTestCase {
     TestLockssRepositoryServiceImpl.configCacheLocation(tempDirPath);
 
     theDaemon = new MockLockssDaemon();
+    theDaemon.getHashService();
     theDaemon.getLockssRepositoryService().startService();
     theDaemon.setNodeManagerService(new MockNodeManagerService());
 
