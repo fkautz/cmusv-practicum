@@ -125,4 +125,8 @@ public class MockCrawlManager implements CrawlManager, LockssManager {
 				       Object cookie) {
     scheduledCrawls.put(au, SCHEDULED);
   }
+
+  public void cancelAuCrawls(ArchivalUnit au) {
+    throw new UnsupportedOperationException("not implemented");
+  }
 }

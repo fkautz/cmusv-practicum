@@ -130,6 +130,53 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     assertEquals(Deadline.MAX, crawler.getDeadline());
   }
 
+  public void testStoppingCrawlAbortsNewContentCrawl() {
+    SimpleBinarySemaphore finishedSem = new SimpleBinarySemaphore();
+    //start the crawler, but use a crawler that will hang
+
+    TestCrawlCB cb = new TestCrawlCB(finishedSem);
+    SimpleBinarySemaphore sem1 = new SimpleBinarySemaphore();
+    SimpleBinarySemaphore sem2 = new SimpleBinarySemaphore();
+    //gives sem1 when doCrawl is entered, then takes sem2
+    MockCrawler crawler = new HangingCrawler(sem1, sem2);
+    crawlManager.setTestCrawler(crawler);
+
+    crawlManager.startNewContentCrawl(mau, cb, null, null);
+    assertTrue("Crawl didn't start in 10 seconds",
+	       sem1.take(TIMEOUT_SHOULDNT));
+    //we know that doCrawl started
+
+    crawlManager.cancelAuCrawls(mau);
+
+    assertTrue(crawler.wasAborted());
+  }
+
+  public void testStoppingCrawlAbortsRepairCrawl() {
+    String url1 = "http://www.example.com/index1.html";
+    String url2 = "http://www.example.com/index2.html";
+    List urls = ListUtil.list(url1, url2);
+
+    SimpleBinarySemaphore finishedSem = new SimpleBinarySemaphore();
+    //start the crawler, but use a crawler that will hang
+
+    TestCrawlCB cb = new TestCrawlCB(finishedSem);
+    SimpleBinarySemaphore sem1 = new SimpleBinarySemaphore();
+    SimpleBinarySemaphore sem2 = new SimpleBinarySemaphore();
+    //gives sem1 when doCrawl is entered, then takes sem2
+    MockCrawler crawler = new HangingCrawler(sem1, sem2);
+    crawlManager.setTestCrawler(crawler);
+
+    crawlManager.startRepair(mau, urls, cb, null, null);
+    assertTrue("Crawl didn't start in 10 seconds",
+	       sem1.take(TIMEOUT_SHOULDNT));
+    //we know that doCrawl started
+
+    crawlManager.cancelAuCrawls(mau);
+
+    assertTrue(crawler.wasAborted());
+  }
+
+
   public void testDoesntNCCrawlWhenNotAllowed() {
     SimpleBinarySemaphore sem = new SimpleBinarySemaphore();
     activityRegulator.setStartAuActivity(false);
