@@ -54,6 +54,10 @@ public class MockPoll implements Poll {
 
   }
 
+  public boolean isSubpollRunning() {
+    return false;
+  }
+
   /**
    * Returns true if the poll belongs to this Identity
    * @return true if  we called the poll

@@ -104,6 +104,10 @@ public abstract class BasePoll implements Poll {
     
   }
 
+  public boolean isSubpollRunning() {
+    return false;
+  }
+
   public void setMessage(LcapMessage msg) {
     if (m_msg == null) {
       m_msg = msg;

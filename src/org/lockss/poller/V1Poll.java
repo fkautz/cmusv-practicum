@@ -42,7 +42,7 @@ import org.lockss.plugin.*;
 import org.lockss.protocol.*;
 import org.lockss.util.*;
 
-import org.mortbay.util.*;
+import org.mortbay.util.B64Code;
 
 
 /**
@@ -106,9 +106,9 @@ public abstract class V1Poll extends BasePoll {
     m_challenge = challenge;
     m_verifier = pm.makeVerifier(duration);
 
-    log.debug("I think poll "+m_challenge
-	      +" will take me this long to hash "+m_hashTime);
-
+    log.debug("I think poll "+ challengeToKey(m_challenge)
+	      +" will take me this long to hash "+
+	      StringUtil.timeIntervalToString(m_hashTime));
     m_createTime = TimeBase.nowMs();
     getConfigValues();
   }
@@ -372,7 +372,7 @@ public abstract class V1Poll extends BasePoll {
       log.debug("poll stopped with error: " + ERROR_STRINGS[ -m_pollstate]);
     }
     else {
-      m_pollstate = BasePoll.PS_COMPLETE;
+      m_pollstate = PS_COMPLETE;
     }
     m_pollmanager.closeThePoll(m_key);
     log.debug3("closed the poll:" + m_key);

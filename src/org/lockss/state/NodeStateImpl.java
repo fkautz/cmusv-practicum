@@ -160,7 +160,7 @@ public class NodeStateImpl implements NodeState {
       case NodeState.OK:
         return "Ok";
       default:
-        return "Undefined";
+        return Integer.toString(curState);
     }
   }
 

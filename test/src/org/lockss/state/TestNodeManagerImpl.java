@@ -172,7 +172,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     polls.add(new PollState(1, "lwr1", "upr1", 1, 0, Deadline.MAX, false));
 
     // start the poll
-    assertTrue(pollManager.callPoll(new PollSpec(cus, Poll.CONTENT_POLL)));
+    assertNotNull(pollManager.callPoll(new PollSpec(cus, Poll.CONTENT_POLL)));
 
     NodeStateImpl node = new NodeStateImpl(cus, 123, new CrawlState(-1, -1, -1),
                                            polls, historyRepo);

@@ -316,7 +316,7 @@ public class NodeManagerManager
     }
 
     private String getTitle(String key) {
-      return "NodeManager Table for Archival Unit " + key;
+      return "NodeManager Cache for Archival Unit " + key;
     }
 
     // currently unused

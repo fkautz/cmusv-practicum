@@ -101,4 +101,7 @@ public interface Poll {
    * @return VoteTally for this poll
    */
   public PollTally getVoteTally();
+
+  /** Kludge for V1Name subpolls */
+  public boolean isSubpollRunning();
 }
