@@ -73,6 +73,14 @@ public class TestLcapRouter extends LockssTestCase {
     TimeBase.setSimulated(20000);
   }
 
+  public void tearDown() throws Exception {
+    LcapComm comm = daemon.getCommManager();
+    if (comm != null) {
+      comm.stopService();
+    }
+    super.tearDown();
+  }
+
   public void testIsEligibleToForward() throws Exception {
 //     LcapMessage msg = createTestMsg("127.0.0.1", 3);
     createTestMsg("1.2.3.4", 3);
