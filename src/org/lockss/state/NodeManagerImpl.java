@@ -945,8 +945,26 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
                             " recalling.");
             }
           } else {
-            logger.debug2("Unfinished poll not mine, so not recalling.");
-            nodeState.setState(NodeState.INITIAL);
+            if (reportOnly) {
+              // don't log twice if top-level poll is called next
+              logger.debug2("Unfinished poll not mine, so not recalling.");
+            }
+
+            // check if au-node which needs top-level poll
+            // query the AU if a top level poll should be started
+            if ((nodeState.getCachedUrlSet().getSpec().isAu()) &&
+                (managedAu.shouldCallTopLevelPoll(auState))) {
+              // switch to NEEDS_POLL and call toplevel poll
+              if (!reportOnly) {
+                nodeState.setState(NodeState.NEEDS_POLL);
+                callTopLevelPoll();
+                logger.debug("Requested top level poll...");
+              }
+              return true;
+            } else {
+              // reset and do nothing
+              nodeState.setState(NodeState.INITIAL);
+            }
           }
         }
         return false;
