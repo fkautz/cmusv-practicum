@@ -34,10 +34,10 @@ package org.lockss.plugin;
 
 import junit.framework.TestCase;
 import org.lockss.daemon.*;
-import org.lockss.test.MockGenericFileUrlCacher;
+import org.lockss.test.*;
 
 /**
- * This is the test class for org.lockss.plugin.simulated.GenericFileCachedUrl
+ * This is the test class for org.lockss.plugin.simulated.GenericFileUrlCacher
  *
  * @author  Emil Aalto
  * @version 0.0
@@ -49,7 +49,8 @@ public class TestGenericFileUrlCacher extends TestCase {
     super(msg);
   }
   public void testCache() {
-    GenericFileUrlCacher cacher = new MockGenericFileUrlCacher(null, "");
+    GenericFileUrlCacher cacher = new MockGenericFileUrlCacher(
+        new MockCachedUrlSet(null), "");
     //XXX set input, props
     //XXX test caching location
   }
