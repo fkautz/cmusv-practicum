@@ -118,7 +118,7 @@ public class NodeStateImpl implements NodeState {
   }
 
   public boolean isInternalNode() {
-    return cus.flatSetIterator().hasNext();
+    return !cus.isLeaf();
   }
 
   protected void addPollState(PollState new_poll) {
