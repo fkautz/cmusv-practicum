@@ -210,7 +210,7 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
 	  if (isOrphaned(auid, auidProps)) {
 	    row.put("status", "Orphaned");
 	  } else {
-	    if (config == null | config.isEmpty()) {
+	    if (config == null || config.isEmpty()) {
 	      row.put("status", "Deleted");
 	    } else {
 	      row.put("params", config);
