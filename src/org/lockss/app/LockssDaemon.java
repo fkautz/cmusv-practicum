@@ -91,6 +91,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
   public static String ACTIVITY_REGULATOR = "ActivityRegulator";
   public static String ALERT_MANAGER = "AlertManager";
   public static String HASH_SERVICE = "HashService";
+  public static String TIMER_SERVICE = "TimerService";
   public static String COMM_MANAGER = "CommManager";
   public static String ROUTER_MANAGER = "RouterManager";
   public static String IDENTITY_MANAGER = "IdentityManager";
@@ -119,6 +120,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
     new ManagerDesc(ALERT_MANAGER, "org.lockss.alert.AlertManagerImpl"),
     new ManagerDesc(STATUS_SERVICE, DEFAULT_STATUS_SERVICE),
     new ManagerDesc(URL_MANAGER, "org.lockss.daemon.UrlManager"),
+    new ManagerDesc(TIMER_SERVICE, "org.lockss.util.TimerQueue$Manager"),
     new ManagerDesc(SCHED_SERVICE, DEFAULT_SCHED_SERVICE),
     new ManagerDesc(HASH_SERVICE, "org.lockss.hasher.HashSvcQueueImpl"),
     new ManagerDesc(SYSTEM_METRICS, "org.lockss.daemon.SystemMetrics"),
