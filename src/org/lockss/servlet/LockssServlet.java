@@ -204,6 +204,9 @@ public abstract class LockssServlet extends HttpServlet
     new ServletDescr(ProxyIpAccess.class, "Proxy Access Control");
   protected static ServletDescr SERVLET_HASH_CUS =
     new ServletDescr(HashCUS.class, "Hash CUS");
+  protected static ServletDescr SERVLET_RAISE_ALERT =
+    new ServletDescr(RaiseAlert.class, "Raise Alert",
+		     ServletDescr.NOT_IN_NAV);
 
 
   // All servlets must be listed here (even if not in van table).
@@ -217,6 +220,7 @@ public abstract class LockssServlet extends HttpServlet
      SERVLET_HASH_CUS,
      LINK_LOGS,
      SERVLET_THREAD_DUMP,
+     SERVLET_RAISE_ALERT,
 //      SERVLET_ADMIN_HOME,
 //      SERVLET_JOURNAL_STATUS,
 //      SERVLET_JOURNAL_SETUP,
