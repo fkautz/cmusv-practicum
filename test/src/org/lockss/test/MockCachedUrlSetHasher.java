@@ -68,10 +68,6 @@ public class MockCachedUrlSetHasher implements CachedUrlSetHasher {
     return numBytes;
   }
 
-  public int getBytesPerMsEstimate() {
-    return 100;
-  }
-
   public void setNumBytes(int n) {
     bytes = n;
   }

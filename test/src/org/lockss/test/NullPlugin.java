@@ -235,9 +235,5 @@ public class NullPlugin {
     public int hashStep(int numBytes) {
       return 0;
     }
-
-    public int getBytesPerMsEstimate() {
-      return 1;
-    }
   }
 }

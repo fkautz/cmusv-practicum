@@ -155,16 +155,6 @@ public class TestGenericContentHasher extends LockssTestCase {
     }
   }
 
-  public void testHashEstimation() throws IOException {
-    CachedUrlSet cus = makeFakeCachedUrlSet(5);
-    GenericContentHasher hasher = new GenericContentHasher(cus, dig);
-    long startTime = TimeBase.nowMs();
-    long estimate = hasher.getBytesPerMsEstimate();
-    long endTime = TimeBase.nowMs();
-    assertTrue(estimate > 0);
-    assertTrue(endTime - startTime > GenericHasher.HASH_TEST_DURATION);
-  }
-
   private Vector cachedUrlSetToBytes(CachedUrlSet cus) throws IOException {
     Iterator it = cus.leafIterator();
     Vector bytes = new Vector(10000);

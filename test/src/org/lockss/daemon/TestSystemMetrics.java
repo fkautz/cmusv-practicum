@@ -31,25 +31,33 @@ in this Software without prior written authorization from Stanford University.
 */
 
 package org.lockss.daemon;
+
 import java.io.IOException;
+import org.lockss.util.*;
+import org.lockss.test.*;
 
 /**
- * An object encapsulating a hash in progress on a <code>CachedUrlSet</code>.
- *
- * @author  David S. H. Rosenthal
- * @version 0.0
+ * Test class for SystemMetrics.
  */
-public interface CachedUrlSetHasher {
-    /**
-     * Hash the next <code>numBytes</code> bytes
-     * @param numBytes the number of bytes to hash
-     * @return         the number of bytes hashed
-     * @exception java.io.IOException on many kinds of I/O problem
-     */
-    public int hashStep(int numBytes) throws IOException;
-    /**
-     * True if there is nothing left to hash.
-     * @return <code>true</code> if there is nothing left to hash.
-     */
-    public boolean finished();
+public class TestSystemMetrics extends LockssTestCase {
+  private SystemMetrics metrics;
+
+  public TestSystemMetrics(String msg) {
+    super(msg);
+  }
+
+  public void setUp() throws Exception {
+    super.setUp();
+    metrics = SystemMetrics.getSystemMetrics();
+  }
+
+  public void testHashEstimation() throws IOException {
+    MockCachedUrlSetHasher hasher = new MockCachedUrlSetHasher(10000);
+    long startTime = TimeBase.nowMs();
+    long estimate = metrics.getBytesPerMsHashEstimate(hasher, new MockMessageDigest());
+    long endTime = TimeBase.nowMs();
+    assertTrue(estimate > 0);
+    assertTrue(endTime - startTime > SystemMetrics.HASH_TEST_DURATION);
+  }
+
 }
