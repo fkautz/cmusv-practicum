@@ -73,7 +73,7 @@ public class RepositoryNodeImpl implements RepositoryNode {
   protected static Logger logger = Logger.getLogger("RepositoryNode");
   protected LockssRepositoryImpl repository;
   // preset so testIllegalOperations() doesn't null pointer
-  private Deadline versionTimeout = Deadline.at(0);
+  private Deadline versionTimeout = Deadline.NEVER;
 
   RepositoryNodeImpl(String url, String nodeLocation,
                      LockssRepositoryImpl repository) {
@@ -334,10 +334,10 @@ public class RepositoryNodeImpl implements RepositoryNode {
       throw new UnsupportedOperationException("No content for url '"+url+"'");
     }
     try {
-      InputStream is = 
+      InputStream is =
 	new BufferedInputStream(new FileInputStream(curInputFile));
-      return new 
-	RepositoryNode.RepositoryNodeContents(is, 
+      return new
+	RepositoryNode.RepositoryNodeContents(is,
 					      (Properties)curProps.clone());
     } catch (FileNotFoundException fnfe) {
       logger.error("Couldn't get inputstream for '"+curInputFile.getPath()+"'");
