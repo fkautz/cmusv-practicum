@@ -242,8 +242,8 @@ public class GoslingCrawlerImpl implements Crawler {
         Reader reader = new InputStreamReader(is);
         crawl_ok = au.checkCrawlPermission(reader);
       }
-    }
-    catch (IOException ex) {
+    } catch (IOException ex) {
+      logger.warning("Exception reading manifest: "+ex);
     }
 
 
