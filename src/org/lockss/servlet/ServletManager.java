@@ -284,6 +284,8 @@ public class ServletManager extends JettyManager {
       // Daemon status servlet
       handler.addServlet("DaemonStatus", "/DaemonStatus",
 			 "org.lockss.servlet.DaemonStatus");
+      handler.addServlet("IpAccessControl", "/IpAccessControl",
+			 "org.lockss.servlet.IpAccessControl");
       handler.addServlet("ThreadDump", "/ThreadDump",
 			 "org.lockss.servlet.ThreadDump");
       context.addHandler(handler);
