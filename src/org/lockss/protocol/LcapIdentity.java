@@ -182,7 +182,7 @@ public class LcapIdentity implements Serializable {
    * return the name of the host as a string
    * @return the String representation of the Host
    */
-  protected String toHost() {
+  public String toHost() {
     return m_idKey;
   }
 
