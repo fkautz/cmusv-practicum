@@ -203,5 +203,11 @@ public class TestStringUtil extends LockssTestCase {
     assertEquals(s, StringUtil.fromReader(r));
   }
 
+  public void testEqualStrings() {
+    assertTrue(StringUtil.equalStrings(null, null));
+    assertTrue(!StringUtil.equalStrings("1", null));
+    assertTrue(!StringUtil.equalStrings(null, "1"));
+    assertTrue(StringUtil.equalStrings("foo", "foo"));
+    assertTrue(!StringUtil.equalStrings("foo", "bar"));
+  }
 }
-
