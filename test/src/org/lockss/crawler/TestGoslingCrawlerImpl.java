@@ -630,7 +630,7 @@ public class TestGoslingCrawlerImpl extends LockssTestCase {
     assertEquals(expected, cus.getCachedUrls());
   }
 
-  public void testWillParseExistingPagesForUrls() {
+  public void testWillNotParseExistingPagesForUrls() {
     String url1 = "http://www.example.com/link3.html";
     String url2 = "http://www.example.com/link4.html";
     startUrls = ListUtil.list(startUrl);
@@ -646,7 +646,7 @@ public class TestGoslingCrawlerImpl extends LockssTestCase {
     crawlRule.addUrlToCrawl(url2);
 
     crawler.doCrawl(Deadline.MAX);
-    Set expected = SetUtil.set(url2, startUrl);
+    Set expected = SetUtil.set(startUrl);
     assertEquals(expected, cus.getCachedUrls());
   }
 
