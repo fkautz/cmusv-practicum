@@ -251,7 +251,7 @@ public abstract class FollowLinkCrawler extends CrawlerImpl {
     // Recompute the content tree size.  This can take a while, so do it
     // now in background (crawl) thread since it's likely to be necessary, to
     // make it more likely to be already computed when accessed from the UI.
-    PluginManager.getAuContentSize(au);
+    AuUtil.getAuContentSize(au);
   }
 
   /**
