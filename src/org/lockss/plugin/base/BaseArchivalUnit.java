@@ -757,7 +757,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   protected static class ParamHandlerMap extends TypedEntryMap {
     HashMap handlerMap = new HashMap();
 
-    private ParamHandlerMap() {
+    protected ParamHandlerMap() {
       super();
     }
 
