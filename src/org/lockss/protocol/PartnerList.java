@@ -127,6 +127,7 @@ class PartnerList {
    * @probability the probability of adding the partner
    */
   public void addPartner(InetAddress partnerIP, double probability) {
+    log.debug2("addPartner(" + partnerIP + ", " + probability + ")");
     if (ProbabilisticChoice.choose(probability)) {
       addPartner(partnerIP);
     }

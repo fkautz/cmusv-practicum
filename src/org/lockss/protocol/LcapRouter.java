@@ -245,6 +245,7 @@ public class LcapRouter extends BaseLockssManager {
   void routeIncomingMessage(LockssReceivedDatagram dg, LcapMessage msg) {
     InetAddress sender = dg.getSender();
     InetAddress originator = msg.getOriginAddr();
+    log.debug2("incoming orig: " + originator + " , sender: " + sender);
     if (isEligibleToForward(dg, msg)) {
       msg.setHopCount(msg.getHopCount() - 1);
       if (dg.isMulticast()) {
