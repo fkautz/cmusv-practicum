@@ -129,6 +129,20 @@ public class StatusTable {
     return rows;
   }
 
+  public String toString() {
+    StringBuffer sb = new StringBuffer();
+    sb.append("[StatusTable:");
+    sb.append(name);
+    sb.append(", ");
+    sb.append(key);
+    sb.append(", ");
+    sb.append(columnDescriptors);
+    sb.append(", ");
+    sb.append(rows);
+    sb.append("]");
+    return sb.toString();
+  }
+
   private static class SortRuleComparator implements Comparator {
     List sortRules;
     Map columnTypeMap;
@@ -223,6 +237,19 @@ public class StatusTable {
     public int getType() {
       return type;
     }
+
+    public String toString() {
+      StringBuffer sb = new StringBuffer();
+      sb.append("[StatusTable.ColumnDescriptor:");
+      sb.append(columnName);
+      sb.append(", ");
+      sb.append(title);
+      sb.append(", ");
+      sb.append(type);
+      sb.append("]");
+      return sb.toString();
+    }
+
   }
 
   /**
