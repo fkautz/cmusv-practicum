@@ -69,7 +69,7 @@ public class SystemMetrics {
    * Tests by hashing the CachedUrlSet for a small period of time.
    * @param hasher the CachedUrlSetHasher to test
    * @param digest the hashing algorithm
-   * @returns an int for estimated bytes/ms
+   * @return an int for estimated bytes/ms
    * @throws IOException
    */
   public int getBytesPerMsHashEstimate(CachedUrlSetHasher hasher,

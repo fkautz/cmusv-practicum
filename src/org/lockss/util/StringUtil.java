@@ -103,7 +103,7 @@ public class StringUtil {
    * Concatenate elements of collection into string, with separators
    * @param c - Collection of object (on which toString() will be called)
    * @param separator - String to put between elements
-   * @ sb - StringBuffer to write result into
+   * @param sb - StringBuffer to write result into
    * @return sb
    */
   public static StringBuffer
@@ -230,7 +230,7 @@ public class StringUtil {
    *
    * @param str String to trim
    * @param chars String containing the chars to trim after
-   * @returns str turncated at the first occurance of any of the chars
+   * @return str turncated at the first occurance of any of the chars
    */
   public static String trimAfterChars(String str, String chars) {
     if (str == null) {
