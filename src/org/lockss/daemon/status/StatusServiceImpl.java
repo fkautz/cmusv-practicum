@@ -33,11 +33,13 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.daemon.status;
 
 import java.util.*;
+import org.lockss.app.*;
 
 /**
  * Main implementation of {@link StatusService}
  */
-public class StatusServiceImpl implements StatusService {
+public class StatusServiceImpl 
+  extends BaseLockssManager implements StatusService {
   private Map statusAccessors;
 
 
