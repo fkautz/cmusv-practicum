@@ -226,12 +226,20 @@ public class TestNodeManagerImpl extends LockssTestCase {
     assertIsomorphic(expectedA, histL);
   }
 
-  public void testTreeWalk() {
-
+  public void testWalkEntry() throws Exception {
+    NodeState node = nodeManager.getNodeState(getCUS(TEST_URL));
+    nodeManager.walkNodeState(node);
+    //XXX set various CrawlStates, PollHistories
+    // make sure it triggers the right things?
   }
 
   public void testEstimatedTreeWalk() {
-
+    long estimate = nodeManager.getEstimatedTreeWalkDuration();
+    assertTrue(estimate > 0);
+    long newEstimate = 100;
+    nodeManager.updateEstimate(newEstimate);
+    long expectedEst = (estimate + newEstimate)/2;
+    assertEquals(expectedEst, nodeManager.getEstimatedTreeWalkDuration());
   }
 
   public void testMapErrorCodes() {
@@ -300,7 +308,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
                                         null);
     nodeManager.handleNamePoll(pollState, results, nodeState);
     // since it will try to call a content poll and fail, this becomes an error
-    assertEquals(PollState.WON, pollState.getStatus());
+    assertEquals(PollState.ERR_IO, pollState.getStatus());
 
     // lost name poll
     contentPoll = createPoll(TEST_URL+"/branch2/file1.doc", false, 5, 10);
