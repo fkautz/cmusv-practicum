@@ -61,7 +61,7 @@ public class LockssRepositoryServiceImpl implements LockssRepositoryService {
   private static LockssManager theManager = null;
   private HashMap auMap = new HashMap();
   private static Logger logger = Logger.getLogger("LockssRepositoryService");
-  static String cacheLocation = null;
+  String cacheLocation = null;
 
   // used for name mapping
   static HashMap nameMap = null;
