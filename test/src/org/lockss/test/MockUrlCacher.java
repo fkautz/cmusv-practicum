@@ -101,6 +101,9 @@ public class MockUrlCacher implements UrlCacher {
   public void setConnectionPool(LockssUrlConnectionPool connectionPool) {
   }
 
+  public void setProxy(String proxyHost, int proxyPort) {
+  }
+
   public void setForceRefetch(boolean force) {
     this.forceRefetch = force;
   }
@@ -179,7 +182,7 @@ public class MockUrlCacher implements UrlCacher {
     return CACHE_RESULT_FETCHED;
   }
 
-  public InputStream getUncachedInputStream(){
+  public InputStream getUncachedInputStream() throws IOException {
     return uncachedIS;
   }
 

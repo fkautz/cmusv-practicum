@@ -237,6 +237,10 @@ public class NullPlugin {
       throw new UnsupportedOperationException();
     }
 
+    public void setProxy(String proxyHost, int proxyPort) {
+      throw new UnsupportedOperationException();
+    }
+
     /**
      * setPermissionMap
      *

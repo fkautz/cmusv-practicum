@@ -114,6 +114,9 @@ public interface UrlCacher {
   /** Set the shared connection pool object to be used by this UrlCacher */
   public void setConnectionPool(LockssUrlConnectionPool connectionPool);
 
+  /** Set the host and port the UrlCache should proxy through */
+  public void setProxy(String proxyHost, int proxyPort);
+
   /** Determines whether content will be refetched even if already present
    * and up-to-date.  The default behavior is to not refetch if not
    * necessary (by sending an If-Modified-Since header with the date of the
