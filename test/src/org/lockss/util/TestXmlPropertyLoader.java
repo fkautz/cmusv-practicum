@@ -80,7 +80,11 @@ public class TestXmlPropertyLoader extends LockssTestCase {
 
     PropertyTree props = new PropertyTree();
 
-    m_xmlPropertyLoader.loadProperties(props, istr);
+    try {
+      m_xmlPropertyLoader.loadProperties(props, istr);
+    } catch (Throwable t) {
+      fail("Should not have thrown.");
+    }
 
     m_props = props;
   }

@@ -100,7 +100,6 @@ public class FileConfigFile extends ConfigFile {
 		     "), reloading: " + m_fileUrl);
 	}
       }
-      m_lastModified = Long.toString(m_fileFile.lastModified());
       m_lastAttempt = TimeBase.nowMs();
       InputStream in = null;
       m_IOException = null;
@@ -123,8 +122,16 @@ public class FileConfigFile extends ConfigFile {
       }
 
       if (in != null) {
-	setConfigFrom(in);
-	in.close();
+	try {
+	  setConfigFrom(in);
+	  m_lastModified = Long.toString(m_fileFile.lastModified());
+	  m_loadError = null;
+	} catch (Exception ex) {
+	  log.error("Unable to load configuration. " + ex);
+	  m_loadError = ex.getMessage();
+	} finally {
+	  in.close();
+	} 
       }
     } else {
       log.debug2("File has not changed on disk, not reloading: " + m_fileUrl);
