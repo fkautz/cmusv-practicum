@@ -66,7 +66,7 @@ public class ProxyManager extends JettyManager {
   private String includeIps;
   private String excludeIps;
   private boolean logForbidden;
-  private IpAccessHandler accessHandler;
+  private ProxyAccessHandler accessHandler;
 
   /* ------- LockssManager implementation ------------------ */
   /**
@@ -143,8 +143,8 @@ public class ProxyManager extends JettyManager {
       // cached resources
       context.setMaxCachedFileSize(0);
 
-      // IpAccessHandler is first
-      accessHandler = new IpAccessHandler("Proxy");
+      // ProxyAccessHandler is first
+      accessHandler = new ProxyAccessHandler(getDaemon(), "Proxy");
       setIpFilter();
       context.addHandler(accessHandler);
 
