@@ -163,6 +163,17 @@ public class LockssDaemon {
   }
 
   /**
+   * Starts any managers necessary to handle the ArchivalUnit.
+   * @param au the ArchivalUnit
+   */
+  public void startAUManagers(ArchivalUnit au) {
+    // lockss repository needs to be started first
+    // as the node manager uses it
+    getLockssRepositoryService().addLockssRepository(au);
+    getNodeManagerService().addNodeManager(au);
+  }
+
+  /**
    * return the hash service instance
    * @return the HashService
    * @throws IllegalArgumentException if the manager is not available.
