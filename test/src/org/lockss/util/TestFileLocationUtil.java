@@ -49,7 +49,7 @@ public class TestFileLocationUtil extends LockssTestCase {
 
   public void testMapAuToFileLocation() {
     ArchivalUnit mau = new MockArchivalUnit();
-    String expectedStr = "root/mock/none/";
+    String expectedStr = "root/none/";
     assertEquals(expectedStr,
                  FileLocationUtil.mapAuToFileLocation("root", mau));
   }

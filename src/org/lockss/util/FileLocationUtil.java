@@ -37,10 +37,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Create a list of Object from a call list. */
+ * Create a list of Object from a call list.
+ */
 public class FileLocationUtil {
     /**
-     * Don't construct. */
+     * Don't construct.
+     */
     private FileLocationUtil() {
     }
 
@@ -58,11 +60,11 @@ public class FileLocationUtil {
       if (!rootLocation.endsWith(File.separator)) {
         buffer.append(File.separator);
       }
-      buffer.append(au.getPluginId());
-      if (!au.getAUId().equals("")) {
-        buffer.append(File.separator);
+//      buffer.append(au.getPluginId());
+  //    if (!au.getAUId().equals("")) {
+    //    buffer.append(File.separator);
         buffer.append(au.getAUId());
-      }
+     // }
       buffer.append(File.separator);
       return buffer.toString();
     }
