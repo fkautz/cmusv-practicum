@@ -116,15 +116,6 @@ public interface NodeManager extends LockssManager {
   public Iterator getNodeHistoriesSince(CachedUrlSet cus, Deadline since);
 
   /**
-   * Returns the estimated time it will take to walk a given
-   * {@link ArchivalUnit}.  This can be used to finetune the tree walk
-   * parameter settings in the Configuration.
-   * @return estimated time in ms
-   */
- // public long getEstimatedTreeWalkDuration();
-
-
-  /**
    * Do one tree walk.  XXX this should probably be handled by making the
    * node manager kick off a thread when it starts to run the tree walk every
    * X minutes

@@ -41,12 +41,12 @@ import org.lockss.plugin.ArchivalUnit;
  */
 public class AuStateBean extends AuState {
   public AuStateBean() {
-    super(null, -1, -1, -1);
+    super(null, -1, -1, -1, null);
   }
 
   AuStateBean(AuState auState) {
     super(auState.au, auState.lastCrawlTime, auState.lastTopLevelPoll,
-          auState.lastTreeWalk);
+          auState.lastTreeWalk, null);
   }
 
   /**

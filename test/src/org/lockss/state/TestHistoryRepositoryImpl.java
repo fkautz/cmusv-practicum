@@ -214,7 +214,7 @@ public class TestHistoryRepositoryImpl extends LockssTestCase {
 
 
   public void testStoreAuState() throws Exception {
-    AuState auState = new AuState(mau, 123, 321, 456);
+    AuState auState = new AuState(mau, 123, 321, 456, repository);
     repository.storeAuState(auState);
     String filePath = LockssRepositoryServiceImpl.mapAuToFileLocation(tempDirPath +
         HistoryRepositoryImpl.HISTORY_ROOT_NAME, mau);

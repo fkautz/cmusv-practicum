@@ -82,12 +82,6 @@ public class RepositoryNodeImpl implements RepositoryNode {
     this.repository = repository;
   }
 
-  public void finalize() {
-    if (repository!=null) {
-      repository.removeReference(url);
-    }
-  }
-
   public String getNodeUrl() {
     return url;
   }

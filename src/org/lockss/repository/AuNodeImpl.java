@@ -51,12 +51,6 @@ public class AuNodeImpl extends RepositoryNodeImpl {
     super(url, nodeLocation, repository);
   }
 
-  public void finalize() {
-    url = AuUrl.PROTOCOL;
-    super.finalize();
-  }
-
-
   /**
    * Overriden to return false.
    * @return false
