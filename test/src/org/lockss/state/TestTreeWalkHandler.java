@@ -96,7 +96,6 @@ public class TestTreeWalkHandler extends LockssTestCase {
     nodeManager.auState = historyRepo.loadAuState(mau);
     nodeManager.pollManager = pollMan;
 
-
     treeWalkHandler = new TreeWalkHandler(nodeManager, theDaemon);
 
     TestNodeManagerImpl.loadNodeStates(mau, nodeManager);
@@ -207,6 +206,12 @@ public class TestTreeWalkHandler extends LockssTestCase {
 
   public void testCheckNodeStatePolling() throws Exception {
     TimeBase.setSimulated(10000);
+
+    // give it a lock to avoid null pointer
+    treeWalkHandler.activityLock =
+        theDaemon.getActivityRegulator(mau).getAuActivityLock(
+        ActivityRegulator.TREEWALK, 123321);
+
     NodeStateImpl node = (NodeStateImpl)nodeManager.getNodeState(
         TestNodeManagerImpl.getCUS(mau, TEST_URL));
 
@@ -253,6 +258,12 @@ public class TestTreeWalkHandler extends LockssTestCase {
 
   public void testCheckNodeStateRecursion() throws Exception {
     TimeBase.setSimulated(10000);
+
+    // get lock to avoid null pointer
+    treeWalkHandler.activityLock =
+        theDaemon.getActivityRegulator(mau).getAuActivityLock(
+        ActivityRegulator.TREEWALK, 123321);
+
     CachedUrlSet cus = mau.getAUCachedUrlSet();
     CachedUrlSet subCus = (CachedUrlSet)cus.flatSetIterator().next();
     NodeStateImpl node = (NodeStateImpl)nodeManager.getNodeState(cus);
@@ -265,11 +276,6 @@ public class TestTreeWalkHandler extends LockssTestCase {
     node.closeActivePoll(pollHist);
     node.setState(NodeState.NAME_RUNNING);
 
-    // get lock to avoid null pointer
-    treeWalkHandler.activityLock =
-        theDaemon.getActivityRegulator(mau).startAuActivity(
-        ActivityRegulator.TREEWALK, 10500);
-
     // should act on the parent node
     assertFalse(treeWalkHandler.recurseTreeWalk(cus));
     assertEquals(pollMan.getPollStatus(cus.getUrl()),
@@ -278,6 +284,11 @@ public class TestTreeWalkHandler extends LockssTestCase {
     pollMan.thePolls.remove(cus.getUrl());
     // reset treewalk
     treeWalkHandler.treeWalkAborted = false;
+
+    // get lock to avoid null pointer
+    treeWalkHandler.activityLock =
+        theDaemon.getActivityRegulator(mau).getAuActivityLock(
+        ActivityRegulator.TREEWALK, 123321);
 
     // set both nodes to be running a poll
     pollHist = new PollHistory(Poll.NAME_POLL, "", "",
