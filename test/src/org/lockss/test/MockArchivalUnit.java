@@ -62,6 +62,8 @@ public class MockArchivalUnit implements ArchivalUnit {
 
   private Plugin plugin;
 
+  private FilterRule filterRule = null;
+
   public MockArchivalUnit(){
   }
 
@@ -241,7 +243,11 @@ public class MockArchivalUnit implements ArchivalUnit {
   }
 
   public FilterRule getFilterRule(String mimeType) {
-    throw new UnsupportedOperationException("Not implemented");
+    return filterRule;
+  }
+
+  public void setFilterRule(FilterRule filterRule) {
+    this.filterRule = filterRule;
   }
 
   public String toString() {
