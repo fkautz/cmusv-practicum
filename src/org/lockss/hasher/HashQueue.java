@@ -132,7 +132,10 @@ class HashQueue implements Serializable {
 	while (iter.hasNext()) {
 	  qreq = (Request)iter.next();
 	  if (qreq.overrun()) {
-	    // don't let overrunners prevent others from getting into queue.
+	    // Don't let overrunners prevent others from getting into queue.
+	    // (Their curEst() is zero so they wouldn't affect the
+	    //  totalDuration, but their deadline might preceed the
+	    //  new request's deadline, so might now be unachievable.)
 	    break;
 	  }
 	  totalDuration += qreq.curEst();
