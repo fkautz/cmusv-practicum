@@ -144,7 +144,7 @@ public class XmlMarshaller {
       throws IOException, MarshallingException {
     File loadFile = new File(fileLoc);
     if (!loadFile.exists()) {
-      logger.debug("File '"+fileLoc+"' not found.");
+      logger.debug3("File '"+fileLoc+"' not found.");
       return null;
     }
 
