@@ -115,7 +115,8 @@ public class HashService {
     HashQueue.Request req =
       new HashQueue.Request(urlset, hasher, deadline,
 			    callback, cookie,
-			    urlset.getNameHasher(hasher), 0); 
+			    // tk - get better duration estimate
+			    urlset.getNameHasher(hasher), 1000); 
     return scheduleReq(req);
   }
 
