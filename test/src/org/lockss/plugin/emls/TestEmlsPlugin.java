@@ -81,7 +81,7 @@ public class TestEmlsPlugin extends LockssTestCase {
       throws ArchivalUnit.ConfigurationException, MalformedURLException {
     Properties props = new Properties();
     props.setProperty(EmlsPlugin.AUPARAM_BASE_URL,
-                      "http://www.example.com/");
+                      "http://www.example.com/emls/");
     props.setProperty(EmlsPlugin.AUPARAM_VOL, "3");
 
     EmlsArchivalUnit au = makeAuFromProps(props);
