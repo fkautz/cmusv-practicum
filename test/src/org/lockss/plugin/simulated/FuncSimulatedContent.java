@@ -142,11 +142,23 @@ public class FuncSimulatedContent extends LockssTestCase {
   private void checkRoot() {
     CachedUrlSet set = sau.getAUCachedUrlSet();
     Iterator setIt = set.flatSetIterator();
-    ArrayList childL = new ArrayList(7);
+    ArrayList childL = new ArrayList(1);
+    CachedUrlSet cus = null;
+    while (setIt.hasNext()) {
+      cus = (CachedUrlSet)setIt.next();
+      childL.add(cus.getUrl());
+    }
+
+    String[] expectedA = new String[] { sau.SIMULATED_URL_ROOT };
+    assertIsomorphic(expectedA, childL);
+
+    setIt = cus.flatSetIterator();
+    childL = new ArrayList(7);
     while (setIt.hasNext()) {
       childL.add(((CachedUrlSetNode)setIt.next()).getUrl());
     }
-    String[] expectedA = new String[] {
+
+    expectedA = new String[] {
       sau.SIMULATED_URL_ROOT+"/branch1",
       sau.SIMULATED_URL_ROOT+"/branch2",
       sau.SIMULATED_URL_ROOT+"/file1.html",
