@@ -122,7 +122,9 @@ public class TestFileUtil extends LockssTestCase {
   File createFile(String name, String content) throws Exception {
     File file = new File(name);
     FileOutputStream fos = new FileOutputStream(file);
-    StreamUtil.copy(new StringInputStream(content), fos);
+    InputStream sis = new StringInputStream(content);
+    StreamUtil.copy(sis, fos);
+    sis.close();
     fos.close();
     return file;
   }
