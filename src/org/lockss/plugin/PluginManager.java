@@ -961,6 +961,11 @@ public class PluginManager extends BaseLockssManager {
       initKeystore();
     }
 
+    if (urls.isEmpty()) {
+      // if loop below is empty, it waits on semaphore that's never posted
+      return;
+    }
+
     BinarySemaphore bs = new BinarySemaphore();
 
     RegistryCallback regCallback = new RegistryCallback(urls, bs);
