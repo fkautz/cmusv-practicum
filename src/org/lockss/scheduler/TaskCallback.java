@@ -46,17 +46,6 @@ public interface TaskCallback {
    * @param type one of {@link Schedule.EventType#START}, {@link
    * Schedule.EventType#FINISH}
    */
-  public void taskEvent(SchedulableTask task, Schedule.EventType type)
-      throws Abort;
-
-  public class Abort extends Exception {
-    public Abort() {
-      super();
-    }
-
-    public Abort(String msg) {
-      super(msg);
-    }
-  }
+  public void taskEvent(SchedulableTask task, Schedule.EventType type);
 }
 

@@ -42,7 +42,6 @@ public class BackgroundTask extends SchedulableTask {
 
   final double loadFactor;
 //   final int loadFactor0;
-  final TaskCallback callback;
   private Deadline latestStart;		// hack until schedulable range
 					// handled compatibly with
 					// superclass

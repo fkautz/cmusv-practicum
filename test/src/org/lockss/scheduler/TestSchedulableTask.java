@@ -91,13 +91,15 @@ public class TestSchedulableTask extends LockssTestCase {
 
   public void testFinishComparator() {
     TreeSet s = new TreeSet(SchedulableTask.latestFinishComparator());
-    SchedulableTask t1, t2, t3, t4;
+    SchedulableTask t1, t2, t3, t4, t5;
     s.add(t1 = taskBetween(100, 200, 50));
     s.add(t2 = taskBetween(100, 100, 50));
     s.add(t3 = taskBetween(100, 400, 50));
     s.add(t4 = taskBetween(100, 87, 50));
-    assertIsomorphic(ListUtil.list(t4, t2, t1, t3).toArray(),
-		     s.iterator());
+    assertEquals(ListUtil.list(t4, t2, t1, t3), new ArrayList(s));
+    // same sort order as t2, ensure comparator doesn't treat is as equal
+    s.add(t5 = taskBetween(100, 100, 50));
+    assertEquals(5, s.size());
   }
 
   public void testcurEst() {

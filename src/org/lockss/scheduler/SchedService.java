@@ -61,7 +61,7 @@ public class SchedService extends BaseLockssManager {
 	public Scheduler createScheduler() {
 	  return new SortScheduler();
 	}});
-    runner.init();
+    runner.startService();
     getApp().getStatusService().
       registerStatusAccessor("SchedQ", runner.getStatusAccessor());
   }
@@ -74,7 +74,7 @@ public class SchedService extends BaseLockssManager {
     // TODO: checkpoint here.
     if (runner != null) {
       getApp().getStatusService().unregisterStatusAccessor("TaskRunner");
-      runner.stopThread();
+      runner.stopService();
     }
     runner = null;
 
