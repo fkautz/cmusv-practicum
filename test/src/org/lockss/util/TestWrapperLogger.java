@@ -133,6 +133,7 @@ public class TestWrapperLogger extends LockssTestCase {
   public void testThrowable() throws IOException {
     WrapperLogger.setLevel(Logger.LEVEL_WARNING);
     Exception e = new Exception("dummy exception");
+    tgt.resetMessages();
     WrapperLogger.record_throwable(classname,methodname,e);
     assertTrue(tgt.hasMessage(getExceptionLogMessage(e)));
     WrapperLogger.setLevel(Logger.LEVEL_CRITICAL);
