@@ -72,15 +72,15 @@ public class SimulatedStatusAccessor implements StatusAccessor {
     return sortRules;
   }
 
-  public List getColumnDescriptors(Object key) throws StatusService.Error {
+  public List getColumnDescriptors(String key) {
     return columns;
   }
 
-  public List getRows(Object key) throws StatusService.Error {
+  public List getRows(String key) {
     return rows;
   }
 
-  public List getDefaultSortRules(Object key) throws StatusService.Error {
+  public List getDefaultSortRules(String key) {
     return sortRules;
   }
 
