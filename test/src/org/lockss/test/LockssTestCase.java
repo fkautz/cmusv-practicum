@@ -82,7 +82,8 @@ public class LockssTestCase extends TestCase {
 
   /** Remove any temp dirs, cancel any outstanding {@link DoLater}s */
   public void tearDown() throws Exception {
-    if (tmpDirs != null) {
+    boolean leave = Boolean.getBoolean("org.lockss.keepTempFiles");
+    if (tmpDirs != null && !leave) {
       for (ListIterator iter = tmpDirs.listIterator(); iter.hasNext(); ) {
 	File dir = (File)iter.next();
 	if (FileUtil.delTree(dir)) {
