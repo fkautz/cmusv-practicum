@@ -148,7 +148,8 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
         // increment current estimate by 50%, so as to avoid future timeouts
         if (lastDuration > 0) {
           nodeManager.hashFinished(this,
-                                   (long)(lastDuration * TIMEOUT_INCREASE));
+                                   (long)(Math.max(elapsed, lastDuration) *
+					  TIMEOUT_INCREASE));
         }
       }
     } else {
