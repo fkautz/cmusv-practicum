@@ -109,6 +109,10 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
       throw new UnsupportedOperationException("Not implemented");
     }
 
+    public Collection getUrlStems() {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
     public CachedUrlSet makeCachedUrlSet(CachedUrlSetSpec cuss) {
       return new SCUS(this, cuss);
     }

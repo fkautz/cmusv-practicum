@@ -44,18 +44,20 @@ import org.lockss.plugin.base.*;
  * It repeatably generates local content (via a file hierarchy),
  * with specific parameters obtained via Configuration.
  *
- * It emulates the fake URL 'www.simcontent.org'.
+ * It emulates the fake URL 'www.example.com'.
  *
  * @author  Emil Aalto
  * @version 0.0
  */
 
 public class SimulatedArchivalUnit extends BaseArchivalUnit {
-/**
- * This is the url which the Crawler should start at.
- */
+  public static final String SIMULATED_URL_STEM = "http://www.example.com";
+
+  /**
+   * This is the url which the Crawler should start at.
+   */
   public static final String SIMULATED_URL_START =
-    "http://www.example.com/index.html";
+    SIMULATED_URL_STEM + "/index.html";
 
   /**
    * This is the root of the url which the SimAU pretends to be.
@@ -227,6 +229,10 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
 
   public List getNewContentCrawlUrls() {
     return ListUtil.list(SIMULATED_URL_START);
+  }
+
+  public Collection getUrlStems() {
+    return ListUtil.list(SIMULATED_URL_STEM);
   }
 
   boolean isURLToBeDamaged(String url) {

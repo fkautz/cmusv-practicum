@@ -75,6 +75,10 @@ public class MockArchivalUnit implements ArchivalUnit {
     this.spec = spec;
   }
 
+  public Collection getUrlStems() {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
   public CachedUrlSet getAUCachedUrlSet() {
     if (cus != null) {
       // if someone has set the aucus, return it

@@ -166,5 +166,10 @@ public class TestBaseArchivalUnit extends LockssTestCase {
     public List getNewContentCrawlUrls() {
       throw new UnsupportedOperationException("Not supported.");
     }
+
+    public Collection getUrlStems() {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
   }
 }

@@ -108,4 +108,9 @@ public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
   public List getNewContentCrawlUrls() {
     throw new UnsupportedOperationException("Not implemented");
   }
+
+  public Collection getUrlStems() {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
 }

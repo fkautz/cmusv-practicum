@@ -86,6 +86,14 @@ public interface ArchivalUnit {
   public CrawlSpec getCrawlSpec();
 
   /**
+   * Return stems (protocol and host) of URLs in the AU.  Used for external
+   * proxy configuration.  All URLs in the AU much match at least one stem;
+   * it's okay for there to be matching URLs that aren't in the AU.
+   * @return a Collection of URL stems
+   */
+  public Collection getUrlStems();
+
+  /**
    * Returns a unique string identifier for the {@link Plugin}.
    * @return a unique id
    */

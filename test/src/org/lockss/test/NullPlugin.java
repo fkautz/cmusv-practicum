@@ -307,6 +307,10 @@ public class NullPlugin {
       return false;
     }
 
+    public Collection getUrlStems() {
+      return Collections.EMPTY_LIST;
+    }
+
     public String getPluginId() {
       return "null_plugin_id";
     }

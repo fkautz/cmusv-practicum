@@ -196,6 +196,16 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
     return new CrawlRules.FirstMatch(rules);
   }
 
+  public Collection getUrlStems() {
+    try {
+      URL stem = new URL(base.getProtocol(), base.getHost(), base.getPort(),
+			 "");
+      return ListUtil.list(stem.toString());
+    } catch (MalformedURLException e) {
+      return Collections.EMPTY_LIST;
+    }
+  }
+
   public long getFetchDelay() {
     return pauseMS;
   }
