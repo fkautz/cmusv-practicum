@@ -488,6 +488,9 @@ public class RemoteApi extends BaseLockssManager {
 	stat.setExplanation(e.getMessage());
       }
     }
+    if (stat.getName() == null) {
+      stat.setName("Unknown");
+    }
   }
 
   /** Throw InvalidAuConfigBackupFile if the config is of an unknown
