@@ -30,17 +30,11 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.util;
 
-/**
- * <p>Title: </p>
- * <p>Description: Miscellaneous utility methods that don't fit anywhere
- * else.</p>
- * <p>Copyright: Copyright (c) 2003</p>
- * <p>Company: </p>
- * @author not attributable
- * @version 1.0
- */
-
 import java.util.*;
+
+/**
+ * Utilities for dealing with classes.
+ */
 
 public class ClassUtil {
 

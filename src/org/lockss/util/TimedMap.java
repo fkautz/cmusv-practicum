@@ -35,14 +35,13 @@ package org.lockss.util;
 import java.util.*;
 
 /**
- * <p>Title: </p>
- * <p>Description: Variant of maps where each entry has its own interval
- * and will expire accordingly.  </p>
+ * Map in which entries live for some interval, after which they are
+ * automatically removed.
  * @author Tyrone Nicholas
  * @version 1.0
  */
 
-abstract class TimedMap implements Map {
+public abstract class TimedMap implements Map {
 
   Map entries;
   Map keytimes;

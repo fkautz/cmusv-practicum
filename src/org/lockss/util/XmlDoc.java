@@ -32,18 +32,17 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.util;
 
-/**
- * <p>Title: XmlDoc</p>
- * <p>Description: Wraps an XML DOM document, shielding callers from the
- * complexity of the Xerces XML interfaces.</p>
- * @author Tyrone Nicholas
- */
-
 import javax.xml.parsers.*;
 import org.w3c.dom.*;
 import org.xml.sax.*;
 import java.io.*;
 import java.util.*;
+
+/**
+ * Wraps an XML DOM document, shielding callers from the
+ * complexity of the Xerces XML interfaces.
+ * @author Tyrone Nicholas
+ */
 
 public class XmlDoc {
 

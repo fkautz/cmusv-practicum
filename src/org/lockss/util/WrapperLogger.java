@@ -31,12 +31,12 @@ in this Software without prior written authorization from Stanford University.
 */
 package org.lockss.util;
 
+import java.util.*;
+
 /**
- * <p>Title: WrapperLogger</p>
- * <p>Description: Static class for use in the wrapper layer</p>
+ * Static class for use in the wrapper layer.
  * @author Tyrone Nicholas
  */
-import java.util.*;
 
 public class WrapperLogger {
 
