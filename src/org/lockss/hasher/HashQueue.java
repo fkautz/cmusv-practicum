@@ -134,7 +134,7 @@ class HashQueue implements Serializable {
 	  if (qreq.overrun()) {
 	    // Don't let overrunners prevent others from getting into queue.
 	    // (Their curEst() is zero so they wouldn't affect the
-	    //  totalDuration, but their deadline might preceed the
+	    //  totalDuration, but their deadline might precede the
 	    //  new request's deadline, so might now be unachievable.)
 	    break;
 	  }
