@@ -316,6 +316,15 @@ public class StringUtil {
     return str.regionMatches(true, str.length() - lend, end, 0, lend);
   }
 
+  /** Remove the extension from a filename */
+  public static String upToFinal(String str, String sep) {
+    int pos = str.lastIndexOf(sep);
+    if (pos < 0) {
+      return str;
+    }
+    return str.substring(0, pos);
+  }
+
   /* Return the substring following the final dot */
   public static String shortName(Object object) {
     if (object == null) {

@@ -380,4 +380,12 @@ public class TestStringUtil extends LockssTestCase {
       fail(e.getMessage());
     }
   }
+
+  public void testUpToFinal() {
+    assertEquals("foo", StringUtil.upToFinal("foo.bar", "."));
+    assertEquals("foo.a", StringUtil.upToFinal("foo.a.bar", "."));
+    assertEquals("foo", StringUtil.upToFinal("foo", "."));
+    assertEquals("", StringUtil.upToFinal(".foo", "."));
+  }
+
 }
