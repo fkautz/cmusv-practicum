@@ -62,8 +62,9 @@ public class ProxyIpAccess extends IpAccessControl {
   private int auditPort;
   
   protected void resetLocals() {
-     formAuditEnable = false;
-     formAuditPort = null;
+    super.resetLocals();
+    formAuditEnable = false;
+    formAuditPort = null;
   }
 
   protected String getExplanation() {
