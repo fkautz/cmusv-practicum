@@ -169,9 +169,9 @@ public class TestProjectMuseArchivalUnit extends LockssTestCase {
     shouldCacheTest("http://muse2.jhu.edu/", false, pmAu, cus);
   }
 
-  private void shouldCacheTest(String url, boolean shouldCache, ArchivalUnit au,
-                               CachedUrlSet cus) {
-    UrlCacher uc = au.makeUrlCacher(cus, url);
+  private void shouldCacheTest(String url, boolean shouldCache,
+			       ArchivalUnit au, CachedUrlSet cus) {
+    UrlCacher uc = au.getPlugin().makeUrlCacher(cus, url);
     assertTrue(uc.shouldBeCached()==shouldCache);
   }
 

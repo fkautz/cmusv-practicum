@@ -138,4 +138,16 @@ public abstract class BasePlugin implements Plugin {
     return theDaemon;
   }
 
+  public CachedUrlSet makeCachedUrlSet(ArchivalUnit owner,
+				       CachedUrlSetSpec cuss) {
+    return new GenericFileCachedUrlSet(owner, cuss);
+  }
+
+  public CachedUrl makeCachedUrl(CachedUrlSet owner, String url) {
+    return new GenericFileCachedUrl(owner, url);
+  }
+
+  public UrlCacher makeUrlCacher(CachedUrlSet owner, String url) {
+    return new GenericFileUrlCacher(owner, url);
+  }
 }

@@ -231,12 +231,13 @@ public class GoslingCrawlerImpl implements Crawler {
 
     // fetch and cache the manifest page
     String manifest = au.getManifestPage();
-    UrlCacher uc = au.makeUrlCacher(ownerCus, manifest);
+    Plugin plugin = au.getPlugin();
+    UrlCacher uc = plugin.makeUrlCacher(ownerCus, manifest);
     try {
       if(au.shouldBeCached(manifest)) {
         uc.cache();
         // check for the permission on the page
-        CachedUrl cu = au.makeCachedUrl(ownerCus, manifest);
+        CachedUrl cu = plugin.makeCachedUrl(ownerCus, manifest);
         InputStream is = cu.openForReading();
         Reader reader = new InputStreamReader(is);
         crawl_ok = au.checkCrawlPermission(reader);
@@ -266,7 +267,8 @@ public class GoslingCrawlerImpl implements Crawler {
 			     boolean overWrite) {
     boolean wasError = false;
     logger.debug2("Dequeued url from list: "+url);
-    UrlCacher uc = au.makeUrlCacher(cus, url);
+    Plugin plugin = au.getPlugin();
+    UrlCacher uc = plugin.makeUrlCacher(cus, url);
     // don't cache if already cached, unless overwriting
     if (overWrite || !uc.getCachedUrl().hasContent()) {
       try {

@@ -127,6 +127,10 @@ public class TestPollSpec extends LockssTestCase {
     assertEquals(url, ps.getUrl());
     assertEquals(lower, ps.getLwrBound());
     assertEquals(upper, ps.getUprBound());
+}
 
+  public static void main(String[] argv) {
+    String[] testCaseList = {TestPollSpec.class.getName()};
+    junit.textui.TestRunner.main(testCaseList);
   }
 }

@@ -206,4 +206,10 @@ public class SimulatedPlugin extends BasePlugin implements PluginTestable {
     aus.remove(au);
   }
 
+  public UrlCacher makeUrlCacher(CachedUrlSet owner, String url) {
+    String fileRoot =
+      ((SimulatedArchivalUnit)owner.getArchivalUnit()).getRootDir();
+    return new SimulatedUrlCacher(owner, url, fileRoot);
+  }
+
 }

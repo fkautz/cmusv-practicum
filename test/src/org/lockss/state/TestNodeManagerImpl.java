@@ -69,6 +69,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     ConfigurationUtil.setCurrentConfigFromProps(p);
 
     mau = new MockArchivalUnit();
+    mau.setPlugin(new MockPlugin());
     mau.setAUCachedUrlSet(makeFakeCachedUrlSet(mau, TEST_URL, 2, 2));
     theDaemon.getPluginManager();
     PluginUtil.registerArchivalUnit(mau);
@@ -1124,7 +1125,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
           break;
         case CachedUrlSetNode.TYPE_CACHED_URL:
           CachedUrlSetSpec rSpec = new RangeCachedUrlSetSpec(child.getUrl());
-          CachedUrlSet newSet = au.makeCachedUrlSet(rSpec);
+          CachedUrlSet newSet = au.getPlugin().makeCachedUrlSet(au, rSpec);
           nodeManager.createNodeState(newSet);
       }
     }

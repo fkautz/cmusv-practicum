@@ -75,6 +75,7 @@ public class TestGoslingCrawlerImpl extends LockssTestCase {
     TimeBase.setSimulated(10);
 
     mau = new MockArchivalUnit();
+    mau.setPlugin(new MockPlugin());
 
     urlSet = SetUtil.set(startUrl);
     MockCachedUrlSet cus = new MyMockCachedUrlSet(mau, null);

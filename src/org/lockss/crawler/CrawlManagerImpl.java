@@ -190,7 +190,8 @@ public class CrawlManagerImpl extends BaseLockssManager
 
   private static CachedUrlSet createSingleNodeCachedUrlSet(ArchivalUnit au,
 							   String url) {
-    return au.makeCachedUrlSet(new SingleNodeCachedUrlSetSpec(url));
+    Plugin plugin = au.getPlugin();
+    return plugin.makeCachedUrlSet(au, new SingleNodeCachedUrlSetSpec(url));
   }
 
   public void startNewContentCrawl(ArchivalUnit au, CrawlManager.Callback cb,

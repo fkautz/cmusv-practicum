@@ -271,12 +271,4 @@ public class ProjectMuseArchivalUnit extends BaseArchivalUnit {
     }
     return false;
   }
-
-  /**
-   * @return null since we're not currently filtering Muse content
-   */
-  public FilterRule getFilterRule(String mimeType) {
-    return null;
-  }
-
 }

@@ -174,5 +174,9 @@ public class TestBaseUrlCacher extends LockssTestCase {
     public void pauseBeforeFetch() {
       pauseBeforeFetchCounter++;
     }
+    
+    public Plugin getPlugin() {
+      return new MockPlugin();
+    }
   }
 }

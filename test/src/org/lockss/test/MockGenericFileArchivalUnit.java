@@ -117,9 +117,4 @@ public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
   public String getManifestPage() {
     throw new UnsupportedOperationException("Not implemented.");
   }
-
-  public FilterRule getFilterRule(String mimeType) {
-    //no filtering
-    return null;
-  }
 }

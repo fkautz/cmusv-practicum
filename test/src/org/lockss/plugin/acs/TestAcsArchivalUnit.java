@@ -189,9 +189,9 @@ public class TestAcsArchivalUnit
     shouldCacheTest(url, false, acsAu, cus);
   }
 
-  private void shouldCacheTest(String url, boolean shouldCache, ArchivalUnit au,
-                               CachedUrlSet cus) {
-    UrlCacher uc = au.makeUrlCacher(cus, url);
+  private void shouldCacheTest(String url, boolean shouldCache,
+			       ArchivalUnit au, CachedUrlSet cus) {
+    UrlCacher uc = au.getPlugin().makeUrlCacher(cus, url);
     assertEquals(uc.shouldBeCached(), shouldCache);
   }
 

@@ -139,7 +139,8 @@ public class CuUrl {
 	if (!au.shouldBeCached(cachedUrlString)) {
 	  throw new FileNotFoundException(urlString);
 	}
-	cu = au.makeCachedUrl(au.getAUCachedUrlSet(), cachedUrlString);
+	Plugin plugin = au.getPlugin();
+	cu = plugin.makeCachedUrl(au.getAUCachedUrlSet(), cachedUrlString);
 	if (cu == null || !cu.hasContent()) {
 	  throw new FileNotFoundException(urlString);
 	}

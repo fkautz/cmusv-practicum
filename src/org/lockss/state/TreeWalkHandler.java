@@ -200,8 +200,10 @@ public class TreeWalkHandler {
         pContinue = recurseTreeWalk((CachedUrlSet)node);
       } else if (node.getType()==CachedUrlSetNode.TYPE_CACHED_URL) {
         // open a new state for the leaf and walk
-        NodeState state = manager.getNodeState(
-            theAu.makeCachedUrlSet(new RangeCachedUrlSetSpec(node.getUrl())));
+	Plugin plugin = theAu.getPlugin();
+	CachedUrlSetSpec cuss = new RangeCachedUrlSetSpec(node.getUrl());
+        NodeState state =
+	  manager.getNodeState(plugin.makeCachedUrlSet(theAu, cuss));
         pContinue = checkNodeState(state);
       }
       if (!pContinue) {

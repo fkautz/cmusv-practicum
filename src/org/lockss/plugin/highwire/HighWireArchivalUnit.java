@@ -160,7 +160,7 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
   }
 
   public UrlCacher urlCacherFactory(CachedUrlSet owner, String url) {
-    return new HighWireUrlCacher(owner, url);
+    return new GenericFileUrlCacher(owner, url);
   }
 
   public String getManifestPage() {

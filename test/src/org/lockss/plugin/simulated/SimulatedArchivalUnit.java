@@ -137,19 +137,6 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     this.crawlSpec = new CrawlSpec(SIMULATED_URL_START, null);
   }
 
-  public CachedUrlSet cachedUrlSetFactory(ArchivalUnit owner,
-                                          CachedUrlSetSpec cuss) {
-    return new GenericFileCachedUrlSet(owner, cuss);
-  }
-
-  public CachedUrl cachedUrlFactory(CachedUrlSet owner, String url) {
-    return new GenericFileCachedUrl(owner, url);
-  }
-
-  public UrlCacher urlCacherFactory(CachedUrlSet owner, String url) {
-    return new SimulatedUrlCacher(owner, url, fileRoot);
-  }
-
   public String getName() {
     return "Simulated Content: " + fileRoot;
   }
@@ -242,11 +229,6 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
 
   public Collection getUrlStems() {
     return ListUtil.list(SIMULATED_URL_STEM);
-  }
-
-  public FilterRule getFilterRule(String mimeType) {
-    //no filtering
-    return null;
   }
 
   boolean isURLToBeDamaged(String url) {

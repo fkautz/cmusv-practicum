@@ -66,6 +66,7 @@ public class TestTreeWalkHandler extends LockssTestCase {
     ConfigurationUtil.setCurrentConfigFromProps(props);
 
     mau = new MockArchivalUnit();
+    mau.setPlugin(new MockPlugin());
     mau.setAUCachedUrlSet(TestNodeManagerImpl.makeFakeAuCachedUrlSet(mau,
         TEST_URL, 2, 2));
     theDaemon.getPluginManager();

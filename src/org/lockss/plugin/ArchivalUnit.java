@@ -72,30 +72,6 @@ public interface ArchivalUnit {
   public boolean shouldBeCached(String url);
 
   /**
-   * Create a {@link CachedUrlSet}representing the content in this AU
-   * with a specific {@link CachedUrlSetSpec}.
-   * @param spec the {@link CachedUrlSetSpec}
-   * @return the created {@link CachedUrlSet}
-   */
-  public CachedUrlSet makeCachedUrlSet(CachedUrlSetSpec spec);
-
-  /**
-   * Create a {@link CachedUrl} object within the set.
-   * @param owner the {@link CachedUrlSet} owner
-   * @param url the url of interest
-   * @return a {@link CachedUrl} object representing the url.
-   */
-  public CachedUrl makeCachedUrl(CachedUrlSet owner, String url);
-
-  /**
-   * Create a {@link UrlCacher} object within the set.
-   * @param owner the {@link CachedUrlSet} owner
-   * @param url the url of interest
-   * @return a {@link UrlCacher} object representing the url.
-   */
-  public UrlCacher makeUrlCacher(CachedUrlSet owner, String url);
-
-  /**
    * Return the {@link CachedUrlSet} representing the entire contents
    * of this AU
    * @return the top-level {@link CachedUrlSet}

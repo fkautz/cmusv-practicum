@@ -56,6 +56,8 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
   private Configuration auConfig;
   private Collection defKeys = null;
 
+  private List aus = new ArrayList();
+
   public MockPlugin(){
   }
 
@@ -161,4 +163,18 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
   public void unregisterArchivalUnit(ArchivalUnit au) {
     aus.remove(au);
   }
+
+  public CachedUrlSet makeCachedUrlSet(ArchivalUnit owner,
+				       CachedUrlSetSpec spec) {
+    return new MockCachedUrlSet((MockArchivalUnit)owner, spec);
+  }
+
+  public CachedUrl makeCachedUrl(CachedUrlSet owner, String url) {
+    return ((MockCachedUrlSet)owner).makeCachedUrl(url);
+  }
+
+  public UrlCacher makeUrlCacher(CachedUrlSet owner, String url) {
+    return ((MockCachedUrlSet)owner).makeUrlCacher(url);
+  }
+
 }
