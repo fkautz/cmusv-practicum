@@ -57,7 +57,8 @@ public class TestTimerQueue extends LockssTestCase {
   }
 
 
-  public void setUp() {
+  public void setUp() throws Exception {
+    super.setUp();
     TimeBase.setSimulated();
   }
 
