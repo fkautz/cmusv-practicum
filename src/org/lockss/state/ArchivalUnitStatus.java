@@ -266,7 +266,7 @@ public class ArchivalUnitStatus extends BaseLockssDaemonManager {
                          NodeManager nodeMan, int startRow) {
       List rowL = new ArrayList();
       Iterator cusIter = au.getAuCachedUrlSet().contentHashIterator();
-      int endRow1 = startRow + nodesToDisplay; // end row + 1
+     int endRow1 = startRow + nodesToDisplay; // end row + 1
 
       if (startRow > 0) {
         // add 'previous'
