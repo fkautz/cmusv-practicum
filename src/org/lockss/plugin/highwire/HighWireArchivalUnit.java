@@ -115,6 +115,7 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
   }
 
   public void setConfiguration(Configuration config) {
+    // tk - move configuration here from constructor, call from constructor
   }
 
   public CachedUrlSet cachedUrlSetFactory(ArchivalUnit owner,
