@@ -61,9 +61,7 @@ import org.lockss.plugin.*;
  * @version 0.0
  */
  
-public class HighWirePlugin implements CachedUrlSet{
-
-
+public class HighWirePlugin implements ArchivalUnit {
 
   private String url;
   private Vector urls;
@@ -188,6 +186,12 @@ public class HighWirePlugin implements CachedUrlSet{
 
   public UrlCacher makeUrlCacher(String url){
     return new HighWireCachedUrl(url, this);
+  }
+
+  // ArchivalUnit methods
+
+  public CachedUrlSet makeCachedUrlSet(String url, String regexp) {
+    return null;
   }
 
   //other

@@ -179,6 +179,17 @@ public class NullPlugin {
     public Enumeration treeEnumeration() {
       return new EmptyEnumeration();
     }
+
+  }
+
+  public static class ArchivalUnit
+    extends CachedUrlSet
+    implements org.lockss.daemon.ArchivalUnit {
+
+    public org.lockss.daemon.CachedUrlSet makeCachedUrlSet(String url,
+							   String regexp) {
+      return null;
+    }
   }
 
 /**
