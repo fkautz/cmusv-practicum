@@ -54,6 +54,7 @@ import org.lockss.daemon.CachedUrlSet;
 import org.lockss.daemon.CachedUrlSetHasher;
 import org.lockss.daemon.CachedUrlSetSpec;
 import org.lockss.crawler.Crawler;
+import org.lockss.util.*;
 import org.lockss.plugin.*;
 
 /**
@@ -72,9 +73,11 @@ public class HighWirePlugin implements CachedUrlSet{
   private String urlRoot; //url root for the web page, eg. http://www.bmj.org
   private int volume;  //volume that this plugin is for
   private Vector rules;
+  protected Logger logger;
 
   private HighWirePlugin(){
     urls = new Vector();
+    logger = Logger.getLogger("HighWirePlugin");
   }
 
   /**
