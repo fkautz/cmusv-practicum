@@ -111,16 +111,13 @@ public class NamePoll extends Poll {
    */
   void startVote(LcapMessage msg) {
     super.startVote();
-    long dur = msg.getDuration();
-    byte[] challenge = msg.getChallenge();
-    byte[] verifier = msg.getVerifier();
-    MessageDigest hasher = PollManager.getHasher();
-    hasher.update(challenge, 0, challenge.length);
-    hasher.update(verifier, 0, verifier.length);
 
     if(prepareVoteCheck(msg)) {
-      if(!scheduleHash(hasher, Deadline.in(dur), msg,
-                       new VoteHashCallback())) {
+      long dur = msg.getDuration();
+      MessageDigest hasher = getInitedHasher(msg.getChallenge(),
+          msg.getVerifier());
+
+     if(!scheduleHash(hasher, Deadline.in(dur), msg, new VoteHashCallback())) {
         log.info(m_key + " no time to hash vote " + dur + ":" + m_hashTime);
         stopVote();
       }
