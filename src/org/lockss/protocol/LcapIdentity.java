@@ -52,8 +52,9 @@ public class LcapIdentity implements Serializable {
   public static final int EVENT_SEND_ORIG = 2;
   public static final int EVENT_SEND_FWD = 3;
   public static final int EVENT_ERRPKT = 4;
+  public static final int EVENT_DUPLICATE = 5;
 
-  public static final int EVENT_MAX = 5;
+  public static final int EVENT_MAX = 6;
 
   long eventCount[] = new long[EVENT_MAX];
   transient long m_lastActiveTime = 0;
