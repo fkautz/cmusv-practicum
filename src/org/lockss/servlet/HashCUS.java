@@ -115,12 +115,12 @@ public class HashCUS extends LockssServlet {
   private String statusMsg;
 
   void resetVars() {
-    String auid;
-    String url;
-    String upper;
-    String lower;
-    byte[] challenge;
-    byte[] verifier;
+    auid = null;
+    url = null;
+    upper = null;
+    lower = null;
+    challenge = null;
+    verifier = null;
 
     isHash = true;
     isRecord = false;
