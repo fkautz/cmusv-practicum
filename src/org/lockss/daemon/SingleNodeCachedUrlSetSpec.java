@@ -42,8 +42,13 @@ public class SingleNodeCachedUrlSetSpec implements CachedUrlSetSpec {
   /**
    * Create a SingleNodeCachedUrlSetSpec
    * @param url the url
+   * @throws NullPointerException if the url is null
    */
   public SingleNodeCachedUrlSetSpec(String url) {
+    if (url == null) {
+      throw
+	new NullPointerException("SingleNodeCachedUrlSetSpec with null URL");
+    }
     this.url = url;
   }
 
