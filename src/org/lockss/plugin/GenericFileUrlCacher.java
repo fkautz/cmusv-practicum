@@ -46,6 +46,9 @@ import org.lockss.util.*;
  */
 
 public abstract class GenericFileUrlCacher extends BaseUrlCacher {
+  /**
+   * Name of top directory in which the urls are cached.
+   */
   public static final String CACHE_ROOT = "cache";
 
   public GenericFileUrlCacher(CachedUrlSet owner, String url) {

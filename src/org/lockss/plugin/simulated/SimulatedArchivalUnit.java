@@ -50,6 +50,9 @@ import org.lockss.plugin.*;
  */
 
 public class SimulatedArchivalUnit extends BaseArchivalUnit {
+/**
+ * This is the url prefix which the SimAU pretends to be.
+ */
   public static final String SIMULATED_URL = "http://www.example.com";
 
   private String fileRoot; //root directory for the generated content
