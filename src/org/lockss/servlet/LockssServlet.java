@@ -697,7 +697,7 @@ public abstract class LockssServlet extends HttpServlet
     return theDaemon;
   }
 
-  private void logParams() {
+  protected void logParams() {
     Enumeration en = req.getParameterNames();
     while (en.hasMoreElements()) {
       String name = (String)en.nextElement();
@@ -714,7 +714,7 @@ public abstract class LockssServlet extends HttpServlet
     try {
       this.req = req;
       this.resp = resp;
-      if (log.isDebug3()) {
+      if (log.isDebug()) {
 	logParams();
       }
       resp.setContentType("text/html");
