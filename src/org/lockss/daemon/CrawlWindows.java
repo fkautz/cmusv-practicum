@@ -190,6 +190,8 @@ public class CrawlWindows {
 
       if (startIsLowest) {
         return ((serverVal >= startVal) && (serverVal <= endVal));
+      } else if (startVal==endVal) {
+        return (serverVal == startVal);
       } else {
         return ((serverVal >= startVal) || (serverVal <= endVal));
       }
