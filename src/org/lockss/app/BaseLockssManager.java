@@ -58,4 +58,7 @@ public abstract class BaseLockssManager implements LockssManager {
     theManager = null;
   }
 
+  protected LockssDaemon getDaemon() {
+    return theDaemon;
+  }
 }
