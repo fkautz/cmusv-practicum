@@ -63,8 +63,7 @@ public class TestWrapperGenerator extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
-    tempDirPath = "/home/tyronen/lockss-daemon/tools/test/";
-         //getTempDir().getAbsolutePath() + File.separator;
+    tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     log.debug("Using " + tempDirPath);
   }
 
