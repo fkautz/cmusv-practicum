@@ -468,7 +468,7 @@ public class XmlPropertyLoader {
      */
     public void setProperty(Object value) {
       String prop = getPropname();
-      if (m_props.get(prop) == null) {
+      if (m_props.get(prop) != null) {
 	log.warning("Overwriting property '" + prop + "'.  Was: '" +
 		    m_props.get(prop) + "'," + "Now: '" + value + "'");
 
