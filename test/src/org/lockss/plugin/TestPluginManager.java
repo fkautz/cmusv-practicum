@@ -172,6 +172,15 @@ public class TestPluginManager extends LockssTestCase {
     assertTrue(mgr.getPlugin(mgr.pluginKeyFromName(n1)) instanceof MockPlugin);
   }
 
+  public void testXmlPluginRegistry() {
+    String n1 = "org.lockss.test.MockPlugin";
+    String n2 = ThrowingMockPlugin.class.getName();
+    assertEmpty(mgr.getXmlPlugins());
+    ConfigurationUtil.setFromArgs(PluginManager.PARAM_PLUGIN_XML_PLUGINS,
+				  n1 + ";" + n2);
+    assertEquals(ListUtil.list(n1, n2), mgr.getXmlPlugins());
+  }
+
   public void testStop() throws Exception {
     doConfig();
     MockPlugin mpi = (MockPlugin)mgr.getPlugin(mockPlugKey);
