@@ -88,4 +88,8 @@ public class SimulatedStatusAccessor implements StatusAccessor {
     return false;
   }
 
+  public String getTitle(String key) {
+    return "Simulated Table for key "+key;
+  }
+
 }

@@ -37,16 +37,17 @@ import org.lockss.daemon.status.*;
 
 public class MockStatusAccessor implements StatusAccessor {
   private boolean requiresKey = false;
-  private Map columnDescriptors;
-  private Map rows;
-  private Map defaultSortRules;
+  private Map columnDescriptors = new HashMap();
+  private Map rows = new HashMap();
+  private Map defaultSortRules = new HashMap();
+  private Map titles = new HashMap();
 
 
-  public MockStatusAccessor() {
-    columnDescriptors = new HashMap();
-    rows = new HashMap();
-    defaultSortRules = new HashMap();
-  }
+//   public MockStatusAccessor() {
+//     columnDescriptors = new HashMap();
+//     rows = new HashMap();
+//     defaultSortRules = new HashMap();
+//   }
 
   public List getColumnDescriptors(String key) 
       throws StatusService.NoSuchTableException{
@@ -84,5 +85,13 @@ public class MockStatusAccessor implements StatusAccessor {
 
   public boolean requiresKey() {
     return requiresKey;
+  }
+
+  public void setTitle(String tableTitle, String key) {
+    titles.put(key, tableTitle);
+  }
+
+  public String getTitle(String key) {
+    return (String)titles.get(key);
   }
 }

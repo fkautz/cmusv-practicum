@@ -75,6 +75,17 @@ public interface StatusAccessor {
   public List getDefaultSortRules(String key) 
       throws StatusService.NoSuchTableException;
 
+
+  /**
+   * Returns the title for the table specified by the key
+   * @param key optional key to identify the desired table
+   * @return String representation of the table title
+   * @throws StatusService.NoSuchTableException if we get a key that we don't 
+   * recognize or have a table for
+   */
+  public String getTitle(String key) 
+      throws StatusService.NoSuchTableException;
+
   /**
    * @returns true if a key is required
    */
