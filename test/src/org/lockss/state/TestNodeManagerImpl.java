@@ -558,7 +558,7 @@ public class TestNodeManagerImpl
     }
   }
 
-  static CachedUrlSet getCUS(ArchivalUnit mau, String url) throws Exception {
+  static CachedUrlSet getCUS(MockArchivalUnit mau, String url) throws Exception {
     return new MockCachedUrlSet(mau, new RangeCachedUrlSetSpec(url));
   }
 

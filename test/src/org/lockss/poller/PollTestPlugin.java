@@ -49,7 +49,7 @@ public class PollTestPlugin {
     private long duration = 60000;
     private int bytes = 1000;
 
-    public PTCachedUrlSet(ArchivalUnit owner, CachedUrlSetSpec spec) {
+    public PTCachedUrlSet(MockArchivalUnit owner, CachedUrlSetSpec spec) {
       super(owner,spec);
     }
     /**

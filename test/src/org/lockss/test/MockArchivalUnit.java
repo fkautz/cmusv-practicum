@@ -56,6 +56,8 @@ public class MockArchivalUnit implements ArchivalUnit {
   private boolean shouldCallTopLevelPoll = true;
   private static Logger log = Logger.getLogger("MockArchivalUnit");
 
+  private HashSet urlsToCache = new HashSet();
+
   private Plugin plugin;
 
   public MockArchivalUnit(){
@@ -123,12 +125,12 @@ public class MockArchivalUnit implements ArchivalUnit {
     return new MockCachedUrlSet(this, cuss);
   }
 
+  protected void addUrlToBeCached(String url) {
+    urlsToCache.add(url);
+  }
+
   public boolean shouldBeCached(String url) {
-    if (cus!=null) {
-      return cus.containsUrl(url);
-    } else {
-      return false;
-    }
+    return urlsToCache.contains(url);
   }
 
   public String getPluginId() {
