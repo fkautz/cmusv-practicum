@@ -307,7 +307,7 @@ public class PollManager  implements LockssManager {
     while(iter.hasNext()) {
       Poll p = ((PollManagerEntry)iter.next()).poll;
 
-      if(!p.getMessage().isVerifyPoll()) { // eliminate running verify polls
+      if(p != null && !p.getMessage().isVerifyPoll()) { // eliminate running verify polls
         CachedUrlSet pcus = p.getPollSpec().getCachedUrlSet();
 	ArchivalUnit au = cus.getArchivalUnit();
 	LockssRepository repo = theDaemon.getLockssRepository(au);
