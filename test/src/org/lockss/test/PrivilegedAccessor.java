@@ -294,16 +294,12 @@ public class PrivilegedAccessor {
      */
     public Instance(Class cls, Object value) {
       if (value != null && !cls.isInstance(value)) {
-	throw new ClassCastException();
+	throw new
+	  ClassCastException("Instance value must be assignable to class");
       }
       this.cls = cls;
       this.value = value;
     }
-    
-//      public Instance(String className, Object value)
-//  	throws ClassNotFoundException {
-//        this(Class.forName(className), value);
-//      }
     
     Class getInstanceClass() {
       return cls;
