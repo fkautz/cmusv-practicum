@@ -83,7 +83,8 @@ public class HashSpeedTest extends LockssTestCase {
   public void setUp(int duration, int byteStep) throws Exception {
     super.setUp();
     String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
-    sau = new SimulatedArchivalUnit(tempDirPath);
+    sau = new SimulatedArchivalUnit();
+    sau.setRootDir(tempDirPath);
     String s = SystemMetrics.PARAM_HASH_TEST_DURATION + "=" + duration;
     String s2 = SystemMetrics.PARAM_HASH_TEST_BYTE_STEP + "=" + byteStep;
     String s3 = LockssRepositoryImpl.PARAM_CACHE_LOCATION + "=" + tempDirPath;

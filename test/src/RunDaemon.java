@@ -90,7 +90,8 @@ public class RunDaemon extends LockssDaemon {
       Configuration.getBooleanParam(PARAM_SHOULD_CALL_POLL,
 				    false);
 
-    sau = new SimulatedArchivalUnit(dirPath);
+    sau = new SimulatedArchivalUnit();
+    sau.setRootDir(dirPath);
 
     PluginUtil.registerArchivalUnit(sau);
 
