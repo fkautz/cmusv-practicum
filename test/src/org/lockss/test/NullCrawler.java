@@ -68,4 +68,9 @@ public class NullCrawler implements Crawler {
   public int getType() {
     throw new UnsupportedOperationException("Not implemented");
   }
+
+  public int getStatus() {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
 }

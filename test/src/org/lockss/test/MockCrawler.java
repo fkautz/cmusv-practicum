@@ -48,6 +48,7 @@ public class MockCrawler extends NullCrawler {
   long endTime = -1;
   long numFetched = -1;
   long numParsed = -1;
+  int status = -1;
 
 
   public void setCrawlSuccessful(boolean crawlSuccessful) {
@@ -127,4 +128,13 @@ public class MockCrawler extends NullCrawler {
   public long getNumParsed() {
     return numParsed;
   }
+
+  public void setStatus(int status) {
+    this.status = status;
+  }
+
+  public int getStatus() {
+    return status;
+  }
+
 }
