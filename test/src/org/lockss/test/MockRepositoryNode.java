@@ -34,8 +34,6 @@ package org.lockss.test;
 
 import java.io.*;
 import java.util.*;
-import java.net.MalformedURLException;
-import org.lockss.util.*;
 import org.lockss.daemon.CachedUrlSetSpec;
 import org.lockss.repository.*;
 
@@ -93,6 +91,10 @@ public class MockRepositoryNode implements RepositoryNode {
 
   public long getTreeContentSize(CachedUrlSetSpec filter) {
     throw new UnsupportedOperationException("Not supported.");
+  }
+
+  public int getChildCount() {
+    return children.size();
   }
 
   public Properties getState() {

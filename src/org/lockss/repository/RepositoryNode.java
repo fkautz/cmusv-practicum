@@ -90,6 +90,12 @@ public interface RepositoryNode {
   public boolean isLeaf();
 
   /**
+   * Returns the number of children at this node.
+   * @return the child count
+   */
+  public int getChildCount();
+
+  /**
    * Returns the immediate children of the entry, possibly filtered (null
    * indicates no filtering).  Includes leaf and internal nodes, but not
    * inactive nodes unless 'includeInactive' is true.
