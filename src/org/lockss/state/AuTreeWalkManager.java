@@ -365,8 +365,11 @@ public class AuTreeWalkManager
   public synchronized void taskEvent(SchedulableTask task,
 				     Schedule.EventType event) {
     if (task != curTask) {
-      log.debug("Ignoring unexpected taskEvent(" + task + ", " + event +
-		"), curTask: " + curTask);
+      // XXX this happens routinely.  Eliminate possibly redundant callback?
+      if (log.isDebug2()) {
+	log.debug("Ignoring unexpected taskEvent(" + task + ", " + event +
+		  "), curTask: " + curTask);
+      }
       return;
     }
     if (event == Schedule.EventType.START) {
