@@ -190,4 +190,26 @@ public class ConfigParamDescr implements Comparable {
     return getDisplayName().compareTo(od.getDisplayName());
   }
 
+  public String toString() {
+    StringBuffer sb = new StringBuffer(40);
+    sb.append("[CPD: key: ");
+    sb.append(getKey());
+    sb.append("]");
+    return sb.toString();
+  }
+
+  public boolean equals(Object o) {
+    if (! (o instanceof ConfigParamDescr)) {
+      return false;
+    }
+    ConfigParamDescr opd = (ConfigParamDescr)o;
+    return type == opd.getType() && size == opd.getSize() &&
+      key.equals(opd.getKey());
+  }
+
+  public int hashCode() {
+    int hash = 0x46600555;
+    hash += key.hashCode();
+    return hash;
+  }
 }
