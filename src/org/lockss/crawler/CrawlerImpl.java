@@ -148,7 +148,7 @@ public abstract class CrawlerImpl implements Crawler {
 
   boolean crawlPermission(CachedUrlSet ownerCus) {
     boolean crawl_ok = false;
-    int err = Crawler.STATUS_PUB_PERMISSION;
+    String err = Crawler.STATUS_PUB_PERMISSION;
 
     // fetch and cache the manifest page
     String manifest = au.getManifestPage();

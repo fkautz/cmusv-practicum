@@ -332,6 +332,7 @@ public class TestCrawlerImpl extends LockssTestCase {
   }
 
   public void testGetStatusIncomplete() {
+    //System.out.println("CrawlStatus is " + crawler.getStatus().getCrawlStatus());
     assertEquals(Crawler.STATUS_INCOMPLETE,
 		 crawler.getStatus().getCrawlStatus());
   }

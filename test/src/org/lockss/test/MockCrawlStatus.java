@@ -37,7 +37,7 @@ import org.lockss.plugin.ArchivalUnit;
 public class MockCrawlStatus extends Crawler.Status {
   private static final int UNDEFINED_TYPE = -1;
 
-  int crawlStatus = 0;
+  String crawlStatus = null;
   
   public MockCrawlStatus(int type) {
     super(null, null, type);
@@ -55,11 +55,11 @@ public class MockCrawlStatus extends Crawler.Status {
     this.endTime = endTime;
   }
 
-  public void setCrawlStatus(int crawlStatus) {
+  public void setCrawlStatus(String crawlStatus) {
     this.crawlStatus = crawlStatus;
   }
 
-  public int getCrawlStatus() {
+  public String getCrawlStatus() {
     return crawlStatus;
   }
 

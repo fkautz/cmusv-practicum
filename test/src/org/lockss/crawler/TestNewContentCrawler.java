@@ -293,7 +293,7 @@ public class TestNewContentCrawler extends LockssTestCase {
   private Set crawlUrls(Set urls) {
     MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
     cus.addUrl(startUrl);
-    cus.addUrl(startUrl);
+    //cus.addUrl(startUrl);
     Iterator it = urls.iterator();
     while (it.hasNext()) {
       String url = (String)it.next();
