@@ -1,6 +1,7 @@
 lockss-ant.jar
 lockss-tools.jar
 lockss-test.jar
+lockss-plugins.jar
 lockss.jar
 run-classpath
 lockss-tools-test.jar
