@@ -96,6 +96,7 @@ public class LcapRouter extends BaseLockssManager {
     comm = getDaemon().getCommManager();
     idMgr = getDaemon().getIdentityManager();
     pollMgr = getDaemon().getPollManager();
+    partnerList.setLocalIP(getLocalIdentityAddr());
 
     comm.registerMessageHandler(LockssDatagram.PROTOCOL_LCAP,
 				new LcapComm.MessageHandler() {
@@ -362,7 +363,6 @@ public class LcapRouter extends BaseLockssManager {
    */
   void doUnicast(LockssDatagram dg, RateLimiter limiter,
 		 InetAddress sender, InetAddress originator) {
-    partnerList.checkLocalIp(getLocalIdentityAddr());
     Collection partners = partnerList.getPartners();
     for (Iterator iter = partners.iterator(); iter.hasNext(); ) {
       InetAddress part = (InetAddress)iter.next();
