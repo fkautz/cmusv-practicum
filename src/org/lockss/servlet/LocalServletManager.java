@@ -205,7 +205,7 @@ public class LocalServletManager extends BaseServletManager {
   // doesn't add AuthHandler as not all contexts want it
   HttpContext makeContext(HttpServer server, String path) {
     HttpContext context = server.getContext(path);
-    context.setAttribute("LockssDaemon", theApp);
+    context.setAttribute("LockssApp", theApp);
     // In this environment there is no point in consuming memory with
     // cached resources
     context.setMaxCachedFileSize(0);

@@ -70,7 +70,7 @@ public class LockssServletTestCase extends LockssTestCase {
   /** Establish a servlet runner and client. */
   protected void initServletRunner() {
     sRunner = new LockssServletRunner();
-    sRunner.setServletContextAttribute("LockssDaemon", theDaemon);
+    sRunner.setServletContextAttribute("LockssApp", theDaemon);
     sClient = sRunner.newClient();
   }
 
