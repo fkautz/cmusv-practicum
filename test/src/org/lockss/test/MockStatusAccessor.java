@@ -30,7 +30,7 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.daemon.status;
+package org.lockss.test;
 import java.util.*;
 
 public class MockStatusAccessor implements StatusAccessor {
