@@ -131,9 +131,9 @@ public class HashSpeedTest extends LockssTestCase {
 
   private void crawlContent() {
     System.out.println("Crawling tree...");
-    CrawlSpec spec = new CrawlSpec(sau.SIMULATED_URL_START, null);
+    CrawlSpec spec = new CrawlSpec(sau.SIMULATED_URL_START, null, 1);
     Crawler crawler =
-      new GoslingCrawlerImpl(sau, spec.getStartingUrls(), true);
+      new GoslingCrawlerImpl(sau, spec.getStartingUrls(), true, 1);
     crawler.doCrawl(Deadline.MAX);
   }
 

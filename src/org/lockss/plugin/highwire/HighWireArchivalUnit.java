@@ -157,7 +157,7 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
       throws REException {
 
     CrawlRule rule = makeRules(base, volume);
-    return new CrawlSpec(makeStartUrl(base, volume), rule);
+    return new CrawlSpec(makeStartUrl(base, volume), rule, 1);
   }
 
   String makeStartUrl(URL base, int volume) {

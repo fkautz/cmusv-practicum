@@ -252,7 +252,7 @@ public class AcsArchivalUnit extends BaseArchivalUnit {
       throws REException {
 
     CrawlRule rule = makeRules(base, jkey, volume);
-    return new CrawlSpec(startUrlString, rule);
+    return new CrawlSpec(startUrlString, rule, 1);
   }
 
   private CrawlRule makeRules(URL urlRoot, String jkey, int volume)
