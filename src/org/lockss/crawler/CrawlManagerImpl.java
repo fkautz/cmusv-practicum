@@ -165,10 +165,10 @@ public class CrawlManagerImpl extends BaseLockssManager
 	makeRepairCrawler(au, au.getCrawlSpec(), locks.keySet());
       CrawlThread crawlThread =
 	new CrawlThread(crawler, Deadline.MAX, cb, cookie, locks.values());
-      crawlThread.start();
       crawlHistory.put(au.getAuId(), crawler.getStatus());
       synchronized(runningCrawls) {
 	runningCrawls.put(au, crawler);
+      crawlThread.start();
       }
     } else {
       logger.debug3("Repair aborted due to activity lock.");
