@@ -247,6 +247,11 @@ public class PollManager  extends BaseLockssManager {
     return false;
   }
 
+  /** Return the PollManagerEntry for the poll with the specified key. */
+  public PollManagerEntry getPollManagerEntry(String key) {
+    return (PollManagerEntry)thePolls.get(key);
+  }
+
   /**
    * suspend a poll while we wait for a repair
    * @param key the identifier key of the poll to suspend
