@@ -261,6 +261,13 @@ public class PollSpec {
   }
 
   boolean canSchedulePoll(long pollTime, long neededTime, PollManager pm) {
+    if (neededTime > pollTime) {
+      theLog.warning("Total hash time " +
+		     StringUtil.timeIntervalToString(neededTime) +
+		     " greater than max poll time " +
+		     StringUtil.timeIntervalToString(pollTime));
+      return false;
+    }		     
     Deadline when = Deadline.in(pollTime);
     return pm.canHashBeScheduledBefore(neededTime, when);
   }
