@@ -36,8 +36,7 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 import org.lockss.util.*;
-import org.lockss.daemon.Configuration;
-import org.lockss.daemon.ConfigManager;
+import org.lockss.daemon.*;
 import junit.framework.TestCase;
 import junit.framework.TestResult;
 
@@ -108,6 +107,7 @@ public class LockssTestCase extends TestCase {
   protected void setUp() throws Exception {
     mockDaemon = null;
     super.setUp();
+    disableThreadWatchdog();
     ConfigManager.makeConfigManager();
   }
 
@@ -157,6 +157,15 @@ public class LockssTestCase extends TestCase {
       DebugUtils.getInstance().threadDump();
       TimerUtil.guaranteedSleep(1000);
     }
+    enableThreadWatchdog();
+  }
+
+  protected void disableThreadWatchdog() {
+    LockssThread.disableWatchdog(true);
+  }
+
+  protected void enableThreadWatchdog() {
+    LockssThread.disableWatchdog(false);
   }
 
   double successRate;

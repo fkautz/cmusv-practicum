@@ -50,6 +50,9 @@ public class TestLockssThread extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
+    // LockssTestCase disables the thread watchdog by default.  Enable it
+    // for these tests.
+    enableThreadWatchdog();
     daemon = new MockLockssDaemon();
     wdog = daemon.getWatchdogService();
     TimeBase.setSimulated();
