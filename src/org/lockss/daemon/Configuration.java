@@ -158,6 +158,7 @@ public abstract class Configuration {
       return null;
     }
     Configuration newConfig = newConfiguration();
+    newConfig.setConfigUrls(urlList);
     boolean gotIt = newConfig.loadList(urlList);
     return gotIt ? newConfig : null;
   }
@@ -177,7 +178,8 @@ public abstract class Configuration {
       return false;
     }
     setCurrentConfig(newConfig);
-    log.info("Config updated");
+    log.info("Config updated from " +
+	     StringUtil.separatedString(newConfig.configUrlList, ", "));
     runCallbacks(oldConfig, newConfig);
     return true;
   }
