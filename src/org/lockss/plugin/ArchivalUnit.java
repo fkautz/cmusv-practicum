@@ -58,6 +58,7 @@ public interface ArchivalUnit {
   public String AU_NEW_CRAWL_INTERVAL = "au_new_crawl_interval";
   public String AU_START_URL = "au_start_url";
   public String AU_CRAWL_SPEC = "au_crawl_spec";
+  public String AU_URL_NORMALIZER = "au_url_normalizer";
   public String AU_MAX_SIZE_KEY = "au_maxsize";
   public String AU_MAX_FILE_SIZE_KEY = "au_max_file_size";
   public String AU_TITLE = "au_title";
