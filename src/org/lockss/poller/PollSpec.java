@@ -144,10 +144,10 @@ public class PollSpec {
 
   public String getRangeString() {
     if(lwrBound != null || uprBound != null) {
-      if(lwrBound.startsWith("/")) {
+      if(lwrBound != null && lwrBound.startsWith("/")) {
         lwrBound = lwrBound.substring(1);
       }
-      if(uprBound.startsWith("/")) {
+      if(uprBound != null && uprBound.startsWith("/")) {
         uprBound = uprBound.substring(1);
       }
       return lwrBound + " - " + uprBound;
