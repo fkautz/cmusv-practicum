@@ -36,6 +36,14 @@ import org.lockss.test.*;
 
 public class TestReaderInputStream extends LockssTestCase {
 
+  public void testNullReaderInConstructor() {
+    try {
+      ReaderInputStream is = new ReaderInputStream(null);
+      fail("Calling the constructor with a null Reader should have thrown");
+    } catch (IllegalArgumentException e) {
+    }
+  }
+
   public void testEmptyReaderYieldsEmptyStream() throws IOException {
     Reader reader = new StringReader("");
     InputStream is = new ReaderInputStream(reader);
