@@ -226,7 +226,8 @@ public class UrlUtil {
   public static String stripQuery(String url) throws MalformedURLException {
     if (url != null) {
       try {
-	URI uri = new URI(url.toCharArray());
+	org.apache.commons.httpclient.URI uri =
+	  new org.apache.commons.httpclient.URI(url.toCharArray());
 	if (uri.isAbsoluteURI()) {
 	  StringBuffer sb = new StringBuffer();
 	  sb.append(uri.getScheme());

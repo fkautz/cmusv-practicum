@@ -364,7 +364,8 @@ public class TestHttpClientUrlConnection extends LockssTestCase {
 
     public String getPath() {
       try {
-	URI uri = new URI(url);
+	org.apache.commons.httpclient.URI uri =
+	  new org.apache.commons.httpclient.URI(url);
 	return uri.getPath();
       } catch(URIException e) {
 	throw new RuntimeException("getPath couldn't create URI: " + e);
@@ -373,7 +374,8 @@ public class TestHttpClientUrlConnection extends LockssTestCase {
 
     public String getQueryString() {
       try {
-	URI uri = new URI(url);
+	org.apache.commons.httpclient.URI uri =
+	  new org.apache.commons.httpclient.URI(url);
 	return uri.getQuery();
       } catch(URIException e) {
 	throw new RuntimeException("getQueryString couldn't create URI: " + e);
