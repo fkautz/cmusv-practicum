@@ -46,6 +46,7 @@ import org.lockss.plugin.*;
 import org.lockss.app.*;
 import org.lockss.daemon.*;
 import org.lockss.daemon.status.*;
+import org.lockss.remote.*;
 import org.apache.commons.collections.SequencedHashMap;
 
 public class MockLockssDaemon extends LockssDaemon {
@@ -64,6 +65,7 @@ public class MockLockssDaemon extends LockssDaemon {
   PluginManager pluginManager = null;
   IdentityManager identityManager = null;
   StatusService statusService = null;
+  RemoteApi remoteApi = null;
 
   public MockLockssDaemon() {
     this(null);
@@ -286,6 +288,17 @@ public class MockLockssDaemon extends LockssDaemon {
     return statusService;
   }
 
+  /**
+   * return the RemoteApi instance
+   * @return the RemoteApi
+   */
+  public RemoteApi getRemoteApi() {
+    if (remoteApi == null) {
+      remoteApi = (RemoteApi)newManager(LockssDaemon.REMOTE_API);
+      theManagers.put(LockssDaemon.REMOTE_API, remoteApi);
+    }
+    return remoteApi;
+  }
 
   /**
    * Set the CommManager
@@ -393,6 +406,15 @@ public class MockLockssDaemon extends LockssDaemon {
   public void setSystemMetrics(SystemMetrics sysMetrics) {
     systemMetrics = sysMetrics;
     theManagers.put(LockssDaemon.SYSTEM_METRICS, sysMetrics);
+  }
+
+  /**
+   * Set the RemoteApi
+   * @param sysMetrics the new metrics
+   */
+  public void setRemoteApi(RemoteApi sysMetrics) {
+    remoteApi = sysMetrics;
+    theManagers.put(LockssDaemon.REMOTE_API, sysMetrics);
   }
 
   // AU managers
