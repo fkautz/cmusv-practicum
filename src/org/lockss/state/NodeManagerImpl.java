@@ -159,8 +159,7 @@ public class NodeManagerImpl implements NodeManager {
     theCrawlManager = theDaemon.getCrawlManager();
 
     if (shouldStartTreeWalkThread) {
-      treeWalkThread = new TreeWalkThread(managedAu.getPluginId() + ":" +
-					  managedAu.getAUId() + ":TreeWalkThread",
+      treeWalkThread = new TreeWalkThread("TreeWalk: " + managedAu.getName(),
 					  getAuState().getLastTreeWalkTime());
       treeWalkThread.start();
     }
