@@ -139,6 +139,12 @@ public class TestLcapMessage extends LockssTestCase {
     assertEquals(noop_msg.m_opcode,LcapMessage.NO_OP);
   }
 
+  public void testNoOpMessageToString() throws IOException {
+    LcapMessage noop_msg = LcapMessage.makeNoOpMsg(testID);
+
+    noop_msg.toString();
+  }
+
   public void testNoOpEncoding() {
 
     byte[] msgbytes = new byte[0];
