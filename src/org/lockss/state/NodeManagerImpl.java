@@ -1499,6 +1499,7 @@ public class NodeManagerImpl
       while (iter.hasNext()) {
         String url = (String)iter.next();
         if (!damagedNodes.containsToRepair(cus, url)) {
+	  //XXX bogus, we aren't doing anything here
           logger.debug2("Adding '" + url + "' to repair list...");
         }
       }
@@ -1829,6 +1830,8 @@ public class NodeManagerImpl
     public void signalCrawlAttemptCompleted(boolean success, Object cookie) {
       PollCookie pollCookie = (PollCookie)cookie;
       CachedUrlSet cus = pollCookie.cus;
+
+      //XXX should check success (or get passed in fetched url list)
 
       Iterator urlIter = pollCookie.urlsToRepair.iterator();
       while (urlIter.hasNext()) {
