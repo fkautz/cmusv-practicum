@@ -146,7 +146,7 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
   }
 
   public CachedUrl cachedUrlFactory(CachedUrlSet owner, String url) {
-    return new GenericFileCachedUrl(owner, url);
+    return new HighWireCachedUrl(owner, url);
   }
 
   public UrlCacher urlCacherFactory(CachedUrlSet owner, String url) {
