@@ -55,10 +55,10 @@ public abstract class BaseCachedUrl implements CachedUrl {
   }
 
   /**
-   * Overrides normal <code>toString()</code> to return the url for this cacher
+   * Overrides normal <code>toString()</code> to return a string like "BCU: <url>"
    */
   public String toString(){
-    return url;
+    return "BCU: "+url;
   }
 
   /**
