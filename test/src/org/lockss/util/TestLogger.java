@@ -47,7 +47,7 @@ import org.lockss.test.*;
  * @version 0.0
  */
 
-public class TestLogger extends TestCase{
+public class TestLogger extends LockssTestCase{
   public static Class testedClasses[] = {
     org.lockss.util.Logger.class
   };
@@ -125,9 +125,7 @@ public class TestLogger extends TestCase{
     while (iter.hasNext()) {
       System.err.println((String)iter.next());
     }
-    assertTrue(CollectionUtil.
-	       equalCollections(target.messageIterator(),
-				new ArrayIterator(testOutputOutput)));
+    assertIso(testOutputOutput, target.messageIterator());
     l.defaultTarget();
   }
 
@@ -163,9 +161,7 @@ public class TestLogger extends TestCase{
     while (iter.hasNext()) {
       System.err.println((String)iter.next());
     }
-    assertTrue(CollectionUtil.
-	       equalCollections(target.messageIterator(),
-				new ArrayIterator(testOutputOutput)));
+    assertIso(testOutputOutput, target.messageIterator());
     l.defaultTarget();
   }
 
