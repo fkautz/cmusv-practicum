@@ -269,6 +269,16 @@ public class TestConfiguration extends LockssTestCase {
     }
   }
 
+  public void testEmptyTree() {
+    Configuration config = newConfiguration();
+    Iterator it1 = config.nodeIterator();
+    assertNotNull(it1);
+    assertFalse(it1.hasNext());
+    Iterator it2 = config.nodeIterator("foo.bar");
+    assertNotNull(it2);
+    assertFalse(it2.hasNext());
+  }
+
   public void testPercentage() throws Exception {
     Properties props = new Properties();
     props.put("p1", "-1");
