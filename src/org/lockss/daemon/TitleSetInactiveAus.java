@@ -64,26 +64,25 @@ public class TitleSetInactiveAus extends BaseTitleSet {
   /** Return a TitleConfig for the AU.  Returns matching entry from the
    * title db if found, else creates one */
   TitleConfig titleConfigFromAu(InactiveAuProxy au) {
-    TitleConfig tc = null;
-      PluginProxy plugin = au.getPlugin();
-      String auname = au.getName();
-      tc = new TitleConfig(auname, plugin.getPluginId());
-      Configuration auConfig = au.getConfiguration();
-      List params = new ArrayList();
-      for (Iterator iter = auConfig.keyIterator(); iter.hasNext(); ) {
-	String key = (String)iter.next();
- 	if (!ConfigParamDescr.isReservedParam(key)) {
-	  String val = auConfig.get(key);
-	  ConfigParamDescr descr = findParamDescr(plugin, key);
-	  if (descr != null) {
-	    ConfigParamAssignment cpa = new ConfigParamAssignment(descr, val);
-	    params.add(cpa);
-	  } else {
-	    log.warning("Unknown parameter key: " + key + " in au: " + auname);
-	  }
+    PluginProxy plugin = au.getPlugin();
+    String auname = au.getName();
+    TitleConfig tc = new TitleConfig(auname, plugin.getPluginId());
+    Configuration auConfig = au.getConfiguration();
+    List params = new ArrayList();
+    for (Iterator iter = auConfig.keyIterator(); iter.hasNext(); ) {
+      String key = (String)iter.next();
+      if (!ConfigParamDescr.isReservedParam(key)) {
+	String val = auConfig.get(key);
+	ConfigParamDescr descr = findParamDescr(plugin, key);
+	if (descr != null) {
+	  ConfigParamAssignment cpa = new ConfigParamAssignment(descr, val);
+	  params.add(cpa);
+	} else {
+	  log.warning("Unknown parameter key: " + key + " in au: " + auname);
 	}
       }
-      tc.setParams(params);
+    }
+    tc.setParams(params);
     return tc;
   }
 

@@ -74,17 +74,20 @@ public class TitleSetActiveAus extends BaseTitleSet {
       List params = new ArrayList();
       for (Iterator iter = auConfig.keyIterator(); iter.hasNext(); ) {
 	String key = (String)iter.next();
-	String val = auConfig.get(key);
-	ConfigParamDescr descr = findParamDescr(plugin, key);
-	if (descr != null) {
-	  ConfigParamAssignment cpa = new ConfigParamAssignment(descr, val);
-	  params.add(cpa);
-	} else {
-	  log.warning("Unknown parameter key: " + key + " in au: " + auname);
+ 	if (!ConfigParamDescr.isReservedParam(key)) {
+	  String val = auConfig.get(key);
+	  ConfigParamDescr descr = findParamDescr(plugin, key);
+	  if (descr != null) {
+	    ConfigParamAssignment cpa = new ConfigParamAssignment(descr, val);
+	    params.add(cpa);
+	  } else {
+	    log.warning("Unknown (extra) parameter key: " + key +
+			" in au: " + auname);
+	  }
 	}
       }
       tc.setParams(params);
-    }
+    }      
     return tc;
   }
 
