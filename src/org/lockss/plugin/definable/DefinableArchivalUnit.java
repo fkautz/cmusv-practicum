@@ -147,7 +147,7 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
     }
     // override any defaults
     defaultFetchDelay = definitionMap.getLong(AU_DEFAULT_PAUSE_TIME,
-        DEFAULT_MILLISECONDS_BETWEEN_CRAWL_HTTP_REQUESTS);
+        DEFAULT_FETCH_DELAY);
 
     defaultContentCrawlIntv = definitionMap.getLong(AU_DEFAULT_NC_CRAWL_KEY,
         DEFAULT_NEW_CONTENT_CRAWL_INTERVAL);

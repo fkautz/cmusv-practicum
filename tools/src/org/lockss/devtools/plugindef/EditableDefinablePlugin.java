@@ -328,7 +328,7 @@ public class EditableDefinablePlugin
 
   public long getAuPauseTime() {
     return definitionMap.getLong(AU_PAUSE_TIME,
-            DefinableArchivalUnit.DEFAULT_MILLISECONDS_BETWEEN_CRAWL_HTTP_REQUESTS);
+            DefinableArchivalUnit.DEFAULT_FETCH_DELAY);
   }
 
   public void removeAuPauseTime() {
