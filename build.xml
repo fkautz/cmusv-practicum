@@ -864,15 +864,14 @@ java -classpath &quot;${tmp.ptool.clspth.unix}&quot; org.lockss.devtools.plugind
        <arg line="-o ${javadoc}/paramdoc.txt lockss.jar" />
     </java>
     <!-- Write the HTML param doc into the doc tree -->
-    <javadoc
-             sourcepath="${src}"
+    <javadoc sourcepath="${src}"
 	     packagenames="org.lockss.*"
 	     failonerror="true"
 	     doclet="org.lockss.doclet.ParamDoclet"
 	     docletpathref="tools.run.classpath"
 	     additionalparam="-d ${javadoc} -o paramdoc.html"
 	     classpathref="tools.run.classpath"
-	     access="protected"/>
+	     access="package"/>
     <javadoc
 	     failonerror="true"
              packagenames="org.lockss.*"
