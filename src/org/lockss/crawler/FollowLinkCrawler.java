@@ -536,13 +536,17 @@ public abstract class FollowLinkCrawler extends CrawlerImpl {
 	return;
       }
       try {
-	logger.debug2("Found "+url);
 	String normUrl = UrlUtil.normalizeUrl(url, au);
-	logger.debug2("Normalized to "+normUrl);
+	if (logger.isDebug3()) {
+	  logger.debug3("Found "+url);
+	  logger.debug3("Normalized to "+normUrl);
+	}
 	if (!parsedPages.contains(normUrl)
 	    && !extractedUrls.contains(normUrl)
 	    && au.shouldBeCached(normUrl)) {
-	  logger.debug2("Adding to extracted urls "+normUrl);
+	  if (logger.isDebug2()) {
+	    logger.debug2("Adding to extracted urls "+normUrl);
+	  }
 	  extractedUrls.add(normUrl);
 	} else if (logger.isDebug3()) {
 	  logger.debug3("Didn't cache "+normUrl+" because:");
