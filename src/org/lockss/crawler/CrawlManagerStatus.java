@@ -89,6 +89,10 @@ public class CrawlManagerStatus implements StatusAccessor {
     this.statusSource = statusSource;
   }
 
+  public String getDisplayName() {
+    return "Crawl Status";
+  }
+
   private List getRows(String key) {
     if (key == null) {
       return getAllCrawls();
@@ -177,7 +181,6 @@ public class CrawlManagerStatus implements StatusAccessor {
       throw new IllegalArgumentException("Called with null StatusTable");
     }
     String key = table.getKey();
-    table.setTitle("Crawl Status");
     table.setColumnDescriptors(colDescs);
     table.setRows(getRows(key));
   }

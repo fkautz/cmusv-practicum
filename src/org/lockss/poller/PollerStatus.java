@@ -83,10 +83,13 @@ public class PollerStatus {
     private static String[] allowedKeys = {
       "AU:", "URL:", "PollType:", "Status:"};
 
+    public String getDisplayName() {
+      return POLLMANAGER_TABLE_TITLE;
+    }
+
     public void populateTable(StatusTable table) throws StatusService.
         NoSuchTableException {
       checkKey(table.getKey());
-      table.setTitle(POLLMANAGER_TABLE_TITLE);
       table.setColumnDescriptors(columnDescriptors);
       table.setDefaultSortRules(sortRules);
       table.setRows(getRows(table.getKey()));
@@ -229,6 +232,11 @@ public class PollerStatus {
         ListUtil.list(new StatusTable.SortRule("Identity", true));
 
 
+
+    public String getDisplayName() {
+      throw new
+	UnsupportedOperationException("Poll table has no generic title");
+    }
 
     public void populateTable(StatusTable table)
         throws StatusService.NoSuchTableException {

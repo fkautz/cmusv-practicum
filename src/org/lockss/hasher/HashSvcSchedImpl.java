@@ -386,9 +386,13 @@ public class HashSvcSchedImpl
 
 
   private class Status implements StatusAccessor {
+
+    public String getDisplayName() {
+      return "Hash Queue";
+    }
+
     public void populateTable(StatusTable table) {
       String key = table.getKey();
-      table.setTitle("Hash Queue");
       table.setTitleFootnote(FOOT_TITLE);
       table.setColumnDescriptors(statusColDescs);
       table.setDefaultSortRules(statusSortRules);

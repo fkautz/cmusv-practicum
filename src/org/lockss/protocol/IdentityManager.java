@@ -459,9 +459,13 @@ public class IdentityManager extends BaseLockssManager {
 
 
   private class Status implements StatusAccessor {
+
+    public String getDisplayName() {
+      return "Cache Identities";
+    }
+
     public void populateTable(StatusTable table) {
       String key = table.getKey();
-      table.setTitle("Cache Identities");
       table.setColumnDescriptors(statusColDescs);
       table.setDefaultSortRules(statusSortRules);
       table.setRows(getRows(key));

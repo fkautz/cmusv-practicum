@@ -72,6 +72,10 @@ public class SimulatedStatusAccessor {
       ColumnDescriptor.TYPE_DATE,
     };
 
+    public String getDisplayName() {
+      return title;
+    }
+
     private List makeColumns(int ncols) {
       List columns = new ArrayList(ncols);
       for (int ix = 1; ix <= ncols; ix++) {

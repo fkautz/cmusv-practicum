@@ -683,9 +683,12 @@ public class LcapComm extends BaseLockssManager {
     // port, proto, u/m, direction, compressed, pkts, bytes
     long start;
 
+    public String getDisplayName() {
+      return "Comm Statistics";
+    }
+
     public void populateTable(StatusTable table) {
       String key = table.getKey();
-      table.setTitle("Comm Statistics");
       String tfoot = "Statistics are for LCAP traffic only.  " +
 	"Traffic due to fetching content (crawling) is not included.";
       table.setTitleFootnote(tfoot);
