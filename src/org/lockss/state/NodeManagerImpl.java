@@ -313,9 +313,13 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
 
           // these are polls started by another cache
           status = PollState.RUNNING;
-          nodeState.setState((tally.getType() == Poll.CONTENT_POLL) ?
-                             NodeState.CONTENT_RUNNING :
-                             NodeState.NAME_RUNNING);
+          if (cus.getSpec().isSingleNode()) {
+            nodeState.setState(NodeState.SNCUSS_POLL_RUNNING);
+          } else {
+            nodeState.setState((tally.getType() == Poll.CONTENT_POLL) ?
+                               NodeState.CONTENT_RUNNING :
+                               NodeState.NAME_RUNNING);
+          }
           break;
         case NodeState.NEEDS_POLL:
         case NodeState.POSSIBLE_DAMAGE_BELOW:

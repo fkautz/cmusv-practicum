@@ -262,6 +262,43 @@ public class TestNodeManagerImpl extends LockssTestCase {
     assertNull(nodeManager.activeNodes.get(results.getPollKey()));
   }
 
+  public void testNonLocalStartPollStates() throws Exception {
+    contentPoll = createPoll(TEST_URL, true, false, 15, 5);
+    PollTally results = contentPoll.getVoteTally();
+    // let's generate some history
+    CachedUrlSet cus = results.getCachedUrlSet();
+    Vector subFiles = new Vector(2);
+    subFiles.add(getCus(mau, TEST_URL));
+    ( (MockCachedUrlSet) cus).setHashItSource(subFiles);
+
+    NodeState nodeState = nodeManager.getNodeState(cus);
+    nodeManager.startPoll(cus, results, false);
+    assertEquals(NodeState.CONTENT_RUNNING, nodeState.getState());
+    // reset
+    nodeState.setState(NodeState.INITIAL);
+
+    namePoll = createPoll(TEST_URL, false, false, 15, 5);
+    results = namePoll.getVoteTally();
+    // let's generate some history
+    cus = results.getCachedUrlSet();
+    ( (MockCachedUrlSet) cus).setHashItSource(subFiles);
+
+    nodeManager.startPoll(cus, results, false);
+    assertEquals(NodeState.NAME_RUNNING, nodeState.getState());
+    // reset
+    nodeState.setState(NodeState.INITIAL);
+
+    contentPoll = createPoll(TEST_URL, PollSpec.SINGLE_NODE_LWRBOUND, null,
+                             true, false, 15, 5);
+    results = contentPoll.getVoteTally();
+    // let's generate some history
+    cus = results.getCachedUrlSet();
+    ( (MockCachedUrlSet) cus).setHashItSource(subFiles);
+
+    nodeManager.startPoll(cus, results, false);
+    assertEquals(NodeState.SNCUSS_POLL_RUNNING, nodeState.getState());
+  }
+
   public void testHandleStandardContentPoll() throws Exception {
     NodeState nodeState = nodeManager.getNodeState(getCus(mau, TEST_URL));
 
