@@ -535,13 +535,31 @@ public abstract class LockssServlet extends HttpServlet
   // Common page footer
   public Element getFooter() {
     Composite comp = new Composite();
+
     String vPlatform = Configuration.getParam(PARAM_PLATFORM_VERSION);
     String buildTimeStamp =
       BuildInfo.getBuildProperty(BuildInfo.BUILD_TIMESTAMP);
-    String buildHost =
-      BuildInfo.getBuildProperty(BuildInfo.BUILD_HOST);
-//     String vDaemon = "Daemon built " + buildTimeStamp + " on " + buildHost;
-    String vDaemon = "Daemon built " + buildTimeStamp;
+    String buildHost = BuildInfo.getBuildProperty(BuildInfo.BUILD_HOST);
+    String releaseName =
+      BuildInfo.getBuildProperty(BuildInfo.BUILD_RELEASENAME);
+
+    StringBuffer sb = new StringBuffer();
+    sb.append("Daemon ");
+    if (releaseName != null) {
+      sb.append(releaseName);
+      sb.append(" ");
+    }
+    sb.append("built ");
+    sb.append(buildTimeStamp);
+    if (buildHost != null) {
+      sb.append(" on ");
+      sb.append(buildHost);
+    }
+    if (vPlatform != null) {
+      sb.append(", cd ");
+      sb.append(vPlatform);
+    }
+    String vDaemon = sb.toString();
 
     addNotes(comp);
     comp.add("<p>");
@@ -554,11 +572,7 @@ public abstract class LockssServlet extends HttpServlet
     table.add(IMAGE_TM);
     comp.add(table);
 
-    comp.add("<center><font size=-1>" +
-	     (vPlatform == null || vPlatform.equals("")
-	      ? vDaemon
-	      : vDaemon + ", platform " + vPlatform) +
-	     "</font></center>");
+    comp.add("<center><font size=-1>" + vDaemon + "</font></center>");
     return comp;
   }
 
