@@ -440,6 +440,20 @@ public class Deadline implements Comparable {
     return sb.toString();
   }
 
+  public String shortString() {
+    if (expiration.getTime() == TimeBase.MAX) {
+      return "never";
+    }
+    boolean isSim = TimeBase.isSimulated();
+    StringBuffer sb = new StringBuffer();
+    if (isSim) {
+      sb.append(expiration.getTime());
+    } else {
+      sb.append(df1.format(expiration));
+    }
+    return sb.toString();
+  }
+
   /**
    * The Deadline.Callback interface defines the
    * method that will be called if/when a deadline changes.
