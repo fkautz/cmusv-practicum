@@ -196,7 +196,8 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
   }
 
   public String getName() {
-    String host = StringUtil.trimHostName(base.getHost());
+//     String host = StringUtil.trimHostName(base.getHost());
+    String host = base.getHost();
     return host + ", vol. " + volume;
   }
 
