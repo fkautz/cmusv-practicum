@@ -51,7 +51,7 @@ public class TestHighWirePlugin extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     plugin = new HighWirePlugin();
-    plugin.initPlugin(null);
+    plugin.initPlugin(getMockLockssDaemon());
   }
 
   public void testGetAuNullConfig()

@@ -45,7 +45,7 @@ public class TestBlackbirdPlugin extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     plugin = new BlackbirdPlugin();
-    plugin.initPlugin(null);
+    plugin.initPlugin(getMockLockssDaemon());
   }
 
   public void testGetAuNullConfig() throws ArchivalUnit.ConfigurationException {

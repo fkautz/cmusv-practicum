@@ -45,7 +45,7 @@ public class TestAbsinthePlugin extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     plugin = new AbsinthePlugin();
-    plugin.initPlugin(null);
+    plugin.initPlugin(getMockLockssDaemon());
   }
 
   public void testGetAuNullConfig() throws ArchivalUnit.ConfigurationException {
