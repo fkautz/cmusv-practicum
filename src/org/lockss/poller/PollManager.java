@@ -187,9 +187,13 @@ public class PollManager
 	BasePoll thePoll = makePoll(pollspec, duration, challenge, verifier,
 				    theIDManager.getLocalPeerIdentity(pollspec.getPollVersion()),
 				    LcapMessage.getDefaultHashAlgorithm());
-	ret = pollFact.callPoll(thePoll, this, theIDManager);
+	if (thePoll != null) {
+	  ret = pollFact.callPoll(thePoll, this, theIDManager);
+	} else {
+	  theLog.debug("makePoll(" + pollspec + ") returned null");
+	}
       } catch (ProtocolException ex) {
-	theLog.debug("makePoll or callPoll threw " + ex.toString());
+	theLog.debug("Error in makePoll or callPoll", ex);
       }
     }
     return ret;
