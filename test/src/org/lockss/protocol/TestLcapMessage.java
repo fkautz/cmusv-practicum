@@ -135,6 +135,16 @@ public class TestLcapMessage extends LockssTestCase {
 
   }
 
+  public void testStorePropsWithLargeNumberOfEntries() throws IOException {
+    int original_maxsize = testmsg.m_maxSize;
+    testmsg.m_entries = TestPoll.makeEntries(1,20000);
+    testmsg.storeProps();
+
+    assertNotNull(testmsg.m_lwrRem);
+    assertNotNull(testmsg.m_uprRem);
+    assertNotEquals(original_maxsize, testmsg.m_maxSize);
+  }
+
   public void testNoOpMessageCreation() {
     LcapMessage noop_msg = null;
 
