@@ -148,6 +148,30 @@ public class TestUrlUtil extends LockssTestCase {
     } catch (MalformedURLException e) {}
   }
 
+  //should trip leading and trailing whitespace from the second arg
+  public void testResolveUrlTrimsLeadingAndTrailingWhiteSpace()
+      throws MalformedURLException {
+    assertEquals("http://test.com/foo/bar/a.html",
+		 UrlUtil.resolveUri("http://test.com/foo/bar/", " a.html"));
+    assertEquals("http://test.com/foo/bar/a.html",
+		 UrlUtil.resolveUri("http://test.com/foo/bar/", "a.html "));
+    assertEquals("http://test.com/foo/bar/a.html",
+ 		 UrlUtil.resolveUri("http://test.com/foo/bar/", "\ta.html "));
+    assertEquals("http://test.com/foo/bar/a.html",
+ 		 UrlUtil.resolveUri("http://test.com/foo/bar/", "\na.html "));
+    assertEquals("http://test.com/foo/bar/a.html",
+ 		 UrlUtil.resolveUri("http://test.com/foo/bar/", "a.html\n "));
+    assertEquals("http://test.com/foo/bar/a.html",
+ 		 UrlUtil.resolveUri("http://test.com/foo/bar/", "a.html\r "));
+  }
+
+  public void testResolveUrlEncodesNonTrailingSpaces()
+      throws MalformedURLException {
+    assertEquals("http://test.com/foo/bar/a%20test.html",
+		 UrlUtil.resolveUri("http://test.com/foo/bar/",
+				    "a test.html"));
+  }
+
   public void testGetHeadersNullConnection() {
     try {
       UrlUtil.getHeaders(null);
