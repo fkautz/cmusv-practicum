@@ -120,9 +120,9 @@ public class FuncSimulatedContent extends LockssTestCase {
 
   private void crawlContent() {
     CrawlSpec spec = new CrawlSpec(sau.SIMULATED_URL_START, null);
-    Crawler crawler = new GoslingCrawlerImpl();
-    crawler.doCrawl(sau, spec.getStartingUrls(),
-		    true, Deadline.NEVER);
+    Crawler crawler = 
+      new GoslingCrawlerImpl(sau, spec.getStartingUrls(), true);
+    crawler.doCrawl(Deadline.NEVER);
   }
 
   private void checkContent() throws IOException {
