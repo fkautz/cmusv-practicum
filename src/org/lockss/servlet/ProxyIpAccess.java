@@ -42,6 +42,15 @@ public class ProxyIpAccess extends IpAccessControl {
   public static final String PARAM_IP_INCLUDE = AC_PREFIX + "include";
   public static final String PARAM_IP_EXCLUDE = AC_PREFIX + "exclude";
 
+  private static final String exp =
+    "Enter the list of IP addresses that should be allowed to use this " +
+    "cache as a proxy server, and access the content stored on it.  " +
+    commonExp;
+
+  protected String getExplanation() {
+    return exp;
+  }
+
   protected String getIncludeParam() {
     return PARAM_IP_INCLUDE;
   }
