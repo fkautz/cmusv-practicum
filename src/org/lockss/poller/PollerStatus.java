@@ -67,7 +67,7 @@ public class PollerStatus {
     private static final List sortRules = 
       ListUtil.list(
 		    new StatusTable.SortRule("AuID", true),
-		    new StatusTable.SortRule("URL", true),
+// 		    new StatusTable.SortRule("URL", true),
 		    new StatusTable.SortRule("Deadline", false)
 		    );
     private static final List columnDescriptors =
