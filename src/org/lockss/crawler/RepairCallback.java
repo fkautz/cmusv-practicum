@@ -33,7 +33,13 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.crawler;
 
 /**
+ * Interface to the callback used to signal the completion of a repair attempt
  */
 public interface RepairCallback {
+  /**
+   * @param success whether the repair was successful or not
+   * @param cookie object used by callback to designate which repair 
+   * attempt this is
+   */
   public void signalRepairAttemptCompleted(boolean success, Object cookie);
 }
