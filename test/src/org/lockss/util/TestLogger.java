@@ -125,7 +125,7 @@ public class TestLogger extends LockssTestCase{
     while (iter.hasNext()) {
       System.err.println((String)iter.next());
     }
-    assertIso(testOutputOutput, target.messageIterator());
+    assertIsomorphic(testOutputOutput, target.messageIterator());
     l.defaultTarget();
   }
 
@@ -161,7 +161,7 @@ public class TestLogger extends LockssTestCase{
     while (iter.hasNext()) {
       System.err.println((String)iter.next());
     }
-    assertIso(testOutputOutput, target.messageIterator());
+    assertIsomorphic(testOutputOutput, target.messageIterator());
     l.defaultTarget();
   }
 
