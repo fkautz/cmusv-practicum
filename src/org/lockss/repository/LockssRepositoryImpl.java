@@ -179,6 +179,20 @@ public class LockssRepositoryImpl implements LockssRepository {
     return buffer.toString();
   }
 
+  public static String mapAuToCacheLocation(String rootLocation, ArchivalUnit au) {
+    StringBuffer buffer = new StringBuffer(rootLocation);
+    if (!rootLocation.endsWith(File.separator)) {
+      buffer.append(File.separator);
+    }
+    buffer.append(au.getPluginId());
+    if (!au.getAUId().equals("")) {
+      buffer.append(File.separator);
+      buffer.append(au.getAUId());
+    }
+    buffer.append(File.separator);
+    return buffer.toString();
+  }
+
   /**
    * Creates a LockssRepository for the given {@link ArchivalUnit} at
    * a cache location specific to that archive.
@@ -197,12 +211,6 @@ public class LockssRepositoryImpl implements LockssRepository {
     }
     buffer.append(CACHE_ROOT_NAME);
     buffer.append(File.separator);
-    buffer.append(au.getPluginId());
-    if (!au.getAUId().equals("")) {
-      buffer.append(File.separator);
-      buffer.append(au.getAUId());
-    }
-    buffer.append(File.separator);
-    return new LockssRepositoryImpl(buffer.toString());
+    return new LockssRepositoryImpl(mapAuToCacheLocation(buffer.toString(), au));
   }
 }
