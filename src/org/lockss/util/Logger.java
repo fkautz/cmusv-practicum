@@ -430,9 +430,11 @@ public class Logger {
 	public void configurationChanged(Configuration newConfig,
 					 Configuration oldConfig,
 					 Configuration.Differences diffs) {
-	  setAllLogLevels();
-	  if (diffs.contains(PARAM_LOG_TARGETS)) {
-	    setLogTargets();
+	  if (diffs.contains(PREFIX)) {
+	    setAllLogLevels();
+	    if (diffs.contains(PARAM_LOG_TARGETS)) {
+	      setLogTargets();
+	    }
 	  }
 	}
       };
