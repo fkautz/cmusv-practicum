@@ -45,7 +45,7 @@ import org.lockss.app.*;
 public class MockNodeManager implements NodeManager {
   private static Logger logger = Logger.getLogger("MockNodeManager");
 
-  private MockAuState aus;
+  private MockAuState aus = new MockAuState();
   private HashMap nodeMap = new HashMap();
   public HashMap hashCalls = new HashMap();
 
@@ -88,9 +88,6 @@ public class MockNodeManager implements NodeManager {
   }
 
   public AuState getAuState() {
-    if (aus == null) {
-      aus = new MockAuState();
-    }
     return aus;
   }
 
