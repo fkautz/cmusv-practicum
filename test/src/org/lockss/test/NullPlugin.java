@@ -38,6 +38,7 @@ import java.net.*;
 import java.security.MessageDigest;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
+import org.lockss.state.*;
 import org.lockss.test.*;
 
 /**
@@ -237,6 +238,10 @@ public class NullPlugin {
       return null;
     }
     
+    public boolean shouldCrawlForNewContent(AuState aus) {
+      return false;
+    }
+
   }
 
 /**
