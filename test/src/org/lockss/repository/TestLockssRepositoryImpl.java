@@ -107,6 +107,18 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
     assertEquals("http://www.example.com/testDir/leaf4", node.getNodeUrl());
   }
 
+  public void testGetNodeWithQuery() throws Exception {
+    createLeaf("http://www.example.com/testDir?leaf=2",
+               "test stream", null);
+
+    RepositoryNode node = repo.getNode("http://www.example.com/testDir");
+    assertNull(node);
+    node = repo.getNode("http://www.example.com/testDir?leaf=2");
+    assertTrue(node.hasContent());
+    assertEquals("http://www.example.com/testDir?leaf=2", node.getNodeUrl());
+  }
+
+
   public void testDotUrlHandling() throws Exception {
     //testing correction of nodes with bad '..'-including urls,
     //filtering the first '..' but resolving the second
@@ -434,6 +446,24 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
       LockssRepositoryImpl.mapUrlToFileLocation("root", testStr);
       fail("Should have thrown MalformedURLException");
     } catch (MalformedURLException mue) {}
+  }
+
+  public void testCharacterEscaping() throws MalformedURLException {
+    String testStr = "http://www.example.com/"+URLEncoder.encode("#")+"nodestate.xml";
+    String expectedStr = "root/www.example.com/http/##nodestate.xml";
+//    assertEquals(FileUtil.sysDepPath(expectedStr),
+  //               LockssRepositoryImpl.mapUrlToFileLocation("root", testStr));
+    assertEquals("root/www.example.com/http/#nodestate.xml",
+                 LockssRepositoryImpl.unescape(expectedStr));
+
+    testStr = "http://www.example.com/index.html?leaf=bad"+File.separator+
+        "query"+File.separator;
+    expectedStr = "root/www.example.com/http/index.html?leaf=bad#squery#s";
+    assertEquals(FileUtil.sysDepPath(expectedStr),
+                 LockssRepositoryImpl.mapUrlToFileLocation("root", testStr));
+    assertEquals("root/www.example.com/http/index.html?leaf=bad"+
+                 File.separator+"query"+File.separator,
+                 LockssRepositoryImpl.unescape(expectedStr));
   }
 
   private RepositoryNode createLeaf(String url, String content,

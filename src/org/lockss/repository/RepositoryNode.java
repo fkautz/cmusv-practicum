@@ -63,7 +63,7 @@ public interface RepositoryNode {
   /**
    * Determines if the node is deleted.  Deleted nodes may have old content or
    * children, but will not appear in lists of nodes
-   * @return true if the node is inactive
+   * @return true if the node is deleted
    */
   public boolean isDeleted();
 
