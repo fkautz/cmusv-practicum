@@ -199,7 +199,7 @@ public class ServletManager extends JettyManager {
       logContext.addHandler(logRHandler);
       logContext.setMimeMapping("out", "text/plain");
       logContext.setMimeMapping("gz", "text/gzip");
-      logContext.setTypeEncoding("text/gzip", "x-gzip");
+//       logContext.setTypeEncoding("text/gzip", "x-gzip");
 
       // NotFoundHandler
       logContext.addHandler(new NotFoundHandler());
