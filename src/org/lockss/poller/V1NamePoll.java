@@ -158,7 +158,7 @@ public class V1NamePoll extends V1Poll {
         boolean hasContent = cusn.hasContent();
         if (name.startsWith(baseUrl)) {
           name = name.substring(baseUrl.length());
-        }
+        } //XXX add error message
         log.debug3("adding file name " + name + " - hasContent=" + hasContent);
         alist.add(new PollTally.NameListEntry(hasContent, name));
       }
