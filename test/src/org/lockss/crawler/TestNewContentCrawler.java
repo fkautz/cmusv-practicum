@@ -351,7 +351,7 @@ public class TestNewContentCrawler extends LockssTestCase {
     assertEquals(SetUtil.set(startUrl, url1, url2, url3),
 		 crawlUrls(SetUtil.set(url1, url2, url3)));
   }
-
+  
   public void testCrawlListEmptyOnExit() {
     setProperty(NewContentCrawler.PARAM_PERSIST_CRAWL_LIST, "true");
     String url1= "http://www.example.com/link1.html";
@@ -430,7 +430,7 @@ public class TestNewContentCrawler extends LockssTestCase {
     crawler.doCrawl();
     assertEquals(0, cus.getCachedUrls().size());
   }
-
+  
   private static void setProperty(String prop, String value) {
     Properties p = new Properties();
     p.setProperty(prop, value);
