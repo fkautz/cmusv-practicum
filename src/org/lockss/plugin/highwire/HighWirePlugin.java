@@ -59,7 +59,7 @@ public class HighWirePlugin extends BasePlugin {
   public static final String AUPARAM_VOL = PD_VOL.getKey();
 
   private static String titleSpec[][] = {
-    {"BMJ", AUPARAM_BASE_URL, "http://shadow1.lockss.org/"},
+    {"Test - Shadow1", AUPARAM_BASE_URL, "http://shadow1.lockss.org/"},
     {"JHC", AUPARAM_BASE_URL, "http://www.jhc.org/"},
   };
 

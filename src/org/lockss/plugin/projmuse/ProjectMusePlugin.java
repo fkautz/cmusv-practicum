@@ -47,7 +47,7 @@ import org.lockss.app.LockssDaemon;
  */
 
 public class ProjectMusePlugin extends BasePlugin {
-  private static String PLUGIN_NAME = "Project Muse Plugin";
+  private static String PLUGIN_NAME = "Project Muse";
   private static String CURRENT_VERSION = "Pre-release";
 
   static final ConfigParamDescr PD_BASE = ConfigParamDescr.BASE_URL;
