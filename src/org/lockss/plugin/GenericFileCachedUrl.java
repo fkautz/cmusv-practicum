@@ -72,14 +72,11 @@ public class GenericFileCachedUrl extends BaseCachedUrl {
 
   private void ensureLeafLoaded() {
     if (repository==null) {
-      repository = LockssRepositoryImpl.repositoryFactory(super.cus.getArchivalUnit());
+      repository = LockssRepositoryImpl.repositoryFactory(cus.getArchivalUnit());
     }
     if (leaf==null) {
       try {
-        leaf = repository.getNode(url);
-        if (leaf==null) {
-          leaf = repository.createNewNode(url);
-        }
+        leaf = repository.createNewNode(url);
       } catch (MalformedURLException mue) {
         logger.error("Couldn't load node due to bad url: "+url);
       }
