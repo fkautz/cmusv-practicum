@@ -55,4 +55,17 @@ public class TestIOPNormalizer extends LockssTestCase {
     assertUrlsNormalize("http://www.iop.org/EJ/S/3/418/z3ojEA0Y1tlY8SOh74g3mQ/abstract/0266-5611/20/6/E01",
 			"http://www.iop.org/EJ/S/3/418/abstract/0266-5611/20/6/E01");
   }
+
+  public void testNormalizeIgnoresOtherHosts() {
+    assertUrlsNormalize("http://www.example.com/EJ/S/3/418/z3ojEA0Y1tlY8SOh74g3mQ/abstract/0266-5611/20/6/E01",
+			"http://www.example.com/EJ/S/3/418/z3ojEA0Y1tlY8SOh74g3mQ/abstract/0266-5611/20/6/E01");
+  }
+
+  public void testNormalizeShortUrls() {
+    System.err.println("Stop1");
+    assertUrlsNormalize("http://www.iop.org/EJ/",
+			"http://www.iop.org/EJ/");
+  }
+
+
 }
