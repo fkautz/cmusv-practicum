@@ -142,6 +142,13 @@ public class PollSpec {
     return uprBound;
   }
 
+  public String getRangeString() {
+    if(lwrBound != null || uprBound != null) {
+      return lwrBound + " - " + uprBound;
+    }
+    return null;
+  }
+
   private PluginManager getPluginManager() {
     if(pluginMgr == null) {
       pluginMgr = (PluginManager)LockssDaemon.getManager(
