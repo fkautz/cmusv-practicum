@@ -78,7 +78,7 @@ public class PropKeyEncoder {
     ByteArrayOutputStream buf = new ByteArrayOutputStream(maxBytesPerChar);
     OutputStreamWriter writer = new OutputStreamWriter(buf);
 
-    for (int i = 0; i < s.length(); i++) {
+    for (int i = 0, len = s.length(); i < len; i++) {
       int c = (int)s.charAt(i);
       if (dontNeedEncoding.get(c)) {
 	if (c == ' ') {

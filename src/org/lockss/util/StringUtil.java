@@ -297,7 +297,7 @@ public class StringUtil {
       return null;
     }
     if (chars != null) {
-      for (int jx=0; jx < chars.length(); jx++) {
+      for (int jx=0, len = chars.length(); jx < len; jx++) {
 	int pos = str.indexOf(chars.charAt(jx));
 	if (pos >= 0) {
 	  return str.substring(0, pos);

@@ -230,7 +230,7 @@ public class SmtpClient extends TransferProtocolClient  {
   void sendBody(PrintStream ostrm, String body)
       throws IOException {
     char prev = 0;
-    for (int ix = 0; ix < body.length(); ix++) {
+    for (int ix = 0, len = body.length(); ix < len; ix++) {
       char c = (char)body.charAt(ix);
       // double leading dots
       if (prev == '\n' && c == '.') {
