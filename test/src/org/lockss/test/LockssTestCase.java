@@ -43,7 +43,8 @@ import junit.framework.TestResult;
 
 public class LockssTestCase extends TestCase {
   protected static Logger log =
-    Logger.getLogger("LockssTest", Logger.getInitialDefaultLevel());
+    Logger.getLoggerWithInitialLevel("LockssTest",
+				     Logger.getInitialDefaultLevel());
   /** Timeout duration for timeouts that are expected to time out.  Setting
    * this higher makes normal tests take longer, setting it too low might
    * cause failing tests to erroneously succeed on slow or busy
