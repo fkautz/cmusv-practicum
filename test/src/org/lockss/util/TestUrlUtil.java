@@ -263,6 +263,14 @@ public class TestUrlUtil extends LockssTestCase {
     assertFalse(UrlUtil.isAbsoluteUrl("blah/blah"));
   }
 
+  public void testIsSameHost() {
+    assertFalse(UrlUtil.isSameHost(null, null));
+    assertTrue(UrlUtil.isSameHost("http://www.example.com/foo/bar",
+				  "http://www.example.com/bar/bar/bar"));
+    assertFalse(UrlUtil.isSameHost("http://www.example.com/foo/bar",
+				   "http://www2.example.com/foo/bar"));
+  }
+
   public void testStripsParams() throws MalformedURLException {
     assertNull(UrlUtil.stripQuery(null));
     assertEquals(null, UrlUtil.stripQuery(""));

@@ -213,6 +213,16 @@ public class UrlUtil {
     return false;
   }
 
+  /** Return true if both URLs have the same host part */
+  public static boolean isSameHost(String url1, String url2) {
+    try {
+      return getHost(url1).equalsIgnoreCase(getHost(url2));
+    } catch (MalformedURLException e) {
+      log.warning("isSameHost", e);
+      return false;
+    }
+  }
+
   /** Return true if <code>to</code> looks like a directory redirection
    * from <code>from</code>; <i>ie</i>, that path has had a slash appended
    * to it. */
