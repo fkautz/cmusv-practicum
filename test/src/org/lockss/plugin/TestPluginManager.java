@@ -448,7 +448,8 @@ public class TestPluginManager extends LockssTestCase {
     assertNull(mgr.findMostRecentCachedUrl(url1));
     CachedUrlSetSpec cuss = new MockCachedUrlSetSpec(prefix, null);
     MockCachedUrlSet mcuss = new MockCachedUrlSet(au1, cuss);
-    mcuss.addUrl("foo", url1, true, true, null);
+//     mcuss.addUrl("foo", url1, true, true, null);
+    mcuss.addUrl(url1, true, true, null);
     au1.setAuCachedUrlSet(mcuss);
     CachedUrl cu = mgr.findMostRecentCachedUrl(url1);
     assertNotNull(cu);

@@ -101,7 +101,8 @@ public class TestBaseUrlCacher extends LockssTestCase {
     // add the 'cached' version
     Properties cachedProps = new Properties();
     cachedProps.setProperty("date", "12345");
-    mcus.addUrl("test stream", TEST_URL, true, true, cachedProps);
+//     mcus.addUrl("test stream", TEST_URL, true, true, cachedProps);
+     mcus.addUrl(TEST_URL, true, true, cachedProps);
 
     TimeBase.setSimulated(10000);
     cacher._input = new StringInputStream("test stream");
@@ -124,7 +125,8 @@ public class TestBaseUrlCacher extends LockssTestCase {
     // add the 'cached' version
     Properties cachedProps = new Properties();
     cachedProps.setProperty("date", "12345");
-    mcus.addUrl("test stream", TEST_URL, true, true, cachedProps);
+//     mcus.addUrl("test stream", TEST_URL, true, true, cachedProps);
+    mcus.addUrl(TEST_URL, true, true, cachedProps);
 
     TimeBase.setSimulated(10000);
     cacher._input = new StringInputStream("test stream");
