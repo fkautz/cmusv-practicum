@@ -34,7 +34,6 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.state;
 
 import java.util.HashSet;
-import org.lockss.plugin.ArchivalUnit;
 
 /**
  * AuStateBean is a settable version of AuState used purely for

@@ -33,10 +33,6 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.state;
 
-import java.util.Iterator;
-import org.lockss.plugin.CachedUrlSet;
-import org.lockss.util.Deadline;
-
 /**
  * CrawlState contains the crawl-related state information for a node.
  */

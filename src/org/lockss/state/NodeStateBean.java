@@ -34,7 +34,6 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.state;
 
 import java.util.*;
-import org.lockss.plugin.CachedUrlSet;
 
 /**
  * NodeState contains the current state information for a node, as well as the
