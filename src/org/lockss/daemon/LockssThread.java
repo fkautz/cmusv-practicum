@@ -277,6 +277,8 @@ public abstract class LockssThread extends Thread implements LockssWatchdog {
   public final void run() {
     try {
       lockssRun();
+    } catch (RuntimeException e) {
+      log.warning("Thread threw", e);
     } finally {
       if (triggerOnExit) {
 	threadExited();
