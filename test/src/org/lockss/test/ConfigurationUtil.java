@@ -30,8 +30,10 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.test;
 
+import java.io.*;
 import java.util.*;
 import org.lockss.daemon.*;
+import org.lockss.util.*;
 import org.mortbay.tools.*;
 
 /** Utilities for Configuration
@@ -46,6 +48,12 @@ public class ConfigurationUtil {
 //       throws IOException {
 //     return setCurrentConfigFromUrlList(ListUtil.list(FileUtil.urlOfString(s)));
 //   }
+
+  public static Configuration fromString(String s)
+      throws IOException {
+    List l = ListUtil.list(FileUtil.urlOfString(s));
+    return Configuration.readConfig(l);
+  }
 
   public static Configuration fromProps(Properties props) {
     PropertyTree tree = new PropertyTree(props);
