@@ -40,7 +40,7 @@ package org.lockss.app;
 public interface LockssManager {
 
   /**
-   * init the manager - There is no guarentee that any other manager is
+   * init the manager - There is no guarantee that any other manager is
    * loaded into memory.
    * @param daemon the daemon that can be used to get additional services
    * @throws LockssDaemonException if this manager was already inited.
