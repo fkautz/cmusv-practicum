@@ -60,11 +60,14 @@ public class TestTreeWalkHandler extends LockssTestCase {
     super.setUp();
     theDaemon = new MockLockssDaemon();
     tempDirPath = getTempDir().getAbsolutePath() + File.separator;
-    String s = LockssRepositoryServiceImpl.PARAM_CACHE_LOCATION + "=" +
-        tempDirPath + "\n" + HistoryRepositoryImpl.PARAM_HISTORY_LOCATION +
-        "=" + tempDirPath + "\n" + TreeWalkHandler.PARAM_TREEWALK_INTERVAL +
-        "=100";
-    TestConfiguration.setCurrentConfigFromString(s);
+    Properties props = new Properties();
+    props.setProperty(LockssRepositoryServiceImpl.PARAM_CACHE_LOCATION,
+                     tempDirPath);
+    props.setProperty(HistoryRepositoryImpl.PARAM_HISTORY_LOCATION,
+                      tempDirPath);
+    props.setProperty(TreeWalkHandler.PARAM_TREEWALK_INTERVAL, "100");
+    props.setProperty(NodeManagerImpl.PARAM_RECALL_DELAY, "5s");
+    ConfigurationUtil.setCurrentConfigFromProps(props);
 
     mau = new MockArchivalUnit();
     mau.setAUCachedUrlSet(TestNodeManagerImpl.makeFakeCachedUrlSet(mau,
