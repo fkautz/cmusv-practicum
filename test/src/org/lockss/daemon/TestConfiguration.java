@@ -217,6 +217,7 @@ public class TestConfiguration extends TestCase {
 	public void configurationChanged(Configuration oldConfig,
 					 Configuration newConfig,
 					 Set changedKeys) {
+	  assertNotNull(oldConfig);
 	  configs.add(newConfig);
 	}
       });
