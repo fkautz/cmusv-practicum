@@ -116,11 +116,11 @@ class VerifyPoll extends Poll {
   void stopPoll() {
     try {
       replyVerify(m_msg);
-      PollManager.removePoll(m_key);
     }
     catch (IOException ex) {
-      log.error(m_key + " election failed " + ex);
-     }
+      m_pollstate = ERR_IO;
+    }
+    super.stopPoll();
   }
 
   /**
@@ -184,13 +184,12 @@ class VerifyPoll extends Poll {
         msg.getDuration(),
         LcapIdentity.getLocalIdentity());
     LcapIdentity originator = msg.getOriginID();
-    LcapComm.sendMessageTo(msg,Plugin.findArchivalUnit(url),originator);
+    LcapComm.sendMessageTo(msg, Plugin.findArchivalUnit(url), originator);
     Poll poll = PollManager.findPoll(reqmsg);
     poll.startPoll();
   }
 
   private void replyVerify(LcapMessage msg) throws IOException  {
-    Poll p = null;
     byte[] secret = PollManager.getSecret(msg.getChallenge());
     byte[] verifier = PollManager.makeVerifier();
     LcapMessage repmsg = LcapMessage.makeReplyMsg(msg,
@@ -201,7 +200,7 @@ class VerifyPoll extends Poll {
         LcapIdentity.getLocalIdentity());
 
     LcapIdentity originator = msg.getOriginID();
-    LcapComm.sendMessageTo(repmsg,Plugin.findArchivalUnit(msg.getTargetUrl()),
+    LcapComm.sendMessageTo(repmsg, Plugin.findArchivalUnit(msg.getTargetUrl()),
                            originator);
 
   }
