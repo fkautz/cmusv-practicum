@@ -85,6 +85,10 @@ public class SchedService extends BaseLockssManager {
 			   Set changedKeys) {
   }
 
+  /** Attempt to add a task to the schedule.
+   * @param task the new task
+   * @return true if the task was added to the schedule.
+   */
   public boolean scheduleTask(SchedulableTask task) {
     checkRunner();
     return runner.scheduleTask(task);
