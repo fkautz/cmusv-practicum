@@ -206,6 +206,10 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
         logger.error("Couldn't finish estimating hash time: "+ie);
         return totalNodeSize * BYTES_PER_MS_DEFAULT;
       }
+      if (bytesPerMs==0) {
+        logger.error("Couldn't estimate hash time: getting 0");
+        return totalNodeSize * BYTES_PER_MS_DEFAULT;
+      }
       return (long)(totalNodeSize / bytesPerMs);
     }
   }
