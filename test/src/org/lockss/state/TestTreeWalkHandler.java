@@ -98,7 +98,8 @@ public class TestTreeWalkHandler extends LockssTestCase {
 
 
     treeWalkHandler = new TreeWalkHandler(nodeManager,
-                                         theDaemon.getCrawlManager());
+                                         theDaemon.getCrawlManager(),
+                                         theDaemon.getActivityRegulator());
 
     TestNodeManagerImpl.loadNodeStates(mau, nodeManager);
   }

@@ -73,6 +73,7 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     nodeManager = (MockNodeManager)theDaemon.getNodeManager(mau);
 
     crawlManager.initService(theDaemon);
+    crawlManager.startService();
   }
 
   public void tearDown() throws Exception {
@@ -84,7 +85,7 @@ public class TestCrawlManagerImpl extends LockssTestCase {
 
   public void testNullAUForIsCrawlingAU() {
     try {
-      crawlManager.isCrawlingAU(null, 
+      crawlManager.isCrawlingAU(null,
 				new TestCrawlCB(new SimpleBinarySemaphore()),
 				"blah");
       fail("Didn't throw an IllegalArgumentException on a null AU");
