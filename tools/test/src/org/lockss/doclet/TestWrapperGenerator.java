@@ -112,6 +112,7 @@ public class TestWrapperGenerator extends LockssTestCase {
         break;
       case USE_PACKAGE_BLANK:
         pw.println("<package name=\"blank\"/>");
+        break;
       case USE_PACKAGE_SPECIFIED:
         pw.println("<package name=\"" + packageName + "\"/>");
         break;

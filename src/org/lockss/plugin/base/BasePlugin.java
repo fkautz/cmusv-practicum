@@ -61,7 +61,7 @@ public abstract class BasePlugin
   protected Collection aus = new ArrayList();
   protected Map titleConfigMap;
   // XXX need to generalize this
-  protected CacheResultMap resultMap = new HttpResultMap();
+  protected CacheResultMap resultMap;
 
   /**
    * Must invoke this constructor in plugin subclass.
@@ -79,7 +79,7 @@ public abstract class BasePlugin
 					 Configuration.Differences changedKeys) {
 	  setConfig(newConfig, prevConfig, changedKeys);
 	}});
-    installCacheExceptionHandler();
+    initResultMap();
   }
 
   public void stopPlugin() {
@@ -252,7 +252,7 @@ public abstract class BasePlugin
     return resultMap;
   }
 
-  protected void installCacheExceptionHandler() {
-    // default is to do nothing - override if you need one
+  protected void initResultMap() {
+    resultMap = new HttpResultMap();
   }
 }

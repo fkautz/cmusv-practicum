@@ -71,7 +71,7 @@ public class HtmlUtil {
 
     default:
       return s;
-    }	    
+    }
   }
 
   public static String htmlEncode(String s) {
@@ -127,6 +127,7 @@ public class HtmlUtil {
 	// Special characters
       case '\n':
 	sb.append("\\n");
+        break;
       case '\r':
 	break;
       default:

@@ -309,6 +309,7 @@ public class PrintfEditor extends JDialog
           else {
             format = "%d";
           }
+          break;
         case ConfigParamDescr.TYPE_RANGE:
         case ConfigParamDescr.TYPE_SET:
           format = "%s";

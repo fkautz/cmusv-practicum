@@ -422,7 +422,7 @@ class ReplayVoteCallback implements HashService.Callback {
       PeerIdentity id = v.getVoterIdentity();
       boolean isLocalVote = idManager.isLocalIdentity(id);
       if (isLocalVote) {
-	poll.copyVote(v,true);
+	v = poll.copyVote(v,true);
       }
       else {
 	v.setAgreeWithHash(hasher.digest());

@@ -177,7 +177,7 @@ public class TestDefinablePlugin extends LockssTestCase {
     String name = new MockHttpResultHandler().getClass().getName();
     // test using a special class
     map.putString(DefinablePlugin.CM_EXCEPTION_HANDLER_KEY,name);
-    plugin.installCacheExceptionHandler();
+    plugin.initResultMap();
     assertTrue(plugin.getCacheResultHandler() instanceof MockHttpResultHandler);
 
   }
@@ -185,6 +185,7 @@ public class TestDefinablePlugin extends LockssTestCase {
   public void testInstallCacheExceptionEntries() throws Exception {
     DefinablePlugin plugin = new DefinablePlugin();
     ExternalizableMap map = plugin.getDefinitionMap();
+    plugin.initResultMap();
     // nothing installed should give the default
     String name = "org.lockss.util.urlconn.CacheException$NoRetryDeadLinkException";
     Class expected = Class.forName(name);
@@ -195,7 +196,7 @@ public class TestDefinablePlugin extends LockssTestCase {
     name = "org.lockss.util.urlconn.CacheException$RetryDeadLinkException";
     map.putCollection(DefinablePlugin.CM_EXCEPTION_LIST_KEY,
         ListUtil.list("404="+name));
-    plugin.installCacheExceptionHandler();
+    plugin.initResultMap();
     expected = Class.forName(name);
     found =( (HttpResultMap) plugin.getCacheResultMap()).getExceptionClass(404);
     assertEquals(expected, found);
