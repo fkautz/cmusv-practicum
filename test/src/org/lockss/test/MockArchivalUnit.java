@@ -81,17 +81,17 @@ public class MockArchivalUnit implements ArchivalUnit {
     throw new UnsupportedOperationException("Not implemented");
   }
 
-  public CachedUrlSet getAUCachedUrlSet() {
+  public CachedUrlSet getAuCachedUrlSet() {
     if (cus != null) {
       // if someone has set the aucus, return it
       return cus;
     } else {
       // else make one
-      return getPlugin().makeCachedUrlSet(this, new AUCachedUrlSetSpec());
+      return getPlugin().makeCachedUrlSet(this, new AuCachedUrlSetSpec());
     }
   }
 
-  public void setAUCachedUrlSet(CachedUrlSet cus) {
+  public void setAuCachedUrlSet(CachedUrlSet cus) {
     this.cus = cus;
   }
 
@@ -177,7 +177,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   }
 
   //XXX remove me
-  public final String getAUId() {
+  public final String getAuId() {
     if (auId != null) {
       return auId;
     }
@@ -195,7 +195,7 @@ public class MockArchivalUnit implements ArchivalUnit {
 	props.setProperty(curKey, config.get(curKey));
       }
     }
-    return PluginManager.generateAUId(getPluginId(), props);
+    return PluginManager.generateAuId(getPluginId(), props);
   }
 
   public String getName() {

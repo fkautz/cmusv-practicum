@@ -130,7 +130,7 @@ public class RunDaemon
       }
     }
     else {
-      Iterator iter = pluginMgr.getAllAUs().iterator();
+      Iterator iter = pluginMgr.getAllAus().iterator();
       while(iter.hasNext()) {
         au = (ArchivalUnit) iter.next();
         startWalk(au);

@@ -114,7 +114,7 @@ public class RangeCachedUrlSetSpec implements CachedUrlSetSpec {
   }
 
   /** @return false */
-  public boolean isAU() {
+  public boolean isAu() {
     return false;
   }
 
@@ -137,7 +137,7 @@ public class RangeCachedUrlSetSpec implements CachedUrlSetSpec {
     if (spec.isSingleNode()) {
       return !matches(spec.getUrl());
     }
-    if (spec.isAU()) {
+    if (spec.isAu()) {
       return false;
     }
     if (spec instanceof RangeCachedUrlSetSpec) {
@@ -166,7 +166,7 @@ public class RangeCachedUrlSetSpec implements CachedUrlSetSpec {
     if (spec.isSingleNode()) {
       return matches(spec.getUrl());
     }
-    if (spec.isAU()) {
+    if (spec.isAu()) {
       return false;
     }
     if (spec instanceof RangeCachedUrlSetSpec) {

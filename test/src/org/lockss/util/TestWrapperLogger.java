@@ -167,7 +167,7 @@ public class TestWrapperLogger extends LockssTestCase {
     assertEquals(tgt.messageCount(),1);
   }
 
-  public void testConfigureAU() {
+  public void testConfigureAu() {
     tgt.resetMessages();
     WrapperLogger.record_throwable("Plugin","configureAU",new NullPointerException());
     assertEquals(tgt.messageCount(),1);

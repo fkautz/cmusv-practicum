@@ -88,7 +88,7 @@ public class IeeePlugin extends BasePlugin {
       AUPARAM_YEAR, "2003"}
   };
 
-  public ArchivalUnit createAU(Configuration auConfig)
+  public ArchivalUnit createAu(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
     ArchivalUnit au = new IeeeArchivalUnit(this);
     au.setConfiguration(auConfig);
@@ -108,7 +108,7 @@ public class IeeePlugin extends BasePlugin {
     return CURRENT_VERSION;
   }
 
-  public List getAUConfigProperties() {
+  public List getAuConfigProperties() {
     return ListUtil.list(PD_BASE, PD_PUNUM, PD_YEAR);
   }
 

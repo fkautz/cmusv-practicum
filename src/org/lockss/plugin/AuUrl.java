@@ -65,6 +65,7 @@ public class AuUrl {
    * @param auId the plugin-specific AU Id string.
    * @return a URL with the LOCKSSAU protocol and the supplied AU Id
    * string.
+   * @throws MalformedURLException
    */
   public static URL fromAuId(String auId)
       throws MalformedURLException {

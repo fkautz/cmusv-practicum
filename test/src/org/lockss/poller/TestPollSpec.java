@@ -81,7 +81,7 @@ public class TestPollSpec extends LockssTestCase {
 								      lower,
 								      upper));
     PollSpec ps = new PollSpec(cus);
-    assertEquals(auid, ps.getAUId());
+    assertEquals(auid, ps.getAuId());
     assertEquals(url, ps.getUrl());
     assertEquals(lower, ps.getLwrBound());
     assertEquals(upper, ps.getUprBound());
@@ -123,7 +123,7 @@ public class TestPollSpec extends LockssTestCase {
       fail("can't make request message");
     }
     ps = new PollSpec(msg);
-    assertEquals(auid, ps.getAUId());
+    assertEquals(auid, ps.getAuId());
     assertEquals(url, ps.getUrl());
     assertEquals(lower, ps.getLwrBound());
     assertEquals(upper, ps.getUprBound());

@@ -76,7 +76,7 @@ public interface ArchivalUnit {
    * of this AU
    * @return the top-level {@link CachedUrlSet}
    */
-  public CachedUrlSet getAUCachedUrlSet();
+  public CachedUrlSet getAuCachedUrlSet();
 
   /**
    * Return the {@link CrawlSpec}
@@ -111,7 +111,7 @@ public interface ArchivalUnit {
    * AU.
    * @return a unique id
    */
-  public String getAUId();
+  public String getAuId();
 
   /**
    * Returns a human-readable name for the <code>ArchivalUnit</code>.  This is

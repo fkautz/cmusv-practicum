@@ -231,7 +231,7 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     return ListUtil.list(SIMULATED_URL_STEM);
   }
 
-  boolean isURLToBeDamaged(String url) {
+  boolean isUrlToBeDamaged(String url) {
     String file = StringUtil.replaceString(url,SIMULATED_URL_ROOT,"");
     if (toBeDamaged.contains(file)) {
       boolean x = toBeDamaged.remove(file);

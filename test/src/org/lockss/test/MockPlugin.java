@@ -115,7 +115,7 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
    * @return a List of strings which are the names of the properties for
    * which values are needed in order to configure an AU
    */
-  public List getAUConfigProperties() {
+  public List getAuConfigProperties() {
     return ListUtil.list(CONFIG_PROP_1, CONFIG_PROP_2);
   }
 
@@ -133,13 +133,13 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
   /**
    * Create an ArchivalUnit for the AU specified by the configuration.
    * @param auConfig Configuration object with values for all properties
-   * returned by {@link #getAUConfigProperties()}
+   * returned by {@link #getAuConfigProperties()}
    * @return the ArchivalUnit
    * @throws ArchivalUnit.ConfigurationException
    */
-  public ArchivalUnit createAU(Configuration auConfig)
+  public ArchivalUnit createAu(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
-    log.debug("createAU(" + auConfig + ")");
+    log.debug("createAu(" + auConfig + ")");
     MockArchivalUnit au = new MockArchivalUnit();
     au.setConfiguration(auConfig);
     au.setPlugin(this);

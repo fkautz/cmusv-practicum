@@ -73,7 +73,7 @@ public class MockCachedUrlSetSpec implements CachedUrlSetSpec {
     throw new UnsupportedOperationException("Not Implemented");
   }
 
-  public boolean isAU() {
+  public boolean isAu() {
     throw new UnsupportedOperationException("Not Implemented");
   }
 

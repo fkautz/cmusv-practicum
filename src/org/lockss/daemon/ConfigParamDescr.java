@@ -56,6 +56,14 @@ public class ConfigParamDescr implements Comparable {
     VOLUME_NUMBER.setSize(8);
   }
 
+  public static final ConfigParamDescr YEAR = new ConfigParamDescr();
+  static {
+    YEAR.setKey("year");
+    YEAR.setDisplayName("Year");
+    YEAR.setType(TYPE_INT);
+    YEAR.setSize(4);
+  }
+
   public static final ConfigParamDescr BASE_URL = new ConfigParamDescr();
   static {
     BASE_URL.setKey("base_url");

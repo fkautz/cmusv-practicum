@@ -72,7 +72,7 @@ public class MockCrawlManager implements CrawlManager, LockssManager {
    * @param cookie the cookie
    * @return true if a crawl is running on this AU
    */
-  public boolean isCrawlingAU(ArchivalUnit au,
+  public boolean isCrawlingAu(ArchivalUnit au,
 			      CrawlManager.Callback cb, Object cookie) {
     if (shouldCrawlNewContent) {
       scheduleNewContentCrawl(au, cb, cookie);

@@ -64,7 +64,7 @@ public class ProjectMusePlugin extends BasePlugin {
     AUPARAM_JOURNAL_DIR, "american_imago" }
   };
 
-  public ArchivalUnit createAU(Configuration auConfig)
+  public ArchivalUnit createAu(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
     ArchivalUnit au = new ProjectMuseArchivalUnit(this);
     au.setConfiguration(auConfig);
@@ -84,7 +84,7 @@ public class ProjectMusePlugin extends BasePlugin {
     return CURRENT_VERSION;
   }
 
-  public List getAUConfigProperties() {
+  public List getAuConfigProperties() {
     return ListUtil.list(PD_BASE, PD_DIR, PD_VOL);
   }
 

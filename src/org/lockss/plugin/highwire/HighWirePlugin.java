@@ -80,7 +80,7 @@ public class HighWirePlugin extends BasePlugin {
     return "HighWire Press";
   }
 
-  public List getAUConfigProperties() {
+  public List getAuConfigProperties() {
     return ListUtil.list(PD_BASE, PD_VOL);
   }
   
@@ -88,7 +88,7 @@ public class HighWirePlugin extends BasePlugin {
     return ListUtil.list(AUPARAM_BASE_URL, AUPARAM_VOL);
   }
 
-  public ArchivalUnit createAU(Configuration configInfo) 
+  public ArchivalUnit createAu(Configuration configInfo) 
       throws ArchivalUnit.ConfigurationException {
     ArchivalUnit au = new HighWireArchivalUnit(this);
     au.setConfiguration(configInfo);

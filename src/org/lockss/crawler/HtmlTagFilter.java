@@ -101,6 +101,7 @@ public class HtmlTagFilter extends Reader {
    *
    * @param reader reader to filter from
    * @param pairs List of TagPairs to filter between.
+   * @return an HtmlTagFilter
    */
   public static HtmlTagFilter makeNestedFilter(Reader reader, List pairs) {
     if (pairs == null) {
@@ -150,7 +151,7 @@ public class HtmlTagFilter extends Reader {
 // 	}
 //       }
 //       if (charBuffer.size() == 0) {
-// 	//ran out of stream while trying to read through a tag 
+// 	//ran out of stream while trying to read through a tag
 // 	logger.debug3("Read Returning -1, spot b");
 // 	return -1;
 //       }
@@ -168,10 +169,14 @@ public class HtmlTagFilter extends Reader {
    * nesting into account
    *
    * May leave buffer empty even if there are chars left on the reader
+   * @param charBuffer the buffer
+   * @param reader the reader
+   * @param pair the TagPair
+   * @throws IOException
    */
   private void readThroughTag(FilterCharRing charBuffer, Reader reader,
 			      TagPair pair)
-  throws IOException {
+      throws IOException {
     int idx = pair.start.length();
     int tagNesting = 1;
     int maxTagLength = (pair.start.length() > pair.end.length())
@@ -211,7 +216,7 @@ public class HtmlTagFilter extends Reader {
     }
     charBuffer.clear(idx);
   }
-  
+
   public void mark(int readAheadLimit) {
     throw new UnsupportedOperationException("Not Implemented");
   }
@@ -228,7 +233,7 @@ public class HtmlTagFilter extends Reader {
     } else if (len == 0) {
       return 0;
     }
-    
+
 
     int numLeft = len;
     boolean matchedTag = false;

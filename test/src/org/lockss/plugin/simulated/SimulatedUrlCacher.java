@@ -131,7 +131,7 @@ public class SimulatedUrlCacher extends BaseUrlCacher {
   private boolean toBeDamaged() {
     try {
       SimulatedArchivalUnit unit = (SimulatedArchivalUnit) getArchivalUnit();
-      return unit.isURLToBeDamaged(url);
+      return unit.isUrlToBeDamaged(url);
     } catch (ClassCastException e ) {
       return false;
     }

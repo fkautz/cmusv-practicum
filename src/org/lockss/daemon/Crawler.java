@@ -86,7 +86,7 @@ public interface Crawler {
    * Return the AU that this crawler is crawling within
    * @return the AU that this crawler is crawling within
    */
-  public ArchivalUnit getAU();
+  public ArchivalUnit getAu();
 
   /**
    * Returns the type of crawl

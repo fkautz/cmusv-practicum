@@ -175,7 +175,7 @@ public class BaseCachedUrlSet implements CachedUrlSet {
    * @return an {@link Iterator}
    */
   public Iterator contentHashIterator() {
-    return new CUSIterator();
+    return new CusIterator();
   }
 
   public CachedUrlSetHasher getContentHasher(MessageDigest hasher) {
@@ -354,14 +354,14 @@ public class BaseCachedUrlSet implements CachedUrlSet {
 /**
  * Iterator over all the elements in a CachedUrlSet
  */
-protected class CUSIterator implements Iterator {
+protected class CusIterator implements Iterator {
   //Stack of flatSetIterators at each tree level
   LinkedList stack = new LinkedList();
 
   //if null, we have to look for nextElement
   private CachedUrlSetNode nextElement = null;
 
-  public CUSIterator() {
+  public CusIterator() {
     if (!spec.isRangeRestricted()) {
       nextElement = BaseCachedUrlSet.this;
     }

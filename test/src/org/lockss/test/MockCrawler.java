@@ -68,15 +68,15 @@ public class MockCrawler extends NullCrawler {
     return doCrawlCalled;
   }
 
-  public ArchivalUnit getAU() {
+  public ArchivalUnit getAu() {
     return au;
   }
 
-  public void setAU(ArchivalUnit au) {
+  public void setAu(ArchivalUnit au) {
     this.au = au;
   }
 
-  public void setURLs(Collection urls) {
+  public void setUrls(Collection urls) {
     this.urls = urls;
   }
 

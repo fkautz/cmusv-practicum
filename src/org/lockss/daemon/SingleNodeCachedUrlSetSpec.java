@@ -69,7 +69,7 @@ public class SingleNodeCachedUrlSetSpec implements CachedUrlSetSpec {
   }
 
   /** @return false */
-  public boolean isAU() {
+  public boolean isAu() {
     return false;
   }
 
@@ -91,7 +91,7 @@ public class SingleNodeCachedUrlSetSpec implements CachedUrlSetSpec {
     if (spec.isSingleNode()) {
       return !equals(spec);
     }
-    if (spec.isAU()) {
+    if (spec.isAu()) {
       return false;
     }
     return !spec.subsumes(this);

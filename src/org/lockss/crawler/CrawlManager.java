@@ -88,7 +88,7 @@ public interface CrawlManager {
      * @return collection of AUs that have crawl history (either active or
      * completed crawls)
      */
-    public Collection getActiveAUs();
+    public Collection getActiveAus();
 
     /**
      * return a <code>Collection</code> of {@link Crawler}s doing repair
