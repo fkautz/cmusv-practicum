@@ -1,6 +1,6 @@
-// ========================================================================
-// $Id$
-// ========================================================================
+/*
+ * $Id$
+ */
 
 /*
 
@@ -44,9 +44,11 @@ public class ProbabilisticChoice {
   private ProbabilisticChoice() {
   }
 
-  /** 
+  /**
    * Return <code>true</code> with probability <code>prob</code>
-   * (0.0 <= <code>prob</code> < 1.0)
+   * (0.0 <= <code>prob</code> &lt; 1.0)
+   * @param prob the probability
+   * @return true with propability 'prob'
    */
   public static boolean choose(double prob) {
     return (random.nextDouble() < prob);
