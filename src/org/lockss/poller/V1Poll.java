@@ -298,6 +298,7 @@ public abstract class V1Poll extends BasePoll {
   void startPoll() {
     if (m_pollstate != PS_INITING)
       return;
+    m_pollstate = PS_WAIT_HASH;
     if (!scheduleOurHash()) {
       m_pollstate = ERR_SCHEDULE_HASH;
       log.debug("couldn't schedule our hash:" + m_voteTime + ", stopping poll.");
@@ -306,8 +307,6 @@ public abstract class V1Poll extends BasePoll {
     }
     log.debug3("scheduling poll to complete by " + m_deadline);
     TimerQueue.schedule(m_deadline, new PollTimerCallback(), this);
-    m_pollstate = PS_WAIT_HASH;
-
   }
 
   /**
