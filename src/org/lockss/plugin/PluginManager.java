@@ -55,6 +55,7 @@ public class PluginManager implements LockssManager {
 
   private static PluginManager theManager = null;
   private static LockssDaemon theDaemon = null;
+  private static StatusService statusSvc;
   private String pluginDir = null;
 
   private Map plugins = new HashMap();
@@ -90,8 +91,8 @@ public class PluginManager implements LockssManager {
 	  setConfig(newConfig, oldConfig);
 	}
       });
-    theDaemon.getStatusService().registerStatusAccessor("AUS",
-							new Status(this));
+    statusSvc = theDaemon.getStatusService();
+    statusSvc.registerStatusAccessor("AUS", new Status(this));
   }
 
   /**
@@ -325,6 +326,9 @@ public class PluginManager implements LockssManager {
 	row.put("au", au.getName());
 	row.put("pluginid", au.getPluginId());
 	row.put("auid", au.getAUId());
+	row.put("poll",
+		statusSvc.getReference(PollManager.MANAGER_STATUS_TABLE_NAME,
+				       au));
 	table.add(row);
       }
       return table;
