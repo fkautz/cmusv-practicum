@@ -55,7 +55,6 @@ public class TestConfigManager extends LockssTestCase {
   }
 
   public void tearDown() throws Exception {
-    ConfigManager.resetForTesting();
     super.tearDown();
   }
 
