@@ -44,7 +44,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   private static final int
     DEFAULT_MILLISECONDS_BETWEEN_CRAWL_HTTP_REQUESTS = 10000;
 
-  private CrawlSpec crawlSpec;
+  protected CrawlSpec crawlSpec;
   private String idStr = null;
 
   /**
@@ -52,7 +52,11 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
    * @param spec the CrawlSpec
    */
   protected BaseArchivalUnit(CrawlSpec spec) {
+    this();
     crawlSpec = spec;
+  }
+
+  protected BaseArchivalUnit() {
   }
 
   // Factories that must be implemented by plugin subclass
