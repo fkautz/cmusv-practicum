@@ -99,7 +99,7 @@ public class WrapperState {
       register("org.lockss.plugin.Plugin");
     } catch (ClassNotFoundException e) {
       usingWrapping = false;
-      log.info("The wrapper layer is INACTIVE.");
+      log.debug("The wrapper layer is INACTIVE.");
     }
   }
 
