@@ -57,8 +57,10 @@ public class TestPollManager extends LockssTestCase {
   private static String uprbnd = "test3.doc";
   private static long testduration = Constants.HOUR;
 
-  private static ArrayList testentries = (ArrayList)ListUtil.list("test1.doc",
-      "test2.doc", "test3.doc");
+  private static ArrayList testentries = (ArrayList)ListUtil.list(
+      new PollTally.NameListEntry(true,"test1.doc"),
+      new PollTally.NameListEntry(true,"test2.doc"),
+      new PollTally.NameListEntry(true,"test3.doc"));
 
   protected static ArchivalUnit testau;
   private MockLockssDaemon theDaemon;
