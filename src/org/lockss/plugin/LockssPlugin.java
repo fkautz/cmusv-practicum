@@ -100,5 +100,5 @@ public interface LockssPlugin {
    * @return the ArchivalUnit
    */
   public ArchivalUnit findAU(Properties configInfo) 
-      throws AUInstantiationException;
+      throws ArchivalUnit.InstantiationException;
 }

@@ -114,4 +114,36 @@ public interface ArchivalUnit {
    */
   public List getNewContentCrawlUrls();
 
+
+  public class InstantiationException extends Exception {
+    private String msg;
+    private Throwable nestedException;
+    
+    public InstantiationException(String msg) {
+      this(msg, null);
+    }
+    
+    public InstantiationException(String msg, Throwable e) {
+      this.msg = msg;
+      this.nestedException = e;
+    }
+
+    public Throwable getNestedException() {
+      return nestedException;
+    }
+
+    public String getMsg() {
+      return msg;
+    }
+
+    public String toString() {
+      StringBuffer sb = new StringBuffer();
+      sb.append(msg);
+      if (nestedException != null) {
+	sb.append("\nnested exception:\n");
+	sb.append(nestedException.toString());
+      }
+      return sb.toString();
+    }
+  }
 }

@@ -82,7 +82,7 @@ public class HighWirePlugin implements LockssPlugin {
   }
 
   public ArchivalUnit findAU(Properties configInfo) 
-      throws AUInstantiationException {
+      throws ArchivalUnit.InstantiationException {
     if (configInfo == null) {
       throw new IllegalArgumentException("Called with null configInfo");
     }
@@ -102,10 +102,12 @@ public class HighWirePlugin implements LockssPlugin {
       int vol = Integer.parseInt(volStr);
       return findAU(url, vol);
     } catch (MalformedURLException murle) {
-      throw new AUInstantiationException(BASE_URL_PROP+" set to a bad url "+
-				urlStr, murle);
+      throw new ArchivalUnit.InstantiationException(BASE_URL_PROP+
+						    " set to a bad url "+
+						    urlStr, murle);
     } catch (REException ree) {
-      throw new AUInstantiationException("Regular expression problem", ree);
+      throw new ArchivalUnit.InstantiationException("Regular expression "+
+						    "problem", ree);
     }
   }
 
