@@ -53,15 +53,4 @@ public class TestGenericFileUrlCacher extends TestCase {
     //XXX set input, props
     //XXX test caching location
   }
-
-  public void testMapUrlToCacheFileName(String url) {
-    String testStr = "http://www.example.com/branch1/branch2/index.html";
-    String expectedStr = GenericFileUrlCacher.CACHE_ROOT +
-                         "/www.example.com/http/branch1/branch2/index.html";
-    assertTrue(GenericFileUrlCacher.mapUrlToCacheFileName(testStr).equals(expectedStr));
-
-    testStr = ":/brokenurl.com/branch1/index/";
-    expectedStr = GenericFileUrlCacher.CACHE_ROOT + "/:/brokenurl.com/branch1/index/";
-    assertTrue(GenericFileUrlCacher.mapUrlToCacheFileName(testStr).equals(expectedStr));
-  }
 }
