@@ -49,7 +49,7 @@ import org.lockss.util.Logger;
 public class GenericFileCachedUrl extends BaseCachedUrl {
   private LockssRepository repository;
   private RepositoryNode leaf = null;
-  protected static Logger logger = Logger.getLogger("CachedUrl", Logger.LEVEL_DEBUG);
+  protected static Logger logger = Logger.getLogger("CachedUrl");
 
   public GenericFileCachedUrl(CachedUrlSet owner, String url) {
     super(owner, url);
@@ -62,12 +62,12 @@ public class GenericFileCachedUrl extends BaseCachedUrl {
 
   public InputStream openForReading() {
     ensureLeafLoaded();
-    return leaf.getInputStream();
+    return leaf.getNodeContents().input;
   }
 
   public Properties getProperties() {
     ensureLeafLoaded();
-    return leaf.getProperties();
+    return leaf.getNodeContents().props;
   }
 
   private void ensureLeafLoaded() {

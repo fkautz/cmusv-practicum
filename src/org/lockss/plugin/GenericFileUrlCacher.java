@@ -49,14 +49,15 @@ import org.lockss.repository.*;
 
 public abstract class GenericFileUrlCacher extends BaseUrlCacher {
   private LockssRepository repository;
-  protected static Logger logger = Logger.getLogger("UrlCacher", Logger.LEVEL_DEBUG);
+  protected static Logger logger = Logger.getLogger("UrlCacher");
 
   public GenericFileUrlCacher(CachedUrlSet owner, String url) {
     super(owner, url);
     repository = LockssRepositoryImpl.repositoryFactory(owner.getArchivalUnit());
   }
 
-  public void storeContent(InputStream input, Properties headers) throws IOException {
+  public void storeContent(InputStream input, Properties headers)
+      throws IOException {
     RepositoryNode leaf = repository.createNewNode(url);
     leaf.makeNewVersion();
     try {

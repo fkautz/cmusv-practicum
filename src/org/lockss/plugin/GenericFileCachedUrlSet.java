@@ -50,7 +50,7 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
   private long lastDuration = 0;
   private Exception lastException = null;
   private LockssRepository repository;
-  protected static Logger logger = Logger.getLogger("CachedUrlSet", Logger.LEVEL_DEBUG);
+  protected static Logger logger = Logger.getLogger("CachedUrlSet");
 
   public GenericFileCachedUrlSet(ArchivalUnit owner, CachedUrlSetSpec spec) {
     super(owner, spec);
