@@ -144,6 +144,8 @@ public class ConfigParamDescrPicker
     availableBorder.setTitleFont(new java.awt.Font("Dialog", 0, 12));
     mainPanel.setMinimumSize(new Dimension(400, 220));
     mainPanel.setPreferredSize(new Dimension(480, 250));
+    AvailableParamList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    PluginParamList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     ButtonPanel.add(CreateButton, null);
     ButtonPanel.add(OkButton, null);
     ButtonPanel.add(CancelButton, null);
