@@ -79,12 +79,4 @@ public class OtherVoicesPlugin
     return au;
   }
 
-  public List getAuConfigProperties() {
-    return ListUtil.list(PD_BASE, PD_VOL);
-  }
-
-  public Collection getDefiningConfigKeys() {
-    return ListUtil.list(AUPARAM_BASE_URL, AUPARAM_VOL);
-  }
-
 }

@@ -78,12 +78,4 @@ public class CulturalLogicPlugin extends BasePlugin {
     return au;
   }
 
-  public List getAuConfigProperties() {
-    return ListUtil.list(PD_BASE, PD_YEAR);
-  }
-
-  public Collection getDefiningConfigKeys() {
-    return ListUtil.list(AUPARAM_BASE_URL, AUPARAM_YEAR);
-  }
-
 }

@@ -207,7 +207,6 @@ public class MockArchivalUnit implements ArchivalUnit {
   }
 
   public void setAuId(String newId) {
-    //    log.warning("*********************************"+newId, new RuntimeException("blah"));
     auId = newId;
   }
 
