@@ -151,6 +151,8 @@ public class TreeWalkHandler {
           treeWalkAborted = false;
         }
       }
+    } else {
+      logger.debug2("Treewalk couldn't start due to activity lock.");
     }
 
     //alert the AuState (it writes through)

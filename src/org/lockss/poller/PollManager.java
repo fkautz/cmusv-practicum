@@ -401,9 +401,16 @@ public class PollManager  extends BaseLockssManager {
       theDaemon.getActivityRegulator().auActivityFinished(
           ActivityRegulator.TOP_LEVEL_POLL, cus.getArchivalUnit());
     } else {
-      int activity = (isContentPoll ?
-                      ActivityRegulator.STANDARD_CONTENT_POLL :
-                      ActivityRegulator.STANDARD_NAME_POLL);
+      int activity;
+      if (cus.getSpec() instanceof SingleNodeCachedUrlSetSpec) {
+        activity = (isContentPoll ?
+                    ActivityRegulator.SINGLE_NODE_CONTENT_POLL :
+                    ActivityRegulator.STANDARD_NAME_POLL);
+      } else {
+        activity = (isContentPoll ?
+                    ActivityRegulator.STANDARD_CONTENT_POLL :
+                    ActivityRegulator.STANDARD_NAME_POLL);
+      }
       theDaemon.getActivityRegulator().cusActivityFinished(activity, cus);
     }
   }
