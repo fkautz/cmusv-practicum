@@ -72,7 +72,9 @@ public class HistoryRepositoryImpl implements HistoryRepository, LockssManager {
 
   static final String HISTORY_FILE_NAME = "history.xml";
   static final String AU_FILE_NAME = "au_state.xml";
-  private static final String TEST_PREFIX = "/tmp";
+  // this contains a '#' so that it's not defeatable by strings which
+  // match the prefix in a url (like '../tmp/')
+  private static final String TEST_PREFIX = "/#tmp";
 
   private static String rootDir;
   private Mapping mapping = null;

@@ -58,7 +58,9 @@ public class LockssRepositoryImpl implements LockssRepository {
    */
   public static final int MAX_LRUMAP_SIZE = 12;
 
-  private static final String TEST_PREFIX = "/tmp";
+  // this contains a '#' so that it's not defeatable by strings which
+  // match the prefix in a url (like '../tmp/')
+  private static final String TEST_PREFIX = "/#tmp";
 
   private String rootLocation;
   private ArchivalUnit repoAu;
