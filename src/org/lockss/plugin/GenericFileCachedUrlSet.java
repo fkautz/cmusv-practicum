@@ -84,7 +84,7 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
         while (children.hasNext()) {
           RepositoryNode child = (RepositoryNode)children.next();
           CachedUrlSetSpec rSpec =
-              new RECachedUrlSetSpec(child.getNodeUrl(), (String)null);
+              new RangeCachedUrlSetSpec(child.getNodeUrl());
           CachedUrlSet newSet = ((BaseArchivalUnit)au).makeCachedUrlSet(rSpec);
           setTree.add(newSet);
         }

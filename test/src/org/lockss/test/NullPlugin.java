@@ -204,7 +204,8 @@ public class NullPlugin {
     implements org.lockss.daemon.ArchivalUnit {
 
     public org.lockss.daemon.CachedUrlSet makeCachedUrlSet(String url,
-							   String regexp) {
+							   String lwrBound,
+                                                           String uprBound) {
       return null;
     }
 
@@ -237,7 +238,7 @@ public class NullPlugin {
     public List getNewContentCrawlUrls() {
       return null;
     }
-    
+
     public boolean shouldCrawlForNewContent(AuState aus) {
       return false;
     }

@@ -112,8 +112,8 @@ public class RunDaemon {
 	Thread.currentThread().sleep(1000);
         String url = "http://www.example.com/";
         ArchivalUnit au = daemon.getPluginManager().findArchivalUnit(url);
-        CachedUrlSet cus = au.makeCachedUrlSet(url, null);
-	pollManager.requestPoll(cus, null, poll_type);
+        CachedUrlSet cus = au.makeCachedUrlSet(url, null, null);
+	pollManager.requestPoll(cus, null, null, poll_type);
       } catch (Exception e) {
 	e.printStackTrace();
       }

@@ -38,6 +38,7 @@ import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.test.MockCachedUrlSetSpec;
 import org.lockss.plugin.*;
+import org.lockss.daemon.RangeCachedUrlSetSpec;
 
 /**
  * This is a mock version of <code>ArchivalUnit</code> used for testing
@@ -68,7 +69,7 @@ public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
     try {
       String url = (String)this.getCrawlSpec().getStartingUrls().get(0);
       return new GenericFileCachedUrlSet(this,
-                  new RECachedUrlSetSpec(url, ""));
+                  new RangeCachedUrlSetSpec(url));
     } catch (Exception e) {
       return null;
     }
@@ -95,9 +96,9 @@ public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
     return cachedUrlSetFactory(this, cuss);
   }
 
-  public CachedUrlSet makeCachedUrlSet(String url, String regexp) {
+  public CachedUrlSet makeCachedUrlSet(String url, String lwrBound, String uprBound) {
     try {
-      return cachedUrlSetFactory(this, new RECachedUrlSetSpec(url, regexp));
+      return cachedUrlSetFactory(this, new RangeCachedUrlSetSpec(url, lwrBound, uprBound));
     } catch (Exception e) {
       return null;
     }

@@ -85,7 +85,7 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
 
   public CachedUrlSet getAUCachedUrlSet() {
     return new GenericFileCachedUrlSet(this,
-               new RECachedUrlSetSpec(SIMULATED_URL_ROOT));
+               new RangeCachedUrlSetSpec(SIMULATED_URL_ROOT));
   }
 
   public String getPluginId() {

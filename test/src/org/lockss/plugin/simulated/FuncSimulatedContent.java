@@ -159,7 +159,7 @@ public class FuncSimulatedContent extends LockssTestCase {
 
   private void checkLeaf() {
     String parent = sau.SIMULATED_URL_ROOT + "/branch1";
-    CachedUrlSetSpec spec = new RECachedUrlSetSpec(parent);
+    CachedUrlSetSpec spec = new RangeCachedUrlSetSpec(parent);
     CachedUrlSet set = sau.cachedUrlSetFactory(sau, spec);
     Iterator setIt = set.leafIterator();
     ArrayList childL = new ArrayList(15);
@@ -229,7 +229,7 @@ public class FuncSimulatedContent extends LockssTestCase {
     assertTrue(Arrays.equals(hash, hash2));
 
     String parent = sau.SIMULATED_URL_ROOT + "/branch1";
-    CachedUrlSetSpec spec = new RECachedUrlSetSpec(parent);
+    CachedUrlSetSpec spec = new RangeCachedUrlSetSpec(parent);
     set = sau.cachedUrlSetFactory(sau, spec);
     hash2 = getHash(set, namesOnly);
     assertTrue(!Arrays.equals(hash, hash2));

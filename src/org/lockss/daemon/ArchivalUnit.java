@@ -58,12 +58,12 @@ public interface ArchivalUnit {
    * Create a <code>CachedUrlSet</code> representing the content in this AU
    * that matches the url and regexp.
    * @param url the CachedUrlSet url
-   * @param regexp the CachedUrlSet regexp
+   * @param lwrBound the lower bound of the match range
+   * @param uprBound the upper bound of the match range
    * @return the created CachedUrlSet
-   * @throws REException
    */
-  public CachedUrlSet makeCachedUrlSet(String url, String regexp)
-      throws REException;
+  public CachedUrlSet makeCachedUrlSet(String url, String lwrBound,
+                                       String uprBound);
 
   /**
    * Return the <code>CachedUrlSet</code> representing the entire contents
@@ -128,11 +128,11 @@ public interface ArchivalUnit {
   public class InstantiationException extends Exception {
     private String msg;
     private Throwable nestedException;
-    
+
     public InstantiationException(String msg) {
       this(msg, null);
     }
-    
+
     public InstantiationException(String msg, Throwable e) {
       this.msg = msg;
       this.nestedException = e;

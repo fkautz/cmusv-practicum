@@ -56,13 +56,14 @@ public class MockPollManager extends PollManager {
     thePolls = new Hashtable();
   }
 
-  public void requestPoll(CachedUrlSet cus, String regexp, int opcode)
-      throws IOException {
+  public void requestPoll(CachedUrlSet cus, String lwrBound, String uprBound,
+                          int opcode) throws IOException {
     // note: uses a different key than the other two, since we're not
     // creating an actual challenge and verifier to key off of.
     if (opcode == LcapMessage.CONTENT_POLL_REQ) {
       thePolls.put(cus.getPrimaryUrl(), CONTENT_REQUESTED);
-    } else if (opcode == LcapMessage.NAME_POLL_REQ) {
+    }
+    else if (opcode == LcapMessage.NAME_POLL_REQ) {
       thePolls.put(cus.getPrimaryUrl(), NAME_REQUESTED);
     }
   }
