@@ -718,7 +718,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
   protected Object makeInstance(String managerClassName)
       throws ClassNotFoundException, InstantiationException,
 	     IllegalAccessException {
-    log.debug("Instantiating manager class " + managerClassName);
+    log.debug2("Instantiating manager class " + managerClassName);
     Class mgrClass = Class.forName(managerClassName);
     return mgrClass.newInstance();
   }
@@ -902,7 +902,6 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
       Object auMgr = auMgrMap.get(managerKey);
       if (auMgr != null) {
 	res.add(auMgr);
-	log.info("Add: " + auMgr);
       }
     }
     return res;

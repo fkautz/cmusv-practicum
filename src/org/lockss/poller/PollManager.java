@@ -358,14 +358,13 @@ public class PollManager  extends BaseLockssManager {
     BasePoll ret_poll;
     PollSpec spec = new PollSpec(msg);
     CachedUrlSet cus = spec.getCachedUrlSet();
-    theLog.debug("making poll from: " + spec);
-    ActivityRegulator.Lock lock = null;
-
     // check for presence of item in the cache
     if (cus == null) {
-      theLog.debug(spec.getUrl()+ " not in this cache, ignoring poll request.");
+      theLog.debug("Ignoring poll request, don't have AU: " + spec.getAuId());
       return null;
     }
+    theLog.debug("Making poll from: " + spec);
+    ActivityRegulator.Lock lock = null;
 
     // check for conflicts
     CachedUrlSet conflict = checkForConflicts(msg, cus);
