@@ -222,13 +222,14 @@ public class SetUtil {
     return l;
   }
 
+  /** Create a set containing the elements of a Collection */
+  public static Set theSet(Collection coll) {
+    return new HashSet(coll);
+  }
+
   /** Create a set containing the elements of a list */
   public static Set fromList(List list) {
-    Set l = set();
-    for (int i = 0; i < list.size(); i++) {
-      l.add(list.get(i));
-    }
-    return l;
+    return theSet(list);
   }
 
   /** Create a set containing the elements of an iterator */

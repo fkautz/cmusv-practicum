@@ -77,6 +77,15 @@ public class TestSetUtil extends LockssTestCase {
     assertEquals(s1, SetUtil.fromIterator(new ArrayIterator(arr)));
   }
 
+  public void testTheSet() {
+    Set s1 = SetUtil.theSet(ListUtil.list("1", "2", "3"));
+    assertTrue(s1 instanceof Set);
+    assertEquals(3, s1.size());
+    assertTrue(s1.contains("1"));
+    assertTrue(s1.contains("2"));
+    assertTrue(s1.contains("3"));
+  }
+
   public void testImmutableSetOfType() {
     String arr[] = {"1", "2", "4"};
     Set s0 = SetUtil.fromArray(arr);
