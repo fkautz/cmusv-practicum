@@ -55,7 +55,9 @@ public class FileTestUtil {
   public static File tempFile(String prefix, String suffix, File dir)
       throws IOException {
     File f = File.createTempFile(prefix, suffix, dir);
-    f.deleteOnExit();
+    if (!LockssTestCase.isKeepTempFiles()) {
+      f.deleteOnExit();
+    }
     return f;
   }
 
