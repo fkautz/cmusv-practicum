@@ -36,6 +36,13 @@ import java.util.*;
 /** Utilities for Collections.
  */
 public class CollectionUtil {
+  /** An immutable empty iterator.  Calling next() throws
+   * NoSuchElementException, remove() throws
+   * UnsupportedOperationException */
+  // Somewhat convoluted way to achieve the above behavior.
+  public static final Iterator EMPTY_ITERATOR =
+    Collections.unmodifiableList(Collections.EMPTY_LIST).iterator();
+
   /** Return true iff the two iterators enumerate collections of the same
    * size, whose elements are pairwise equal.  The collections need not be of
    * the same type.

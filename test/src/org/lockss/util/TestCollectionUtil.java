@@ -50,6 +50,21 @@ public class TestCollectionUtil extends TestCase {
     super(msg);
   }
 
+  public void testEmptyIter() {
+    assertFalse(CollectionUtil.EMPTY_ITERATOR.hasNext());
+    // make sure both next() and remove() throw the advertised exceptions
+    try {
+      CollectionUtil.EMPTY_ITERATOR.next();
+      fail("next() should throw NoSuchElementException");
+    } catch (NoSuchElementException e) {
+    }
+    try {
+      CollectionUtil.EMPTY_ITERATOR.remove();
+      fail("remove() should throw UnsupportedOperationException");
+    } catch (UnsupportedOperationException e) {
+    }
+  }
+
   public void testIsoIter() {
     Vector v = new Vector();
     List l = new ArrayList();
