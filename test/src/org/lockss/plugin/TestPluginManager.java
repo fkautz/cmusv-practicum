@@ -100,7 +100,6 @@ public class TestPluginManager extends LockssTestCase {
     theDaemon.setPluginManager(mgr);
     theDaemon.setDaemonInited(true);
     mgr.initService(theDaemon);
-//     mgr.startService();
   }
 
   public void tearDown() throws Exception {
@@ -114,6 +113,13 @@ public class TestPluginManager extends LockssTestCase {
     String localConfig = configStr + getTempDir().getAbsolutePath() +
         File.separator;
     ConfigurationUtil.setCurrentConfigFromString(localConfig);
+  }
+
+  private void minimalConfig() throws Exception {
+    mgr.startService();
+    ConfigurationUtil.setFromArgs(LockssRepositoryImpl.PARAM_CACHE_LOCATION,
+				  getTempDir().getAbsolutePath() +
+				  File.separator);
   }
 
   public void testNameFromKey() {
@@ -186,7 +192,7 @@ public class TestPluginManager extends LockssTestCase {
   }
 
   public void testCreateAU() throws Exception {
-    mgr.startService();
+    minimalConfig();
     String pid = new ThrowingMockPlugin().getPluginId();
     String key = mgr.pluginKeyFromId(pid);
     assertTrue(mgr.ensurePluginLoaded(key));
@@ -227,7 +233,7 @@ public class TestPluginManager extends LockssTestCase {
   }
 
   public void testConfigureAU() throws Exception {
-    mgr.startService();
+    minimalConfig();
     String pid = new ThrowingMockPlugin().getPluginId();
     String key = mgr.pluginKeyFromId(pid);
     assertTrue(mgr.ensurePluginLoaded(key));
