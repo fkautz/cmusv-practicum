@@ -418,7 +418,7 @@ public class TestHttpClientUrlConnection extends LockssTestCase {
     }
     public Header getResponseHeader(String headerName) {        
       String val = (String)respProps.get(headerName.toLowerCase());
-      log.info(headerName + ": " + val);
+      log.debug(headerName + ": " + val);
       if (val != null) {
 	return new Header(headerName, val);
       }
@@ -451,6 +451,10 @@ public class TestHttpClientUrlConnection extends LockssTestCase {
     void setResponseContentLength(int l) {
       contentLength = l;
     }
+    public HostConfiguration getHostConfiguration() {
+      return new HostConfiguration();
+    }
+
 
   }
 
