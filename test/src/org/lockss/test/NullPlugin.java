@@ -368,6 +368,10 @@ public class NullPlugin {
       return "null_name";
     }
 
+    public TitleConfig getTitleConfig() {
+      return null;
+    }
+
     public void pauseBeforeFetch() {
     }
 

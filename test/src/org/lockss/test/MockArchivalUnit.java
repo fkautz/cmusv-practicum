@@ -102,6 +102,10 @@ public class MockArchivalUnit implements ArchivalUnit {
     return newContentUrls;
   }
 
+  public TitleConfig getTitleConfig() {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
   public void setNewContentCrawlUrls(List urls) {
     newContentUrls = urls;
   }

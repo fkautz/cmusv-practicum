@@ -84,6 +84,14 @@ public class AuProxy {
   }
 
   /**
+   * Return the AU's TitleConfig, if any.
+   * @return a TitleConfig, or null
+   */
+  public TitleConfig getTitleConfig() {
+    return au.getTitleConfig();
+  }
+
+  /**
    * Returns the {@link PluginProxy} for the {@link Plugin} to which this
    * AU belongs
    * @return the plugin

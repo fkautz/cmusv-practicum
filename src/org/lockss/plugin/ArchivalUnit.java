@@ -190,6 +190,14 @@ public interface ArchivalUnit {
    */
   public FilterRule getFilterRule(String mimeType);
 
+  /**
+   * Return the {@link TitleConfig} that was (or might have been) used to
+   * configure this AU.
+   * @return the TitleConfig, or null if this AU's configuration does not
+   * match any TitleCOnfig in the title db.
+   */
+  public TitleConfig getTitleConfig();
+
   public class ConfigurationException extends Exception {
     private Throwable nestedException;
 
