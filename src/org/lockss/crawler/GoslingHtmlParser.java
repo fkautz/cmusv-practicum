@@ -315,7 +315,9 @@ public class GoslingHtmlParser implements ContentParser {
       try {
 	returnStr = UrlUtil.resolveUri(srcUrl, returnStr);
       } catch (MalformedURLException e) {
-	logger.debug("Got a bad URL", e);
+	logger.debug("Couldn't resolve URL, base: \"" + srcUrl +
+		     "\", link: \"" + returnStr + "\"",
+		     e);
 	return null;
       }
       if (logger.isDebug3()) {
