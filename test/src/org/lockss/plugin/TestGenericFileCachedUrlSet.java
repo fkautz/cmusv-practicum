@@ -426,8 +426,12 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
     fileSet = mgfau.makeCachedUrlSet(rSpec);
     fileSet.storeActualHashDuration(100, null);
     assertEquals(100, nodeMan.getNodeState(fileSet).getAverageHashDuration());
-    fileSet.storeActualHashDuration(10, new HashService.Timeout("test"));
-    assertEquals(150, nodeMan.getNodeState(fileSet).getAverageHashDuration());
+    // simulate a timeout
+    fileSet.storeActualHashDuration(200, new HashService.Timeout("test"));
+    assertEquals(300, nodeMan.getNodeState(fileSet).getAverageHashDuration());
+    // and another,less that current estimate, should change it
+    fileSet.storeActualHashDuration(100, new HashService.Timeout("test"));
+    assertEquals(300, nodeMan.getNodeState(fileSet).getAverageHashDuration());
   }
 
   private RepositoryNode createLeaf(String url, String content,
