@@ -34,6 +34,7 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 import java.security.*;
+import org.lockss.util.ListUtil;
 
 /** Utilities for Files
  */
@@ -138,4 +139,40 @@ public class FileUtil {
   public static boolean delTree(File dir) {
     return emptyDir(dir) && dir.delete();
   }
+
+  /**
+   * Generate and return a list of all the files under this directory or file
+   * @param file directory or file which to enumerate
+   * @return all the files under file, or file if it isn't a directory
+   */
+  public static List enumerateFiles(File file) {
+    if (file == null) {
+      throw new IllegalArgumentException("Null file specified");
+    }
+    if (file.isDirectory()) {
+      List list = new ArrayList();
+      File[] files = file.listFiles();
+      for (int ix=0; ix< files.length; ix++) {
+ 	list.addAll(enumerateFiles(files[ix]));
+      }
+      return list;
+    }
+    return ListUtil.list(file);
+  }
+
+  /**
+   * Return the path of src relative to root
+   */
+  public static String getPathUnderRoot(File src, File root) {
+    if (src == null || root == null) {
+      throw new IllegalArgumentException("Null file specified");
+    }
+    String srcString = src.getPath();
+    String rootString = root.getPath();
+    if (srcString.startsWith(rootString)) {
+      return srcString.substring(rootString.length());
+    }
+    return null;
+  }
+
 }
