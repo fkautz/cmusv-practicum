@@ -44,10 +44,10 @@ public abstract class MemoryBoundFunction {
   protected byte[] nonce;
   protected long e;
   protected int[] proof;
-  protected long arrayIndexStart;
   protected boolean verify;
   protected boolean finished;
   protected int pathLen;
+  protected long maxPath;
 
   /**
    * Public constructor for an object that will compute a proof
@@ -68,10 +68,11 @@ public abstract class MemoryBoundFunction {
    * @param sVal an array of ints containing the proof
    * 
    */
-  public MemoryBoundFunction(byte[] nVal, long eVal, int lVal, int[] sVal) {
+  public MemoryBoundFunction(byte[] nVal, long eVal, int lVal, int[] sVal, long  maxPathVal) {
     setup(nVal, eVal, lVal);
     proof = sVal;
     verify = true;
+    maxPath = maxPathVal;
   }
 
   private void setup(byte[] nVal, long eVal, int lVal) {
