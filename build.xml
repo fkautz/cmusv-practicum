@@ -55,6 +55,7 @@ Args:
                               a compile step runs when nothing should need to
                               be compiled, to find package/dir disagreements.
   -Dhalt=false             Run all tests in group, even if some fail.
+  -Dscript=name            Script run by jdftp.  Default is lockss-jdftp.
 </description>
 
   <!-- Defaults -->
@@ -734,9 +735,24 @@ The target you have selected requires compiling under JDK 1.4.  Use the rant -1.
   </target>
 
   <!-- ==================================================================== -->
-  <target name="jdftp" depends="javadoc,javadoc-test" >
-    <echo message="Copying javadoc to server"/>
-    <exec executable="./jdftp" dir="${basedir}">
+  <target name="jdftp" depends="javadoc,javadoc-test,jdftp1"
+   description="Build javadoc and invoke script to copy it somewhere.">
+  </target>
+
+  <target name="jdftp1" >
+    <!-- Convert list of dirs to list of relative dirs -->
+    <path id="docdirspath">
+      <pathelement location="${javadoc}" />
+      <pathelement location="${test.javadoc}" />
+    </path>
+    <pathconvert refid="docdirspath" property="docdirs" pathsep=" ">
+      <map from="${basedir}" to="." />
+    </pathconvert>
+
+    <property name="script" value="lockss-jdftp" />
+    <echo message="Invoking '${script} ${docdirs}'"/>
+    <exec executable="${script}" dir="${basedir}">
+      <arg line="${docdirs}"/>
     </exec>
   </target>
 
