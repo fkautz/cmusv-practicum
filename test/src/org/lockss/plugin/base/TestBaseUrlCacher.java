@@ -70,7 +70,6 @@ public class TestBaseUrlCacher extends LockssTestCase {
     mau.setCrawlSpec(new CrawlSpec(tempDirPath, null));
     MockPlugin plugin = new MyMockPlugin();
     plugin.initPlugin(theDaemon);
-    plugin.setDefiningConfigKeys(Collections.EMPTY_LIST);
     mau.setPlugin(plugin);
 
     theDaemon.getLockssRepository(mau);

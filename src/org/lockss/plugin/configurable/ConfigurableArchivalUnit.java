@@ -77,7 +77,7 @@ public class ConfigurableArchivalUnit
 
   protected void loadDefiningConfig(Configuration config) throws
       ConfigurationException {
-    List descrList = plugin.getAuConfigProperties();
+    List descrList = plugin.getAuConfigDescrs();
     for (Iterator it = descrList.iterator(); it.hasNext(); ) {
       ConfigParamDescr descr = (ConfigParamDescr) it.next();
       String key = descr.getKey();

@@ -97,16 +97,7 @@ public class TestAcsPlugin extends LockssTestCase {
                                AcsPlugin.JOURNAL_KEY,
 			       ConfigParamDescr.VOLUME_NUMBER,
                                ConfigParamDescr.YEAR),
-		 plugin.getAuConfigProperties());
-  }
-
-  public void testGetDefiningProperties() {
-    assertEquals(ListUtil.list(ConfigParamDescr.BASE_URL.getKey(),
-                               AcsPlugin.ARTICLE_URL.getKey(),
-                               AcsPlugin.JOURNAL_KEY.getKey(),
-			       ConfigParamDescr.VOLUME_NUMBER.getKey(),
-                               ConfigParamDescr.YEAR.getKey()),
-		 plugin.getDefiningConfigKeys());
+		 plugin.getAuConfigDescrs());
   }
 
   public static void main(String[] argv) {

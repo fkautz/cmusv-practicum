@@ -125,7 +125,7 @@ public class TitleParams {
       }
       prevPlugin = plugin;
 
-      List params = plugin.getAuConfigProperties();
+      List params = plugin.getAuConfigDescrs();
       cout.print("Title: ");
       String title = cin.readLine();
       String propId;

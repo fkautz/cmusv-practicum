@@ -114,17 +114,10 @@ public class TestWrappedPlugin extends LockssTestCase {
                  plugin.getPluginId());
   }
 
-  public void testGetAuConfigProperties() {
+  public void testGetAuConfigDescrs() {
     assertEquals(ListUtil.list(ConfigParamDescr.BASE_URL,
                                ConfigParamDescr.VOLUME_NUMBER),
-                 plugin.getAuConfigProperties());
+                 plugin.getAuConfigDescrs());
   }
-
-  public void testGetDefiningProperties() {
-    assertEquals(ListUtil.list(ConfigParamDescr.BASE_URL.getKey(),
-                               ConfigParamDescr.VOLUME_NUMBER.getKey()),
-                 plugin.getDefiningConfigKeys());
-  }
-
 
 }

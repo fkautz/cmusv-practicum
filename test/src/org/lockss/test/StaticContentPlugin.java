@@ -69,8 +69,9 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
     throw new UnsupportedOperationException("Not implemented");
   }
 
-  public List getAuConfigProperties() {
-    throw new UnsupportedOperationException("Not implemented");
+  public List getAuConfigDescrs() {
+    return Collections.EMPTY_LIST;
+    //    throw new UnsupportedOperationException("Not implemented");
   }
 
   public ArchivalUnit createAu(Configuration auConfig)
@@ -84,10 +85,6 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
 
   public void unregisterArchivalUnit(ArchivalUnit au) {
     aus.remove(au);
-  }
-
-  public Collection getDefiningConfigKeys() {
-    return Collections.EMPTY_LIST;
   }
 
   public CachedUrlSet makeCachedUrlSet(ArchivalUnit owner,

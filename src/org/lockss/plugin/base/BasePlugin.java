@@ -176,11 +176,11 @@ public abstract class BasePlugin
 
   /**
    * Find the ConfigParamDescr that this plugin uses for the specified key.
-   * @return the element of {@link #getAuConfigProperties()} whose key
+   * @return the element of {@link #getAuConfigDescrs()} whose key
    * matches <code>key</code>, or null if none.
    */
   protected ConfigParamDescr findParamDescr(String key) {
-    List descrs = getAuConfigProperties();
+    List descrs = getAuConfigDescrs();
     for (Iterator iter = descrs.iterator(); iter.hasNext(); ) {
       ConfigParamDescr descr = (ConfigParamDescr)iter.next();
       if (descr.getKey().equals(key)) {

@@ -83,7 +83,6 @@ public class TestBaseCachedUrlSet extends LockssTestCase {
     mau = new MyMockArchivalUnit();
     plugin = new MyMockPlugin();
     plugin.initPlugin(theDaemon);
-    plugin.setDefiningConfigKeys(Collections.EMPTY_LIST);
     mau.setPlugin(plugin);
 
     repo = theDaemon.getLockssRepository(mau);

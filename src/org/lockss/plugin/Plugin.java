@@ -91,24 +91,18 @@ public interface Plugin {
   public TitleConfig getTitleConfig(String title);
 
   /**
-   * Return the set of configuration properties required to configure
-   * an archival unit for this plugin.
-   * @return a {@link List} of strings which are the names of the properties for
-   * which values are needed in order to configure an AU
+   * Return a list of descriptors for configuration parameters required to
+   * configure an archival unit for this plugin.
+   * @return a List of {@link ConfigParamDescr}s, in the order the plugin
+   * would like them presented to the user.
    */
-  public List getAuConfigProperties();
-
-  /**
-   * Return the keys for the config values that define the AU
-   * @return the keys for the config values that define the AU
-   */
-  public Collection getDefiningConfigKeys();
+  public List getAuConfigDescrs();
 
   /**
    * Create or (re)configure an {@link ArchivalUnit} from the specified
    * configuration.
-   * @param config {@link Configuration} object with values for all properties
-   * returned by {@link #getDefiningConfigKeys()}
+   * @param config {@link Configuration} object with values for the AU
+   * config params
    * @param au {@link ArchivalUnit} if one already exists
    * @return a configured {@link ArchivalUnit}
    * @throws ArchivalUnit.ConfigurationException if unable to configure au
@@ -118,9 +112,8 @@ public interface Plugin {
 
   /**
    * Create an ArchivalUnit for the AU specified by the configuration.
-   * @param auConfig {@link Configuration} object with values for all
-   * properties
-   * returned by {@link #getDefiningConfigKeys()}
+   * @param auConfig {@link Configuration} object with values for the AU
+   * config params
    * @return an {@link ArchivalUnit}
    * @throws ArchivalUnit.ConfigurationException
    */

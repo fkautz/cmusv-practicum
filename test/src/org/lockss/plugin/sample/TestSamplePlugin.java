@@ -94,13 +94,7 @@ public class TestSamplePlugin extends LockssTestCase {
   public void testGetAUConfigProperties() {
     assertEquals(ListUtil.list(ConfigParamDescr.BASE_URL,
                                ConfigParamDescr.VOLUME_NUMBER),
-		 plugin.getAuConfigProperties());
-  }
-
-  public void testGetDefiningProperties() {
-    assertEquals(ListUtil.list(ConfigParamDescr.BASE_URL.getKey(),
-                               ConfigParamDescr.VOLUME_NUMBER.getKey()),
-		 plugin.getDefiningConfigKeys());
+		 plugin.getAuConfigDescrs());
   }
 
   public static void main(String[] argv) {

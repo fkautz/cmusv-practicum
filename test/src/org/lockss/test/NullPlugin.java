@@ -87,12 +87,8 @@ public class NullPlugin {
       return null;
     }
 
-    public List getAuConfigProperties() {
+    public List getAuConfigDescrs() {
       return null;
-    }
-
-    public Collection getDefiningConfigKeys() {
-      return Collections.EMPTY_LIST;
     }
 
     public org.lockss.plugin.ArchivalUnit configureAu(Configuration config,

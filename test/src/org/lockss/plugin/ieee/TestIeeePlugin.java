@@ -97,14 +97,7 @@ public class TestIeeePlugin extends LockssTestCase {
     assertEquals(ListUtil.list(ConfigParamDescr.BASE_URL,
                                IeeePlugin.PU_NUMBER,
 			       ConfigParamDescr.YEAR),
-		 plugin.getAuConfigProperties());
-  }
-
-  public void testGetDefiningProperties() {
-    assertEquals(ListUtil.list(ConfigParamDescr.BASE_URL.getKey(),
-                               IeeePlugin.PU_NUMBER.getKey(),
-			       ConfigParamDescr.YEAR.getKey()),
-		 plugin.getDefiningConfigKeys());
+		 plugin.getAuConfigDescrs());
   }
 
   public static void main(String[] argv) {
