@@ -119,10 +119,12 @@ public class ProxyInfo {
       (PluginManager)LockssDaemon.getManager(LockssDaemon.PLUGIN_MANAGER);
     for (Iterator iter = pmgr.getAllAus().iterator(); iter.hasNext(); ) {
       ArchivalUnit au = (ArchivalUnit)iter.next();
-      for (Iterator urlIter = au.getUrlStems().iterator();
-	   urlIter.hasNext(); ) {
-	String urlStem = (String)urlIter.next();
-	map.put(urlStem, au);
+      if (!(au instanceof RegistryArchivalUnit)) {
+	for (Iterator urlIter = au.getUrlStems().iterator();
+	     urlIter.hasNext(); ) {
+	  String urlStem = (String)urlIter.next();
+	  map.put(urlStem, au);
+	}
       }
     }
     return map;
