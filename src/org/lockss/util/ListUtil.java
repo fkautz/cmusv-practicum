@@ -244,4 +244,15 @@ public class ListUtil {
     Collections.reverse(res);
     return res;
   }
+
+  public static String listToString(List list, String separator) {
+    StringBuffer sb = new StringBuffer();
+    for (Iterator it = list.iterator(); it.hasNext();) {
+      sb.append(it.next().toString());
+      if (it.hasNext()) {
+	sb.append(separator);
+      }
+    }
+    return sb.toString();
+  }
 }

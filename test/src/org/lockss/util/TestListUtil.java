@@ -33,6 +33,7 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.util;
 
 import java.util.*;
+import java.net.*;
 import junit.framework.TestCase;
 import org.lockss.test.*;
 
@@ -108,4 +109,28 @@ public class TestListUtil extends LockssTestCase {
     assertNotSame(l0, r0);
     assertEquals(ListUtil.list(new Integer(7), "bar", "foo"), r0);
   }
+
+  public void testListToStringEmptyList() {
+    assertEquals("", ListUtil.listToString(new ArrayList(), "\n"));
+  }
+
+  public void testListToStringWithStrings() {
+    List list = ListUtil.list("Blah1", "Blah2", "Blah3");
+    String expectedStr = "Blah1\nBlah2\nBlah3";
+    assertEquals(expectedStr, ListUtil.listToString(list, "\n"));
+  }
+
+  public void testListToStringWithNonStrings() throws MalformedURLException {
+    List list = ListUtil.list(new URL("http://www.example.com/"),
+			      new URL("http://www.example2.com/"));
+    String expectedStr = "http://www.example.com/\nhttp://www.example2.com/";
+    assertEquals(expectedStr, ListUtil.listToString(list, "\n"));
+  }
+
+  public void testListToStringWithSeparator() {
+    List list = ListUtil.list("Blah1", "Blah2", "Blah3");
+    String expectedStr = "Blah1 Blah2 Blah3";
+    assertEquals(expectedStr, ListUtil.listToString(list, " "));
+  }
+
 }
