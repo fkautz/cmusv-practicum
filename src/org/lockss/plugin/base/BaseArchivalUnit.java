@@ -451,7 +451,6 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     Reader replaceReader = StringFilter.makeNestedFilter(reader,
         new String[][] {
         { "<br>", " " },
-        { "<p>", " " },
         { "&nbsp;", " " }
     },
         true);
