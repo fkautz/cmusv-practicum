@@ -219,6 +219,17 @@ public class TestConfigManager extends LockssTestCase {
 		 config.get("org.lockss.proxy.access.ip.include"));
   }
 
+  public void testGetRepositoryList() throws Exception {
+    assertEmpty(mgr.getRepositoryList());
+    ConfigurationUtil.setFromArgs("org.lockss.platform.diskSpacePaths",
+				  "/foo/bar");
+    assertEquals(ListUtil.list("local:/foo/bar"), mgr.getRepositoryList());
+    ConfigurationUtil.setFromArgs("org.lockss.platform.diskSpacePaths",
+				  "/foo/bar;/cache2");
+    assertEquals(ListUtil.list("local:/foo/bar", "local:/cache2"),
+		 mgr.getRepositoryList());
+  }
+
   public void testPlatformSpace1() throws Exception {
     Properties props = new Properties();
     props.put("org.lockss.platform.diskSpacePaths", "/foo/bar");
