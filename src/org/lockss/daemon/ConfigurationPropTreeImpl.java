@@ -67,7 +67,8 @@ public class ConfigurationPropTreeImpl extends Configuration {
   }
 
   boolean store(OutputStream ostr, String header) throws IOException {
-    props.store(ostr, header);
+    SortedProperties.fromProperties(props).store(ostr, header);
+//     props.store(ostr, header);
     return true;
   }
 
@@ -86,7 +87,7 @@ public class ConfigurationPropTreeImpl extends Configuration {
   /** Return the set of keys whose values differ.
    * @param otherConfig the config to compare with.  May be null.
    */
-  Set differentKeys(Configuration otherConfig) {
+  public Set differentKeys(Configuration otherConfig) {
     if (otherConfig == null) {
       return props.keySet();
     }

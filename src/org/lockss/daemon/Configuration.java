@@ -160,7 +160,7 @@ public abstract class Configuration {
   /** Return the set of keys whose values differ.
    * @param otherConfig the config to compare with.  May be null.
    */
-  abstract Set differentKeys(Configuration otherConfig);
+  public abstract Set differentKeys(Configuration otherConfig);
 
   /** Return true iff config has no keys/ */
   public boolean isEmpty() {
@@ -380,7 +380,7 @@ public abstract class Configuration {
   }
 
   String quoteVal(String val) {
-    return "\"" + val + "\"";
+    return val == null ? "(null)" : "\"" + val + "\"";
   }
 
   // must be implemented by implementation subclass
