@@ -524,6 +524,7 @@ System.out.println("s: "+s);
 
   public void testNthIndexOf() {
     assertEquals(-1, StringUtil.nthIndexOf(1, "xyz", "q"));
+    assertEquals(-1, StringUtil.nthIndexOf(11, "xxxyzx", "x"));
     assertEquals(0, StringUtil.nthIndexOf(1, "xyz", "x"));
     assertEquals(1, StringUtil.nthIndexOf(2, "xxyz", "x"));
 
