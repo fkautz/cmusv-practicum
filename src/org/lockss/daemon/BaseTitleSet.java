@@ -46,6 +46,8 @@ public abstract class BaseTitleSet implements TitleSet {
   protected String name;
 
   public BaseTitleSet(LockssDaemon daemon, String name) {
+    if (daemon == null) throw new NullPointerException("null daemon");
+    if (name == null) throw new NullPointerException("null name");
     this.daemon = daemon;
     this.name = name;
   }

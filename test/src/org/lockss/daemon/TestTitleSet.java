@@ -52,6 +52,24 @@ public class TestTitleSet extends LockssTestCase {
     daemon = getMockLockssDaemon();
   }
 
+  public void testIll() throws Exception {
+    try {
+      new TitleSetAllTitles(null);
+      fail("Should throw NullPointerException");
+    } catch (NullPointerException e) {
+    }
+    try {
+      new TitleSetXpath(null, "T1", "[foo]");
+      fail("Should throw NullPointerException");
+    } catch (NullPointerException e) {
+    }
+    try {
+      new TitleSetXpath(daemon, null, "[foo]");
+      fail("Should throw NullPointerException");
+    } catch (NullPointerException e) {
+    }
+  }
+
   public void testSort() throws Exception {
     TitleSet tsAll1 = new TitleSetAllTitles(daemon);
     TitleSet tsAll2 = new TitleSetActiveAus(daemon);

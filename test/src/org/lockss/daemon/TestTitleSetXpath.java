@@ -50,7 +50,8 @@ public class TestTitleSetXpath extends LockssTestCase {
   TitleConfig tc1, tc2, tc3, tc4, tc5, tc6;
   List titles;
 
-  public void setUp() {
+  public void setUp() throws Exception {
+    super.setUp();
     makeTitles();
   }
 
