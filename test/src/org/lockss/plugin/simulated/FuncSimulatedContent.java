@@ -155,7 +155,7 @@ public class FuncSimulatedContent extends LockssTestCase {
     scgen.setFileTypes(SimulatedContentGenerator.FILE_TYPE_HTML +
                        SimulatedContentGenerator.FILE_TYPE_TXT);
     scgen.setAbnormalFile("1,1", 1);
-    scgen.setOddBranchesHaveContent(true);
+    //    scgen.setOddBranchesHaveContent(true);
 
     sau.deleteContentTree();
     sau.generateContentTree();
