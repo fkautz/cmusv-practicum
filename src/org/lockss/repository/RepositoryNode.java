@@ -84,18 +84,6 @@ public interface RepositoryNode {
   public long getTreeContentSize(CachedUrlSetSpec filter);
 
   /**
-   * Returns the state information for the node.
-   * @return state properties of the node
-   */
-  public Properties getState();
-
-  /**
-   * Writes new state information for the node.
-   * @param newProps the new state information
-   */
-  public void storeState(Properties newProps);
-
-  /**
    * Returns true if node has no children.
    * @return true if no children
    */
