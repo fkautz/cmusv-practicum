@@ -281,7 +281,8 @@ public class RepositoryNodeImpl implements RepositoryNode {
       }
     }
 
-    if (isInactive()) {
+    // if restoring from deletion or inactivation
+    if (isInactive() || isDeleted()) {
       int lastVersion = determineLastActiveVersion();
       File inactiveCacheFile = getInactiveCacheFile();
       File inactivePropsFile = getInactivePropsFile();
@@ -295,6 +296,7 @@ public class RepositoryNodeImpl implements RepositoryNode {
 
       // store the deletion value
       nodeProps.setProperty(INACTIVE_CONTENT_PROPERTY, "false");
+      nodeProps.setProperty(DELETION_PROPERTY, "false");
       try {
         OutputStream os = new BufferedOutputStream(new FileOutputStream(nodePropsFile));
         nodeProps.store(os, "Node properties");
@@ -369,6 +371,11 @@ public class RepositoryNodeImpl implements RepositoryNode {
       throw new UnsupportedOperationException("Can't deactivate while new version open.");
     }
     ensureCurrentInfoLoaded();
+    if (isDeleted()) {
+      logger.warning("Node already deleted; not deactivating: " + url);
+      return;
+    }
+
     if (hasContent()) {
       if (!currentCacheFile.renameTo(getInactiveCacheFile()) ||
           !currentPropsFile.renameTo(getInactivePropsFile())) {
@@ -400,7 +407,7 @@ public class RepositoryNodeImpl implements RepositoryNode {
 
   public synchronized void markAsDeleted() {
     ensureCurrentInfoLoaded();
-    if (hasContent()) {
+    if (hasContent() && !isInactive()) {
       deactivateContent();
     }
 
