@@ -83,7 +83,7 @@ public class ExternalizableMap {
     try {
       Reader reader = new BufferedReader(new InputStreamReader(mapStream));
       Unmarshaller unmarshaller = new Unmarshaller(ExtMapBean.class);
-      unmarshaller.setMapping(getMapping());
+      unmarshaller.setMapping(getExtMapMapping());
       ExtMapBean emp = (ExtMapBean) unmarshaller.unmarshal(reader);
       descrMap = emp.getMapFromLists();
       reader.close();
@@ -110,7 +110,7 @@ public class ExternalizableMap {
       }
       FileReader reader = new FileReader(mapFile);
       Unmarshaller unmarshaller = new Unmarshaller(ExtMapBean.class);
-      unmarshaller.setMapping(getMapping());
+      unmarshaller.setMapping(getExtMapMapping());
       ExtMapBean emp = (ExtMapBean)unmarshaller.unmarshal(reader);
       descrMap = emp.getMapFromLists();
       reader.close();
@@ -136,7 +136,7 @@ public class ExternalizableMap {
       ExtMapBean emp = new ExtMapBean();
       emp.setListsFromMap(descrMap);
       Marshaller marshaller = new Marshaller(new FileWriter(mapFile));
-      marshaller.setMapping(getMapping());
+      marshaller.setMapping(getExtMapMapping());
       marshaller.marshal(emp);
       writer.close();
     } catch (Exception e) {
@@ -162,7 +162,7 @@ public class ExternalizableMap {
     }
   }
 
-  Mapping getMapping() {
+  public Mapping getExtMapMapping() {
     if (mapping==null) {
       loadMapping();
       if (mapping==null) {
