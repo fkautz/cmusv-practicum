@@ -135,7 +135,7 @@ public class PluginManager extends BaseLockssManager {
 	  Configuration auConf = pluginConf.getConfigTree(auKey);
 	  Configuration oldAuConf = oldPluginConf.getConfigTree(auKey);
 	  if (!auConf.equals(oldAuConf)) {
-	    log.debug("Configuring AU id: " + auKey, new Throwable());
+	    log.debug("Configuring AU id: " + auKey);
 	    configureAU(plugin, auConf);
 	  } else {
 	    log.debug("Not configuring AU id: " + auKey +
