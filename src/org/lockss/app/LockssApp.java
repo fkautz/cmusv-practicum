@@ -89,11 +89,11 @@ public abstract class LockssApp {
   protected static String DEFAULT_SCHED_SERVICE =
     "org.lockss.scheduler.SchedService";
 
-  protected static class ManagerDesc {
+  public static class ManagerDesc {
     String key;		// hash key and config param name
     String defaultClass;      // default class name (or factory class name)
 
-    ManagerDesc(String key, String defaultClass) {
+    public ManagerDesc(String key, String defaultClass) {
       this.key = key;
       this.defaultClass = defaultClass;
     }
