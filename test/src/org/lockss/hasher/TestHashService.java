@@ -73,9 +73,9 @@ public class TestHashService extends LockssTestCase {
     props.put(PARAM_ESTIMATE_PAD_CONSTANT, "10");
     props.put(PARAM_ESTIMATE_PAD_PERCENT, "20");
     ConfigurationUtil.setCurrentConfigFromProps(props);
-    assertEquals(10, svc.padEstimate(0));
-    assertEquals(11, svc.padEstimate(1));
-    assertEquals(250, svc.padEstimate(200));
-    assertEquals(130, svc.padEstimate(100));
+    assertEquals(10, svc.padHashEstimate(0));
+    assertEquals(11, svc.padHashEstimate(1));
+    assertEquals(250, svc.padHashEstimate(200));
+    assertEquals(130, svc.padHashEstimate(100));
   }
 }

@@ -137,7 +137,7 @@ public class HashService extends BaseLockssManager {
       new HashQueue.Request(urlset, hasher, deadline,
 			    callback, cookie,
 			    urlset.getContentHasher(hasher),
-			    padEstimate(urlset.estimatedHashDuration()),
+			    urlset.estimatedHashDuration(),
 			    CONTENT_HASH);
     return scheduleReq(req);
   }
@@ -186,7 +186,7 @@ public class HashService extends BaseLockssManager {
   }
 
   /** Add the configured padding percentage, plus the constant */
-  long padEstimate(long estimate) {
+  public long padHashEstimate(long estimate) {
     return estimate + ((estimate * estPadPercent) / 100) + estPadConstant;
   }
 
@@ -195,6 +195,15 @@ public class HashService extends BaseLockssManager {
       throw new IllegalStateException("HashService has not been initialized");
     }
     return theQueue.scheduleReq(req);
+  }
+
+  /** Return the amount of hash time currently unscheduled before the
+   * specified deadline.
+   * @param when the deadline
+   * @return unscheduled hash time before deadline in milliseconds
+   */
+  public long getAvailableHashTimeBefore(Deadline when) {
+    return theQueue.getAvailableHashTimeBefore(when);
   }
 
   /** Create a queue ready to receive and execute requests */

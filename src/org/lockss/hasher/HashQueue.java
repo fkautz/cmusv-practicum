@@ -212,6 +212,48 @@ class HashQueue implements Serializable {
     return true;
   }
 
+  /** Return the amount of hash time currently unscheduled before the
+   * specified deadline.
+   * @param when the deadline
+   * @return unscheduled hash time before deadline in milliseconds
+   */
+  synchronized long getAvailableHashTimeBefore(Deadline when) {
+    long whenMs = when.getExpirationTime();
+    long commitedBefore = 0;
+    long commitedAfter = 0;
+    long durationUntilNewReq = -1;
+    int pos = 0;
+    long now = TimeBase.nowMs();
+    long latestAvail = when.getExpirationTime();
+    for (ListIterator iter = qlist.listIterator(); iter.hasNext();) {
+      Request qreq = (Request)iter.next();
+      if (when.before(qreq.deadline)) {
+	// Hypothetical new request would go here.
+	// Now find max amount by which we could delay following requests
+	// without causing them to exceed their deadline.
+	// Requires backing up so will start with one we just looked at
+	iter.previous();
+	while (iter.hasNext()) {
+	  qreq = (Request)iter.next();
+	  if (qreq.overrun()) {
+	    // Don't let overrunners affect this calculation
+	    break;
+	  }
+	  long qEst = qreq.curEst();
+	  long availAfter = ((qreq.deadline.getExpirationTime() - whenMs)
+			     - commitedAfter);
+	  long after = Math.min(availAfter, qEst);
+	  long before = Math.max(qEst - after, 0);
+	  commitedBefore += before;
+	  commitedAfter += after;
+	}
+      } else {
+	commitedBefore += qreq.curEst();
+      }
+    }
+    return whenMs - now - commitedBefore;
+  }
+
   /** Return the average hash speed, or -1 if not known.
    * @param digest the hashing algorithm
    * @return hash speed in bytes/ms, or -1 if not known
