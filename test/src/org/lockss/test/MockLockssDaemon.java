@@ -396,7 +396,7 @@ public class MockLockssDaemon extends LockssDaemon {
   // AU managers
 
   /** Create an AU manager instance, mimicking what LockssDaemon does */
-  LockssAuManager newAuManager(String key, ArchivalUnit au) {
+  public LockssAuManager newAuManager(String key, ArchivalUnit au) {
     ManagerDesc desc = findAuManagerDesc(key);
     if (desc == null) {
       throw new LockssDaemonException("No AU ManagerDesc for: " + key);
