@@ -90,7 +90,12 @@ public class PrintStreamTarget implements LogTarget {
     sb.append(": ");
     sb.append(message);
     PrintStream s = getPrintStream();
-    s.println(sb.toString());
+    String str = sb.toString();
+    if (str.endsWith("\n")) {
+	s.print(str);
+    } else {
+	s.println(str);
+    }
     s.flush();
   }
 
