@@ -506,7 +506,7 @@ public class TestCrawlManagerImpl extends LockssTestCase {
       mockCrawler.setAu(au);
       mockCrawler.setUrls(spec.getStartingUrls());
       mockCrawler.setFollowLinks(true);
-      mockCrawler.setType(GoslingCrawlerImpl.NEW_CONTENT);
+      mockCrawler.setType(CrawlerImpl.NEW_CONTENT);
       return mockCrawler;
     }
 
@@ -515,7 +515,7 @@ public class TestCrawlManagerImpl extends LockssTestCase {
       mockCrawler.setAu(au);
       mockCrawler.setUrls(repairUrls);
       mockCrawler.setFollowLinks(false);
-      mockCrawler.setType(GoslingCrawlerImpl.REPAIR);
+      mockCrawler.setType(CrawlerImpl.REPAIR);
       return mockCrawler;
     }
 
