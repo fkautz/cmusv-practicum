@@ -54,6 +54,13 @@ public class TestWhiteSpaceFilter extends LockssTestCase {
     assertEquals("Test test test test", inputStreamToString(is));
   }
 
+  // Ensure test buffer refill
+  public void testSmallBuffer() throws IOException {
+    String testString = "Test   test         test\n     test";
+    InputStream is = new WhiteSpaceFilter(new StringInputStream(testString),
+					  3);
+    assertEquals("Test test test test", inputStreamToString(is));
+  }
   
   private String inputStreamToString(InputStream is) throws IOException {
     StringBuffer sb = new StringBuffer();
