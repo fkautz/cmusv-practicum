@@ -95,7 +95,7 @@ public class BaseCachedUrl implements CachedUrl {
   }
 
   /**
-   * Currently simply returns 'openForReading()'.
+   * Return a stream suitable for hashing.  This may be a filtered stream.
    * @return an InputStream
    */
   public InputStream openForHashing() {
