@@ -55,7 +55,8 @@ public class TestAuNodeImpl extends LockssTestCase {
     TestLockssRepositoryServiceImpl.configCacheLocation(tempDirPath);
     MockArchivalUnit mau = new MockArchivalUnit(null);
     LockssRepositoryServiceImpl lrsi = new LockssRepositoryServiceImpl();
-    repo = lrsi.addLockssRepository(mau);
+    lrsi.addLockssRepository(mau);
+    repo = lrsi.getLockssRepository(mau);
   }
 
   public void testListEntries() throws Exception {

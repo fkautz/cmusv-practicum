@@ -54,6 +54,15 @@ public class CrawlState {
   int status;
   long startTime;
 
+  // only for marshalling
+  CrawlState() { }
+
+  CrawlState(CrawlStateBean bean) {
+    this.type = bean.getType();
+    this.status = bean.getStatus();
+    this.startTime = bean.getStartTime();
+  }
+
   CrawlState(int type, int status, long startTime) {
     this.type = type;
     this.status = status;

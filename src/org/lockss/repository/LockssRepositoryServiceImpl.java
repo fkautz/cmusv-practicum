@@ -145,7 +145,7 @@ public class LockssRepositoryServiceImpl implements LockssRepositoryService {
     return lockssRepo;
   }
 
-  public synchronized LockssRepository addLockssRepository(ArchivalUnit au) {
+  public synchronized void addLockssRepository(ArchivalUnit au) {
     LockssRepository lockssRepo = (LockssRepository)auMap.get(au);
     if (lockssRepo==null) {
       if (cacheLocation==null) {
@@ -165,7 +165,6 @@ public class LockssRepositoryServiceImpl implements LockssRepositoryService {
       lockssRepo.initService(theDaemon);
       lockssRepo.startService();
     }
-    return lockssRepo;
   }
 
   /**

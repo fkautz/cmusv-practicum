@@ -57,6 +57,17 @@ public class PollState
   long startTime;
   Deadline deadline;
 
+  // for marshalling only
+  PollState() { }
+  PollState(PollStateBean bean) {
+    this.type = bean.getType();
+    this.lwrBound = bean.getLwrBound();
+    this.uprBound = bean.getUprBound();
+    this.status = bean.getStatus();
+    this.startTime = bean.getStartTime();
+    this.deadline = Deadline.at(bean.getDeadlineTime());
+  }
+
   PollState(int type, String lwrBound, String uprBound, int status,
             long startTime,
             Deadline deadline) {

@@ -190,7 +190,8 @@ public class TestLockssRepositoryServiceImpl extends LockssTestCase {
     LockssRepository repo1 = lrsi.getLockssRepository(mau);
     assertNotNull(repo1);
     mau.setAuId(auId + "test");
-    LockssRepository repo2 = lrsi.addLockssRepository(mau);
+    lrsi.addLockssRepository(mau);
+    LockssRepository repo2 = lrsi.getLockssRepository(mau);
     assertTrue(repo1 != repo2);
     mau.setAuId(auId);
     repo2 = lrsi.getLockssRepository(mau);

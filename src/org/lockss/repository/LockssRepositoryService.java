@@ -54,7 +54,6 @@ public interface LockssRepositoryService extends LockssManager {
    * Factory method to add LockssRepository.  Calls 'startService()' on the
    * ArchivalUnit-specific LockssRepository.
    * @param au the ArchivalUnit being managed
-   * @return the new repository
    */
-  public LockssRepository addLockssRepository(ArchivalUnit au);
+  public void addLockssRepository(ArchivalUnit au);
 }

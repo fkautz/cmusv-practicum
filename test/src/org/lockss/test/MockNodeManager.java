@@ -39,7 +39,10 @@ import org.lockss.util.*;
 import org.lockss.state.*;
 import org.lockss.app.*;
 
-public class MockNodeManager implements NodeManager, LockssManager {
+/**
+ * Mock version of the NodeManager.
+ */
+public class MockNodeManager implements NodeManager {
   private static Logger logger = Logger.getLogger("MockNodeManager");
 
   private MockAuState aus;
