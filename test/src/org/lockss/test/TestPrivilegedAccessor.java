@@ -33,7 +33,7 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.test;
 import junit.framework.*;
 
-public class TestPrivilegedAccessor extends TestCase {
+public class TestPrivilegedAccessor extends LockssTestCase {
   public TestPrivilegedAccessor(String name) {
     super(name);
   }

@@ -33,12 +33,12 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.util;
 
 import java.util.*;
-import junit.framework.TestCase;
+import org.lockss.test.*;
 
 /**
  * Test class for org.lockss.util.EnumerationIterator
  */
-public class TestEnumerationIterator extends TestCase {
+public class TestEnumerationIterator extends LockssTestCase {
   public static Class testedClasses[] = {
     org.lockss.util.EnumerationIterator.class
   };

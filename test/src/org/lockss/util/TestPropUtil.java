@@ -43,7 +43,7 @@ import org.lockss.test.*;
  * Test class for <code>org.lockss.util.PropUtil</code>
  */
 
-public class TestPropUtil extends TestCase {
+public class TestPropUtil extends LockssTestCase {
   public static Class testedClasses[] = {
     org.lockss.util.PropUtil.class
   };

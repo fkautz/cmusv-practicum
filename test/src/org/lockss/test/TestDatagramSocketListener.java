@@ -36,7 +36,7 @@ import java.net.*;
 import java.util.*;
 import junit.framework.TestCase;
 
-public class TestDatagramSocketListener extends TestCase{
+public class TestDatagramSocketListener extends LockssTestCase {
   //private static final int port = 9898;
   private int port = 12345;
   private static final String host = "127.0.0.1";

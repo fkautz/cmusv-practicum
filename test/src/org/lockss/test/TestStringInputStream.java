@@ -41,7 +41,7 @@ import junit.framework.TestCase;
  * @version 0.0
  */
 
-public class TestStringInputStream extends TestCase {
+public class TestStringInputStream extends LockssTestCase {
 
   public TestStringInputStream(String msg) {
     super(msg);

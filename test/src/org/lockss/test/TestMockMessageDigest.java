@@ -34,7 +34,7 @@ package org.lockss.test;
 
 import junit.framework.TestCase;
 
-public class TestMockMessageDigest extends TestCase{
+public class TestMockMessageDigest extends LockssTestCase {
 
   public TestMockMessageDigest(String msg){
     super(msg);

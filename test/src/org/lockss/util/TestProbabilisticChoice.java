@@ -43,7 +43,7 @@ import org.lockss.test.*;
  * Test class for <code>org.lockss.util.ProbabilisticChoice</code>
  */
 
-public class TestProbabilisticChoice extends TestCase {
+public class TestProbabilisticChoice extends LockssTestCase {
   public static Class testedClasses[] = {
     org.lockss.util.ProbabilisticChoice.class
   };

@@ -33,15 +33,13 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.util;
 
 import java.util.*;
-import junit.framework.TestCase;
-import org.lockss.test.MockLogTarget;
-
+import org.lockss.test.*;
 
 /**
  * Test class for org.lockss.util.ArrayIterator
  */
 
-public class TestArrayIterator extends TestCase {
+public class TestArrayIterator extends LockssTestCase {
 
   public static Class testedClasses[] = {
     org.lockss.util.ArrayIterator.class
