@@ -55,6 +55,7 @@ public class TestSingleNodeCachedUrlSetSpec extends LockssTestCase {
   public void testMatches() {
     CachedUrlSetSpec cuss1 = new SingleNodeCachedUrlSetSpec("foo");
     assertTrue(cuss1.matches("foo"));
+    assertFalse(cuss1.matches("fo"));
     assertFalse(cuss1.matches("foobar"));
     assertFalse(cuss1.matches("bar"));
   }
@@ -76,13 +77,19 @@ public class TestSingleNodeCachedUrlSetSpec extends LockssTestCase {
     assertFalse(cuss1.isDisjoint(new SingleNodeCachedUrlSetSpec("a/b")));
     assertTrue(cuss1.isDisjoint(new SingleNodeCachedUrlSetSpec("a")));
     assertTrue(cuss1.isDisjoint(new SingleNodeCachedUrlSetSpec("a/b1")));
+    assertFalse(cuss1.isDisjoint(new AUCachedUrlSetSpec()));
+
     assertFalse(cuss1.isDisjoint(new RangeCachedUrlSetSpec("a/")));
     assertFalse(cuss1.isDisjoint(new RangeCachedUrlSetSpec("a/", "b", null)));
     assertFalse(cuss1.isDisjoint(new RangeCachedUrlSetSpec("a/", null, "b")));
     assertTrue(cuss1.isDisjoint(new RangeCachedUrlSetSpec("a/", "c", null)));
     assertTrue(cuss1.isDisjoint(new RangeCachedUrlSetSpec("a/", null, "a")));
-    assertTrue(cuss1.isDisjoint(new RangeCachedUrlSetSpec("a/b")));
-    assertFalse(cuss1.isDisjoint(new AUCachedUrlSetSpec()));
+
+    // not disjoint with unrestricted RCUSS at same node, disjoint with a
+    // restricted one
+    assertFalse(cuss1.isDisjoint(new RangeCachedUrlSetSpec("a/b")));
+    assertTrue(cuss1.isDisjoint(new RangeCachedUrlSetSpec("a/b", "", null)));
+    assertTrue(cuss1.isDisjoint(new RangeCachedUrlSetSpec("a/b", null, "z")));
   }
 
   public void testSubsumes() {
