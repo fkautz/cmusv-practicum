@@ -126,7 +126,7 @@ public class TestCrawlSpec extends LockssTestCase {
 
   public void testRecrawlDepthDefaultsTo1() {
     CrawlSpec cs = new CrawlSpec("blah", null);
-    assertEquals(1, cs.getRecrawlDepth());
+    assertEquals(1, cs.getRefetchDepth());
   }
 
   public static class MyMockCrawlWindow implements CrawlWindow {
