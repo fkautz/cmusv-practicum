@@ -40,7 +40,7 @@ import java.net.MalformedURLException;
 public interface LockssRepository {
   /**
    * Returns a {@link RepositoryNode} which represents the url in question.
-   * This only returns urls which exist in the cache.
+   * This only returns urls which exist in the cache (null otherwise).
    * @param url the desired url
    * @return an entry for the url
    * @throws java.net.MalformedURLException
@@ -49,7 +49,8 @@ public interface LockssRepository {
 
   /**
    * Creates a new {@link RepositoryNode} for the purposes of writing a new leaf
-   * to the cache.  This is used to add new leaves.
+   * to the cache.  This is used to add new leaves, though it still returns the
+   * leaf if it already exists.
    * @param url the url to be cached
    * @return an entry for the url
    * @throws java.net.MalformedURLException

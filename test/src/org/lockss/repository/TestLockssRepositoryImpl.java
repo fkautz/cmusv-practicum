@@ -99,6 +99,8 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
     assertEquals(leaf, leaf2);
     try {
       leaf.makeNewVersion();
+      TestRepositoryNodeImpl.writeToLeaf(leaf, "test stream");
+      leaf.setNewProperties(new Properties());
       leaf2.sealNewVersion();
     } catch (UnsupportedOperationException uoe) {
       fail("Leaf2 couldn't finish leaf's version.");
