@@ -155,7 +155,7 @@ public class NullPlugin {
       return null;
     }
 
-    public Iterator leafIterator() {
+    public Iterator treeIterator() {
       return null;
     }
 

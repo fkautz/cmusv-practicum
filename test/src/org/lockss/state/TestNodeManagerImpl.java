@@ -254,10 +254,16 @@ public class TestNodeManagerImpl
   }
 
   public void testWalkNodeState() throws Exception {
+    theDaemon.getHashService().startService();
+    theDaemon.getPollManager().startService();
     NodeState node = nodeManager.getNodeState(getCUS(TEST_URL));
     nodeManager.walkNodeState(node);
     //XXX set various CrawlStates, PollHistories
     // make sure it triggers the right things?
+
+
+    theDaemon.getHashService().stopService();
+    theDaemon.getPollManager().stopService();
   }
 
   public void testEstimatedTreeWalk() {
@@ -332,7 +338,6 @@ public class TestNodeManagerImpl
     pollState = new PollState(results.getType(),
                               results.getLwrBound(),
                               results.getUprBound(),
-
                               PollState.RUNNING,
                               results.getStartTime(),
                               null);
@@ -342,7 +347,7 @@ public class TestNodeManagerImpl
     String url = nodeState.getCachedUrlSet().getPrimaryUrl();
     assertNotNull(url);
     assertEquals(MockPollManager.NAME_REQUESTED,
-                 ( (MockPollManager) theDaemon.getPollManager()).getPollStatus(
+                 ((MockPollManager)theDaemon.getPollManager()).getPollStatus(
         url));
 
     // - leaf
@@ -356,11 +361,11 @@ public class TestNodeManagerImpl
     assertEquals(PollState.REPAIRING, pollState.getStatus());
     // assert repair call scheduled
     assertEquals(MockCrawlManager.SCHEDULED,
-                 ( (MockCrawlManager) theDaemon.getCrawlManager()).getUrlStatus(
+                 ((MockCrawlManager)theDaemon.getCrawlManager()).getUrlStatus(
         nodeState.getCachedUrlSet().getPrimaryUrl()));
     // assert poll suspended
     assertEquals(MockPollManager.SUSPENDED,
-                 ( (MockPollManager) theDaemon.getPollManager()).getPollStatus(
+                 ((MockPollManager)theDaemon.getPollManager()).getPollStatus(
         results.getPollKey()));
 
     theDaemon.getHashService().stopService();
@@ -384,7 +389,7 @@ public class TestNodeManagerImpl
     nodeManager.handleNamePoll(pollState, results, nodeState);
     // test poll request
     assertEquals(MockPollManager.CONTENT_REQUESTED,
-                 ( (MockPollManager) theDaemon.getPollManager()).getPollStatus(
+                 ((MockPollManager)theDaemon.getPollManager()).getPollStatus(
         TEST_URL + "/branch2/file1.doc"));
     assertEquals(MockPollManager.CONTENT_REQUESTED,
                  ((MockPollManager)theDaemon.getPollManager()).getPollStatus(

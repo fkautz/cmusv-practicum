@@ -53,7 +53,7 @@ public class GenericContentHasher extends GenericHasher {
 
   public GenericContentHasher(CachedUrlSet cus, MessageDigest digest) {
     super(cus, digest);
-    iterator = cus.leafIterator();
+    iterator = cus.treeIterator();
   }
 
   protected int hashElementUpToNumBytes(Object element, int numBytes) 

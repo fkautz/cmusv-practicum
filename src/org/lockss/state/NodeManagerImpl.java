@@ -562,7 +562,6 @@ public class NodeManagerImpl implements NodeManager, LockssManager {
     theDaemon.getCrawlManager().scheduleRepair(managerAu,
         new URL(cus.getPrimaryUrl()), new ContentRepairCallback(),
                                  tally.getPollKey());
-    cus.makeUrlCacher(cus.getPrimaryUrl()).cache();
   }
 
   private void deleteNode(CachedUrlSet cus) throws IOException {

@@ -102,7 +102,7 @@ public class MockCachedUrlSet implements CachedUrlSet {
     flatSource = col;
   }
 
-  public Iterator leafIterator() {
+  public Iterator treeIterator() {
     if (leafSource!=null) {
       return leafSource.iterator();
     }

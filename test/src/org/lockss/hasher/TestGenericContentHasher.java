@@ -156,7 +156,7 @@ public class TestGenericContentHasher extends LockssTestCase {
   }
 
   private Vector cachedUrlSetToBytes(CachedUrlSet cus) throws IOException {
-    Iterator it = cus.leafIterator();
+    Iterator it = cus.treeIterator();
     Vector bytes = new Vector(10000);
 
     while (it.hasNext()) {

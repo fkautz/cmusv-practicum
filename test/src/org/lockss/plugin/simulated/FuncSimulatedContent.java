@@ -161,7 +161,7 @@ public class FuncSimulatedContent extends LockssTestCase {
     String parent = sau.SIMULATED_URL_ROOT + "/branch1";
     CachedUrlSetSpec spec = new RangeCachedUrlSetSpec(parent);
     CachedUrlSet set = sau.cachedUrlSetFactory(sau, spec);
-    Iterator setIt = set.leafIterator();
+    Iterator setIt = set.treeIterator();
     ArrayList childL = new ArrayList(15);
     while (setIt.hasNext()) {
       CachedUrl childUrl = (CachedUrl)setIt.next();
