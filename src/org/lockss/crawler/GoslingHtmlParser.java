@@ -130,13 +130,30 @@ public class GoslingHtmlParser implements ContentParser {
     // set the reader to our default encoding
     //XXX try to extract encoding from source
     Reader reader = new InputStreamReader(is, Constants.DEFAULT_ENCODING); //should do this elsewhere
-    URL srcUrl = new URL(cuStr);
+    //XXX fix here
+    String redirectedTo = getRedirectedTo(cu);
+    URL srcUrl = null;
+    if (redirectedTo != null) {
+      logger.debug3("redirected-to set to "+redirectedTo
+		    +". Using that as base URL");
+      srcUrl = new URL(redirectedTo);
+    } else {
+      srcUrl = new URL(cuStr);
+    }
     logger.debug3("Extracting urls from srcUrl");
     String nextUrl = null;
     while ((nextUrl = extractNextLink(reader, srcUrl)) != null) {
       logger.debug3("Extracted "+nextUrl);
       cb.foundUrl(nextUrl);
     }
+  }
+
+  private static String getRedirectedTo(CachedUrl cu) {
+    Properties props = cu.getProperties();
+    if (props != null) {
+      return (String)props.get("redirected-to");
+    }
+    return null;
   }
 
   /**

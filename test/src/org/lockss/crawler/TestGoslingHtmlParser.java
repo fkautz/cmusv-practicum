@@ -448,6 +448,28 @@ public class TestGoslingHtmlParser extends LockssTestCase {
     assertEquals(expected, cb.getFoundUrls());
   }
 
+  public void testRelativeLinksUseRedirectedToAsBase() throws IOException {
+    String url1= "http://www.example.com/extra_level/branch1/index.html";
+    String url2= "http://www.example.com/extra_level/branch2/index.html";
+
+    String source =
+      "<html><head><title>Test</title></head><body>"+
+      "<a href=branch1/index.html>link1</a>"+
+      "Filler, with <b>bold</b> tags and<i>others</i>"+
+      "<a href=branch2/index.html>link2</a>";
+
+    MockCachedUrl mcu = new MockCachedUrl("http://www.example.com");
+    Properties props = new Properties();
+    props.put("redirected-to", "http://www.example.com/extra_level/");
+    mcu.setContent(source);
+    mcu.setProperties(props);
+
+    parser.parseForUrls(mcu, cb);
+
+    Set expected = SetUtil.set(url1, url2);
+    assertEquals(expected, cb.getFoundUrls());
+  }
+
 
   private void checkBadTags(String[] badTags, String closeTag)
       throws IOException {
