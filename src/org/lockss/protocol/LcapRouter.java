@@ -116,7 +116,7 @@ public class LcapRouter extends BaseLockssDaemonManager {
   }
 
   protected void setConfig(Configuration config, Configuration oldConfig,
-			   Set changedKeys) {
+			   Configuration.Differences changedKeys) {
     fwdRateLimiter =
       RateLimiter.getConfiguredRateLimiter(config, fwdRateLimiter,
 					   PARAM_FWD_PKTS_PER_INTERVAL,

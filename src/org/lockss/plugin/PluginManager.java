@@ -211,7 +211,7 @@ public class PluginManager extends BaseLockssDaemonManager {
   Configuration currentAllPlugs = ConfigManager.EMPTY_CONFIGURATION;
 
   protected void setConfig(Configuration config, Configuration oldConfig,
-			   Set changedKeys) {
+			   Configuration.Differences changedKeys) {
 
     if (changedKeys.contains(PARAM_PLUGIN_LOAD_TIMEOUT)) {
       registryTimeout = Configuration.

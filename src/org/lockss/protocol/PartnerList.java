@@ -87,7 +87,7 @@ class PartnerList {
 
   /** Configure the PartnerList */
   public void setConfig(Configuration config, Configuration oldConfig,
-			Set changedKeys) {
+			Configuration.Differences changedKeys) {
     maxPartners = config.getInt(PARAM_MAX_PARTNERS, DEFAULT_MAX_PARTNERS);
     if (maxPartners != partners.getMaximumSize()) {
       partners.setMaximumSize(maxPartners);

@@ -292,13 +292,14 @@ class HashQueue implements Serializable {
     Configuration.registerConfigurationCallback(new Configuration.Callback() {
 	public void configurationChanged(Configuration newConfig,
 					 Configuration oldConfig,
-					 Set changedKeys) {
+					 Configuration.Differences changedKeys) {
 	  setConfig(newConfig, changedKeys);
 	}
       });
   }
 
-  private void setConfig(Configuration config, Set changedKeys) {
+  private void setConfig(Configuration config,
+			 Configuration.Differences changedKeys) {
     hashPriority = config.getInt(PARAM_PRIORITY, DEFAULT_PRIORITY);
     hashStepBytes = config.getInt(PARAM_STEP_BYTES, DEFAULT_STEP_BYTES);
     hashNumSteps = config.getInt(PARAM_NUM_STEPS, DEFAULT_NUM_STEPS);

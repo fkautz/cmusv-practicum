@@ -89,7 +89,7 @@ public class HashSvcSchedImpl
   }
 
   protected void setConfig(Configuration config, Configuration prevConfig,
-			   Set changedKeys) {
+			   Configuration.Differences changedKeys) {
     estPadConstant = config.getLong(PARAM_ESTIMATE_PAD_CONSTANT,
 				    DEFAULT_ESTIMATE_PAD_CONSTANT);
     estPadPercent = config.getLong(PARAM_ESTIMATE_PAD_PERCENT,

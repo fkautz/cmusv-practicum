@@ -82,7 +82,7 @@ public class SchedService extends BaseLockssManager {
   }
 
   protected void setConfig(Configuration config, Configuration prevConfig,
-			   Set changedKeys) {
+			   Configuration.Differences changedKeys) {
   }
 
   /** Attempt to add a task to the schedule.

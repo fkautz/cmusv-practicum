@@ -53,7 +53,7 @@ public class StatusServiceImpl
   }
 
   protected void setConfig(Configuration config, Configuration prevConfig,
-			   Set changedKeys) {
+			   Configuration.Differences changedKeys) {
   }
 
   public StatusTable getTable(String tableName, String key) 

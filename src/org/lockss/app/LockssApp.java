@@ -420,7 +420,7 @@ public abstract class LockssApp {
     Configuration.registerConfigurationCallback(new Configuration.Callback() {
 	public void configurationChanged(Configuration newConfig,
 					 Configuration prevConfig,
-					 Set changedKeys) {
+					 Configuration.Differences changedKeys) {
 	  setConfig(newConfig, prevConfig, changedKeys);
 	}
       });
@@ -429,7 +429,7 @@ public abstract class LockssApp {
   boolean prevExitOnce = false;
 
   protected void setConfig(Configuration config, Configuration prevConfig,
-			   Set changedKeys) {
+			   Configuration.Differences changedKeys) {
 
     // temporary while debugging jvm DNS problem
     if (changedKeys.contains(PARAM_EXERCISE_DNS)) {

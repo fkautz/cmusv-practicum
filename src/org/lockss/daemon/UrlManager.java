@@ -75,7 +75,7 @@ public class UrlManager extends BaseLockssDaemonManager {
   }
 
   public void setConfig(Configuration config, Configuration prevConfig,
-			Set changedKeys) {
+			Configuration.Differences changedKeys) {
   }
 
   /** A URLStreamHandlerFactory that returns URLStreamHandlers for

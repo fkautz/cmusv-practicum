@@ -155,7 +155,7 @@ public class TestLockssDaemon extends LockssTestCase {
     }
     protected void setConfig(Configuration newConfig,
 			     Configuration prevConfig,
-			     Set changedKeys) {
+			     Configuration.Differences changedKeys) {
     }
     public void initService(LockssApp app) {
       events.add(new Event(this, "initService", app));

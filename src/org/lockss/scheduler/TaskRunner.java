@@ -114,13 +114,13 @@ class TaskRunner implements Serializable {
     Configuration.registerConfigurationCallback(new Configuration.Callback() {
 	public void configurationChanged(Configuration newConfig,
 					 Configuration oldConfig,
-					 Set changedKeys) {
+					 Configuration.Differences changedKeys) {
 	  setConfig(newConfig, changedKeys);
 	}
       });
   }
 
-  private void setConfig(Configuration config, Set changedKeys) {
+  private void setConfig(Configuration config, Configuration.Differences changedKeys) {
     statsUpdateInterval =
       config.getTimeInterval(PARAM_STATS_UPDATE_INTERVAL,
 			     DEFAULT_STATS_UPDATE_INTERVAL);

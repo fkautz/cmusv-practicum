@@ -429,9 +429,9 @@ public class Logger {
       new Configuration.Callback() {
 	public void configurationChanged(Configuration newConfig,
 					 Configuration oldConfig,
-					 Set changedKeys) {
+					 Configuration.Differences diffs) {
 	  setAllLogLevels();
-	  if (changedKeys.contains(PARAM_LOG_TARGETS)) {
+	  if (diffs.contains(PARAM_LOG_TARGETS)) {
 	    setLogTargets();
 	  }
 	}

@@ -47,7 +47,7 @@ public class NullAlertManager extends BaseLockssDaemonManager
   private static Logger log = Logger.getLogger("NullAlertManager");
 
   protected void setConfig(Configuration config, Configuration oldConfig,
-			   Set changedKeys) {
+			   Configuration.Differences changedKeys) {
   }
 
   public void raiseAlert(Alert alert) {

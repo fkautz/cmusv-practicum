@@ -77,7 +77,7 @@ public class NodeManagerStatus extends BaseLockssDaemonManager {
   }
 
   protected void setConfig(Configuration config, Configuration oldConfig,
-                           Set changedKeys) {
+                           Configuration.Differences changedKeys) {
   }
 
   private static NodeManagerImpl getNodeManager(String key,

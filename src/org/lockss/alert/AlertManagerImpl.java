@@ -95,7 +95,7 @@ public class AlertManagerImpl extends BaseLockssDaemonManager
 
   protected synchronized void setConfig(Configuration config,
 					Configuration prevConfig,
-					Set changedKeys) {
+					Configuration.Differences changedKeys) {
     alertsEnabled = config.getBoolean(PARAM_ALERTS_ENABLED,
 				      DEFAULT_ALERTS_ENABLED);
     initialDelay = config.getTimeInterval(PARAM_DELAY_INITIAL,

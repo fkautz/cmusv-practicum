@@ -125,7 +125,7 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
   }
 
   protected void setConfig(Configuration newConfig, Configuration prevConfig,
-			   Set changedKeys) {
+			   Configuration.Differences changedKeys) {
     contentCrawlExpiration =
       newConfig.getTimeInterval(PARAM_NEW_CONTENT_CRAWL_EXPIRATION,
 				DEFAULT_NEW_CONTENT_CRAWL_EXPIRATION);

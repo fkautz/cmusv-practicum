@@ -75,7 +75,7 @@ public class RemoteApi extends BaseLockssDaemonManager {
 
   /** No config */
   protected void setConfig(Configuration config, Configuration oldConfig,
-			   Set changedKeys) {
+			   Configuration.Differences changedKeys) {
   }
 
   /** Create or return an AuProxy for the AU corresponding to the auid.

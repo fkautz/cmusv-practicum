@@ -136,7 +136,7 @@ public class NodeManagerImpl
 
   protected void setConfig(Configuration newConfig,
                            Configuration prevConfig,
-                           Set changedKeys) {
+                           Configuration.Differences changedKeys) {
     recallDelay = newConfig.getTimeInterval(PARAM_RECALL_DELAY,
                                             DEFAULT_RECALL_DELAY);
     restartNonexpiredPolls =

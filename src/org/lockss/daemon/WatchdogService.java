@@ -73,7 +73,7 @@ public class WatchdogService extends BaseLockssManager {
 
   protected synchronized void setConfig(Configuration config,
 					Configuration prevConfig,
-					Set changedKeys) {
+					Configuration.Differences changedKeys) {
     if (changedKeys.contains(PARAM_PLATFORM_WDOG_DNS)) {
       doDns = config.getBoolean(PARAM_PLATFORM_WDOG_DNS,
 				DEFAULT_PLATFORM_WDOG_DNS);

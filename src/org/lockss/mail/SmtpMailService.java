@@ -90,7 +90,7 @@ public class SmtpMailService extends BaseLockssManager implements MailService {
 
   protected synchronized void setConfig(Configuration config,
 					Configuration prevConfig,
-					Set changedKeys) {
+					Configuration.Differences changedKeys) {
     enabled = config.getBoolean(PARAM_ENABLED, DEFAULT_ENABLED);
     maxRetries = config.getInt(PARAM_MAX_RETRIES, DEFAULT_MAX_RETRIES);
     maxQueuelen = config.getInt(PARAM_MAX_QUEUELEN, DEFAULT_MAX_QUEUELEN);

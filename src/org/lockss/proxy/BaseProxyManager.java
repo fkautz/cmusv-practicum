@@ -81,7 +81,7 @@ public abstract class BaseProxyManager extends JettyManager {
   }
 
   protected void setConfig(Configuration config, Configuration prevConfig,
-			   Set changedKeys) {
+			   Configuration.Differences changedKeys) {
     super.setConfig(config, prevConfig, changedKeys);
   }
 

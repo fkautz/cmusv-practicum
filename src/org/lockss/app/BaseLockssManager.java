@@ -120,7 +120,8 @@ public abstract class BaseLockssManager implements LockssManager {
    * ...) method with the current config and empty previous config. */
   protected void resetConfig() {
     Configuration cur = Configuration.getCurrentConfig();
-    setConfig(cur, ConfigManager.EMPTY_CONFIGURATION, cur.keySet());
+    setConfig(cur, ConfigManager.EMPTY_CONFIGURATION,
+	      Configuration.DIFFERENCES_ALL);
   }
 
   /** Managers must implement this method.  It is called once at app
@@ -133,12 +134,12 @@ public abstract class BaseLockssManager implements LockssManager {
    */
   protected abstract void setConfig(Configuration newConfig,
 				    Configuration prevConfig,
-				    Set changedKeys);
+				    Configuration.Differences changedKeys);
 
   private class DefaultConfigCallback implements Configuration.Callback {
     public void configurationChanged(Configuration newConfig,
 				     Configuration prevConfig,
-				     Set changedKeys) {
+				     Configuration.Differences changedKeys) {
       setConfig(newConfig, prevConfig, changedKeys);
     }
   }

@@ -73,7 +73,7 @@ public class RegistryPlugin extends BasePlugin {
    */
   protected void setConfig(Configuration newConfig,
 			   Configuration prevConfig,
-			   Set changedKeys) {
+			   Configuration.Differences changedKeys) {
     // No implementation.
   }
 

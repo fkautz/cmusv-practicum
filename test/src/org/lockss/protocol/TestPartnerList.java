@@ -65,7 +65,7 @@ public class TestPartnerList extends LockssTestCase {
 
   private void setConfig(PartnerList pl, Configuration config) {
     pl.setConfig(config, ConfigManager.EMPTY_CONFIGURATION,
-		 config.keySet());
+		 Configuration.DIFFERENCES_ALL);
   }
 
   public void setUp() throws Exception {

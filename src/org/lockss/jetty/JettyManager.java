@@ -88,7 +88,7 @@ public abstract class JettyManager extends BaseLockssManager {
 
   // Set Jetty debug properties from config params
   protected void setConfig(Configuration config, Configuration prevConfig,
-			   Set changedKeys) {
+			   Configuration.Differences changedKeys) {
     if (jettyLogInited) {
       if (changedKeys.contains(PARAM_JETTY_DEBUG)) {
 	boolean deb = config.getBoolean(PARAM_JETTY_DEBUG, 

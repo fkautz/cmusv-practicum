@@ -130,7 +130,7 @@ public class ActivityRegulator
 
   protected void setConfig(Configuration newConfig,
                            Configuration prevConfig,
-                           Set changedKeys) {
+                           Configuration.Differences changedKeys) {
     // nothing to config
   }
 

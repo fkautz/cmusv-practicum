@@ -168,7 +168,7 @@ public class TreeWalkHandler {
     configCallback = new Configuration.Callback() {
       public void configurationChanged(Configuration newConfig,
                                        Configuration oldConfig,
-                                       Set changedKeys) {
+                                       Configuration.Differences changedKeys) {
         setConfig(newConfig, oldConfig);
       }
     };

@@ -114,7 +114,7 @@ public class HistoryRepositoryImpl
   }
 
   protected void setConfig(Configuration config, Configuration oldConfig,
-			   Set changedKeys) {
+			   Configuration.Differences changedKeys) {
   }
 
   public void setAuConfig(Configuration auConfig) {

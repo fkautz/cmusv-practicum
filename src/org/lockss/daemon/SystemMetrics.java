@@ -90,7 +90,7 @@ public class SystemMetrics extends BaseLockssDaemonManager {
 
   public void setConfig(Configuration newConfig,
 			Configuration prevConfig,
-			Set changedKeys) {
+			Configuration.Differences changedKeys) {
     defaultSpeed = newConfig.getInt(PARAM_DEFAULT_HASH_SPEED,
                                     DEFAULT_DEFAULT_HASH_SPEED);
   }

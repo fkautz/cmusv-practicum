@@ -127,7 +127,7 @@ public class LockssRepositoryImpl
   }
 
   protected void setConfig(Configuration newConfig, Configuration prevConfig,
-                           Set changedKeys) {
+                           Configuration.Differences changedKeys) {
     // at some point we'll have to respond to changes in the available disk
     // space list
 

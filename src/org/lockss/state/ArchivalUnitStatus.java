@@ -80,7 +80,7 @@ public class ArchivalUnitStatus extends BaseLockssDaemonManager {
   }
 
   protected void setConfig(Configuration config, Configuration oldConfig,
-                           Set changedKeys) {
+                           Configuration.Differences changedKeys) {
     nodesToDisplay = config.getInt(PARAM_MAX_NODES_TO_DISPLAY,
                                    DEFAULT_MAX_NODES_TO_DISPLAY);
   }

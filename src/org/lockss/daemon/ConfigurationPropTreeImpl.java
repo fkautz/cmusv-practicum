@@ -97,6 +97,19 @@ public class ConfigurationPropTreeImpl extends Configuration {
   /** Return the set of keys whose values differ.
    * @param otherConfig the config to compare with.  May be null.
    */
+  public Configuration.Differences differences(Configuration otherConfig) {
+    if (otherConfig == null) {
+      return Configuration.DIFFERENCES_ALL;
+    }
+    ConfigurationPropTreeImpl oc = (ConfigurationPropTreeImpl)otherConfig;
+    Set diffSet = PropUtil.differentKeysAndPrefixes(getPropertyTree(),
+						    oc.getPropertyTree());
+    return new Configuration.DifferencesSet(diffSet);
+  }
+
+  /** Return the set of keys whose values differ.
+   * @param otherConfig the config to compare with.  May be null.
+   */
   public Set differentKeys(Configuration otherConfig) {
     if (otherConfig == null) {
       return props.keySet();

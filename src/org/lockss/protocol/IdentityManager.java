@@ -532,7 +532,7 @@ public class IdentityManager extends BaseLockssDaemonManager {
   }
 
   protected void setConfig(Configuration config, Configuration oldConfig,
-			   Set changedKeys) {
+			   Configuration.Differences changedKeys) {
     reputationDeltas[MAX_DELTA] =
         config.getInt(PARAM_MAX_DELTA, DEFAULT_MAX_DELTA);
     reputationDeltas[AGREE_VOTE] =

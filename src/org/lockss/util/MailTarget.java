@@ -90,7 +90,7 @@ public class MailTarget {
     Configuration.registerConfigurationCallback(new Configuration.Callback() {
         public void configurationChanged(Configuration newConfig,
 					   Configuration oldConfig,
-					   Set changedKeys) {
+					   Configuration.Differences changedKeys) {
           loadConfiguration();
         }});
     localHostName = IdentityManager.getLocalHostName();
