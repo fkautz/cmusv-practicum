@@ -108,7 +108,7 @@ public class TestLcapSocket extends LockssTestCase {
     LcapSocket.Unicast lskt = new LcapSocket.Unicast(rcvQ, dskt);
     dskt.addToReceiveQueue(testPacket);
     Interrupter intr;
-    intr = interruptMeIn(TIMEOUT_SHOULDNT);
+    intr = interruptMeIn(TIMEOUT_SHOULDNT, true);
     PrivilegedAccessor.invokeMethod(lskt, "receivePacket");
     assertTrue(!rcvQ.isEmpty());
     LockssReceivedDatagram rcvd =
