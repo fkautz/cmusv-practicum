@@ -51,7 +51,7 @@ public class BaseCachedUrl implements CachedUrl {
   private RepositoryNode leaf = null;
 
   private static final String PARAM_SHOULD_FILTER_HASH_STREAM =
-    Configuration.PREFIX+".baseCachedUrl.filterHashStream";
+    Configuration.PREFIX+"baseCachedUrl.filterHashStream";
 
   public BaseCachedUrl(CachedUrlSet owner, String url) {
     this.cus = owner;
