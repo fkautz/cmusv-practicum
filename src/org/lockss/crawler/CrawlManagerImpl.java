@@ -337,11 +337,12 @@ public class CrawlManagerImpl extends BaseLockssManager
         startWDog(WDOG_PARAM_CRAWLER, WDOG_DEFAULT_CRAWLER);
         nowRunning();
 
-        crawlSuccessful = crawler.doCrawl(deadline);
+	crawlSuccessful = crawler.doCrawl(deadline);
 
         if (crawler.getType() == Crawler.NEW_CONTENT) {
           if (crawlSuccessful) {
-            NodeManager nodeManager = theDaemon.getNodeManager(crawler.getAu());
+            NodeManager nodeManager =
+	      theDaemon.getNodeManager(crawler.getAu());
             nodeManager.newContentCrawlFinished();
           }
         }
@@ -351,19 +352,20 @@ public class CrawlManagerImpl extends BaseLockssManager
           Iterator lockIt = locks.iterator();
           while (lockIt.hasNext()) {
             // loop through expiring all locks
-            ActivityRegulator.Lock lock = (ActivityRegulator.Lock)lockIt.next();
+            ActivityRegulator.Lock lock =
+	      (ActivityRegulator.Lock)lockIt.next();
             lock.expire();
           }
         }
-      }
-      synchronized(runningCrawls) {
- 	runningCrawls.remove(crawler.getAu(), crawler);
-      }
-      if (cb != null) {
-	try {
-	  cb.signalCrawlAttemptCompleted(crawlSuccessful, cookie);
-	} catch (Exception e) {
-	  logger.error("Callback threw", e);
+	synchronized(runningCrawls) {
+	  runningCrawls.remove(crawler.getAu(), crawler);
+	}
+	if (cb != null) {
+	  try {
+	    cb.signalCrawlAttemptCompleted(crawlSuccessful, cookie);
+	  } catch (Exception e) {
+	    logger.error("Callback threw", e);
+	  }
 	}
       }
     }
