@@ -28,22 +28,23 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.util;
+package org.lockss.repository;
 
 import java.util.*;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-
+import org.lockss.util.StringUtil;
 import org.lockss.plugin.*;
+
 /**
- * Create a list of Object from a call list.
+ * Util to convert ArchivalUnits and urls into file locations.
  */
-public class FileLocationUtil {
+public class RepositoryLocationUtil {
     /**
      * Don't construct.
      */
-    private FileLocationUtil() {
+    private RepositoryLocationUtil() {
     }
 
     /**
@@ -60,11 +61,7 @@ public class FileLocationUtil {
       if (!rootLocation.endsWith(File.separator)) {
         buffer.append(File.separator);
       }
-//      buffer.append(au.getPluginId());
-  //    if (!au.getAUId().equals("")) {
-    //    buffer.append(File.separator);
-        buffer.append(au.getAUId());
-     // }
+      getAuDir(au, buffer);
       buffer.append(File.separator);
       return buffer.toString();
     }
@@ -96,4 +93,9 @@ public class FileLocationUtil {
       return buffer.toString();
     }
 
+  private static void getAuDir(ArchivalUnit au, StringBuffer buffer) {
+    buffer.append(au.getPluginId());
+    buffer.append(File.separator);
+    buffer.append(au.getAUId());
+  }
 }
