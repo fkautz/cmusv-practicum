@@ -268,9 +268,6 @@ public class PollManager  extends BaseLockssManager {
     if (p != null) {
       p.receiveMessage(msg);
     }
-    else {
-      theLog.info("Unable to create poll for Message: " + msg);
-    }
   }
 
   /**
