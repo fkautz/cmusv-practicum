@@ -305,7 +305,7 @@ public class TestLcapMessage extends LockssTestCase {
   }
 
   public void testHopCount() {
-    int max = LcapMessage.MAX_MAX_HOP_COUNT;
+    int max = LcapMessage.MAX_HOP_COUNT_LIMIT;
     testmsg.setHopCount(0);
     assertEquals(0, testmsg.getHopCount());
     testmsg.setHopCount(-40);
