@@ -55,7 +55,7 @@ public interface NodeManager {
    * @param cus the cached url set used to identify the node
    * @param results the poll results
    */
-  public void updatePollResults(CachedUrlSet cus, Poll.PollResults results);
+  public void updatePollResults(CachedUrlSet cus, Poll.VoteTally results);
 
   /**
    * Return the node represented by a given Cached Url Set
