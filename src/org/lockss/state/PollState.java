@@ -178,6 +178,8 @@ public class PollState implements Comparable {
         return "Undefined error";
       case UNFINISHED:
         return "Unfinished";
+      case INCONCLUSIVE:
+        return "Inconclusive";
       default:
         return "Undefined";
     }
