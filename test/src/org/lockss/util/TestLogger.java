@@ -168,5 +168,13 @@ public class TestLogger extends TestCase{
 				new ArrayIterator(testOutputOutput)));
     l.defaultTarget();
   }
+
+  public void testNoRecurse() {
+    Logger l = Logger.getLogger("recurse");
+    MockLogTarget target = new MockLogTarget();
+    l.setTarget(target);
+    l.setLevel(Logger.LEVEL_DEBUG);
+    l.debug("debug message, shouldn't cause recursion");
+  }
 }
 
