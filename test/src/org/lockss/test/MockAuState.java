@@ -66,6 +66,9 @@ public class MockAuState extends AuState {
     lastTreeWalk = newTreeWalkTime;
   }
 
+  public void newCrawlFinished() {
+    super.newCrawlFinished();
+  }
 
 }
 
