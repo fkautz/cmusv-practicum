@@ -35,7 +35,7 @@ package org.lockss.scheduler;
 import java.util.*;
 import org.lockss.util.*;
 
-/** Description of a background task that reduces the CPI time available to
+/** Description of a background task that reduces the CPU time available to
  * a foreground (stepped) task. */
 public class BackgroundTask extends SchedulableTask {
   final double loadFactor;
