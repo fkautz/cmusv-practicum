@@ -81,6 +81,14 @@ public class RepairCrawler extends CrawlerImpl {
   }
 
 
+  /** We always want our UrlCacher to follow redirects in crawl spec, but
+   * store only the one node we requested. */
+  protected UrlCacher makeUrlCacher(CachedUrlSet cus, String url) {
+    UrlCacher uc = super.makeUrlCacher(cus, url);
+    uc.setRedirectScheme(UrlCacher.REDIRECT_SCHEME_FOLLOW_IN_SPEC);
+    return uc;
+  }
+
   protected boolean doCrawl0() {
     boolean windowClosed = false;
     logger.info("Beginning crawl of "+au);
