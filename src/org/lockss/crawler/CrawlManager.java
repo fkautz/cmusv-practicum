@@ -66,7 +66,7 @@ public interface CrawlManager {
    * @return true if the tree walk can begin now, false otherwise
    */
 
-  public boolean canTreeWalkStart(ArchivalUnit au, AuState aus,
+  public boolean canTreeWalkStart(ArchivalUnit au, 
 				  CrawlManager.Callback cb, Object cookie);
 
   public interface Callback {
