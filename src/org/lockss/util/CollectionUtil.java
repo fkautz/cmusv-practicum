@@ -40,7 +40,7 @@ public class CollectionUtil {
    * size, whose elements are pairwise equal.  The collections need not be of
    * the same type.
    */
-  public static boolean equalCollections(Iterator a, Iterator b) {
+  public static boolean isIsomorphic(Iterator a, Iterator b) {
     while (a.hasNext()) {
       if (!b.hasNext()) {
 	return false;
@@ -56,5 +56,28 @@ public class CollectionUtil {
       }
     }
     return !b.hasNext();
+  }
+
+  /** Return true iff the two collections are the same size and have
+   * elements that are pairwise equal.  The collections need not be of the
+   * same type.
+   */
+  public static boolean isIsomorphic(Collection a, Collection b) {
+    return isIsomorphic(a.iterator(), b.iterator());
+  }
+
+  /** Return true iff the collection and array are isomorphic */
+  public static boolean isIsomorphic(Collection a, Object b[]) {
+    return isIsomorphic(a.iterator(), new ArrayIterator(b));
+  }
+
+  /** Return true iff the array and collection are isomorphic */
+  public static boolean isIsomorphic(Object a[], Collection b) {
+    return isIsomorphic(new ArrayIterator(a), b.iterator());
+  }
+
+  /** Return true iff the two collections are isomorphic */
+  public static boolean isIsomorphic(Object a[], Object b[]) {
+    return isIsomorphic(new ArrayIterator(a), new ArrayIterator(b));
   }
 }
