@@ -202,7 +202,7 @@ public class PluginManager extends BaseLockssManager {
     try {
       log.debug("Instantiating " + pluginClass);
       Plugin plugin = (Plugin)pluginClass.newInstance();
-      plugin.initPlugin();
+      plugin.initPlugin(theDaemon);
       setPlugin(pluginId, plugin);
       return true;
     } catch (Exception e) {

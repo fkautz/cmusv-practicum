@@ -36,6 +36,7 @@ import java.io.*;
 import java.util.*;
 import java.net.*;
 import java.security.MessageDigest;
+import org.lockss.app.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.state.*;
@@ -56,7 +57,7 @@ public class NullPlugin {
     protected Plugin() {
     }
 
-    public void initPlugin() {
+    public void initPlugin(LockssDaemon daemon) {
     }
 
     public void stopPlugin() {
@@ -68,6 +69,10 @@ public class NullPlugin {
 
     public String getVersion() {
       return "NullVersion";
+    }
+
+    public LockssDaemon getDaemon() {
+      return null;
     }
 
     public List getSupportedAUNames() {
