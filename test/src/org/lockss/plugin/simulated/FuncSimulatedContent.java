@@ -159,7 +159,7 @@ public class FuncSimulatedContent extends LockssTestCase {
     CrawlSpec spec =
       new CrawlSpec(SimulatedArchivalUnit.SIMULATED_URL_START, null);
     Crawler crawler = new NewContentCrawler(sau, spec, new MockAuState());
-    crawler.doCrawl(Deadline.MAX);
+    crawler.doCrawl();
   }
 
   private void checkContent() throws IOException {

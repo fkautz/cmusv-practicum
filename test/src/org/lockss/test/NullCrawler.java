@@ -38,7 +38,7 @@ import org.lockss.plugin.ArchivalUnit;
 import org.lockss.util.Deadline;
 
 public class NullCrawler implements Crawler {
-  public boolean doCrawl(Deadline deadline) {
+  public boolean doCrawl() {
     throw new UnsupportedOperationException("Not implemented");
   }
 

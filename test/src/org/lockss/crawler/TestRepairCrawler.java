@@ -116,7 +116,7 @@ public class TestRepairCrawler extends LockssTestCase {
     spec = new CrawlSpec(startUrls, crawlRule, 1);
     crawler = new RepairCrawler(mau, spec, aus, repairUrls, 0);
 
-    crawler.doCrawl(Deadline.MAX);
+    crawler.doCrawl();
 
     Set cachedUrls = cus.getForceCachedUrls();
     assertEquals(1, cachedUrls.size());
@@ -141,7 +141,7 @@ public class TestRepairCrawler extends LockssTestCase {
     spec = new CrawlSpec(startUrls, crawlRule, 1);
     crawler = new RepairCrawler(mau, spec, aus, repairUrls, 0);
     crawler.setWatchdog(wdog);
-    crawler.doCrawl(Deadline.MAX);
+    crawler.doCrawl();
 
     wdog.assertPoked(3);
   }
@@ -167,7 +167,7 @@ public class TestRepairCrawler extends LockssTestCase {
     spec = new CrawlSpec(startUrls, crawlRule, 1);
     crawler = new RepairCrawler(mau, spec, aus, repairUrls, 0);
 
-    crawler.doCrawl(Deadline.MAX);
+    crawler.doCrawl();
 
     Set cachedUrls = cus.getForceCachedUrls();
     assertSameElements(repairUrls, cachedUrls);
@@ -182,7 +182,7 @@ public class TestRepairCrawler extends LockssTestCase {
     spec = new CrawlSpec(startUrls, crawlRule, 1);
     crawler = new RepairCrawler(mau, spec, aus, repairUrls, 0);
 
-    assertFalse(crawler.doCrawl(Deadline.MAX));
+    assertFalse(crawler.doCrawl());
   }
 
 //   public void testFetchFromOtherCache() throws UnknownHostException {

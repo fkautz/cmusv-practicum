@@ -68,7 +68,7 @@ public class MockCrawler extends NullCrawler {
     this.crawlSuccessful = crawlSuccessful;
   }
 
-  public boolean doCrawl(Deadline deadline) {
+  public boolean doCrawl() {
     doCrawlCalled = true;
     this.deadline = deadline;
     return crawlSuccessful;

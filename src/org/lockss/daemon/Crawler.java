@@ -64,7 +64,7 @@ public interface Crawler {
    * @return true if the crawl was successful
    * @param deadline maximum time to spend on this crawl
    */
-  public boolean doCrawl(Deadline deadline);
+  public boolean doCrawl();
 
 
   /**
