@@ -86,7 +86,7 @@ public class TestAuStateImpl extends LockssTestCase {
   }
 
   public void testGetUrls() {
-    Collection stringList = new ArrayList();
+    List stringList = new ArrayList();
     stringList.add("test");
 
     AuState auState = new AuState(mau, -1, -1, 123, stringList, historyRepo);

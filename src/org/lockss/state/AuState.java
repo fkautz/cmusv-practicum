@@ -46,7 +46,7 @@ public class AuState {
   protected long lastTopLevelPoll;
   protected long lastTreeWalk;
   private HistoryRepository historyRepo;
-  protected Collection crawlUrls;
+  protected List crawlUrls;
 
   int urlUpdateCntr = 0;
 
@@ -54,7 +54,7 @@ public class AuState {
   static final int URL_UPDATE_LIMIT = 1;
 
   protected AuState(ArchivalUnit au, long lastCrawlTime, long lastTopLevelPoll,
-                    long lastTreeWalk, Collection crawlUrls,
+                    long lastTreeWalk, List crawlUrls,
                     HistoryRepository historyRepo) {
     this.au = au;
     this.lastCrawlTime = lastCrawlTime;
@@ -125,9 +125,9 @@ public class AuState {
    * Gets the collection of crawl urls.
    * @return a {@link Collection}
    */
-  public Collection getCrawlUrls() {
+  public List getCrawlUrls() {
     if (crawlUrls==null) {
-      crawlUrls = new ArrayList();
+      crawlUrls = new LinkedList();
     }
     return crawlUrls;
   }

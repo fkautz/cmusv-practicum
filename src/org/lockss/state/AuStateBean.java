@@ -33,7 +33,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.state;
 
-import java.util.Collection;
+import java.util.List;
 import org.lockss.plugin.ArchivalUnit;
 
 /**
@@ -55,7 +55,7 @@ public class AuStateBean extends AuState {
    * Sets the crawl urls
    * @param newCol a new collection of Strings
    */
-  public void setCrawlUrls(Collection newCol) {
+  public void setCrawlUrls(List newCol) {
     crawlUrls = newCol;
   }
 

@@ -156,7 +156,8 @@ public interface ArchivalUnit {
   public List getNewContentCrawlUrls();
 
   /**
-   * Query the {@link AuState} object to determine if this is the proper time to
+   * Query the {@link AuSb
+tate} object to determine if this is the proper time to
    * do a new content crawl.
    * @param aus {@link AuState} object for this archival unit
    * @return true if we should do a new content crawl
