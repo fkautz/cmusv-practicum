@@ -58,7 +58,7 @@ public class NewContentCrawler extends FollowLinkCrawler {
    * 
    * @return a set of urls that contains updated content.
    */
-  protected Set getLinks(){
+  protected Set getUrlsToFollow(){
     Set extractedUrls = new HashSet();
     int refetchDepth0 = spec.getRefetchDepth();
     String key = StringUtil.replaceString(PARAM_REFETCH_DEPTH,
@@ -119,5 +119,9 @@ public class NewContentCrawler extends FollowLinkCrawler {
     lvlCnt = refetchDepth;
     return extractedUrls;
   } // end of getLink()
+
+  protected boolean shouldFollowLink(){
+    return true;
+  }
 
 }
