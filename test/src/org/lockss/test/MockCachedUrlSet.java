@@ -222,6 +222,11 @@ public class MockCachedUrlSet implements CachedUrlSet {
     }
   }
 
+  public String getName() {
+    return getPrimaryUrl();
+  }
+
+
   public void addCachedUrl(String url) {
     cachedUrls.add(url);
   }

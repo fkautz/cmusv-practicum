@@ -160,7 +160,14 @@ public class TestGenericContentHasher extends LockssTestCase {
     Vector bytes = new Vector(10000);
 
     while (it.hasNext()) {
-      CachedUrl cu = (CachedUrl)it.next();
+      CachedUrl cu = null;
+      Object element = it.next();
+      if (element instanceof CachedUrlSet) {
+        CachedUrlSet cus2 = (CachedUrlSet)element;
+        cu = cus2.makeCachedUrl(cus.getPrimaryUrl());
+      } else if (element instanceof CachedUrl) {
+        cu = (CachedUrl)element;
+      }
       String delimStr = String.valueOf(DELIMITER);
       byte[] nameBytes = (delimStr+cu.getUrl()+delimStr).getBytes();
       for (int ix=0; ix<nameBytes.length; ix++) {

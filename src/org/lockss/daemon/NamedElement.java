@@ -31,66 +31,17 @@ in this Software without prior written authorization from Stanford University.
 */
 
 package org.lockss.daemon;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.IOException;
-import java.util.Properties;
 
-/** Abstract base class for CachedUrls.
- * Plugins may extend this to get some common CachedUrl functionality.
+/**
+ * This interface a superclass for the CachedUrlSet and CachedUrl interfaces.
+ * It simply provides a mechanism for easily getting the urls of lists of those
+ * classes.
  */
-public abstract class BaseCachedUrl implements CachedUrl {
-  protected CachedUrlSet cus;
-  protected String url;
+public interface NamedElement {
 
   /**
-   * Must invoke this constructor in plugin subclass.
-   * @param owner the CachedUrlSet owner
-   * @param url the url
+   * Returns the name of this element (typically the url).
+   * @return the name
    */
-  protected BaseCachedUrl(CachedUrlSet owner, String url) {
-    this.cus = owner;
-    this.url = url;
-  }
-
-  /**
-   * Return the URL
-   * @return the url
-   */
-  public String getUrl() {
-    return url;
-  }
-
-  /**
-   * Returns the url.
-   * @return the url
-   */
-  public String getName() {
-    return getUrl();
-  }
-
-  /**
-   * Overrides normal <code>toString()</code> to return a string like "BCU: <url>"
-   * @return the string form
-   */
-  public String toString() {
-    return "[BCU: "+url+"]";
-  }
-
-  /**
-   * Return the CachedUrlSet to which this CachedUrl belongs.
-   * @return the CachedUrlSet
-   */
-  public CachedUrlSet getCachedUrlSet() {
-    return cus;
-  }
-
-  /**
-   * Return the ArchivalUnit to which this CachedUrl belongs.
-   * @return the ArchivalUnit
-   */
-  public ArchivalUnit getArchivalUnit() {
-    CachedUrlSet cus = getCachedUrlSet();
-    return cus != null ? cus.getArchivalUnit() : null;
-  }
+  public String getName();
 }

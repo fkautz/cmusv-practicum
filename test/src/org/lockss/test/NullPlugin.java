@@ -65,6 +65,10 @@ public class NullPlugin {
       return null;
     }
 
+    public String getName() {
+      return getUrl();
+    }
+
     public boolean exists() {
       return false;
     }
@@ -196,6 +200,10 @@ public class NullPlugin {
 
     public String getPrimaryUrl() {
       return "null";
+    }
+
+    public String getName() {
+      return getPrimaryUrl();
     }
 
   }

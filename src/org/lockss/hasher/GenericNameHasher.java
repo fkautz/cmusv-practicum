@@ -44,16 +44,16 @@ public class GenericNameHasher extends GenericHasher {
 
   byte[] nameBytes = null;
   int nameIdx = -1;
-  boolean onFirstElement = true; 
+  boolean onFirstElement = true;
 
   public GenericNameHasher(CachedUrlSet cus, MessageDigest dig) {
     super(cus, dig);
     iterator = cus.flatSetIterator();
   }
 
-  protected int hashElementUpToNumBytes(Object element, int numBytes) {
+  protected int hashElementUpToNumBytes(NamedElement element, int numBytes) {
     if (nameBytes == null) {
-      String nameStr = getCUSName((CachedUrlSet)element);
+      String nameStr = element.getName();
       StringBuffer sb = new StringBuffer(nameStr.length()+1);
       if (!onFirstElement) {
 	sb.append(DELIMITER);
@@ -66,7 +66,7 @@ public class GenericNameHasher extends GenericHasher {
       nameIdx = 0;
     }
 
-    int len = numBytes < (nameBytes.length - nameIdx) 
+    int len = numBytes < (nameBytes.length - nameIdx)
       ? numBytes : (nameBytes.length - nameIdx);
     digest.update(nameBytes, nameIdx, len);
     nameIdx += len;
@@ -77,23 +77,7 @@ public class GenericNameHasher extends GenericHasher {
     }
     return len;
   }
-  
 
-  protected static String getCUSName(CachedUrlSet cus) {
-    if (cus == null) {
-      return null;
-    }
-    CachedUrlSetSpec cuss = cus.getSpec();
-    List names = cuss.getPrefixList();
-    
-    if (names.size() != 1) {
-      throw new RuntimeException("getCUSName called with a cus CachedUrlSet "+
-				 "with "+names.size()+" prefixes");
-    }
-  
-    //XXX done this way until we figure out how to map a CUS to a name
-    return (String)names.get(0);
-  }
 }
 
 

@@ -69,6 +69,10 @@ class PTestPlugin {
       return url;
     }
 
+    public String getName() {
+      return getUrl();
+    }
+
     public boolean exists() {
       return contents != null;
     }

@@ -158,10 +158,9 @@ public class NamePoll
       Iterator it = m_urlSet.flatSetIterator();
       ArrayList alist = new ArrayList();
       String baseUrl = m_urlSet.getSpec().getPrimaryUrl();
-      while (it.hasNext()) {
-        CachedUrlSet cus = (CachedUrlSet) it.next();
-        String name = (String) cus.getPrimaryUrl();
-        if (name.startsWith(baseUrl)) {
+      while(it.hasNext()) {
+        String name = ((NamedElement)it.next()).getName();
+        if(name.startsWith(baseUrl)) {
           name = name.substring(name.length());
         }
         alist.add(name);
@@ -169,7 +168,6 @@ public class NamePoll
       m_entries = (String[]) alist.toArray(new String[alist.size()]);
     }
     return m_entries;
-
   }
 
   void buildPollLists(Iterator voteIter) {

@@ -107,6 +107,14 @@ public abstract class BaseCachedUrlSet implements CachedUrlSet {
   }
 
   /**
+   * Returns the main url.
+   * @return the url
+   */
+  public String getName() {
+    return getPrimaryUrl();
+  }
+
+  /**
    * Overrides Object.hashCode().
    * Returns the hashcode of the spec.
    * @return the hashcode
