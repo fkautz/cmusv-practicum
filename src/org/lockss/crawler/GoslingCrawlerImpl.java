@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2002 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -32,7 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 /*
  * Some portions of this code are:
- * Copyright (c) 2002 Sun Microsystems. All Rights Reserved.
+ * Copyright (c) 2000-2003 Sun Microsystems. All Rights Reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
