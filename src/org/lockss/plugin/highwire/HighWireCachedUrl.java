@@ -63,6 +63,7 @@ public class HighWireCachedUrl extends GenericFileCachedUrl {
       logger.debug2("Filtering "+url);
       List tagList =
 	ListUtil.list(
+		      new HtmlTagFilter.TagPair("<script", "</script>", true),
 		      new HtmlTagFilter.TagPair("<table", "</table>", true),
 		      new HtmlTagFilter.TagPair("This article has been cited by",
 						" other articles:", true),
