@@ -62,7 +62,7 @@ public class ConfigParamDescr implements Comparable {
     BASE_URL.setDisplayName("Base URL");
     BASE_URL.setType(TYPE_URL);
     BASE_URL.setSize(40);
-    BASE_URL.setDescription("Usually of the form http://<i>journal</i>.com/");
+    BASE_URL.setDescription("Usually of the form http://<journal-name>.com/");
   }
 
   public static final ConfigParamDescr JOURNAL_DIR = new ConfigParamDescr();
