@@ -487,6 +487,7 @@ public class LockssTestCase extends TestCase {
       if (threadDump) {
 	try {
 	  DebugUtils.getInstance().threadDump();
+	  TimerUtil.guaranteedSleep(1000);
 	} catch (Exception e) {
 	}
       }
