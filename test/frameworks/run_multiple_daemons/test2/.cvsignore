@@ -6,5 +6,6 @@ iddb
 local.opt
 localA
 localB
+plugins
 simcontent
 test.out
