@@ -151,7 +151,7 @@ public class BaseUrlCacher implements UrlCacher {
     }
   }
 
-  protected void storeContent(InputStream input, Properties headers)
+  public void storeContent(InputStream input, Properties headers)
       throws IOException {
     logger.debug3("Caching url '"+url+"'");
     RepositoryNode leaf = null;
