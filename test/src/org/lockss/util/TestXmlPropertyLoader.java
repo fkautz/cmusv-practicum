@@ -80,7 +80,7 @@ public class TestXmlPropertyLoader extends LockssTestCase {
 
     PropertyTree props = new PropertyTree();
 
-    m_xmlPropertyLoader.load(props, istr);
+    m_xmlPropertyLoader.loadProperties(props, istr);
     return props;
   }
 
@@ -96,7 +96,7 @@ public class TestXmlPropertyLoader extends LockssTestCase {
     InputStream istr =
       new ReaderInputStream(new StringReader(sb.toString()));
     try {
-      m_xmlPropertyLoader.load(props, istr);
+      m_xmlPropertyLoader.loadProperties(props, istr);
       fail("Should have thrown.");
     } catch (Throwable t) {
     }
@@ -234,6 +234,11 @@ public class TestXmlPropertyLoader extends LockssTestCase {
     assertEquals("bar", m_props.get("org.lockss.not.e"));
     assertEquals("foo", m_props.get("org.lockss.not.f"));
     assertEquals("bar", m_props.get("org.lockss.not.g"));
+  }
+
+  public void testNestedBoolean() throws IOException {
+    assertEquals("foo", m_props.get("org.lockss.nested.a"));
+    assertEquals("bar", m_props.get("org.lockss.nested.b"));
   }
 
 }
