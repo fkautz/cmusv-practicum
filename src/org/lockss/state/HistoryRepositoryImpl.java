@@ -224,6 +224,15 @@ public class HistoryRepositoryImpl
     }
   }
 
+  public void storeIdentityAgreement(List list) {
+    throw new UnsupportedOperationException("not implemented");
+  }
+
+  public List loadIdentityAgreement() {
+    throw new UnsupportedOperationException("not implemented");
+  }
+
+
   public void storeAuState(AuState auState) {
     try {
       File nodeDir = new File(rootLocation);
