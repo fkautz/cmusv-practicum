@@ -62,6 +62,8 @@ public abstract class BaseProxyManager extends JettyManager {
    */
   public void startService() {
     super.startService();
+    resetConfig();			// run setConfig() unconditionally
+					// to set defaults in subclasses
     if (start) {
       startProxy();
     }
