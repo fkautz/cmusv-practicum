@@ -52,7 +52,7 @@ public class DaemonStatus extends LockssServlet {
 
   /** Format to display date/time in tables */
   public static final DateFormat tableDf =
-    new SimpleDateFormat("MM/dd/yy HH:mm:ss");
+    new SimpleDateFormat("HH:mm:ss MM/dd/yy");
 
 //   public static final DateFormat tableDf =
 //     DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT);

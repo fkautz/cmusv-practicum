@@ -119,7 +119,7 @@ public class MockLockssDaemon extends LockssDaemon {
 					     desc.getDefaultClass());
     log.debug2("Manager class: " + mgr_name); 
     try {
-      return loadManager(mgr_name);
+      return initManager(desc);
     } catch (Exception e) {
       throw new LockssDaemonException("Can't load manager: " + e.toString());
     }

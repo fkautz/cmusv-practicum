@@ -55,6 +55,9 @@ public interface Crawler {
   public static final int STATUS_INCOMPLETE = 1;
   public static final int STATUS_SUCCESSFUL = 2;
   public static final int STATUS_ERROR = 3;
+  public static final int STATUS_WINDOW_CLOSED = 4;
+  public static final int STATUS_FETCH_ERROR = 5;
+  public static final int STATUS_PUB_PERMISSION = 6;
 
   /**
    * Initiate a crawl starting with all the urls in urls

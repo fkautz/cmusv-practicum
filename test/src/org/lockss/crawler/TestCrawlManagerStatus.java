@@ -53,7 +53,7 @@ public class TestCrawlManagerStatus extends LockssTestCase {
   private static final String NC_TYPE = "New Content";
   private static final String REPAIR_TYPE = "Repair";
 
-  private static final String STATUS_INCOMPLETE = "Incomplete";
+  private static final String STATUS_INCOMPLETE = "Active";
   private static final String STATUS_ERROR = "Error";
   private static final String STATUS_SUCCESSFUL = "Successful";
 

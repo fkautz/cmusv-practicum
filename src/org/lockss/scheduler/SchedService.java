@@ -63,7 +63,7 @@ public class SchedService extends BaseLockssManager {
 	}});
     runner.init();
     getDaemon().getStatusService().
-      registerStatusAccessor("TaskQ", runner.getStatusAccessor());
+      registerStatusAccessor("SchedQ", runner.getStatusAccessor());
   }
 
   /**
