@@ -1,7 +1,6 @@
-package org.lockss.test;
-
-import java.io.InputStream;
-import junit.framework.TestCase;
+/*
+ * $Id$
+ */
 
 /*
 
@@ -30,6 +29,11 @@ be used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from Stanford University.
 
 */
+
+package org.lockss.test;
+
+import java.io.InputStream;
+import junit.framework.TestCase;
 
 /**
  *
