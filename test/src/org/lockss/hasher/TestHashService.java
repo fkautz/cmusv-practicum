@@ -75,6 +75,7 @@ public class TestHashService extends LockssTestCase {
     ConfigurationUtil.setCurrentConfigFromProps(props);
     assertEquals(10, svc.padEstimate(0));
     assertEquals(11, svc.padEstimate(1));
+    assertEquals(250, svc.padEstimate(200));
     assertEquals(130, svc.padEstimate(100));
   }
 }
