@@ -425,7 +425,6 @@ public class RemoteApi extends BaseLockssDaemonManager {
    * (ConfigParamDescr), but we don't have that information here. */
   Configuration canonicalizeAuConfig(Configuration auConfig) {
     canonicalizeBoolean(auConfig, PluginManager.AU_PARAM_DISABLED, false);
-//     auConfig.removeConfigTree(
     return auConfig;
   }
 
