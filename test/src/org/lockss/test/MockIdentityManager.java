@@ -35,6 +35,7 @@ import java.util.*;
 import org.lockss.app.*;
 import org.lockss.protocol.*;
 import org.lockss.util.*;
+import org.lockss.config.*;
 import org.lockss.plugin.*;
 
 /**
@@ -53,6 +54,15 @@ public class MockIdentityManager extends IdentityManager {
     log.debug("MockIdentityManager: initService");
     super.initService(daemon);
   }
+
+  protected String getLocalIpParam(Configuration config) {
+    String res = config.get(PARAM_LOCAL_IP);
+    if (res == null) {
+      res = "127.7.7.7";
+    }
+    return res;
+  }
+
   public void startService() {
     log.debug("MockIdentityManager: startService");
     super.startService();
