@@ -41,7 +41,6 @@ import org.lockss.util.*;
 import org.lockss.daemon.*;
 import org.lockss.poller.*;
 import org.lockss.crawler.CrawlManager;
-import org.lockss.plugin.PluginManager;
 import org.lockss.protocol.LcapMessage;
 import org.lockss.protocol.IdentityManager;
 import org.lockss.repository.LockssRepository;
@@ -163,11 +162,11 @@ public class NodeManagerImpl implements NodeManager {
   }
 
   private void setConfig(Configuration config, Configuration oldConfig) {
-    treeWalkInterval = Configuration.getIntParam(
+    treeWalkInterval = config.getIntParam(
         PARAM_TREEWALK_INTERVAL, DEFAULT_TREEWALK_INTERVAL);
-    topPollInterval = Configuration.getIntParam(
+    topPollInterval = config.getIntParam(
         PARAM_TOP_LEVEL_POLL_INTERVAL, DEFAULT_TOP_LEVEL_POLL_INTERVAL);
-    treeWalkTestDuration = Configuration.getIntParam(
+    treeWalkTestDuration = config.getIntParam(
         PARAM_TREEWALK_TEST_DURATION, DEFAULT_TREEWALK_TEST_DURATION);
   }
 
@@ -649,9 +648,7 @@ public class NodeManagerImpl implements NodeManager {
 
   private void deleteNode(CachedUrlSet cus) throws IOException {
     // delete the node from the LockssRepository
-    LockssRepository repository =
-        theDaemon.getLockssRepository(managerAu).repositoryFactory(
-        cus.getArchivalUnit());
+    LockssRepository repository = theDaemon.getLockssRepository(managerAu);
     repository.deleteNode(cus.getUrl());
   }
 

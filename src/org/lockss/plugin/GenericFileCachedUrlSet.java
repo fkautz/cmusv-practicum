@@ -66,9 +66,9 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
 
   public GenericFileCachedUrlSet(ArchivalUnit owner, CachedUrlSetSpec spec) {
     super(owner, spec);
-    LockssRepository rep = (LockssRepository)LockssDaemon.getManager(
-        LockssDaemon.LOCKSS_REPOSITORY);
-    repository = rep.repositoryFactory(owner);
+    LockssRepositoryService repService = (LockssRepositoryService)
+        LockssDaemon.getManager(LockssDaemon.LOCKSS_REPOSITORY_SERVICE);
+    repository = repService.getLockssRepository(owner);
   }
 
   public boolean isLeaf() {

@@ -70,11 +70,12 @@ public class MockNodeManagerService implements NodeManagerService {
     return nodeMan;
   }
 
-  public synchronized void addNodeManager(ArchivalUnit au) {
+  public synchronized NodeManager addNodeManager(ArchivalUnit au) {
     NodeManager nodeManager = (NodeManager)auMaps.get(au);
     if (nodeManager==null) {
       nodeManager = NodeManagerImpl.getTestNodeManager(au);
       auMaps.put(au, nodeManager);
     }
+    return nodeManager;
   }
 }

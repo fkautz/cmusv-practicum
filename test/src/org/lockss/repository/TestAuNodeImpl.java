@@ -52,9 +52,10 @@ public class TestAuNodeImpl extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     tempDirPath = getTempDir().getAbsolutePath() + File.separator;
-    TestLockssRepositoryImpl.configCacheLocation(tempDirPath);
+    TestLockssRepositoryServiceImpl.configCacheLocation(tempDirPath);
     MockArchivalUnit mau = new MockArchivalUnit(null);
-    repo = (new LockssRepositoryImpl()).repositoryFactory(mau);
+    LockssRepositoryServiceImpl lrsi = new LockssRepositoryServiceImpl();
+    repo = lrsi.addLockssRepository(mau);
   }
 
   public void testListEntries() throws Exception {

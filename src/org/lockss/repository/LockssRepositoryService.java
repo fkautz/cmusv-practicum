@@ -30,7 +30,7 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.state;
+package org.lockss.repository;
 
 import java.util.*;
 import org.lockss.app.*;
@@ -38,23 +38,23 @@ import org.lockss.daemon.Configuration;
 import org.lockss.plugin.ArchivalUnit;
 
 /**
- * Handles the NodeManagers.
+ * Handles the LockssRepositories.
  */
-public interface NodeManagerService extends LockssManager {
+public interface LockssRepositoryService extends LockssManager {
   /**
-   * Returns the node manager matching that ArchivalUnit.
-   * Throws an IllegalArgumentException if there is no NodeManager, since it
-   * should be loaded via 'addNodeManager()' first.
+   * Returns the LockssRepository matching that ArchivalUnit.
+   * Throws an IllegalArgumentException if there is no LockssRepository, since
+   * it should be loaded via 'addLockssRepository()' first.
    * @param au the ArchivalUnit
-   * @return the NodeManager
+   * @return the LockssRepository
    */
-  public NodeManager getNodeManager(ArchivalUnit au);
+  public LockssRepository getLockssRepository(ArchivalUnit au);
 
   /**
-   * Factory method to add NodeManager.  Calls 'startService()' on the
-   * ArchivalUnit-specific NodeManager.
+   * Factory method to add LockssRepository.  Calls 'startService()' on the
+   * ArchivalUnit-specific LockssRepository.
    * @param au the ArchivalUnit being managed
-   * @return the NodeManager created
+   * @return the new repository
    */
-  public NodeManager addNodeManager(ArchivalUnit au);
+  public LockssRepository addLockssRepository(ArchivalUnit au);
 }

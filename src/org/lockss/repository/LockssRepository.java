@@ -42,14 +42,6 @@ import org.lockss.app.LockssManager;
  */
 public interface LockssRepository extends LockssManager {
   /**
-   * Creates a LockssRepository for the given {@link ArchivalUnit} at
-   * a cache location specific to that archive.
-   * @param au ArchivalUnit to be cached
-   * @return a repository for the archive
-   */
-  public LockssRepository repositoryFactory(ArchivalUnit au);
-
-  /**
    * Returns a {@link RepositoryNode} which represents the url in question.
    * This only returns urls which exist in the cache (null otherwise).
    * @param url the desired url
