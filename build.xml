@@ -260,7 +260,7 @@ in this Software without prior written authorization from Stanford University.
              doctitle="LOCKSS test"
              bottom="Copyright &#169; 2002 Board of Trustees of Leland Stanford Jr. University, all rights reserved.">
        <fileset dir="${test.src}" includes="**/*.java"/>
-<!--         <classpath refid="test.compile.classpath" /> -->
+       <classpath refid="test.compile.classpath" />
     </javadoc>
   </target>
 
