@@ -73,7 +73,7 @@ public abstract class BasePlugin
 					 Set changedKeys) {
 	  setConfig(newConfig, prevConfig, changedKeys);
 	}});
-
+    installCacheExceptionHandler();
   }
 
   public void stopPlugin() {
@@ -248,4 +248,7 @@ public abstract class BasePlugin
     return exceptionMap;
   }
 
+  protected void installCacheExceptionHandler() {
+    // default is to do nothing - override if you need one
+  }
 }

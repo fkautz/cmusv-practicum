@@ -51,7 +51,9 @@ public class ConfigurablePlugin extends BasePlugin {
   static final protected String CM_NAME_KEY = "plugin_name";
   static final protected String CM_VERSION_KEY = "plugin_version";
   static final protected String CM_CONFIG_PROPS_KEY = "plugin_config_props";
-
+  protected static final String CM_EXCEPTION_KEY = "plugin_exception_handler";
+  protected static final String CM_EXCEPTION_HANDLER_KEY =
+      "plugin_cache_exception_handler";
   static final String DEFAULT_PLUGIN_VERSION = "1";
 
   String mapName = null;
@@ -59,6 +61,7 @@ public class ConfigurablePlugin extends BasePlugin {
   static Logger log = Logger.getLogger("ConfigurablePlugin");
 
   protected ExternalizableMap configurationMap = new ExternalizableMap();
+
 
   public void initPlugin(LockssDaemon daemon, String extMapName){
     mapName = extMapName;
@@ -99,6 +102,23 @@ public class ConfigurablePlugin extends BasePlugin {
   protected ExternalizableMap getConfigurationMap() {
     return configurationMap;
   }
+
+  protected void installCacheExceptionHandler() {
+    CacheExceptionHandler handler = null;
+    String handler_class = null;
+    handler_class = configurationMap.getString(CM_EXCEPTION_HANDLER_KEY,
+                                               null);
+    if (handler_class != null) {
+      try {
+        handler = (CacheExceptionHandler) Class.forName(handler_class).
+            newInstance();
+        handler.init(exceptionMap);
+      }
+      catch (Exception ex) {
+      }
+    }
+  }
+
 
   public String getPluginId() {
     String class_name;

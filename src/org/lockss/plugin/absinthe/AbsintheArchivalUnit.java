@@ -68,8 +68,10 @@ public class AbsintheArchivalUnit extends ConfigurableArchivalUnit {
     super(myPlugin);
   }
 
-  protected void setAuParams(Configuration config) throws
+  protected void loadAuConfigDescrs(Configuration config) throws
       ConfigurationException {
+    super.loadAuConfigDescrs(config);
+
     int i_year = configurationMap.getInt(AbsinthePlugin.AUPARAM_YEAR, -1);
     if (i_year < 0) {
       throw new ConfigurationException("Year Out of Range: " + i_year);
@@ -173,8 +175,6 @@ public class AbsintheArchivalUnit extends ConfigurableArchivalUnit {
     rules.add(sb.toString());
 
     configurationMap.putCollection(CM_AU_RULES_KEY, rules);
-
-//    configurationMap.putString(CM_AU_PARAMS_KEY,);
 
   }
 

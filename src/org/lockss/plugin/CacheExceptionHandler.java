@@ -34,5 +34,6 @@ package org.lockss.plugin;
 import java.net.HttpURLConnection;
 
 public interface CacheExceptionHandler {
+  public void init(CacheExceptionMap map);
   public CacheException handleException(int code, HttpURLConnection connection);
 }

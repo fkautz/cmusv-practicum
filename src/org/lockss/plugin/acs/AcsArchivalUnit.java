@@ -78,8 +78,10 @@ public class AcsArchivalUnit extends ConfigurableArchivalUnit {
   }
 
 
-  protected void setAuParams(Configuration config)
+  protected void loadAuConfigDescrs(Configuration config)
       throws ConfigurationException {
+    super.loadAuConfigDescrs(config);
+
     // get the article root url
     articleUrl = configurationMap.getUrl(AcsPlugin.AUPARAM_ARTICLE_URL, null);
 

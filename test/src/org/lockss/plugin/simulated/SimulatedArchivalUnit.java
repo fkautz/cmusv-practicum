@@ -190,7 +190,7 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     throw new UnsupportedOperationException("Not implemented");
   }
 
-  protected void setAuParams(Configuration config) throws
+  protected void loadAuConfigDescrs(Configuration config) throws
       ConfigurationException {
     try {
       fileRoot = config.get(SimulatedPlugin.AU_PARAM_ROOT);
@@ -271,6 +271,4 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     }
   }
 
-  protected void loadDefiningConfig(Configuration config) {
-  }
 }

@@ -182,7 +182,7 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
      *
      * @param config Configuration
      */
-    protected void loadDefiningConfig(Configuration config) {
+    protected void loadAuConfigDescrs(Configuration config) {
     }
 
   }

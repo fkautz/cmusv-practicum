@@ -63,6 +63,7 @@ public class HighWirePlugin
     configurationMap.putString(CM_VERSION_KEY, CURRENT_VERSION);
     configurationMap.putCollection(CM_CONFIG_PROPS_KEY,
                                    ListUtil.list(PD_BASE, PD_VOL));
+
     // then call the overridden initializaton.
     super.initPlugin(daemon);
   }

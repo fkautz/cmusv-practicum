@@ -155,8 +155,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     if (config == null) {
       throw new ConfigurationException("Null Configuration");
     }
-    loadDefiningConfig(config);
-    setAuParams(config);
+    loadAuConfigDescrs(config);
     setBaseAuParams(config);
   }
 
@@ -209,6 +208,10 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     // make our crawl spec
     try {
       crawlSpec = makeCrawlSpec();
+      if (useCrawlWindow) {
+        CrawlWindow window = makeCrawlWindow();
+        crawlSpec.setCrawlWindow(window);
+      }
     } catch (REException e) {
       throw new ConfigurationException("Illegal RE", e);
     }
@@ -350,24 +353,15 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
    * @throws REException if the CrawlRules contain an invalid regular expression
    */
   protected CrawlSpec makeCrawlSpec() throws REException {
-
     CrawlRule rule = makeRules();
     return new CrawlSpec(startUrlString, rule);
   }
 
-  /**
-   * subclasses should use this method to add any parameters that are not part
-   * of the base plugin.
-   * @param config the Configuration object containing the new configuration
-   * @throws ConfigurationException should be thrown if the information needed
-   * is not found or is invalid.
-   */
-  protected void setAuParams(Configuration config)
-      throws ConfigurationException {
-
+  protected CrawlWindow makeCrawlWindow() {
+    return null;
   }
 
-  abstract protected void loadDefiningConfig(Configuration config) throws
+  abstract protected void loadAuConfigDescrs(Configuration config) throws
       ConfigurationException;
 
 

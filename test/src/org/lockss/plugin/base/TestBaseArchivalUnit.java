@@ -331,12 +331,7 @@ public class TestBaseArchivalUnit extends LockssTestCase {
       return m_startUrl;
     }
 
-    protected void setAuParams(Configuration config) throws
-        ConfigurationException {
-      // ok to do nothing - so do nothing.
-    }
-
-    protected void loadDefiningConfig(Configuration config) {
+     protected void loadAuConfigDescrs(Configuration config) {
     }
 
     protected FilterRule constructFilterRule(String mimeType) {

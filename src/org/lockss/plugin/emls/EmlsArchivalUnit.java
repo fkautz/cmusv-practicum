@@ -70,9 +70,10 @@ public class EmlsArchivalUnit extends ConfigurableArchivalUnit {
   }
 
 
-  public void setAuParams(Configuration config)
+  public void loadAuConfigDescrs(Configuration config)
       throws ConfigurationException {
 
+    super.loadAuConfigDescrs(config);
 
     // get the volume string
     volume = configurationMap.getInt(EmlsPlugin.AUPARAM_VOL, -1);

@@ -70,8 +70,9 @@ public class OtherVoicesArchivalUnit extends ConfigurableArchivalUnit {
     defaultFetchDelay = DEFAULT_PAUSE_TIME;
   }
 
-  protected void setAuParams(Configuration config)
+  protected void loadAuConfigDescrs(Configuration config)
       throws ConfigurationException {
+    super.loadAuConfigDescrs(config);
     // get the base url string
     volume = configurationMap.getInt(OtherVoicesPlugin.AUPARAM_VOL, -1);
     if (volume < 0) {
