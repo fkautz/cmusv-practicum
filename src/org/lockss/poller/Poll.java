@@ -311,12 +311,10 @@ public abstract class Poll implements Serializable {
   void stopPoll() {
     m_pollstate = m_tally.haveQuorum() ? PS_COMPLETE : ERR_NO_QUORUM;
 
-    if(isErrorState()) {
-      // XXX - notify node manager of failed poll
-      m_pollstate = PS_COMPLETE;
-    }
-    else if(m_pollstate == PS_WAIT_TALLY){
-      tally();
+    if(!isErrorState()) {
+      if(m_pollstate == PS_WAIT_TALLY){
+        tally();
+      }
     }
     m_pollmanager.closeThePoll(m_key);
     log.debug("closed the poll:" + m_key);
@@ -562,7 +560,6 @@ public abstract class Poll implements Serializable {
       }
       return false;
     }
-
 
 
     /**
