@@ -511,11 +511,13 @@ public class AuConfig extends LockssServlet {
 	tbl.newCell("colspan=2 align=center");
 	tbl.add("Select Repository");
 	tbl.add(addFootnote(FOOT_REPOSITORY));
+	boolean first = true;
 	for (Iterator iter = repos.iterator(); iter.hasNext(); ) {
 	  String repo = (String)iter.next();
 	  tbl.newRow();
 	  tbl.newCell("colspan=2 align=left");
-	  tbl.add(radioButton(repo, REPO_TAG, false));
+	  tbl.add(radioButton(repo, REPO_TAG, first));
+	  first = false;
 	}
       }
     }
