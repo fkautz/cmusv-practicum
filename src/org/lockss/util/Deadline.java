@@ -41,6 +41,9 @@ public class Deadline implements Comparable {
   public static final Deadline MAX =
     new Deadline(new ConstantDate(TimeBase.MAX));
 
+  /** An expired Deadline. */
+  public static final Deadline EXPIRED = new Deadline(new ConstantDate(0));
+
   protected static Logger log = Logger.getLogger("Deadline");
 
   private static LockssRandom random = null;
