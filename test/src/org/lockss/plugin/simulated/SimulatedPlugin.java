@@ -82,6 +82,11 @@ public class SimulatedPlugin extends BasePlugin implements PluginTestable {
   public static final String AU_PARAM_FILE_TYPES = "fileTypes";
 
   /**
+   * The maximum length for file names.  Currently unused.
+   */
+  public static final String AU_PARAM_ODD_BRANCH_CONTENT = "oddBranchContent";
+
+  /**
    * The directory location of the 'abnormal' file.  Should be a string filepath
    * (i.e. 'root/branch1/branch3').
    */
@@ -140,8 +145,8 @@ public class SimulatedPlugin extends BasePlugin implements PluginTestable {
     return ListUtil.list(AU_PARAM_ROOT, AU_PARAM_DEPTH,
 			 AU_PARAM_BRANCH, AU_PARAM_NUM_FILES,
 			 AU_PARAM_BIN_FILE_SIZE, AU_PARAM_MAXFILE_NAME,
-			 AU_PARAM_FILE_TYPES, AU_PARAM_BAD_FILE_LOC,
-			 AU_PARAM_BAD_FILE_NUM);
+			 AU_PARAM_FILE_TYPES, AU_PARAM_ODD_BRANCH_CONTENT,
+                         AU_PARAM_BAD_FILE_LOC, AU_PARAM_BAD_FILE_NUM);
   }
 
   /**
