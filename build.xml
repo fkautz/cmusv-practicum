@@ -244,6 +244,15 @@ in this Software without prior written authorization from Stanford University.
   </target>
 
   <!-- ==================================================================== -->
+  <target name="run-class" depends="jar-tests"
+   description="Run a class named by class prop, with args in args prop" >
+    <java classname="${class}" fork="true">
+       <classpath refid="test.run.classpath" />
+       <arg line="${args}" />
+    </java>
+  </target>
+
+  <!-- ==================================================================== -->
   <target name="tests"
    depends="prepare.test,check.junit,jar-tests"
    description="Run all the junit tests (test/src/**/Test*.class" >
