@@ -54,7 +54,8 @@ import org.lockss.util.*;
  * <code>PrivilegedAccessor.Instance</code> that contains both the
  * expression type and value.  */
 public class PrivilegedAccessor {
-//    static Logger log = Logger.getLogger("PrivAcc", Logger.LEVEL_DEBUG);
+//   static Logger log =
+//     Logger.getLoggerWithInitialLevel("PrivAcc", Logger.LEVEL_DEBUG);
   
   // no instances
   private PrivilegedAccessor() {
