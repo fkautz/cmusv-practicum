@@ -287,8 +287,11 @@ public class RepositoryNodeImpl implements RepositoryNode {
       File inactiveCacheFile = getInactiveCacheFile();
       File inactivePropsFile = getInactivePropsFile();
 
-      if (!inactiveCacheFile.renameTo(currentCacheFile) ||
-          !inactivePropsFile.renameTo(currentPropsFile)) {
+      // if the files exist but there's a problem renaming them, throw
+      if ((inactiveCacheFile.exists() &&
+          !inactiveCacheFile.renameTo(currentCacheFile)) ||
+          (inactivePropsFile.exists() &&
+          !inactivePropsFile.renameTo(currentPropsFile))) {
         logger.error("Couldn't rename inactive versions: "+url);
         throw new LockssRepository.RepositoryStateException("Couldn't rename inactive versions.");
       }
