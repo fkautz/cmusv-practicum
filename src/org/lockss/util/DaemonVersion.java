@@ -88,7 +88,7 @@ public class DaemonVersion implements Version {
   }
 
   public long toLong() {
-    long base = 46656;  // 36^3
+    long base = 36 * 36 * 36;
     long num = m_versionMajor;
     num = (num * base) + m_versionMinor;
     num = (num * base) + m_versionBuild;
