@@ -90,12 +90,17 @@ public abstract class BaseLockssUrlConnection implements LockssUrlConnection {
     setRequestPropertyDate("If-Modified-Since", time);
   }
 
+  public void setIfModifiedSince(String time) {
+    log.debug3("setIfModifiedSince(" + time + ")");
+    setRequestProperty("If-Modified-Since", time);
+  }
+
   // Preferred date format according to RFC 2068(HTTP1.1),
   // RFC 822 and RFC 1123
-  private static SimpleDateFormat gmtDateFormat =
+  public static SimpleDateFormat GMT_DATE_FORMAT =
     new SimpleDateFormat ("EEE, dd MMM yyyy HH:mm:ss 'GMT'");
   static {
-    gmtDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+    GMT_DATE_FORMAT.setTimeZone(TimeZone.getTimeZone("GMT"));
   }
 
   public void setUserAgent(String value) {
@@ -105,7 +110,7 @@ public abstract class BaseLockssUrlConnection implements LockssUrlConnection {
   public void setRequestPropertyDate(String key, long time) {
     assertNotExecuted();
     Date date = new Date(time);
-    setRequestProperty(key, gmtDateFormat.format(date));
+    setRequestProperty(key, GMT_DATE_FORMAT.format(date));
   }
 
   public void addRequestProperty(String key, String value) {

@@ -163,7 +163,10 @@ public class JavaUrlConnection extends BaseLockssUrlConnection {
       if (value!=null) {
         // only store headers with values
         // qualify header names to avoid conflict with our properties
-	String propKey = (key != null) ? (prefix + key) : (prefix + ix);
+	String propKey = (key != null) ? key : ("header_" + ix);
+	if (prefix != null) {
+	  propKey = prefix + propKey;
+	}
 	props.setProperty(prefix, value);
       }
     }

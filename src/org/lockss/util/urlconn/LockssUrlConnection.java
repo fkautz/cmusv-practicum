@@ -75,6 +75,9 @@ public interface LockssUrlConnection {
   /** Set the If-Modified-Since request header */
   public void setIfModifiedSince(long time);
 
+  /** Set the If-Modified-Since request header */
+  public void setIfModifiedSince(String time);
+
   /** Set a request header to a time value */
   public void setRequestPropertyDate(String key, long time);
 
