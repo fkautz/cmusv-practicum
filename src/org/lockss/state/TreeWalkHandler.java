@@ -499,7 +499,7 @@ public class TreeWalkHandler {
 
         // wait on the semaphore (the callback will 'give()')
         try {
-          if (treeWalkSemaphore.take(Deadline.in(start + Constants.DAY))) {
+          if (treeWalkSemaphore.take(Deadline.at(start + Constants.DAY))) {
 	    // semaphore was posted, do treewalk
 	    try {
 	      doingTreeWalk = true;
