@@ -63,6 +63,7 @@ public class TestNodeManagerServiceImpl extends LockssTestCase {
 
   public void tearDown() throws Exception {
     nms.stopService();
+    theDaemon.getLockssRepositoryService().stopService();
     theDaemon.stopDaemon();
     super.tearDown();
   }

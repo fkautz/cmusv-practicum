@@ -63,6 +63,11 @@ public class TestSimulatedUrlCacher extends LockssTestCase {
     theDaemon.getLockssRepository(mau);
   }
 
+  public void tearDown() throws Exception {
+    theDaemon.getLockssRepositoryService().stopService();
+    super.tearDown();
+  }
+
   public void testHtmlProperties() throws Exception {
     String testStr = "http://www.example.com/index.html";
     SimulatedUrlCacher suc = new SimulatedUrlCacher(

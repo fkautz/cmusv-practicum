@@ -62,6 +62,11 @@ public class TestGenericFileUrlCacher extends LockssTestCase {
     theDaemon.getLockssRepository(mgfau);
   }
 
+  public void tearDown() throws Exception {
+    theDaemon.getLockssRepositoryService().stopService();
+    super.tearDown();
+  }
+
   public void testCache() throws IOException {
     MockGenericFileUrlCacher cacher = new MockGenericFileUrlCacher(
         mgfau.getAUCachedUrlSet(), "http://www.example.com/testDir/leaf1");

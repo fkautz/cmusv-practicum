@@ -66,8 +66,14 @@ public class FuncSimulatedContent extends LockssTestCase {
         tempDirPath;
     String configStr = s + s2 + s3;
     TestConfiguration.setCurrentConfigFromString(configStr);
+    theDaemon.getLockssRepositoryService().startService();
     theDaemon.getLockssRepository(sau);
     theDaemon.getPluginManager();
+  }
+
+  public void tearDown() throws Exception {
+    theDaemon.getLockssRepositoryService().stopService();
+    super.tearDown();
   }
 
   public void testSimulatedContent() throws Exception {

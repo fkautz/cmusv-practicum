@@ -58,6 +58,11 @@ public class TestAuNodeImpl extends LockssTestCase {
     repo = theDaemon.getLockssRepository(mau);
   }
 
+  public void tearDown() throws Exception {
+    theDaemon.getLockssRepositoryService().stopService();
+    super.tearDown();
+  }
+
   public void testListEntries() throws Exception {
     TestRepositoryNodeImpl.createLeaf(repo,
                                       "http://www.example.com/testDir/leaf1",

@@ -68,6 +68,11 @@ public class TestGenericFileCachedUrl extends LockssTestCase {
     cus = mgfau.makeCachedUrlSet(rSpec);
   }
 
+  public void tearDown() throws Exception {
+    theDaemon.getLockssRepositoryService().stopService();
+    super.tearDown();
+  }
+
   public void testGetUrl() throws Exception {
     createLeaf("http://www.example.com/testDir/leaf1", "test stream", null);
 
