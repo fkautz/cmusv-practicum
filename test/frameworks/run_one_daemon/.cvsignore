@@ -7,3 +7,6 @@ lib
 localA
 lockss.opt
 test.out
+jmp_dump-*.txt
+jmp_heap_dump_*
+
