@@ -245,8 +245,19 @@ public abstract class Configuration {
     return true;
   }
 
+//    (curFileName.startsWith("http:") ?
+//     HttpUtil.openInputStream(curFileName) :
+//     new FileInputStream(curFileName))
+
   void load(String url) throws IOException {
-    InputStream istr = UrlUtil.openInputStream(url);
+    InputStream istr;
+    try {
+      istr = UrlUtil.openInputStream(url);
+      log.debug("load URL: " + istr);
+    } catch (MalformedURLException e) {
+      istr = new FileInputStream(url);
+      log.debug("load file: " + url);
+    }
     load(new BufferedInputStream(istr));
   }
 
