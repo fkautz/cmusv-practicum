@@ -1350,9 +1350,9 @@ public class NodeManagerImpl
     damagedNodes.addToRepair(cus, urls);
 
     PollCookie cookie = new PollCookie(cus, pollKey, isNamePoll, urls);
- //   theDaemon.getCrawlManager().startRepair(managedAu, urls,
-//					    new ContentRepairCallback(),
-//					    cookie, lock);
+    theDaemon.getCrawlManager().startRepair(managedAu, urls,
+					    new ContentRepairCallback(),
+					    cookie, lock);
   }
 
   private void deleteNode(CachedUrlSet cus) throws IOException {
