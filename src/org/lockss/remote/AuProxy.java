@@ -53,6 +53,10 @@ public class AuProxy {
     this.au = au;
   }
 
+  AuProxy(RemoteApi remoteApi) {
+    this.remoteApi = remoteApi;
+  }
+
   /** Create an AuProxy for the AU with the given ID.
    * @param auid the AU ID string.
    * @param remoteApi the RemoteApi service
@@ -116,5 +120,13 @@ public class AuProxy {
     public NoSuchAU(String msg) {
       super(msg);
     }
+  }
+
+  protected RemoteApi getRemoteApi() {
+    return remoteApi;
+  }
+
+  public boolean isActiveAu() {
+    return true;
   }
 }
