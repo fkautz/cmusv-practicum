@@ -102,7 +102,7 @@ public class TestAcsPlugin extends LockssTestCase {
                                AcsPlugin.ARTICLE_URL,
                                AcsPlugin.JOURNAL_KEY,
 			       ConfigParamDescr.VOLUME_NUMBER,
-                               AcsPlugin.JOURNAL_YEAR),
+                               ConfigParamDescr.YEAR),
 		 plugin.getAuConfigProperties());
   }
 
@@ -111,7 +111,7 @@ public class TestAcsPlugin extends LockssTestCase {
                                AcsPlugin.ARTICLE_URL.getKey(),
                                AcsPlugin.JOURNAL_KEY.getKey(),
 			       ConfigParamDescr.VOLUME_NUMBER.getKey(),
-                               AcsPlugin.JOURNAL_YEAR.getKey()),
+                               ConfigParamDescr.YEAR.getKey()),
 		 plugin.getDefiningConfigKeys());
   }
 

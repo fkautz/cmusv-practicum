@@ -138,7 +138,15 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
   }
 
   public String getName() {
+    return makeName();
+  }
+
+  protected String makeName() {
     return "Simulated Content: " + fileRoot;
+  }
+
+  protected String makeStartUrl() {
+    return SIMULATED_URL_START;
   }
 
   public String getManifestPage() {
@@ -229,6 +237,15 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
 
   public Collection getUrlStems() {
     return ListUtil.list(SIMULATED_URL_STEM);
+  }
+
+  protected CrawlRule makeRules() {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
+  protected void setAuParams(Configuration config) throws
+      ConfigurationException {
+    // Ok to ignore
   }
 
   boolean isUrlToBeDamaged(String url) {

@@ -124,7 +124,7 @@ public class TestIeeeArchivalUnit
         new RangeCachedUrlSetSpec(base.toString()));
 
     // start url - should be cached
-    url = ieeeAu.makeStartUrl(base, PUB_NUMBER, VOL_YEAR);
+    url = ieeeAu.makeStartUrl();
     shouldCacheTest(url, true, ieeeAu, cus);
 
     // issue index page - should be cached
@@ -167,7 +167,7 @@ public class TestIeeeArchivalUnit
         "xpl/RecentIssue.jsp?puNumber=" + PUB_NUMBER + "&year=" + VOL_YEAR;
     URL base = new URL(ROOT_URL);
     IeeeArchivalUnit ieeeAu = makeAu(base, PUB_NUMBER, VOL_YEAR);
-    assertEquals(expected, ieeeAu.makeStartUrl(base, PUB_NUMBER, VOL_YEAR));
+    assertEquals(expected, ieeeAu.makeStartUrl());
   }
 
   public void testGetUrlStems() throws Exception {

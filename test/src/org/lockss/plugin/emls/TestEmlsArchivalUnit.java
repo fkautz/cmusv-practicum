@@ -140,7 +140,7 @@ public class TestEmlsArchivalUnit extends LockssTestCase {
     URL url = new URL(ROOT_URL);
     String expectedStr = ROOT_URL+"lockss-volume3.html";
     EmlsArchivalUnit eAu = makeAu(url, 3);
-    assertEquals(expectedStr, eAu.makeStartUrl(url, 3));
+    assertEquals(expectedStr, eAu.makeStartUrl());
   }
 
   public void testBadPathInUrlThrowsException() throws Exception {

@@ -182,17 +182,17 @@ public class TestProjectMuseArchivalUnit extends LockssTestCase {
     // 2 digit
     String expectedStr = ROOT_URL+"journals/"+DIR+"/v060/";
     ProjectMuseArchivalUnit pmAu = makeAu(url, 60, DIR);
-    assertEquals(expectedStr, pmAu.makeStartUrl(url, DIR, 60));
+    assertEquals(expectedStr, pmAu.makeStartUrl());
 
     // 3 digit
     expectedStr = ROOT_URL+"journals/"+DIR+"/v601/";
     pmAu = makeAu(url, 601, DIR);
-    assertEquals(expectedStr, pmAu.makeStartUrl(url, DIR, 601));
+    assertEquals(expectedStr, pmAu.makeStartUrl());
 
     // 1 digit
     expectedStr = ROOT_URL+"journals/"+DIR+"/v006/";
     pmAu = makeAu(url, 6, DIR);
-    assertEquals(expectedStr, pmAu.makeStartUrl(url, DIR, 6));
+    assertEquals(expectedStr, pmAu.makeStartUrl());
   }
 
   public void testPathInUrlThrowsException() throws Exception {

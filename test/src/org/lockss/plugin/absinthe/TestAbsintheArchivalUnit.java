@@ -174,12 +174,12 @@ public class TestAbsintheArchivalUnit extends LockssTestCase {
     // 2 digit
     String expectedStr = ROOT_URL+"archives03.htm";
     AbsintheArchivalUnit pmAu = makeAu(url, "03");
-    assertEquals(expectedStr, pmAu.makeStartUrl(url, "03"));
+    assertEquals(expectedStr, pmAu.makeStartUrl());
 
     // 4 digit
     expectedStr = ROOT_URL+"archives04.htm";
     pmAu = makeAu(url, "2004");
-    assertEquals(expectedStr, pmAu.makeStartUrl(url, "2004"));
+    assertEquals(expectedStr, pmAu.makeStartUrl());
   }
 
   public void testPathInUrlThrowsException() throws Exception {
