@@ -541,7 +541,8 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
       throw new ConfigurationException("Null url for " + paramString(descr));
     }
     if (!expectedUrlPath.equals(url.getPath())) {
-      throw new ConfigurationException("Url has illegal path: " +
+      throw new ConfigurationException(paramString(descr) +
+				       " has illegal path: " +
                                        url.getPath() + ", expected: " +
                                        expectedUrlPath);
     }
@@ -567,8 +568,9 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
       value = config.getInt(key);
     }
     catch (InvalidParam ip) {
-      throw new ConfigurationException("Bad integer for " +
-				       paramString(descr));
+      throw new ConfigurationException("Invalid value for " +
+				       paramString(descr) +
+				       ": " + ip.getMessage());
     }
     return value;
   }
