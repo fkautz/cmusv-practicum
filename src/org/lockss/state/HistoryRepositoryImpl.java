@@ -316,7 +316,7 @@ public class HistoryRepositoryImpl
   public DamagedNodeSet loadDamagedNodeSet() {
     try {
       if (logger.isDebug3()) {
-        logger.debug3("Loading state for AU '" + storedAu.getName() + "'");
+        logger.debug3("Loading damaged nodes for AU '" + storedAu.getName() + "'");
       }
       File damFile = new File(rootLocation, DAMAGED_NODES_FILE_NAME);
       DamagedNodeSet damNodes = (DamagedNodeSet)load(damFile,

@@ -187,7 +187,12 @@ public class DamagedNodeSet {
    * @param nodes HashSet the new Set
    */
   public void setDamagedNodes(HashSet nodes) {
-    this.nodesWithDamage = nodes;
+    if(nodes == null) {
+      nodesWithDamage = new HashSet();
+    }
+    else {
+      this.nodesWithDamage = nodes;
+    }
   }
 
   /**
