@@ -200,7 +200,7 @@ public class WrapTask extends Task {
     javadoc.setFailonerror(true);
 
     // show [wrap] in logged messages
-    javadoc.setTaskName(this.taskName);
+    javadoc.setTaskName(this.getTaskName());
 
     // Specify the doclet and its path.  Javadoc will take care of it if null
     Javadoc.DocletInfo info = javadoc.createDoclet();
