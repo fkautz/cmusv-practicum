@@ -165,6 +165,16 @@ public class TestPropUtil extends TestCase {
     PropertyTree pt1 = new PropertyTree();
     PropertyTree pt2 = new PropertyTree();
     // same value
+    pt1.put("one.two.three", "123");
+    assertEquals(SetUtil.set("one.two.three", "one.two.", "one.two",
+			     "one.", "one"),
+		 PropUtil.differentKeysAndPrefixes(pt1, pt2));
+  }
+
+  public void testDifferentKeysAndPrefixesCombination() {
+    PropertyTree pt1 = new PropertyTree();
+    PropertyTree pt2 = new PropertyTree();
+    // same value
     pt1.put("foox.bar.blecch", "123");
     pt2.put("foox.bar.blecch", "123");
     // different value
@@ -179,10 +189,11 @@ public class TestPropUtil extends TestCase {
     // pt2-only key, tree
     pt2.put("foo.bar.blah", "124");
     pt2.put("bar.foo.blah", "124");
-    Set exp = SetUtil.set("foo", "foo.bar", "foo.bar.blecch",
-			  "foo.bar.gorp", "foo.bar.blah",
-			  "bar", "bar.foo", "bar.foo.blah",
-			  "x", "x.y");
+    String expa[] = {"foo.bar.blecch", "foo.bar.", "foo.bar", "foo.", "foo",
+		    "foo.bar.gorp", "foo.bar.blah",
+		     "bar.foo.blah", "bar.foo.", "bar.foo", "bar.", "bar", 
+		     "x.y", "x.", "x"};
+    Set exp = SetUtil.fromArray(expa);
     assertEquals(exp, PropUtil.differentKeysAndPrefixes(pt1, pt2));
     assertEquals(exp, PropUtil.differentKeysAndPrefixes(pt2, pt1));
   }
