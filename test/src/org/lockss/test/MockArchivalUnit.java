@@ -166,13 +166,6 @@ public class MockArchivalUnit implements ArchivalUnit {
     return pluginId;
   }
 
-  public List getPermissionPages() {
-    return permissionPages;
-  }
-
-  public void setPermissionPages(List pageList) {
-    permissionPages = pageList;
-  }
 
   public void setPlugin(Plugin plugin) {
     this.plugin = plugin;

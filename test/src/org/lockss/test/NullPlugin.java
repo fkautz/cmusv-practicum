@@ -395,10 +395,6 @@ public class NullPlugin {
       return false;
     }
 
-    public List getPermissionPages() {
-      return null;
-    }
-
     public ContentParser getContentParser(String mimeType) {
       throw new UnsupportedOperationException("not implemented");
     }

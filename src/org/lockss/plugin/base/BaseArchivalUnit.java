@@ -358,7 +358,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     return sb.toString();
   }
 
-  public List getPermissionPages() {
+  protected List getPermissionPages() {
     return ListUtil.list(startUrlString);
   }
 

@@ -148,7 +148,7 @@ public class TestCulturalLogicArchivalUnit extends LockssTestCase {
 
     String expectedStr = ROOT_URL+"lockss-2003.html";
     DefinableArchivalUnit clAu = makeAu(url, "2003");
-    assertEquals(expectedStr, (String)clAu.getPermissionPages().get(0));
+    assertEquals(expectedStr, (String)clAu.getStartUrl());
   }
 
   public void testGetUrlStems() throws Exception {

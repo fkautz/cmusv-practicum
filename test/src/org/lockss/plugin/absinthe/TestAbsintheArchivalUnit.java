@@ -177,9 +177,9 @@ public class TestAbsintheArchivalUnit extends LockssTestCase {
     URL url = new URL(ROOT_URL);
 
     // 4 digit
-    List expectedList = ListUtil.list(ROOT_URL+"archives04.htm");
+    String expected = ROOT_URL+"archives04.htm";
     DefinableArchivalUnit pmAu = makeAu(url, "2004");
-    assertIsomorphic(expectedList, pmAu.getPermissionPages());
+    assertEquals(expected, pmAu.getStartUrl());
   }
 
   public void testGetUrlStems() throws Exception {

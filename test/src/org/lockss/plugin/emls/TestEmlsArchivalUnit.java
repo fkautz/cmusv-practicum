@@ -143,7 +143,7 @@ public class TestEmlsArchivalUnit extends LockssTestCase {
     URL url = new URL(ROOT_URL);
     String expectedStr = ROOT_URL+"lockss-volume3.html";
     DefinableArchivalUnit eAu = makeAu(url, 3);
-    assertEquals(expectedStr, (String)eAu.getPermissionPages().get(0));
+    assertEquals(expectedStr, (String)eAu.getStartUrl());
   }
 
   public void testGetUrlStems() throws Exception {

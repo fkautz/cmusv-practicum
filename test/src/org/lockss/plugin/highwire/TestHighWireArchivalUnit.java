@@ -147,7 +147,7 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
     String expectedStr = "http://www.example.com/lockss-manifest/vol_10_manifest.dtl";
 
     DefinableArchivalUnit hwau = makeAu(url, 10);
-    assertEquals(expectedStr, (String)hwau.getPermissionPages().get(0));
+    assertEquals(expectedStr, (String)hwau.getStartUrl());
   }
 
   public void testGetUrlStems() throws Exception {

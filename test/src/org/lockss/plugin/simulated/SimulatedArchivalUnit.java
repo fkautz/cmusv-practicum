@@ -96,10 +96,6 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     return SIMULATED_URL_START;
   }
 
-  public List getPermissionPages() {
-    return ListUtil.list(SIMULATED_URL_START);
-  }
-
 
   // public methods
 

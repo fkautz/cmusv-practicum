@@ -186,7 +186,7 @@ public class TestBlackbirdArchivalUnit extends LockssTestCase {
 
     String expectedStr = ROOT_URL+"lockss/lockss-volume2.htm";
     DefinableArchivalUnit bbAu = makeAu(url, 2);
-    assertEquals(expectedStr, (String)bbAu.getPermissionPages().get(0));
+    assertEquals(expectedStr, (String)bbAu.getStartUrl());
   }
 
   public void testGetUrlStems() throws Exception {
