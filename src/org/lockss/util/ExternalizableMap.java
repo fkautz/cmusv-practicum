@@ -86,9 +86,9 @@ public class ExternalizableMap {
   }
 
 
-  public void loadMapFromResource(String mapLocation)
+  public void loadMapFromResource(String mapLocation, ClassLoader loader)
       throws FileNotFoundException {
-    InputStream mapStream = getClass().getResourceAsStream(mapLocation);
+    InputStream mapStream = loader.getResourceAsStream(mapLocation);
     if (mapStream == null) {
       String err = "Unable to load:" + mapLocation;
       throw new FileNotFoundException(err);
@@ -108,6 +108,7 @@ public class ExternalizableMap {
     }
     catch (Exception e) {
       // some other error occured
+      e.printStackTrace();
       throw new FileNotFoundException("Error: " + e.toString());
     }
   }

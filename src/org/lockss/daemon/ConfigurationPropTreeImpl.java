@@ -127,10 +127,12 @@ public class ConfigurationPropTreeImpl extends Configuration {
 	} else {
 	  propList = StringUtil.breakAt((String)o, ';', 0, true);
 	}
+      } else {
+	propList = Collections.EMPTY_LIST;
       }
     } catch (ClassCastException ex) {
       // The client requested a list of something that wasn't actually a list.
-      // Throw a Config exception
+      // Throw an exception
       throw new IllegalArgumentException("Key does not hold a list value: " + key);
     }
     return propList;

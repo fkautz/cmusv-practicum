@@ -65,14 +65,21 @@ public class DefinablePlugin extends BasePlugin {
 
   protected ExternalizableMap definitionMap = new ExternalizableMap();
   protected CacheResultHandler resultHandler = null;
+  protected ClassLoader classLoader;
 
-  public void initPlugin(LockssDaemon daemon, String extMapName)
+  public void initPlugin(LockssDaemon daemon, String extMapName) 
+      throws FileNotFoundException {
+    initPlugin(daemon, extMapName, this.getClass().getClassLoader());
+  }
+
+  public void initPlugin(LockssDaemon daemon, String extMapName, ClassLoader loader)
       throws FileNotFoundException {
     mapName = extMapName;
+    this.classLoader = loader;
     // load the configuration map from jar file
-    String mapFile = "/" + mapName.replace('.', '/') + MAP_SUFFIX;
+    String mapFile = mapName.replace('.', '/') + MAP_SUFFIX;
 
-    definitionMap.loadMapFromResource(mapFile);
+    definitionMap.loadMapFromResource(mapFile, classLoader);
 
     // then call the overridden initializaton.
     super.initPlugin(daemon);
@@ -100,7 +107,7 @@ public class DefinablePlugin extends BasePlugin {
   public ArchivalUnit createAu(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
     DefinableArchivalUnit au = new DefinableArchivalUnit(this,
-        definitionMap);
+        definitionMap, classLoader);
     au.setConfiguration(auConfig);
     return au;
   }

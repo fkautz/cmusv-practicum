@@ -67,6 +67,8 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
   static final public int DEFAULT_AU_CRAWL_DEPTH = 1;
 
   protected ExternalizableMap definitionMap;
+  protected ClassLoader classLoader;
+
   static Logger log = Logger.getLogger("ConfigurableArchivalUnit");
 
 
@@ -79,8 +81,15 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
 
   protected DefinableArchivalUnit(DefinablePlugin myPlugin,
                                      ExternalizableMap definitionMap) {
+    this(myPlugin, definitionMap, myPlugin.getClass().getClassLoader());
+  }
+
+  protected DefinableArchivalUnit(DefinablePlugin myPlugin,
+				  ExternalizableMap definitionMap,
+				  ClassLoader classLoader) {
     super(myPlugin);
     this.definitionMap = definitionMap;
+    this.classLoader = classLoader;
   }
 
   public List getPermissionPages() {
@@ -182,7 +191,7 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
     if (window_class != null) {
       try {
         ConfigurableCrawlWindow ccw = (ConfigurableCrawlWindow)
-            Class.forName(window_class).newInstance();
+            Class.forName(window_class, true, classLoader).newInstance();
         window = ccw.makeCrawlWindow();
       }
       catch (Exception ex) {
@@ -199,7 +208,7 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
         + CM_AU_FILTER_SUFFIX);
     try {
       if (filter_el instanceof String) {
-        return (FilterRule) Class.forName( (String) filter_el).newInstance();
+	return (FilterRule) Class.forName( (String) filter_el, true, classLoader).newInstance();
       }
       else if (filter_el instanceof List) {
         if ( ( (List) filter_el).size() > 0) {
@@ -227,7 +236,7 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
                                                null);
     if (parser_cl != null) {
       try {
-        return (ContentParser) Class.forName(parser_cl).newInstance();
+        return (ContentParser) Class.forName(parser_cl, true, classLoader).newInstance();
       }
       catch (Exception ex) {
         throw new DefinablePlugin.InvalidDefinitionException(

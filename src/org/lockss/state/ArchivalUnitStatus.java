@@ -126,27 +126,30 @@ public class ArchivalUnitStatus extends BaseLockssManager {
         throws StatusService.NoSuchTableException {
       table.setColumnDescriptors(columnDescriptors);
       table.setDefaultSortRules(sortRules);
-      table.setRows(getRows());
+      table.setRows(getRows(table.getOptions().get(StatusTable.OPTION_INCLUDE_INTERNAL_AUS)));
     }
 
     public boolean requiresKey() {
       return false;
     }
 
-    private List getRows() {
+    private List getRows(boolean includeInternalAus) {
       List rowL = new ArrayList();
       for (Iterator iter = theDaemon.getPluginManager().getAllAus().iterator();
 	   iter.hasNext(); ) {
         ArchivalUnit au = (ArchivalUnit)iter.next();
-        NodeManager nodeMan = theDaemon.getNodeManager(au);
-        LockssRepository repo = theDaemon.getLockssRepository(au);
+	if (!includeInternalAus && (au instanceof RegistryArchivalUnit)) {
+	  continue;
+	}
+	NodeManager nodeMan = theDaemon.getNodeManager(au);
+	LockssRepository repo = theDaemon.getLockssRepository(au);
 	CachedUrlSet auCus = au.getAuCachedUrlSet();
 	NodeState topNodeState = nodeMan.getNodeState(auCus);
-        RepositoryNode repoNode = null;
-        try {
-          repoNode = repo.getNode(au.getAuCachedUrlSet().getUrl());
-        } catch (MalformedURLException ignore) { }
-        rowL.add(makeRow(au, nodeMan.getAuState(), topNodeState, repoNode));
+	RepositoryNode repoNode = null;
+	try {
+	  repoNode = repo.getNode(au.getAuCachedUrlSet().getUrl());
+	} catch (MalformedURLException ignore) { }
+	rowL.add(makeRow(au, nodeMan.getAuState(), topNodeState, repoNode));
       }
       return rowL;
     }
