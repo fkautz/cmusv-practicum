@@ -108,7 +108,6 @@ public class EditableDefinablePlugin
     }
   }
 
-
   public void setAuStartURL(String startUrl) {
     definitionMap.putString(AU_START_URL, startUrl);
   }

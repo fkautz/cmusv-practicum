@@ -212,7 +212,7 @@ public class PluginDefiner extends JFrame {
         return;
       name = jFileChooser1.getSelectedFile().getName();
       location = jFileChooser1.getSelectedFile().getParent();
-      System.out.println("Save file name:" + name + " - path:" + location);
+      System.out.println("Save file name: " + name + " - path: " + location);
     }
 
     // write the file
@@ -233,7 +233,8 @@ public class PluginDefiner extends JFrame {
   }
 
   void rulesTestMenuItem_actionPerformed(ActionEvent e) {
-    //TODO run the crawl rules test.
+    JDialog dialog = new CrawlRuleTestDialog(this, edp);
+    dialog.show();
   }
 
   void filtersTestMenuItem_actionPerformed(ActionEvent e) {
