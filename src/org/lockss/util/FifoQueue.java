@@ -96,6 +96,15 @@ public class FifoQueue implements Queue {
   }
 
   /** 
+   * Remove the specified element from the queue.  If the element appears
+   * in the queue more than once, the behavior is undefined.
+   * @return true iff the element was present in the queue
+   */
+  public boolean remove(Object obj) {
+    return queue.remove(obj);
+  }
+
+  /** 
    * Return true iff the queue is empty
    */
   public boolean isEmpty() {

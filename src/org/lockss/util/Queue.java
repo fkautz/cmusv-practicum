@@ -57,6 +57,13 @@ public interface Queue {
   public Object peek();
 
   /** 
+   * Remove the specified element from the queue.  If the element appears
+   * in the queue more than once, the behavior is undefined.
+   * @return true iff the element was present in the queue
+   */
+  public boolean remove(Object obj);
+
+  /** 
    * Return true iff the queue is empty
    */
   public boolean isEmpty();

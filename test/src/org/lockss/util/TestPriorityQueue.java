@@ -135,6 +135,14 @@ public class TestPriorityQueue extends LockssTestCase {
     }
   }
 
+  public void testRemove() {
+    PriorityQueue q = new PriorityQueue();
+    q.put(O1);
+    assertTrue(!q.isEmpty());
+    q.remove(O1);
+    assertTrue(q.isEmpty());
+  }
+
   public void testNoWaitEmpty() {
     PriorityQueue q = new PriorityQueue();
     Interrupter intr = null;
