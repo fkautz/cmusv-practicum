@@ -909,7 +909,7 @@ java -classpath &quot;${tmp.ptool.clspth.unix}&quot; org.lockss.devtools.plugind
 	     docletpathref="tools.run.classpath"
 	     additionalparam="-d ${javadoc} -o paramdoc.html"
 	     classpathref="tools.run.classpath"
-	     access="package"/>
+	     access="private"/>
   </target> 
 
   <!-- ==================================================================== -->
