@@ -63,6 +63,14 @@ public class LockssTestCase extends TestCase {
     }
   }
 
+  public LockssTestCase() {
+    super();
+    Integer timeout = Integer.getInteger("org.lockss.test.timeout.shouldnt");
+    if (timeout != null) {
+      TIMEOUT_SHOULDNT = timeout.intValue();
+    }
+  }
+
   /** Create and return the name of a temp dir.  The dir is created within
    * the default temp file dir.
    * It will be deleted following the test, by tearDown().  (So if you
