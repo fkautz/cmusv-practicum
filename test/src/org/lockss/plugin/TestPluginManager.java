@@ -460,8 +460,9 @@ public class TestPluginManager extends LockssTestCase {
 
   private static String wkey = "org|lockss|plugin|wrapper|WrappedPlugin";
 
+  // ensure that wrapper is harmless when not enabled
   public void testWrappedAu() {
-    if (WrapperState.isUsingWrapping()) {
+    if (!WrapperState.isUsingWrapping()) {
       try {
         mgr.startService();
         String localConfig = p1a1param + MockPlugin.CONFIG_PROP_1 + "=val1\n" +
