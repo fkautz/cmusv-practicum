@@ -137,7 +137,7 @@ public class MockRepositoryNode implements RepositoryNode {
     throw new UnsupportedOperationException("Not supported.");
   }
 
-  public synchronized RepositoryNodeContents getNodeContents() {
+  public synchronized RepositoryNode.RepositoryNodeContents getNodeContents() {
     if (!hasContent()) {
       throw new UnsupportedOperationException("No content for url '"+url+"'");
     }
