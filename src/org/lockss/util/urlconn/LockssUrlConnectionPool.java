@@ -48,6 +48,7 @@ public class LockssUrlConnectionPool {
   private HttpClient httpClient;
   private int connectTimeout = -1;
   private int dataTimeout = -1;
+  private HttpConnectionManager hcConnManager;
 
   /** Return (creating if necessary) an HttpClient */
   public HttpClient getHttpClient() {
@@ -55,6 +56,24 @@ public class LockssUrlConnectionPool {
       setupNewHttpClient();
     }
     return httpClient;
+  }
+
+  public void setMultiThreaded(int maxConn, int maxPerHost) {
+    MultiThreadedHttpConnectionManager cm =
+      new MultiThreadedHttpConnectionManager();
+    cm.setMaxTotalConnections(maxConn);
+    cm.setMaxConnectionsPerHost(maxPerHost);
+    hcConnManager = cm;
+    if (httpClient != null) {
+      httpClient.setHttpConnectionManager(cm);
+    }
+  }
+
+  public void setSingleThreaded() {
+    hcConnManager = new SimpleHttpConnectionManager();
+    if (httpClient != null) {
+      httpClient.setHttpConnectionManager(hcConnManager);
+    }
   }
 
   /** Set the maximum time to wait for the underlying socket connection to
@@ -81,6 +100,9 @@ public class LockssUrlConnectionPool {
     }
     if (dataTimeout != -1) {
       httpClient.setTimeout(dataTimeout);
+    }
+    if (hcConnManager != null) {
+      httpClient.setHttpConnectionManager(hcConnManager);
     }
   }
 

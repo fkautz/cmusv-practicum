@@ -102,6 +102,17 @@ public class TestLockssUrlConnectionPool extends LockssTestCase {
     assertEquals(666, getTimeout(client));
   }
 
+  public void testMultiThreaded() {
+    pool.setMultiThreaded(8, 3);
+    HttpClient client = pool.getHttpClient();
+    HttpConnectionManager mgr = client.getHttpConnectionManager();
+    assertTrue(mgr instanceof MultiThreadedHttpConnectionManager);
+    MultiThreadedHttpConnectionManager mtm = 
+      (MultiThreadedHttpConnectionManager)mgr;
+    assertEquals(8, mtm.getMaxTotalConnections());
+    assertEquals(3, mtm.getMaxConnectionsPerHost());
+  }
+
   class MockHttpClient extends HttpClient {
     int cto = -1;
     int dto = -1;
