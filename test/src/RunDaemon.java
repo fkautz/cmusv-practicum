@@ -99,9 +99,8 @@ public class RunDaemon
     boolean registerSimulatedStatusAccessor = 
       Configuration.getBooleanParam(PARAM_REG_SIMUL_STATUS_ACCESSOR, false);
 
-    if(registerSimulatedStatusAccessor) {
-      registerStatusAccessor("table1", new SimulatedStatusAccessor());
-      log.debug("table1: "+getStatusService().getTable("table1", null));
+    if (registerSimulatedStatusAccessor) {
+      SimulatedStatusAccessor.register(this);
     }
 
     if(testTreeWalk) {
@@ -113,12 +112,6 @@ public class RunDaemon
     }
   }
 
-  private void registerStatusAccessor(String tableName, 
-				      StatusAccessor statusAccessor) {
-    StatusService statusService = getStatusService();
-    statusService.registerStatusAccessor(tableName, statusAccessor);
-  }
-  
   private void runTreeWalk() {
     ArchivalUnit au;
     String pluginId = Configuration.getParam(PARAM_TREEWALK_PLUGINID);
