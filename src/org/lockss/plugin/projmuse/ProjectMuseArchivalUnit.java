@@ -224,7 +224,6 @@ public class ProjectMuseArchivalUnit extends BaseArchivalUnit {
     return ret;
   }
 
-  // Todo: add the crawl rules appropriate for Project Muse
   private CrawlRule makeRules(URL urlRoot, String journal, int volume)
       throws REException {
     List rules = new LinkedList();

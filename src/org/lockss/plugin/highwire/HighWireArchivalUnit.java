@@ -132,6 +132,8 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
     }
 
     pauseMS = config.getTimeInterval(AUPARAM_PAUSE_TIME, DEFAULT_PAUSE_TIME);
+    // make sure we never return less than the default
+    pauseMS = Math.max(pauseMS,DEFAULT_PAUSE_TIME);
     logger.debug3("Set pause value to "+pauseMS);
 
 
