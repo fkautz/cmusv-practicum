@@ -300,7 +300,7 @@ public class LockssRepositoryImpl
 
     // canonicalize "dir" and "dir/"
     // XXX if these are ever two separate nodes, this is wrong
-    if (canonUrl.endsWith("/")) {
+    if (canonUrl.endsWith(UrlUtil.URL_PATH_SEPARATOR)) {
       canonUrl = canonUrl.substring(0, canonUrl.length()-1);
     }
 
