@@ -89,4 +89,36 @@ public class TestByteArray extends LockssTestCase {
     assertEquals(12345679, ByteArray.decodeInt(tst, 0));
     assertEquals(-1, ByteArray.decodeInt(tst, 4));
   }
+
+  public void testEncodeLongSimple() {
+    byte[] expectedBytes = {5};
+    byte[] actualBytes = ByteArray.encodeLong(5);
+    assertEquals(expectedBytes, actualBytes);
+  }
+
+  public void testEncodeLongMultiBytes() {
+    byte[] expectedBytes = {1, 1};
+    byte[] actualBytes = ByteArray.encodeLong(257);
+    assertEquals(expectedBytes, actualBytes);
+  }
+
+  public void testDecodeLongSimple() {
+    byte[] bytes = {7};
+    assertEquals(7, ByteArray.decodeLong(bytes));
+  }
+
+  public void testDecodeLongMultiBytes() {
+    byte[] bytes = {1, 5};
+    assertEquals(261, ByteArray.decodeLong(bytes));
+  }
+
+  public void testDecodeEncodeLong() {
+    long num = 109937;
+    assertEquals(num, ByteArray.decodeLong(ByteArray.encodeLong(num)));
+  }
+
+  public void testEncodeDecodeLong() {
+    byte[] bytes = {5, 99, 87};
+    assertEquals(bytes, ByteArray.encodeLong(ByteArray.decodeLong(bytes)));
+  }
 }
