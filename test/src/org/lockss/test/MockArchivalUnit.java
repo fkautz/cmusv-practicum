@@ -64,6 +64,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   private Plugin plugin;
 
   private FilterRule filterRule = null;
+  private ContentParser parser = null;
 
   public MockArchivalUnit(){
   }
@@ -246,16 +247,20 @@ public class MockArchivalUnit implements ArchivalUnit {
     shouldCallTopLevelPoll = val;
   }
 
-  public ContentParser getContentParser(String mimeType) {
-    throw new UnsupportedOperationException("not implemented");
-  }
-
   public FilterRule getFilterRule(String mimeType) {
     return filterRule;
   }
 
   public void setFilterRule(FilterRule filterRule) {
     this.filterRule = filterRule;
+  }
+
+  public ContentParser getContentParser(String mimeType) {
+    return parser;
+  }
+
+  public void setParser(ContentParser parser) {
+    this.parser = parser;
   }
 
   public String toString() {
