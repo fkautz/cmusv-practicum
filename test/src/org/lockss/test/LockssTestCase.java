@@ -438,6 +438,31 @@ public class LockssTestCase extends TestCase {
   }
 
   /**
+   * Asserts that the collection is isomorphic with the. array If not
+   * an AssertionFailedError is thrown.
+   * @param message the message to give on failure
+   * @param expected the expected value
+   * @param actual the actual value
+   */
+  static public void assertIsomorphic(String message,
+				       Collection expected, Object actual[]) {
+    if (CollectionUtil.isIsomorphic(expected, actual)) {
+      return;
+    }
+    failNotEquals(message, expected, actual);
+  }
+
+  /**
+   * Asserts that the collection is isomorphic with the array. If not
+   * an AssertionFailedError is thrown.
+   * @param expected the expected value
+   * @param actual the actual value
+   */
+  static public void assertIsomorphic(Collection expected, Object actual[]) {
+    assertIsomorphic(null, expected, actual);
+  }
+
+  /**
    * Asserts that the collections behind the iterator are isomorphic. If
    * not an AssertionFailedError is thrown.
    * @param message the message to give on failure
