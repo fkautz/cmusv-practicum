@@ -36,6 +36,8 @@ import org.lockss.scheduler.*;
 import org.lockss.plugin.*;
 
 public class TestAuTreeWalkManager extends LockssTestCase {
+  private static Logger log = Logger.getLogger("TestAuTreeWalkManager");
+
   static Boolean TRUE = Boolean.TRUE;
   static Boolean FALSE = Boolean.FALSE;
 
@@ -235,7 +237,7 @@ public class TestAuTreeWalkManager extends LockssTestCase {
     assertFalse(task.isFinished());
     TimeBase.step(1001);
     // wait until start evant has completed.
-    assertTrue(autwm.eventSem.take(TIMEOUT_SHOULDNT));
+    assertTrue(autwm.eventStartSem.take(TIMEOUT_SHOULDNT));
     // no walk should have happened (bad test, might not have anyway yet)
     assertEquals(0, autwm.numWalks);
     // a different task should now be scheduled
@@ -256,17 +258,18 @@ public class TestAuTreeWalkManager extends LockssTestCase {
     assertFalse(task.isFinished());
     TimeBase.step(1001);		// allow task to start
     // wait until start evant has completed.
-    assertTrue(autwm.eventSem.take(TIMEOUT_SHOULDNT));
+    assertTrue(autwm.eventStartSem.take(TIMEOUT_SHOULDNT));
     assertTrue(autwm.walkStartSem.take(TIMEOUT_SHOULDNT));
     TimeBase.step(10000);
     // wait until finish evant has completed.
-    assertTrue(autwm.eventSem.take(TIMEOUT_SHOULDNT));
+    assertTrue(autwm.eventFinishSem.take(TIMEOUT_SHOULDNT));
     // walker should have been told to abort
     assertTrue(autwm.aborted);
   }
 
   class MockAuTreeWalkManager extends AuTreeWalkManager {
-    SimpleBinarySemaphore eventSem = new SimpleBinarySemaphore();
+    SimpleBinarySemaphore eventStartSem = new SimpleBinarySemaphore();
+    SimpleBinarySemaphore eventFinishSem = new SimpleBinarySemaphore();
 
     // these are used by the mock walker, but since the walker isn't
     // created until the task actually runs it's easier to put them here,
@@ -295,7 +298,11 @@ public class TestAuTreeWalkManager extends LockssTestCase {
 				       Schedule.EventType event)
 	throws Abort {
       super.taskEvent(task, event);
-      eventSem.give();
+      if (event == Schedule.EventType.START) {
+	eventStartSem.give();
+      } else if (event == Schedule.EventType.FINISH) {
+	eventFinishSem.give();
+      }
     }
 
     protected TreeWalkRunner newRunner(ArchivalUnit au, BackgroundTask task) {
