@@ -95,7 +95,6 @@ public class TestStringFilter extends LockssTestCase {
     StringFilter sf = new StringFilter(new StringReader(str), "REMOVE");
     char buf[] = new char[21];
     sf.read(buf);
-    System.err.println("|"+new String(buf)+"|");
     assertEquals("This is a test string", new String(buf));
   }
 
@@ -153,7 +152,7 @@ public class TestStringFilter extends LockssTestCase {
     }
   }
 
-  
+
 
   //Series of tests with multiple strings
   public void testFiltersMultipleString() throws IOException {
