@@ -58,7 +58,7 @@ public abstract class BaseUrlCacher implements UrlCacher {
    * Overrides normal <code>toString()</code> to return a string like "BUC: <url>"
    */
   public String toString(){
-    return "BUC: "+url;
+    return "[BUC: "+url+"]";
   }
 
   /**
