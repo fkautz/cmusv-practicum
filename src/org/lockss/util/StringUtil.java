@@ -386,7 +386,7 @@ public class StringUtil {
       int len = str.length();
       char suffix = str.charAt(len - 1);
       String numstr;
-      int mult = 1;
+      long mult = 1;
       if (Character.isDigit(suffix)) {
 	numstr = str;
       } else {

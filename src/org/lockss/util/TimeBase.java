@@ -80,7 +80,7 @@ public class TimeBase {
   }
 
   /** Step simulated time base by n ticks */
-  public static void step(int n) {
+  public static void step(long n) {
     if (!isSimulated) {
       throw new IllegalStateException("Can't step TimeBase when in real mode");
     }

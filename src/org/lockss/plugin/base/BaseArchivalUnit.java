@@ -44,7 +44,7 @@ import org.lockss.daemon.*;
  * Plugins may extend this to get some common ArchivalUnit functionality.
  */
 public abstract class BaseArchivalUnit implements ArchivalUnit {
-  private static final int
+  private static final long
     DEFAULT_MILLISECONDS_BETWEEN_CRAWL_HTTP_REQUESTS = 10 * Constants.SECOND;
 
   private Plugin plugin;
