@@ -69,6 +69,12 @@ public interface CachedUrl extends CachedUrlSetNode {
     public InputStream openForHashing();
 
     /**
+     * Return a reader on this CachedUrl
+     * @return {@link Reader}
+     */
+    public Reader getReader();
+
+    /**
      * Get the properties attached to the url in the cache, if any.
      * @return the {@link Properties} object attached to the
      *         url.  If no properties have been attached, an
