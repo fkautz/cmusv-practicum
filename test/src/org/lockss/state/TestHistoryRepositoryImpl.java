@@ -45,6 +45,7 @@ import org.exolab.castor.mapping.Mapping;
 import java.util.Collection;
 import org.lockss.protocol.LcapIdentity;
 import java.net.InetAddress;
+import org.lockss.protocol.IdentityManager;
 
 public class TestHistoryRepositoryImpl extends LockssTestCase {
   private String tempDirPath;
@@ -132,7 +133,7 @@ public class TestHistoryRepositoryImpl extends LockssTestCase {
   }
 
   private String createIdentityKey() throws Exception {
-    LcapIdentity.getIdentity(InetAddress.getByName("127.0.0.1"));
+    IdentityManager.getIdentityManager().getIdentity(InetAddress.getByName("127.0.0.1"));
     return "127.0.0.1";
   }
 
