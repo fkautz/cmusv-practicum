@@ -307,6 +307,23 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     assertDoesCrawlRepair();
   }
 
+  public void testRateLimitedNewContentCrawlDoesntGrabLocks() {
+    TimeBase.setSimulated(100);
+    setNewContentRateLimit(1, 200);
+    assertDoesCrawlNew();
+    activityRegulator.resetLastActivityLock();
+    assertDoesNotCrawlNew();
+    assertEquals(null, activityRegulator.getLastActivityLock());
+  }
+
+  public void testRateLimitedRepairCrawlDoesntGrabLocks() {
+    TimeBase.setSimulated(100);
+    setRepairRateLimit(1, 200);
+    assertDoesCrawlRepair();
+    activityRegulator.resetLastActivityLock();
+    assertDoesNotCrawlRepair();
+    assertEquals(null, activityRegulator.getLastActivityLock());
+  }
 
   public void testBasicNewContentCrawl() {
     SimpleBinarySemaphore sem = new SimpleBinarySemaphore();
@@ -318,9 +335,11 @@ public class TestCrawlManagerImpl extends LockssTestCase {
   }
 
   public void testNCCrawlFreesActivityLockWhenDone() {
+    activityRegulator.resetLastActivityLock();
     SimpleBinarySemaphore sem = new SimpleBinarySemaphore();
 
     crawlManager.startNewContentCrawl(mau, new TestCrawlCB(sem), null, null);
+    assertNotNull(activityRegulator.getLastActivityLock());
 
     waitForCrawlToFinish(sem);
     activityRegulator.assertNewContentCrawlFinished();
