@@ -94,9 +94,8 @@ public class MockUrlCacher implements UrlCacher {
   public void setupCachedUrl(String contents) {
     MockCachedUrl cu = new MockCachedUrl(url);
     cu.setProperties(getUncachedProperties());
-//      cu.setExists(true);
     if (contents != null) {
-      cu.setInputStream(new StringInputStream(contents));
+      cu.setContent(contents);
     }
     setCachedUrl(cu);
   }
