@@ -201,6 +201,7 @@ public class BaseUrlCacher implements UrlCacher {
       if (headers.get("Set-Cookie") != null) {
 	logger.debug3("Found set-cookie header, refetching");
 	input.close();
+	input = null; // ensure don't reclose in finally if next line throws
 	input = getUncachedInputStream(lastModified);
 	if (input == null) {
 	  //this is odd if it happens.
