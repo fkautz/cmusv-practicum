@@ -52,7 +52,8 @@ public class RegistryArchivalUnit extends BaseArchivalUnit {
   private String m_registryUrl = null;
   private int m_maxRefetchDepth = NewContentCrawler.DEFAULT_MAX_CRAWL_DEPTH;
 
-  private List m_permissionCheckers;
+  private List m_permissionCheckers = 
+    ListUtil.list(new CreativeCommonsPermissionChecker());
 
   protected Logger log = Logger.getLogger("RegistryArchivalUnit");
 
@@ -102,7 +103,7 @@ public class RegistryArchivalUnit extends BaseArchivalUnit {
     CrawlRule rule = makeRules();
     List startUrls = ListUtil.list(startUrlString);
     return new CrawlSpec(startUrls, startUrls, rule,
-			 m_maxRefetchDepth);
+			 m_maxRefetchDepth, m_permissionCheckers);
   }
 
   /**
