@@ -113,7 +113,7 @@ public class FuncWrappedSimulatedContent extends LockssTestCase {
     wplug = (WrappedPlugin)wau.getPlugin();
     pmgr.startService();
 
-    theDaemon.getHistoryRepository().startService();
+    theDaemon.getHistoryRepository(wau).startService();
 
     theDaemon.getLockssRepository(wau);
     theDaemon.getHashService().startService();
@@ -161,9 +161,8 @@ public class FuncWrappedSimulatedContent extends LockssTestCase {
   private void crawlContent() {
     CrawlSpec spec = new CrawlSpec(
         SimulatedArchivalUnit.SIMULATED_URL_START, null);
-    Crawler crawler =
-      CrawlerImpl.makeNewContentCrawler(wau, spec, new MockAuState());
-    crawler.doCrawl(Deadline.MAX);
+    Crawler crawler = new NewContentCrawler(wau, spec, new MockAuState());
+    crawler.doCrawl();
   }
 
   private void checkContent() throws IOException {
@@ -238,11 +237,11 @@ public class FuncWrappedSimulatedContent extends LockssTestCase {
   }
 
   private String getUrlContent(WrappedCachedUrl url) throws IOException {
-    InputStream content = url.openForReading();
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    Reader content = url.openForReading();
+    CharArrayWriter baos = new CharArrayWriter();
     StreamUtil.copy(content, baos);
     content.close();
-    String contentStr = new String(baos.toByteArray());
+    String contentStr = baos.toString();
     baos.close();
     return contentStr;
   }

@@ -68,7 +68,6 @@ public class TestWrappedUrlCacher extends LockssTestCase {
     MockPlugin plugin = new MockPlugin();
     wplug = (WrappedPlugin)WrapperState.getWrapper(plugin);
     wplug.initPlugin(theDaemon);
-    plugin.setDefiningConfigKeys(Collections.EMPTY_LIST);
     mgfau.setPlugin(wplug);
 
     theDaemon.getLockssRepository(wau);
@@ -83,7 +82,7 @@ public class TestWrappedUrlCacher extends LockssTestCase {
     final String URL = "http://www.example.com/testDir/leaf1";
     WrappedCachedUrlSet wset = (WrappedCachedUrlSet)wau.getAuCachedUrlSet();
     MockCachedUrlSet mset = (MockCachedUrlSet)wset.getOriginal();
-    Properties props = new Properties();
+    CIProperties props = new CIProperties();
     props.setProperty("test1", "value1");
     mset.addUrl(URL,false,true,props);
     WrappedUrlCacher wcacher = (WrappedUrlCacher)wplug.makeUrlCacher(wset,URL);

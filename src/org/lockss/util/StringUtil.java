@@ -557,10 +557,10 @@ public class StringUtil {
   /** Trim leading and trailing blank lines from a block of text */
   public static String trimBlankLines(String txt) {
     StringBuffer buf = new StringBuffer(txt);
-    while (buf.charAt(0) == '\n') {
+    while (buf.length()>0 && buf.charAt(0) == '\n') {
       buf.deleteCharAt(0);
     }
-    while (buf.charAt(buf.length() - 1) == '\n') {
+    while (buf.length()>0 && buf.charAt(buf.length() - 1) == '\n') {
       buf.deleteCharAt(buf.length() - 1);
     }
     return buf.toString();

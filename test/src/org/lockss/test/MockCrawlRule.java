@@ -38,7 +38,7 @@ import org.lockss.daemon.CrawlRule;
 public class MockCrawlRule implements CrawlRule {
   Set urlsToCrawl = new HashSet();
 
-  public void MockCrawlRule() {
+  public MockCrawlRule() {
   }
 
   public void addUrlToCrawl(String url) {
