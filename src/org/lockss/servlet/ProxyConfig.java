@@ -140,6 +140,12 @@ public class ProxyConfig extends LockssServlet {
   void generateProxyFile(String format) throws IOException {
     pi = new ProxyInfo(getMachineName());
     urlStems = pi.getUrlStemMap();
+    
+    if (!pluginMgr.areAusStarted()) {
+      resp.sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
+      return;
+    }
+
     if (format.equalsIgnoreCase("pac")) {
       if (urlStems.isEmpty()) {
 	wrtr = resp.getWriter();
