@@ -53,20 +53,22 @@ public interface CrawlManager {
   public void scheduleRepair(ArchivalUnit au, URL url,
 			     CrawlManager.Callback cb, Object cookie);
 
+  public void startNewContentCrawl(ArchivalUnit au, CrawlManager.Callback cb,
+                                   Object cookie);
+
 
   /**
    * Returns true if there is an active crawl on the AU; can also trigger the
    * beginning of a new content crawl if one hasn't happened recently.
    *
    * @param au ArchivalUnit that the crawl manager should check
-   * @param aus AuState that the crawl manager should use
-   * @param cb callback to be called when the crawler is done with the AU, 
+   * @param cb callback to be called when the crawler is done with the AU,
    * if not now
    * @param cookie cookie for the callback
    * @return true if there is a crawl going on for that AU, false otherwise
    */
 
-  public boolean isCrawlingAU(ArchivalUnit au, 
+  public boolean isCrawlingAU(ArchivalUnit au,
 			      CrawlManager.Callback cb, Object cookie);
 
   public interface Callback {
