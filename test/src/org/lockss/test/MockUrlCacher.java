@@ -138,6 +138,9 @@ public class MockUrlCacher implements UrlCacher {
   }
 
   public void cache() throws IOException {
+    if (cus != null) {
+      cus.signalCacheAttempt(url);
+    }
     if (cachingException != null && timesThrown < numTimesToThrow) {
       timesThrown++;
       throw cachingException;
