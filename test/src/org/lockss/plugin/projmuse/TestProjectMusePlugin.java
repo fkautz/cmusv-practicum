@@ -56,6 +56,7 @@ public class TestProjectMusePlugin extends LockssTestCase {
       fail("Didn't throw ArchivalUnit.ConfigurationException");
     } catch (ArchivalUnit.ConfigurationException e) { }
   }
+
   public void testCreateAu() {
     Properties props = new Properties();
     props.setProperty(ProjectMusePlugin.AUPARAM_BASE_URL, "http://www.example.com/");

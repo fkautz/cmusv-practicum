@@ -49,7 +49,6 @@ public class TestAcsPlugin extends LockssTestCase {
                       "org.lockss.plugin.acs.AcsPlugin");
   }
 
-
   private AcsArchivalUnit makeAuFromProps(Properties props)
       throws ArchivalUnit.ConfigurationException {
     Configuration config = ConfigurationUtil.fromProps(props);
