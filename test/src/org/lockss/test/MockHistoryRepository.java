@@ -36,7 +36,7 @@ package org.lockss.test;
 import java.util.HashMap;
 import org.lockss.app.*;
 import org.lockss.state.*;
-import org.lockss.daemon.ArchivalUnit;
+import org.lockss.plugin.*;
 
 /**
  * MockHistoryRepository is a mock implementation of the HistoryRepository.

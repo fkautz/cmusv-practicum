@@ -37,6 +37,7 @@ import junit.framework.TestCase;
 import org.lockss.util.*;
 import org.lockss.test.*;
 import org.lockss.state.*;
+import org.lockss.plugin.*;
 
 /**
  */

@@ -37,6 +37,7 @@ import java.security.MessageDigest;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.state.*;
+import org.lockss.plugin.*;
 
 /**
  * This is a mock version of <code>ArchivalUnit</code> used for testing

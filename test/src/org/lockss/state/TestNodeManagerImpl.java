@@ -36,6 +36,7 @@ import org.lockss.plugin.PluginManager;
 import org.lockss.poller.*;
 import org.lockss.protocol.*;
 import org.lockss.hasher.HashService;
+import org.lockss.plugin.*;
 
 public class TestNodeManagerImpl
     extends LockssTestCase {

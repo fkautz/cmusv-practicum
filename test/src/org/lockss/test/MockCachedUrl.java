@@ -37,6 +37,7 @@ import java.io.OutputStream;
 import java.io.IOException;
 import java.util.Properties;
 import org.lockss.daemon.*;
+import org.lockss.plugin.*;
 
 /**
  * This is a mock version of <code>CachedUrl</code> used for testing

@@ -34,6 +34,7 @@ package org.lockss.test;
 
 import org.lockss.daemon.*;
 import org.lockss.state.*;
+import org.lockss.plugin.*;
 
 /**
  * This is a mock version of <code>ArchivalUnit</code> used for testing
@@ -47,7 +48,7 @@ public class MockAuState extends AuState {
   public MockAuState(ArchivalUnit au, long lastCrawlTime) {
     super(au, lastCrawlTime);
   }
-  
+
   public ArchivalUnit getArchivalUnit() {
     return au;
   }
@@ -56,7 +57,7 @@ public class MockAuState extends AuState {
     return lastCrawlTime;
   }
 
-  
+
 
 }
 

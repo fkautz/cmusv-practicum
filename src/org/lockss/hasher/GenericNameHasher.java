@@ -35,6 +35,7 @@ import java.security.*;
 import java.util.*;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
+import org.lockss.plugin.*;
 
 /**
  * General class to handle name hashing

@@ -41,6 +41,7 @@ import java.text.*;
 import java.security.MessageDigest;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
+import org.lockss.plugin.*;
 
 class HashQueue implements Serializable {
   static final String PREFIX = Configuration.PREFIX + "hasher.";

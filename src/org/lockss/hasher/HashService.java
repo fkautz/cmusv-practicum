@@ -37,6 +37,7 @@ import java.security.MessageDigest;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.app.*;
+import org.lockss.plugin.*;
 
 /**
  * API for content and name hashing services.

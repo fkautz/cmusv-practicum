@@ -28,7 +28,7 @@
 package org.lockss.state;
 
 import java.util.Iterator;
-import org.lockss.daemon.CachedUrlSet;
+import org.lockss.plugin.CachedUrlSet;
 import org.lockss.util.Deadline;
 
 /**

@@ -34,14 +34,14 @@ package org.lockss.app;
 import java.util.*;
 import org.lockss.util.Logger;
 import org.lockss.daemon.*;
-import org.lockss.hasher.HashService;
-import org.lockss.plugin.PluginManager;
-import org.lockss.poller.PollManager;
+import org.lockss.hasher.*;
+import org.lockss.plugin.*;
+import org.lockss.poller.*;
 import org.lockss.protocol.*;
 import org.lockss.repository.*;
 import org.lockss.state.*;
 import org.lockss.proxy.*;
-import org.lockss.crawler.CrawlManager;
+import org.lockss.crawler.*;
 import org.apache.commons.collections.SequencedHashMap;
 
 /**
@@ -277,13 +277,6 @@ public class LockssDaemon {
 
     // startup all services
     initManagers();
-
-/*
-    running = true;
-
-    while(running)
-    ;
-*/
   }
 
 

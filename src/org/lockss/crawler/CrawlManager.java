@@ -34,6 +34,7 @@ package org.lockss.crawler;
 import java.net.URL;
 import org.lockss.daemon.*;
 import org.lockss.state.*;
+import org.lockss.plugin.*;
 
 /**
  * This is the interface for the object which will sit between the crawler

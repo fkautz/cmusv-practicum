@@ -31,11 +31,11 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.util;
 
 import java.util.*;
-import org.lockss.daemon.ArchivalUnit;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.lockss.plugin.*;
 /**
  * Create a list of Object from a call list.
  */

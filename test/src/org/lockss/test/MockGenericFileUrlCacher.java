@@ -35,7 +35,7 @@ package org.lockss.test;
 import java.io.*;
 import java.util.Properties;
 import org.lockss.plugin.GenericFileUrlCacher;
-import org.lockss.daemon.CachedUrlSet;
+import org.lockss.plugin.CachedUrlSet;
 
 /**
  * This is a mock version of <code>UrlCacher</code> used for testing

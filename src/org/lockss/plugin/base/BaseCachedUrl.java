@@ -30,11 +30,13 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.daemon;
+package org.lockss.plugin.base;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.IOException;
 import java.util.Properties;
+import org.lockss.daemon.*;
+import org.lockss.plugin.*;
 
 /** Abstract base class for CachedUrls.
  * Plugins may extend this to get some common CachedUrl functionality.

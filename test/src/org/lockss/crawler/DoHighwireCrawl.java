@@ -34,7 +34,7 @@ package org.lockss.crawler;
 import java.util.*;
 import java.net.URL;
 import org.lockss.daemon.*;
-import org.lockss.plugin.PluginManager;
+import org.lockss.plugin.*;
 import org.lockss.plugin.highwire.*;
 import org.lockss.proxy.ProxyHandler;
 import org.lockss.util.Deadline;

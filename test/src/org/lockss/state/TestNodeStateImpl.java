@@ -28,7 +28,7 @@
 package org.lockss.state;
 
 import java.util.*;
-import org.lockss.daemon.CachedUrlSet;
+import org.lockss.plugin.CachedUrlSet;
 import org.lockss.test.*;
 import org.lockss.util.CollectionUtil;
 import java.io.*;

@@ -38,7 +38,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import org.lockss.test.*;
-import org.lockss.daemon.CachedUrlSet;
+import org.lockss.plugin.CachedUrlSet;
 import org.lockss.daemon.TestConfiguration;
 import org.lockss.util.*;
 import org.exolab.castor.mapping.Mapping;

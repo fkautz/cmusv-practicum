@@ -31,9 +31,11 @@ in this Software without prior written authorization from Stanford University.
 */
 
 package org.lockss.daemon;
+
 import java.io.IOException;
 import java.util.*;
-import org.lockss.util.Deadline;
+import org.lockss.util.*;
+import org.lockss.plugin.*;
 
 /**
  * This interface is implemented by the generic LOCKSS daemon.

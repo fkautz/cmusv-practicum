@@ -48,6 +48,8 @@ import org.lockss.repository.LockssRepository;
 import org.lockss.repository.LockssRepositoryImpl;
 import org.lockss.app.*;
 import java.net.URL;
+import org.lockss.plugin.base.*;
+import org.lockss.plugin.*;
 
 /**
  * Implementation of the NodeManager.

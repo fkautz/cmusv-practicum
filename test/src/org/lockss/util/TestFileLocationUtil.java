@@ -36,7 +36,7 @@ import java.net.MalformedURLException;
 import org.lockss.util.*;
 import org.lockss.test.LockssTestCase;
 import org.lockss.test.MockArchivalUnit;
-import org.lockss.daemon.ArchivalUnit;
+import org.lockss.plugin.*;
 
 /**
  * This is the test class for org.lockss.daemon.LockssRepositoryImpl

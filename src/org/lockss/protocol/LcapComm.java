@@ -38,6 +38,7 @@ import org.lockss.util.*;
 import org.lockss.daemon.*;
 import org.apache.commons.collections.LRUMap;
 import org.lockss.app.*;
+import org.lockss.plugin.*;
 
 /**
  * LcapComm implements the routing parts of the LCAP protocol, using

@@ -30,10 +30,11 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.daemon;
+package org.lockss.plugin;
 import gnu.regexp.*;
 import java.util.*;
 import org.lockss.state.*;
+import org.lockss.daemon.*;
 
 /**
  * An <code>ArchivalUnit</code> represents a publication unit

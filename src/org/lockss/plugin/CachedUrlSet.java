@@ -30,9 +30,11 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.daemon;
+package org.lockss.plugin;
 import java.util.Iterator;
 import java.security.MessageDigest;
+
+import org.lockss.daemon.*;
 
 /**
  * This interface is implemented by plug-ins for the LOCKSS daemons.  The

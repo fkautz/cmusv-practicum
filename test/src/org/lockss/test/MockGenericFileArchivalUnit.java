@@ -39,6 +39,7 @@ import org.lockss.util.*;
 import org.lockss.test.MockCachedUrlSetSpec;
 import org.lockss.plugin.*;
 import org.lockss.daemon.RangeCachedUrlSetSpec;
+import org.lockss.plugin.base.*;
 
 /**
  * This is a mock version of <code>ArchivalUnit</code> used for testing

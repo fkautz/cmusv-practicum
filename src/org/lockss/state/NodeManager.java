@@ -33,10 +33,9 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.state;
 
 import java.util.Iterator;
-import org.lockss.daemon.CachedUrlSet;
-import org.lockss.poller.Poll;
-import org.lockss.daemon.ArchivalUnit;
-import org.lockss.util.Deadline;
+import org.lockss.plugin.*;
+import org.lockss.poller.*;
+import org.lockss.util.*;
 
 /**
  * NodeManager handles all nodes in a given system.  It retrieves and stores

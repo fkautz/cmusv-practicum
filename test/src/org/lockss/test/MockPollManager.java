@@ -35,9 +35,10 @@ package org.lockss.test;
 import java.io.IOException;
 import java.util.Hashtable;
 import org.lockss.app.*;
-import org.lockss.daemon.CachedUrlSet;
+import org.lockss.plugin.CachedUrlSet;
 import org.lockss.poller.PollManager;
 import org.lockss.protocol.LcapMessage;
+import org.lockss.plugin.*;
 
 /**
  * Mock override of the PollManager

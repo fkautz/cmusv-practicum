@@ -37,6 +37,7 @@ import java.net.URL;
 import org.lockss.app.*;
 import org.lockss.state.*;
 import org.lockss.daemon.*;
+import org.lockss.plugin.*;
 import org.lockss.crawler.CrawlManager;
 
 

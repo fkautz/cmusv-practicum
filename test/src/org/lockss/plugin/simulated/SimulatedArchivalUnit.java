@@ -35,6 +35,7 @@ package org.lockss.plugin.simulated;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.plugin.*;
+import org.lockss.plugin.base.*;
 
 /**
  * This is ArchivalUnit of the simulated plugin, used for testing purposes.

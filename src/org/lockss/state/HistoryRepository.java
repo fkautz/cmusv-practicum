@@ -35,6 +35,7 @@ package org.lockss.state;
 
 import java.util.List;
 import org.lockss.daemon.*;
+import org.lockss.plugin.*;
 
 /**
  * HistoryRepository is an inner layer of the NodeManager which handles the actual

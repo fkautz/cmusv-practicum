@@ -36,6 +36,7 @@ import java.util.Properties;
 import org.lockss.test.*;
 import org.lockss.daemon.*;
 import org.lockss.repository.TestLockssRepositoryImpl;
+import org.lockss.plugin.*;
 
 /**
  * This is the test class for org.lockss.plugin.simulated.SimulatedUrlCacher

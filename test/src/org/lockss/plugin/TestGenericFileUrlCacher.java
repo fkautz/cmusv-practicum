@@ -38,6 +38,7 @@ import org.lockss.daemon.*;
 import org.lockss.test.*;
 import org.lockss.util.StreamUtil;
 import org.lockss.repository.TestLockssRepositoryImpl;
+import org.lockss.plugin.base.*;
 
 /**
  * This is the test class for org.lockss.plugin.simulated.GenericFileUrlCacher

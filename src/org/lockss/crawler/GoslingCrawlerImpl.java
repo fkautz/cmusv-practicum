@@ -76,6 +76,7 @@ import java.net.URL;
 import java.net.MalformedURLException;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
+import org.lockss.plugin.*;
 
 /**
  * The crawler.

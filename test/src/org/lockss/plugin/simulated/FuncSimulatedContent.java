@@ -42,6 +42,7 @@ import org.lockss.daemon.*;
 import org.lockss.repository.*;
 import org.lockss.plugin.PluginManager;
 import java.security.*;
+import org.lockss.plugin.*;
 
 /**
  * Test class for functional tests on the content.

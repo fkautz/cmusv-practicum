@@ -34,6 +34,7 @@ import org.lockss.daemon.*;
 import org.lockss.hasher.*;
 import org.lockss.protocol.*;
 import org.lockss.util.*;
+import org.lockss.plugin.*;
 
 /**
  * @author Claire Griffin

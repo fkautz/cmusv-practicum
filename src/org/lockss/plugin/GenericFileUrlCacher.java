@@ -37,6 +37,7 @@ import java.util.Properties;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.repository.*;
+import org.lockss.plugin.base.*;
 
 /**
  * This is an abstract file implementation of UrlCacher which uses the

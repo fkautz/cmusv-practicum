@@ -38,6 +38,7 @@ import org.lockss.state.NodeState;
 import org.lockss.util.*;
 import org.lockss.app.*;
 import org.lockss.state.*;
+import org.lockss.plugin.*;
 
 
 /**

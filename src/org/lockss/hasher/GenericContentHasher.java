@@ -35,6 +35,7 @@ import java.io.*;
 import java.util.*;
 import java.security.*;
 import org.lockss.daemon.*;
+import org.lockss.plugin.*;
 /**
  * General class to handle content hashing
  */

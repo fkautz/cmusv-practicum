@@ -34,6 +34,7 @@ package org.lockss.repository;
 
 import java.net.MalformedURLException;
 import org.lockss.daemon.*;
+import org.lockss.plugin.*;
 
 /**
  * LockssRepository is used to organize the urls being cached.

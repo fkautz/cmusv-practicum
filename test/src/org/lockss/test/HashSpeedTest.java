@@ -42,6 +42,7 @@ import org.lockss.poller.PollManager;
 import org.lockss.crawler.GoslingCrawlerImpl;
 import org.lockss.util.Deadline;
 import org.lockss.protocol.*;
+import org.lockss.plugin.*;
 
 public class HashSpeedTest extends LockssTestCase {
   private SimulatedArchivalUnit sau;

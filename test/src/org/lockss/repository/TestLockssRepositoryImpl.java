@@ -40,6 +40,7 @@ import org.lockss.util.*;
 import org.lockss.daemon.Configuration;
 import org.lockss.daemon.TestConfiguration;
 import org.lockss.daemon.*;
+import org.lockss.plugin.*;
 
 /**
  * This is the test class for org.lockss.daemon.LockssRepositoryImpl

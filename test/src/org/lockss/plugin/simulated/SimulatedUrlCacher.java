@@ -37,6 +37,7 @@ import java.util.*;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.plugin.*;
+import org.lockss.plugin.base.*;
 
 /**
  * This is the UrlCacher object for the SimulatedPlugin

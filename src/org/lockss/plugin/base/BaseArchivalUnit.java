@@ -30,13 +30,14 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.daemon;
+package org.lockss.plugin.base;
 
 import java.util.*;
 import gnu.regexp.*;
 import org.lockss.util.*;
 import org.lockss.plugin.*;
 import org.lockss.state.*;
+import org.lockss.daemon.*;
 
 /**
  * Abstract base class for ArchivalUnits.

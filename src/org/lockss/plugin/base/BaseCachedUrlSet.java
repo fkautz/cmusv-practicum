@@ -30,8 +30,10 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.daemon;
+package org.lockss.plugin.base;
 
+import org.lockss.plugin.*;
+import org.lockss.daemon.*;
 
 /**
  * Abstract base class for CachedUrlSets.

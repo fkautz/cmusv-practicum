@@ -39,6 +39,7 @@ import java.util.*;
 import org.lockss.test.*;
 import org.lockss.util.*;
 import org.lockss.daemon.*;
+import org.lockss.plugin.*;
 
 public class TestGenericNameHasher extends TestCase {
   private static final char DELIMITER = '\n';

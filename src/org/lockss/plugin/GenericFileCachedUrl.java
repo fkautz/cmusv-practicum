@@ -38,6 +38,7 @@ import java.net.MalformedURLException;
 import org.lockss.daemon.*;
 import org.lockss.repository.*;
 import org.lockss.util.Logger;
+import org.lockss.plugin.base.*;
 
 /**
  * This is a generic file implementation of CachedUrl which uses the

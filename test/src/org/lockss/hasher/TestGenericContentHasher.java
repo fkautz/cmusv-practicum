@@ -38,6 +38,7 @@ import junit.framework.TestCase;
 import org.lockss.test.*;
 import org.lockss.daemon.*;
 import org.lockss.util.TimeBase;
+import org.lockss.plugin.*;
 
 public class TestGenericContentHasher extends LockssTestCase {
   private static final char DELIMITER='&';

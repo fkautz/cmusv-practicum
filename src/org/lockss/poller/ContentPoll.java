@@ -42,6 +42,7 @@ import org.lockss.hasher.*;
 import org.lockss.protocol.*;
 import org.lockss.util.*;
 import org.mortbay.util.B64Code;
+import org.lockss.plugin.*;
 
 /**
  * class which represents a content poll
