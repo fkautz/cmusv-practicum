@@ -197,7 +197,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     return false;
   }
 
-  protected void pause(int milliseconds) {
+  protected void pause(long milliseconds) {
     try {
       Thread thread = Thread.currentThread();
       thread.sleep(milliseconds);

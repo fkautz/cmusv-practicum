@@ -183,7 +183,7 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
   }
 
   public void pause() {
-    pause((int)pauseMS);
+    pause(pauseMS);
   }
 
   public String getAUId() {
