@@ -42,9 +42,14 @@ import org.lockss.util.*;
 public class MockLogTarget implements LogTarget{
   static Logger log = Logger.getLogger("Mock log target");
   Vector messages;
+  int initCount = 0;
   
   public MockLogTarget(){
     messages = new Vector();
+  }
+
+  public void init() {
+    initCount++;
   }
 
   /**
@@ -73,5 +78,9 @@ public class MockLogTarget implements LogTarget{
 
   public void resetMessages() {
     messages.clear();
+  }
+
+  public int initCount() {
+    return initCount;
   }
 }

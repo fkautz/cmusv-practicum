@@ -86,6 +86,16 @@ public class TestLogger extends LockssTestCase{
     assertTrue( ! l.isLevel(Logger.LEVEL_DEBUG));
   }
 
+  public void testTargetInit() {
+    Logger l = Logger.getLogger("test-log");
+    MockLogTarget target = new MockLogTarget();
+    assertEquals(0, target.initCount());
+    l.addTarget(target);
+    assertEquals(1, target.initCount());
+    l.addTarget(target);
+    assertEquals(1, target.initCount());
+  }
+
   public void testLevelFilter() {
     Logger l = Logger.getLogger("test-log");
     MockLogTarget target = new MockLogTarget();
