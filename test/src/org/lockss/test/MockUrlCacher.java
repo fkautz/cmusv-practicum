@@ -104,7 +104,7 @@ public class MockUrlCacher implements UrlCacher {
     this.forceRefetch = force;
   }
 
-  public void setRedirectScheme(int scheme) {
+  public void setRedirectScheme(RedirectScheme scheme) {
   }
 
   public void setupCachedUrl(String contents) {
@@ -132,6 +132,13 @@ public class MockUrlCacher implements UrlCacher {
 			   CIProperties headers) throws IOException{
     cachedIS = input;
     cachedProp = headers;
+    if (cus != null) {
+      if (forceRefetch) {
+	cus.addForceCachedUrl(url);
+      } else {
+	cus.addCachedUrl(url);
+      }
+    }
   }
 
   public void setCachingException(IOException e, int numTimesToThrow) {
