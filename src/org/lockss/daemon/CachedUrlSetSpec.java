@@ -52,10 +52,17 @@ public interface CachedUrlSetSpec {
   public List getPrefixList();
 
   /**
-   * This needs to be overwritten to hash CachedUrlSets properly.
+   * This needs to be overridden to hash CachedUrlSets properly.
    * @return the hashcode
    */
   public int hashCode();
+
+  /**
+   * This needs to be overridden to hash CachedUrlSets properly.
+   * @param obj the object to compare to
+   * @return true if the objects are equal
+   */
+  public boolean equals(Object obj);
 
   /**
    * Returns a unique id string.

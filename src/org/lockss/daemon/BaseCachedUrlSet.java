@@ -34,12 +34,14 @@ package org.lockss.daemon;
 
 import java.util.*;
 import java.io.File;
+import org.lockss.util.*;
 
 /**
  * Abstract base class for CachedUrlSets.
  * Plugins may extend this to get some common CachedUrlSet functionality.
  */
 public abstract class BaseCachedUrlSet implements CachedUrlSet {
+  private static Logger logger = Logger.getLogger("CachedUrlSet");
   protected ArchivalUnit au;
   protected CachedUrlSetSpec spec;
 
@@ -115,7 +117,7 @@ public abstract class BaseCachedUrlSet implements CachedUrlSet {
   }
 
   /**
-   * Overrides Object.hashCode();
+   * Overrides Object.hashCode().
    * Returns the hashcode of the spec.
    * @return the hashcode
    */
@@ -123,4 +125,18 @@ public abstract class BaseCachedUrlSet implements CachedUrlSet {
     return spec.hashCode();
   }
 
+  /**
+   * Overrides Object.equals().
+   * Returns the equals() of the specs.
+   * @param obj the object to compare to
+   * @return true if the specs are equal
+   */
+  public boolean equals(Object obj) {
+    if (obj instanceof CachedUrlSet) {
+      return spec.equals(((CachedUrlSet)obj).getSpec());
+    } else {
+      logger.error("Trying to compare a set and a non-set.");
+      throw new IllegalArgumentException("Trying to compare a set and a non-set.");
+    }
+  }
 }

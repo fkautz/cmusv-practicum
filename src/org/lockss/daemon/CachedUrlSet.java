@@ -162,8 +162,15 @@ public interface CachedUrlSet {
     public String getPrimaryUrl();
 
     /**
-     * Needs to be overwritten to hash CachedUrlSets properly.
+     * Needs to be overridden to hash CachedUrlSets properly.
      * @return the hashcode
      */
     public int hashCode();
+
+    /**
+     * Needs to be overridden to hash CachedUrlSets properly.
+     * @param obj the object to compare to
+     * @return true if equal
+     */
+    public boolean equals(Object obj);
 }

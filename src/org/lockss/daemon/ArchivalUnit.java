@@ -102,9 +102,15 @@ public interface ArchivalUnit {
   public void pause();
 
   /**
-   * Needs to be overwritten to hash ArchivalUnits properly.
+   * Needs to be overridden to hash ArchivalUnits properly.
    * @return the hashcode
    */
   public int hashCode();
 
+  /**
+   * Needs to be overridden to hash ArchivalUnits properly.
+   * @param obj the object to compare to
+   * @return true if equal
+   */
+  public boolean equals(Object obj);
 }

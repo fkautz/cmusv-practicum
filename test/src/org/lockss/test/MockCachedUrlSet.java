@@ -215,11 +215,19 @@ public class MockCachedUrlSet implements CachedUrlSet {
   }
 
   public String getPrimaryUrl() {
-    return spec.getPrimaryUrl();
+    if (spec!=null) {
+      return spec.getPrimaryUrl();
+    } else {
+      return null;
+    }
   }
 
   public String getIdString() {
-    return spec.getIdString();
+    if (spec!=null) {
+      return spec.getIdString();
+    } else {
+      return null;
+    }
   }
 
   public void addCachedUrl(String url) {
@@ -230,4 +238,19 @@ public class MockCachedUrlSet implements CachedUrlSet {
     return cachedUrls;
   }
 
+  public int hashCode() {
+    if (spec!=null) {
+      return spec.hashCode();
+    } else {
+      return 0;
+    }
+  }
+
+  public boolean equals(Object obj) {
+    if (obj instanceof CachedUrlSet) {
+      return getIdString().equals(((CachedUrlSet)obj).getIdString());
+    } else {
+      throw new IllegalArgumentException("Trying to compare a set and a non-set.");
+    }
+  }
 }

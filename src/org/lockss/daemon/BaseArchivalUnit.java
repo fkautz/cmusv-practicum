@@ -33,6 +33,7 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.daemon;
 
 import gnu.regexp.*;
+import org.lockss.util.*;
 
 /**
  * Abstract base class for ArchivalUnits.
@@ -41,6 +42,7 @@ import gnu.regexp.*;
 public abstract class BaseArchivalUnit implements ArchivalUnit {
   private static final int
     DEFAULT_MILLISECONDS_BETWEEN_CRAWL_HTTP_REQUESTS = 10000;
+  private static Logger logger = Logger.getLogger("ArchivalUnit");
 
   private CrawlSpec crawlSpec;
 
@@ -154,6 +156,21 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
    */
   public int hashCode() {
     return getIdString().hashCode();
+  }
+
+  /**
+   * Overrides Object.equals().
+   * Returns true if the id strings are equal
+   * @param obj the object to compare to
+   * @return true if the id strings are equal
+   */
+  public boolean equals(Object obj) {
+    if (obj instanceof ArchivalUnit) {
+      return getIdString().equals(((ArchivalUnit)obj).getIdString());
+    } else {
+      logger.error("Trying to compare an au and a non-au.");
+      throw new IllegalArgumentException("Trying to compare an au and a non-au.");
+    }
   }
 
   protected void pause(int milliseconds) {
