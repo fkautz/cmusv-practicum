@@ -317,12 +317,11 @@ public class HashCUS extends LockssServlet {
       p.setProperty(KEY_ACTION, ACTION_STREAM);
       p.setProperty(KEY_FILE, recordFile.toString());
       p.setProperty(KEY_MIME, "application/octet-stream");
-      tbl.add(srvLink(myServletDescr(), "binary",
-		      concatParams(p)));
+      tbl.add(srvLink(myServletDescr(), "binary", concatParams(p)));
       tbl.add("&nbsp;&nbsp;");
       p.setProperty(KEY_MIME, "text/plain");
-      tbl.add(srvLink(myServletDescr(), "text" + addFootnote(FOOT_BIN),
-		      concatParams(p)));
+      tbl.add(srvLink(myServletDescr(), "text", concatParams(p)));
+      tbl.add(addFootnote(FOOT_BIN));
     }
     return tbl;
   }
