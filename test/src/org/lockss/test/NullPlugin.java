@@ -38,6 +38,7 @@ import java.net.*;
 import java.security.MessageDigest;
 import org.lockss.app.*;
 import org.lockss.daemon.*;
+import org.lockss.crawler.*;
 import org.lockss.plugin.*;
 import org.lockss.state.*;
 import org.lockss.test.*;
@@ -382,6 +383,10 @@ public class NullPlugin {
 
     public boolean checkCrawlPermission(Reader reader) {
       return false;
+    }
+
+    public ContentParser getContentParser(String mimeType) {
+      throw new UnsupportedOperationException("not implemented");
     }
 
     public FilterRule getFilterRule(String mimeType) {
