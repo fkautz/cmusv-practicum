@@ -218,7 +218,7 @@ public class ProxyManager extends BaseProxyManager {
    * string "Repair" in the value of the X-Lockss: header.  Until all
    * caches are running the new code this still accepts the old way, but
    * that's disablable for testing. */
-  boolean isRepairRequest(HttpRequest request) {
+  public boolean isRepairRequest(HttpRequest request) {
     String userAgent = request.getField("user-agent");
     if (log.isDebug3()) {
       log.debug3("user-agent: " + userAgent);

@@ -116,6 +116,10 @@ public abstract class BaseServletManager extends JettyManager {
     super.stopService();
   }
 
+  protected LockssDaemon getDaemon() {
+    return (LockssDaemon)getApp();
+  }
+
   public void setConfig(Configuration config, Configuration prevConfig,
 			Configuration.Differences changedKeys) {
     super.setConfig(config, prevConfig, changedKeys);
@@ -206,7 +210,7 @@ public abstract class BaseServletManager extends JettyManager {
 			       new File(logdirname).getAbsolutePath());
     log.debug("Log Resource URL: " + logResourceUrl);
     context.setResourceBase(logResourceUrl.toString());
-    LockssResourceHandler logRHandler = new LockssResourceHandler();
+    LockssResourceHandler logRHandler = new LockssResourceHandler(getDaemon());
     logRHandler.setDirAllowed(true);
     //    logRHandler.setPutAllowed(false);
     //       rHandler.setDelAllowed(false);
@@ -233,5 +237,4 @@ public abstract class BaseServletManager extends JettyManager {
 		  "\", class not found: " + servletClass);
     }
   }
-
 }

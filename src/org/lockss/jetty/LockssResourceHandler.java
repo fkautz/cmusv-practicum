@@ -44,6 +44,7 @@ import java.util.*;
 import org.mortbay.http.*;
 import org.mortbay.http.handler.*;
 import org.mortbay.util.*;
+import org.lockss.app.*;
 import org.lockss.plugin.*;
 import org.lockss.proxy.ProxyManager;
 import org.lockss.config.*;
@@ -58,6 +59,8 @@ import com.sun.jimi.core.raster.*;
  * aren't public or protected. */
 public class LockssResourceHandler extends AbstractHttpHandler {
     /* ----------------------------------------------------------------- */
+    private LockssDaemon theDaemon = null;
+    private ProxyManager proxyMgr = null;
     private boolean _acceptRanges=true;
     private boolean _redirectWelcomeFiles ;
     private String[] _methods=null;
@@ -80,8 +83,11 @@ public class LockssResourceHandler extends AbstractHttpHandler {
     /* ----------------------------------------------------------------- */
     /** Construct a ResourceHandler.
      */
-    public LockssResourceHandler()
-    {}
+    public LockssResourceHandler(LockssDaemon daemon)
+    {
+      theDaemon = daemon;
+      proxyMgr = theDaemon.getProxyManager();
+    }
 
  
     /* ----------------------------------------------------------------- */
@@ -717,7 +723,8 @@ public class LockssResourceHandler extends AbstractHttpHandler {
 	    boolean enableRewrite =
 	      Configuration.getCurrentConfig().getBoolean(ProxyManager.PARAM_REWRITE_GIF_PNG,
 							  ProxyManager.DEFAULT_REWRITE_GIF_PNG);
-	    if (enableRewrite &&
+	    if (!proxyMgr.isRepairRequest(request) &&
+		enableRewrite &&
 		"image/gif".equals(response.getContentType()) &&
 		"from-cache".equals(response.getField("X-Lockss"))) {
 	      try {

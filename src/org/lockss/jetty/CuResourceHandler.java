@@ -37,6 +37,7 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.jetty;
 
 import java.io.*;
+import org.lockss.app.*;
 import org.mortbay.http.*;
 import org.mortbay.http.handler.*;
 import org.mortbay.util.*;
@@ -44,6 +45,9 @@ import org.mortbay.util.*;
 /** A LockssResourceHandler that creates a Resource from the url stored in
     the X-Lockss-Cu field of the request. */
 public class CuResourceHandler extends LockssResourceHandler {
+  public CuResourceHandler(LockssDaemon daemon) {
+    super(daemon);
+  }
   public Resource getResource(HttpRequest request, String pathInContext)
       throws IOException {
     String cuurl = request.getField("Lockss-Cu");
