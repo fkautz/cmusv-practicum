@@ -88,9 +88,11 @@ public class ConfigCache {
       try {
 	if (UrlUtil.isHttpUrl(url)) {
 	  cf = new HTTPConfigFile(url);
+	} else if (UrlUtil.isJarUrl(url)) {
+	  cf = new JarConfigFile(url);
 	} else {
 	  cf = new FileConfigFile(url);
-	}	
+	} 
 	// ensure the file is loaded
 	if (!cf.reload()) {
 	  log.warning("Configuration file not loaded: " + url);

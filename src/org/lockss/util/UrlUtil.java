@@ -273,6 +273,11 @@ public class UrlUtil {
     return StringUtil.startsWithIgnoreCase(url, "file:");
   }
 
+  /** Return true if a jar: url */
+  public static boolean isJarUrl(String url) {
+    return StringUtil.startsWithIgnoreCase(url, "jar:");
+  }
+
   /**
    * @param urlStr string representation of a url
    * @return urlStr up to but not including the path
