@@ -31,7 +31,9 @@ in this Software without prior written authorization from Stanford University.
 */
 
 package org.lockss.test;
+
 import java.util.*;
+import org.lockss.daemon.status.*;
 
 public class MockStatusAccessor implements StatusAccessor {
   private boolean requiresKey = false;
