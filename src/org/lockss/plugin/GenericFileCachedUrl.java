@@ -32,12 +32,12 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.plugin;
 
-import java.io.*;
-import java.util.*;
-import org.lockss.daemon.*;
-import org.lockss.util.*;
-import org.lockss.repository.*;
+import java.io.InputStream;
+import java.util.Properties;
 import java.net.MalformedURLException;
+import org.lockss.daemon.*;
+import org.lockss.repository.*;
+import org.lockss.util.Logger;
 
 /**
  * This is a generic file implementation of CachedUrl which uses the
@@ -46,7 +46,6 @@ import java.net.MalformedURLException;
  * @author  Emil Aalto
  * @version 0.0
  */
-
 public class GenericFileCachedUrl extends BaseCachedUrl {
   private LockssRepository repository;
   private RepositoryNode leaf = null;
@@ -54,7 +53,6 @@ public class GenericFileCachedUrl extends BaseCachedUrl {
 
   public GenericFileCachedUrl(CachedUrlSet owner, String url) {
     super(owner, url);
-    repository = LockssRepositoryImpl.repositoryFactory(owner.getArchivalUnit());
   }
 
   public boolean exists() {
@@ -73,6 +71,9 @@ public class GenericFileCachedUrl extends BaseCachedUrl {
   }
 
   private void ensureLeafLoaded() {
+    if (repository==null) {
+      repository = LockssRepositoryImpl.repositoryFactory(super.cus.getArchivalUnit());
+    }
     if (leaf==null) {
       try {
         leaf = repository.getRepositoryNode(url);

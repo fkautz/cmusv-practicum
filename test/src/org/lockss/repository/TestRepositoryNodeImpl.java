@@ -31,12 +31,11 @@ in this Software without prior written authorization from Stanford University.
 */
 
 package org.lockss.repository;
+
 import java.io.*;
 import java.util.*;
-import junit.framework.TestCase;
 import org.lockss.test.*;
 import org.lockss.util.StreamUtil;
-import java.net.*;
 
 /**
  * This is the test class for org.lockss.daemon.LeafEntryImpl

@@ -32,23 +32,22 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.plugin;
 
-import org.lockss.daemon.*;
-import org.lockss.test.*;
-import java.util.Iterator;
-import org.lockss.repository.*;
-import java.net.MalformedURLException;
-import org.lockss.plugin.simulated.SimulatedArchivalUnit;
 import java.io.*;
+import java.util.Iterator;
+import java.net.MalformedURLException;
+import org.lockss.daemon.*;
+import org.lockss.repository.*;
+import org.lockss.test.*;
+import org.lockss.plugin.simulated.SimulatedArchivalUnit;
 import org.lockss.util.StreamUtil;
 
 /**
- * This is the test class for org.lockss.plugin.simulated.GenericFileUrlCacher
+ * This is the test class for
+ * org.lockss.plugin.simulated.GenericFileCachedUrlSet.
  *
  * @author  Emil Aalto
  * @version 0.0
  */
-
-
 public class TestGenericFileCachedUrlSet extends LockssTestCase {
   private LockssRepository repo;
   private MockGenericFileArchivalUnit mau;
