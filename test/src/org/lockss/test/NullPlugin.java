@@ -135,6 +135,14 @@ public class NullPlugin {
       return new StringInputStream("");
     }
 
+    public InputStream openForHashing() {
+      return openForReading();
+    }
+
+    public byte[] getContentSize() {
+      return new byte[0];
+    }
+
     public Properties getProperties() {
       return new Properties();
     }

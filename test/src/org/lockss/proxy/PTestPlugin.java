@@ -39,6 +39,7 @@ import java.security.MessageDigest;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.test.*;
+import java.math.BigInteger;
 
 /**
  * Stub plugin for testing proxy.
@@ -83,6 +84,15 @@ class PTestPlugin {
 
     public InputStream openForReading() {
       return new StringInputStream(contents);
+    }
+
+    public InputStream openForHashing() {
+      return openForReading();
+    }
+
+    public byte[] getContentSize() {
+      return (new BigInteger(
+          Integer.toString(contents.length()))).toByteArray();
     }
 
     public Properties getProperties() {

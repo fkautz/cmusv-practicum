@@ -38,6 +38,7 @@ import java.io.IOException;
 import java.util.Properties;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
+import java.math.BigInteger;
 
 /**
  * This is a mock version of <code>CachedUrl</code> used for testing
@@ -96,6 +97,16 @@ public class MockCachedUrl implements CachedUrl {
     }
     return cachedIS;
   }
+
+  public InputStream openForHashing() {
+    return openForReading();
+  }
+
+  public byte[] getContentSize() {
+    return (new BigInteger(
+        Integer.toString(content.length()))).toByteArray();
+  }
+
 
   public Properties getProperties(){
     return cachedProp;
