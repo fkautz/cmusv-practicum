@@ -500,43 +500,4 @@ public class LcapComm implements LockssManager {
       return new LcapSocket();
     }
   }
-
-  // remove these
-
-  /** Multicast a message to all caches holding the ArchivalUnit.
-   * @param msg the message to send
-   * @param au archival unit for which this message is relevant.  Used to
-   * determine which multicast socket/port to send to.
-   * @deprecated Use {@link #send(LockssDatagram, ArchivalUnit)}
-   * @throws IOException
-   */
-  public void sendMessage(LcapMessage msg, ArchivalUnit au)
-      throws IOException {
-    if (theManager == null) {
-      throw new IllegalStateException("LcapComm singleton not created");
-    }
-    getComm().send(new LockssDatagram(LockssDatagram.PROTOCOL_LCAP,
-				      msg.encodeMsg()),
-		   au);
-  }
-
-  /** Unicast a message to a single cache.
-   * @param msg the message to send
-   * @param au archival unit for which this message is relevant.  Used to
-   * determine which multicast socket/port to send to.
-   * @param id the identity of the cache to which to send the message
-   * @deprecated Use {@link #sendTo(LockssDatagram, ArchivalUnit,
-   * LcapIdentity)}
-   * @throws IOException
-   */
-  public void sendMessageTo(LcapMessage msg, ArchivalUnit au,
-				   LcapIdentity id)
-      throws IOException {
-    if (theManager == null) {
-      throw new IllegalStateException("LcapComm singleton not created");
-    }
-    getComm().sendTo(new LockssDatagram(LockssDatagram.PROTOCOL_LCAP,
-					msg.encodeMsg()),
-		     au, id);
-  }
 }
