@@ -36,10 +36,14 @@ import java.io.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.app.*;
+import org.lockss.test.*;
 
 public class StartProxy {
   public static void main(String args[]) {
-    PTestPlugin.makeTest();
+    MockLockssDaemon daemon = new MockLockssDaemon(null);
+    ArchivalUnit au = PTestPlugin.makeTestAU();
+    PluginUtil.registerArchivalUnit(au);
+
     ProxyManager manager = new ProxyManager();
     try {
       manager.initService(null);
