@@ -126,19 +126,21 @@ public class DamagedNodeSet {
   }
 
   synchronized public void clearDamage(CachedUrlSet cus) {
-    Iterator damagedIt = nodesWithDamage.iterator();
-    ArrayList clearList = new ArrayList();
-    clearList.add(cus.getUrl());
-    while(damagedIt.hasNext()){
-      String url = (String) damagedIt.next();
-      if(cus.containsUrl(url)) {
-        clearList.add(url);
+    if(nodesWithDamage.contains(cus.getUrl())) {
+      Iterator damagedIt = nodesWithDamage.iterator();
+      ArrayList clearList = new ArrayList();
+      clearList.add(cus.getUrl());
+      while (damagedIt.hasNext()) {
+        String url = (String) damagedIt.next();
+        if (cus.containsUrl(url)) {
+          clearList.add(url);
+        }
       }
+      for (int idx = 0; idx < clearList.size(); idx++) {
+        nodesWithDamage.remove(clearList.get(idx));
+      }
+      repository.storeDamagedNodeSet(this);
     }
-    for(int idx=0;idx < clearList.size(); idx++) {
-      nodesWithDamage.remove(clearList.get(idx));
-    }
-    repository.storeDamagedNodeSet(this);
   }
 
   /**
