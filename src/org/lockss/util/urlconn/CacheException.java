@@ -85,7 +85,7 @@ public class CacheException extends IOException {
     return nestedException;
   }
 
-  public boolean getAttribute(int attribute) {
+  public boolean isAttributeSet(int attribute) {
     return attributeBits.get(attribute);
   }
 
