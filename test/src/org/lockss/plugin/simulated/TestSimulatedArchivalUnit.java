@@ -59,7 +59,7 @@ public class TestSimulatedArchivalUnit extends TestCase {
     //XXX test the changes
   }
   public void testMapUrlToContentFileName(String url) {
-    String testStr = SimulatedArchivalUnit.SIMULATED_URL + "/branch1/branch2";
+    String testStr = SimulatedArchivalUnit.SIMULATED_URL_ROOT + "/branch1/branch2";
     String expectedStr = SimulatedContentGenerator.ROOT_NAME + "/branch1/branch2/index.html";
     assertTrue(SimulatedArchivalUnit.mapUrlToContentFileName(testStr).equals(expectedStr));
 
