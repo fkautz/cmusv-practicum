@@ -75,7 +75,7 @@ public class MockCachedUrl implements CachedUrl {
     return url;
   }
 
-  public Reader getReader() {
+  public Reader openForReading() {
     if (content != null) {
       return new StringReader(content);
     }
@@ -104,7 +104,7 @@ public class MockCachedUrl implements CachedUrl {
 
   // Read interface - used by the proxy.
 
-  public InputStream openForReading() {
+  public InputStream getUnfilteredInputStream() {
     if (content != null) {
       return new StringInputStream(content);
     }
@@ -112,7 +112,7 @@ public class MockCachedUrl implements CachedUrl {
   }
 
   public InputStream openForHashing() {
-    return openForReading();
+    return getUnfilteredInputStream();
   }
 
   public byte[] getUnfilteredContentSize() {

@@ -167,7 +167,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
     cacher.cache();
 
     CachedUrl url = new BaseCachedUrl(mcus, TEST_URL);
-    InputStream is = url.openForReading();
+    InputStream is = url.getUnfilteredInputStream();
     ByteArrayOutputStream baos = new ByteArrayOutputStream(12);
     StreamUtil.copy(is, baos);
     is.close();

@@ -150,7 +150,7 @@ public class CuUrl {
 
     public InputStream getInputStream() throws IOException {
       connect();
-      InputStream res = cu.openForReading();
+      InputStream res = cu.getUnfilteredInputStream();
       return res;
     }
 

@@ -157,15 +157,15 @@ public class NullPlugin {
       return CachedUrlSetNode.TYPE_CACHED_URL;
     }
 
-    public InputStream openForReading() {
+    public InputStream getUnfilteredInputStream() {
       return new StringInputStream("");
     }
 
     public InputStream openForHashing() {
-      return openForReading();
+      return getUnfilteredInputStream();
     }
 
-    public Reader getReader() {
+    public Reader openForReading() {
       throw new UnsupportedOperationException("Not implemented");
     }
 

@@ -60,7 +60,8 @@ public class RamParser implements ContentParser {
     } else if (cb == null) {
       throw new IllegalArgumentException("Called with null callback");
     }
-    reader = new BufferedReader(cu.getReader());
+//     reader = new BufferedReader(cu.getReader());
+    reader = new BufferedReader(cu.openForReading());
     for (String line = reader.readLine();
 	 line != null;
 	 line = reader.readLine()) {

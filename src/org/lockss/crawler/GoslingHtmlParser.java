@@ -119,11 +119,8 @@ public class GoslingHtmlParser implements ContentParser {
       return;
     }
 
-    InputStream is = cu.openForReading();
-    // set the reader to our default encoding
-    //XXX try to extract encoding from source
-    Reader reader = new InputStreamReader(is, Constants.DEFAULT_ENCODING); //should do this elsewhere
-    //XXX fix here
+    Reader reader = cu.openForReading();
+
     String redirectedTo = getRedirectedTo(cu);
     URL srcUrl = null;
     if (redirectedTo != null) {

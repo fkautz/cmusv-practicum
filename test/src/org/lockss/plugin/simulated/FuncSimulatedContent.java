@@ -355,7 +355,7 @@ public class FuncSimulatedContent extends LockssTestCase {
   }
 
   private String getUrlContent(CachedUrl url) throws IOException {
-    InputStream content = url.openForReading();
+    InputStream content = url.getUnfilteredInputStream();
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     StreamUtil.copy(content, baos);
     content.close();

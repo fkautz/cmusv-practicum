@@ -226,19 +226,19 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
       throw new UnsupportedOperationException("Not implemented");
     }
 
-    public InputStream openForReading() {
+    public InputStream getUnfilteredInputStream() {
       return new StringInputStream(contents);
     }
 
     public InputStream openForHashing() {
-      return openForReading();
+      return getUnfilteredInputStream();
     }
 
     protected InputStream getFilteredStream() {
       throw new UnsupportedOperationException("Not implemented");
     }
 
-    public Reader getReader() {
+    public Reader openForReading() {
       throw new UnsupportedOperationException("Not implemented");
     }
 
