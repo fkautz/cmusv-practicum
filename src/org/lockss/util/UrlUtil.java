@@ -69,15 +69,8 @@ public class UrlUtil {
    */
   public static String getUrlPrefix(String urlStr) throws MalformedURLException{
     URL url = new URL(urlStr);
-    StringBuffer sb = new StringBuffer();
-    sb.append(url.getProtocol());
-    sb.append("://");
-    sb.append(url.getHost());
-    if (url.getPort() != -1){
-      sb.append(':');
-      sb.append(url.getPort());
-    }
-    return sb.toString();
+    URL url2 = new URL(url.getProtocol(), url.getHost(), url.getPort(), "");
+    return url2.toString();
   }
 
 
