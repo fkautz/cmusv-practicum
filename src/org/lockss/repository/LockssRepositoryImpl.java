@@ -109,6 +109,7 @@ public class LockssRepositoryImpl
     // mainly important in testing to blank this
     lastPluginDir = ""+(char)('a'-1);
     nameMap = null;
+    super.stopService();
   }
 
   protected void setConfig(Configuration config, Configuration oldConfig,
