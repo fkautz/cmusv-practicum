@@ -49,7 +49,8 @@ public class PollSpec {
    */
   public static final String SINGLE_NODE_LWRBOUND = ".";
 
-  public static final String PARAM_USE_PROTOCOL_VERSION = Configuration.PREFIX +      "protocol.useProtocolVersion";
+  public static final String PARAM_USE_PROTOCOL_VERSION = Configuration.PREFIX
+      +      "protocol.useProtocolVersion";
 
   public static final int DEFAULT_USE_PROTOCOL_VERSION = 1;
 
