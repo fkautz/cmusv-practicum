@@ -308,7 +308,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
     try {
       InputStream is = muc.getUncachedInputStream();
       fail("Should have thrown RetryNewUrlException");
-    } catch (CacheException.RetryNewUrlException e) {
+    } catch (CacheException.NoRetryNewUrlException e) {
       assertEquals("301 Moved to Spain", e.getMessage());
       Properties p = muc.getUncachedProperties();
       assertEquals(redTo, p.getProperty("_header_location"));
@@ -347,7 +347,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
     try {
       InputStream is = muc.getUncachedInputStream();
       fail("Should have thrown RetryNewUrlException");
-    } catch (CacheException.RetryNewUrlException e) {
+    } catch (CacheException.NoRetryNewUrlException e) {
       assertEquals("301 Moved to Fresno", e.getMessage());
       Properties p = muc.getUncachedProperties();
       assertEquals(redTo, p.getProperty("_header_location"));
@@ -387,8 +387,8 @@ public class TestBaseUrlCacher extends LockssTestCase {
     mau.addUrlToBeCached(redTo);
     try {
       InputStream is = muc.getUncachedInputStream();
-      fail("Should have thrown RetryNewUrlException");
-    } catch (CacheException.RetryNewUrlException e) {
+      fail("Should have thrown NoRetryNewUrlException");
+    } catch (CacheException.NoRetryNewUrlException e) {
       assertEquals("301 Moved to Spain", e.getMessage());
       Properties p = muc.getUncachedProperties();
       assertEquals(redTo, p.getProperty("_header_location"));
@@ -499,7 +499,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
 	MockLockssUrlConnection mconn =
 	  (MockLockssUrlConnection)connections.remove(0);
 	mconn.setURL(url);
-	return mconn;	
+	return mconn;
       } else {
 	return new MockLockssUrlConnection();
       }

@@ -317,7 +317,7 @@ public class BaseUrlCacher implements UrlCacher {
 
   /**
    * If we haven't already connected, creates a connection from url, setting
-   * the user-agent and ifmodifiedsince values.  Then actually connects to the 
+   * the user-agent and ifmodifiedsince values.  Then actually connects to the
    * site and throws if we get an error code
    */
   private void openConnection(long lastCached) throws IOException {
@@ -340,7 +340,7 @@ public class BaseUrlCacher implements UrlCacher {
       try {
 	openOneConnection(lastCached);
 	break;
-      } catch (CacheException.RetryNewUrlException e) {
+      } catch (CacheException.NoRetryNewUrlException e) {
 	if (++retry >= MAX_REDIRECTS) {
 	  logger.warning("Max redirects hit, not redirecting " + origUrl +
 			 " past " + fetchUrl);
@@ -360,7 +360,7 @@ public class BaseUrlCacher implements UrlCacher {
 
   /**
    * If we haven't already connected, creates a connection from url, setting
-   * the user-agent and ifmodifiedsince values.  Then actually connects to the 
+   * the user-agent and ifmodifiedsince values.  Then actually connects to the
    * site and throws if we get an error code
    */
   private void openOneConnection(long lastCached) throws IOException {

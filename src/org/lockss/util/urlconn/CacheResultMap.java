@@ -31,8 +31,7 @@ in this Software without prior written authorization from Stanford University.
 */
 package org.lockss.util.urlconn;
 
-import java.io.*;
-import java.util.*;
+
 //import java.net.HttpURLConnection;
 
 /**
