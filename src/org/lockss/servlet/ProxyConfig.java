@@ -44,6 +44,7 @@ import org.mortbay.tools.*;
 import org.mortbay.servlet.MultiPartRequest;
 import org.lockss.util.*;
 import org.lockss.daemon.*;
+import org.lockss.jetty.*;
 import org.lockss.plugin.*;
 
 /** ProxyConfig servlet supplies configuration files or fragments for
@@ -341,7 +342,7 @@ public class ProxyConfig extends LockssServlet {
     tbl.newRow();
     tbl.newCell("align=center");
     tbl.add("or enter PAC file contents here:<br>");
-    TextArea txt = new TextArea("pac_contents2");
+    TextArea txt = new MyTextArea("pac_contents2");
     txt.setSize(80, 20);
     tbl.add(txt);
 
