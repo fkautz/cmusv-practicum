@@ -159,7 +159,7 @@ public interface UrlCacher {
   public void storeContent(InputStream input, CIProperties headers)
       throws IOException;
 
-  public void setPermissionMap(PermissionMap permissionMap);
+  public void setPermissionMapSource(PermissionMapSource permissionMapSource);
 
   public static class RedirectScheme {
     private int options = 0;

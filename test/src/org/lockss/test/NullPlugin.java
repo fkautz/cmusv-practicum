@@ -233,12 +233,7 @@ public class NullPlugin {
       throw new UnsupportedOperationException();
     }
 
-    /**
-     * setPermissionMap
-     *
-     * @param permissionMap PermissionMap
-     */
-    public void setPermissionMap(PermissionMap permissionMap) {
+    public void setPermissionMapSource(PermissionMapSource source) {
       throw new UnsupportedOperationException();
     }
 
