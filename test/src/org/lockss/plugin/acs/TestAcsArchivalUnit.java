@@ -278,8 +278,8 @@ public class TestAcsArchivalUnit
     URL a_url = new URL(ARTICLE_ROOT);
     URL base = new URL(ROOT_URL);
     DefinableArchivalUnit au = makeAu(base, a_url, JOURNAL_KEY, VOL_ID, VOL_YEAR);
-
-    assertEquals(2, au.getCrawlSpec().getRefetchDepth());
+    SpiderCrawlSpec cs = (SpiderCrawlSpec) au.getCrawlSpec();
+    assertEquals(2, cs.getRefetchDepth());
   }
 
   public void testDefPauseTime() throws Exception {

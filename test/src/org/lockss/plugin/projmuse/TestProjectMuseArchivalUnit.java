@@ -244,7 +244,8 @@ public class TestProjectMuseArchivalUnit extends LockssTestCase {
 
   public void testRefetchDepth() throws Exception {
     DefinableArchivalUnit au = makeAu(new URL(ROOT_URL), 60, DIR);
-    assertEquals(2, au.getCrawlSpec().getRefetchDepth());
+    SpiderCrawlSpec cs = (SpiderCrawlSpec) au.getCrawlSpec();
+    assertEquals(2, cs.getRefetchDepth());
   }
 
   public static void main(String[] argv) {

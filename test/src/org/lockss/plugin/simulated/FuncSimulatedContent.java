@@ -165,7 +165,7 @@ public class FuncSimulatedContent extends LockssTestCase {
 
   private void crawlContent() {
     CrawlSpec spec =
-      new CrawlSpec(SimulatedArchivalUnit.SIMULATED_URL_START, null);
+      new SpiderCrawlSpec(SimulatedArchivalUnit.SIMULATED_URL_START, null);
     Crawler crawler = new NewContentCrawler(sau, spec, new MockAuState());
     crawler.doCrawl();
   }

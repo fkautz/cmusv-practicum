@@ -102,7 +102,7 @@ public class RegistryArchivalUnit extends BaseArchivalUnit {
   protected CrawlSpec makeCrawlSpec() throws LockssRegexpException {
     CrawlRule rule = makeRules();
     List startUrls = ListUtil.list(startUrlString);
-    return new CrawlSpec(startUrls, startUrls, rule,
+    return new SpiderCrawlSpec(startUrls, startUrls, rule,
 			 m_maxRefetchDepth, m_permissionCheckers);
   }
 

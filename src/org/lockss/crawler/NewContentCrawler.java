@@ -42,9 +42,12 @@ import org.lockss.state.*;
 public class NewContentCrawler extends FollowLinkCrawler {
 
   private static Logger logger = Logger.getLogger("NewContentCrawler");
+  
+  private SpiderCrawlSpec spec;
 
-  public NewContentCrawler(ArchivalUnit au, CrawlSpec spec, AuState aus) {
-    super(au, spec, aus);
+  public NewContentCrawler(ArchivalUnit au, CrawlSpec crawlSpec, AuState aus) {
+    super(au, crawlSpec, aus);
+    spec = (SpiderCrawlSpec) crawlSpec;
     crawlStatus = new Crawler.Status(au, spec.getStartingUrls(), getType());
   }
 

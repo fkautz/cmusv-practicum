@@ -89,7 +89,7 @@ public class TestCrawlerImpl extends LockssTestCase {
     mau.setAuCachedUrlSet(cus);
     crawlRule = new MockCrawlRule();
     crawlRule.addUrlToCrawl(startUrl);
-    spec = new CrawlSpec(startUrls, startUrls, crawlRule, 1);
+    spec = new SpiderCrawlSpec(startUrls, startUrls, crawlRule, 1);
     getMockLockssDaemon().getAlertManager();
     crawler = new TestableCrawlerImpl(mau, spec, aus);
     ((CrawlerImpl)crawler).lockssCheckers =

@@ -79,7 +79,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
     theDaemon.getHashService();
 
     mau = new MyMockArchivalUnit();
-    mau.setCrawlSpec(new CrawlSpec(tempDirPath, null));
+    mau.setCrawlSpec(new SpiderCrawlSpec(tempDirPath, null));
     plugin = new MockPlugin();
     plugin.initPlugin(theDaemon);
     mau.setPlugin(plugin);
