@@ -349,10 +349,10 @@ public class LcapComm extends BaseLockssManager {
     int proto = ld.getProtocol();
     MessageHandler handler;
     if (proto < messageHandlers.size() &&
-	(handler = (MessageHandler)messageHandlers.get(proto))  != null) {
+	(handler = (MessageHandler)messageHandlers.get(proto)) != null) {
       runHandler(handler, ld);
     } else {
-      log.warning("Message receved for unregistered protocol: " + proto);
+      log.warning("Message received for unregistered protocol: " + proto);
     }
 //      for (Iterator iter = messageHandlers.iterator(); iter.hasNext();) {
 //        runHandler((MessageHandler)iter.next(), ld);
