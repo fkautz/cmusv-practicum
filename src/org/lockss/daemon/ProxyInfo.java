@@ -65,7 +65,10 @@ public class ProxyInfo {
    */
   String getProxyHost() {
     if (proxyHost == null) {
-      proxyHost = Configuration.getParam(IdentityManager.PARAM_LOCAL_IP);
+      proxyHost =
+	Configuration.getParam(ConfigManager.PARAM_PLATFORM_FQDN,
+			       Configuration.getParam(IdentityManager.
+						      PARAM_LOCAL_IP));
     }
     return proxyHost;
   }

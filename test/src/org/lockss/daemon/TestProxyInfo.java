@@ -64,6 +64,17 @@ public class TestProxyInfo extends LockssTestCase {
     assertEquals("foo", new ProxyInfo("foo").getProxyHost());
   }
 
+  // platform param should supersede local ip
+  public void testGetProxyHostFromPlatform() {
+    String h = "fq.dn.org";
+    Properties p = new Properties();
+    p.put(ConfigManager.PARAM_PLATFORM_FQDN, h);
+    p.put(IdentityManager.PARAM_LOCAL_IP, "superseded.by.platform");
+    ConfigurationUtil.setCurrentConfigFromProps(p);
+    assertEquals(h, new ProxyInfo().getProxyHost());
+    assertEquals("foo", new ProxyInfo("foo").getProxyHost());
+  }
+
   String ifsRE =
     " if \\(shExpMatch\\(url, \\\"http://foo\\.bar/\\*\\\"\\)\\)\\n" +
     " { return \\\"PROXY host\\.org:9090\\\"; }\\n\\n" +
