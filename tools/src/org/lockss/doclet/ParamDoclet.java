@@ -244,7 +244,10 @@ public class ParamDoclet {
       } else if (boolean.class == cls) {
 	defaultVal = (new Boolean(fld.getBoolean(null))).toString();
       } else {
-	defaultVal = fld.get(null).toString();
+	Object dval = fld.get(null);
+	if (dval != null) {
+	  defaultVal = dval.toString();
+	}
       }
     } catch (Exception e) {
       root.printError(field.name() + ": " + e);
