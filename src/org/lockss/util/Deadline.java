@@ -206,16 +206,20 @@ public class Deadline implements Comparable {
     changed();
   }
 
+  /** Change expiration time to n milliseconds from now. */
+  public synchronized void expireIn(long millis) {
+    expiration.setTime(millis);
+    changed();
+  }
+
   /** Add <code>delta</code> milliseconds to the deadline. */
   public synchronized void later(long delta) {
-    expiration.setTime(expiration.getTime() + delta);
-    changed();
+    expireIn(expiration.getTime() + delta);
   }
 
   /** Subtract <code>delta</code> from the deadline. */
   public synchronized void sooner(long delta) {
-    expiration.setTime(expiration.getTime() - delta);
-    changed();
+    expireIn(expiration.getTime() - delta);
   }
 
   /** Register a callback that will be called if/when the Deadline's
