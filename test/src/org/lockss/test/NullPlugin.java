@@ -79,17 +79,17 @@ public class NullPlugin {
     }
 
     public String getAUIdFromConfig(Configuration config) 
-	throws ArchivalUnit.ConfigurationException {
+	throws org.lockss.daemon.ArchivalUnit.ConfigurationException {
       return null;
     }
 
     public org.lockss.daemon.ArchivalUnit configureAU(Configuration config)
-	throws ArchivalUnit.ConfigurationException {
+	throws org.lockss.daemon.ArchivalUnit.ConfigurationException {
       return null;
     }
 
     public org.lockss.daemon.ArchivalUnit createAU(Configuration auConfig)
-	throws ArchivalUnit.ConfigurationException {
+	throws org.lockss.daemon.ArchivalUnit.ConfigurationException {
       return null;
     }
 
