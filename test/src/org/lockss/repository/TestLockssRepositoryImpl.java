@@ -44,20 +44,25 @@ import org.lockss.plugin.*;
  */
 
 public class TestLockssRepositoryImpl extends LockssTestCase {
+  private MockLockssDaemon daemon;
   private LockssRepositoryImpl repo;
   private MockArchivalUnit mau;
   private String tempDirPath;
 
   public void setUp() throws Exception {
     super.setUp();
+    daemon = new MockLockssDaemon();
     tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     Properties props = new Properties();
     props.setProperty(LockssRepositoryImpl.PARAM_CACHE_LOCATION, tempDirPath);
+    // set small node cache; one test needs to fill it up
+    props.setProperty(LockssRepositoryImpl.PARAM_MAX_LRUMAP_SIZE, "17");
     ConfigurationUtil.setCurrentConfigFromProps(props);
 
     mau = new MockArchivalUnit();
     repo = (LockssRepositoryImpl)LockssRepositoryImpl.createNewLockssRepository(
         mau);
+    repo.initService(daemon);
   }
 
   public void tearDown() throws Exception {
