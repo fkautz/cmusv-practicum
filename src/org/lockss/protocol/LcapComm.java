@@ -126,6 +126,7 @@ public class LcapComm extends BaseLockssManager {
    */
   public void stopService() {
     // TODO: checkpoint here.
+    getDaemon().getStatusService().unregisterStatusAccessor("CommStats");
     stop();
     super.stopService();
   }
