@@ -226,6 +226,18 @@ public class TestDefinableArchivalUnit extends LockssTestCase {
     assertTrue(urlNormalizer instanceof org.lockss.plugin.definable.TestDefinableArchivalUnit.MyNormalizer);
   }
 
+  public void testMakeUrlNormalizerThrowsOnBadClass()
+      throws LockssRegexpException {
+    map.putString(DefinableArchivalUnit.AU_URL_NORMALIZER_KEY,
+		  "org.lockss.bogus.FakeClass");
+
+    try {
+      UrlNormalizer urlNormalizer = cau.makeUrlNormalizer();
+      fail("Should have thrown on a non-existant class");
+    } catch (DefinablePlugin.InvalidDefinitionException e){
+    }
+  }
+
   public static class NegativeCrawlRuleFactory
     implements CrawlRuleFromAuFactory {
 
