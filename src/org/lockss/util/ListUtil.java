@@ -234,4 +234,11 @@ public class ListUtil {
     }
     return Collections.unmodifiableList(l);
   }
+
+  /** Return a copy of the list, in reverse order */
+  public static List reverseCopy(List list) {
+    List res = new ArrayList(list);
+    Collections.reverse(res);
+    return res;
+  }
 }

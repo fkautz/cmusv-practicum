@@ -100,4 +100,12 @@ public class TestListUtil extends LockssTestCase {
     } catch (NullPointerException e) {
     }
   }
+
+  public void testReverseCopy() {
+    assertEquals(0, ListUtil.reverseCopy(new ArrayList()).size());
+    List l0 = ListUtil.list("foo", "bar", new Integer(7));
+    List r0 = ListUtil.reverseCopy(l0);
+    assertNotSame(l0, r0);
+    assertEquals(ListUtil.list(new Integer(7), "bar", "foo"), r0);
+  }
 }
