@@ -371,6 +371,5 @@ public class TestStringUtil extends LockssTestCase {
     catch (IOException e) {
       fail(e.getMessage());
     }
-}
-
+  }
 }
