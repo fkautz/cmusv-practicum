@@ -357,6 +357,12 @@ public class StringUtil {
     return sb.toString();
   }
 
+  /** Reads in the entire contents of a file into a string */
+  public static String fromFile(String path) throws IOException {
+    return fromReader(new FileReader(path));
+  }
+
+
   /**
    * Test whether a string is null or the empty string
    * @param s the string

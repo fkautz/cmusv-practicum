@@ -349,4 +349,23 @@ public class TestStringUtil extends LockssTestCase {
     String txt2 = "This Is 8 Words.  Can It Be Handled?";
     assertEquals(StringUtil.titleCase(txt1),txt2);
   }
+
+  public void testFromFile() {
+    try {
+      String txt = "Here is some weird text.\nIt has !@#$%^&*()214 in it.";
+      String path = getTempDir().getAbsolutePath() + File.separator +
+          "test.txt";
+      FileWriter fw = new FileWriter(path);
+      fw.write(txt);
+      fw.close();
+      String readtxt = StringUtil.fromFile(path);
+      assertEquals(txt, readtxt);
+      File fl = new File(path);
+      fl.delete();
+    }
+    catch (IOException e) {
+      fail(e.getMessage());
+    }
+}
+
 }

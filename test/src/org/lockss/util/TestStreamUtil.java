@@ -92,20 +92,4 @@ public class TestStreamUtil extends LockssTestCase {
     writer.close();
     assertTrue(resultStr.equals("test string"));
   }
-
-  public void testReadFile() {
-   try {
-     String txt = "Here is some weird text.\nIt has !@#$%^&*()214 in it.";
-     String path = getTempDir().getAbsolutePath() + File.separator + "test.txt";
-     FileWriter fw = new FileWriter(path);
-     fw.write(txt);
-     fw.close();
-     String readtxt = StreamUtil.readFile(path);
-     assertEquals(txt,readtxt);
-     File fl = new File(path);
-     fl.delete();
-   } catch (IOException e) {
-     fail(e.getMessage());
-   }
-  }
 }
