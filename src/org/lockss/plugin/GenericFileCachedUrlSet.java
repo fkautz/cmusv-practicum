@@ -211,7 +211,8 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
       MessageDigest hasher = LcapMessage.getDefaultHasher();
       CachedUrlSetHasher cush = contentHasherFactory(this, hasher);
       long bytesPerMs = 0;
-      SystemMetrics metrics = SystemMetrics.getSystemMetrics();
+      SystemMetrics metrics = (SystemMetrics)
+          LockssDaemon.getManager(LockssDaemon.SYSTEM_METRICS);
       try {
         bytesPerMs = metrics.getBytesPerMsHashEstimate(cush, hasher);
       } catch (IOException ie) {
