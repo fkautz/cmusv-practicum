@@ -234,6 +234,17 @@ public class RepositoryNodeImpl implements RepositoryNode {
     return currentVersion;
   }
 
+  /**
+   * Creates the directory for the node location, if non-existent.
+   */
+  public void createNodeLocation() {
+    ensureCurrentInfoLoaded();
+    if (!nodeRootFile.exists()) {
+      logger.debug3("Creating root directory for CUS '"+url+"'");
+      nodeRootFile.mkdirs();
+    }
+  }
+
   public synchronized void makeNewVersion() {
     if (newVersionOpen) {
       // check if time since new version exceeds timeout

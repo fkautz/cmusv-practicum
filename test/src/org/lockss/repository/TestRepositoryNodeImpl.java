@@ -285,6 +285,20 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
     assertEquals(1, leaf.getCurrentVersion());
   }
 
+  public void testMakeNodeLocation() throws Exception {
+    RepositoryNodeImpl leaf = (RepositoryNodeImpl)
+        repo.createNewNode("http://www.example.com/testDir");
+    String nodeLoc = tempDirPath + LockssRepositoryServiceImpl.CACHE_ROOT_NAME;
+    nodeLoc = LockssRepositoryServiceImpl.mapAuToFileLocation(nodeLoc, mau);
+    nodeLoc = LockssRepositoryServiceImpl.mapUrlToFileLocation(nodeLoc,
+        "http://www.example.com/testDir");
+    File testFile = new File(nodeLoc);
+    assertFalse(testFile.exists());
+    leaf.createNodeLocation();
+    assertTrue(testFile.exists());
+    assertTrue(testFile.isDirectory());
+  }
+
   public void testMakeNewVersion() throws Exception {
     Properties props = new Properties();
     props.setProperty("test 1", "value 1");
