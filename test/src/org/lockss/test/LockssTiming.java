@@ -138,6 +138,11 @@ public class LockssTiming extends LockssTestCase {
     return tot;
   }
 
+  protected InputStreamReader newInputStreamReader(InputStream is)
+      throws UnsupportedEncodingException{
+    return new InputStreamReader(is, Constants.DEFAULT_ENCODING);
+  }
+
   public interface Computation {
     public void execute() throws Exception;
   }
