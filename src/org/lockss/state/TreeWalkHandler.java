@@ -215,8 +215,13 @@ public class TreeWalkHandler {
         // check with crawl manager
         if (theAu.shouldCrawlForNewContent(manager.getAuState())) {
           treeWalkAborted = true;
+          logger.debug("Requesting new content crawl.  Aborting...");
           theCrawlManager.startNewContentCrawl(theAu, null, null, activityLock);
-          logger.debug("Requested new content crawl.  Aborting...");
+        } else if (manager.repairsNeeded()) {
+          // schedule repairs if needed
+          treeWalkAborted = true;
+          logger.debug("Requesting node manager repairs.  Aborting...");
+          manager.scheduleRepairs(activityLock);
         } else {
           // do the actual treewalk
           logger.debug("Tree walk started: " + theAu.getName());

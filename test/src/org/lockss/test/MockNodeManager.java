@@ -136,5 +136,12 @@ public class MockNodeManager implements NodeManager {
     throw new UnsupportedOperationException("Not implemented");
   }
 
+  public boolean repairsNeeded() {
+    return false;
+  }
+
+  public void scheduleRepairs(ActivityRegulator.Lock activityLock) {
+    throw new UnsupportedOperationException("Not implemented");
+  }
 
 }
