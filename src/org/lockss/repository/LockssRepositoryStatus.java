@@ -119,7 +119,7 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
     private List getRows(boolean includeInternalAus) {
       List rows = new ArrayList();
       TreeSet roots = new TreeSet();
-      List repos = daemon.getConfigManager().getRepositoryList();
+      List repos = daemon.getRepositoryManager().getRepositoryList();
       for (Iterator iter = repos.iterator(); iter.hasNext(); ) {
 	String repoSpec = (String)iter.next();
 	String path = LockssRepositoryImpl.getLocalRepositoryPath(repoSpec);

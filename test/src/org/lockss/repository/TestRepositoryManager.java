@@ -84,6 +84,22 @@ public class TestRepositoryManager extends LockssTestCase {
     assertEquals(1, repo1.cnt);
   }
 
+  public void testGetRepositoryList() throws Exception {
+    assertEmpty(mgr.getRepositoryList());
+    ConfigurationUtil.setFromArgs("org.lockss.platform.diskSpacePaths",
+				  "/foo/bar");
+    assertEquals(ListUtil.list("local:/foo/bar"), mgr.getRepositoryList());
+    ConfigurationUtil.setFromArgs("org.lockss.platform.diskSpacePaths",
+				  "/foo/bar;/cache2");
+    assertEquals(ListUtil.list("local:/foo/bar", "local:/cache2"),
+		 mgr.getRepositoryList());
+  }
+
+  public void testGetRepositoryDF () throws Exception {
+    PlatformInfo.DF df = mgr.getRepositoryDF("local:.");
+    assertNotNull(df);
+  }
+
   class MyMockLockssRepositoryImpl extends LockssRepositoryImpl {
     int nodeCacheSize = 0;
     int cnt = 0;
