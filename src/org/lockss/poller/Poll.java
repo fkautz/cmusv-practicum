@@ -415,6 +415,13 @@ public abstract class Poll implements Serializable {
     return m_key;
   }
 
+  public String getErrorString() {
+    if(m_pollstate < 0) {
+      return ERROR_STRINGS[-m_pollstate];
+    }
+    return "No Error";
+  }
+
   double getMargin() {
     return m_margin;
   }
