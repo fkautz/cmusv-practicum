@@ -89,7 +89,7 @@ public class LcapIdentity implements Serializable {
    * construct a new Identity from an address
    * @param addr the InetAddress
    */
-  LcapIdentity(InetAddress addr) {
+  public LcapIdentity(InetAddress addr) {
     m_idKey = makeIdKey(addr);
     m_reputation = IdentityManager.INITIAL_REPUTATION;
     m_address = addr;
