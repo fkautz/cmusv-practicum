@@ -70,6 +70,10 @@ public class MockLockssRepository implements LockssRepository {
   public void stopService() {
   }
 
+  public void setAuConfig(Configuration auConfig) {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
   public RepositoryNode getNode(String url)
       throws MalformedURLException {
     return getNode(url, false);

@@ -35,12 +35,12 @@ package org.lockss.repository;
 import java.net.MalformedURLException;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
-import org.lockss.app.LockssManager;
+import org.lockss.app.*;
 
 /**
  * LockssRepository is used to organize the urls being cached.
  */
-public interface LockssRepository extends LockssManager {
+public interface LockssRepository extends LockssAuManager {
   /**
    * Returns a {@link RepositoryNode} which represents the url in question.
    * This only returns urls which exist in the cache (null otherwise).

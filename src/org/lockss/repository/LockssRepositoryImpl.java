@@ -53,7 +53,9 @@ import java.net.MalformedURLException;
  * finalized (they go to null when the last hard reference is gone, then are
  * removed from the cache on finalize()).
  */
-public class LockssRepositoryImpl extends BaseLockssManager implements LockssRepository {
+public class LockssRepositoryImpl
+  extends BaseLockssManager implements LockssRepository {
+
   /**
    * Configuration parameter name for Lockss cache location.
    */
@@ -117,6 +119,12 @@ public class LockssRepositoryImpl extends BaseLockssManager implements LockssRep
                            Set changedKeys) {
     // at some point we'll have to respond to changes in the available disk
     // space list
+  }
+
+  /** Called between initService() and startService(), then whenever the
+   * AU's config changes.
+   */
+  public void setAuConfig(Configuration auConfig) {
   }
 
   public RepositoryNode getNode(String url) throws MalformedURLException {
@@ -499,4 +507,11 @@ public class LockssRepositoryImpl extends BaseLockssManager implements LockssRep
   static String getAuKey(ArchivalUnit au) {
     return au.getAuId();
   }
+
+  public static class Factory implements LockssAuManager.Factory {
+    public LockssAuManager createAuManager(ArchivalUnit au) {
+      return createNewLockssRepository(au);
+    }
+  }
+
 }
