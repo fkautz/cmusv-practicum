@@ -563,6 +563,27 @@ public class TestGoslingHtmlParser extends LockssTestCase {
     assertEquals(expected, cb.getFoundUrls());
   }
 
+  public void testRelativeLinksWithLeadingSlash() throws IOException {
+    String url1= "http://www.example.com/blah/branch1/index.html";
+    String url2= "http://www.example.com/blah/branch2/index.html";
+    String url3= "http://www.example.com/journals/american_imago/toc/aim60.1.html";
+
+    String source =
+      "<html><head><title>Test</title></head><body>"+
+      "<a href= branch1/index.html>link1</a>"+
+      "Filler, with <b>bold</b> tags and<i>others</i>"+
+      "<a href=\" branch2/index.html\">link2</a>"+
+      "<a href =\" /journals/american_imago/toc/aim60.1.html\">Number 1, Spring 2003</a>";
+
+    MockCachedUrl mcu = new MockCachedUrl("http://www.example.com/blah/");
+    mcu.setContent(source);
+
+    parser.parseForUrls(mcu, cb);
+
+    Set expected = SetUtil.set(url1, url2, url3);
+    assertEquals(expected, cb.getFoundUrls());
+  }
+
   public void testRelativeLinksUseRedirectedToAsBase() throws IOException {
     String url1= "http://www.example.com/extra_level/branch1/index.html";
     String url2= "http://www.example.com/extra_level/branch2/index.html";
