@@ -113,10 +113,21 @@ public class ConfigurationPropTreeImpl extends Configuration {
     return (String)props.get(key);
   }
 
+  /**
+   * Return a list of values for the given key.
+   */
   public List getList(String key) throws Configuration.InvalidParam {
     List propList = null;
+
     try {
-      propList = (List)props.get(key);
+      Object o = props.get(key);
+      if (o != null) {
+	if (o instanceof List) {
+	  propList = (List)o;
+	} else {
+	  propList = StringUtil.breakAt((String)o, ';');
+	}
+      }
     } catch (ClassCastException ex) {
       // The client requested a list of something that wasn't actually a list.
       // Throw a Config exception
