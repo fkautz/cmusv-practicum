@@ -313,7 +313,7 @@ public class IdentityManager extends BaseLockssManager {
     }
   }
 
-  void storeIdentities() throws ProtocolException {
+  public void storeIdentities() throws ProtocolException {
     try {
       String fn = Configuration.getParam(PARAM_IDDB_DIR);
       if (fn==null) {
