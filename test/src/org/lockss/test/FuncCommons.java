@@ -35,7 +35,7 @@ package org.lockss.test;
 import java.io.*;
 import java.util.*;
 import junit.framework.TestCase;
-import org.apache.commons.collections.*;
+import org.apache.commons.collections.map.ReferenceMap;
 
 
 /**

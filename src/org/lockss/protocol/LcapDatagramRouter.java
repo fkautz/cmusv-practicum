@@ -40,7 +40,7 @@ import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.poller.*;
-import org.apache.commons.collections.LRUMap;
+import org.apache.commons.collections.map.LRUMap;
 import org.mortbay.util.B64Code;
 
 // tk - synchronization here and in PartnerList
@@ -152,8 +152,9 @@ public class LcapDatagramRouter
 
     int dupSize =
       config.getInt(PARAM_DUP_MSG_HASH_SIZE, DEFAULT_DUP_MSG_HASH_SIZE);
-    if (dupSize != recentVerifiers.getMaximumSize()) {
-      recentVerifiers.setMaximumSize(dupSize);
+    if (dupSize != recentVerifiers.maxSize()) {
+      // Ok to discard current entries - might let some dup messages through.
+      recentVerifiers = new LRUMap(dupSize);
     }
 
     if (partnerList != null) {

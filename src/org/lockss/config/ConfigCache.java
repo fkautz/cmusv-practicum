@@ -35,7 +35,7 @@ package org.lockss.config;
 import java.io.*;
 import java.util.*;
 
-import org.apache.commons.collections.*;
+import org.apache.commons.collections.map.LinkedMap;
 import org.lockss.util.*;
 
 /**
@@ -50,8 +50,8 @@ public class ConfigCache {
     Logger.getLoggerWithInitialLevel("ConfigCache",
 				     Logger.getInitialDefaultLevel());
 
-  private SequencedHashMap m_remoteFileMap = new SequencedHashMap();
-  private SequencedHashMap m_localFileMap = new SequencedHashMap();
+  private LinkedMap m_remoteFileMap = new LinkedMap();
+  private LinkedMap m_localFileMap = new LinkedMap();
 
 
   /**

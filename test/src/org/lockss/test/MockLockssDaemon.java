@@ -50,7 +50,7 @@ import org.lockss.app.*;
 import org.lockss.daemon.*;
 import org.lockss.daemon.status.*;
 import org.lockss.remote.*;
-import org.apache.commons.collections.SequencedHashMap;
+import org.apache.commons.collections.map.LinkedMap;
 
 public class MockLockssDaemon extends LockssDaemon {
   private static Logger log = Logger.getLogger("MockLockssDaemon");
@@ -537,9 +537,9 @@ public class MockLockssDaemon extends LockssDaemon {
   }
 
   void setAuManager(ManagerDesc desc, ArchivalUnit au, LockssAuManager mgr) {
-    SequencedHashMap auMgrMap = (SequencedHashMap)auManagerMaps.get(au);
+    LinkedMap auMgrMap = (LinkedMap)auManagerMaps.get(au);
     if (auMgrMap == null) {
-      auMgrMap = new SequencedHashMap();
+      auMgrMap = new LinkedMap();
       auManagerMaps.put(au, auMgrMap);
     }
     auMgrMap.put(desc.getKey(), mgr);

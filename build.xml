@@ -149,7 +149,7 @@ Args:
 <!--    <property name="regexp.jar"     value="${lib}/gnu-regexp.jar"/> -->
   <property name="regexp.jar"     value="${lib}/gnu-regexp-1.1.4.jar"/>
   <property name="commons.collections.jar"
-  				  value="${lib}/commons-collections.jar"/>
+  				  value="${lib}/commons-collections-3.1.jar"/>
   <property name="commons.logging.jar"
   				  value="${lib}/commons-logging.jar"/>
   <property name="commons.httpclient.jar"
