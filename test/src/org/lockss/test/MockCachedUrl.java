@@ -58,6 +58,11 @@ public class MockCachedUrl implements CachedUrl {
     this.url = url;
   }
 
+  public MockCachedUrl(String url, CachedUrlSet cus) {
+    this(url);
+    this.cus = cus;
+  }
+
   public String getUrl() {
     return url;
   }
