@@ -48,6 +48,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   private String auId = "none";
   private CachedUrlSet cus = null;
   private MockObjectCallback pauseCallback = null;
+  private List newContentUrls = null;
 
   public MockArchivalUnit(){
   }
@@ -71,6 +72,15 @@ public class MockArchivalUnit implements ArchivalUnit {
   public void setAUCachedUrlSet(CachedUrlSet cus) {
     this.cus = cus;
   }
+
+  public List getNewContentCrawlUrls() {
+    return newContentUrls;
+  }
+
+  public void setNewContentCrawlUrls(List urls) {
+    newContentUrls = urls;
+  }
+
 
 
   /**

@@ -232,6 +232,11 @@ public class NullPlugin {
     public int hashCode() {
       return 0;
     }
+
+    public List getNewContentCrawlUrls() {
+      return null;
+    }
+    
   }
 
 /**
