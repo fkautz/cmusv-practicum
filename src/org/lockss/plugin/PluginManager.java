@@ -618,7 +618,8 @@ public class PluginManager extends BaseLockssManager {
     "org.lockss.plugin.highwire.HighWirePlugin",
     "org.lockss.plugin.projmuse.ProjectMusePlugin",
     "org.lockss.plugin.acs.AcsPlugin",
-    "org.lockss.plugin.absinthe.AbsinthePlugin"
+    "org.lockss.plugin.absinthe.AbsinthePlugin",
+    "org.lockss.plugin.emls.EmlsPlugin"
 //     "org.lockss.plugin.simulated.SimulatedPlugin",
   };
 
