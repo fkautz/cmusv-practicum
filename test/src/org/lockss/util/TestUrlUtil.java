@@ -174,6 +174,19 @@ public class TestUrlUtil extends LockssTestCase {
     }
   }
 
+  public void testNormalizeUrlQueryString() throws MalformedURLException {
+    assertEquals("http://a.com/dd?foo=bar",
+		 UrlUtil.normalizeUrl("http://A.com/dd?foo=bar"));
+  }
+
+  public void testNormalizeUrlRemovesHash() throws MalformedURLException {
+    assertEquals("http://a.com/xy",
+		 UrlUtil.normalizeUrl("http://a.com/xy#blah"));
+
+    assertEquals("http://www.bioone.org/perlserv/?request=archive-lockss&issn=0044-7447&volume=033",
+		 UrlUtil.normalizeUrl("http://www.bioone.org/perlserv/?request=archive-lockss&issn=0044-7447&volume=033#content"));
+  }
+
   public void testEqualUrls() throws MalformedURLException {
     assertTrue(UrlUtil.equalUrls(new URL("http://foo.bar/xyz#tag"),
 				 new URL("http://foo.bar/xyz#tag")));
