@@ -54,10 +54,7 @@ public class TestGenericFileUrlCacher extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
-    String tempDirPath = "";
-    try {
-      tempDirPath = super.getTempDir().getAbsolutePath() + File.separator;
-    } catch (Exception e) { fail("Couldn't get tempDir."); }
+    String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     mau = new MockGenericFileArchivalUnit(new CrawlSpec(tempDirPath, null));
     TestLockssRepositoryImpl.configCacheLocation(tempDirPath);
   }
