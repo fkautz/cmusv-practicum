@@ -442,7 +442,7 @@ public abstract class CrawlerImpl implements Crawler, PermissionMapSource {
   protected UrlCacher makeUrlCacher(String url) {
     UrlCacher uc = au.makeUrlCacher(url);
     uc.setConnectionPool(connectionPool);
-    //uc.setPermissionMap(permission
+    uc.setPermissionMapSource(this);
     return uc;
   }
 
@@ -480,7 +480,10 @@ public abstract class CrawlerImpl implements Crawler, PermissionMapSource {
 
   //PermissionMapSource method
   public PermissionMap getPermissionMap() {
-    throw new UnsupportedOperationException("not implemented");
+    if (permissionMap == null) {
+      populatePermissionMap();
+    }
+    return permissionMap;
   }
 
 }
