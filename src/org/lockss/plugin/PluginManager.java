@@ -48,7 +48,7 @@ import org.lockss.poller.*;
 public class PluginManager implements LockssManager {
   static final String PARAM_AU_TREE = Configuration.PREFIX + "au";
   private static String PARAM_PLUGIN_LOCATION =
-    Configuration.PREFIX + "pluginDir";
+    Configuration.PREFIX + "platform.pluginDir";
   private static String DEFAULT_PLUGIN_LOCATION = "./plugins";
 
   private static Logger log = Logger.getLogger("PluginMgr");
