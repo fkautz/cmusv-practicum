@@ -490,6 +490,20 @@ public class StringUtil {
   }
 
   /**
+   * Same as str.compareTo(str), except handles nulls (which sorts before all
+   * other strings)
+   */
+  public static int compareToHandleNull(String str1, String str2) {
+    if (str1 == null) {
+      return (str2 == null) ? 0 : -1;
+    }
+    if (str2 == null) {
+      return 1;
+    }
+    return str1.compareTo(str2);
+  }
+
+  /**
    * Compare two strings for equality or both null.
    * @param s1 string 1
    * @param s2 string 2

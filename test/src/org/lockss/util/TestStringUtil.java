@@ -532,4 +532,13 @@ System.out.println("s: "+s);
     assertEquals(9, StringUtil.nthIndexOf(2, "xyzzzzzysxyz", "xyz"));
   }
 
+  public void testCompareHandleNull() {
+    assertEquals(0, StringUtil.compareToHandleNull(null, null));
+    assertEquals(-1, StringUtil.compareToHandleNull(null, "a"));
+    assertEquals(1, StringUtil.compareToHandleNull("a", null));
+    assertEquals(1, StringUtil.compareToHandleNull("b", "a"));
+    assertEquals(-1, StringUtil.compareToHandleNull("a", "b"));
+    assertEquals(0, StringUtil.compareToHandleNull("a", "a"));
+  }
+
 }
