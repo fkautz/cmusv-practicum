@@ -53,13 +53,6 @@ public class HistoryCooperativePlugin extends BasePlugin {
   public static final String AUPARAM_JOURNAL_DIR = PD_DIR.getKey();
   public static final String AUPARAM_VOL = PD_VOL.getKey();
 
-  private static String titleSpec[][] = {
-      {
-      "American Historical Review", AUPARAM_BASE_URL,
-      "http://www.historycooperative.org/",
-      AUPARAM_JOURNAL_DIR, "ahr"}
-  };
-
   public void initPlugin(LockssDaemon daemon){
     configurationMap.putString(CM_NAME_KEY, PLUGIN_NAME);
     configurationMap.putString(CM_VERSION_KEY, CURRENT_VERSION);
@@ -69,7 +62,6 @@ public class HistoryCooperativePlugin extends BasePlugin {
                                    ListUtil.list(AUPARAM_BASE_URL,
                                                  AUPARAM_JOURNAL_DIR,
                                                  AUPARAM_VOL));
-    configurationMap.setMapElement(CM_TITLE_SPEC_KEY, titleSpec);
     super.initPlugin(daemon);
   }
 
