@@ -42,17 +42,17 @@ import org.lockss.plugin.base.*;
 import org.lockss.util.*;
 
 public class MockCrawlManagerStatus extends CrawlManagerStatus {
-  List statusObjects = new ArrayList();
+  Map statusMap = new HashMap();
 
   public MockCrawlManagerStatus() {
   }
 
-  public Crawler.Status getStatusObject(int idx) {
-    return (Crawler.Status)statusObjects.get(idx);
+  public Crawler.Status getStatusObject(String key) {
+    return (Crawler.Status)statusMap.get(key);
   }
 
   public void addStatusObject(Crawler.Status status) {
-    statusObjects.add(status);
+    statusMap.put(status.getKey(), status);
   }
 
 }
