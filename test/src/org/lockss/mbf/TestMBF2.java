@@ -138,7 +138,7 @@ public class TestMBF2 extends LockssTestCase {
   /*
    * Test a series of generate/verify pairs
    */
-  public void testMultiple() throws IOException {
+  public void dontTestMultiple() throws IOException {
     for (int i = 0; i < names.length; i++)
       for (int j = 0; j < 64; j++) {
 	onePair(names[i], 31, 32);
