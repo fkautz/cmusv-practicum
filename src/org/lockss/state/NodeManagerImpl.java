@@ -68,7 +68,7 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
   ArchivalUnit managedAu;
   AuState auState;
   NodeStateCache nodeCache;
-  int maxCacheSize;
+  int maxCacheSize = DEFAULT_CACHE_SIZE;
   private static Logger logger = Logger.getLogger("NodeManager");
   TreeWalkHandler treeWalkHandler;
 
