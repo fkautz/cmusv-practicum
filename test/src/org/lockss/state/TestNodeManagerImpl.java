@@ -1186,8 +1186,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     try {
 
       testmsg = LcapMessage.makeRequestMsg(
-          new PollSpec(mau.getAuId(),
-                       url, lwrBound, uprBound, null),
+          new MockPollSpec(mau, url, lwrBound, uprBound),
           null,
           bytes,
           bytes,

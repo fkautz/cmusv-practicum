@@ -152,7 +152,7 @@ public class RunDaemon
     String lwrBound = Configuration.getParam(PARAM_PS_LWRBND);
     String uprBound = Configuration.getParam(PARAM_PS_UPRBND);
 
-    PollSpec spec = new PollSpec(auId, url,lwrBound,uprBound, null);
+    PollSpec spec = new MockPollSpec(auId, url, lwrBound, uprBound, null);
 
     CachedUrlSet cus = getPluginManager().findCachedUrlSet(spec);
     try {
