@@ -49,7 +49,7 @@ public class PollStateBean extends PollState {
     this.status = poll.getStatus();
     this.startTime = poll.getStartTime();
     this.deadlineTime = poll.getDeadline().getExpirationTime();
-    this.ourPoll = poll.getOurPoll();
+    this.ourPoll = poll.isOurPoll();
   }
 
   /**
@@ -111,9 +111,17 @@ public class PollStateBean extends PollState {
 
   /**
    * Sets the poll owner boolean
-   * @param ourPollFlag
+   * @param ourPollFlag true iff our poll
    */
   public void setOurPoll(boolean ourPollFlag) {
     ourPoll = ourPollFlag;
+  }
+
+  /**
+   * Identical to 'isOurPoll()'.  Used for marshalling.
+   * @return true iff our poll
+   */
+  public boolean getOurPoll() {
+    return ourPoll;
   }
 }

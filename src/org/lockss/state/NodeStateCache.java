@@ -121,6 +121,11 @@ public class NodeStateCache {
     return new HashSet(lruMap.values());
   }
 
+  public void clear() {
+    lruMap.clear();
+    refMap.clear();
+  }
+
   int getCacheHits() { return cacheHits; }
   int getCacheMisses() { return cacheMisses; }
   int getRefHits() { return refHits; }
