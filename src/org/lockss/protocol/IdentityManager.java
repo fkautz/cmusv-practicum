@@ -246,8 +246,10 @@ public class IdentityManager {
         iddbDir.mkdirs();
       }
       File iddbFile = new File(iddbDir, IDDB_FILENAME);
-
-      if((iddbFile != null) && iddbFile.createNewFile() && iddbFile.canWrite()) {
+      if(!iddbFile.exists()) {
+        iddbFile.createNewFile();
+      }
+      if((iddbFile != null) && iddbFile.canWrite()) {
         IdentityListBean idlb = getIdentityListBean();
         Marshaller marshaller = new Marshaller(new FileWriter(iddbFile));
         marshaller.setMapping(getMapping());
