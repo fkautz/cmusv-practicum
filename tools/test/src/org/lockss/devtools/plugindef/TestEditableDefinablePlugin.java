@@ -193,6 +193,8 @@ public class TestEditableDefinablePlugin
     set.add(ConfigParamDescr.JOURNAL_ID);
     set.add(ConfigParamDescr.PUBLISHER_NAME);
     set.add(ConfigParamDescr.ISSUE_RANGE);
+    set.add(ConfigParamDescr.NUM_ISSUE_RANGE);
+    set.add(ConfigParamDescr.ISSUE_SET);
 
     Collection actualReturn = edPlugin.getKnownConfigParamDescrs();
     assertIsomorphic("default descrs", set, actualReturn);
