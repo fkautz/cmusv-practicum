@@ -240,6 +240,7 @@ public class RepairCrawler extends CrawlerImpl {
     if (!url.equals(actualURL)) {
       logger.info("setProperty(\"redirected-to\", " + actualURL + ")");
       props.setProperty(CachedUrl.PROPERTY_REDIRECTED_TO, actualURL);
+      props.setProperty(CachedUrl.PROPERTY_CONTENT_URL, actualURL);
     }
     return props;
   }
