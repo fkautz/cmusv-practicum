@@ -59,7 +59,7 @@ public class TestDefinableArchivalUnit extends LockssTestCase {
     super.setUp();
 
     DefinablePlugin cp = new DefinablePlugin();
-    map = cp.getConfigurationMap();
+    map = cp.getDefinitionMap();
     cau = new DefinableArchivalUnit(cp, map);
     map.putString(DefinablePlugin.CM_NAME_KEY, PLUGIN_NAME);
     map.putString(DefinablePlugin.CM_VERSION_KEY, CURRENT_VERSION);
