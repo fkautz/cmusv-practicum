@@ -160,6 +160,8 @@ public class UrlUtil {
       throws MalformedURLException {
     possiblyRelativeUrl =
       StringUtil.replaceString(possiblyRelativeUrl.trim(), " ", "%20");
+    possiblyRelativeUrl =
+      StringUtil.replaceString(possiblyRelativeUrl.trim(), "\"", "%22");
     try {
       org.apache.commons.httpclient.URI resultURI =
 	new org.apache.commons.httpclient.URI(possiblyRelativeUrl.toCharArray());
