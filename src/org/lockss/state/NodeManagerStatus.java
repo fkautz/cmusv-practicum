@@ -122,8 +122,8 @@ public class NodeManagerStatus {
       ArchivalUnit au = state.getArchivalUnit();
 
       //"AuID"
-      rowMap.put("AuID", ManagerStatus.makeNodeManagerRef(au.getName(),
-          au.getAUId()));
+      rowMap.put("AuName", ManagerStatus.makeNodeManagerRef(au.getName(),
+							    au.getAUId()));
 
       //"Status"
       rowMap.put("CrawlTime", new Long(state.getLastCrawlTime()));
