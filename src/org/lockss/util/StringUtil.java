@@ -330,5 +330,17 @@ public class StringUtil {
       return s1.equals(s2);
     }
   }
+
+  private static long gensymCtr = 0;
+
+  /**
+   * Generate a unique string.
+   * @param base the initial substring
+   * @return a string consisting of the supplied initial substring and a
+   * unique counter value.
+   */
+  public static String gensym(String base) {
+    return base + (gensymCtr++);
+  }
 }
 

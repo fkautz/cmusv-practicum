@@ -210,4 +210,12 @@ public class TestStringUtil extends LockssTestCase {
     assertTrue(StringUtil.equalStrings("foo", "foo"));
     assertTrue(!StringUtil.equalStrings("foo", "bar"));
   }
+
+  public void testGensym() {
+    String base = "foo";
+    String g1 = StringUtil.gensym(base);
+    String g2 = StringUtil.gensym(base);
+    assertTrue(g1.startsWith(base));
+    assertTrue(!g1.equals(g2));
+  }
 }
