@@ -35,7 +35,7 @@ import java.net.*;
 import java.util.HashMap;
 import java.util.Random;
 import org.mortbay.util.B64Code;
-import org.lockss.util.Logger;
+import org.lockss.util.*;
 import org.lockss.daemon.*;
 
 /**
@@ -336,7 +336,7 @@ public class LcapIdentity {
    * @param msg the active message
    */
   public void rememberActive(boolean NoOp, LcapMessage msg) {
-    m_lastActiveTime = System.currentTimeMillis();
+    m_lastActiveTime = TimeBase.nowMs();
     if (!NoOp) {
       m_lastOpTime = m_lastActiveTime;
     }

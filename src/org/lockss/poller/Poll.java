@@ -96,7 +96,7 @@ public abstract class Poll {
     m_msg = msg;
     m_urlSet = urlSet;
 
-    m_createTime = System.currentTimeMillis();
+    m_createTime = TimeBase.nowMs();
 
     // now copy the msg elements we need
     m_url = msg.getTargetUrl();

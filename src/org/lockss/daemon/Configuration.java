@@ -446,7 +446,7 @@ public abstract class Configuration {
 	  if (!goOn) {
 	    break;
 	  }
-	  lastReload = System.currentTimeMillis();
+	  lastReload = TimeBase.nowMs();
 	  //  	stopAndOrStartThings(true);
 	  reloadInterval = Integer.getInteger(Configuration.PREFIX +
 					      "parameterReloadInterval",
