@@ -53,6 +53,7 @@ import org.exolab.castor.mapping.*;
  */
 
 public class IdentityManager extends BaseLockssManager {
+  protected static Logger log = Logger.getLogger("IDMgr");
 
   static final String PARAM_LOCAL_IP = Configuration.PREFIX + "localIPAddress";
 
@@ -110,6 +111,7 @@ public class IdentityManager extends BaseLockssManager {
     super.startService();
     registerDefaultConfigCallback();
     reloadIdentities();
+    log.info("Local identity: " + getLocalIdentity());
   }
 
   /**
