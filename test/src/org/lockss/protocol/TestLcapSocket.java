@@ -106,10 +106,10 @@ public class TestLcapSocket extends LockssTestCase{
     LcapSocket.Multicast lskt = new LcapSocket.Multicast(rcvQ, mskt,
 							 (InetAddress)null);
     mskt.addToReceiveQueue(testPacket);
-    DoLater.Interrupter intr = DoLater.interruptMeIn(500);
+    Interrupter intr = interruptMeIn(500);
     PrivilegedAccessor.invokeMethod(lskt, "receivePacket");
     assertTrue(!rcvQ.isEmpty());
-    LockssDatagram rcvd = (LockssDatagram)rcvQ.get(new ProbabilisticTimer(0));
+    LockssDatagram rcvd = (LockssDatagram)rcvQ.get(Deadline.in(0));
     assertEquals(testPacket, rcvd.getPacket());
     intr.cancel();
   }

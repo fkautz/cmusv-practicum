@@ -48,7 +48,7 @@ public interface Queue {
    * an object appears in the queue or the timer expires.
    * @return The element formerly at the head of the queue
    */
-  public Object get(ProbabilisticTimer timer) throws InterruptedException;
+  public Object get(Deadline timer) throws InterruptedException;
 
   /** 
    * Return first element on queue, without removing it.

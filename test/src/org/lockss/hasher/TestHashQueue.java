@@ -75,7 +75,7 @@ public class TestHashQueue extends LockssTestCase {
 //  			  long estimatedDuration);
 
   static HashQueue.Request simpleReq(long deadline, int duration) {
-    return new HashQueue.Request(cus, dig, new Deadline(deadline),
+    return new HashQueue.Request(cus, dig, Deadline.in(deadline),
 				 null, null, null, duration);
   }
 
@@ -85,7 +85,7 @@ public class TestHashQueue extends LockssTestCase {
 			       HashService.Callback callback) {
     cus.setHashDuration(duration, bytes);
     HashQueue.Request req =
-      new HashQueue.Request(cus, dig, new Deadline(deadline),
+      new HashQueue.Request(cus, dig, Deadline.in(deadline),
 			    callback, null,
 			    cus.getContentHasher(dig),
 			    duration);
@@ -100,7 +100,7 @@ public class TestHashQueue extends LockssTestCase {
 			       HashService.Callback callback) {
     cus.setHashDuration(duration, bytes);
     HashQueue.Request req =
-      new HashQueue.Request(cus, dig, new Deadline(deadline),
+      new HashQueue.Request(cus, dig, Deadline.in(deadline),
 			    callback, cookie,
 			    cus.getContentHasher(dig),
 			    duration);
@@ -169,11 +169,11 @@ public class TestHashQueue extends LockssTestCase {
     assertEquals(0, doneList.size());
     q.removeCompleted();
     assertEquals(0, doneList.size());
-    r1.deadline = new Deadline(-1);
+    r1.deadline = Deadline.in(-1);
     q.removeCompleted();
     Object exp[] = {r1};
     assertIsomorphic(exp, doneList);
-    r2.deadline = new Deadline(-1);
+    r2.deadline = Deadline.in(-1);
     assertTrue(q.insert(r3));
     q.removeCompleted();
     Object exp2[] = {r1, r2, r3};

@@ -113,7 +113,7 @@ public class NamePoll extends Poll {
     long dur = msg.getDuration();
 
     if(prepareVoteCheck(msg)) {
-      if(!scheduleHash(new Deadline(dur), msg,
+      if(!scheduleHash(Deadline.in(dur), msg,
                        new VoteHashCallback())) {
         log.info(m_key + " no time to hash vote " + dur + ":" + m_hashTime);
         stopVote();

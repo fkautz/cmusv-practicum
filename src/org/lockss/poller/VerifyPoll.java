@@ -106,7 +106,7 @@ class VerifyPoll extends Poll {
       long time_remaining = m_deadline.getRemainingTime();
       long vote_delay = time_remaining/2;
       long vote_dev = time_remaining/4;
-      ProbabilisticTimer pt = new ProbabilisticTimer(vote_delay, vote_dev);
+      Deadline pt = Deadline.atRandomBefore(m_deadline);
       TimerQueue.schedule(pt, new PollTimerCallback(), this);
      }
   }

@@ -452,11 +452,17 @@ public abstract class Configuration {
 					      "parameterReloadInterval",
 					      1800000).longValue();
 	}
-	ProbabilisticTimer nextReload =
-	  new ProbabilisticTimer(reloadInterval, reloadInterval/4);
+	long reloadRange = reloadInterval/4;
+	Deadline nextReload =
+	  Deadline.inRandomRange(reloadInterval - reloadRange,
+				 reloadInterval + reloadRange);
 	log.info(nextReload.toString());
 	if (goOn) {
-	  nextReload.sleepUntil();
+	  try {
+	    nextReload.sleep();
+	  } catch (InterruptedException e) {
+	    // just wakeup and check for exit
+	  }
 	}
       }
     }
