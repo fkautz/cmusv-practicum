@@ -637,6 +637,18 @@ public class LockssTestCase extends TestCase {
     assertTrue(Arrays.equals(expected.getData(), actual.getData()));
   }
 
+
+  /**
+   * Asserts that two collections have all the same elements of the same
+   * cardinality; tries to give useful output if it fails
+   */
+  public static void assertSameElements(Collection expected,
+					Collection actual) {
+    assertTrue("Expected "+expected+" but was "+actual,
+	       org.apache.commons.collections.
+	       CollectionUtils.isEqualCollection(expected, actual));
+  }
+
   /** Abstraction to do something in another thread, after a delay,
    * unless cancelled.  If the sceduled activity is still pending when the
    * test completes, it is cancelled by tearDown().
