@@ -112,6 +112,14 @@ public class DebugUtils {
     return Runtime.getRuntime();
   }
 
+  /** Make it easy for code in main source hierarchy to invoke a thread
+   * dump via reflection.  Should go away when that's no longer
+   * necessary. */
+  public static void staticThreadDump() {
+    getInstance().threadDump();
+    TimerUtil.guaranteedSleep(2000);
+  }
+
   /** Linux implementation of platform-specific code */
   public static class Linux extends DebugUtils {
     // offsets into /proc/<n>/stat
