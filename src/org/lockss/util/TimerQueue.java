@@ -131,10 +131,9 @@ public class TimerQueue implements Serializable {
 //       }
       goOn = true;
 
-      Deadline timeout = Deadline.in(60000);
       while (goOn) {
 	try {
-	  Request req = (Request)queue.peekWait(timeout);
+	  Request req = (Request)queue.peekWait(Deadline.in(60000));
 	  if (req != null) {
 	    req.deadline.sleep();
 	    if (req.deadline.expired()) {

@@ -376,11 +376,10 @@ class HashQueue implements Serializable {
       }
       goOn = Boolean.TRUE;
 
-      Deadline timeout = Deadline.in(60000);
       try {
 	while (goOn.booleanValue()) {
 	  if (!runAndNotify(hashNumSteps, hashStepBytes, goOn)) {
-	    sem.take(timeout);
+	    sem.take(Deadline.in(60000));
 	  }
 	}
       } catch (InterruptedException e) {
