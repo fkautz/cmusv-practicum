@@ -658,6 +658,41 @@ public class LockssTestCase extends TestCase {
     }
   }
 
+  public static void assertContains(Collection coll, Object element) {
+    assertContains(null, coll, element);
+  }
+
+  public static void assertContains(String msg, Collection coll,
+				    Object element) {
+    if (!coll.contains(element)) {
+      StringBuffer sb = new StringBuffer();
+      if (msg != null) {
+	sb.append(msg);
+	sb.append(" ");
+      }
+      sb.append("Collection doesn't contain expected element: ");
+      sb.append(element);
+      fail(sb.toString());
+    }
+  }
+
+  public static void assertDoesNotContain(Collection coll, Object element) {
+    assertDoesNotContain(null, coll, element);
+  }
+
+  public static void assertDoesNotContain(String msg, Collection coll,
+					  Object element) {
+    if (coll.contains(element)) {
+      StringBuffer sb = new StringBuffer();
+      if (msg != null) {
+	sb.append(msg);
+	sb.append(" ");
+      }
+      sb.append("Collection contains unexpected element: ");
+      sb.append(element);
+      fail(sb.toString());
+    }
+  }
 
   private static void failEquals(String message,
 				 Object expected, Object actual) {
