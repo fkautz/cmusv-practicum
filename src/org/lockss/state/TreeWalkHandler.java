@@ -65,8 +65,8 @@ public class TreeWalkHandler {
   static final double MAX_DEVIATION = 0.4;
 
   NodeManagerImpl manager;
-  private static LockssDaemon theDaemon;
-  private static CrawlManager theCrawlManager;
+  private LockssDaemon theDaemon;
+  private CrawlManager theCrawlManager;
   private ActivityRegulator theRegulator;
   ActivityRegulator.Lock activityLock = null;
   private ArchivalUnit theAu;

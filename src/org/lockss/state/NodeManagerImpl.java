@@ -73,10 +73,10 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
 
   static final boolean DEFAULT_RESTART_NONEXPIRED_POLLS = false;
 
-  static HistoryRepository historyRepo;
+  HistoryRepository historyRepo;
   private LockssRepository lockssRepo;
-  static PollManager pollManager;
-  static ActivityRegulator regulator;
+  PollManager pollManager;
+  ActivityRegulator regulator;
   static SimpleDateFormat sdf = new SimpleDateFormat();
 
   static boolean registeredAccessors = false;
