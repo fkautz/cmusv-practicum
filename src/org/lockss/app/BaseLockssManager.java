@@ -116,7 +116,7 @@ public abstract class BaseLockssManager implements LockssManager {
    * ...) method with the current config and empty previous config. */
   protected void resetConfig() {
     Configuration cur = Configuration.getCurrentConfig();
-    setConfig(cur, Configuration.EMPTY_CONFIGURATION, cur.keySet());
+    setConfig(cur, ConfigManager.EMPTY_CONFIGURATION, cur.keySet());
   }
 
   /** Managers must implement this method.  It is called once at daemon

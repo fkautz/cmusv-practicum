@@ -105,7 +105,7 @@ public class LcapComm extends BaseLockssManager {
   LcapComm(SocketFactory factory, Configuration config) {
     sockFact = factory;
     configure(config,
-	      Configuration.EMPTY_CONFIGURATION, Collections.EMPTY_SET);
+	      ConfigManager.EMPTY_CONFIGURATION, Collections.EMPTY_SET);
   }
 
   /**
