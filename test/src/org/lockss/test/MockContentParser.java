@@ -44,16 +44,16 @@ public class MockContentParser implements ContentParser {
   public MockContentParser() {
   }
 
-  public void parseForUrls(CachedUrl cu, Collection set, UrlCheckCallback cb)
+  public void parseForUrls(CachedUrl cu, ContentParser.FoundUrlCallback cb) 
       throws IOException {
     if (urlToReturn != null) {
-      set.add(urlToReturn);
+      cb.foundUrl(urlToReturn);
     } else if (urlSets != null) {
       Set setToAdd = (Set)urlSets.get(cu.getUrl());
       if (setToAdd != null) {
 	Iterator it = setToAdd.iterator();
 	while(it.hasNext()) {
-	  set.add(it.next());
+	  cb.foundUrl((String)it.next());
 	}
       }
     }
