@@ -132,12 +132,18 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
 
   // public methods
 
-  /** Set the directory where simulated content is generated */
+  /**
+   * Set the directory where simulated content is generated
+   * @param rootDir the new root dir
+   */
   public void setRootDir(String rootDir) {
     fileRoot = rootDir;
   }
 
-  /** Returns the directory where simulated content is generated */
+  /**
+   * Returns the directory where simulated content is generated
+   * @return the root dir
+   */
   public String getRootDir() {
     return fileRoot; }
 

@@ -53,6 +53,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
 
   /**
    * Must invoke this constructor in plugin subclass.
+   * @param myPlugin the plugin
    * @param spec the CrawlSpec
    */
   protected BaseArchivalUnit(Plugin myPlugin, CrawlSpec spec) {
