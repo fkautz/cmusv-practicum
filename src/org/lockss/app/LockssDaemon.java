@@ -232,6 +232,10 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
     try {
       daemon = new LockssDaemon(urls);
       daemon.runDaemon();
+      // raise priority after starting other threads, so we won't get
+      // locked out and fail to exit when told.
+      Thread.currentThread().setPriority(Thread.NORM_PRIORITY + 2);
+
     } catch (Throwable e) {
       log.error("Exception thrown in main loop", e);
       System.exit(1);

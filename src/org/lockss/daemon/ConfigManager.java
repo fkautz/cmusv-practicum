@@ -725,7 +725,7 @@ public class ConfigManager implements LockssManager {
     }
 
     public void run() {
-      Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
+      Thread.currentThread().setPriority(Thread.NORM_PRIORITY + 1);
       goOn = true;
 
       // repeat every 10ish minutes until first successful load, then
