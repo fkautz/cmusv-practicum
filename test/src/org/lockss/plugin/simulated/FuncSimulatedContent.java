@@ -37,7 +37,7 @@ import java.io.*;
 import java.security.MessageDigest;
 import org.lockss.util.*;
 import org.lockss.test.*;
-import org.lockss.crawler.Crawler;
+import org.lockss.crawler.GoslingCrawlerImpl;
 import org.lockss.daemon.*;
 import org.lockss.repository.*;
 import org.lockss.plugin.Plugin;
@@ -119,7 +119,7 @@ public class FuncSimulatedContent extends LockssTestCase {
 
   private void crawlContent() {
     CrawlSpec spec = new CrawlSpec(sau.SIMULATED_URL_START, null);
-    Crawler.doCrawl(sau, spec);
+    GoslingCrawlerImpl.doCrawl(sau, spec);
   }
 
   private void checkContent() throws IOException {

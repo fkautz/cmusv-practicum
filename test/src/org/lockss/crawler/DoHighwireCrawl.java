@@ -70,7 +70,7 @@ public class DoHighwireCrawl {
 
     }
     if (crawlFlg) {
-      Crawler.doCrawl(au, au.getCrawlSpec());
+      GoslingCrawlerImpl.doCrawl(au, au.getCrawlSpec());
     }
   }
 }
