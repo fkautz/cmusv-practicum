@@ -357,8 +357,10 @@ public class PollManager  extends BaseLockssManager {
       // get expiration time for the lock
       long expiration = 2 * msg.getDuration();
       if (AuUrl.isAuUrl(cus.getUrl())) {
-        if (!theDaemon.getActivityRegulator(cus.getArchivalUnit()).startAuActivity(
-            ActivityRegulator.TOP_LEVEL_POLL, expiration)) {
+        ActivityRegulator.Lock lock = theDaemon.getActivityRegulator(
+            cus.getArchivalUnit()).startAuActivity(
+            ActivityRegulator.TOP_LEVEL_POLL, expiration);
+        if (lock==null) {
           theLog.debug2("New top-level poll aborted due to activity lock.");
           return null;
         }
@@ -374,8 +376,9 @@ public class PollManager  extends BaseLockssManager {
                           ActivityRegulator.STANDARD_CONTENT_POLL :
                           ActivityRegulator.STANDARD_NAME_POLL);
         }
-        if (!theDaemon.getActivityRegulator(cus.getArchivalUnit()).startCusActivity(activity,
-            cus, expiration)) {
+        ActivityRegulator.Lock lock = theDaemon.getActivityRegulator(
+            cus.getArchivalUnit()).startCusActivity(activity, cus, expiration);
+        if (lock==null) {
           theLog.debug2("New poll aborted due to activity lock.");
           return null;
         }
