@@ -46,10 +46,11 @@ import org.lockss.util.*;
 public class MockPlugin extends BasePlugin implements PluginTestable {
   static Logger log = Logger.getLogger("MockPlugin");
 
+  public static final String KEY = "org|lockss|test|MockPlugin";
   public static final String CONFIG_PROP_1 = "base_url";
   public static final String CONFIG_PROP_2 = "volume";
 
-  private String pluginId;
+  private String pluginId = this.getClass().getName();
   private int initCtr = 0;
   private int stopCtr = 0;
   private Configuration auConfig;
@@ -77,12 +78,12 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
   }
 
   public String getPluginId() {
-    if (pluginId == null) {
+/*    if (pluginId == null) {
       return this.getClass().getName();
 //       return super.getPluginId();
-    } else {
+    } else {*/
       return pluginId;
-    }
+    //}
   }
 
   public void setPluginId(String id) {

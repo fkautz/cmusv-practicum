@@ -30,64 +30,21 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.test;
-
-import java.util.*;
-import org.lockss.util.*;
+package org.lockss.plugin;
 
 /**
- * Mock implementation of LogTarget
+ * <p>Title: Wrapped</p>
+ * <p>Description: Wrapped classes must implement this interface.  This serves
+ * as a convenient way to identify them, and to retrieve basic information. </p>
+ * @author Tyrone Nicholas
  */
 
-public class MockLogTarget implements LogTarget{
-  static Logger log = Logger.getLogger("Mock log target");
-  Vector messages;
-  int initCount = 0;
+public interface Wrapped {
 
-  public MockLogTarget(){
-    messages = new Vector();
-  }
+  /** Returns original embedded object */
+  Object getOriginal();
 
-  public void init() {
-    initCount++;
-  }
+  /** Returns name of embedded class */
+  String getOriginalClassName();
 
-  /**
-   * Adds the message and severity to a Vector, so they can be retrieved
-   * by unit tests
-   */
-  public void handleMessage(Logger log, int msgLevel, String message) {
-    StringBuffer sb = new StringBuffer();
-    sb.append(log.nameOf(msgLevel));
-    sb.append(": ");
-    sb.append(message);
-    String str = sb.toString();
-    messages.add(str);
-    if (Logger.LEVEL_DEBUG == msgLevel) {
-      System.err.println("Recursive log call; should only happen once.");
-      log.debug("This is a recursive log message which should not be logged");
-    }
-  }
-
-  public Iterator messageIterator() {
-    return messages.iterator();
-  }
-
-  public int messageCount() {
-    return messages.size();
-  }
-
-  public void resetMessages() {
-    messages.clear();
-  }
-
-  public int initCount() {
-    return initCount;
-  }
-
-  public boolean hasMessage(String str) {
-    Set mset = new HashSet();
-    mset.addAll(messages);
-    return mset.contains(str);
-  }
 }

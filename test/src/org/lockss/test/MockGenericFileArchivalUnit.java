@@ -77,7 +77,7 @@ public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
   }
 
   public UrlCacher urlCacherFactory(CachedUrlSet owner, String url) {
-    return null;
+    return new MockGenericFileUrlCacher(owner,url);
   }
 
   public CachedUrlSet getAUCachedUrlSet() {

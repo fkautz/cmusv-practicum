@@ -1,5 +1,9 @@
 lockss-ant.jar
-lockss-doclet.jar
+lockss-tools.jar
 lockss-test.jar
 lockss.jar
 run-classpath
+lockss-tools-test.jar
+lockss-generated.jar
+lockss-generated-test.jar
+

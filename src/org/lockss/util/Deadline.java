@@ -464,7 +464,7 @@ public class Deadline implements Comparable {
     try {
       registerCallback(cb);
       while ((nap = getSleepTime()) > 0) {
-	thread.sleep(nap);
+	Thread.sleep(nap);
       }
     } finally {
       unregisterCallback(cb);
