@@ -472,5 +472,28 @@ public class StringUtil {
     }
     return sb.toString();
   }
+
+  /** Remove the first line of the stack trace, iff it duplicates the end
+   * of the exception message */
+  public static String trimStackTrace(String msg, String trace) {
+    int pos = trace.indexOf("\n");
+    if (pos > 0) {
+      String l1 = trace.substring(0, pos);
+      if (msg.endsWith(l1)) {
+	return trace.substring(pos + 1);
+      }
+    }
+    return trace;
+  }
+
+  /** Translate an exception's stack trace to a string.
+   */
+  public static String stackTraceString(Throwable th) {
+    StringWriter sw = new StringWriter();
+    PrintWriter pw = new PrintWriter(sw);
+    th.printStackTrace(pw);
+    return sw.toString();
+  }
+
 }
 
