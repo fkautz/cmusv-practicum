@@ -274,7 +274,7 @@ public class StringUtil {
    * This ignores overlap, starting from the left, so 'xxxxxy' would have
    * 2 instances of 'xx', not 4.  Empty string as a substring returns 0.
    */
-  public static int substringCount(String str, String subStr) {
+  public static int countOccurences(String str, String subStr) {
     int len = subStr.length();
     if (len == 0) {
       return 0;
