@@ -280,7 +280,7 @@ public class TestCrawlManagerImpl extends LockssTestCase {
 
   
 
-  private class TestCrawlCB implements CrawlCallback {
+  private class TestCrawlCB implements CrawlManager.Callback {
     Deadline timer;
     boolean called = false;
     Object cookie;

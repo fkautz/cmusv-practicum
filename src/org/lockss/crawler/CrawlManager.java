@@ -48,7 +48,7 @@ public interface CrawlManager {
    * repair we're referring to.
    */
   public void scheduleRepair(ArchivalUnit au, URL url, 
-			     CrawlCallback cb, Object cookie);
+			     CrawlManager.Callback cb, Object cookie);
 
 
   /**
@@ -63,6 +63,15 @@ public interface CrawlManager {
    */
 
   public boolean canTreeWalkStart(ArchivalUnit au, 
-				  CrawlCallback cb, Object cookie);
+				  CrawlManager.Callback cb, Object cookie);
 
+  public interface Callback {
+    /**
+     * Called when the crawl is completed
+     * @param success whether the crawl was successful or not
+     * @param cookie object used by callback to designate which crawl
+     * attempt this is
+     */
+    public void signalCrawlAttemptCompleted(boolean success, Object cookie);
+  }
 }

@@ -40,7 +40,7 @@ import java.net.InetAddress;
 import org.lockss.util.*;
 import org.lockss.daemon.*;
 import org.lockss.poller.*;
-import org.lockss.crawler.CrawlCallback;
+import org.lockss.crawler.CrawlManager;
 import org.lockss.plugin.PluginManager;
 import org.lockss.protocol.LcapMessage;
 import org.lockss.protocol.IdentityManager;
@@ -518,7 +518,7 @@ public class NodeManagerImpl implements NodeManager {
     return set;
   }
 
-  static class ContentRepairCallback  implements CrawlCallback {
+  static class ContentRepairCallback  implements CrawlManager.Callback {
     /**
      * @param success whether the repair was successful or not
      * @param cookie object used by callback to designate which repair
