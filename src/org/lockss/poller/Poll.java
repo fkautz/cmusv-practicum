@@ -127,7 +127,6 @@ public abstract class Poll implements Serializable {
     idMgr = pm.getDaemon().getIdentityManager();
     m_msg = msg;
     m_pollspec = pollspec;
-    log.debug("pm.getDaemon() = " + pm.getDaemon());
     m_urlSet = pm.getDaemon().getPluginManager().findCachedUrlSet(pollspec);
     m_createTime = TimeBase.nowMs();
     m_tally = new VoteTally(-1, msg.getDuration());

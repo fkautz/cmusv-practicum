@@ -157,7 +157,7 @@ public class NamePoll
       while(it.hasNext()) {
         String name = ((CachedUrlSetNode)it.next()).getUrl();
         if(name.startsWith(baseUrl)) {
-          name = name.substring(name.length());
+          name = name.substring(baseUrl.length());
         }
         alist.add(name);
       }
