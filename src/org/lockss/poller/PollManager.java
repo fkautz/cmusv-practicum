@@ -275,6 +275,7 @@ public class PollManager  extends BaseLockssManager {
       NodeManager nm = theDaemon.getNodeManager(cus.getArchivalUnit());
       if (!msg.isVerifyPoll()) {
         if (!nm.shouldStartPoll(cus, ret_poll.getVoteTally())) {
+	  theLog.debug("NodeManager said not to start poll: "+ret_poll);
           return null;
         }
       }
@@ -286,6 +287,7 @@ public class PollManager  extends BaseLockssManager {
       theLog.debug2("Started new poll: " + ret_poll.m_key);
       return ret_poll;
     }
+    theLog.error("Got a null ret_poll from createPoll");
     return null;
   }
 
