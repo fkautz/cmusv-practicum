@@ -33,6 +33,6 @@ package org.lockss.plugin;
 
 public interface UrlNormalizer {
 
-  public String normalizeUrl(String url);
+  public String normalizeUrl(String url, ArchivalUnit au);
 
 }

@@ -349,7 +349,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
       (UrlNormalizer)paramMap.getMapElement(AU_URL_NORMALIZER);
 
     if (urlNormalizer != null) {
-      return urlNormalizer.normalizeUrl(url);
+      return urlNormalizer.normalizeUrl(url, this);
     }
     return url;
   }

@@ -255,7 +255,7 @@ public class TestDefinableArchivalUnit extends LockssTestCase {
   }
 
   public static class MyNormalizer implements UrlNormalizer {
-    public String normalizeUrl (String url) {
+    public String normalizeUrl (String url, ArchivalUnit au) {
       return "blah";
     }
   }
