@@ -63,6 +63,7 @@ public class LockssResourceHandler extends AbstractHttpHandler {
     private ProxyManager proxyMgr = null;
     private boolean _acceptRanges=true;
     private boolean _redirectWelcomeFiles ;
+    private String _redirectRootTo ;
     private String[] _methods=null;
     private String _allowed;
     private boolean _dirAllowed=true;
@@ -102,6 +103,10 @@ public class LockssResourceHandler extends AbstractHttpHandler {
         throws InterruptedException
     {
         super.stop();
+    }
+
+    public void setRedirectRootTo(String target) {
+      _redirectRootTo = target;
     }
 
     /* ------------------------------------------------------------ */
@@ -322,6 +327,23 @@ public class LockssResourceHandler extends AbstractHttpHandler {
                     return;
                 }
   
+		if (_redirectRootTo != null && pathInContext.equals("/")) {
+		  Code.debug("Redirect root to " + _redirectRootTo);
+                    
+		  String q=request.getQuery();
+		  StringBuffer buf=request.getRequestURL();
+		  if (q!=null&&q.length()!=0) {
+		    buf.append('?');
+		    buf.append(q);
+		  }
+		  response.setField(HttpFields.__Location,
+				    URI.addPaths(buf.toString(),
+						 _redirectRootTo));
+		  response.setStatus(302);
+		  request.setHandled(true);
+		  return;
+                }
+
                 // See if index file exists
                 String welcome=getHttpContext().getWelcomeFile(resource);
                 if (welcome!=null)
