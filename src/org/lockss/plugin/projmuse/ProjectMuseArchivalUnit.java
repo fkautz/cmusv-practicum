@@ -184,6 +184,18 @@ public class ProjectMuseArchivalUnit extends BaseArchivalUnit {
     return new CrawlSpec(makeStartUrl(base, journalDir, volume), rule);
   }
 
+  /**
+   * Override to filter javascript for html.
+   * @param mimeType the mime type
+   * @return the FilterRule if 'text/html', else null
+   */
+  public FilterRule getFilterRule(String mimeType) {
+    if ("text/html".equals(mimeType)) {
+      return new ProjectMuseFilterRule();
+    }
+    return null;
+  }
+
   public String getManifestPage() {
     return makeStartUrl(baseUrl, journalDir, volume);
   }

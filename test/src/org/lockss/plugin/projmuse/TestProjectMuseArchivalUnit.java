@@ -238,6 +238,13 @@ public class TestProjectMuseArchivalUnit extends LockssTestCase {
     assertEquals("www.bmj.com, bmj, vol. 61", au1.getName());
   }
 
+  public void testGetFilterRules() throws Exception {
+    ProjectMuseArchivalUnit au = makeAu(new URL(ROOT_URL), 60, DIR);
+    assertNull(au.getFilterRule(null));
+    assertNull(au.getFilterRule("jpg"));
+    assertTrue(au.getFilterRule("text/html") instanceof ProjectMuseFilterRule);
+  }
+
   public static void main(String[] argv) {
     String[] testCaseList = {TestProjectMuseArchivalUnit.class.getName()};
     junit.swingui.TestRunner.main(testCaseList);
