@@ -307,7 +307,7 @@ public abstract class Configuration {
     if (bool != null) {
       return bool.booleanValue();
     }
-    log.warning("getBoolean(\'" + key + "\") = \"" + val + "\"");
+    log.warning("getBoolean(\"" + key + "\") = \"" + val + "\"");
     return dfault;
   }
 
