@@ -192,8 +192,7 @@ public class TestEditableDefinablePlugin
     set.add(ConfigParamDescr.VOLUME_NUMBER);
     set.add(ConfigParamDescr.YEAR);
     set.add(ConfigParamDescr.BASE_URL);
-    set.add(ConfigParamDescr.JOURNAL_DIR);
-    set.add(ConfigParamDescr.JOURNAL_ABBR);
+    set.add(ConfigParamDescr.JOURNAL_ID);
 
     Collection actualReturn = edPlugin.getKnownConfigParamDescrs();
     assertIsomorphic("default descrs", set, actualReturn);
