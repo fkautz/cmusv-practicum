@@ -61,18 +61,14 @@ public abstract class GenericFileUrlCacher extends BaseUrlCacher {
       throws IOException {
     RepositoryNode leaf = repository.createNewNode(url);
     leaf.makeNewVersion();
-    try {
-      if (input != null) {
-        OutputStream os = leaf.getNewOutputStream();
-        StreamUtil.copy(input, os);
-        os.close();
-        input.close();
-      }
-      if (headers!=null) {
-        leaf.setNewProperties(headers);
-      }
-    } catch (Exception e) {
-      logger.error("Couldn't store content for '"+leaf.getNodeUrl()+"'");
+    if (input != null) {
+      OutputStream os = leaf.getNewOutputStream();
+      StreamUtil.copy(input, os);
+      os.close();
+      input.close();
+    }
+    if (headers!=null) {
+      leaf.setNewProperties(headers);
     }
     leaf.sealNewVersion();
   }

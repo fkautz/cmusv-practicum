@@ -79,6 +79,7 @@ public class GenericFileCachedUrl extends BaseCachedUrl {
         leaf = repository.createNewNode(url);
       } catch (MalformedURLException mue) {
         logger.error("Couldn't load node due to bad url: "+url);
+        throw new IllegalArgumentException("Couldn't parse url properly.");
       }
     }
   }
