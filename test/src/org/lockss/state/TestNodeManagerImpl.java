@@ -361,6 +361,8 @@ public class TestNodeManagerImpl extends LockssTestCase {
     assertEquals(MockPollManager.CONTENT_REQUESTED,
                  ((MockPollManager)theDaemon.getPollManager()).getPollStatus(
         TEST_URL+"/branch2/file2.doc"));
+    //XXX check the error which used to happen here when the normal PollManager
+    // was used (should have created an IO error, but didn't)
     assertEquals(PollState.WON, pollState.getStatus());
 
     // lost name poll
