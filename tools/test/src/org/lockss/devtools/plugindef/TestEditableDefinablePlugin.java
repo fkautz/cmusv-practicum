@@ -181,6 +181,7 @@ public class TestEditableDefinablePlugin
     set.add("org.lockss.util.urlconn.CacheException$NoRetryHostException");
     set.add("org.lockss.util.urlconn.CacheException$NoRetryRepositoryException");
     set.add("org.lockss.util.urlconn.CacheException$UnimplementedCodeException");
+    set.add("org.lockss.util.urlconn.CacheException$MalformedURLException");
 
     Collection actual = edPlugin.getKnownCacheExceptions();
     assertEquals("return value", set, actual);
