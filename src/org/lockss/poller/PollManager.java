@@ -539,7 +539,7 @@ public class PollManager  implements LockssManager {
          long earliest = ret - ret/4;
          long latest = ret + ret/4;
          ret = earliest + theRandom.nextLong(latest - earliest);
-         ret = ret * 2 * (quorum +1);
+         //ret = ret * 2 * (quorum +1);
         theLog.debug("Name Poll duration: " + ret);
         break;
 
