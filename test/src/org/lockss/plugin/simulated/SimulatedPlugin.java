@@ -150,7 +150,8 @@ public class SimulatedPlugin extends BasePlugin implements PluginTestable {
    * @return a List of Strings
    */
   public List getSupportedTitles() {
-    return ListUtil.list("SimulatedSupportedTitle");
+    return ListUtil.list("SimulatedSupportedTitle",
+			 "odd </html>chars");
   }
 
   /**
