@@ -234,7 +234,6 @@ public class GoslingCrawlerImpl implements Crawler {
 	logger.error("Problem caching "+uc+". Ignoring", ioe);
 	wasError = true;
       }
-      au.pause(); //XXX make sure we throw InterruptedExceptions
     }
     else {
       if (!parsedPages.contains(uc.getUrl())) {
