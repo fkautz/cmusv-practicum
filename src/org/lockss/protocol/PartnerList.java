@@ -140,6 +140,9 @@ class PartnerList {
 	(TimeBase.msSince(lastRcv.longValue()) < recentMulticastInterval)) {
       return;
     }
+    if (log.isDebug() && !partners.containsKey(partnerIP)) {
+      log.debug("Adding partner " + partnerIP);
+    }
     partners.put(partnerIP, nowLong());
     if (TimeBase.msSince(lastPartnerRemoveTime) > minPartnerRemoveInterval) {
       removeLeastRecent();
@@ -168,6 +171,7 @@ class PartnerList {
    */
   public void removePartner(InetAddress partnerIP) {
     if (partners.containsKey(partnerIP)) {
+      log.debug("Removing partner " + partnerIP);
       partners.remove(partnerIP);
       lastPartnerRemoveTime = TimeBase.nowMs();
     }
