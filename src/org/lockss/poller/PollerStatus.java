@@ -399,7 +399,7 @@ public class PollerStatus {
       PollTally tally = poll.getVoteTally();
       List list = new ArrayList();
       PollManager.PollManagerEntry entry =
-	pollManager.getPollManagerEntry(poll.getKey());
+	pollManager.getCurrentOrRecentPollEntry(poll.getKey());
 
       list.add(new StatusTable.SummaryInfo("Volume" , STRINGTYPE,
 					   tally.getArchivalUnit().getName()));
