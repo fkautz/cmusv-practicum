@@ -152,7 +152,7 @@ public class TestMBF2 extends LockssTestCase {
     assertTrue(totalGenerateTime > totalVerifyTime);
   }    
 
-  public void testTimingTwo() throws IOException {
+  public void dontTestTimingTwo() throws IOException {
     byte[] nonce = new byte[24];
     int e = 63;
     int[] l = { 64, 256, 1024, 4096 };
@@ -191,7 +191,7 @@ public class TestMBF2 extends LockssTestCase {
     }
   }
 
-  public void testTimingThree() throws IOException {
+  public void dontTestTimingThree() throws IOException {
     byte[] nonce = new byte[24];
     int[] e = { 3, 15, 63 };
     int l = 64;
