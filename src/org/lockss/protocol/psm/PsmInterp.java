@@ -161,6 +161,12 @@ public class PsmInterp {
     eventMonitor(curState, triggerEvent, action, null);
     PsmEvent event;
     try {
+      // XXX Potential deadlock here because we are calling an in a
+      // synchronized block.  If the action accesses some other
+      // synchronized object while another thread, holding that object's
+      // lock, calls handleEvent or other synchronized method of this
+      // class, a deadlock will result.  Can't release our lock first as
+      // we're in the middle of a transition.
       event = action.run(triggerEvent, this);
     } catch (RuntimeException e) {
       throw new PsmException.ActionError("Action: " + action, e);
