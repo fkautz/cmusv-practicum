@@ -111,6 +111,13 @@ public class LcapIdentity implements Serializable {
 
 
   // methods which may need to be overridden
+
+  public boolean isEqual(InetAddress addr) {
+    String key = makeIdKey(addr);
+
+    return key.equals(m_idKey);
+  }
+
   /**
    * return true if two Identity are found to be the same
    * @param id the Identity to compare with this one
