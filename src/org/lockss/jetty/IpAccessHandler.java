@@ -45,6 +45,9 @@ import org.lockss.util.*;
 /** Handler that disallows access from IP addresses not allowed by an
  * IpFilter */
 public class IpAccessHandler extends AbstractHttpHandler {
+// A single handler instance may run concurrently in multiple threads, so
+// there must not be any per-request local state.
+
   private static Logger log = Logger.getLogger("IpAccess");
 
   private IpFilter filter = new IpFilter();
@@ -71,8 +74,9 @@ public class IpAccessHandler extends AbstractHttpHandler {
 
   public void setAllowLocal(boolean allowLocal) {
     if (localIps == null) {
-      localIps = new HashSet();
-      localIps.add("127.0.0.1");
+      HashSet set = new HashSet();
+      set.add("127.0.0.1");
+      localIps = set;			// set atomically
       // tk - add local interfaces
     }
     this.allowLocal = allowLocal;
