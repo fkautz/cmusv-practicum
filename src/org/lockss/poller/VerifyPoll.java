@@ -78,7 +78,6 @@ class VerifyPoll extends Poll {
     int opcode = msg.getOpcode();
 
     if(opcode == LcapMessage.NAME_POLL_REP) {
-      m_counting++;
       startVote(msg);
     }
   }
@@ -208,6 +207,7 @@ class VerifyPoll extends Poll {
   }
 
   private void startVote(LcapMessage msg) {
+    super.startVote();
     performHash(msg);
     stopVote();
   }

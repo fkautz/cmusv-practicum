@@ -84,7 +84,6 @@ public class NamePoll extends Poll {
     int opcode = msg.getOpcode();
 
     if(opcode == LcapMessage.NAME_POLL_REP) {
-      m_counting++;
       startVote(msg);
     }
   }
@@ -110,6 +109,7 @@ public class NamePoll extends Poll {
   }
 
   void startVote(LcapMessage msg) {
+    super.startVote();
     long dur = msg.getDuration();
 
     if(prepareVoteCheck(msg)) {
