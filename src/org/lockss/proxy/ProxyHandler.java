@@ -100,6 +100,12 @@ public class ProxyHandler extends AbstractHttpHandler {
     this.quickFailConnPool = quickFailConnPool;
   }
 
+  /** If set to true, content will be served only from the cache; requests
+   * will never be proxied */
+  public void setFromCacheOnly(boolean flg) {
+    neverProxy = flg;
+  }
+
   protected int _tunnelTimeoutMs=250;
     
   /* ------------------------------------------------------------ */
@@ -183,9 +189,7 @@ public class ProxyHandler extends AbstractHttpHandler {
 		       response, cu);
 	return;
       } else {
-      // This should never happen, as it should have been caught by the
-      // ProcyAccessHandler.  But we never want to forward repair request
-      // from another LOCKSS cache, so we check here just to make sure.
+      // Don't forward request if it's a repair or we were told not to.
 	response.sendError(HttpResponse.__404_Not_Found);
 	request.setHandled(true);
 	return; 
