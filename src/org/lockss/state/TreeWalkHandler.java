@@ -57,7 +57,7 @@ public class TreeWalkHandler {
       TREEWALK_PREFIX + "interval";
   static final long DEFAULT_TREEWALK_INTERVAL = Constants.HOUR;
 
-  static final double MAX_DEVIATION = 0.1;
+  static final double MAX_DEVIATION = 0.4;
 
   NodeManagerImpl manager;
   private static LockssDaemon theDaemon;
