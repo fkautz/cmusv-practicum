@@ -65,6 +65,10 @@ public class MockCachedUrl implements CachedUrl {
     this.cus = cus;
   }
 
+  public ArchivalUnit getArchivalUnit() {
+    return null;
+  }
+
   public String getUrl() {
     return url;
   }

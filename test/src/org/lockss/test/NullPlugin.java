@@ -120,6 +120,10 @@ public class NullPlugin {
       return "[NullPlugin.CachedUrl]";
     }
 
+    public org.lockss.plugin.ArchivalUnit getArchivalUnit() {
+      return null;
+    }
+
     public String getUrl() {
       return null;
     }
