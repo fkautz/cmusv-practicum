@@ -213,6 +213,14 @@ public class TestStringUtil extends LockssTestCase {
 		     StringUtil.breakAt("foo+", '+', -1, false));
     assertIsomorphic(ListUtil.list("foo"),
 		     StringUtil.breakAt("foo+", '+', -1, true));
+    assertIsomorphic(ListUtil.list("foo "),
+		     StringUtil.breakAt("foo +", '+', -1, true, false));
+    assertIsomorphic(ListUtil.list("foo"),
+		     StringUtil.breakAt("foo +", '+', -1, true, true));
+    assertIsomorphic(ListUtil.list("foo"),
+		     StringUtil.breakAt("foo + ", '+', -1, true, true));
+    assertIsomorphic(ListUtil.list("foo ", " "),
+		     StringUtil.breakAt("foo + ", '+', -1, true, false));
 
   }
 
