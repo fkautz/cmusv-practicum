@@ -433,7 +433,7 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
 
   public static void configCacheLocation(String location) throws IOException {
     String s = LockssRepositoryImpl.PARAM_CACHE_LOCATION + "=" + location;
-    TestConfiguration.setCurrentConfigFromString(s);
+    ConfigurationUtil.setCurrentConfigFromString(s);
   }
 
   private RepositoryNode createLeaf(String url, String content,

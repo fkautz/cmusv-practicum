@@ -73,7 +73,7 @@ public class TestSyslogTarget extends LockssTestCase {
       PARAM_HOST + "=" + host + "\n" +
       PARAM_PORT + "=" + port + "\n";
     List list = ListUtil.list(FileUtil.urlOfString(conf1));
-    TestConfiguration.setCurrentConfigFromUrlList(list);
+    ConfigurationUtil.setCurrentConfigFromUrlList(list);
   }
 
   public void testHandleMessageGetsMessageRight() throws Exception{

@@ -113,7 +113,7 @@ public class TestPluginManager extends LockssTestCase {
     mgr.startService();
     String localConfig = configStr + getTempDir().getAbsolutePath() +
         File.separator;
-    TestConfiguration.setCurrentConfigFromString(localConfig);
+    ConfigurationUtil.setCurrentConfigFromString(localConfig);
   }
 
   public void testNameFromKey() {

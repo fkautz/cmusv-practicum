@@ -85,7 +85,7 @@ public class HashSpeedTest extends LockssTestCase {
     String s2 = SystemMetrics.PARAM_HASH_TEST_BYTE_STEP + "=" + byteStep;
     String s3 = LockssRepositoryImpl.PARAM_CACHE_LOCATION + "=" + tempDirPath;
     String configStr = s + "\n" + s2 + "\n" + s3;
-    TestConfiguration.setCurrentConfigFromString(configStr);
+    ConfigurationUtil.setCurrentConfigFromString(configStr);
     theDaemon.getLockssRepository(sau);
   }
 

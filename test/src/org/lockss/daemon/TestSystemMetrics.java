@@ -103,7 +103,7 @@ public class TestSystemMetrics extends LockssTestCase {
       throws IOException {
     String s = SystemMetrics.PARAM_HASH_TEST_DURATION + "=" + duration + "\n";
     String s2 = SystemMetrics.PARAM_HASH_TEST_BYTE_STEP + "=" + step;
-    TestConfiguration.setCurrentConfigFromString(s + s2);
+    ConfigurationUtil.setCurrentConfigFromString(s + s2);
   }
 
   public static void main(String[] argv) {

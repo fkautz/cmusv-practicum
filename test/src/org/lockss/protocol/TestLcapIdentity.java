@@ -73,7 +73,7 @@ public class TestLcapIdentity extends LockssTestCase {
     super.setUp();
     String host = "1.2.3.4";
     String prop = "org.lockss.localIPAddress="+host;
-    TestConfiguration.
+    ConfigurationUtil.
       setCurrentConfigFromUrlList(ListUtil.list(FileUtil.urlOfString(prop)));
     idmgr = daemon.getIdentityManager();
     try {

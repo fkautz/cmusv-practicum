@@ -175,14 +175,14 @@ public class TestTreeWalkHandler extends LockssTestCase {
 
   public void testTreeWalkShouldntStartIfOneJustRan() throws IOException {
     String configString = "org.lockss.treewalk.interval=10d";
-    TestConfiguration.setCurrentConfigFromString(configString);
+    ConfigurationUtil.setCurrentConfigFromString(configString);
     treeWalkHandler.doTreeWalk();
     assertFalse(treeWalkHandler.timeUntilTreeWalkStart() <= 0);
   }
 
   public void testTreeWalkShouldStartIfIntervalElapsed() throws IOException {
     String configString = "org.lockss.treewalk.interval=100";
-    TestConfiguration.setCurrentConfigFromString(configString);
+    ConfigurationUtil.setCurrentConfigFromString(configString);
     treeWalkHandler.doTreeWalk();
 
     TimerUtil.guaranteedSleep(100);

@@ -64,7 +64,7 @@ public class TestPartnerList extends LockssTestCase {
   InetAddress inet4;
 
   private void setConfig(PartnerList pl, Configuration config) {
-    pl.setConfig(config, Configuration.EMPTY_CONFIGURATION,
+    pl.setConfig(config, ConfigManager.EMPTY_CONFIGURATION,
 		 config.keySet());
   }
 
