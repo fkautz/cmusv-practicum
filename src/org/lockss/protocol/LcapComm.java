@@ -359,7 +359,7 @@ public class LcapComm {
 	      timeout.expireIn(sleep);
 	    }
 	  }
-	    Object qObj = socketInQ.get(timeout);
+	  Object qObj = socketInQ.get(timeout);
 	  if (qObj != null) {
 	    if (qObj instanceof LockssReceivedDatagram) {
 	      processReceivedPacket((LockssReceivedDatagram)qObj);
@@ -465,7 +465,7 @@ public class LcapComm {
       throw new IllegalStateException("LcapComm singleton not created");
     }
     singleton.sendTo(new LockssDatagram(LockssDatagram.PROTOCOL_LCAP,
-				      msg.encodeMsg()),
+					msg.encodeMsg()),
 		   au, id);
   }
 }
