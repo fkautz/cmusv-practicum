@@ -59,7 +59,7 @@ public abstract class IpAccessControl extends LockssServlet {
     "To be allowed access, an IP address must match some entry on the " +
     "allow list, and not match any entry on the deny list.";
 
-  static Logger log = Logger.getLogger("IpAcc");
+  static Logger log = Logger.getLogger("IpAccessServlet");
 
   private ConfigManager configMgr;
 
