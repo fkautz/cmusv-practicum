@@ -224,6 +224,7 @@ public class ProxyHandler extends AbstractHttpHandler {
 	return; 
       }
     }
+    // not in cache
     if ((proxyMgr.getHostDownAction() ==
 	 ProxyManager.HOST_DOWN_NO_CACHE_ACTION_504)
 	&& proxyMgr.isHostDown(uri.getHost())) {
@@ -507,12 +508,13 @@ public class ProxyHandler extends AbstractHttpHandler {
       try {
 	conn.execute();
       } catch (IOException e) {
+	// If connection timed out, remember host is down for a little while.
+	// Remember this only for hosts whose content we hold.
+	if (e instanceof LockssUrlConnection.ConnectionTimeoutException) {
+	  proxyMgr.setHostDown(request.getURI().getHost(), isInCache);
+	}
 	// if we get any error and it's in the cache, serve it from there
 	if (isInCache) {
-	  // if connection timed out, remember host is down for a little while
-	  if (e instanceof LockssUrlConnection.ConnectionTimeoutException) {
-	    proxyMgr.setHostDown(request.getURI().getHost());
-	  }
 	  serveFromCache(pathInContext, pathParams, request, response, cu);
 	} else {
 	  // else generate an error page
