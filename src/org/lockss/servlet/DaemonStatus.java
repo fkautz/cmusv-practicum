@@ -103,8 +103,10 @@ public class DaemonStatus extends LockssServlet {
     if (html) {
       page = newPage();
 
+      Date startDate = getLockssDaemon().getStartDate();
       page.add("<center>" + getMachineName() + " at " +
 	       df.format(now) + "</center>");
+      page.add("<center>Running since " + df.format(startDate) + "</center>");
       page.add("<br>");
 
 //       page.add("<center>");
