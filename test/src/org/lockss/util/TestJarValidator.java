@@ -74,6 +74,18 @@ public class TestJarValidator extends LockssTestCase {
     pubKeystore = getKeystoreResource(pubKeystoreName, password);
   }
 
+  public void testNoPluginDir() throws Exception {
+    MockCachedUrl goodCu =
+      new MockCachedUrl("http://foo.com/good.jar", goodJar, true);
+    JarValidator validator = new JarValidator(pubKeystore, null);
+    try {
+      File f = validator.getBlessedJar(goodCu);
+      fail("Should have thrown JarValidationException.");
+    } catch (JarValidator.JarValidationException ignore) {
+      ;
+    }
+  }
+
   public void testNullKeystore() throws Exception {
     MockCachedUrl goodCu =
       new MockCachedUrl("http://foo.com/good.jar", goodJar, true);

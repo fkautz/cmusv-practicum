@@ -629,7 +629,7 @@ public class PluginManager
 						   Properties auProps)
       throws ArchivalUnit.ConfigurationException, IOException {
     return createAndSaveAuConfiguration(plugin,
-					ConfigManager.fromProperties(auProps));
+					ConfigManager.fromPropertiesUnsealed(auProps));
   }
 
   /**
@@ -1303,6 +1303,11 @@ public class PluginManager
 
   private boolean isKeystoreInited() {
     return keystoreInited;
+  }
+
+  // used by unit tests.
+  public void setKeystoreInited(boolean val) {
+    this.keystoreInited = val;
   }
 
   /**

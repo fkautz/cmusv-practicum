@@ -186,6 +186,9 @@ public class ConfigManager implements LockssManager {
     // only, on first use.
     configChangedCallbacks = new ArrayList();
     configUrlList = null;
+    cacheConfigInited = false;
+    cacheConfigDir = null;
+    configCache = new ConfigCache();
     stopHandler();
     haveConfig = new OneShotSemaphore();
   }
