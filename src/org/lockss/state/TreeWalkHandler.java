@@ -110,6 +110,9 @@ public class TreeWalkHandler {
   static final double MAX_DEVIATION = 0.4;
   static final long MIN_SCHEDULE_ADJUSTMENT = 10 * Constants.MINUTE;
 
+  static final String WDOG_PARAM_TREEWALK = "TreeWalk";
+  static final long WDOG_DEFAULT_TREEWALK = 30 * Constants.MINUTE;
+
   NodeManagerImpl manager;
   private LockssDaemon theDaemon;
   private CrawlManager theCrawlManager;
@@ -134,6 +137,7 @@ public class TreeWalkHandler {
   float loadFactor;
 
   volatile boolean treeWalkAborted;
+  volatile LockssWatchdog wdog = null;
   boolean forceTreeWalk = false;
   PollHistory cachedHistory = null;
   NodeState cachedNode = null;
@@ -275,6 +279,10 @@ public class TreeWalkHandler {
     if (treeWalkAborted) {
       // treewalk has been terminated
       return false;
+    }
+
+    if (wdog != null) {
+      wdog.pokeWDog();
     }
 
     boolean pContinue = true;
@@ -480,7 +488,7 @@ public class TreeWalkHandler {
   /**
    * The thread which handles the treewalk itself.
    */
-  class TreeWalkThread extends Thread {
+  class TreeWalkThread extends LockssThread {
     private boolean goOn = true;
     boolean doingTreeWalk = false;
     private static final long SMALL_SLEEP = Constants.SECOND;
@@ -490,7 +498,8 @@ public class TreeWalkHandler {
       super("TreeWalk: " + theAu.getName());
     }
 
-    public void run() {
+    public void lockssRun() {
+      triggerWDogOnExit(true);
       while (!theDaemon.isDaemonRunning()) {
         // if the daemon isn't up yet, do a short sleep
         logger.debug2("Daemon not running yet. Sleeping...");
@@ -514,9 +523,12 @@ public class TreeWalkHandler {
 	    // semaphore was posted, do treewalk
 	    try {
 	      doingTreeWalk = true;
+	      startWDog(WDOG_PARAM_TREEWALK, WDOG_DEFAULT_TREEWALK);
+	      wdog = this;
 	      doTreeWalk();
 	    } finally {
 	      doingTreeWalk = false;
+	      stopWDog();
 	    }
 	    // tell scheduler we're done.  Necessary only if we ended early
 	    // (FINISHED event hasn't happened), but that's almost always
@@ -638,6 +650,7 @@ public class TreeWalkHandler {
     }
 
     public void end() {
+      triggerWDogOnExit(false);
       goOn = false;
       treeWalkAborted = true;
       if (treeWalkThread != null) {
