@@ -416,6 +416,20 @@ public class StringUtil {
     }
   }
 
+  /**
+   * Compare two strings for case-independent equality or both null.
+   * @param s1 string 1
+   * @param s2 string 2
+   * @return true if strings are equal or both null
+   */
+  public static boolean equalStringsIgnoreCase(String s1, String s2) {
+    if (s1 == null) {
+      return s2 == null;
+    } else {
+      return s1.equalsIgnoreCase(s2);
+    }
+  }
+
   private static long gensymCtr = 0;
 
   /**
