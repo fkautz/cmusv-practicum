@@ -263,11 +263,11 @@ public class CrawlManagerImpl extends BaseLockssManager
     Crawler crawler = makeNewContentCrawler(au, spec);
     CrawlThread crawlThread =
       new CrawlThread(crawler, Deadline.MAX, cb, cookie, SetUtil.set(lock));
-    crawlThread.start();
     crawlHistory.put(au.getAuId(), crawler.getStatus());
     synchronized(runningCrawls) {
       runningCrawls.put(au, crawler);
     }
+    crawlThread.start();
   }
 
   protected Crawler makeNewContentCrawler(ArchivalUnit au, CrawlSpec spec) {
