@@ -1053,7 +1053,7 @@ public class PluginManager
     CachedUrlSet cus;
     if (AuUrl.isAuUrl(url)) {
       cus = au.getAuCachedUrlSet();
-    } else if ((spec.getLwrBound()!=null) &&
+    } else if ((spec.getLwrBound() != null) &&
 	       (spec.getLwrBound().equals(PollSpec.SINGLE_NODE_LWRBOUND))) {
       cus = au.makeCachedUrlSet(new SingleNodeCachedUrlSetSpec(url));
     } else {

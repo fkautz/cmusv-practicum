@@ -649,7 +649,7 @@ public class TestPsmInterp extends LockssTestCase {
       throw new RuntimeException(e.toString());
     }
   }
-  static class MyLcapMessage extends LcapMessage {
+  static class MyLcapMessage extends V1LcapMessage {
     private String name;
     MyLcapMessage(String name) throws IOException {
       super();

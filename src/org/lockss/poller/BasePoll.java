@@ -66,7 +66,7 @@ public abstract class BasePoll implements Poll {
   static final int PS_WAIT_TALLY = 3;
   static final int PS_COMPLETE = 4;
 
-  static Logger log=Logger.getLogger("Poll");
+  static Logger log = Logger.getLogger("Poll");
 
   LcapMessage m_msg;      // The message which triggered the poll
   CachedUrlSet m_cus;     // the cached url set from the archival unit

@@ -242,7 +242,7 @@ public class LcapIdentity {
     }
     m_incrPackets++;
     m_totalPackets++;
-    if (msg.getOriginatorID() == m_pid) {
+    if (msg.getOriginatorId() == m_pid) {
       char[] encoded = B64Code.encode(msg.getVerifier());
 
       String verifier = String.valueOf(encoded);

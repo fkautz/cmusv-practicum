@@ -70,7 +70,7 @@ public class Vote {
 
   Vote(LcapMessage msg, boolean agree) {
     this(msg.getChallenge(), msg.getVerifier(), msg.getHashed(),
-         msg.getOriginatorID(), agree);
+         msg.getOriginatorId(), agree);
   }
 
   public static void setIdentityManager(IdentityManager im) {
