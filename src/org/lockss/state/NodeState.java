@@ -65,4 +65,11 @@ public interface NodeState {
    * @return an Iterator of PollHistory objects.
    */
   public Iterator getPollHistories();
+
+  /**
+   * Returns true if it's an internal node.
+   * @return true if an internal node
+   */
+  public boolean isInternalNode();
+
 }

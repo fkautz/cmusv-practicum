@@ -136,6 +136,18 @@ public class TestNodeStateImpl extends LockssTestCase {
     assertTrue(CollectionUtil.isIsomorphic(expectedIter, pollIter));
   }
 
+  public void testIsInternalNode() {
+    MockCachedUrlSet mcus = new MockCachedUrlSet(null, null);
+    Vector childV = new Vector();
+    mcus.setFlatIterator(childV.iterator());
+    state = new NodeStateImpl(mcus, null, null, null);
+    assertTrue(!state.isInternalNode());
+
+    childV.addElement("test string");
+    mcus.setFlatIterator(childV.iterator());
+    assertTrue(state.isInternalNode());
+  }
+
   public static void main(String[] argv) {
     String[] testCaseList = {TestNodeStateImpl.class.getName()};
     junit.swingui.TestRunner.main(testCaseList);

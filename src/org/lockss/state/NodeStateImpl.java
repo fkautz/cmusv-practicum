@@ -74,6 +74,10 @@ public class NodeStateImpl implements NodeState {
     return Collections.unmodifiableList(pollHistories).iterator();
   }
 
+  public boolean isInternalNode() {
+    return cus.flatSetIterator().hasNext();
+  }
+
   protected void addPollState(PollState new_poll) {
     polls.add(new_poll);
   }

@@ -100,6 +100,6 @@ public interface NodeManager {
    * @param au the ArchivalUnit to treewalk
    * @return estimated time in ms
    */
-  public long getEstimatedTreeWalkDuration(ArchivalUnit au);
+  public long getEstimatedTreeWalkDuration();
 
 }

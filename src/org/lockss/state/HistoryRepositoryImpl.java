@@ -139,7 +139,7 @@ public class HistoryRepositoryImpl implements HistoryRepository {
     buffer.append(File.separator);
     String auLoc = FileLocationUtil.mapAuToFileLocation(buffer.toString(),
         cus.getArchivalUnit());
-    String urlStr = (String)cus.getSpec().getPrefixList().get(0);
+    String urlStr = (String)cus.getPrimaryUrl();
     return FileLocationUtil.mapUrlToFileLocation(auLoc, urlStr);
   }
 
@@ -154,6 +154,5 @@ public class HistoryRepositoryImpl implements HistoryRepository {
       mapping.loadMapping(mappingFile);
     }
     return mapping;
-
   }
 }
