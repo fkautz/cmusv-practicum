@@ -172,7 +172,7 @@ public class TestBlackbirdArchivalUnit extends LockssTestCase {
 
   private void shouldCacheTest(String url, boolean shouldCache,
 			       ArchivalUnit au, CachedUrlSet cus) {
-    UrlCacher uc = au.makeUrlCacher(cus, url);
+    UrlCacher uc = au.makeUrlCacher(url);
     if (shouldCache) {
       assertTrue(url+" incorrectly marked as shouldn't cache",
 		 uc.shouldBeCached());

@@ -44,6 +44,7 @@ import java.net.MalformedURLException;
  */
 public class BaseCachedUrl implements CachedUrl {
   protected CachedUrlSet cus;
+  protected ArchivalUnit au;
   protected String url;
   protected static Logger logger = Logger.getLogger("CachedUrl");
 
@@ -55,8 +56,8 @@ public class BaseCachedUrl implements CachedUrl {
     Configuration.PREFIX+"baseCachedUrl.filterHashStream";
   private static final boolean DEFAULT_SHOULD_FILTER_HASH_STREAM = true;
 
-  public BaseCachedUrl(CachedUrlSet owner, String url) {
-    this.cus = owner;
+  public BaseCachedUrl(ArchivalUnit owner, String url) {
+    this.au = owner;
     this.url = url;
   }
 
@@ -80,21 +81,13 @@ public class BaseCachedUrl implements CachedUrl {
     return "[BCU: "+url+"]";
   }
 
-  /**
-   * Return the CachedUrlSet to which this CachedUrl belongs.
-   * @return the CachedUrlSet
-   */
-  public CachedUrlSet getCachedUrlSet() {
-    return cus;
-  }
 
   /**
    * Return the ArchivalUnit to which this CachedUrl belongs.
    * @return the ArchivalUnit
    */
   public ArchivalUnit getArchivalUnit() {
-    CachedUrlSet cus = getCachedUrlSet();
-    return cus != null ? cus.getArchivalUnit() : null;
+    return au;
   }
 
   /**
@@ -164,7 +157,6 @@ public class BaseCachedUrl implements CachedUrl {
   }
 
   private void getRepository() {
-    ArchivalUnit au = getArchivalUnit();
     repository = au.getPlugin().getDaemon().getLockssRepository(au);
   }
 
@@ -183,7 +175,6 @@ public class BaseCachedUrl implements CachedUrl {
   }
 
   private InputStream getFilteredStream() {
-    ArchivalUnit au = getArchivalUnit();
     CIProperties props = getProperties();
     String mimeType = props.getProperty(PROPERTY_CONTENT_TYPE);
     FilterRule fr = au.getFilterRule(mimeType);

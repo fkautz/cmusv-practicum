@@ -164,7 +164,7 @@ public class TestIeeeArchivalUnit
 
   private void shouldCacheTest(String url, boolean shouldCache,
 			       ArchivalUnit au, CachedUrlSet cus) {
-    UrlCacher uc = au.makeUrlCacher(cus, url);
+    UrlCacher uc = au.makeUrlCacher(url);
     assertEquals(shouldCache, uc.shouldBeCached());
   }
 

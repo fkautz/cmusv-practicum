@@ -976,7 +976,7 @@ public class PluginManager
       if (au.shouldBeCached(url)) {
 	try {
 	  String siteUrl = UrlUtil.normalizeUrl(normUrl, au);
-	  CachedUrl cu = au.makeCachedUrl(au.getAuCachedUrlSet(), siteUrl);
+	  CachedUrl cu = au.makeCachedUrl(siteUrl);
 	  if (cu != null && cu.hasContent() && cuNewerThan(cu, best)) {
 	    best = cu;
 	  }

@@ -151,7 +151,7 @@ public class FuncNewContentCrawler extends LockssTestCase {
 	   int fileLevel = sau.getLinkDepth(fileUrl);
 	   System.out.println("File: " + fileUrl + " in Level " + fileLevel);
 
-	   CachedUrl cu = sau.makeCachedUrl(myCUS, fileUrl);
+	   CachedUrl cu = sau.makeCachedUrl(fileUrl);
 	   if (fileLevel <= maxDepth) {
 	     assertTrue(cu !=null && cu.hasContent());
 	   } else {

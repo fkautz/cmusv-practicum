@@ -261,7 +261,7 @@ public class FuncSimulatedContent extends LockssTestCase {
                                int branchNum, boolean isAbnormal,
                                boolean isDamaged) throws IOException {
     String file = SimulatedArchivalUnit.SIMULATED_URL_ROOT + path;
-    CachedUrl url = sau.makeCachedUrl(sau.getAuCachedUrlSet(), file);
+    CachedUrl url = sau.makeCachedUrl(file);
     String content = getUrlContent(url);
     String expectedContent;
     if (path.endsWith(".html")) {
@@ -290,7 +290,7 @@ public class FuncSimulatedContent extends LockssTestCase {
   private void doDamageRemoveTest() throws Exception {
     /* Cache the file again; this time the damage should be gone */
     String file = SimulatedArchivalUnit.SIMULATED_URL_ROOT + DAMAGED_CACHED_URL;
-    UrlCacher uc = sau.makeUrlCacher(sau.getAuCachedUrlSet(),file);
+    UrlCacher uc = sau.makeUrlCacher(file);
     uc.setForceRefetch(true);
     uc.cache();
     checkUrlContent(DAMAGED_CACHED_URL, 2, 2, 2, false, false);

@@ -76,7 +76,7 @@ public class GenericContentHasher extends GenericHasher {
       switch (curElement.getType()) {
       case CachedUrlSetNode.TYPE_CACHED_URL_SET:
         CachedUrlSet cus = (CachedUrlSet)curElement;
-        cu = au.makeCachedUrl(cus, cus.getUrl());
+        cu = au.makeCachedUrl(cus.getUrl());
         break;
       case CachedUrlSetNode.TYPE_CACHED_URL:
         cu = (CachedUrl)curElement;

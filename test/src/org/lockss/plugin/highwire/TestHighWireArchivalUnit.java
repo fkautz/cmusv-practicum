@@ -116,7 +116,7 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
     theDaemon.getNodeManager(hwAu);
     CachedUrlSetSpec spec = new RangeCachedUrlSetSpec(base.toString());
     BaseCachedUrlSet cus = new BaseCachedUrlSet(hwAu, spec);
-    UrlCacher uc = hwAu.makeUrlCacher(cus, "http://shadow1.stanford.edu/");
+    UrlCacher uc = hwAu.makeUrlCacher("http://shadow1.stanford.edu/");
     assertFalse(uc.shouldBeCached());
   }
 
@@ -129,8 +129,7 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
     theDaemon.getNodeManager(hwAu);
     CachedUrlSetSpec spec = new RangeCachedUrlSetSpec(base.toString());
     BaseCachedUrlSet cus = new BaseCachedUrlSet(hwAu, spec);
-    UrlCacher uc = hwAu.makeUrlCacher(cus,
-         "http://shadow2.stanford.edu/lockss-manifest/vol_322_manifest.dtl");
+    UrlCacher uc = hwAu.makeUrlCacher("http://shadow2.stanford.edu/lockss-manifest/vol_322_manifest.dtl");
 
     assertFalse(uc.shouldBeCached());
   }

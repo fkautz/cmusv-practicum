@@ -102,8 +102,7 @@ public class NewContentCrawler extends FollowLinkCrawler {
 	}
 
  	if (spec.isIncluded(url)) {
-	  if (!fetchAndParse(url, extractedUrls, parsedPages,
-			     cus, true, true)) {
+	  if (!fetchAndParse(url, extractedUrls, parsedPages, true, true)) {
 	    if (crawlStatus.getCrawlError() == null) {
 	      crawlStatus.setCrawlError(Crawler.STATUS_ERROR);
 	    }

@@ -560,12 +560,12 @@ public class TestBaseCachedUrlSet extends LockssTestCase {
       return new BaseCachedUrlSet(this, cuss);
     }
 
-    public CachedUrl makeCachedUrl(CachedUrlSet owner, String url) {
-      return new BaseCachedUrl(owner, url);
+    public CachedUrl makeCachedUrl(String url) {
+      return new BaseCachedUrl(this, url);
     }
 
-    public UrlCacher makeUrlCacher(CachedUrlSet owner, String url) {
-      return new BaseUrlCacher(owner,url);
+    public UrlCacher makeUrlCacher(String url) {
+      return new BaseUrlCacher(this,url);
     }
 
     public FilterRule getFilterRule(String mimeType) {

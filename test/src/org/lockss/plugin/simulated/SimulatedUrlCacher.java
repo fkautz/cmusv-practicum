@@ -54,7 +54,7 @@ public class SimulatedUrlCacher extends BaseUrlCacher {
   private File contentFile = null;
   private CIProperties props = null;
 
-  public SimulatedUrlCacher(CachedUrlSet owner, String url, String contentRoot) {
+  public SimulatedUrlCacher(ArchivalUnit owner, String url, String contentRoot) {
     super(owner, url);
     this.fileRoot = contentRoot;
   }

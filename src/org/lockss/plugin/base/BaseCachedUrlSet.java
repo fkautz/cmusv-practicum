@@ -108,7 +108,7 @@ public class BaseCachedUrlSet implements CachedUrlSet {
     } catch (MalformedURLException e) {
       return false;
     }
-    CachedUrl cu = au.makeCachedUrl(this, getUrl());
+    CachedUrl cu = au.makeCachedUrl(getUrl());
     return (cu == null ? false : cu.hasContent());
   }
 
@@ -164,7 +164,7 @@ public class BaseCachedUrlSet implements CachedUrlSet {
       while (children.hasNext()) {
         RepositoryNode child = (RepositoryNode)children.next();
         if (child.isLeaf()) {
-          CachedUrl newUrl = au.makeCachedUrl(this, child.getNodeUrl());
+          CachedUrl newUrl = au.makeCachedUrl(child.getNodeUrl());
           flatSet.add(newUrl);
         } else {
           CachedUrlSetSpec rSpec =

@@ -332,11 +332,11 @@ public class NullPlugin {
       return null;
     }
 
-    public org.lockss.plugin.CachedUrl makeCachedUrl(org.lockss.plugin.CachedUrlSet owner, String url) {
+    public org.lockss.plugin.CachedUrl makeCachedUrl(String url) {
       return null;
     }
 
-    public org.lockss.plugin.UrlCacher makeUrlCacher(org.lockss.plugin.CachedUrlSet owner, String url) {
+    public org.lockss.plugin.UrlCacher makeUrlCacher(String url) {
       return null;
     }
 
