@@ -452,13 +452,15 @@ public class NewContentCrawler extends CrawlerImpl {
 	} 
 	if (urlRecord == null) {
 	  logger.warning("No permission page record on host of "+ url);
-	  crawlStatus.setCrawlError("No crawl permission record on host of"+  url );
+	  crawlStatus.setCrawlError("No crawl permission page for host of " +
+				    url );
 	  // abort crawl here
 	  return false;
 	}
 	// check if permission to crawl from the url's host is granted
 	if (!permissionGrantedBeforeFetch(urlRecord,true)){
-	  crawlStatus.setCrawlError("No crawl permission from host "+  urlRecord.getPermissionUrl() );
+	  crawlStatus.setCrawlError("Crawl permission not found at "+
+				    urlRecord.getPermissionUrl() );
 	  return false;
 	}
 	return true;
