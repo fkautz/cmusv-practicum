@@ -98,6 +98,6 @@ public interface Crawler {
    * Returns the starting urls for this crawler
    * @return starting urls for this crawler
    */
-  public List getStartUrls();
+  public Collection getStartUrls();
 
 }

@@ -33,13 +33,11 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.test;
 
 import java.util.*;
-import java.net.URL;
 import org.lockss.app.*;
 import org.lockss.state.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.crawler.CrawlManager;
-
 
 /**
  * Mock implementation of the CrawlManager
@@ -57,17 +55,11 @@ public class MockCrawlManager implements CrawlManager, LockssManager {
     scheduledCrawls = new HashMap();
   }
 
-  public void scheduleRepair(ArchivalUnit au, URL url,
-			     CrawlManager.Callback cb, Object cookie) {
-    scheduledRepairs.put(url.toString(), SCHEDULED);
-  }
-
-  public void scheduleRepair(ArchivalUnit au, List urls,
+  public void scheduleRepair(ArchivalUnit au, Collection urls,
 			     CrawlManager.Callback cb, Object cookie) {
     Iterator urlIt = urls.iterator();
     while (urlIt.hasNext()) {
-      URL url = (URL)urlIt.next();
-      scheduledRepairs.put(url.toString(), SCHEDULED);
+      scheduledRepairs.put(urlIt.next(), SCHEDULED);
     }
   }
 
