@@ -68,7 +68,7 @@ public class RangeCachedUrlSetSpec implements CachedUrlSetSpec {
     }
     if (lowerBound != null && upperBound != null &&
 	lowerBound.compareTo(upperBound) > 0) {
-      throw new IllegalArgumentException("RangeCachedUrlSetSpec with lower bound > upper bound");
+      throw new IllegalArgumentException("RangeCachedUrlSetSpec with lower bound > upper bound (l: " + lowerBound + ", u: " + upperBound + ")");
     }
     this.prefix = urlPrefix;
     this.upperBound = upperBound;
