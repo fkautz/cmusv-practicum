@@ -194,7 +194,11 @@ public class AuTreeWalkManager
   }
 
   void scheduleFirst() {
-    scheduleIn(twm.paramStartDelay);
+    // allow the au to override the global value
+    TypedEntryMap auMap = au.getProperties();
+    long delay = auMap.getLong(TreeWalkManager.PARAM_TREEWALK_START_DELAY,
+			       twm.paramStartDelay);
+    scheduleIn(delay);
   }
 
   void scheduleNext() {
