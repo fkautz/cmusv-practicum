@@ -52,7 +52,8 @@ public interface ArchivalUnit {
   /**
    * Supply (possibly changed) configuration information to an existing AU.
    */
-  public void setConfiguration(Configuration config);
+  public void setConfiguration(Configuration config)
+      throws ConfigurationException;
 
   /**
    * Determine whether the url falls within the CrawlSpec.
