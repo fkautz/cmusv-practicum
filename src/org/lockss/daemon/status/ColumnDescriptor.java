@@ -47,7 +47,7 @@ public class ColumnDescriptor {
   public static final int TYPE_INT=0;
 
   /**
-   * Must have meaningful toString() method
+   * Instanceof floating point number (Float, Double, etc.)
    */
   public static final int TYPE_FLOAT=1;
 
