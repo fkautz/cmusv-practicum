@@ -203,7 +203,7 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
   }
 
   public boolean shouldCrawlForNewContent(AuState aus) {
-    long timeDiff = TimeBase.nowMs() - aus.getLastCrawlTime();
+    long timeDiff = TimeBase.msSince(aus.getLastCrawlTime());
     logger.debug("Deciding whether to do new content crawl for "+aus);
     if (aus.getLastCrawlTime() == 0 ||
 	timeDiff > (ncCrawlInterval * Constants.DAY)) {

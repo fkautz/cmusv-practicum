@@ -105,7 +105,7 @@ public class SystemMetrics {
       while (!deadline.expired() && !hasher.finished()) {
         bytesHashed += hasher.hashStep(hashStep);
       }
-      timeTaken = TimeBase.nowMs() - startTime;
+      timeTaken = TimeBase.msSince(startTime);
       if (timeTaken==0) {
         logger.warning("Test finished in zero time: using bytesHashed estimate.");
         return (int)bytesHashed;

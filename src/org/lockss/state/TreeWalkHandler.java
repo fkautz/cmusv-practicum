@@ -127,7 +127,7 @@ public class TreeWalkHandler {
         } else {
           logger.debug("Tree walk started: "+theAu.getName());
           nodeTreeWalk();
-       //   long elapsedTime = TimeBase.nowMs() - startTime;
+       //   long elapsedTime = TimeBase.msSince(startTime);
        //   updateEstimate(elapsedTime);
         }
       }
@@ -221,7 +221,7 @@ public class TreeWalkHandler {
    */
   long timeUntilTreeWalkStart() {
     long lastTreeWalkTime = manager.getAuState().getLastTreeWalkTime();
-    long timeSinceLastTW = TimeBase.nowMs() - lastTreeWalkTime;
+    long timeSinceLastTW = TimeBase.msSince(lastTreeWalkTime);
     logger.debug3(timeSinceLastTW+" since last treewalk");
     logger.debug("Treewalks should happen every "+treeWalkInterval);
     return treeWalkInterval - timeSinceLastTW;
@@ -348,7 +348,7 @@ public class TreeWalkHandler {
       estDeadline = Deadline.in(treeWalkTestDuration);
       int nodesWalked = recurseEstimate(cus, 0);
 
-      timeTaken = TimeBase.nowMs() - startTime;
+      timeTaken = TimeBase.msSince(startTime);
       logger.debug("Treewalk estimate finished in time " + timeTaken + "ms with " +
                    nodesWalked + " nodes walked.");
       if (timeTaken == 0) {
