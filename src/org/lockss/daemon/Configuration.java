@@ -256,6 +256,8 @@ public abstract class Configuration {
 		       firstSpace);
       platformOverride(HistoryRepositoryImpl.PARAM_HISTORY_LOCATION,
 		       firstSpace);
+      platformOverride(IdentityManager.PARAM_IDDB_DIR,
+		       new File(firstSpace, "iddb").toString());
     }
   }
 

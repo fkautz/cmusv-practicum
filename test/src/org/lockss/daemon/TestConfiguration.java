@@ -355,5 +355,6 @@ public class TestConfiguration extends LockssTestCase {
     Configuration config = Configuration.getCurrentConfig();
     assertEquals("/a/b", config.get("org.lockss.cache.location"));
     assertEquals("/a/b", config.get("org.lockss.history.location"));
+    assertEquals("/a/b/iddb", config.get("org.lockss.id.database.dir"));
   }
 }
