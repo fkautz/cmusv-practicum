@@ -46,7 +46,7 @@ public class TimerQueue implements Serializable {
    * will be called with <code>cookie</code> as an argument.
    */
   public static boolean schedule(Deadline deadline, Callback callback,
-				 Object cookie) {
+				 Serializable cookie) {
     return singleton.add(deadline, callback, cookie);
   }
 
@@ -158,7 +158,7 @@ public class TimerQueue implements Serializable {
    * The TimerQueue.Callback interface defines the
    * method that will be called when a timer expires.
    */
-  public interface Callback {
+  public interface Callback extends Serializable {
     /**
      * Called when the timer expires.
      * @param cookie  data supplied by caller to schedule()

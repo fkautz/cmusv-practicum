@@ -32,7 +32,7 @@ package org.lockss.poller;
 
 import java.security.*;
 import java.util.*;
-
+import java.io.Serializable;
 
 import org.lockss.daemon.*;
 import org.lockss.hasher.*;
@@ -98,7 +98,7 @@ public class NamePoll extends Poll {
    * @param callback the hashing callback to use on return
    * @return true if hash successfully completed.
    */
-  boolean scheduleHash(MessageDigest hasher, Deadline timer, Object key,
+  boolean scheduleHash(MessageDigest hasher, Deadline timer, Serializable key,
                                 HashService.Callback callback) {
     return HashService.hashNames(m_urlSet, hasher, timer, callback, key);
   }

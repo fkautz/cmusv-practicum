@@ -53,7 +53,7 @@ import org.lockss.state.PollHistory;
  * @version 1.0
  */
 
-public abstract class Poll {
+public abstract class Poll implements Serializable {
   static final String PARAM_QUORUM = Configuration.PREFIX + "poll.quorum";
   static final String PARAM_AGREE_VERIFY = Configuration.PREFIX +
       "poll.agreeVerify";
@@ -169,7 +169,8 @@ public abstract class Poll {
    * @return true if hash successfully completed.
    */
   abstract boolean scheduleHash(MessageDigest hasher, Deadline timer,
-                                Object key, HashService.Callback callback);
+                                Serializable key,
+				HashService.Callback callback);
 
   /**
    * schedule a vote by a poll.  we've already completed the hash so we're

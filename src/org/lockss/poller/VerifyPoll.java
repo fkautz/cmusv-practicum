@@ -79,7 +79,7 @@ class VerifyPoll extends Poll {
    * @return true we never do anything here
    */
   boolean scheduleHash(MessageDigest hasher, Deadline timer,
-                                Object key, HashService.Callback callback) {
+		       Serializable key, HashService.Callback callback) {
     return true;
   }
 
