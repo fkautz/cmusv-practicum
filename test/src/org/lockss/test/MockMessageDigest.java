@@ -122,6 +122,13 @@ public class MockMessageDigest extends MessageDigest {
     return length;
   }
 
+  /**
+   * Return the number of bytes we have left
+   */
+  public int getNumRemainingBytes() {
+    return inputList.size();
+  }
+
   protected void engineUpdate(byte input) {
     update(input);
   }
