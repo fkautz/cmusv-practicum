@@ -181,6 +181,10 @@ public interface Crawler {
       return urlsWithErrors;
     }
 
+    public long getNumUrlsWithErrors() {
+      return urlsWithErrors.size();
+    }
+
     public Set getUrlsFetched() {
       return urlsFetched;
     }
