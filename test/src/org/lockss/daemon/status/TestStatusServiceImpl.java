@@ -628,7 +628,7 @@ public class TestStatusServiceImpl extends LockssTestCase {
       assertEquals(expectedCol.getColumnName(), actualCol.getColumnName());
       assertEquals(expectedCol.getTitle(), actualCol.getTitle());
       assertEquals(expectedCol.getType(), actualCol.getType());
-      assertEquals(expectedCol.getFootNote(), actualCol.getFootNote());
+      assertEquals(expectedCol.getFootnote(), actualCol.getFootnote());
     }
     assertFalse(actualIt.hasNext());
   }

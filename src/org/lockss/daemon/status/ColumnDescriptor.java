@@ -106,7 +106,7 @@ public class ColumnDescriptor {
     return type;
   }
 
-  public String getFootNote() {
+  public String getFootnote() {
     return footNote;
   }
 

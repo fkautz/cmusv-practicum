@@ -127,7 +127,7 @@ public class XmlStatusTable {
       addTextElement(cdElement, XmlStatusConstants.TYPE,
 		     Integer.toString(cd.getType()));
       addTextElement(cdElement, XmlStatusConstants.TITLE, cd.getTitle());
-      addTextElement(cdElement, XmlStatusConstants.FOOTNOTE, cd.getFootNote());
+      addTextElement(cdElement, XmlStatusConstants.FOOTNOTE, cd.getFootnote());
     }
   }
 
