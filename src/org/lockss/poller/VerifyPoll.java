@@ -183,7 +183,7 @@ class VerifyPoll extends Poll {
     byte[] secret = m_pollmanager.getSecret(msg.getChallenge());
     if(secret == null) {
       log.error("Verify poll reply failed.  Unable to find secret for: "
-                + B64Code.encode(msg.getChallenge()));
+                + String.valueOf(B64Code.encode(msg.getChallenge())));
       return;
     }
     byte[] verifier = m_pollmanager.makeVerifier();
