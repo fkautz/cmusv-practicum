@@ -570,9 +570,12 @@ public abstract class LockssServlet extends HttpServlet
     table.add(IMAGE_LOCKSS_RED);
     table.newCell();
     table.add(IMAGE_TM);
+    table.newRow();
+    table.newCell("COLSPAN=2");
+    table.add("<center><font size=-1>" + vDaemon + "</font></center>");
     comp.add(table);
 
-    comp.add("<center><font size=-1>" + vDaemon + "</font></center>");
+//     comp.add("<center><font size=-1>" + vDaemon + "</font></center>");
     return comp;
   }
 
