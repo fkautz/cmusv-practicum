@@ -294,7 +294,7 @@ public class PollSpec {
 
   public String toString() {
     return "[PS: pid=" + "auid=" + auId + ", url=" + url
-      + ", l=" + lwrBound + ", u=" + uprBound + "version=" + version + "]";
+      + ", l=" + lwrBound + ", u=" + uprBound + ", version=" + version + "]";
   }
 }
 
