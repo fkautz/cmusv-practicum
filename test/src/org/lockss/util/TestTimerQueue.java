@@ -99,4 +99,30 @@ public class TestTimerQueue extends LockssTestCase {
     TimeBase.step(501);
     assertEquals("bar", q.get(500));
   }
+
+  public void testCancel() {
+    final SimpleQueue.Fifo q = new SimpleQueue.Fifo();
+    // a request that we will cancel, which fails if it gets run
+    TimerQueue.Request req =
+      TimerQueue.schedule(Deadline.in(100),
+			  new TimerQueue.Callback() {
+			    public void timerExpired(Object cookie) {
+			      fail("This timer request was cancelled, " +
+				   "so should not have run.");
+			    }},
+			  "foo");
+    assertTrue(q.isEmpty());
+    // a second request to wait for, to (more or less) ensure the one we
+    // cancelled would have run by then.
+    TimerQueue.schedule(Deadline.in(200),
+			new TimerQueue.Callback() {
+			  public void timerExpired(Object cookie) {
+			    q.put(cookie);
+			  }},
+			"bar");
+    assertTrue(q.isEmpty());
+    TimerQueue.cancel(req);
+    TimeBase.step(201);
+    assertEquals("bar", q.get(500));
+  }
 }
