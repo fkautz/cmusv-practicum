@@ -37,7 +37,7 @@ import org.lockss.app.*;
 /**
  * Abstract base class for LOCKSS managers that use/start Jetty services
  */
-public abstract class JettyManager implements LockssManager {
+public abstract class JettyManager extends BaseLockssManager {
   private static boolean jettyLogInited = false;
 
   public JettyManager() {
@@ -48,6 +48,7 @@ public abstract class JettyManager implements LockssManager {
    * @see org.lockss.app.LockssManager#startService()
    */
   public void startService() {
+    super.startService();
     if (!jettyLogInited) {
       org.mortbay.util.Log.instance().add(new LoggerLogSink());
       jettyLogInited = true;
