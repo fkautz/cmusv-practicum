@@ -112,6 +112,7 @@ public class LcapRouter extends BaseLockssManager {
 
   public void stopService() {
     stopBeacon();
+    comm.unregisterMessageHandler(LockssDatagram.PROTOCOL_LCAP);
     super.stopService();
   }
 
@@ -155,7 +156,7 @@ public class LcapRouter extends BaseLockssManager {
       recentVerifiers.setMaximumSize(dupSize);
     }
 
-    partnerList.setConfig(config);
+    partnerList.setConfig(config, oldConfig, changedKeys);
 
     // make list of InetAddresses of local interfaces
     if (localInterfaces == null || changedKeys.contains(PARAM_LOCAL_IPS)) {
