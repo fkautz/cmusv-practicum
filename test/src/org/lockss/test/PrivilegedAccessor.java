@@ -275,7 +275,8 @@ public class PrivilegedAccessor {
    * between an object's class and the type of an expression is important,
    * <i>eg</i>, to simulate compile-type decisions about on what class to
    * reference a static field, or which of several overloaded methods to
-   * invoke.
+   * invoke.  (Null argumants are an instances of the latter.  This wrapper
+   * is needed for null values only when the method is overloaded.)
    */
   public static class Instance {
     private Object value;
