@@ -138,6 +138,18 @@ public class TestXmlPropertyLoader extends LockssTestCase {
     assertEquals("5", (String)v.get(4));
   }
 
+  /**
+   * Test to be sure that XML entities don't split list
+   * entries.
+   */
+  public void testListEntities() throws IOException {
+    String s = m_props.getProperty("org.lockss.listtest");
+    assertNotNull(s);
+    Vector v = StringUtil.breakAt(s, ';', -1, true, true);
+    assertEquals(1, v.size());
+    assertEquals("this&should&be&one&value", v.get(0));
+  }
+
   public void testDaemonVersionEquals() throws IOException {
     assertNull(m_props.get("org.lockss.test.a"));
     assertEquals("foo", m_props.get("org.lockss.test.b"));
