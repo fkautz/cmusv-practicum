@@ -139,6 +139,21 @@ public class TestConfiguration extends LockssTestCase {
     assertSealed(config.getConfigTree("b"));
   }    
 
+  public void testCopy() {
+    Configuration c1 = newConfiguration();
+    c1.put("a", "1");
+    c1.put("b", "2");
+    c1.put("b.x", "3");
+    c1.seal();
+    Configuration c2 = c1.copy();
+    assertEquals(3, c2.keySet().size());
+    assertEquals("1", c2.get("a"));
+    assertEquals("2", c2.get("b"));
+    assertFalse(c2.isSealed());
+    c2.put("a", "cc");
+    assertEquals("cc", c2.get("a"));
+  }    
+
   public void testLoad() throws IOException, Configuration.InvalidParam {
     String f = FileUtil.urlOfString(c1);
     Configuration config = newConfiguration();

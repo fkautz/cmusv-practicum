@@ -96,13 +96,25 @@ public abstract class Configuration {
       prefix = prefix + ".";
     }
     Configuration res = ConfigManager.newConfiguration();
-    for (Iterator iter = keySet().iterator(); iter.hasNext();) {
+    for (Iterator iter = keyIterator(); iter.hasNext();) {
       String key = (String)iter.next();
       res.put(prefix + key, get(key));
     }
     return res;
   }
 
+  /** Return a copy of the Configuration that does not share structure with
+   * the original.  The copy is not sealed, even if the original was.
+   * @return a copy
+   */
+  public Configuration copy() {
+    Configuration copy = new ConfigurationPropTreeImpl();
+    for (Iterator iter = keyIterator(); iter.hasNext(); ) {
+      String key = (String)iter.next();
+      copy.put(key, get(key));
+    }
+    return copy;
+  }
 
   /**
    * Try to load config from a list or urls
