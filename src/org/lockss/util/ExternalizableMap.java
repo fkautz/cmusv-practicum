@@ -86,7 +86,7 @@ public class ExternalizableMap extends TypedEntryMap {
     }
     catch (Exception e) {
       // some other error occured
-      e.printStackTrace();
+      logger.warning("Couldn't load: " + mapLocation, e);
       loadErr = "Exception Loading XML file: " + e.toString();
       throw new FileNotFoundException(loadErr);
     }

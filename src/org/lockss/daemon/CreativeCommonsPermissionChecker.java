@@ -187,8 +187,8 @@ public class CreativeCommonsPermissionChecker
 	  return true;
 	}
       }
-    } catch (Exception ex) {
-      ex.printStackTrace();
+    } catch (ModelException ex) {
+      log.warning("Couldn't parse RDF", ex);
     }
 
     // No permission granted if this point is reached.
