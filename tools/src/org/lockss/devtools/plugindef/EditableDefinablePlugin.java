@@ -86,14 +86,19 @@ public class EditableDefinablePlugin
   public EditableDefinablePlugin() {
   }
   // for reading map files
-  public void loadMap(String location, String name) {
+  public void loadMap(String location, String name) throws Exception {
     log.info("loading definition map: " + location + "/" + name);
     String mapFile = ExternalizableMap.MAPPING_FILE_NAME;
     definitionMap.loadMap(location, name, mapFile);
+    String err = definitionMap.getLoadErr();
+    if(err != null) {
+      log.error(err);
+      throw new Exception(err);
+    }
   }
 
   // for writing map files
-  public void writeMap(String location, String name) {
+  public void writeMap(String location, String name) throws Exception {
     // make sure we don't have any AU Config info in map
     HashMap cmap = getPrintfDescrs();
     for(Iterator it = cmap.keySet().iterator(); it.hasNext();) {
@@ -102,6 +107,11 @@ public class EditableDefinablePlugin
     // store the configuration map
     log.info("storing definition map: " + location + "/" + name);
     definitionMap.storeMap(location, name, ExternalizableMap.MAPPING_FILE_NAME);
+    String err = definitionMap.getLoadErr();
+    if(err != null) {
+      log.error(err);
+      throw new Exception(err);
+    }
   }
 
   public String getMapName() {

@@ -211,7 +211,7 @@ public class TestEditableDefinablePlugin
     assertIsomorphic("+ user defined", set, actualReturn);
   }
 
-  public void testLoadAndWriteMap() {
+  public void testLoadAndWriteMap() throws Exception {
     String name = "edMap";
     // load the configuration map from jar file
     String mapFile = name.replace('.', '/') + ".xml";
