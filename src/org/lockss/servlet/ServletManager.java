@@ -119,6 +119,7 @@ public class ServletManager extends JettyManager {
 
     if (changedKeys.contains(PARAM_IP_INCLUDE) ||
 	changedKeys.contains(PARAM_IP_EXCLUDE) ||
+	changedKeys.contains(PARAM_PLATFORM_ACCESS_SUBNET) ||
 	changedKeys.contains(PARAM_LOG_FORBIDDEN)) {
       includeIps = config.get(PARAM_IP_INCLUDE,
 			      config.get(PARAM_PLATFORM_ACCESS_SUBNET, ""));
