@@ -162,11 +162,12 @@ public class MockDatagramSocket
    */
   public void send(DatagramPacket p){
     // enqueue a copy, as that's what a real DatagramSocket would do
-    DatagramPacket qPkt = new DatagramPacket(p.getData(),
-					     p.getOffset(),
-					     p.getLength(),
-					     p.getAddress(),
-					     p.getPort());
+    DatagramPacket qPkt =
+      new DatagramPacket(new String(p.getData()).getBytes(),
+			 p.getOffset(),
+			 p.getLength(),
+			 p.getAddress(),
+			 p.getPort());
     sentPackets.add(qPkt);
   }
 
