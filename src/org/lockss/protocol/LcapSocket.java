@@ -54,6 +54,11 @@ public class LcapSocket {
     this.sock = sock;
   }
 
+  /** Return the underlying DatagramSocket */
+  DatagramSocket getSocket() {
+    return sock;
+  }
+
   /** Send a packet
    * @param pkt the DatagramPacket to send
    */
