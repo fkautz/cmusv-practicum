@@ -68,6 +68,15 @@ public abstract class JettyManager extends BaseLockssManager {
     }
   }
 
+  // synchronized on class
+  private static synchronized void installJettyLog() {
+    // install Jetty logger once only
+    if (!jettyLogInited) {
+      org.mortbay.util.Log.instance().add(new LoggerLogSink());
+      jettyLogInited = true;
+    }
+  }
+
   // Set Jetty debug properties from config params
   protected void setConfig(Configuration config, Configuration prevConfig,
 			   Set changedKeys) {
