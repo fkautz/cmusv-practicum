@@ -212,7 +212,7 @@ public class LockssRepositoryImpl implements LockssRepository {
       nodeLocation = rootLocation;
       node = new AuNodeImpl(url, nodeLocation, this);
     } else {
-      nodeLocation = RepositoryLocationUtil.mapUrlToFileLocation(rootLocation, url);
+      nodeLocation = LockssRepositoryServiceImpl.mapUrlToFileLocation(rootLocation, url);
       node = new RepositoryNodeImpl(url, nodeLocation, this);
     }
     if (!create) {
