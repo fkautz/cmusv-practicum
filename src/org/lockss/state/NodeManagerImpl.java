@@ -60,7 +60,9 @@ public class NodeManagerImpl
   // state and caches for this AU
   ArchivalUnit managedAu;
   AuState auState;
-  NodeStateCache nodeCache;
+  UniqueRefLruCache nodeCache;
+  private boolean isGlobalNodeCache =
+    NodeManagerManager.DEFAULT_GLOBAL_CACHE_ENABLED;
   HashMap activeNodes;
 
    //the set of nodes marked damaged (these are nodes which have lost content
@@ -84,7 +86,12 @@ public class NodeManagerImpl
     regulator = theDaemon.getActivityRegulator(managedAu);
     alertMgr = theDaemon.getAlertManager();
     // initializes the state info
-    nodeCache = new NodeStateCache(nodeMgrMgr.paramNodeStateCacheSize);
+    isGlobalNodeCache = nodeMgrMgr.isGlobalNodeCache();
+    if (isGlobalNodeCache) {
+      nodeCache = nodeMgrMgr.getGlobalNodeCache();
+    } else {
+      nodeCache = new UniqueRefLruCache(nodeMgrMgr.paramNodeStateCacheSize);
+    }
     activeNodes = new HashMap();
 
     auState = historyRepo.loadAuState();
@@ -104,8 +111,9 @@ public class NodeManagerImpl
   }
 
   public void setNodeStateCacheSize(int size) {
-    if (nodeCache != null && nodeCache.getCacheSize() != size) {
-      nodeCache.setCacheSize(size);
+    if (nodeCache != null && !isGlobalNodeCache &&
+	nodeCache.getMaxSize() != size) {
+      nodeCache.setMaxSize(size);
     }
   }
 
@@ -114,7 +122,7 @@ public class NodeManagerImpl
 
   public synchronized NodeState getNodeState(CachedUrlSet cus) {
     String url = cus.getUrl();
-    NodeState node = nodeCache.getState(url);
+    NodeState node = (NodeState)nodeCache.get(nodeCacheKey(url));
     if (node == null) {
       // if in repository, add to our state list
       try {
@@ -172,8 +180,15 @@ public class NodeManagerImpl
       }
     }
 
-    nodeCache.putState(cus.getUrl(), state);
+    nodeCache.put(nodeCacheKey(cus.getUrl()), state);
     return state;
+  }
+
+  Object nodeCacheKey(String canonUrl) {
+    if (isGlobalNodeCache) {
+      return new KeyPair(this, canonUrl);
+    }
+    return canonUrl;
   }
 
   public AuState getAuState() {
