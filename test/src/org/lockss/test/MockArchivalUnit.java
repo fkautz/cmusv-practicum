@@ -69,7 +69,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   }
 
   public CachedUrlSet getAUCachedUrlSet() {
-    return cus;
+    return makeCachedUrlSet(new AUCachedUrlSetSpec());
   }
 
   public void setAUCachedUrlSet(CachedUrlSet cus) {
