@@ -788,6 +788,29 @@ public class TestGoslingCrawlerImpl extends LockssTestCase {
     assertEquals(4, crawler.getNumParsed());
   }
 
+  public void testGetStatusIncomplete() {
+    assertEquals(Crawler.STATUS_INCOMPLETE, crawler.getStatus());
+  }
+
+  public void testGetStatusSuccessful() {
+    singleTagShouldCrawl("http://www.example.com/web_link.html",
+			 "<a href=", "</a>");
+    assertEquals(Crawler.STATUS_SUCCESSFUL, crawler.getStatus());
+  }
+
+  public void testGetStatusError() {
+    MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
+    String url1="http://www.example.com/blah.html";
+    cus.addUrl("<a href="+url1+">test</a>", startUrl, false, true);
+    cus.addUrl(url1, new IOException("Test exception"));
+    crawlRule.addUrlToCrawl(startUrl);
+    crawlRule.addUrlToCrawl(url1);
+
+    crawler.doCrawl(Deadline.MAX);
+    assertEquals(Crawler.STATUS_ERROR, crawler.getStatus());
+  }
+
+
   private static List testUrlList = ListUtil.list("http://example.com");
 
   //Tests for makeRepairCrawler (mrc)

@@ -121,6 +121,9 @@ public class GoslingCrawlerImpl implements Crawler {
   private Collection repairUrls = null;
 
   private CrawlSpec spec = null;
+  
+  private boolean wasError = false;
+
 
   /**
    * Construct a new content crawl object; does NOT start the crawl
@@ -200,6 +203,15 @@ public class GoslingCrawlerImpl implements Crawler {
     return type;
   }
 
+  public int getStatus() {
+    if (endTime == -1) {
+      return Crawler.STATUS_INCOMPLETE;
+    } else if (wasError) {
+      return Crawler.STATUS_ERROR;
+    }
+    return Crawler.STATUS_SUCCESSFUL;
+  }
+
   /**
    * Main method of the crawler; it loops through crawling and caching
    * urls.
@@ -211,7 +223,6 @@ public class GoslingCrawlerImpl implements Crawler {
     if (deadline == null) {
       throw new IllegalArgumentException("Called with a null Deadline");
     }
-    boolean wasError = false;
     boolean windowClosed = false;
     logger.info("Beginning crawl of "+au);
     startTime = TimeBase.nowMs();
