@@ -206,6 +206,11 @@ public class DaemonStatus extends LockssServlet {
     for (Iterator rowIter = rowList.iterator(); rowIter.hasNext(); ) {
       Map rowMap = (Map)rowIter.next();
       if (html) {
+	if (rowMap.get(StatusTable.ROW_SEPARATOR) != null) {
+	  table.newRow();
+	  table.newCell("align=center colspan=" + (cols * 2 - 1));
+	  table.add("<hr>");
+	}
 	table.newRow();
 	for (int ix = 0; ix < cols; ix++) {
 	  ColumnDescriptor cd = cds[ix];
