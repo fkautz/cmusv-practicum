@@ -74,7 +74,7 @@ public class HighWireCachedUrl extends GenericFileCachedUrl {
 
       Reader filteredReader =
 	HtmlTagFilter.makeNestedFilter(getReader(), tagList);
-      return new ReaderInputStream(filteredReader);
+      return new WhiteSpaceFilter(new ReaderInputStream(filteredReader));
     }
     logger.debug2("Not filtering "+url);
     return openForReading();
