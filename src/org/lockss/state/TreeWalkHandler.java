@@ -234,7 +234,10 @@ public class TreeWalkHandler {
         logger.error("Error in treewalk: ", e);
       } finally {
         // release the lock on the treewalk
-        activityLock.expire();
+        // need to check, since it may have been passed to the crawler
+        if (activityLock.getActivity()==ActivityRegulator.TREEWALK) {
+          activityLock.expire();
+        }
         treeWalkAborted = false;
       }
     } else {
