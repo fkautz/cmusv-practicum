@@ -286,6 +286,8 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     logger.debug3("Poll interval: "+StringUtil.timeIntervalToString(
         nextPollInterval));
     if (TimeBase.msSince(aus.getLastTopLevelPollTime()) > nextPollInterval) {
+      // reset poll interval
+      nextPollInterval = -1;
       return true;
     }
     return false;
