@@ -113,6 +113,13 @@ public class TestConfigParamDescr extends LockssTestCase {
     assertNotEquals(d1, d2);
   }
 
+  public void testIsReserved() {
+    assertTrue(ConfigParamDescr.isReservedParam("reserved.foo"));
+    assertTrue(ConfigParamDescr.isReservedParam("reserved."));
+    assertFalse(ConfigParamDescr.isReservedParam("year"));
+    assertFalse(ConfigParamDescr.isReservedParam("reservedfoo"));
+  }
+
   public void testHash() {
     ConfigParamDescr d1 = new ConfigParamDescr("foo");
     ConfigParamDescr d2 = new ConfigParamDescr("foo");

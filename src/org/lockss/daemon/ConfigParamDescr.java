@@ -443,8 +443,19 @@ public class ConfigParamDescr implements Comparable {
 
   public int hashCode() {
     int hash = 0x46600555;
+    hash += type;
+    hash += getSize();
     hash += key.hashCode();
     return hash;
+  }
+
+  static String PREFIX_RESERVED =
+    org.lockss.plugin.PluginManager.AU_PARAM_RESERVED + ".";
+
+  /** Return true if the key is a reserved parameter name (<i>ie</i>,
+   * starts with <code>reserved.</code>) */
+  public static boolean isReservedParam(String key) {
+    return key.startsWith(PREFIX_RESERVED);
   }
 
   public static class InvalidFormatException extends Exception {
