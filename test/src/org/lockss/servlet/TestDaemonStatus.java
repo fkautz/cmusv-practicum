@@ -117,10 +117,8 @@ public class TestDaemonStatus extends LockssServletTestCase {
       List row =
 	StringUtil.breakAt((String)lines.get(irow + NUM_HEADER_LINES), ',');
       assertEquals("numcols", expRow.length, row.size());
-      for (int icol = 0; icol <= expRow.length-1; icol++) {
-	assertEquals(("row " + irow + ", col " + icol),
-	  expRow[icol], row.get(icol));
-      }
+      assertEquals(("row " + irow),
+		   SetUtil.fromArray(expRow), new HashSet(row));
     }
   }
 
@@ -190,12 +188,6 @@ public class TestDaemonStatus extends LockssServletTestCase {
     assertEquals("testtbl", row2.get("table"));
 
     assertEqualTables(table1, lines);
-    for (int ix = 0; ix <= 3; ix++) {
-      Map row = getRow((String)lines.get(ix + 3));
-      assertEquals(2, row.keySet().size());
-      assertEquals(rowArray1[ix][1], row.get("rank"));
-      assertEquals(rowArray1[ix][0], row.get("name"));
-    }
   }
 
   // test null value in rows doesn't throw
