@@ -337,7 +337,7 @@ public class AuConfig extends LockssServlet {
 
   /** Add an Edit row to the table */
   private void addAuSummaryRow(Table tbl, AuProxy au) {
-    Configuration cfg = remoteApi.getCurrentAuConfiguration(au);
+    Configuration cfg = remoteApi.getStoredAuConfiguration(au);
     boolean isGrey = true;
     String act;
     if (cfg.isEmpty()) {
