@@ -36,7 +36,7 @@ import java.text.DateFormat;
 
 /** Daedline represents a time (at which some operation must complete).
  */
-public class Deadline {
+public class Deadline implements Comparable {
   protected Date expiration;
   protected long duration;		// only for testing
 
@@ -96,6 +96,16 @@ public class Deadline {
 
   protected static long nowMs() {
     return System.currentTimeMillis();
+  }
+
+  // Comparable interface
+
+  public int compareTo(Object o) {
+    return expiration.compareTo(((Deadline)o).expiration);
+  }
+
+  public boolean equals(Object o) {
+    return expiration.equals(((Deadline)o).expiration);
   }
 
   // tk - should include "+n days" or some such
