@@ -73,8 +73,9 @@ public class ProxyManager extends JettyManager {
     super.stopService();
   }
 
-  protected void setConfig(Configuration config, Configuration oldConfig,
+  protected void setConfig(Configuration config, Configuration prevConfig,
 			   Set changedKeys) {
+    super.setConfig(config, prevConfig, changedKeys);
     port = config.getInt(PARAM_PORT, 9090);
     start = config.getBoolean(PARAM_START, true);
   }

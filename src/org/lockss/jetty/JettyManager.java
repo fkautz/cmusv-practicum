@@ -32,12 +32,24 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.jetty;
 
+import java.util.*;
 import org.lockss.app.*;
+import org.lockss.util.*;
+import org.lockss.daemon.*;
+import org.mortbay.util.Code;
 
 /**
  * Abstract base class for LOCKSS managers that use/start Jetty services
  */
 public abstract class JettyManager extends BaseLockssManager {
+  static final String PREFIX = Configuration.PREFIX + "jetty.debug";
+
+  static final String PARAM_JETTY_DEBUG = PREFIX;
+  static final String PARAM_JETTY_DEBUG_PATTERNS = PREFIX + ".patterns";
+  static final String PARAM_JETTY_DEBUG_VERBOSE = PREFIX + ".verbose";
+//   static final String PARAM_JETTY_DEBUG_OPTIONS = PREFIX + ".options";
+
+  private static Logger log = Logger.getLogger("JettyMgr");
   private static boolean jettyLogInited = false;
 
   public JettyManager() {
@@ -49,9 +61,21 @@ public abstract class JettyManager extends BaseLockssManager {
    */
   public void startService() {
     super.startService();
+    // install Jetty logger once only
     if (!jettyLogInited) {
       org.mortbay.util.Log.instance().add(new LoggerLogSink());
       jettyLogInited = true;
+    }
+  }
+
+  // Set Jetty debug properties from config params
+  protected void setConfig(Configuration config, Configuration prevConfig,
+			   Set changedKeys) {
+    Properties p = System.getProperties();
+    Code.setDebug(config.getBoolean(PARAM_JETTY_DEBUG, false));
+    Code.setDebugPatterns(config.get(PARAM_JETTY_DEBUG_PATTERNS));
+    if (changedKeys.contains(PARAM_JETTY_DEBUG_VERBOSE)) {
+      Code.setVerbose(config.getInt(PARAM_JETTY_DEBUG_VERBOSE, 0));
     }
   }
 }
