@@ -77,6 +77,7 @@ public class TestDeadline extends LockssTestCase {
 	assertTrue(pd > (r - 10000) && pd < (r + 10000));
 	if (getDuration(p0) != pd) {
 	  differs = true;
+	  break;
 	}
       }
       if (!differs) {
