@@ -110,8 +110,8 @@ class PartnerList {
   }
 
   /** Return a snapshot of the partner set */
-  public Set getPartners() {
-    return new HashSet(partners.keySet());
+  public Collection getPartners() {
+    return new ArrayList(partners.keySet());
   }
 
   /** Inform the PartnerList that a multicast packet was received.

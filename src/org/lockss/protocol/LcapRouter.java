@@ -315,7 +315,7 @@ public class LcapRouter extends BaseLockssManager {
    */
   void doUnicast(LockssDatagram dg, RateLimiter limiter,
 		 InetAddress sender, InetAddress originator) {
-    Set partners = partnerList.getPartners();
+    Collection partners = partnerList.getPartners();
     if (partners.contains(getLocalIdentityAddr())) {
       log.warning("Local IP found in partner list: " + getLocalIdentityAddr());
       partners.remove(getLocalIdentityAddr());
