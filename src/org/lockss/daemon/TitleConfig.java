@@ -223,6 +223,41 @@ public class TitleConfig {
     return p;
   }
 
+  public boolean equals(Object obj) {
+    if (! (obj instanceof TitleConfig)) {
+      return false;
+    }
+    TitleConfig o = (TitleConfig)obj;
+    return
+      StringUtil.equalStrings(displayName, o.getDisplayName()) &&
+      StringUtil.equalStrings(journalTitle, o.getJournalTitle()) &&
+      StringUtil.equalStrings(pluginName, o.getPluginName()) &&
+      StringUtil.equalStrings(pluginVersion, o.getPluginVersion()) &&
+      estSize == o.getEstimatedSize() &&
+      // params is order-independent, can't call List.equals()
+      (params == null ?
+       o.getParams() == null : (params.size() == o.getParams().size() &&
+				params.containsAll(o.getParams())));
+  }
+
+  public int hashCode() {
+    int hash = 0x6620704;
+    if (displayName != null) hash += displayName.hashCode();
+    if (journalTitle != null) hash += journalTitle.hashCode();
+    if (pluginName != null) hash += pluginName.hashCode();
+    if (pluginVersion != null) hash += pluginVersion.hashCode();
+    hash += getEstimatedSize();
+    // params is order-independent, can't call List.hashCode()
+    if (params != null) {
+      for (Iterator iter = params.iterator(); iter.hasNext(); ) {
+	Object obj = iter.next();
+	if (obj != null)
+	  hash += obj.hashCode();
+      }
+    }
+    return hash;
+  }
+
   public String toString() {
     StringBuffer sb = new StringBuffer(40);
     sb.append("[Title: ");
