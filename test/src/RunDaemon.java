@@ -110,8 +110,7 @@ public class RunDaemon {
 	Thread.currentThread().sleep(1000);
 	pollManager.makePollRequest("http://www.example.com/", ".*",
 				    poll_type,
-				    5, InetAddress.getByName("239.4.5.6"),
-				    3 * 60 * 1000, 60 * 1000);
+				    3 * 60 * 1000);
       } catch (Exception e) {
 	e.printStackTrace();
       }
