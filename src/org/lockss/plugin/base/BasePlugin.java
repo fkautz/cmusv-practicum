@@ -60,6 +60,13 @@ public abstract class BasePlugin implements Plugin {
   public void stopPlugin() {
   }
 
+  // for now use the plugin's class name with "|"s instead of "."s
+  // tk - this will have to change to account for versioning
+  public String getPluginId() {
+    String name = this.getClass().getName();
+    return StringUtil.replaceString(name, ".", "|");
+  }
+
   public ArchivalUnit getAU(String auId) {
     return (ArchivalUnit)auMap.get(auId);
   }
