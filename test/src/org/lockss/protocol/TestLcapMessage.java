@@ -194,6 +194,18 @@ public class TestLcapMessage extends TestCase {
     }
   }
 
+  public void testMessageEncodingHandlesNullEntries() throws IOException {
+    testmsg.m_entries = null;
+    testmsg.encodeMsg();
+  }
+    
+  public void testMessageDecodingHandlesNullEntries() throws IOException {
+    testmsg.m_entries = null;
+    byte[] msgbytes = testmsg.encodeMsg();
+    new LcapMessage(msgbytes);
+  }
+    
+
 
 
   /** Executes the test case */
