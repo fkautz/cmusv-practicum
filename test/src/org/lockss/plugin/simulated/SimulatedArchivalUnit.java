@@ -62,6 +62,7 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
 
   private String fileRoot; //root directory for the generated content
   private SimulatedContentGenerator scgen;
+  private String auId = StringUtil.gensym("SimAU_");
 
   public SimulatedArchivalUnit(String new_fileRoot) {
     super(null, new CrawlSpec(SIMULATED_URL_START, null));
@@ -99,7 +100,8 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
   }
 
   public String getAUId() {
-    return "content";
+    return auId;
+//     return "content";
   }
 
   // public methods
