@@ -309,6 +309,14 @@ public class LockssTestCase extends TestCase {
     }
   }
   
+  /**
+   * Asserts that two objects are not equal. If they are not
+   * an AssertionFailedError is thrown with the given message.
+   */
+  static public void assertNotEquals(Object expected, Object actual) {
+    assertNotEquals(null, expected, actual);
+  }
+  
   public static void assertNotEquals(long expected, long actual) {
     assertNotEquals(null, expected, actual);
   }
