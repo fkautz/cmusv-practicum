@@ -232,7 +232,7 @@ public class LcapRouter extends BaseLockssManager {
   boolean isDuplicate(LockssReceivedDatagram dg, LcapMessage msg) {
     String verifier = String.valueOf(B64Code.encode(msg.getVerifier()));
     if (recentVerifiers.put(verifier, verObj) != null) {
-      log.debug2("Discarding dup from " + dg.getSender() + ": y" + msg);
+      log.debug2("Discarding dup from " + dg.getSender() + ": " + msg);
       idEvent(dg.getSender(), LcapIdentity.EVENT_DUPLICATE, msg);
       return true;
     }
