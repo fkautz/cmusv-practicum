@@ -440,6 +440,85 @@ public class TestBaseCachedUrlSet extends LockssTestCase {
     assertEquals(300, nodeMan.getNodeState(fileSet).getAverageHashDuration());
   }
 
+  public void testCusCompare() throws Exception {
+    CachedUrlSetSpec spec1 =
+        new RangeCachedUrlSetSpec("http://www.example.com/test");
+    CachedUrlSetSpec spec2 =
+        new RangeCachedUrlSetSpec("http://www.example.com");
+    MockCachedUrlSet cus1 = new MockCachedUrlSet(mau, spec1);
+    MockCachedUrlSet cus2 = new MockCachedUrlSet(mau, spec2);
+    assertEquals(CachedUrlSet.BELOW, cus1.cusCompare(cus2));
+
+    spec1 = new RangeCachedUrlSetSpec("http://www.example.com/test");
+    spec2 = new RangeCachedUrlSetSpec("http://www.example.com/test/subdir");
+    cus1 = new MockCachedUrlSet(mau, spec1);
+    cus2 = new MockCachedUrlSet(mau, spec2);
+    assertEquals(CachedUrlSet.ABOVE, cus1.cusCompare(cus2));
+
+    spec1 = new RangeCachedUrlSetSpec("http://www.example.com/test", "/a", "/b");
+    spec2 = new RangeCachedUrlSetSpec("http://www.example.com/test", "/c", "/d");
+    cus1 = new MockCachedUrlSet(mau, spec1);
+    cus2 = new MockCachedUrlSet(mau, spec2);
+    assertEquals(CachedUrlSet.SAME_LEVEL_NO_OVERLAP,
+                 cus1.cusCompare(cus2));
+
+    spec2 = new RangeCachedUrlSetSpec("http://www.example.com/test", "/b", "/d");
+    cus2 = new MockCachedUrlSet(mau, spec2);
+    assertEquals(CachedUrlSet.SAME_LEVEL_OVERLAP,
+                 cus1.cusCompare(cus2));
+
+    spec1 = new RangeCachedUrlSetSpec("http://www.example.com/test/subdir2");
+    spec2 = new RangeCachedUrlSetSpec("http://www.example.com/subdir");
+    cus1 = new MockCachedUrlSet(mau, spec1);
+    cus2 = new MockCachedUrlSet(mau, spec2);
+    assertEquals(CachedUrlSet.NO_RELATION, cus1.cusCompare(cus2));
+
+    // test for single node specs
+    spec1 = new SingleNodeCachedUrlSetSpec("http://www.example.com");
+    spec2 = new RangeCachedUrlSetSpec("http://www.example.com/test");
+    cus1 = new MockCachedUrlSet(mau, spec1);
+    cus2 = new MockCachedUrlSet(mau, spec2);
+    assertEquals(CachedUrlSet.SAME_LEVEL_NO_OVERLAP, cus1.cusCompare(cus2));
+    // reverse
+    assertEquals(CachedUrlSet.SAME_LEVEL_NO_OVERLAP, cus2.cusCompare(cus1));
+
+    // test for Au urls
+    spec1 = new AuCachedUrlSetSpec();
+    spec2 = new AuCachedUrlSetSpec();
+    cus1 = new MockCachedUrlSet(mau, spec1);
+    cus2 = new MockCachedUrlSet(mau, spec2);
+    assertEquals(CachedUrlSet.SAME_LEVEL_OVERLAP, cus1.cusCompare(cus2));
+
+    spec2 = new RangeCachedUrlSetSpec("http://www.example.com");
+    cus2 = new MockCachedUrlSet(mau, spec2);
+    assertEquals(CachedUrlSet.ABOVE, cus1.cusCompare(cus2));
+    // reverse
+    assertEquals(CachedUrlSet.BELOW, cus2.cusCompare(cus1));
+
+    // test for different AUs
+    spec1 = new RangeCachedUrlSetSpec("http://www.example.com");
+    spec2 = new RangeCachedUrlSetSpec("http://www.example.com");
+    cus1 = new MockCachedUrlSet(mau, spec1);
+    cus2 = new MockCachedUrlSet(new MockArchivalUnit(), spec2);
+    assertEquals(CachedUrlSet.NO_RELATION, cus1.cusCompare(cus2));
+
+    // test for exclusive ranges
+    spec1 = new RangeCachedUrlSetSpec("http://www.example.com", "/abc", "/xyz");
+    spec2 = new RangeCachedUrlSetSpec("http://www.example.com/test");
+    cus1 = new MockCachedUrlSet(mau, spec1);
+    cus2 = new MockCachedUrlSet(mau, spec2);
+    // this range is inclusive, so should be parent
+    assertEquals(CachedUrlSet.ABOVE, cus1.cusCompare(cus2));
+    assertEquals(CachedUrlSet.BELOW, cus2.cusCompare(cus1));
+    spec1 = new RangeCachedUrlSetSpec("http://www.example.com", "/abc", "/mno");
+    cus1 = new MockCachedUrlSet(mau, spec1);
+    // this range is exclusive, so should be no relation
+    assertEquals(CachedUrlSet.NO_RELATION, cus1.cusCompare(cus2));
+    // reverse
+    assertEquals(CachedUrlSet.NO_RELATION, cus2.cusCompare(cus1));
+  }
+
+
   private RepositoryNode createLeaf(String url, String content,
                                     Properties props) throws Exception {
     return TestRepositoryNodeImpl.createLeaf(repo, url, content, props);

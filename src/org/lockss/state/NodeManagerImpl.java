@@ -1201,8 +1201,7 @@ public class NodeManagerImpl
                                                prevHistory.lwrBound,
                                                prevHistory.uprBound);
           CachedUrlSet cus2 = prevPollSpec.getCachedUrlSet();
-          if ((lockssRepo.cusCompare(cus1, cus2) ==
-               LockssRepository.SAME_LEVEL_NO_OVERLAP)) {
+          if ((cus1.cusCompare(cus2) == CachedUrlSet.SAME_LEVEL_NO_OVERLAP)) {
             if (prevHistory.getStatus()==PollState.LOST) {
               // found the failed poll, rerunning
               if (!reportOnly) {
