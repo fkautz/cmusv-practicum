@@ -47,7 +47,8 @@ public class TitleSetXpath extends BaseTitleSet {
   // xpath in constructor
   private static JXPathContext sharedContext = JXPathContext.newContext(null);
   static {
-    sharedContext.setFunctions(new ClassFunctions(RegexpUtil.class, "RE"));
+    sharedContext.setFunctions(new ClassFunctions(RegexpUtil.XpathUtil.class,
+						  "RE"));
   };
 
   private String xpath;
@@ -75,7 +76,7 @@ public class TitleSetXpath extends BaseTitleSet {
    * @param allTitles collection of {@link TitleConfig}s to be filtered
    * @return a collection of {@link TitleConfig}s
    */
-  Collection getTitles(Collection allTitles) {
+  Collection filterTitles(Collection allTitles) {
     JXPathContext context = JXPathContext.newContext(sharedContext, allTitles);
     return selectNodes(expr, context);
   }
@@ -115,7 +116,7 @@ public class TitleSetXpath extends BaseTitleSet {
 
   public String toString() {
     StringBuffer sb = new StringBuffer(40);
-    sb.append("[XPath: ");
+    sb.append("[TS.XPath: ");
     sb.append(xpath);
     sb.append("]");
     return sb.toString();

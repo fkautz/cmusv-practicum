@@ -38,7 +38,7 @@ import java.util.*;
 public interface TitleSet extends Comparable {
   /** Return the human-readable name of the set of titles.
    * @return the name */
-   String getName();
+  String getName();
 
   /** Return the titles in the set.
    * @return a collection of {@link TitleConfig} */

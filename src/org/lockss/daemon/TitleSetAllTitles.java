@@ -51,7 +51,7 @@ public class TitleSetAllTitles extends BaseTitleSet {
    * @param allTitles collection of {@link TitleConfig}s to be filtered
    * @return collection of {@link TitleConfig}s that match the predicate
    */
-  Collection getTitles(Collection allTitles) {
+  Collection filterTitles(Collection allTitles) {
     return allTitles;
   }
 
@@ -75,6 +75,6 @@ public class TitleSetAllTitles extends BaseTitleSet {
   }
 
   public String toString() {
-    return "[AllTitles]";
+    return "[TS.AllTitles]";
   }
 }

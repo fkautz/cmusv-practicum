@@ -104,7 +104,7 @@ public class TitleSetActiveAus extends BaseTitleSet {
    * but should never be called.
    * @throw UnsupportedOperationException
   */
-  Collection getTitles(Collection allTitles) {
+  Collection filterTitles(Collection allTitles) {
     throw
       new UnsupportedOperationException("This method should never be called");
   }
@@ -129,6 +129,6 @@ public class TitleSetActiveAus extends BaseTitleSet {
   }
 
   public String toString() {
-    return "[AllTitles]";
+    return "[TS.ActiveAus]";
   }
 }
