@@ -240,6 +240,8 @@ public class CrawlManagerImpl implements CrawlManager, LockssManager {
 
     public void signalCrawlAttemptCompleted(boolean success, Object cookie) {
       if (success) {
+	logger.debug3("Signaling nodeManager that the crawl sucessfully "
+		      +"completed");
 	nodeManager.newContentCrawlFinished();
       }
     }
