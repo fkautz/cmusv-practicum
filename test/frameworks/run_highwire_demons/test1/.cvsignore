@@ -1,8 +1,9 @@
 cache
+config
 dpid
 history
+iddb
+local.opt
 localA
 simcontent
 test.out
-local.opt
-iddb
