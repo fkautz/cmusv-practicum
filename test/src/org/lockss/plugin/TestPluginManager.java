@@ -33,7 +33,6 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.plugin;
 
 import java.io.*;
-import java.net.*;
 import java.util.*;
 import junit.framework.*;
 import org.lockss.daemon.*;
@@ -42,7 +41,6 @@ import org.lockss.poller.*;
 import org.lockss.util.*;
 import org.lockss.test.*;
 import org.lockss.repository.*;
-import org.lockss.poller.PollSpec;
 
 /**
  * Test class for org.lockss.plugin.PluginManager
