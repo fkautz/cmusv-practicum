@@ -53,6 +53,13 @@ public class TestGoslingCrawlerImpl extends LockssTestCase {
   private List urlList = null;
   private GoslingCrawlerImpl crawler = null;
 
+  public static final String EMPTY_PAGE = "";
+  public static final String LINKLESS_PAGE = "Nothing here";
+
+  public static final String startUrl = 
+    "http://www.example.com/index.html";
+
+
   public static Class testedClasses[] = {
     org.lockss.crawler.GoslingCrawlerImpl.class
   };
@@ -108,13 +115,6 @@ public class TestGoslingCrawlerImpl extends LockssTestCase {
     }
   }
   
-  public static final String EMPTY_PAGE = "";
-  public static final String LINKLESS_PAGE = "Nothing here";
-
-  public static final String startUrl = 
-    "http://www.example.com/index.html";
-
-
   public void testDoCrawlOnePageNoLinks() {
     MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAUCachedUrlSet();
     cus.addUrl(LINKLESS_PAGE, startUrl);
