@@ -172,8 +172,9 @@ public class MockMulticastSocket
   public void leaveGroup(InetAddress mcastaddr) {
   }
 
-  public void send(DatagramPacket p, byte ttl) {
-    this.send(p);
-  }
+  // Overridden method is deprecated in 1.4, jikes considers this illegal
+//   public void send(DatagramPacket p, byte ttl) {
+//     this.send(p);
+//   }
 
 }
