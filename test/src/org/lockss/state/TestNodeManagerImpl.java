@@ -690,13 +690,18 @@ public class TestNodeManagerImpl extends LockssTestCase {
     nodeManager.updateState(nodeState, results);
     assertEquals(PollState.WON, pollState.getStatus());
     assertEquals(TimeBase.nowMs(), auState.getLastTopLevelPollTime());
+    /*
+     This is no longer correct, the Name Poll is going to use the VoteTally
+     to get the needed polls since Node states don't contain appropriate
+     range information.  This needs a different test using better mock polls
+
     assertEquals(MockPollManager.CONTENT_REQUESTED,
                  ((MockPollManager)theDaemon.getPollManager()).getPollStatus(
         "testDir1"));
     assertEquals(MockPollManager.CONTENT_REQUESTED,
                  ((MockPollManager)theDaemon.getPollManager()).getPollStatus(
         "testDir2"));
-
+     */
     theDaemon.getHashService().stopService();
     theDaemon.getPollManager().stopService();
   }
@@ -719,13 +724,17 @@ public class TestNodeManagerImpl extends LockssTestCase {
                                         null);
     nodeManager.handleNamePoll(pollState, results, nodeState);
     // test poll request
+    /*
+     This is no longer correct, the Name Poll is going to use the VoteTally
+     to get the needed polls since Node states don't contain appropriate
+     range information.  This needs a different test
     assertEquals(MockPollManager.CONTENT_REQUESTED,
                  ((MockPollManager)theDaemon.getPollManager()).getPollStatus(
         TEST_URL + "/branch2/file1.doc"));
     assertEquals(MockPollManager.CONTENT_REQUESTED,
                  ((MockPollManager)theDaemon.getPollManager()).getPollStatus(
         TEST_URL+"/branch2/file2.doc"));
-    //XXX check the error which used to happen here when the normal PollManager
+     */
     // was used (should have created an IO error, but didn't)
     assertEquals(PollState.WON, pollState.getStatus());
 
