@@ -530,7 +530,7 @@ public class TestPoll extends LockssTestCase {
           pollmanager.generateRandomBytes(),
           pollmanager.generateRandomBytes(),
           opcode,
-          spec.calcDuration(opcode,cus,pollmanager),
+          pollmanager.calcDuration(opcode,cus),
           testID);
       }
 
@@ -553,7 +553,7 @@ public class TestPoll extends LockssTestCase {
           pollmanager.generateRandomBytes(),
           pollmanager.generateRandomBytes(),
           opcode,
-          spec.calcDuration(opcode,cus,pollmanager),
+          pollmanager.calcDuration(opcode,cus),
           testID);
 	testV2msg[i].setVersion(2);
       }
