@@ -201,6 +201,7 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
           "Updating state on non-existant node.");
     }
     else {
+      logger.debug3("Hash finished for CUS '" + cus.getUrl() + "'");
       ( (NodeStateImpl) state).setLastHashDuration(hashDuration);
     }
   }
