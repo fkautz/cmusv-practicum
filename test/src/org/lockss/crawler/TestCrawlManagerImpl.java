@@ -74,6 +74,8 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     nodeManager = new MockNodeManager();
     theDaemon.setNodeManager(nodeManager, mau);
 
+    theDaemon.setPluginManager(new PluginManager());
+
     activityRegulator = new MockActivityRegulator(mau);
     activityRegulator.initService(theDaemon);
     theDaemon.setActivityRegulator(activityRegulator, mau);

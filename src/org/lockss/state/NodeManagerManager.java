@@ -135,6 +135,9 @@ public class NodeManagerManager
   static class ServiceStatus implements StatusAccessor {
     static final String TABLE_TITLE = "NodeManager Service Table";
 
+    PluginManager pluginMgr =
+      (PluginManager)LockssApp.getManager(LockssDaemon.PLUGIN_MANAGER);
+
     private static final List columnDescriptors = ListUtil.list(
          new ColumnDescriptor("AuName", "Volume",
 			      ColumnDescriptor.TYPE_STRING),
@@ -178,7 +181,7 @@ public class NodeManagerManager
 	AuState auState = manager.getAuState();
         if (auState != null) {
 	  if (!includeInternalAus &&
-	      (auState.getArchivalUnit() instanceof RegistryArchivalUnit)) {
+	      pluginMgr.isInternalAu(auState.getArchivalUnit())) {
 	    continue;
 	  }
           rowL.add(makeRow(manager));

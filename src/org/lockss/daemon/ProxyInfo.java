@@ -119,7 +119,7 @@ public class ProxyInfo {
       (PluginManager)LockssDaemon.getManager(LockssDaemon.PLUGIN_MANAGER);
     for (Iterator iter = pmgr.getAllAus().iterator(); iter.hasNext(); ) {
       ArchivalUnit au = (ArchivalUnit)iter.next();
-      if (!(au instanceof RegistryArchivalUnit)) {
+      if (!pmgr.isInternalAu(au)) {
 	for (Iterator urlIter = au.getUrlStems().iterator();
 	     urlIter.hasNext(); ) {
 	  String urlStem = (String)urlIter.next();

@@ -147,7 +147,7 @@ public class RemoteApi extends BaseLockssDaemonManager {
     List res = new ArrayList();
     for (Iterator iter = aus.iterator(); iter.hasNext(); ) {
       ArchivalUnit au = (ArchivalUnit)iter.next();
-      if (!(au instanceof RegistryArchivalUnit)) {
+      if (!pluginMgr.isInternalAu(au)) {
 	AuProxy aup = findAuProxy(au);
 	res.add(aup);
       }
@@ -160,7 +160,7 @@ public class RemoteApi extends BaseLockssDaemonManager {
     List res = new ArrayList();
     for (Iterator iter = plugins.iterator(); iter.hasNext(); ) {
       Plugin plugin = (Plugin)iter.next();
-      if (!(plugin instanceof RegistryPlugin)) {
+      if (!pluginMgr.isInternalPlugin(plugin)) {
 	PluginProxy pluginp = findPluginProxy(plugin);
 	res.add(pluginp);
       }
@@ -283,7 +283,7 @@ public class RemoteApi extends BaseLockssDaemonManager {
     List res = new ArrayList();
     for (Iterator iter = inactiveAuIds.iterator(); iter.hasNext(); ) {
       String auid = (String)iter.next();
-      if (!(pluginMgr.getAuFromId(auid) instanceof RegistryArchivalUnit)) {
+      if (!pluginMgr.isInternalAu(pluginMgr.getAuFromId(auid))) {
 	res.add(new InactiveAuProxy(auid, this));
       }
     }

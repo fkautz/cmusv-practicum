@@ -152,7 +152,7 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
 	      if (props != null) {
 		auid = props.getProperty(LockssRepositoryImpl.AU_ID_PROP);
 		if (!includeInternalAus &&
-		    (pluginMgr.getAuFromId(auid) instanceof RegistryArchivalUnit)) {
+		    pluginMgr.isInternalAu(pluginMgr.getAuFromId(auid))) {
 		  continue;
 		}
 	      }
