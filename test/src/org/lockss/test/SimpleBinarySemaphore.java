@@ -38,7 +38,7 @@ import java.util.*;
  * then empties it and returns.
  */
 public class SimpleBinarySemaphore {
-  private boolean state = false;
+  private volatile boolean state = false;
     
   /** Wait until the semaphore is full.
    * If the semaphore is already full, return immediately.
