@@ -252,7 +252,7 @@ public class AcsArchivalUnit extends BaseArchivalUnit {
       throws REException {
 
     CrawlRule rule = makeRules(base, jkey, volume);
-    return new CrawlSpec(startUrlString, rule, 1);
+    return new CrawlSpec(startUrlString, rule, 2);
   }
 
   private CrawlRule makeRules(URL urlRoot, String jkey, int volume)
@@ -290,7 +290,7 @@ public class AcsArchivalUnit extends BaseArchivalUnit {
                                 + "/" + year +"/" + volume + "/.*", incl));
      */
     // to include the supporting info uncomment this line
-    //rules.add(new CrawlRules.RE(".*supporting_information.page.*", excl));
+    rules.add(new CrawlRules.RE(".*supporting_information.page.*", incl));
 
     logger.debug("Rules: " + rules);
     return new CrawlRules.FirstMatch(rules);
