@@ -244,7 +244,7 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
     public CachedUrl makeCachedUrl(String url) {
       CachedUrl res = (CachedUrl)cuMap.get(url);;
       log.debug("makeCachedUrl(" + url + ") = " + res);
-      return (CachedUrl)cuMap.get(url);;
+      return (CachedUrl)cuMap.get(url);
     }
 
     public org.lockss.plugin.UrlCacher makeUrlCacher(String url) {

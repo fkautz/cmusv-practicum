@@ -177,7 +177,7 @@ public class PollState implements Comparable {
         return "Undefined error";
       default:
         return "Undefined";
-    };
+    }
   }
 
   /**
