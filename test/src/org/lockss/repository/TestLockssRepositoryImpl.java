@@ -381,7 +381,13 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
     HashMap newNameMap = new HashMap();
     newNameMap.put(mau.getAuId(), "/foo/bar/testDir");
     LockssRepositoryImpl.nameMap = newNameMap;
-    assertEquals("/foo/bar/testDir", LockssRepositoryImpl.getAuDir(mau, ""));
+    assertEquals("/foo/bar/testDir", LockssRepositoryImpl.getAuDir(mau, "",
+								   false));
+  }
+
+  public void testGetAuDirNoCreate() {
+    mau.setAuId("foobar23");
+    assertNull(LockssRepositoryImpl.getAuDir(mau, "", false));
   }
 
   public void testSaveAndLoadNames() {
@@ -405,23 +411,37 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
   }
 
   public void testMapAuToFileLocation() {
-    LockssRepositoryImpl.lastPluginDir = "ca";
-    String expectedStr = getCacheLocation() + "root/cb/";
+    LockssRepositoryImpl.lastPluginDir = "ba";
+    String expectedStr = getCacheLocation() + "bb/";
     assertEquals(FileUtil.sysDepPath(expectedStr),
-                 LockssRepositoryImpl.mapAuToFileLocation(
-        getCacheLocation()+"root", new MockArchivalUnit()));
+		 LockssRepositoryImpl.mapAuToFileLocation(tempDirPath,
+							  new MockArchivalUnit()));
+  }
+
+  public void testDoesAuDirExist() {
+    MockArchivalUnit mau = new MockArchivalUnit();
+    String auid = "sdflkjsd";
+    mau.setAuId(auid);
+    assertFalse(LockssRepositoryImpl.doesAuDirExist(auid, tempDirPath));
+    // ensure asking doesn't create it
+    assertFalse(LockssRepositoryImpl.doesAuDirExist(auid, tempDirPath));
+    LockssRepositoryImpl.lastPluginDir = "ga";
+    String expectedStr = getCacheLocation() + "gb/";
+    assertEquals(FileUtil.sysDepPath(expectedStr),
+		 LockssRepositoryImpl.mapAuToFileLocation(tempDirPath, mau));
+    assertTrue(LockssRepositoryImpl.doesAuDirExist(auid, tempDirPath));
   }
 
   public void testGetAuDirSkipping() {
-    String location = getCacheLocation() + "root/ab";
+    String location = getCacheLocation() + "ab";
     File dirFile = new File(location);
     dirFile.mkdirs();
 
     LockssRepositoryImpl.lastPluginDir = "aa";
-    String expectedStr = getCacheLocation() + "root/ac/";
+    String expectedStr = getCacheLocation() + "ac/";
     assertEquals(FileUtil.sysDepPath(expectedStr),
-                 LockssRepositoryImpl.mapAuToFileLocation(
-        getCacheLocation()+"root", new MockArchivalUnit()));
+                 LockssRepositoryImpl.mapAuToFileLocation(tempDirPath,
+							  new MockArchivalUnit()));
   }
 
   public void testMapUrlToFileLocation() throws MalformedURLException {
