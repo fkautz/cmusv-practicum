@@ -38,7 +38,6 @@ import java.io.File;
 import java.util.Iterator;
 import org.lockss.repository.*;
 import java.net.MalformedURLException;
-import gnu.regexp.RE;
 import org.lockss.plugin.simulated.SimulatedArchivalUnit;
 
 /**
@@ -87,7 +86,7 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
     leaf.sealNewVersion();
 
     CachedUrlSetSpec rSpec =
-        new RECachedUrlSetSpec("http://www.example.com/testDir", (RE)null);
+        new RECachedUrlSetSpec("http://www.example.com/testDir");
     CachedUrlSet fileSet = mau.makeCachedUrlSet(rSpec);
     Iterator setIt = fileSet.flatSetIterator();
     assertTrue(setIt.hasNext());
@@ -119,7 +118,7 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
     leaf.sealNewVersion();
 
     CachedUrlSetSpec rSpec =
-        new RECachedUrlSetSpec("http://www.example.com/testDir", (RE)null);
+        new RECachedUrlSetSpec("http://www.example.com/testDir");
     CachedUrlSet fileSet = mau.makeCachedUrlSet(rSpec);
     Iterator setIt = fileSet.leafIterator();
     assertTrue(setIt.hasNext());

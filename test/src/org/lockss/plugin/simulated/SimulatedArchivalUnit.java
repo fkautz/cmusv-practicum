@@ -32,8 +32,6 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.plugin.simulated;
 
-import gnu.regexp.RE;
-import gnu.regexp.REException;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.plugin.*;
@@ -120,11 +118,21 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
   }
 
   /**
+   * Returns the {@link SimulatedContentGenerator} for setting
+   * parameters.
+   * @return the generator
+   */
+
+  public SimulatedContentGenerator getContentGenerator() {
+    return scgen;
+  }
+
+  /**
    * mapUrlToContentFileName()
    * This maps a given url to a content file location.
    *
-   * @param url
-   * @return fileName
+   * @param url the url to map
+   * @return fileName the mapping result
    */
   public static String mapUrlToContentFileName(String url) {
     int lastSlashIdx = url.lastIndexOf("/");
