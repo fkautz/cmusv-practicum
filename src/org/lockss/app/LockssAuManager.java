@@ -41,25 +41,6 @@ import org.lockss.plugin.ArchivalUnit;
 public interface LockssAuManager extends LockssManager {
 
   /**
-   * init the manager - There is no guarantee that any other manager is
-   * loaded into memory.
-   * @param daemon the daemon that can be used to get additional services
-   * @throws LockssDaemonException if this manager was already inited.
-   */
-  public void initService(LockssDaemon daemon)
-      throws LockssDaemonException;
-
-  /**
-   * start the manager.  All managers are inited at this point
-   */
-  public void startService();
-
-  /**
-   * stop the manager
-   */
-  public void stopService();
-
-  /**
    * Set the AU configuration.  Called between initService() and
    * startService(), then whenever the AU's config changes.
    * @param auConfig The configuration, local to the AU (<i>ie</i>, the
