@@ -208,10 +208,10 @@ public class TestAuTreeWalkManager extends LockssTestCase {
     TimeBase.step(1001);		// allow task to start
     assertTrue(autwm.walkDoneSem.take(TIMEOUT_SHOULDNT));
     assertEquals(1, autwm.numWalks);
-    // task should be marked finished by the time doDeferredAction() runs
-    assertTrue(task.isFinished());
     // wait for lockkRun to finish
     assertTrue(autwm.lockssRunDoneSem.take(TIMEOUT_SHOULDNT));
+    // task should be marked finished by now
+    assertTrue(task.isFinished());
     // now it should have scheduled a new task
     assertNotNull(autwm.curTask);
     assertNotEquals(task, autwm.curTask);
