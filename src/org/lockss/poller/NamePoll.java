@@ -215,10 +215,8 @@ public class NamePoll extends Poll {
       if(remainingRE != null) {
         // we call a new poll on the remaining entries and set the regexp
         try {
-          m_pollmanager.requestPoll(m_url,
-                                        remainingRE,
-                                        LcapMessage.NAME_POLL_REQ,
-                                        m_msg.getDuration());
+          m_pollmanager.requestPoll(m_urlSet, remainingRE,
+                                    LcapMessage.NAME_POLL_REQ);
         }
         catch (IOException ex) {
           log.error("Unable to create new poll request", ex);
