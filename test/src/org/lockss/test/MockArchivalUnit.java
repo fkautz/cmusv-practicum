@@ -205,6 +205,13 @@ public class MockArchivalUnit implements ArchivalUnit {
     shouldCallTopLevelPoll = val;
   }
 
+  public String toString() {
+    StringBuffer sb = new StringBuffer();
+    sb.append("[MockArchivalUnit: auId=");
+    sb.append(auId);
+    sb.append("]");
+    return sb.toString();
+  }
 
 }
 
