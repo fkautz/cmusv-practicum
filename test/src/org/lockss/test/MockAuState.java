@@ -53,18 +53,6 @@ public class MockAuState extends AuState {
     super(au, lastCrawlTime, lastPollTime);
   }
 
-  public ArchivalUnit getArchivalUnit() {
-    return au;
-  }
-
-  public long getLastCrawlTime() {
-    return lastCrawlTime;
-  }
-
-  public long getLastTopLevelPollTime() {
-    return lastTopLevelPoll;
-  }
-
   public void setLastCrawlTime(long newCrawlTime) {
     lastCrawlTime = newCrawlTime;
   }
