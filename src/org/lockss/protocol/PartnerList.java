@@ -44,7 +44,7 @@ import org.apache.commons.collections.LRUMap;
  * and record the last time a message was received.
  */
 class PartnerList {
-  static final String PREFIX = LcapRouter.PREFIX;
+  static final String PREFIX = LcapDatagramRouter.PREFIX;
   static final String PARAM_MIN_PARTNER_REMOVE_INTERVAL =
     PREFIX + "minPartnerRemoveInterval";
   static final String PARAM_MAX_PARTNERS = PREFIX + "maxPartners";

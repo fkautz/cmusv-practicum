@@ -68,13 +68,13 @@ public class PollManager
 
   private static PollManager theManager = null;
   protected static Logger theLog = Logger.getLogger("PollManager");
-  private static LcapRouter.MessageHandler  m_msgHandler;
+  private static LcapDatagramRouter.MessageHandler  m_msgHandler;
   private static Hashtable thePolls = new Hashtable();
   private static HashMap theVerifiers = new HashMap();
   private static IdentityManager theIDManager;
   private static HashService theHashService;
   private static LockssRandom theRandom = new LockssRandom();
-  private static LcapRouter theRouter = null;
+  private static LcapDatagramRouter theRouter = null;
   private AlertManager theAlertManager = null;
   private static SystemMetrics theSystemMetrics = null;
 
@@ -796,7 +796,7 @@ public class PollManager
 
 // ----------------  Callbacks -----------------------------------
 
-  class RouterMessageHandler implements LcapRouter.MessageHandler {
+  class RouterMessageHandler implements LcapDatagramRouter.MessageHandler {
     public void handleMessage(LcapMessage msg) {
       theLog.debug3("received from router message:" + msg.toString());
       try {
