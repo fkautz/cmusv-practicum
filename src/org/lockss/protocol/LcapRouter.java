@@ -137,7 +137,7 @@ public class LcapRouter extends BaseLockssManager {
 		     PARAM_ORIG_PKTS_PER_INTERVAL, PARAM_ORIG_PKT_INTERVAL,
 		     DEFAULT_ORIG_PKTS_PER_INTERVAL, DEFAULT_ORIG_PKT_INTERVAL);
     if (changedKeys.contains(PARAM_BEACON_INTERVAL)) {
-      beaconInterval = config.getTimeInterval(PARAM_BEACON_INTERVAL, 
+      beaconInterval = config.getTimeInterval(PARAM_BEACON_INTERVAL,
 					      DEFAULT_BEACON_INTERVAL);
       startBeacon();
     }
@@ -254,6 +254,7 @@ public class LcapRouter extends BaseLockssManager {
     }
     log.debug2("incoming orig: " + originator + " , sender: " + sender);
     if (isEligibleToForward(dg, msg)) {
+      //XXX need to clone message here to avoid overwrite problems
       msg.setHopCount(msg.getHopCount() - 1);
       try {
 	LockssDatagram fwddg = new LockssDatagram(dg.getProtocol(),
