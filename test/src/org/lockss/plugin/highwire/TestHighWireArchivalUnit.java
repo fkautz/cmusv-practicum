@@ -139,7 +139,7 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
     URL url = new URL("http://www.example.com/");
     String expectedStr = "http://www.example.com/lockss-manifest/vol_10_manifest.dtl";
     DefinableArchivalUnit hwau = makeAu(url, 10);
-    assertEquals(expectedStr, hwau.getStartUrl());
+    assertEquals(expectedStr, hwau.getProperties().getString(ArchivalUnit.AU_START_URL, null));
   }
 
   public void testPermissionPageConstruction() throws Exception {
@@ -147,7 +147,7 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
     String expectedStr = "http://www.example.com/lockss-manifest/vol_10_manifest.dtl";
 
     DefinableArchivalUnit hwau = makeAu(url, 10);
-    assertEquals(expectedStr, (String)hwau.getStartUrl());
+    assertEquals(expectedStr, (String)hwau.getProperties().getString(ArchivalUnit.AU_START_URL, null));
   }
 
   public void testGetUrlStems() throws Exception {

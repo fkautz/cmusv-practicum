@@ -175,7 +175,7 @@ public class TestOtherVoicesArchivalUnit extends LockssTestCase {
 
     String expectedStr = ROOT_URL+"lockss-volume2.html";
     DefinableArchivalUnit ovAu = makeAu(url, 2);
-    assertEquals(expectedStr, (String)ovAu.getStartUrl());
+    assertEquals(expectedStr, (String)ovAu.getProperties().getString(ArchivalUnit.AU_START_URL, null));
   }
 
   public void testGetUrlStems() throws Exception {

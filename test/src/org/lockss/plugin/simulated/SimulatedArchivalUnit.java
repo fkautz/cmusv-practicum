@@ -281,14 +281,13 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
   protected void setBaseAuParams(Configuration config)
       throws ConfigurationException {
     try {
-      baseUrl = new URL(SIMULATED_URL_START);
+      URL baseUrl = new URL(SIMULATED_URL_START);
       paramMap.putUrl(AU_BASE_URL, baseUrl);
     }
     catch (MalformedURLException murle) {
       throw new ConfigurationException("Bad URL for " + SIMULATED_URL_START, murle);
     }
-    fetchDelay = 0;
-    paramMap.putLong(AU_FETCH_DELAY, fetchDelay);
+    paramMap.putLong(AU_FETCH_DELAY, 0);
     newContentCrawlIntv = config.getTimeInterval(NEW_CONTENT_CRAWL_KEY,
                                                  defaultContentCrawlIntv);
     paramMap.putLong(AU_NEW_CRAWL_INTERVAL, newContentCrawlIntv);

@@ -33,12 +33,12 @@ package org.lockss.plugin.sample;
 
 import java.net.*;
 import java.util.*;
-import org.lockss.util.*;
+
 import org.lockss.daemon.*;
-import org.lockss.state.*;
 import org.lockss.plugin.*;
-import org.lockss.plugin.base.*;
+import org.lockss.plugin.ArchivalUnit.*;
 import org.lockss.plugin.definable.*;
+import org.lockss.util.*;
 
 /**
  * <p>SampleArchivalUnit: The Archival Unit Class for SamplePlugin.  This archival unit
