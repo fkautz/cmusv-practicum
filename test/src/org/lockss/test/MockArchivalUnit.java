@@ -44,6 +44,7 @@ import org.lockss.state.*;
  */
 
 public class MockArchivalUnit implements ArchivalUnit {
+  private Configuration config;
   private CrawlSpec spec;
   private String pluginId = "mock";
   private String auId = "none";
@@ -83,7 +84,13 @@ public class MockArchivalUnit implements ArchivalUnit {
     newContentUrls = urls;
   }
 
+  public void setConfiguration(Configuration config) {
+    this.config = config;
+  }
 
+  public Configuration getConfiguration() {
+    return config;
+  }
 
   /**
    * Make a new MockArchivalUnit object with a list populated with

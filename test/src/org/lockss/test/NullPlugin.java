@@ -202,6 +202,9 @@ public class NullPlugin {
   public static class ArchivalUnit
     implements org.lockss.daemon.ArchivalUnit {
 
+    public void setConfiguration(Configuration config) {
+    }
+
     public org.lockss.daemon.CachedUrlSet makeCachedUrlSet(String url,
 							   String lwrBound,
                                                            String uprBound) {

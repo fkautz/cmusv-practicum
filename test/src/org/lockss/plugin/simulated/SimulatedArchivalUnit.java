@@ -62,13 +62,16 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
   private SimulatedContentGenerator scgen;
 
   public SimulatedArchivalUnit(String new_fileRoot) {
-    super(new CrawlSpec(SIMULATED_URL_START, null));
+    super(null, new CrawlSpec(SIMULATED_URL_START, null));
     fileRoot = new_fileRoot;
     scgen = new SimulatedContentGenerator(fileRoot);
   }
 
   public SimulatedArchivalUnit() {
     this("");
+  }
+
+  public void setConfiguration(Configuration config) {
   }
 
   public CachedUrlSet cachedUrlSetFactory(ArchivalUnit owner, CachedUrlSetSpec cuss) {
