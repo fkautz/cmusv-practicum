@@ -114,7 +114,9 @@ public class ServletManager extends JettyManager {
   public void stopService() {
     try {
       if (server != null) {
+	runningOnPort(port);
 	server.stop();
+	server = null;
       }
     } catch (InterruptedException e) {
       log.warning("Interrupted while stopping server");
@@ -206,6 +208,7 @@ public class ServletManager extends JettyManager {
 
       // Start the http server
       server.start ();
+      runningOnPort(port);
     } catch (Exception e) {
       log.warning("Couldn't start servlets", e);
     }
