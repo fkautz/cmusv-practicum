@@ -35,6 +35,7 @@ package org.lockss.daemon.status;
 import java.util.*;
 import org.lockss.app.*;
 import org.lockss.util.*;
+import gnu.regexp.*;
 
 /**
  * Main implementation of {@link StatusService}
@@ -74,7 +75,13 @@ public class StatusServiceImpl
   }
 
   private boolean isBadTableName(String tableName) {
-    return false;
+    try {
+      RE re = new RE(".*[^a-zA-Z0-9_-].*");
+      return re.isMatch(tableName);
+    } catch (REException ree) {
+      logger.error("Bad regular expression", ree);
+      return false;
+    }
   }
 
   public void registerStatusAccessor(String tableName, 
@@ -110,9 +117,9 @@ public class StatusServiceImpl
     private static final String ALL_TABLE_TITLE = "Cache Overview";
 
     public AllTableStatusAccessor() {
-      StatusTable.ColumnDescriptor col = 
-	new StatusTable.ColumnDescriptor(COL_NAME, COL_TITLE, 
-					 StatusTable.TYPE_STRING);
+      ColumnDescriptor col = 
+	new ColumnDescriptor(COL_NAME, COL_TITLE, 
+			     ColumnDescriptor.TYPE_STRING);
       columns = ListUtil.list(col);
 
       StatusTable.SortRule sortRule = 

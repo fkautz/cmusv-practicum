@@ -44,9 +44,9 @@ import java.util.*;
 
 public interface StatusAccessor {
   /**
-   * Get the list of {@link StatusTable.ColumnDescriptor}s for this key
+   * Get the list of {@link ColumnDescriptor}s for this key
    * @param key object (such as AUID) designating which table to return 
-   * @return List of {@link StatusTable.ColumnDescriptor}s for the columns 
+   * @return List of {@link ColumnDescriptor}s for the columns 
    * this StatusAccessor supplies.
    * @throws StatusService.NoSuchTableException if we get a key that we don't 
    * recognize or have a table for
