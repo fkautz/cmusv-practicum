@@ -53,12 +53,37 @@ public class StringUtil {
    */
   public static String replaceString(String line,
 				     String oldstr, String newstr) {
-    int index = 0;
-    while ((index = line.indexOf(oldstr)) >= 0) {
-      line = line.substring(0, index) + newstr +
-	line.substring(index + oldstr.length());
+    if (oldstr.compareTo(newstr) == 0){
+      return line;
     }
-    return line;
+    StringBuffer sb = null;
+    if (oldstr.length() == newstr.length()){
+      sb = new StringBuffer(line);
+      int lastIdx = line.indexOf(oldstr);
+      if (lastIdx >= 0){
+	do{
+	  sb.replace(lastIdx, lastIdx+newstr.length(), newstr);
+	}while ((lastIdx = line.indexOf(oldstr, lastIdx+1)) >= 0);
+      }
+    }
+    else{
+      sb = new StringBuffer();
+      int oldStrIdx = 0;
+      int lastIdx = line.indexOf(oldstr);
+      if (lastIdx >= 0){
+	do{
+	  for (int ix=oldStrIdx; ix < lastIdx; ix++){
+	    sb.append(line.charAt(ix));
+	  }
+	  sb.append(newstr);
+	  oldStrIdx = lastIdx + oldstr.length();
+	}while ((lastIdx = line.indexOf(oldstr, lastIdx+1)) >= 0);
+      }
+      for (int ix=oldStrIdx; ix<line.length(); ix++){
+	sb.append(line.charAt(ix));
+      }
+    }
+    return sb.toString();
   }
 
   /**
