@@ -161,10 +161,12 @@ class HashQueue implements Serializable {
 
   boolean scheduleReq(Request req) {
     if (!insert(req)) {
+      log.debug("Can't schedule hash");
       return false;
     }
     ensureQRunner();
     sem.give();
+    log.debug("Scheduled hash:" +req);
     return true;
   }
 
@@ -261,6 +263,8 @@ class HashQueue implements Serializable {
     public String toString() {
       StringBuffer sb = new StringBuffer();
       sb.append("[HQ.Req:");
+      sb.append(urlset);
+      sb.append(' ');
       if (cookie instanceof String) {
 	sb.append("\"");
 	sb.append(cookie);
