@@ -97,4 +97,10 @@ public interface UrlCacher {
    * @throws IOException
    */
   public Properties getUncachedProperties() throws IOException;
+
+
+  public void storeContent(InputStream input, Properties headers)
+      throws IOException;
+
+
 }
