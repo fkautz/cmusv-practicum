@@ -115,7 +115,7 @@ public class IPAddr implements java.io.Serializable {
     InetAddress[] all = InetAddress.getAllByName(host);
     int len = all.length;
     IPAddr[] res = new IPAddr[len];
-    for (int ix = 0; ix <= len; ix++) {
+    for (int ix = 0; ix < len; ix++) {
       res[ix] = new IPAddr(all[ix]);
     }
     return res;
