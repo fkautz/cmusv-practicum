@@ -195,7 +195,14 @@ public class MockCachedUrlSet implements CachedUrlSet {
   // Methods used by the crawler
 
   public CachedUrl makeCachedUrl(String url) {
-    return null;
+    CachedUrl cu = null;
+    if (cuHash != null) {
+      cu = (CachedUrl)cuHash.get(url);
+      logger.debug(cu+" came from cuHash");
+    } else {
+      logger.debug("cuHash is null, so makeCachedUrl is returning null");
+    }
+    return cu;
   }
 
   public UrlCacher makeUrlCacher(String url) {
