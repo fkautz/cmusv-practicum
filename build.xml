@@ -124,6 +124,9 @@ Args:
   				  value="${lib}/commons-collections.jar"/>
   <property name="junit.jar"      value="${test.lib}/junit.jar"/>
   <property name="junit.addons.jar" value="${test.lib}/junit-addons.jar"/>
+  <property name="httpunit.jar"    value="${test.lib}/httpunit.jar"/>
+  <property name="htmlparser.jar"  value="${test.lib}/nekohtml.jar"/>
+  <property name="js.jar"  value="${test.lib}/js.jar"/>
   <property name="tools.jar"      value="${java.lib}/tools.jar"/>
 
   <property name="lockss.jar"     value="${lib}/lockss.jar"/>
@@ -173,6 +176,9 @@ Args:
     <pathelement path="${lockss.jar}" />
     <pathelement path="${junit.jar}" />
     <pathelement path="${junit.addons.jar}" />
+    <pathelement path="${httpunit.jar}" />
+    <pathelement path="${htmlparser.jar}" />
+    <pathelement path="${js.jar}" />
   </path>
 
   <path id="test.run.classpath">
