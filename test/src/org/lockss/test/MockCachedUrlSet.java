@@ -126,14 +126,6 @@ public class MockCachedUrlSet implements CachedUrlSet {
     return nameHasher;
   }
 
-  public Enumeration flatEnumeration() {
-    return null;
-  }
-
-  public Enumeration treeEnumeration() {
-    return null;
-  }
-
   long hashEstimate = 0;
 
   public long estimatedHashDuration() {
