@@ -145,7 +145,13 @@ public class CrawlManagerStatus implements StatusAccessor {
   }
 
   private String getTypeString(int type) {
-    return "blah";
+    switch(type) {
+      case Crawler.NEW_CONTENT:
+	return NC_TYPE;
+      case Crawler.REPAIR:
+	return REPAIR_TYPE;
+    }
+    return "Unknown";
   }
 
   private Map makeRow(Crawler crawler) {
