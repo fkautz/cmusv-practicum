@@ -96,6 +96,14 @@ public class RepositoryNodeImpl implements RepositoryNode {
     return currentVersion>0;
   }
 
+  public long getContentSize() {
+    if (!hasContent()) {
+      logger.error("Cannot get size if no content: "+url);
+      throw new UnsupportedOperationException("No content to get size from.");
+    }
+    return currentCacheFile.length();
+  }
+
   public Properties getState() {
     //XXX implement
     return null;

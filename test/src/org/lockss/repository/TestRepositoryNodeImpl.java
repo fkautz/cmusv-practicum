@@ -186,6 +186,8 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
     try {
       leaf.getCurrentVersion();
       fail("Cannot get current version if no content.");
+      leaf.getContentSize();
+      fail("Cannot get content size if no content.");
     } catch (UnsupportedOperationException uoe) { }
     try {
       leaf.sealNewVersion();
@@ -315,6 +317,14 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
     dir = createLeaf("http://www.example.com/testDir/test.cache/new.test",
                      "test stream", null);
     assertTrue(dir.hasContent());
+  }
+
+  public void testNodeSize() throws Exception {
+    RepositoryNode leaf =
+        createLeaf("http://www.example.com/testDir/test.cache",
+        "test stream", null);
+    assertTrue(leaf.hasContent());
+    assertEquals(11, (int)leaf.getContentSize());
   }
 
   private RepositoryNode createLeaf(String url, String content,

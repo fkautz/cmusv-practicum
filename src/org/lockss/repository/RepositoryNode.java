@@ -54,6 +54,14 @@ public interface RepositoryNode {
   public boolean hasContent();
 
   /**
+   * Returns the size of the current version of stored cache.  Throws an
+   * exception if called on a content-less node.
+   * @return size
+   * @throws UnsupportedOperationException
+   */
+  public long getContentSize();
+
+  /**
    * Returns the state information for the node.
    * @return state properties of the node
    */
