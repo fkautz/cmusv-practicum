@@ -336,9 +336,8 @@ public class PollManager  extends BaseLockssManager {
 
     // check with regulator if not verify poll
     if (!msg.isVerifyPoll()) {
-      //XXX get expiration time for the lock
-//      long expiration = ret_poll.m_deadline.getRemainingTime() * 2;
-      long expiration = 5 * Constants.HOUR;
+      // get expiration time for the lock
+      long expiration = 2 * msg.getDuration();
       if (AuUrl.isAuUrl(cus.getUrl())) {
         if (!theDaemon.getActivityRegulator().startAuActivity(
             ActivityRegulator.TOP_LEVEL_POLL,
