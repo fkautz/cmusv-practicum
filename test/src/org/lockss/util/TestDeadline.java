@@ -52,12 +52,18 @@ public class TestDeadline extends LockssTestCase {
     super(msg);
   }
 
+  protected void tearDown() throws Exception {
+    TimeBase.setReal();
+    super.tearDown();
+  }
+
   private long getDuration(Deadline d) throws Exception {
     Long i = (Long)PrivilegedAccessor.invokeMethod(d, "getDuration");
     return i.longValue();
   }
 
   public void testDuration() throws Exception {
+    TimeBase.setSimulated();
     Random random = new Random();
     // with no range, duration should always be the same
     for (int ix = 0; ix < 5; ix++) {
@@ -89,6 +95,7 @@ public class TestDeadline extends LockssTestCase {
   }
 
   public void testCompare() {
+    TimeBase.setSimulated();
     Deadline p1 = Deadline.in(100);
     Deadline p2 = Deadline.in(200);
     assertFalse(p1.before(p1));
@@ -97,6 +104,7 @@ public class TestDeadline extends LockssTestCase {
   }
 
   public void testMinus() {
+    TimeBase.setSimulated();
     Deadline p1 = Deadline.in(100);
     Deadline p2 = Deadline.in(200);
     assertEquals(0, p1.minus(p1));
@@ -105,6 +113,7 @@ public class TestDeadline extends LockssTestCase {
   }
 
   public void testMAX() {
+    TimeBase.setSimulated();
     Deadline never = Deadline.MAX;
     try {
       never.expire();
@@ -135,6 +144,7 @@ public class TestDeadline extends LockssTestCase {
   }
 
   public void testEXPIRED() {
+    TimeBase.setSimulated();
     Deadline never = Deadline.EXPIRED;
     try {
       never.expire();
@@ -232,7 +242,6 @@ public class TestDeadline extends LockssTestCase {
     Deadline t = Deadline.in(200);
     t.later(300);
     assertEquals(500, t.getRemainingTime());
-    TimeBase.setReal();
   }
 
   public void testForceExpire() {
