@@ -306,19 +306,21 @@ public abstract class Poll implements Serializable {
   void startPoll() {
     if(m_pollstate != PS_INITING)
       return;
-    Deadline pt = Deadline.in(m_msg.getDuration());
+    log.debug3("scheduling poll to complete by " + m_deadline);
+    TimerQueue.schedule(m_deadline, new PollTimerCallback(), this);
+    scheduleVote();
+
+    Deadline pt = Deadline.atRandomRange(m_hashTime + TimeBase.nowMs(),
+                                         m_voteTime.getExpirationTime());
     MessageDigest hasher = getInitedHasher(m_challenge, m_verifier);
     m_pollstate = PS_WAIT_HASH;
     if(!scheduleHash(hasher, pt, m_msg, new PollHashCallback())) {
       m_pollstate = ERR_SCHEDULE_HASH;
-      log.debug("couldn't schedule our hash:" + m_msg.getDuration()
+      log.debug("couldn't schedule our hash:" + pt.getExpirationTime()
                 + " stopping poll");
       stopPoll();
       return;
     }
-    log.debug3("scheduling poll to complete by " + m_deadline);
-    TimerQueue.schedule(m_deadline, new PollTimerCallback(), this);
-    scheduleVote();
   }
 
   /**
