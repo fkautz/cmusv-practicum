@@ -63,7 +63,7 @@ public class MockCachedUrlSetSpec implements CachedUrlSetSpec {
     if (obj instanceof MockCachedUrlSetSpec) {
       MockCachedUrlSetSpec spec = (MockCachedUrlSetSpec)obj;
       return ((root.equals(spec.root)) &&
-              (regExp.equals(spec.regExp)));
+              (StringUtil.equalStrings(regExp, spec.regExp)));
     } else {
       return false;
     }
