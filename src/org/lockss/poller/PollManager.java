@@ -351,6 +351,30 @@ public class PollManager {
     return hasher;
   }
 
+  static void requestVerifyPoll(LcapMessage msg) throws IOException {
+    String url = new String(msg.getTargetUrl());
+    String regexp = new String(msg.getRegExp());
+
+    theLog.debug("Calling a verify poll...");
+
+    LcapMessage reqmsg = LcapMessage.makeRequestMsg(url,
+        regexp,
+        new String[0],
+        msg.getGroupAddress(),
+        msg.getTimeToLive(),
+        msg.getVerifier(),
+        makeVerifier(),
+        LcapMessage.VERIFY_POLL_REQ,
+        msg.getDuration(),
+        LcapIdentity.getLocalIdentity());
+
+    LcapIdentity originator = msg.getOriginID();
+    theLog.debug("sending our verification request to " + originator.toString());
+    LcapComm.sendMessageTo(reqmsg, Plugin.findArchivalUnit(url), originator);
+    theLog.debug("Creating a local poll instance...");
+    Poll poll = findPoll(reqmsg);
+    poll.m_pollstate = Poll.PS_WAIT_TALLY;
+  }
 
   /**
    * return a key from an array of bytes.
