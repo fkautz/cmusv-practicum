@@ -36,6 +36,7 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 import org.lockss.util.*;
+import org.lockss.daemon.Configuration;
 import junit.framework.TestCase;
 import junit.framework.TestResult;
 
@@ -116,6 +117,11 @@ public class LockssTestCase extends TestCase {
       // will create a new instance of the test case, and get a different
       // doLaters list
     }
+    // XXX this should be folded into LockssDaemon shutdown
+    Configuration.stopService();
+    // XXX fix Logger to unregister and reregister
+    Logger.registerConfigCallback();
+
     super.tearDown();
   }
 
