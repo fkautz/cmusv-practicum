@@ -59,7 +59,7 @@ public interface NodeManager {
   public void startPoll(CachedUrlSet cus, Poll.VoteTally state);
 
   /**
-   * update a node state with current poll results
+   * Update a node state with current poll results
    * @param cus the cached url set used to identify the node
    * @param results the poll results
    */
@@ -128,4 +128,8 @@ public interface NodeManager {
    */
   public void startTreeWalk();
 
+  /**
+   * Alerts the NodeManager that a new top-level content crawl has finished.
+   */
+  public void newTopLevelCrawlFinished();
 }

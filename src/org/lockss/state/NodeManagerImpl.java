@@ -156,6 +156,10 @@ public class NodeManagerImpl implements NodeManager, LockssManager {
     repository.storePollHistories(state);
   }
 
+  public void newTopLevelCrawlFinished() {
+    getAuState().newCrawlFinished();
+  }
+
   public NodeState getNodeState(CachedUrlSet cus) {
     logger.debug("Getting " + cus.getUrl());
     return (NodeState)nodeMap.get(cus.getUrl());
@@ -283,7 +287,7 @@ public class NodeManagerImpl implements NodeManager, LockssManager {
   }
 
   void doTreeWalk() {
-    if (theCrawlManager.canTreeWalkStart(managerAu, 
+    if (theCrawlManager.canTreeWalkStart(managerAu,
 					 getAuState(), null, null)) {
       long pollInterval =
 	Configuration.getIntParam(PARAM_TOP_LEVEL_POLL_INTERVAL,
@@ -291,7 +295,7 @@ public class NodeManagerImpl implements NodeManager, LockssManager {
       long startTime = TimeBase.nowMs();
       // if it's been too long, start a top level poll
       //XXX ask the Plugin
-      if ((startTime - getAuState().getLastTopLevelPollTime()) 
+      if ((startTime - getAuState().getLastTopLevelPollTime())
 	  > pollInterval) {
         callTopLevelPoll();
       } else {

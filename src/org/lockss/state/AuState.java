@@ -77,14 +77,14 @@ public class AuState {
   /**
    * Sets the last crawl time to the current time.
    */
-  public void newCrawlFinished() {
+  void newCrawlFinished() {
     lastCrawlTime = TimeBase.nowMs();
   }
 
   /**
    * Sets the last poll time to the current time.
    */
-  public void newPollFinished() {
+  void newPollFinished() {
     lastTopLevelPoll = TimeBase.nowMs();
   }
 
