@@ -241,6 +241,7 @@ public class ProxyManager extends BaseProxyManager {
   }
 
   public void setHostDown(String host) {
+    if (log.isDebug2()) log.debug2("Set host down: " + host);
     hostsDown.put(host, "");
   }
 }
