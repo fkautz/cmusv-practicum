@@ -40,6 +40,10 @@ import org.lockss.util.*;
  * Returned by {@link StatusService#getTable(String, String)} 
  */
 public class StatusTable {
+  /** Adding this key to a row, with a non-null value, requests a separator
+   * before the row. */
+  public static Object ROW_SEPARATOR = new Object();
+
   private String name;
   private String key;
   private String title;
