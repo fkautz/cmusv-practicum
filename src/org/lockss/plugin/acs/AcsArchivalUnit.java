@@ -83,19 +83,6 @@ public class AcsArchivalUnit extends BaseArchivalUnit {
     super(myPlugin);
   }
 
-  public CachedUrl cachedUrlFactory(CachedUrlSet owner, String url) {
-    return new GenericFileCachedUrl(owner, url);
-  }
-
-  public CachedUrlSet cachedUrlSetFactory(ArchivalUnit owner,
-                                          CachedUrlSetSpec cuss) {
-    return new GenericFileCachedUrlSet(owner, cuss);
-  }
-
-  public UrlCacher urlCacherFactory(CachedUrlSet owner, String url) {
-    return new GenericFileUrlCacher(owner, url);
-  }
-
   public Collection getUrlStems() {
     try {
       URL stem = new URL(baseUrl.getProtocol(), baseUrl.getHost(),

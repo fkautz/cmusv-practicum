@@ -75,19 +75,6 @@ public class ProjectMuseArchivalUnit extends BaseArchivalUnit {
     super(myPlugin);
   }
 
-  public CachedUrl cachedUrlFactory(CachedUrlSet owner, String url) {
-    return new GenericFileCachedUrl(owner, url);
-  }
-
-  public CachedUrlSet cachedUrlSetFactory(ArchivalUnit owner,
-                                          CachedUrlSetSpec cuss) {
-    return new GenericFileCachedUrlSet(owner, cuss);
-  }
-
-  public UrlCacher urlCacherFactory(CachedUrlSet owner, String url) {
-    return new GenericFileUrlCacher(owner, url);
-  }
-
   public Collection getUrlStems() {
     try {
       URL stem = new URL(baseUrl.getProtocol(), baseUrl.getHost(),
@@ -234,7 +221,7 @@ public class ProjectMuseArchivalUnit extends BaseArchivalUnit {
     volBuff.append("journals/");
     volBuff.append(journal);
     volBuff.append("/v");
-    
+
     // pad out the 'vXXX' to 3 digits
     if (volume < 100) {
       if (volume < 10) {

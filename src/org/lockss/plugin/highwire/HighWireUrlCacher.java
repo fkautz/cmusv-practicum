@@ -33,7 +33,8 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.plugin.highwire;
 
 import org.lockss.util.*;
-import org.lockss.plugin.*;
+import org.lockss.plugin.base.BaseUrlCacher;
+import org.lockss.plugin.CachedUrlSet;
 
 /**
  * This is the UrlCacher object for the HighWirePlugin
@@ -42,7 +43,7 @@ import org.lockss.plugin.*;
  * @version 0.0
  */
 
-public class HighWireUrlCacher extends GenericFileUrlCacher {
+public class HighWireUrlCacher extends BaseUrlCacher {
   protected static Logger logger = Logger.getLogger(HighWireArchivalUnit.LOG_NAME);
 
   public HighWireUrlCacher(CachedUrlSet owner, String url) {

@@ -47,7 +47,7 @@ import org.lockss.test.StringInputStream;
  * @version 0.0
  */
 
-public class SimulatedUrlCacher extends GenericFileUrlCacher {
+public class SimulatedUrlCacher extends BaseUrlCacher {
   private String fileRoot;
   private String contentName = null;
   private File contentFile = null;

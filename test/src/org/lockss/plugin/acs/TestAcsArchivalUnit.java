@@ -34,6 +34,7 @@ import org.lockss.util.*;
 import org.lockss.test.*;
 import org.lockss.plugin.*;
 import org.lockss.state.AuState;
+import org.lockss.plugin.base.BaseCachedUrlSet;
 import org.lockss.repository.LockssRepositoryImpl;
 
 public class TestAcsArchivalUnit
@@ -136,7 +137,7 @@ public class TestAcsArchivalUnit
 
     theDaemon.getLockssRepository(acsAu);
     theDaemon.getNodeManager(acsAu);
-    GenericFileCachedUrlSet cus = new GenericFileCachedUrlSet(acsAu,
+    BaseCachedUrlSet cus = new BaseCachedUrlSet(acsAu,
         new RangeCachedUrlSetSpec(base_url.toString()));
 
     // start url - should be cached

@@ -39,6 +39,7 @@ import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.test.*;
 import org.lockss.plugin.*;
+import org.lockss.plugin.base.BaseCachedUrlSet;
 import org.lockss.state.AuState;
 import org.lockss.repository.LockssRepositoryImpl;
 
@@ -111,7 +112,7 @@ public class TestProjectMuseArchivalUnit extends LockssTestCase {
     ArchivalUnit pmAu = makeAu(base, volume, DIR);
     theDaemon.getLockssRepository(pmAu);
     theDaemon.getNodeManager(pmAu);
-    GenericFileCachedUrlSet cus = new GenericFileCachedUrlSet(pmAu,
+    BaseCachedUrlSet cus = new BaseCachedUrlSet(pmAu,
         new RangeCachedUrlSetSpec(base.toString()));
 
     String baseUrl = ROOT_URL + "journals/"+DIR+"/";
