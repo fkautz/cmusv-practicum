@@ -34,7 +34,6 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.util;
 
 import java.io.*;
-import org.lockss.util.*;
 
 
 /** A half-open interval, including the lower bound but excluding the upper
@@ -114,7 +113,7 @@ public class Interval implements Serializable {
   }
 
   public String toString() {
-    return "[" + getLB() + "," + getUB() + "]";
+    return "[" + getLB() + "," + getUB() + ")";
   }
 
 }
