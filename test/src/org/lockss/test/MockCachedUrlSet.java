@@ -65,7 +65,7 @@ public class MockCachedUrlSet implements CachedUrlSet {
   }
 
   public MockCachedUrlSet(CachedUrlSetSpec spec) {
-    this(null, spec);
+    this(new MockArchivalUnit(null), spec);
   }
 
   public boolean containsUrl(String url) {

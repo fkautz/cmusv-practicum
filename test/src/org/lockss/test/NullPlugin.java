@@ -106,7 +106,7 @@ public class NullPlugin {
     }
 
     public boolean shouldBeCached() {
-      return false;;
+      return false;
     }
 
     public void cache() throws IOException {
@@ -119,7 +119,7 @@ public class NullPlugin {
     public InputStream getUncachedInputStream() {
       return new StringInputStream("");
     }
-  
+
     public Properties getUncachedProperties() {
       return new Properties();
     }
@@ -209,6 +209,13 @@ public class NullPlugin {
 
     public boolean shouldBeCached(String url) {
       return false;
+    }
+    public String getPluginId() {
+      return "null";
+    }
+
+    public String getAUId() {
+      return "null";
     }
   }
 

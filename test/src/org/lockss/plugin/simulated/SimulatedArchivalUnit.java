@@ -62,34 +62,48 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     super(new CrawlSpec(SIMULATED_URL, null));
     fileRoot = new_fileRoot;
     scgen = new SimulatedContentGenerator(fileRoot);
-    if (!scgen.isContentTree()) {
-      scgen.generateContentTree();
-    }
   }
 
   public SimulatedArchivalUnit() {
     this("");
   }
 
-  protected CachedUrlSet cachedUrlSetFactory(ArchivalUnit owner, CachedUrlSetSpec cuss) {
-    return new SimulatedCachedUrlSet(owner, cuss);
+  public CachedUrlSet cachedUrlSetFactory(ArchivalUnit owner, CachedUrlSetSpec cuss) {
+    return new GenericFileCachedUrlSet(owner, cuss);
   }
 
-  protected CachedUrl cachedUrlFactory(CachedUrlSet owner, String url) {
+  public CachedUrl cachedUrlFactory(CachedUrlSet owner, String url) {
     return new GenericFileCachedUrl(owner, url);
   }
 
-  protected UrlCacher urlCacherFactory(CachedUrlSet owner, String url) {
+  public UrlCacher urlCacherFactory(CachedUrlSet owner, String url) {
     return new SimulatedUrlCacher(owner, url);
   }
 
   public CachedUrlSet getAUCachedUrlSet() {
-    return new SimulatedCachedUrlSet(this,
+    return new GenericFileCachedUrlSet(this,
                new RECachedUrlSetSpec(SIMULATED_URL));
+  }
+
+  public String getPluginId() {
+    return "simulated";
+  }
+
+  public String getAUId() {
+    return "content";
   }
 
   // public methods
   public String getUrlRoot() { return fileRoot; }
+
+  /**
+   * generateContentTree() generates the simulated content.
+   */
+  public void generateContentTree() {
+    if (!scgen.isContentTree()) {
+      scgen.generateContentTree();
+    }
+  }
 
   /**
    * resetContentTree() deletes and regenerates the simulated content,
@@ -120,7 +134,7 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
                                  SimulatedContentGenerator.ROOT_NAME);
 
     if (lastSlashIdx >= lastPeriodIdx) {
-      if (url.charAt(url.length()-1) != '/') {
+      if (!url.endsWith("/")) {
         fileName += "/";
       }
       fileName += "index.html";

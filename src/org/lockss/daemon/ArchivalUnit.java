@@ -68,4 +68,17 @@ public interface ArchivalUnit {
    */
   public CrawlSpec getCrawlSpec();
 
+  /**
+   * Returns a fixed string identifier for the Plugin.
+   * @return a fixed plugin id
+   */
+  public String getPluginId();
+
+  /**
+   * Returns a unique string identifier for the ArchivalUnit instance
+   * within the Plugin.
+   * @return a unique id
+   */
+  public String getAUId();
+
 }

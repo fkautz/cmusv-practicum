@@ -49,19 +49,19 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   /** Create an instance of the plugin-specific implementation of
    * CachedUrlSet, with the specified owner and CachedUrlSetSpec
    */
-  protected abstract CachedUrlSet cachedUrlSetFactory(ArchivalUnit owner,
+  public abstract CachedUrlSet cachedUrlSetFactory(ArchivalUnit owner,
 						      CachedUrlSetSpec cuss);
 
   /** Create an instance of the plugin-specific implementation of
    * CachedUrl, with the specified owner and url
    */
-  protected abstract CachedUrl cachedUrlFactory(CachedUrlSet owner,
+  public abstract CachedUrl cachedUrlFactory(CachedUrlSet owner,
 						String url);
 
   /** Create an instance of the plugin-specific implementation of
    * UrlCacher, with the specified owner and url
    */
-  protected abstract UrlCacher urlCacherFactory(CachedUrlSet  owner,
+  public abstract UrlCacher urlCacherFactory(CachedUrlSet  owner,
 						String url);
 
   /** Return the CrawlSpec */

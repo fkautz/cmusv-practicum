@@ -44,8 +44,8 @@ import java.util.*;
  * Plugins may extend this to get some common CachedUrlSet functionality.
  */
 public abstract class BaseCachedUrlSet implements CachedUrlSet {
-  private ArchivalUnit au;
-  private CachedUrlSetSpec spec;
+  protected ArchivalUnit au;
+  protected CachedUrlSetSpec spec;
 
   /** Must invoke this constructor in plugin subclass. */
   public BaseCachedUrlSet(ArchivalUnit owner, CachedUrlSetSpec spec) {
