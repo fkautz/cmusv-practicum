@@ -69,7 +69,13 @@ public class MockArchivalUnit implements ArchivalUnit {
   }
 
   public CachedUrlSet getAUCachedUrlSet() {
-    return makeCachedUrlSet(new AUCachedUrlSetSpec());
+    if (cus != null) {
+      // if someone has set the aucus, return it
+      return cus;
+    } else {
+      // else make one
+      return makeCachedUrlSet(new AUCachedUrlSetSpec());
+    }
   }
 
   public void setAUCachedUrlSet(CachedUrlSet cus) {
