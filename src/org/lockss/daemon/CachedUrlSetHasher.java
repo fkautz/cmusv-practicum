@@ -52,4 +52,12 @@ public interface CachedUrlSetHasher {
      * @return <code>true</code> if there is nothing left to hash.
      */
     public boolean finished();
+
+    /**
+     * Returns an estimate on the hashed bytes per ms for this hasher.
+     * Tests by hashing the CachedUrlSet for a small period of time.
+     * @returns an int for estimated bytes/ms
+     * @throws IOException
+     */
+    public int getBytesPerMsEstimate() throws IOException;
 }
