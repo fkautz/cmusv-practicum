@@ -102,39 +102,3 @@ public class PermissionMap{
     return pr.getPermissionStatus();
   }
 }
-
-// class PermissionRecord{
-// //   public static final int PERMISSION_UNCHECKED = 0;
-// //   public static final int PERMISSION_OK = 1;
-// //   public static final int PERMISSION_NOT_OK = 2;
-// //   public static final int FETCH_PERMISSION_FAILED = 3;
-  
-//   private String permissionUrl="";
-//   private int permissionStatus=PermissionMap.PERMISSION_UNCHECKED;
-  
-//   PermissionRecord(String permissionUrl,int permissionStatus){
-//     if (permissionUrl == null) {
-//       throw new IllegalArgumentException("Called with null permissionUrl");
-//     }
-     
-//     setPermissionUrl(permissionUrl);
-//     setPermissionStatus(permissionStatus);
-//   }
-  
-//   String getPermissionUrl(){
-//     return permissionUrl;
-//   }
-  
-//   void setPermissionUrl(String permissionUrl){
-//     this.permissionUrl=permissionUrl;
-//   }
-
-//   int getPermissionStatus(){
-//     return permissionStatus;
-//   }
-  
-//   void setPermissionStatus(int permissionStatus){
-//     this.permissionStatus=permissionStatus;
-//   }
-
-// }
