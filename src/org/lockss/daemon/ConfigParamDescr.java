@@ -190,6 +190,19 @@ public class ConfigParamDescr implements Comparable {
     return getDisplayName().compareTo(od.getDisplayName());
   }
 
+  /** Returns a short string suitable for error messages.  Includes the key
+   * and the display name if present */
+  public String shortString() {
+    StringBuffer sb = new StringBuffer(40);
+    sb.append(getDisplayName());
+    if (!key.equals(displayName)) {
+      sb.append("(");
+      sb.append(key);
+      sb.append(")");
+    }
+    return sb.toString();
+  }
+
   public String toString() {
     StringBuffer sb = new StringBuffer(40);
     sb.append("[CPD: key: ");
