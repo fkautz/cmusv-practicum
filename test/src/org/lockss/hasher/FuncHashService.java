@@ -133,7 +133,7 @@ public class FuncHashService extends LockssTestCase {
   }
 
   public void testOneStepWork() throws Exception {
-    hashContent("1", 300, 100, 500, hashCB());
+    assertTrue(hashContent("1", 300, 100, 10 * Constants.SECOND, hashCB()));
     waitUntilDone();
     assertEquals(ListUtil.list(new Work("1", stepBytes(), 1000),
 			       new Work("1", stepBytes(), 1000),
