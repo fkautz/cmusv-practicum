@@ -61,4 +61,25 @@ public class UrlUtil {
 			    " for URL: " + urlString);
     }
   }
+
+  /**
+   * @param urlStr string representation of a url
+   * @return urlStr up to but not including the path
+   * @throws MalformedURLException if urlStr is not a well formed URL
+   */
+  public static String getUrlPrefix(String urlStr) throws MalformedURLException{
+    URL url = new URL(urlStr);
+    StringBuffer sb = new StringBuffer();
+    sb.append(url.getProtocol());
+    sb.append("://");
+    sb.append(url.getHost());
+    if (url.getPort() != -1){
+      sb.append(':');
+      sb.append(url.getPort());
+    }
+    return sb.toString();
+  }
+
+
+
 }
