@@ -59,7 +59,7 @@ public class TimerUtil {
 //    }
 
   /** Sleep for <code>ms</code> milliseconds, ignoring interrupts */
-  public void guaranteedSleep(long ms) {
+  public static void guaranteedSleep(long ms) {
     long expMS = new Date().getTime() + ms;
     Date expiration = new Date(expMS);
 
@@ -68,7 +68,7 @@ public class TimerUtil {
 	 now = new Date()) {
       long nowMS = now.getTime();
       try {
-	this.wait(expMS - nowMS);
+	sleep(expMS - nowMS);
       } catch (InterruptedException e) {
       }
     }
