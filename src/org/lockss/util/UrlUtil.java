@@ -189,6 +189,34 @@ public class UrlUtil {
     return false;
   }
 
+  /** Return true if <code>to</code> looks like a directory redirection
+   * from <code>from</code>; <i>ie</i>, that path has had a slash appended
+   * to it. */
+  // XXX does this need to be insensitive to differently encoded URLs?
+  public static boolean isDirectoryRedirection(String from, String to) {
+    if (to.length() != (from.length() + 1)) return false;
+    try {
+      URL ufrom = new URL(from);
+      URL uto = new URL(to);
+      String toPath = uto.getPath();
+      String fromPath = ufrom.getPath();
+      int len = fromPath.length();
+      return (
+	      toPath.length() == (len + 1) &&
+	      toPath.charAt(len) == '/' &&
+	      toPath.startsWith(fromPath) &&
+	      ufrom.getHost().equalsIgnoreCase(uto.getHost()) &&
+	      ufrom.getProtocol().equalsIgnoreCase(uto.getProtocol()) &&
+	      ufrom.getPort() == uto.getPort() &&
+	      StringUtil.equalStringsIgnoreCase(ufrom.getQuery(),
+						uto.getQuery())
+
+	      );
+    } catch (MalformedURLException e) {
+      return false;
+    }
+  }
+
   /**
    * Strips the query string off of a url and returns the rest
    * @param url url string from which to remove the query
