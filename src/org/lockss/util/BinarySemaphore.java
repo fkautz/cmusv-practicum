@@ -57,13 +57,13 @@ public class BinarySemaphore {
 	  public void changed(Deadline deadline) {
 	    thread.interrupt();
 	  }};
-      while (!state && !timer.expired()) {
-	try {
-	  timer.registerCallback(cb);
+      try {
+	timer.registerCallback(cb);
+	while (!state && !timer.expired()) {
 	  this.wait(timer.getSleepTime());
-	} finally {
-	  timer.unregisterCallback(cb);
 	}
+      } finally {
+	timer.unregisterCallback(cb);
       }
     }
     if (state) {

@@ -116,13 +116,13 @@ public class PriorityQueue implements Queue {
 	public void changed(Deadline deadline) {
 	  thread.interrupt();
 	}};
-    while (queue.isEmpty() && !timer.expired()) {
-      try {
-	timer.registerCallback(cb);
+    try {
+      timer.registerCallback(cb);
+      while (queue.isEmpty() && !timer.expired()) {
 	this.wait(timer.getSleepTime());
-      } finally {
-	timer.unregisterCallback(cb);
       }
+    } finally {
+      timer.unregisterCallback(cb);
     }
     if (!queue.isEmpty()) {
       // remove from beginning
