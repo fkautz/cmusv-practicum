@@ -48,8 +48,9 @@ public interface NodeManager extends LockssManager {
    * Starts a new poll on a particular CachedUrlSet.
    * @param cus the CachedUrlSet being polled
    * @param state the new PollState
+   * @param boolean true if we are replaying the previous poll.
    */
-  public void startPoll(CachedUrlSet cus, PollTally state);
+  public void startPoll(CachedUrlSet cus, PollTally state, boolean isReplayPoll);
 
   /**
    * Should we allow a poll on this cached url set

@@ -66,7 +66,7 @@ public class MockNodeManager implements NodeManager {
     throw new UnsupportedOperationException("Not implemented");
   }
 
-  public void startPoll(CachedUrlSet cus, PollTally state) {
+  public void startPoll(CachedUrlSet cus, PollTally state, boolean isReplay) {
     logger.debug3("starting poll for cus: " + cus);
   }
 
