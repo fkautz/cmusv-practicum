@@ -50,4 +50,22 @@ public interface CachedUrlSetSpec {
    * @return the list of URL prefixes, as Strings
    */
   public List getPrefixList();
+
+  /**
+   * This needs to be overwritten to hash CachedUrlSets properly.
+   * @return the hashcode
+   */
+  public int hashCode();
+
+  /**
+   * Returns a unique id string.
+   * @return the unique id
+   */
+  public String getIdString();
+
+  /**
+   * Returns the primary url referenced by the spec.
+   * @return the url
+   */
+  public String getPrimaryUrl();
 }

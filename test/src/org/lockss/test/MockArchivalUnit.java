@@ -115,6 +115,14 @@ public class MockArchivalUnit implements ArchivalUnit {
     auId = newId;
   }
 
+  public String getIdString() {
+    return pluginId + ":" + auId;
+  }
+
+  public int hashCode() {
+    return getIdString().hashCode();
+  }
+
   public void pause() {
     if (pauseCallback != null) {
       pauseCallback.callback();

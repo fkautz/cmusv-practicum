@@ -165,7 +165,7 @@ public class NamePoll extends Poll {
       ArrayList alist = new ArrayList();
       while(it.hasNext()) {
         CachedUrlSet cus = (CachedUrlSet) it.next();
-        String name = (String)cus.getSpec().getPrefixList().get(0);
+        String name = (String)cus.getPrimaryUrl();
         alist.add(name);
       }
        m_entries = (String[])alist.toArray(new String[alist.size()]);

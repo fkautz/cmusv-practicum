@@ -80,7 +80,7 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
     ArrayList childL = new ArrayList(3);
     while (setIt.hasNext()) {
       CachedUrlSet childSet = (CachedUrlSet)setIt.next();
-      childL.add(childSet.getSpec().getPrefixList().get(0));
+      childL.add(childSet.getPrimaryUrl());
     }
     // should be sorted
     String[] expectedA = new String[] {

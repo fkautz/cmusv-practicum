@@ -228,8 +228,8 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
   private class UrlComparator implements Comparator {
     public int compare(Object o1, Object o2) {
       if ((o1 instanceof CachedUrlSet) && (o2 instanceof CachedUrlSet)) {
-        String prefix = (String)((CachedUrlSet)o1).getSpec().getPrefixList().get(0);
-        String prefix2 = (String)((CachedUrlSet)o2).getSpec().getPrefixList().get(0);
+        String prefix = (String)((CachedUrlSet)o1).getPrimaryUrl();
+        String prefix2 = (String)((CachedUrlSet)o2).getPrimaryUrl();
         if (prefix.equals(prefix2)) {
           throw new UnsupportedOperationException("Comparing equal CachedUrlSet prefixes: "+prefix);
         }

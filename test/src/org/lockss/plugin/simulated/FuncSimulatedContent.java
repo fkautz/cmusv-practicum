@@ -140,7 +140,7 @@ public class FuncSimulatedContent extends LockssTestCase {
     ArrayList childL = new ArrayList(7);
     while (setIt.hasNext()) {
       CachedUrlSet childSet = (CachedUrlSet)setIt.next();
-      childL.add(childSet.getSpec().getPrefixList().get(0));
+      childL.add(childSet.getPrimaryUrl());
     }
     String[] expectedA = new String[] {
       sau.SIMULATED_URL_ROOT+"/branch1",

@@ -189,6 +189,18 @@ public class NullPlugin {
       return false;
     }
 
+    public String getIdString() {
+      return "null";
+    }
+
+    public int hashCode() {
+      return 0;
+    }
+
+    public String getPrimaryUrl() {
+      return "null";
+    }
+
   }
 
   public static class ArchivalUnit
@@ -220,6 +232,16 @@ public class NullPlugin {
 
     public void pause() {
     }
+
+    public String getIdString() {
+      return "null";
+    }
+
+    public int hashCode() {
+      return 0;
+    }
+
+
   }
 
 /**
