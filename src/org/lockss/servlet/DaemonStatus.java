@@ -383,7 +383,7 @@ public class DaemonStatus extends LockssServlet {
 
 
   // make me a link in nav table unless I'm displaying table of all tables
-  protected boolean includeMeInNav() {
+  protected boolean linkMeInNav() {
     return !StatusService.ALL_TABLES_TABLE.equals(tableName);
   }
 }
