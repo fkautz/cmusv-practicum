@@ -295,8 +295,7 @@ public class TestAuTreeWalkManager extends LockssTestCase {
     }
 
     public synchronized void taskEvent(SchedulableTask task,
-				       Schedule.EventType event)
-	throws Abort {
+				       Schedule.EventType event) {
       super.taskEvent(task, event);
       if (event == Schedule.EventType.START) {
 	eventStartSem.give();
