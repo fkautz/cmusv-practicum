@@ -51,10 +51,7 @@ import org.lockss.crawler.*;
 public class RegistryArchivalUnit extends BaseArchivalUnit {
   private String m_registryUrl = null;
   private int m_maxRefetchDepth = NewContentCrawler.DEFAULT_MAX_CRAWL_DEPTH;
-
-  private List m_permissionCheckers = 
-    ListUtil.list(new CreativeCommonsPermissionChecker());
-
+  private List m_permissionCheckers = null;
   protected Logger log = Logger.getLogger("RegistryArchivalUnit");
 
   public RegistryArchivalUnit(RegistryPlugin plugin) {
@@ -67,6 +64,9 @@ public class RegistryArchivalUnit extends BaseArchivalUnit {
   public void loadAuConfigDescrs(Configuration config)
       throws ConfigurationException {
     this.m_registryUrl = config.get(ConfigParamDescr.BASE_URL.getKey());
+    // Now we can construct a valid CC permission checker.
+    m_permissionCheckers =
+      ListUtil.list(new CreativeCommonsPermissionChecker(m_registryUrl));
   }
 
   /**
