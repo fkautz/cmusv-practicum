@@ -72,9 +72,9 @@ public abstract class BaseLockssUrlConnection implements LockssUrlConnection {
     }
   }
 
-  public void setProxy(String host, int port) {
+  public void setProxy(String host, int port) throws CantProxyException {
     if (!canProxy()) {
-      throw new UnsupportedOperationException();
+      throw new CantProxyException();
     }
     assertNotExecuted();
     proxyHost = host;
