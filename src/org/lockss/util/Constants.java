@@ -61,4 +61,13 @@ public interface Constants {
   /** LOCKSS home page */
   public static String LOCKSS_HOME_URL = "http://www.lockss.org/";
 
+  /** LOCKSS HTTP header, can have multiple values */
+  public static String X_LOCKSS = "X-Lockss";
+
+  /** X-LOCKSS value indicating this is a repair request */
+  public static String X_LOCKSS_REPAIR = "Repair";
+
+  /** X-LOCKSS value indicating this response comes from the cache */
+  public static String X_LOCKSS_FROM_CACHE = "from-cache";
+
 }
