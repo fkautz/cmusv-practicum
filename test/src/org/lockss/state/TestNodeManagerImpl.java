@@ -531,7 +531,7 @@ public class TestNodeManagerImpl
       if (!vote.isAgreeVote()) {
         repChange = IdentityManager.DISAGREE_VOTE;
       }
-      assertEquals(repChange, idManager.lastChange(vote.getIdentity()));
+      assertEquals(repChange, idManager.lastChange(vote.getIDAddress()));
     }
   }
 
@@ -582,7 +582,7 @@ public class TestNodeManagerImpl
     LcapMessage testmsg = null;
     try {
       InetAddress testAddr = InetAddress.getByName("127.0.0.1");
-      testID = theDaemon.getIdentityManager().getIdentity(testAddr);
+      testID = theDaemon.getIdentityManager().findIdentity(testAddr);
     }
     catch (UnknownHostException ex) {
       fail("can't open test host");
