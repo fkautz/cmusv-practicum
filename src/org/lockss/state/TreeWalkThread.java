@@ -334,6 +334,7 @@ public class TreeWalkThread extends Thread {
                        nodesWalked + " nodes.");
         // set to a harmless constant
         treeWalkEstimate = 1;
+        return;
       }
       // calculate
       double nodesPerMs = ( (double) timeTaken / nodesWalked);
