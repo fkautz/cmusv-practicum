@@ -109,7 +109,7 @@ public class NodeManagerImpl
     lockssRepo = theDaemon.getLockssRepository(managedAu);
     pollManager = theDaemon.getPollManager();
     regulator = theDaemon.getActivityRegulator(managedAu);
-
+    alertMgr = theDaemon.getAlertManager();
     // initializes the state info
     nodeCache = new NodeStateCache(maxCacheSize);
     activeNodes = new HashMap();
