@@ -290,7 +290,7 @@ public class CrawlManagerImpl extends BaseLockssManager
       }
       crawlThread.start();
     } catch (RuntimeException re) {
-      logger.debug("Freeing crawl lock...");
+      logger.warning("Error starting crawl, freeing crawl lock", re);
       lock.expire();
       throw re;
     }

@@ -103,7 +103,13 @@ public class RepairCrawler extends CrawlerImpl {
 	break;
       }
       if (spec.isIncluded(url)) {
-	if (!doCrawlLoop(url, cus)) {
+	boolean crawlRes = false;
+	try {
+	  crawlRes = doCrawlLoop(url, cus);
+	} catch (RuntimeException e) {
+	  logger.warning("Unexpected exception in crawl", e);
+	}
+	if (!crawlRes) {
 	  if (crawlStatus.getCrawlError() == 0) {
 	    crawlStatus.setCrawlError(Crawler.STATUS_ERROR);
 	  }

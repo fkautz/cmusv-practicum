@@ -229,6 +229,17 @@ public class TestCrawlerImpl extends LockssTestCase {
     assertTrue(crawler.doCrawl(Deadline.MAX));
   }
 
+  public void testPluginThrowsRuntimeException() {
+    MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
+    String url1="http://www.example.com/blah.html";
+    cus.addUrl(startUrl, false, true);
+    parser.addUrlSetToReturn(startUrl, SetUtil.set(url1));
+    cus.addUrl(url1, new ExpectedRuntimeException("Test exception"), 0);
+    crawlRule.addUrlToCrawl(url1);
+
+    assertFalse(crawler.doCrawl(Deadline.MAX));
+  }
+
   public void testGetStatusCrawlNotStarted() {
     Crawler.Status crawlStatus = crawler.getStatus();
     assertEquals(-1, crawlStatus.getStartTime());

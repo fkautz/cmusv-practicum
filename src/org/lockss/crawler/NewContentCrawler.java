@@ -130,7 +130,14 @@ public class NewContentCrawler extends CrawlerImpl {
         windowClosed = true;
         break;
       }
-      if (!doCrawlLoop(nextUrl, urlsToCrawl, parsedPages, cus, false, false)) {
+      boolean crawlRes = false;
+      try {
+	crawlRes = doCrawlLoop(nextUrl, urlsToCrawl, parsedPages, cus,
+			       false, false);
+      } catch (RuntimeException e) {
+	logger.warning("Unexpected exception in crawl", e);
+      }
+      if (!crawlRes) {
 	if (crawlStatus.getCrawlError() == 0) {
 	  crawlStatus.setCrawlError(Crawler.STATUS_ERROR);
 	}
