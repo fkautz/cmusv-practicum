@@ -60,8 +60,8 @@ public class TestPollSpec extends LockssTestCase {
 
     CachedUrlSet cus = new MockCachedUrlSet(au,
 					    new RangeCachedUrlSetSpec(url,
-								      upper,
-								      lower));
+								      lower,
+								      upper));
     PollSpec ps = new PollSpec(cus);
     assertEquals(auid, ps.getAUId());
     assertEquals(pluginid, ps.getPluginId());
