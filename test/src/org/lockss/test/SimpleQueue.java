@@ -122,15 +122,13 @@ public abstract class SimpleQueue {
      * interrupted or timer expired
      */
     public synchronized Object get(long timeout) {
-      long expMS = new Date().getTime() + timeout;
-      Date expiration = new Date(expMS);
+      long expMS = System.currentTimeMillis() + timeout;
 
       while (queue.isEmpty()) {
-      Date now = new Date();
-      if (!now.before(expiration)) {
-	break;
-      }
-      long nowMS = now.getTime();
+	long nowMS = System.currentTimeMillis();
+	if (nowMS >= expMS) {
+	  break;
+	}
 	try {
 	  this.wait(expMS - nowMS);
 	} catch (InterruptedException e) {

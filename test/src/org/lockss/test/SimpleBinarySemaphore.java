@@ -71,15 +71,13 @@ public class SimpleBinarySemaphore {
    * became full), else false (timeout elapsed or call was interrupted).
    */
   synchronized public boolean take(long timeout) {
-    long expMS = new Date().getTime() + timeout;
-    Date expiration = new Date(expMS);
+    long expMS = System.currentTimeMillis() + timeout;
 
     while (!state) {
-      Date now = new Date();
-      if (!now.before(expiration)) {
+      long nowMS = System.currentTimeMillis();
+      if (nowMS >= expMS) {
 	break;
       }
-      long nowMS = now.getTime();
       try {
 	this.wait(expMS - nowMS);
       } catch (InterruptedException e) {
