@@ -38,6 +38,15 @@ import javax.servlet.http.HttpServletRequest;
 /** Utilities for URLs
  */
 public class UrlUtil {
+  /**
+   * The separator string for URLs.
+   */
+  public static final String URL_PATH_SEPARATOR = "/";
+  /**
+   * The separator char for URLs.
+   */
+  public static final char URL_PATH_SEPARATOR_CHAR = '/';
+
   /** Return input stream for url iff 200 response code, else throw.
    * In Java 1.1.7, URL.openStream() returns an InputStream in some cases
    * where it should throw, e.g., a 403 response on a filename that
@@ -45,8 +54,11 @@ public class UrlUtil {
    * <br>In Java 1.3 and later this should not be necessary, as an
    * IOException is thrown in all the right cases.  But there's no harm
    * in continuing to use it, and it may be handy in the future.
+   * @param urlString the url
+   * @return an InputStream
+   * @throws IOException
    */
-  public static InputStream openInputStream(String urlString) 
+  public static InputStream openInputStream(String urlString)
       throws IOException {
     URL url = new URL(urlString);
     URLConnection uc = url.openConnection();
@@ -91,7 +103,7 @@ public class UrlUtil {
     String servletPath = req.getServletPath();   // /servlet/MyServlet
     String pathInfo = req.getPathInfo();         // /a/b;c=123
 //     String queryString = req.getQueryString();          // d=789
-    
+
     // Reconstruct original requesting URL
     StringBuffer sb = new StringBuffer(40);
     sb.append(scheme);
