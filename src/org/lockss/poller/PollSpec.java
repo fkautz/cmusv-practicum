@@ -104,7 +104,7 @@ public class PollSpec {
       RangeCachedUrlSetSpec rcuss = (RangeCachedUrlSetSpec)cuss;
       lwrBound = rcuss.getLowerBound();
       uprBound = rcuss.getUpperBound();
-    } else if (cuss instanceof SingleNodeCachedUrlSetSpec) {
+    } else if (cuss.isSingleNode()) {
       // not used, but needs to be set to allow this poll to overlap with
       // other ranged polls
       lwrBound = SINGLE_NODE_LWRBOUND;

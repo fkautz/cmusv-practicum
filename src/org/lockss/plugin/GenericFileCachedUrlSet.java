@@ -89,7 +89,7 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
   }
 
   public Iterator flatSetIterator() {
-    if (spec instanceof SingleNodeCachedUrlSetSpec) {
+    if (spec.isSingleNode()) {
       return CollectionUtil.EMPTY_ITERATOR;
     }
     TreeSet flatSet = new TreeSet(new UrlComparator());
@@ -137,9 +137,7 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
 
   public void storeActualHashDuration(long elapsed, Exception err) {
     //only store estimate if it was a full hash (not ranged or single node)
-    if ((spec instanceof SingleNodeCachedUrlSetSpec) ||
-        ((spec instanceof RangeCachedUrlSetSpec) &&
-         (((RangeCachedUrlSetSpec)spec).getLowerBound()!=null))) {
+    if (spec.isSingleNode() || spec.isRangeRestricted()) {
       return;
     }
     // don't adjust for exceptions, except time-out exceptions
@@ -181,7 +179,7 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
 
   private long makeHashEstimate() {
     // if this is a single node spec, don't use standard estimation
-    if (spec instanceof SingleNodeCachedUrlSetSpec) {
+    if (spec.isSingleNode()) {
       long contentSize = 0;
       try {
         RepositoryNode node = repository.getNode(spec.getUrl());

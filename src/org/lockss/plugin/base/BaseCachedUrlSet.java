@@ -136,8 +136,7 @@ protected class CUSIterator implements Iterator {
   private CachedUrlSetNode nextElement = null;
 
   public CUSIterator() {
-    if (!((spec instanceof RangeCachedUrlSetSpec) &&
-          (((RangeCachedUrlSetSpec)spec).getLowerBound()!=null))) {
+    if (!spec.isRangeRestricted()) {
       nextElement = BaseCachedUrlSet.this;
     }
     stack.addFirst(flatSetIterator());

@@ -437,16 +437,19 @@ public class ActivityRegulator extends BaseLockssManager {
   }
 
   static String getCusKey(CachedUrlSet cus) {
-    String key = cus.getUrl() + "::";
-    if (cus.getSpec() instanceof RangeCachedUrlSetSpec) {
-      RangeCachedUrlSetSpec rSpec = (RangeCachedUrlSetSpec)cus.getSpec();
-      if ((rSpec.getLowerBound()!=null) || (rSpec.getUpperBound()!=null)) {
-        key += rSpec.getLowerBound() + "-" + rSpec.getUpperBound();
-      }
-    } else if (cus.getSpec() instanceof SingleNodeCachedUrlSetSpec) {
-      key += ".-.";
+    CachedUrlSetSpec spec = cus.getSpec();
+    StringBuffer sb = new StringBuffer(cus.getUrl().length() * 2);
+    sb.append(cus.getUrl());
+    sb.append("::");
+    if (spec.isRangeRestricted()) {
+      RangeCachedUrlSetSpec rSpec = (RangeCachedUrlSetSpec)spec;
+      sb.append(rSpec.getLowerBound());
+      sb.append("-");
+      sb.append(rSpec.getUpperBound());
+    } else if (spec.isSingleNode()) {
+      sb.append(".-.");
     }
-    return key;
+    return sb.toString();
   }
 
   public static String activityCodeToString(int activity) {

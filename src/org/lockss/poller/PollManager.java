@@ -367,7 +367,7 @@ public class PollManager  extends BaseLockssManager {
       }
       else {
         int activity;
-        if (cus.getSpec() instanceof SingleNodeCachedUrlSetSpec) {
+        if (cus.getSpec().isSingleNode()) {
           activity = (msg.isContentPoll() ?
                           ActivityRegulator.SINGLE_NODE_CONTENT_POLL :
                           ActivityRegulator.STANDARD_NAME_POLL);
@@ -423,7 +423,7 @@ public class PollManager  extends BaseLockssManager {
           ActivityRegulator.TOP_LEVEL_POLL);
     } else {
       int activity;
-      if (cus.getSpec() instanceof SingleNodeCachedUrlSetSpec) {
+      if (cus.getSpec().isSingleNode()) {
         activity = (isContentPoll ?
                     ActivityRegulator.SINGLE_NODE_CONTENT_POLL :
                     ActivityRegulator.STANDARD_NAME_POLL);
