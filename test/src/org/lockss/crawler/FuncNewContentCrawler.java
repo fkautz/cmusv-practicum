@@ -97,7 +97,6 @@ public class FuncNewContentCrawler extends LockssTestCase {
     props.setProperty("org.lockss.au." + auId + "." +
                       SimulatedPlugin.AU_PARAM_BIN_FILE_SIZE, ""+fileSize);
 
-//     theDaemon = new MockLockssDaemon();
     theDaemon = getMockLockssDaemon();
     theDaemon.getAlertManager();
     theDaemon.getPluginManager().setLoadablePluginsReady(true);
