@@ -36,7 +36,6 @@ import java.io.*;
 import java.security.*;
 import java.util.*;
 
-import gnu.regexp.*;
 import org.mortbay.util.B64Code;
 import org.lockss.daemon.*;
 import org.lockss.hasher.*;

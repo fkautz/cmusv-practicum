@@ -36,7 +36,6 @@ import java.io.DataInputStream;
 import java.net.*;
 import java.io.*;
 import java.util.*;
-import gnu.regexp.*;
 import org.lockss.util.*;
 import org.lockss.test.*;
 import org.lockss.poller.*;

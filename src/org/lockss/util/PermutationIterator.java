@@ -34,7 +34,6 @@ package org.lockss.util;
 import java.util.*;
 import java.io.*;
 import java.lang.reflect.*;
-import gnu.regexp.*;
 
 /**
  * An iterator over arrays of permutations of integers.  Each call to

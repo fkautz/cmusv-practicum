@@ -39,7 +39,6 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 import org.lockss.test.*;
-import gnu.regexp.*;
 import org.lockss.poller.TestPoll;
 import org.lockss.poller.*;
 import org.lockss.util.*;

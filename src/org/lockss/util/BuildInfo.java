@@ -33,7 +33,6 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.util;
 import java.util.*;
 import java.io.*;
-import gnu.regexp.*;
 
 /**
  * static methods to retrieve various info about the build environment
