@@ -874,6 +874,18 @@ public class TestNodeManagerImpl extends LockssTestCase {
     TimeBase.setReal();
   }
 
+  public void testStatusRegistration() {
+    assertTrue(nodeManager.registeredAccessors);
+
+    NodeManagerImpl nodeManager2 = new NodeManagerImpl(new MockArchivalUnit());
+    assertTrue(nodeManager2.registeredAccessors);
+    nodeManager2.initService(theDaemon);
+    nodeManager2.startService();
+
+    nodeManager2.stopService();
+    assertFalse(nodeManager2.registeredAccessors);
+  }
+
   private void stateCheckTest(NodeState node, int pollType,
                               boolean shouldScheduleName,
                               boolean shouldScheduleContent,
