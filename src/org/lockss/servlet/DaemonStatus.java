@@ -144,7 +144,6 @@ public class DaemonStatus extends LockssServlet {
       java.util.List colList = statTable.getColumnDescriptors();
       java.util.List rowList = statTable.getSortedRows();
       ColumnDescriptor cd = (ColumnDescriptor)colList.get(0);
-      String opts[] = {"onchange=\"this.form.submit()\""};
       Select sel = new Select("table", false);
       sel.attribute("onchange", "this.form.submit()");
       boolean foundIt = false;
