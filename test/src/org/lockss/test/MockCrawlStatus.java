@@ -39,6 +39,7 @@ public class MockCrawlStatus extends Crawler.Status {
 
   String crawlStatus = null;
   boolean crawlEndSignaled = false;
+  long numFetched = 0;
 
 
   public MockCrawlStatus(int type) {
@@ -67,6 +68,10 @@ public class MockCrawlStatus extends Crawler.Status {
 
   public void setNumFetched(int numFetched) {
     this.numFetched = numFetched;
+  }
+
+  public long getNumFetched() {
+    return numFetched;
   }
 
   public void setNumParsed(int numParsed) {
