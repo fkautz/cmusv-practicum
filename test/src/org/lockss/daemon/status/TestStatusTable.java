@@ -65,7 +65,9 @@ public class TestStatusTable extends LockssTestCase {
     tbl.setSummaryInfo(lst);
     assertSame(lst, tbl.getSummaryInfo());
 
-    assertNull(tbl.getDefaultSortRules());
+    assertEmpty(tbl.getDefaultSortRules());
+    tbl.setColumnDescriptors(Collections.EMPTY_LIST);
+    assertEmpty(tbl.getDefaultSortRules());
     List rules = new ArrayList();
     tbl.setDefaultSortRules(rules);
     assertSame(rules, tbl.getDefaultSortRules());
