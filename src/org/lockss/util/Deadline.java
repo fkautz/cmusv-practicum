@@ -399,6 +399,11 @@ public class Deadline implements Comparable {
     return expiration.equals(((Deadline)o).expiration);
   }
 
+  /** Returns the hashCode of the underlying Date object */
+  public int hashCode() {
+    return expiration.hashCode();
+  }
+
   // tk - should include "+n days" or some such
   private static final DateFormat df1 = new SimpleDateFormat("HH:mm:ss");
   private static final DateFormat df = DateFormat.getTimeInstance();
