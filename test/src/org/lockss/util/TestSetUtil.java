@@ -81,7 +81,7 @@ public class TestSetUtil extends LockssTestCase {
     Set s1 = SetUtil.theSet(ListUtil.list("1", "2", "3"));
     assertTrue(s1 instanceof Set);
     assertEquals(3, s1.size());
-    assertTrue(s1.contains("1"));
+    assertTrue(s1.contains(new String("1")));
     assertTrue(s1.contains("2"));
     assertTrue(s1.contains("3"));
   }
