@@ -67,7 +67,7 @@ public class TreeWalkHandler {
   NodeManagerImpl manager;
   private static LockssDaemon theDaemon;
   private static CrawlManager theCrawlManager;
-  private static ActivityRegulator theRegulator;
+  private ActivityRegulator theRegulator;
   ActivityRegulator.Lock activityLock = null;
   private ArchivalUnit theAu;
 
