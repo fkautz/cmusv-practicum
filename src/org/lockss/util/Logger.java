@@ -263,7 +263,7 @@ public class Logger {
    * Set minimum severity level logged by this log
    * @param level <code>Logger.LEVEL_XXX</code>
    */
-  void setLevel(int level) {
+  public void setLevel(int level) {
     if (this.level != level) {
 //        info("Changing log level to " + nameOf(level));
       this.level = level;
@@ -278,6 +278,11 @@ public class Logger {
    */
   boolean isLevel(int level) {
     return this.level >= level;
+  }
+
+  /** This is the common case of </code>isLevel()</code> */
+  public boolean isDebug() {
+    return isLevel(LEVEL_DEBUG);
   }
 
   /**
