@@ -71,7 +71,7 @@ public class PollManager {
                                        new CommMessageHandler());
       }
       catch(Exception ex) {
-        theLog.warning("Unitialized Comm!", ex);
+        theLog.warning("Unitialized Comm!");
       }
     }
     return theManager;
