@@ -92,7 +92,7 @@ public class TestPollManager extends LockssTestCase {
     try {
       Poll p1 = pollmanager.makePoll(testmsg[0]);
       // make sure we got the right type of poll here
-      assertTrue(p1 instanceof VersionOneNamePoll);
+      assertTrue(p1 instanceof V1NamePoll);
     }
     catch (IOException ex) {
       fail("unable to make a name poll");
@@ -102,7 +102,7 @@ public class TestPollManager extends LockssTestCase {
     try {
       Poll p2 = pollmanager.makePoll(testmsg[1]);
       // make sure we got the right type of poll here
-      assertTrue(p2 instanceof VersionOneContentPoll);
+      assertTrue(p2 instanceof V1ContentPoll);
 
     }
     catch (IOException ex) {
@@ -114,7 +114,7 @@ public class TestPollManager extends LockssTestCase {
     try {
       Poll p3 = pollmanager.makePoll(testmsg[2]);
       // make sure we got the right type of poll here
-      assertTrue(p3 instanceof VersionOneVerifyPoll);
+      assertTrue(p3 instanceof V1VerifyPoll);
     }
     catch (IOException ex) {
       fail("unable to make a verify poll");

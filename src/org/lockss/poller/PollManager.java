@@ -84,7 +84,7 @@ public class PollManager  extends BaseLockssManager {
   private static HashMap theVerifiers = new HashMap();
   private static IdentityManager theIDManager;
   private static HashService theHashService;
-  private static LockssRandom theRandom = new LockssRandom(); 
+  private static LockssRandom theRandom = new LockssRandom();
   private static LcapRouter theRouter = null;
   private static SystemMetrics theSystemMetrics = null;
 
@@ -484,7 +484,7 @@ public class PollManager  extends BaseLockssManager {
         theLog.warning("Making a content poll on "+ pollspec);
 	switch (pollspec.getVersion()) {
 	case 1:
-	  ret_poll = new VersionOneContentPoll(msg, pollspec, this);
+	  ret_poll = new V1ContentPoll(msg, pollspec, this);
 	  break;
 	default:
 	  throw new ProtocolException("Unsupported content poll version: " +
@@ -496,7 +496,7 @@ public class PollManager  extends BaseLockssManager {
         theLog.warning("Making a name poll on "+pollspec);
 	switch (pollspec.getVersion()) {
 	case 1:
-	  ret_poll = new VersionOneNamePoll(msg, pollspec, this);
+	  ret_poll = new V1NamePoll(msg, pollspec, this);
 	  break;
 	default:
 	  throw new ProtocolException("Unsupported name poll version: " +
@@ -508,7 +508,7 @@ public class PollManager  extends BaseLockssManager {
         theLog.warning("Making a verify poll on "+pollspec);
 	switch (pollspec.getVersion()) {
 	case 1:
-	  ret_poll = new VersionOneVerifyPoll(msg, pollspec, this);
+	  ret_poll = new V1VerifyPoll(msg, pollspec, this);
 	  break;
 	default:
 	  throw new ProtocolException("Unsupported verify poll version: " +
@@ -920,7 +920,7 @@ public class PollManager  extends BaseLockssManager {
         theLog.debug2("lost a name poll, building poll list");
 	switch (version) {
 	case 1:
-          ((VersionOneNamePoll)poll).buildPollLists(tally.pollVotes.iterator());
+          ((V1NamePoll)poll).buildPollLists(tally.pollVotes.iterator());
 	  break;
 	default:
 	  theLog.warning("Unsupported name poll version: " + version);
