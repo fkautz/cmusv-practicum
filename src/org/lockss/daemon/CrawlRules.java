@@ -39,6 +39,9 @@ import org.lockss.util.*;
  * Several useful CrawlRule implementations.
   */
 public class CrawlRules {
+
+  private static Logger logger = Logger.getLogger("CrawlRules");
+
   /**
    * CrawlRule.RE is a w3mir-type rule, which consists of a regular
    * expression and an action specifying whether a matching URL should be
@@ -154,6 +157,7 @@ public class CrawlRules {
      * Apply the matcher then check the condition if the match succeeds
      */
     public int match(String url) {
+      logger.debug3("Match called with "+url);
       Perl5Matcher matcher = RegexpUtil.getMatcher();
       boolean match = matcher.contains(url, regexp);
       if (match) {
@@ -263,6 +267,14 @@ public class CrawlRules {
       String sub = matchResult.group(1);
       if (sub == null) {
 	return false;
+      }
+      if (logger.isDebug3()) {
+	logger.debug3("Checking if "+sub+" is in "+set);
+	if (set.contains(sub)) {
+	  logger.debug3("It is");
+	} else {
+	  logger.debug3("It isn't");
+	}
       }
       return set.contains(sub);
     }
