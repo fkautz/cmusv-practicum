@@ -76,6 +76,21 @@ public class TestLogger extends LockssTestCase {
       System.setProperty(Logger.SYSPROP_DEFAULT_LOG_TARGET,
 			 "org.lockss.util.StdErrTarget");
       assertTrue(Logger.getDefaultTarget() instanceof StdErrTarget);
+    } finally {
+      System.setProperty(Logger.SYSPROP_DEFAULT_LOG_TARGET, deftgtprop);
+    }
+  }
+
+  public void testAntTaskTarget() {
+    // Skip this test if not running under Ant.  AntHalper will throw
+    // during creation if it can't find the Ant environment
+    try {
+      new org.lockss.ant.AntHelper();
+    } catch (Exception e) {
+      return;
+    }
+    String deftgtprop = System.getProperty(Logger.SYSPROP_DEFAULT_LOG_TARGET);
+    try {
       System.setProperty(Logger.SYSPROP_DEFAULT_LOG_TARGET,
 			 "org.lockss.util.AntTaskTarget");
       assertTrue(Logger.getDefaultTarget() instanceof AntTaskTarget);
@@ -83,7 +98,6 @@ public class TestLogger extends LockssTestCase {
       System.setProperty(Logger.SYSPROP_DEFAULT_LOG_TARGET, deftgtprop);
     }
   }
-
 
   public void testNames() {
     assertEquals("Critical", Logger.nameOf(Logger.LEVEL_CRITICAL));
