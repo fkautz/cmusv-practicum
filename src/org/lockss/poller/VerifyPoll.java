@@ -104,10 +104,12 @@ class VerifyPoll extends Poll implements Runnable {
    * @param V the verifier
    * @param urlSet the cachedUrlSet
    * @param timer the probabilistic timer
+   * @param key the Object which will be returned from the hasher, either the
+   * poll or the VoteChecker.
    * @return true if hash successfully completed.
    */
   boolean scheduleHash(byte[] C, byte[] V, CachedUrlSet urlSet,
-                       ProbabilisticTimer timer) {
+                       ProbabilisticTimer timer, Object key) {
     return true;
   }
 
