@@ -202,13 +202,13 @@ public class MockFile extends File {
     throw new UnsupportedOperationException("Not implemented");
   }
 
-  public int compareTo(File pathname) {
-    throw new UnsupportedOperationException("Not implemented");
-  }
+//   public int compareTo(File pathname) {
+//     throw new UnsupportedOperationException("Not implemented");
+//   }
 
-  public int compareTo(Object o) {
-    throw new UnsupportedOperationException("Not implemented");
-  }
+//   public int compareTo(Object o) {
+//     throw new UnsupportedOperationException("Not implemented");
+//   }
 
   public boolean equals(Object obj) {
     if (obj instanceof MockFile) {
