@@ -73,7 +73,7 @@ public class AuditProxyManager extends BaseProxyManager {
     if (changedKeys.contains(PARAM_PORT) ||
 	changedKeys.contains(PARAM_START)) {
       if (start) {
-	if (theDaemon.isDaemonRunning()) {
+	if (getDaemon().isDaemonRunning()) {
 	  startProxy();
 	}
       } else {

@@ -54,7 +54,6 @@ public abstract class BaseProxyManager extends JettyManager {
   protected String excludeIps;
   protected boolean logForbidden;
   private ProxyAccessHandler accessHandler;
-  private HttpServer server;
 
   /* ------- LockssManager implementation ------------------ */
   /**
@@ -75,6 +74,10 @@ public abstract class BaseProxyManager extends JettyManager {
   public void stopService() {
     stopProxy();
     super.stopService();
+  }
+
+  protected LockssDaemon getDaemon() {
+    return (LockssDaemon)getApp();
   }
 
   protected void setConfig(Configuration config, Configuration prevConfig,
@@ -105,6 +108,7 @@ public abstract class BaseProxyManager extends JettyManager {
     if (runningOnPort > 0) {
       stopProxy();
     }
+    HttpServer server;
     try {
       // Create the server
       server = new HttpServer();
@@ -138,24 +142,14 @@ public abstract class BaseProxyManager extends JettyManager {
       context.addHandler(new org.mortbay.http.handler.DumpHandler());
 
       // Start the http server
-      server.start();
-      runningOnPort(port);
+      startServer(server, port);
     } catch (Exception e) {
       log.error("Couldn't start proxy", e);
     }
   }
 
   protected void stopProxy() {
-    if (runningOnPort > 0) {
-      log.debug("Stopping proxy");
-      try {
-	server.stop();
-      } catch (Exception e) {
-	log.warning("Stopping proxy", e);
-      }
-      runningOnPort(-1);
-      server = null;
-    }
+    stopServer();
   }
 
   protected abstract org.lockss.proxy.ProxyHandler makeProxyHandler();
