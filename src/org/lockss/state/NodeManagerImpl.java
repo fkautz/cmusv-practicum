@@ -55,8 +55,8 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
   static final int DEFAULT_CACHE_SIZE = 100;
 
   /**
-   * This parameter indicates how long since the last unsucessful poll on a node
-   * the node manager should wait before recalling that poll.
+   * This parameter indicates how long since the last unsuccessful poll on a
+   * node the node manager should wait before recalling that poll.
    */
   public static final String PARAM_RECALL_DELAY =
       Configuration.PREFIX + "state.recall.delay";
@@ -482,7 +482,7 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
                                          lastHistory.uprBound);
     boolean shouldRecallLastPoll =
         ((lastHistory.getStartTime()  + lastHistory.getDuration() + recallDelay)
-         >= TimeBase.nowMs());
+         <= TimeBase.nowMs());
     switch (lastHistory.status) {
       case PollState.REPAIRING:
       case PollState.SCHEDULED:

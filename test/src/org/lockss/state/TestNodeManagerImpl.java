@@ -65,6 +65,7 @@ public class TestNodeManagerImpl
     p.setProperty(HistoryRepositoryImpl.PARAM_HISTORY_LOCATION, tempDirPath);
     p.setProperty(NodeManagerImpl.PARAM_NODESTATE_CACHE_SIZE, "10");
     p.setProperty(IdentityManager.PARAM_LOCAL_IP, "127.1.2.3");
+    p.setProperty(NodeManagerImpl.PARAM_RECALL_DELAY, "5s");
     ConfigurationUtil.setCurrentConfigFromProps(p);
 
     mau = new MockArchivalUnit();
