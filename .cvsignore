@@ -1,4 +1,5 @@
-classes
-javadoc
 .depend
+classes
+classpath
+javadoc
 tempbuild
