@@ -102,6 +102,9 @@ public class HashSpeedTest extends LockssTestCase {
     ConfigurationUtil.setCurrentConfigFromProps(props);
 
     theDaemon = new MockLockssDaemon();
+    theDaemon.getPluginManager();
+    theDaemon.getSystemMetrics();
+    theDaemon.getHashService();
     theDaemon.setDaemonInited(true);
     theDaemon.getPluginManager().startService();
     theDaemon.getSystemMetrics().startService();
