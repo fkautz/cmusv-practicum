@@ -51,7 +51,7 @@ public class LockssTestCase extends TestCase {
   /** Create and return the name of a temp dir.  The dir is created within
    * the default temp file dir.
    * It will be deleted following the test, by tearDown().  (So if you
-   * override tearDown(), be sure to call <code>super.tearDown();</code>.)
+   * override tearDown(), be sure to call <code>super.tearDown()</code>.)
    * @return The newly created directory
    */
   public File getTempDir() throws IOException {
@@ -65,7 +65,7 @@ public class LockssTestCase extends TestCase {
     return tmpdir;
   }
 
-  /** Remove any temp dirs */
+  /** Remove any temp dirs, cancel any outstanding {@link DoLater}s */
   public void tearDown() throws Exception {
     if (tmpDirs != null) {
       for (ListIterator iter = tmpDirs.listIterator(); iter.hasNext(); ) {

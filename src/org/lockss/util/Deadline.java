@@ -268,8 +268,8 @@ public class Deadline implements Comparable {
    * must be called in a <code>while (!deadline.expired()) { ... }</code>
    * loop.
    * @throws InterruptedException if either the timer duration is changed
-   * (<i>eg</i>, by {@link expire()} or {@link sooner()}) or the thread is
-   * otherwise interrupted.
+   * (<i>eg</i>, by {@link #expire()} or {@link #sooner(long)}) or the
+   * thread is otherwise interrupted.
    */
   public void sleep() throws InterruptedException {
     final Thread thread = Thread.currentThread();
