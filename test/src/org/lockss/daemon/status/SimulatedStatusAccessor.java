@@ -156,6 +156,10 @@ public class SimulatedStatusAccessor {
       return title;
     }
 
+    public List getHeaders(String key) {
+      return null;
+    }
+    
   }
   
   private static class SimAccessor1 extends SimAccessor {

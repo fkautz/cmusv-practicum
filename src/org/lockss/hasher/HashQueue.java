@@ -454,6 +454,13 @@ class HashQueue implements Serializable {
     public String getTitle(String key) {
       return "Hash Queue";
     }
+
+    /**
+     * Returns null
+     */
+    public List getHeaders(String key) {
+      return null;
+    }
   }
 
 }

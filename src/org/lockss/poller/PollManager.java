@@ -782,6 +782,13 @@ public class PollManager  implements LockssManager {
       return "Poll Manager Table";
     }
 
+    /**
+     * Returns null
+     */
+    public List getHeaders(String key) {
+      return null;
+    }
+
     // utility methods for making a Reference
 
     public StatusTable.Reference makePluginRef(Object value, String key) {
@@ -938,6 +945,13 @@ public class PollManager  implements LockssManager {
 
     public String getTitle(String key) {
       return "Table for running poll " + key;
+    }
+
+    /**
+     * Returns null
+     */
+    public List getHeaders(String key) {
+      return null;
     }
 
     // utility methods for making a Reference
