@@ -144,6 +144,7 @@ public class ConfigurationUtil {
   /** Install the supplied Configuration as the current configuration.
    */
   public static boolean installConfig(Configuration config) {
+    ConfigCache.reset();  // For testing, always start with a clean cache.
     try {
       PrivilegedAccessor.invokeMethod(mgr(), "installConfig", config);
     } catch (Exception e) {

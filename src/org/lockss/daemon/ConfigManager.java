@@ -570,7 +570,7 @@ public class ConfigManager implements LockssManager {
     InputStream is = new FileInputStream(cfile);
     Configuration res = newConfiguration();
 
-    if (cacheConfigFileName.toLowerCase().endsWith(".xml")) {
+    if (StringUtil.endsWithIgnoreCase(cacheConfigFileName, ".xml")) {
       res.loadXmlProperties(is);
     } else {
       res.loadTextProperties(is);
@@ -825,7 +825,7 @@ public class ConfigManager implements LockssManager {
 	    break;
 	  }
 	  lastReload = TimeBase.nowMs();
-	  //  	stopAndOrStartThings(true);
+	  //	stopAndOrStartThings(true);
 	  reloadInterval = getTimeIntervalParam(PARAM_RELOAD_INTERVAL,
 						DEFAULT_RELOAD_INTERVAL);
 

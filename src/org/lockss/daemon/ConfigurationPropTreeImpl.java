@@ -73,7 +73,7 @@ public class ConfigurationPropTreeImpl extends Configuration {
    * Load LOCKSS XML properties
    */
   boolean loadXmlProperties(InputStream istr) throws IOException {
-    return XmlPropertyLoader.load(props, istr);
+    return (new XmlPropertyLoader()).load(props, istr);
   }
 
   boolean store(OutputStream ostr, String header) throws IOException {
@@ -113,23 +113,15 @@ public class ConfigurationPropTreeImpl extends Configuration {
     return (String)props.get(key);
   }
 
-  public List getList(String key) {
-    if (!key.endsWith(".")) {
-      key = key + ".";
-    }
-    
-    Enumeration e = props.getNodes(key);
-    
+  public List getList(String key) throws Configuration.InvalidParam {
     List propList = null;
-    
-    if (e != null) {
-      propList = new LinkedList();
-      while (e.hasMoreElements()) {
-	String node = (String)e.nextElement();
-	propList.add(props.get(key + node));
-      }
+    try {
+      propList = (List)props.get(key);
+    } catch (ClassCastException ex) {
+      // The client requested a list of something that wasn't actually a list.
+      // Throw a Config exception
+      throw new InvalidParam("Key does not hold a list value: " + key);
     }
-    
     return propList;
   }
 
