@@ -134,11 +134,11 @@ public class TestPriorityQueue extends LockssTestCase {
     }
   }
 
-  public void testAsList() {
+  public void testCopyAsList() {
     PriorityQueue q = new PriorityQueue();
     q.put("foo");
     q.put("bar");
-    assertEquals(ListUtil.list("bar", "foo"), q.asList());
+    assertEquals(ListUtil.list("bar", "foo"), q.copyAsList());
   }
 
   public void testRemove() {
