@@ -322,8 +322,6 @@ public class TestBaseUrlCacher extends LockssTestCase {
       CIProperties p = muc.getUncachedProperties();
       // In this case the new location should be in the UrlCacher's
       // properties, even though no CachedUrl was written
-      System.err.println("ucprops: " + p);
-      assertEquals(redTo, p.getProperty("nulllocation"));
       assertEquals(redTo, p.getProperty("location"));
     }
   }
