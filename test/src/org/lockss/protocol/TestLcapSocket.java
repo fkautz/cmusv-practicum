@@ -38,6 +38,7 @@ import java.net.*;
 import junit.framework.TestCase;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
+import org.lockss.util.Queue;
 import org.lockss.test.*;
 
 

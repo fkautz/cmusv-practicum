@@ -41,6 +41,7 @@ import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.util.*;
+import org.lockss.util.Queue;
 import org.lockss.test.*;
 import org.lockss.repository.LockssRepositoryImpl;
 
