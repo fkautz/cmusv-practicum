@@ -210,7 +210,7 @@ public class BaseUrlCacher implements UrlCacher {
       }
       input = conn.getResponseInputStream();
     } finally {
-      if (input == null) {
+      if (conn != null && input == null) {
 	conn.release();
       }
     }
@@ -267,6 +267,9 @@ public class BaseUrlCacher implements UrlCacher {
       catch (IOException ex) {
 	logger.warning("openConnection", ex);
         throw resultMap.getHostException(ex);
+      } catch (RuntimeException e) {
+ 	logger.warning("openConnection: unexpected exception", e);
+	throw e;
       }
       checkConnectException(conn);
     }
