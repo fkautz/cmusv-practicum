@@ -115,10 +115,20 @@ public class DaemonStatus extends LockssServlet {
 // 		       concatParams("text=1", req.getQueryString())));
 //       page.add("</center><br><br>");
     } else {
+      String vPlatform = Configuration.getParam(PARAM_PLATFORM_VERSION);
+      if (vPlatform != null) {
+	vPlatform = ", cd=" + vPlatform;
+      } else {
+	vPlatform = "";
+      }
+      Date startDate = getLockssDaemon().getStartDate();
       wrtr.println("host=" + getLcapIPAddr() +
 		   ",time=" + now.getTime() +
-		   ",version=" + "0.0");
+		   ",up=" + TimeBase.msSince(startDate.getTime()) +
+		   ",version=" + BuildInfo.getBuildInfoString() +
+		   vPlatform);
     }
+
     doStatusTable(page, wrtr, tableName, key);
     if (html) {
       page.add(getFooter());
