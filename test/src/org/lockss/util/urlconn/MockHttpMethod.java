@@ -41,7 +41,7 @@ import org.apache.commons.httpclient.util.*;
 /**
  * Mock implementation of Jakarta HttpMethod
  */
-public class MockHttpMethod {
+public class MockHttpMethod implements HttpMethod {
 
   public String getName() {
     throw new UnsupportedOperationException();
