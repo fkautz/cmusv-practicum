@@ -195,7 +195,7 @@ public class DaemonStatus extends LockssServlet {
       XmlDomBuilder xmlBuilder =
           new XmlDomBuilder(XmlStatusConstants.NS_PREFIX,
                             XmlStatusConstants.NS_URI,
-                            XmlDomBuilder.XML_VERSIONNAME);
+                            "1.0");
       Document errorDoc = xmlBuilder.createDocument();
       org.w3c.dom.Element rootElem = xmlBuilder.createRoot(errorDoc,
           XmlStatusConstants.ERROR);

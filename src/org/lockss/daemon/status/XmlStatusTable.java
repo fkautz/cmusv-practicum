@@ -44,7 +44,7 @@ public class XmlStatusTable {
 
   XmlDomBuilder xmlBuilder = new XmlDomBuilder(XmlStatusConstants.NS_PREFIX,
                                                XmlStatusConstants.NS_URI,
-                                               XmlDomBuilder.XML_VERSIONNAME);
+                                               "2.0");
 
   StatusTable statusTable = null;
   Document tableDocument = null;
