@@ -35,10 +35,8 @@ import org.lockss.config.Configuration;
 import org.lockss.util.*;
 
 /** ResourceManager arbitrates ownership of resources such as tcp listen
- * ports. 
-
-*/
-
+ * ports.
+ */
 public class ResourceManager extends BaseLockssManager  {
   protected static Logger log = Logger.getLogger("ResourceManager");
 
