@@ -173,10 +173,6 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     return getPluginId().hashCode() + getAUId().hashCode();
   }
 
-  public List getNewContentCrawlUrls() {
-    return null;
-  }
-
   /**
    * Overrides Object.equals().
    * Returns true if the ids are equal

@@ -32,11 +32,12 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.plugin.simulated;
 
+import java.util.*;
+import java.io.File;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.plugin.*;
 import org.lockss.plugin.base.*;
-import java.io.File;
 
 /**
  * This is ArchivalUnit of the simulated plugin, used for testing purposes.
@@ -216,6 +217,10 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     } else {
       return url;
     }
+  }
+
+  public List getNewContentCrawlUrls() {
+    return ListUtil.list(SIMULATED_URL_START);
   }
 
 }

@@ -100,6 +100,10 @@ public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
     auId = newId;
   }
 
+  public List getNewContentCrawlUrls() {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
   // Methods used by the crawler
 
   public CachedUrlSet makeCachedUrlSet(CachedUrlSetSpec cuss) {

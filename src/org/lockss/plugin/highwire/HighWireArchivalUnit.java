@@ -207,5 +207,9 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
     return false;
   }
 
+  public List getNewContentCrawlUrls() {
+    return ListUtil.list(getBaseUrl());
+  }
+
 
 }
