@@ -580,6 +580,9 @@ public class ActivityRegulator
   Lock setCusActivity(CachedUrlSet cus, int activity, long expireIn) {
     //XXX this can probably be removed, since any locks will already have
     // been expired
+    // XXX NO!  If isAllowedOnCus() allows a new activity to replace an
+    // existing one, checkForRelatedCusActivity() will return false and
+    // getCusActivityLock() will call this with the existing lock still set.
     Lock cusLock = (CusLock)cusMap.get(cus);
     if (cusLock!=null) {
       // expire old lock
