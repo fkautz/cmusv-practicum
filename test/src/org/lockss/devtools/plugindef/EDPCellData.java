@@ -67,10 +67,10 @@ public class EDPCellData {
       m_data = edp.getAuCrawlRules();
     }
     else if(key.equals(edp.AU_START_URL)) {
-      m_data = new PrintfTemplate(edp.getAuStartUrl(), "\n");
+      m_data = new PrintfTemplate(edp.getAuStartUrl());
     }
     else if(key.equals(edp.AU_NAME)) {
-      m_data = new PrintfTemplate(edp.getAuName(), "\n");
+      m_data = new PrintfTemplate(edp.getAuName());
     }
     else if(key.equals(edp.AU_CRAWL_DEPTH)) {
       m_data = new Integer(edp.getAuCrawlDepth());

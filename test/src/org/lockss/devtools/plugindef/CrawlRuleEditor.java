@@ -155,7 +155,7 @@ public class CrawlRuleEditor extends JDialog implements EDPEditor{
       Object[] entry;
 
       for (Iterator it = m_rules.iterator(); it.hasNext(); ) {
-        CrawlRuleTemplate crt = new CrawlRuleTemplate((String) it.next(), "\n");
+        CrawlRuleTemplate crt = new CrawlRuleTemplate((String) it.next());
         entry = new Object[2];
         entry[0] = crt.getKindString();
         entry[1] = crt;
