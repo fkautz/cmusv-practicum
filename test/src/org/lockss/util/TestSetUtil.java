@@ -110,8 +110,7 @@ public class TestSetUtil extends LockssTestCase {
     }
     Integer a2[] = {new Integer(4), null};
     Set s2 = SetUtil.fromArray(a2);
-    assertIsomorphic(a2,
-                     SetUtil.immutableSetOfTypeOrNull(s2, Integer.class));
+    assertEquals(s2, SetUtil.immutableSetOfTypeOrNull(s2, Integer.class));
     try {
       SetUtil.immutableSetOfType(s2, Integer.class);
       fail("immutableSetOfType accepted null");
