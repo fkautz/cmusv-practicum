@@ -34,20 +34,20 @@ package org.lockss.protocol;
 import java.util.Collection;
 
 public class IdentityListBean {
-  Collection identityList;
+  Collection idBeans;
 
   public IdentityListBean() {
   }
 
-  public IdentityListBean(Collection idList) {
-    identityList = idList;
+  IdentityListBean(Collection beans) {
+    idBeans = beans;
   }
-  public void setIdentityList(Collection idList) {
-    identityList = idList;
+  public void setIdBeans(Collection beans) {
+    idBeans = beans;
   }
 
-  public Collection getIdentityList() {
-    return identityList;
+  public Collection getIdBeans() {
+    return idBeans;
   }
 
 }
