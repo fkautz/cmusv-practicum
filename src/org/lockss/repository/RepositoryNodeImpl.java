@@ -1220,7 +1220,7 @@ public class RepositoryNodeImpl implements RepositoryNode {
   /**
    * Writes the node properties to disk.
    */
-  private void writeNodeProperties() {
+  protected void writeNodeProperties() {
     try {
       OutputStream os = new BufferedOutputStream(new FileOutputStream(nodePropsFile));
       nodeProps.store(os, "Node properties");
