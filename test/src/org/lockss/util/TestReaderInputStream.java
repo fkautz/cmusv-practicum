@@ -87,7 +87,7 @@ public class TestReaderInputStream extends LockssTestCase {
 
   public void testClose() throws IOException {
     String testStr = "Test string";
-    MyStringReader reader = new MyStringReader(testStr);
+    InstrumentedStringReader reader = new InstrumentedStringReader(testStr);
     InputStream is = new ReaderInputStream(reader);
     assertEquals('T', is.read());
     assertFalse(reader.isClosed());
@@ -98,21 +98,6 @@ public class TestReaderInputStream extends LockssTestCase {
       fail("Stream shouldn't be readable after close()");
     } catch (IOException e) {
     }
-
-
   }
 
-  class MyStringReader extends StringReader {
-    boolean isClosed = false;
-    MyStringReader(String s) {
-      super(s);
-    }
-    public void close() {
-      isClosed = true;
-      super.close();
-    }
-    boolean isClosed() {
-      return isClosed;
-    }
-  }
 }
