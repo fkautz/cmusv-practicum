@@ -139,12 +139,11 @@ public class DamagedNodeSet {
   }
 
   public ExtMapBean getRepairNodeBean() {
-    ExtMapBean bean = new ExtMapBean();
-    bean.setListsFromMap(cusToRepair);
+    ExtMapBean bean = new ExtMapBean(cusToRepair);
     return bean;
   }
 
   public void setRepairNodeBean(ExtMapBean mapBean) {
-    cusToRepair = mapBean.getMapFromLists();
+    cusToRepair = mapBean.getMap();
   }
 }

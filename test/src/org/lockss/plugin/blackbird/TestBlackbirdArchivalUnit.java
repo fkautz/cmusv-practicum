@@ -178,14 +178,6 @@ public class TestBlackbirdArchivalUnit extends LockssTestCase {
     assertEquals(expectedStr, bbAu.getManifestPage());
   }
 
-  public void testPathInUrlThrowsException() throws Exception {
-    URL url = new URL(ROOT_URL+"path");
-    try {
-      makeAu(url, 2);
-      fail("Should have thrown ArchivalUnit.ConfigurationException");
-    } catch(ArchivalUnit.ConfigurationException e) { }
-  }
-
   public void testGetUrlStems() throws Exception {
     String stem1 = "http://www.blackbird.vcu.edu";
     DefinableArchivalUnit bbAu1 = makeAu(new URL(stem1 + "/"), 2);

@@ -149,15 +149,6 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
     assertEquals(expectedStr, hwau.getManifestPage());
   }
 
-  public void testPathInUrlThrowsException() throws Exception {
-    URL url = new URL("http://www.example.com/path");
-    try {
-      makeAu(url, 10, 2004);
-      fail("Should have thrown ArchivalUnit.ConfigurationException");
-    } catch(ArchivalUnit.ConfigurationException e) {
-    }
-  }
-
   public void testGetUrlStems() throws Exception {
     String stem1 = "http://www.example.com";
     DefinableArchivalUnit hwau1 = makeAu(new URL(stem1 + "/"), 10, 2004);

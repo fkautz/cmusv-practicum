@@ -146,14 +146,6 @@ public class TestEmlsArchivalUnit extends LockssTestCase {
     assertEquals(expectedStr, eAu.getManifestPage());
   }
 
-  public void testBadPathInUrlThrowsException() throws Exception {
-    URL url = new URL(ROOT_URL+"path");
-    try {
-      makeAu(url, 3);
-      fail("Should have thrown ArchivalUnit.ConfigurationException");
-    } catch(ArchivalUnit.ConfigurationException e) { }
-  }
-
   public void testGetUrlStems() throws Exception {
     String stem1 = "http://muse.jhu.edu";
     DefinableArchivalUnit eAu1 = makeAu(new URL(stem1 + "/emls/"), 3);

@@ -178,14 +178,6 @@ public class TestOtherVoicesArchivalUnit extends LockssTestCase {
     assertEquals(expectedStr, ovAu.getManifestPage());
   }
 
-  public void testPathInUrlThrowsException() throws Exception {
-    URL url = new URL(ROOT_URL+"path");
-    try {
-      makeAu(url, 2);
-      fail("Should have thrown ArchivalUnit.ConfigurationException");
-    } catch(ArchivalUnit.ConfigurationException e) { }
-  }
-
   public void testGetUrlStems() throws Exception {
     String stem1 = "http://www.othervoices.org";
     DefinableArchivalUnit ovAu1 = makeAu(new URL(stem1 + "/"), 2);

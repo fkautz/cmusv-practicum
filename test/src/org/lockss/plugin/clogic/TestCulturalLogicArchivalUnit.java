@@ -151,14 +151,6 @@ public class TestCulturalLogicArchivalUnit extends LockssTestCase {
     assertEquals(expectedStr, clAu.getManifestPage());
   }
 
-  public void testBadPathInUrlThrowsException() throws Exception {
-    URL url = new URL(ROOT_URL+"path");
-    try {
-      makeAu(url, "2000");
-      fail("Should have thrown ArchivalUnit.ConfigurationException");
-    } catch(ArchivalUnit.ConfigurationException e) { }
-  }
-
   public void testGetUrlStems() throws Exception {
     String stem1 = "http://eserver.org/clogic";
     DefinableArchivalUnit clAu1 = makeAu(new URL(stem1 + "/"), "2003");

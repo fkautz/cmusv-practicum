@@ -171,14 +171,6 @@ public class TestHistoryCooperativeArchivalUnit extends LockssTestCase {
     assertEquals(expectedStr, hcAu.getManifestPage());
   }
 
-  public void testPathInUrlThrowsException() throws Exception {
-    URL url = new URL(ROOT_URL+"path");
-    try {
-      makeAu(url, 108, DIR);
-      fail("Should have thrown ArchivalUnit.ConfigurationException");
-    } catch(ArchivalUnit.ConfigurationException e) { }
-  }
-
   public void testGetUrlStems() throws Exception {
     String stem1 = "http://www.historycooperative.org";
     DefinableArchivalUnit hcAu1 = makeAu(new URL(stem1 + "/"), 108, DIR);

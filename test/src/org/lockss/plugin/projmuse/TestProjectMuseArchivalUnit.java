@@ -198,14 +198,6 @@ public class TestProjectMuseArchivalUnit extends LockssTestCase {
     assertEquals(expectedStr, pmAu.getManifestPage());
   }
 
-  public void testPathInUrlThrowsException() throws Exception {
-    URL url = new URL(ROOT_URL+"path");
-    try {
-      makeAu(url, 60, DIR);
-      fail("Should have thrown ArchivalUnit.ConfigurationException");
-    } catch(ArchivalUnit.ConfigurationException e) { }
-  }
-
   public void testGetUrlStems() throws Exception {
     String stem1 = "http://muse.jhu.edu";
     DefinableArchivalUnit pmAu1 = makeAu(new URL(stem1 + "/"), 60, DIR);

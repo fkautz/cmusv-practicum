@@ -77,14 +77,6 @@ public class TestSampleArchivalUnit extends LockssTestCase {
     } catch (ArchivalUnit.ConfigurationException e) { }
   }
 
-  public void testPathInUrlThrowsException() throws Exception {
-    URL url = new URL(ROOT_URL+"path");
-    try {
-      makeAu(url, 108);
-      fail("Should have thrown ArchivalUnit.ConfigurationException");
-    } catch(ArchivalUnit.ConfigurationException e) { }
-  }
-
   public void testMakeName() throws Exception {
     // make name should return <base>, vol. <vol>
     SampleArchivalUnit au = makeAu(new URL(ROOT_URL), 108);
