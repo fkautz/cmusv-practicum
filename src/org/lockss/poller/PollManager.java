@@ -135,6 +135,8 @@ public class PollManager  implements LockssManager {
    */
   public void requestPoll(int opcode, PollSpec pollspec)
       throws IOException {
+    theLog.debug("handling request for poll of type: " + opcode +
+                 " for spec " + pollspec);
     CachedUrlSet cus = pollspec.getCachedUrlSet();
     long duration = calcDuration(opcode, cus);
     byte[] challenge = makeVerifier();
