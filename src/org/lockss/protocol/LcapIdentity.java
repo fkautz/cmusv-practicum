@@ -90,6 +90,7 @@ public class LcapIdentity implements Serializable {
   /**
    * return the address of the Identity
    * @return the <code>InetAddress<\code> for this Identity
+   * @throws UnknownHostException
    */
   public InetAddress getAddress() throws UnknownHostException {
     if(m_address == null) {
