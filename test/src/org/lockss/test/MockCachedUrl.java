@@ -69,25 +69,21 @@ public class MockCachedUrl implements CachedUrl {
     return url;
   }
 
-  public String getName() {
-    return url;
-  }
-
   public CachedUrlSet getCachedUrlSet() {
     return cus;
   }
 
-  public boolean exists(){
+  public boolean exists() {
     return doesExist;
   }
 
-  public void setExists(boolean doesExist){
+  public void setExists(boolean doesExist) {
     this.doesExist = doesExist;
   }
 
   // Read interface - used by the proxy.
 
-  public InputStream openForReading(){
+  public InputStream openForReading() {
     if (content != null) {
       return new StringInputStream(content);
     }
@@ -100,8 +96,8 @@ public class MockCachedUrl implements CachedUrl {
 
     // Write interface - used by the crawler.
 
-  public void storeContent(InputStream input,
-			   Properties headers) throws IOException{
+  public void storeContent(InputStream input, Properties headers)
+      throws IOException {
     cachedIS = input;
     cachedProp = headers;
   }

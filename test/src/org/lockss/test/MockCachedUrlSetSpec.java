@@ -46,8 +46,6 @@ import org.lockss.util.*;
 public class MockCachedUrlSetSpec implements CachedUrlSetSpec {
   private String root = null;
   private String regExp = null;
-  private List prefixList = null;
-
 
   public MockCachedUrlSetSpec() {
   }
