@@ -32,6 +32,7 @@ import org.lockss.util.ListUtil;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.plugin.base.BasePlugin;
 import org.lockss.app.LockssDaemon;
+import org.lockss.plugin.configurable.*;
 
 /**
  * This is a first cut at making a Project Muse plugin
@@ -40,7 +41,7 @@ import org.lockss.app.LockssDaemon;
  * @version 0.0
  */
 
-public class HistoryCooperativePlugin extends BasePlugin {
+public class HistoryCooperativePlugin extends ConfigurablePlugin {
   private static String PLUGIN_NAME = "History Cooperative";
   private static String CURRENT_VERSION = "Pre-release";
 

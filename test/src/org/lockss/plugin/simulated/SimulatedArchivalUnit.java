@@ -39,6 +39,7 @@ import org.lockss.util.*;
 import org.lockss.plugin.*;
 import org.lockss.plugin.base.*;
 import java.net.*;
+import org.lockss.daemon.Configuration;
 
 /**
  * This is ArchivalUnit of the simulated plugin, used for testing purposes.
@@ -268,5 +269,8 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     else {
       return false;
     }
+  }
+
+  protected void loadDefiningConfig(Configuration config) {
   }
 }

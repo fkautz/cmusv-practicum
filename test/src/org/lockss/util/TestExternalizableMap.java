@@ -36,6 +36,7 @@ import java.net.*;
 import java.util.*;
 import java.io.File;
 import org.lockss.test.LockssTestCase;
+import org.lockss.daemon.ConfigParamDescr;
 
 public class TestExternalizableMap extends LockssTestCase {
   static String key = "key_string";
@@ -152,7 +153,8 @@ public class TestExternalizableMap extends LockssTestCase {
   //  testMap.put("test 1", "value 1");
     //testMap.put("test 2", "value 2");
     URL testUrl = new URL("http://www.example.com");
-
+    Collection testCpd = ListUtil.list(ConfigParamDescr.VOLUME_NUMBER,
+                                      ConfigParamDescr.BASE_URL);
     map.putBoolean("test-b", false);
     map.putCollection("test-c", testCol);
     map.putDouble("test-d", 1.21);
@@ -162,7 +164,8 @@ public class TestExternalizableMap extends LockssTestCase {
 //    map.putMap("test-m", testMap);
     map.putString("test-s", "test string");
     map.putUrl("test-u", testUrl);
-
+    // test for collections of ConfigParamDescr
+    map.putCollection("test-cpd", testCpd);
     // marshal
     String fileLoc = tempDirPath + "testMap";
     String fileName = "testMap";
@@ -194,6 +197,8 @@ public class TestExternalizableMap extends LockssTestCase {
 //    assertEqual(testMap, map.getMap("test-m", new HashMap()));
     assertEquals("test string", map.getString("test-s", "foo"));
     assertEquals(testUrl, map.getUrl("test-u", new URL("http://foo.com")));
+    assertIsomorphic(testCpd,
+                     map.getCollection("test-cpd", Collections.EMPTY_LIST));
   }
 
 }

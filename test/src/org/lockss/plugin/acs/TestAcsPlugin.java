@@ -48,12 +48,6 @@ public class TestAcsPlugin extends LockssTestCase {
     plugin.initPlugin(getMockLockssDaemon());
   }
 
-  public void testGetAuNullConfig() throws ArchivalUnit.ConfigurationException {
-    try {
-      plugin.configureAu(null, null);
-      fail("Didn't throw ArchivalUnit.ConfigurationException");
-    } catch (ArchivalUnit.ConfigurationException e) { }
-  }
 
   private AcsArchivalUnit makeAuFromProps(Properties props)
       throws ArchivalUnit.ConfigurationException {

@@ -39,6 +39,7 @@ import org.lockss.state.*;
 import org.lockss.plugin.*;
 import org.lockss.plugin.base.*;
 import gnu.regexp.REException;
+import org.lockss.plugin.configurable.*;
 
 /**
  * EmlsArchivalUnit: The Archival Unit Class for Early Modern Literary
@@ -47,7 +48,7 @@ import gnu.regexp.REException;
  * @version 1.0
  */
 
-public class EmlsArchivalUnit extends BaseArchivalUnit {
+public class EmlsArchivalUnit extends ConfigurableArchivalUnit {
   /**
    * Configuration parameter for new content crawl interval
    */
@@ -75,7 +76,7 @@ public class EmlsArchivalUnit extends BaseArchivalUnit {
 
 
     // get the volume string
-    volume = configMap.getInt(EmlsPlugin.AUPARAM_VOL, -1);
+    volume = configurationMap.getInt(EmlsPlugin.AUPARAM_VOL, -1);
     if (volume <= 0) {
       throw new ConfigurationException("Invalid volume: "+volume);
     }

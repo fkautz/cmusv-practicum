@@ -40,6 +40,7 @@ import org.lockss.plugin.*;
 import org.lockss.state.AuState;
 import org.lockss.plugin.base.BaseArchivalUnit;
 import gnu.regexp.REException;
+import org.lockss.plugin.configurable.*;
 
 /**
  * This is a first cut at making an Other Voices plugin
@@ -48,7 +49,7 @@ import gnu.regexp.REException;
  * @version 0.0
  */
 
-public class OtherVoicesArchivalUnit extends BaseArchivalUnit {
+public class OtherVoicesArchivalUnit extends ConfigurableArchivalUnit {
   /**
    * Configuration parameter for new content crawl interval
    */
@@ -73,7 +74,7 @@ public class OtherVoicesArchivalUnit extends BaseArchivalUnit {
   protected void setAuParams(Configuration config)
       throws ConfigurationException {
     // get the base url string
-    volume = configMap.getInt(OtherVoicesPlugin.AUPARAM_VOL, -1);
+    volume = configurationMap.getInt(OtherVoicesPlugin.AUPARAM_VOL, -1);
     if (volume < 0) {
       throw new ConfigurationException("Negative volume");
     }

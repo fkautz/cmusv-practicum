@@ -34,6 +34,7 @@ import org.lockss.app.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.plugin.base.*;
+import org.lockss.plugin.configurable.*;
 
 /**
  * This is a first cut at making a HighWire plugin
@@ -43,7 +44,7 @@ import org.lockss.plugin.base.*;
  */
 
 public class HighWirePlugin
-    extends BasePlugin {
+    extends ConfigurablePlugin {
   public static final String LOG_NAME = "HighWirePlugin";
   public static final String PLUGIN_NAME = "HighWire Press";
   public static final String CURRENT_VERSION = "Pre-release";

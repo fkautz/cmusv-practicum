@@ -32,6 +32,7 @@ import org.lockss.util.ListUtil;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.plugin.base.BasePlugin;
 import org.lockss.app.LockssDaemon;
+import org.lockss.plugin.configurable.*;
 
 /**
  * This is a first cut at making an Other Voices plugin
@@ -41,7 +42,7 @@ import org.lockss.app.LockssDaemon;
  */
 
 public class OtherVoicesPlugin
-    extends BasePlugin {
+    extends ConfigurablePlugin {
   private static String PLUGIN_NAME = "Other Voices";
   private static String CURRENT_VERSION = "Pre-release";
 

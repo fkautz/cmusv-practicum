@@ -40,6 +40,7 @@ import org.lockss.plugin.*;
 import org.lockss.state.AuState;
 import org.lockss.plugin.base.BaseArchivalUnit;
 import gnu.regexp.REException;
+import org.lockss.plugin.configurable.*;
 
 /**
  * This is a first cut at making a Project Muse plugin
@@ -48,7 +49,7 @@ import gnu.regexp.REException;
  * @version 0.0
  */
 
-public class HistoryCooperativeArchivalUnit extends BaseArchivalUnit {
+public class HistoryCooperativeArchivalUnit extends ConfigurableArchivalUnit {
   /**
    * Configuration parameter for new content crawl interval
    */
@@ -74,14 +75,14 @@ public class HistoryCooperativeArchivalUnit extends BaseArchivalUnit {
   protected void setAuParams(Configuration config)
       throws ConfigurationException {
     // get the base url string
-    volume = configMap.getInt(HistoryCooperativePlugin.AUPARAM_VOL, -1);
+    volume = configurationMap.getInt(HistoryCooperativePlugin.AUPARAM_VOL, -1);
     if (volume < 0) {
       throw new ConfigurationException("Negative volume");
     }
 
     // get the journal directory
     journalDir =
-        configMap.getString(HistoryCooperativePlugin.AUPARAM_JOURNAL_DIR, null);
+        configurationMap.getString(HistoryCooperativePlugin.AUPARAM_JOURNAL_DIR, null);
 
   }
 

@@ -185,6 +185,13 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
       throw new UnsupportedOperationException("Not implemented");
     }
 
+    /**
+     * loadDefiningConfig
+     *
+     * @param config Configuration
+     */
+    protected void loadDefiningConfig(Configuration config) {
+    }
 
   }
 

@@ -32,6 +32,7 @@ import org.lockss.util.ListUtil;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.plugin.base.BasePlugin;
 import org.lockss.app.LockssDaemon;
+import org.lockss.plugin.configurable.*;
 
 /**
  * This is a first cut at making a Blackbird plugin
@@ -41,7 +42,7 @@ import org.lockss.app.LockssDaemon;
  */
 
 public class BlackbirdPlugin
-    extends BasePlugin {
+    extends ConfigurablePlugin {
   private static String PLUGIN_NAME = "Blackbird";
   private static String CURRENT_VERSION = "Pre-release";
 
