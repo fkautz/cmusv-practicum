@@ -46,7 +46,9 @@ public class TestBuildInfo extends LockssTestCase {
   public void testInfoPresent() {
     assertNotNull(BuildInfo.getBuildProperty(BuildInfo.BUILD_TIME));
     assertNotNull(BuildInfo.getBuildProperty(BuildInfo.BUILD_TIMESTAMP));
-    assertNotNull(BuildInfo.getBuildProperty(BuildInfo.BUILD_HOST));
+    // Don't test BuildInfo.BUILD_HOST as it won't be set on OpenBSD build
+    // machine
+
     assertNull(BuildInfo.getBuildProperty("not a real property"));
   }
 }
