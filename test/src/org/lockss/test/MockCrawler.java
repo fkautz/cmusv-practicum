@@ -49,8 +49,20 @@ public class MockCrawler extends NullCrawler {
   long endTime = -1;
   long numFetched = -1;
   long numParsed = -1;
+
+
   Crawler.Status status = null;
 
+  boolean wasAborted = false;
+
+
+  public void abortCrawl() {
+    wasAborted = true;
+  }
+
+  public boolean wasAborted() {
+    return wasAborted;
+  }
 
   public void setCrawlSuccessful(boolean crawlSuccessful) {
     this.crawlSuccessful = crawlSuccessful;

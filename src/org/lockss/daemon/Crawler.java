@@ -86,6 +86,12 @@ public interface Crawler {
 //   public Collection getStartUrls();
 
   /**
+   * aborts the running crawl
+   */
+  public void abortCrawl();
+
+
+  /**
    * Returns an int representing the status of this crawler
    */
   public Crawler.Status getStatus();

@@ -73,4 +73,7 @@ public class NullCrawler implements Crawler {
     throw new UnsupportedOperationException("Not implemented");
   }
 
+  public void abortCrawl() {
+    throw new UnsupportedOperationException("Not implemented");
+  }
 }

@@ -166,6 +166,10 @@ public class CrawlerImpl implements Crawler {
   }
 
 
+  public void abortCrawl() {
+//     throw new UnsupportedOperationException("not implemented");
+  }
+
   /**
    * Main method of the crawler; it loops through crawling and caching
    * urls.
