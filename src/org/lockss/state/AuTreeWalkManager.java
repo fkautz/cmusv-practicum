@@ -377,10 +377,12 @@ public class AuTreeWalkManager
       // must stop background activity if it's still running
       if (runningRunner != null) {
 	log.debug2("Treewalk still running, aborting.");
-	runningRunner.abort();
-	runningRunner = null;
 	// couldn't finish in time; pad estimate
+	// update state *before* telling thread to abort
 	treeWalkEstimate *= twm.paramEstGrowth;
+	TreeWalkRunner runner = runningRunner;
+	runningRunner = null;
+	runner.abort();
       }
     }
   }
