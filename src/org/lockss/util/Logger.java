@@ -166,7 +166,7 @@ public class Logger {
   /**
    * Special purpose Logger factory.  Return the unique instance
    * of <code>Logger</code> with the given name, creating it if necessary.
-   * This is here primarily so <Conde>Configuration</code> can create a
+   * This is here primarily so <code>Configuration</code> can create a
    * log without being invoked recursively, which causes its class
    * initialization to not complete correctly.
    * @param name identifies the log instance, appears in output
