@@ -181,6 +181,10 @@ public class PollManager
       return false;
     } else {
       long duration = pollFact.calcDuration(pollspec, this);
+      if (duration <= 0) {
+	theLog.debug("Duration for " + pollspec + " too short " + duration);
+	return false;
+      }
       byte[] challenge = makeVerifier(duration);
       byte[] verifier = makeVerifier(duration);
       try {

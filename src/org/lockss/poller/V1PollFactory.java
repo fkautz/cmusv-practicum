@@ -203,6 +203,9 @@ public class V1PollFactory implements PollFactory {
       throw new ProtocolException("V1PollFactory: bad version " +
 				  pollspec.getPollVersion());
     }
+    if (duration <= 0) {
+      throw new ProtocolException("V1Pollfactory: bad duration " + duration);
+    }
     switch (pollspec.getPollType()) {
       case Poll.CONTENT_POLL:
 	theLog.debug2("Creating content poll for " + pollspec);
