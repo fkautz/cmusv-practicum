@@ -143,7 +143,7 @@ class TaskRunner implements Serializable {
       log.debug("Scheduled task: " + task);
       return true;
     } else {
-      log.debug("Can't schedule task: " + task);
+      log.debug2("Can't schedule task: " + task);
       addStats(task, STAT_REFUSED);
       return false;
     }
