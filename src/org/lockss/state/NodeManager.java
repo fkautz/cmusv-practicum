@@ -119,4 +119,13 @@ public interface NodeManager {
    * @return estimated time in ms
    */
   public long getEstimatedTreeWalkDuration();
+
+
+  /**
+   * Do one tree walk.  XXX this should probably be handled by making the
+   * node manager kick off a thread when it starts to run the tree walk every
+   * X minutes
+   */
+  public void startTreeWalk();
+
 }
