@@ -67,18 +67,9 @@ public abstract class BaseCachedUrlSet implements CachedUrlSet {
     return au;
   }
 
-  /**
-   * Return true if content for the url is present in the CachedUrlSet
-   * @param url the url to test
-   * @return true if it is already cached
-   */
-  public boolean isCached(String url) {
-    CachedUrl cu = makeCachedUrl(url);
-    return (cu == null ? false : cu.hasContent());
-  }
-
   public boolean hasContent() {
-    return isCached(getUrl());
+    CachedUrl cu = makeCachedUrl(getUrl());
+    return (cu == null ? false : cu.hasContent());
   }
 
   /**

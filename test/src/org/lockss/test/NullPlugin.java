@@ -189,11 +189,6 @@ public class NullPlugin {
       return 1000;
     }
 
-    public boolean isCached(String url) {
-      org.lockss.daemon.CachedUrl cu = makeCachedUrl(url);
-      return cu == null ? false : cu.hasContent();
-    }
-
     public boolean hasContent() {
       return false;
     }

@@ -124,17 +124,6 @@ public interface CachedUrlSet extends CachedUrlSetNode {
     // Methods used by readers
 
     /**
-     * Return true if content for the url is currently a part of the
-     * <code>CachedUrlSet</code>.
-     * <i>Ie</i>, if <code>makeCachedUrl(</code><i>url</i><code>)</code>
-     * would return a <code>CachedUrl</code> for which <code>exists()</code>
-     * is true.
-     * @param url the url of interest
-     * @return true of the url is part of the cache
-     */
-    public boolean isCached(String url);
-
-    /**
      * Create a <code>CachedUrl</code> object within the set.
      * @param url the url of interest
      * @return a <code>CachedUrl</code> object representing the url.

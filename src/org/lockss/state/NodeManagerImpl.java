@@ -322,8 +322,7 @@ public class NodeManagerImpl implements NodeManager, LockssManager {
       case CrawlState.REPAIR_CRAWL:
         if (crawlState.getStatus() == CrawlState.FINISHED) {
           // if node is cached
-          if (node.getCachedUrlSet().isCached(
-              node.getCachedUrlSet().getUrl())) {
+          if (node.getCachedUrlSet().hasContent()) {
             // if (theCrawlManager.shouldRecrawl(managerAu, node)) {
             // then CrawlManager.scheduleBackgroundCrawl()
           }
