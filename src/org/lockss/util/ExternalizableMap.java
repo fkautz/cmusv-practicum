@@ -70,6 +70,12 @@ public class ExternalizableMap {
     }
   }
 
+  public Object removeMapElement(String descrKey) {
+    synchronized(descrMap) {
+      return descrMap.remove(descrKey);
+    }
+  }
+
   public void loadMapFromResource(String mapLocation)
       throws FileNotFoundException {
     InputStream mapStream = getClass().getResourceAsStream(mapLocation);

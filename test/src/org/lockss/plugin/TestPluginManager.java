@@ -37,7 +37,7 @@ import java.util.*;
 import junit.framework.*;
 import org.lockss.app.*;
 import org.lockss.daemon.*;
-import org.lockss.plugin.configurable.*;
+import org.lockss.plugin.definable.*;
 import org.lockss.poller.*;
 import org.lockss.util.*;
 import org.lockss.test.*;
@@ -186,7 +186,7 @@ public class TestPluginManager extends LockssTestCase {
     String key = PluginManager.pluginKeyFromId(pname);
     assertTrue(mgr.ensurePluginLoaded(key));
     Plugin p = mgr.getPlugin(key);
-    assertTrue(p.toString(), p instanceof ConfigurablePlugin);
+    assertTrue(p.toString(), p instanceof DefinablePlugin);
     MockConfigurablePlugin mcpi = (MockConfigurablePlugin)mgr.getPlugin(key);
     assertNotNull(mcpi);
     List initArgs = mcpi.getInitArgs();
@@ -323,7 +323,7 @@ public class TestPluginManager extends LockssTestCase {
     }
   }
 
-  static class MockConfigurablePlugin extends ConfigurablePlugin {
+  static class MockConfigurablePlugin extends DefinablePlugin {
     private List initArgs = new ArrayList();
 
     public void initPlugin(LockssDaemon daemon, String extMapName)

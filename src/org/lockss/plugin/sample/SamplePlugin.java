@@ -37,7 +37,7 @@ import org.lockss.plugin.base.BasePlugin;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.util.ListUtil;
 import org.lockss.app.LockssDaemon;
-import org.lockss.plugin.configurable.*;
+import org.lockss.plugin.definable.*;
 
 /**
  * <p>SamplePlugin: A template for a plugin that requires a base url and the volume
@@ -46,7 +46,7 @@ import org.lockss.plugin.configurable.*;
  * @version 1.0
  */
 
-public class SamplePlugin extends ConfigurablePlugin {
+public class SamplePlugin extends DefinablePlugin {
   private static String PLUGIN_NAME = "Sample";
   private static String CURRENT_VERSION = "Pre-release";
 
