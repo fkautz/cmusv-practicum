@@ -201,7 +201,7 @@ public class StatusServiceImpl
 	      StatusTable table = new StatusTable(tableName);
 	      statusAccessor.populateTable(table);
 	      title = table.getTitle();
- 	    } catch (NoSuchTableException e) {
+ 	    } catch (Exception e) {
  	      // no action, title is null here
  	    }
  	    // getTitle might return null or throw
