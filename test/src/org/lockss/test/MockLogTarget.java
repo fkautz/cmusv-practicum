@@ -73,6 +73,10 @@ public class MockLogTarget implements LogTarget{
     return messages.iterator();
   }
 
+  public List getMessages() {
+    return messages;
+  }
+
   public int messageCount() {
     return messages.size();
   }
