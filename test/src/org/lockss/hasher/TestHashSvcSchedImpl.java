@@ -88,7 +88,7 @@ public class TestHashSvcSchedImpl extends LockssTestCase {
 
   boolean hashContent(String cookie, int duration, int eachStepTime,
 		      long deadInOrAt, HashService.Callback cb) {
-    CachedUrlSetHasher hasher = new MockCUSH();
+    CachedUrlSetHasher hasher = new MyMockCUSH();
     //    hasher.setNumBytes(bytes);
     cus.setContentHasher(hasher);
     cus.setEstimatedHashDuration(duration);
@@ -108,7 +108,7 @@ public class TestHashSvcSchedImpl extends LockssTestCase {
     assertTrue(svc.isIdle());
   }
 
-  public class MockCUSH extends MockCachedUrlSetHasher {
+  public class MyMockCUSH extends MockCachedUrlSetHasher {
 
     public int hashStep(int numBytes) {
       // do nothing

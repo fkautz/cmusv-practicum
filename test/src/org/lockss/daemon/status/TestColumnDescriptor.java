@@ -51,7 +51,7 @@ public class TestColumnDescriptor extends LockssTestCase {
     assertEquals(2, cd2.getType());
     assertEquals("foot2", cd2.getFootnote());
 
-    Comparator cmpr = new MockComparator();
+    Comparator cmpr = new MockComparatorThatReturns0();
     assertSame(cd2, cd2.setComparator(cmpr));
     assertSame(cmpr, cd2.getComparator());
 
@@ -93,7 +93,7 @@ public class TestColumnDescriptor extends LockssTestCase {
     assertFalse(cd1.equals("String"));
   }
 
-  class MockComparator implements Comparator {
+  class MockComparatorThatReturns0 implements Comparator {
     public int compare(Object o1, Object o2) {
       return 0;
     }

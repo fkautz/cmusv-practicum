@@ -255,7 +255,7 @@ public class TestHttpResultMap extends LockssTestCase {
     CacheException exception;
     int result_code = 0;
 
-    MockHttpResultHandler handler = new MockHttpResultHandler();
+    MyMockHttpResultHandler handler = new MyMockHttpResultHandler();
     handler.setHandledCodes(handledCodes);
     handler.init(resultMap);
     // now lets find out if we actually handle the codes.
@@ -286,11 +286,11 @@ public class TestHttpResultMap extends LockssTestCase {
     }
   }
 
-  static public class MockHttpResultHandler
+  static public class MyMockHttpResultHandler
       implements CacheResultHandler {
     private static int[] m_returnCodes;
 
-    public MockHttpResultHandler() {
+    public MyMockHttpResultHandler() {
     }
 
     public void init(CacheResultMap crmap) {
