@@ -76,11 +76,12 @@ public class LockssTestCase extends TestCase {
       }
     }
     if (doLaters != null) {
-      for (ListIterator iter = doLaters.listIterator(); iter.hasNext(); ) {
+      List copy = new ArrayList(doLaters);
+      for (Iterator iter = copy.iterator(); iter.hasNext(); ) {
 	DoLater doer = (DoLater)iter.next();
 	doer.cancel();
-	iter.remove();
       }
+      doLaters = null;
     }
     super.tearDown();
   }
