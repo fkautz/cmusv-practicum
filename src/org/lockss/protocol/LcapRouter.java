@@ -115,30 +115,20 @@ public class LcapRouter extends BaseLockssManager {
     super.stopService();
   }
 
-  private RateLimiter getRateLimiter(Configuration config,
-				     RateLimiter currentLimiter,
-				     String pktsParam, String intervalParam,
-				     int pktsDefault, long intervalDefault) {
-    int pkts = config.getInt(pktsParam, pktsDefault);
-    long interval = config.getTimeInterval(intervalParam, intervalDefault);
-    if (currentLimiter == null || currentLimiter.getInterval() != interval ||
-	currentLimiter.getLimit() != pkts) {
-      return new RateLimiter(pkts, interval);
-    } else {
-      return currentLimiter;
-    }
-  }
-
   protected void setConfig(Configuration config, Configuration oldConfig,
 			   Set changedKeys) {
     fwdRateLimiter =
-      getRateLimiter(config, fwdRateLimiter,
-		     PARAM_FWD_PKTS_PER_INTERVAL, PARAM_FWD_PKT_INTERVAL,
-		     DEFAULT_FWD_PKTS_PER_INTERVAL, DEFAULT_FWD_PKT_INTERVAL);
+      RateLimiter.getConfiguredRateLimiter(config, fwdRateLimiter,
+					   PARAM_FWD_PKTS_PER_INTERVAL,
+					   DEFAULT_FWD_PKTS_PER_INTERVAL,
+					   PARAM_FWD_PKT_INTERVAL,
+					   DEFAULT_FWD_PKT_INTERVAL);
     origRateLimiter =
-      getRateLimiter(config, origRateLimiter,
-		     PARAM_ORIG_PKTS_PER_INTERVAL, PARAM_ORIG_PKT_INTERVAL,
-		     DEFAULT_ORIG_PKTS_PER_INTERVAL, DEFAULT_ORIG_PKT_INTERVAL);
+      RateLimiter.getConfiguredRateLimiter(config, origRateLimiter,
+					   PARAM_ORIG_PKTS_PER_INTERVAL,
+					   DEFAULT_ORIG_PKTS_PER_INTERVAL,
+					   PARAM_ORIG_PKT_INTERVAL,
+					   DEFAULT_ORIG_PKT_INTERVAL);
     if (changedKeys.contains(PARAM_BEACON_INTERVAL)) {
       beaconInterval = config.getTimeInterval(PARAM_BEACON_INTERVAL,
 					      DEFAULT_BEACON_INTERVAL);
