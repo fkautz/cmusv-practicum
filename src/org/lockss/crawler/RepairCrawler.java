@@ -154,11 +154,14 @@ public class RepairCrawler extends CrawlerImpl {
       }
       if (shouldFetchFromCache()) {
 	try {
+	  logger.debug3("Trying to fetch from a cache");
 	  fetchFromCache(uc);
 	} catch (CantProxyException e) {
+	  logger.debug3("Failed, so trying to fetch from a cache");
 	  cache(uc);
 	}
       } else {
+	logger.debug3("Trying to fetch from a cache");
 	cache(uc);
       }
       numUrlsFetched++;
