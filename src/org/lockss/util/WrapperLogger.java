@@ -99,7 +99,7 @@ public class WrapperLogger {
 
   public static void record_val(String classname, String methodname,
                                 boolean retval) {
-    record_val(classname, methodname, Boolean.valueOf(retval));
+    record_val(classname, methodname, retval ? Boolean.TRUE : Boolean.FALSE);
 
   }
 
