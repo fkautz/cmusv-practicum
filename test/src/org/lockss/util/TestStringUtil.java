@@ -188,13 +188,32 @@ public class TestStringUtil extends LockssTestCase {
   public void testBreakAt() {
     Vector v = new Vector();
     assertEquals(v, StringUtil.breakAt(null, ' '));
+    assertEquals(v, StringUtil.breakAt("", ' '));
     assertIsomorphic(ListUtil.list("foo"), StringUtil.breakAt("foo", ' '));
     assertIsomorphic(ListUtil.list("foo", "bar"),
 		     StringUtil.breakAt("foo bar", ' '));
     assertIsomorphic(ListUtil.list("foo", "", "bar"),
 		     StringUtil.breakAt("foo  bar", ' '));
+    assertIsomorphic(ListUtil.list("foo", ""),
+		     StringUtil.breakAt("foo ", ' '));
+    assertIsomorphic(ListUtil.list("", "foo"),
+		     StringUtil.breakAt(" foo", ' '));
     assertIsomorphic(ListUtil.list("foo", "bar"),
 		     StringUtil.breakAt("foo bar ddd", ' ', 2));
+
+    assertIsomorphic(ListUtil.list("", ""),
+		     StringUtil.breakAt("+", '+', -1, false));
+    assertIsomorphic(ListUtil.list(),
+		     StringUtil.breakAt("+", '+', -1, true));
+    assertIsomorphic(ListUtil.list("", "foo"),
+		     StringUtil.breakAt("+foo", '+', -1, false));
+    assertIsomorphic(ListUtil.list("foo"),
+		     StringUtil.breakAt("+foo", '+', -1, true));
+    assertIsomorphic(ListUtil.list("foo", ""),
+		     StringUtil.breakAt("foo+", '+', -1, false));
+    assertIsomorphic(ListUtil.list("foo"),
+		     StringUtil.breakAt("foo+", '+', -1, true));
+
   }
 
   public void testFromReader() throws Exception {
