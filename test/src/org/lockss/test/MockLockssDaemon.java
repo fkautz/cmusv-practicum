@@ -407,6 +407,7 @@ public class MockLockssDaemon extends LockssDaemon {
       setAuManager(desc, au, mgr);
       return mgr;
     } catch (Exception e) {
+      log.error("Error starting au manager", e);
       throw new LockssDaemonException("Can't load au manager: " +
 				      e.toString());
     }
