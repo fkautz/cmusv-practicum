@@ -347,9 +347,16 @@ public class PollManager  extends BaseLockssManager {
         }
       }
       else {
-        int activity = (msg.isContentPoll() ?
-                        ActivityRegulator.STANDARD_CONTENT_POLL :
-                        ActivityRegulator.STANDARD_NAME_POLL);
+        int activity;
+        if (cus.getSpec() instanceof SingleNodeCachedUrlSetSpec) {
+          activity = (msg.isContentPoll() ?
+                          ActivityRegulator.SINGLE_NODE_CONTENT_POLL :
+                          ActivityRegulator.STANDARD_NAME_POLL);
+        } else {
+          activity = (msg.isContentPoll() ?
+                          ActivityRegulator.STANDARD_CONTENT_POLL :
+                          ActivityRegulator.STANDARD_NAME_POLL);
+        }
         if (!theDaemon.getActivityRegulator().startCusActivity(activity,
             cus, expiration)) {
           theLog.debug2("New poll aborted due to activity lock.");
