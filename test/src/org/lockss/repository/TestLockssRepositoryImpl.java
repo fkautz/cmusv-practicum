@@ -49,10 +49,6 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
   private MockArchivalUnit mau;
   private String tempDirPath;
 
-  public TestLockssRepositoryImpl(String msg) {
-    super(msg);
-  }
-
   public void setUp() throws Exception {
     super.setUp();
     tempDirPath = getTempDir().getAbsolutePath() + File.separator;
@@ -434,33 +430,6 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
       fail("Should have thrown MalformedURLException");
     } catch (MalformedURLException mue) {}
   }
-
-/* XXX should be testing Daemon
-
-  public void testGetLockssRepository() {
-    String auId = mau.getAUId();
-    try {
-      repo.getLockssRepository(mau);
-      fail("Should throw IllegalArgumentException.");
-    } catch (IllegalArgumentException iae) { }
-
-    repo.addLockssRepository(mau);
-    LockssRepository repo1 = repo.getLockssRepository(mau);
-    assertNotNull(repo1);
-
-    mau = new MockArchivalUnit();
-    repo.addLockssRepository(mau);
-    LockssRepository repo2 = repo.getLockssRepository(mau);
-    assertNotSame(repo1, repo2);
-
-    mau = new MockArchivalUnit();
-    try {
-      repo.getLockssRepository(mau);
-      fail("Should throw IllegalArgumentException.");
-    } catch (IllegalArgumentException iae) { }
-  }
-
-*/
 
   public static void configCacheLocation(String location) throws IOException {
     String s = LockssRepositoryImpl.PARAM_CACHE_LOCATION + "=" + location;
