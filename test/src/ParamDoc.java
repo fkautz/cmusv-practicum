@@ -98,9 +98,9 @@ public class ParamDoc {
 	  log.error("Couldn't open jar " + jarfile, e);
 	  return;
 	}
-	for (Enumeration enum = jar.entries();
-	     enum.hasMoreElements(); ) {
-	  JarEntry ent = (JarEntry)enum.nextElement();
+	for (Enumeration en = jar.entries();
+	     en.hasMoreElements(); ) {
+	  JarEntry ent = (JarEntry)en.nextElement();
 	  doClass(ent);
 	}
       }

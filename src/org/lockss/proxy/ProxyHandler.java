@@ -280,11 +280,11 @@ public class ProxyHandler extends AbstractHttpHandler {
       // copy headers
       boolean xForwardedFor=false;
       boolean hasContent=false;
-      Enumeration enum = request.getFieldNames();
+      Enumeration en = request.getFieldNames();
 
-      while (enum.hasMoreElements()) {
+      while (en.hasMoreElements()) {
 	// XXX could be better than this!
-	String hdr=(String)enum.nextElement();
+	String hdr=(String)en.nextElement();
 
 	if (_DontProxyHeaders.containsKey(hdr))
 	  continue;
@@ -431,9 +431,9 @@ public class ProxyHandler extends AbstractHttpHandler {
       boolean hasContent=false;
       String ifModified = null;
 
-      for (Enumeration enum = request.getFieldNames();
-	   enum.hasMoreElements(); ) {
-	String hdr=(String)enum.nextElement();
+      for (Enumeration en = request.getFieldNames();
+	   en.hasMoreElements(); ) {
+	String hdr=(String)en.nextElement();
 
 	if (_DontProxyHeaders.containsKey(hdr)) continue;
 

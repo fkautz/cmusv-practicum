@@ -39,18 +39,18 @@ import java.util.*;
  * <code>Iterator</code>.
  */
 public class EnumerationIterator implements Iterator {
-  private Enumeration enum;
+  private Enumeration en;
 
-  public EnumerationIterator(Enumeration enum) {
-    this.enum = enum;
+  public EnumerationIterator(Enumeration en) {
+    this.en = en;
   }
 
   public boolean hasNext() {
-    return enum.hasMoreElements();
+    return en.hasMoreElements();
   }
 
   public Object next() {
-    return enum.nextElement();
+    return en.nextElement();
   }
 
   /** Unsupported. */

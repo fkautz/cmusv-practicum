@@ -303,8 +303,8 @@ public class FuncHashService extends LockssTestCase {
   public static Test suite() {
     TestSuite refSuite = new TestSuite(FuncHashService.class);
     TestSuite suite = new TestSuite();
-    for (Enumeration enum = refSuite.tests(); enum.hasMoreElements(); ) {
-      LockssTestCase o = (LockssTestCase)enum.nextElement();
+    for (Enumeration en = refSuite.tests(); en.hasMoreElements(); ) {
+      LockssTestCase o = (LockssTestCase)en.nextElement();
       suite.addTest(new Queue(o.getName()));
       suite.addTest(new Sched(o.getName()));
     }

@@ -46,8 +46,9 @@ public class PropUtil {
   /** Returns a copy of the Properties */
   public static Properties copy(Properties props) {
     Properties copy = new Properties();
-    for (Enumeration enum = props.propertyNames(); enum.hasMoreElements(); ) {
-      String key = (String)enum.nextElement();
+    for (Enumeration en = props.propertyNames();
+	 en.hasMoreElements(); ) {
+      String key = (String)en.nextElement();
       copy.setProperty(key, props.getProperty(key));
     }
     return copy;
