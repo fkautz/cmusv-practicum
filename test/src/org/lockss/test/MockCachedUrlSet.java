@@ -176,6 +176,8 @@ public class MockCachedUrlSet implements CachedUrlSet {
 
   CachedUrlSetHasher contentHasher = null;
   CachedUrlSetHasher nameHasher = null;
+  byte[] contentToBeHashed = null;
+  byte[] namesToBeHashed = null;
 
   public void setContentHasher(CachedUrlSetHasher hasher) {
     contentHasher = hasher;
@@ -185,11 +187,23 @@ public class MockCachedUrlSet implements CachedUrlSet {
     nameHasher = hasher;
   }
 
+  public void setContentToBeHashed(byte[] content) {
+    contentToBeHashed = content;
+  }
+
+  public void setNamesToBeHashed(byte[] names) {
+    namesToBeHashed = names;
+  }
+
   public CachedUrlSetHasher getContentHasher(MessageDigest hasher) {
+    if (contentToBeHashed != null)
+      hasher.update(contentToBeHashed);
     return contentHasher;
   }
 
   public CachedUrlSetHasher getNameHasher(MessageDigest hasher) {
+    if (namesToBeHashed != null)
+      hasher.update(namesToBeHashed);
     return nameHasher;
   }
 
