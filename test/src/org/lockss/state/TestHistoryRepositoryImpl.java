@@ -123,11 +123,6 @@ public class TestHistoryRepositoryImpl extends LockssTestCase {
     } catch (MalformedURLException mue) { }
   }
 
-  public void testLoadMapping() throws Exception {
-    assertNotNull(repository.mapping);
-    assertNotNull(repository.getPollMapping());
-  }
-
   public void testStorePollHistories() throws Exception {
     TimeBase.setSimulated(123321);
     MockCachedUrlSetSpec mspec =
@@ -370,6 +365,34 @@ public class TestHistoryRepositoryImpl extends LockssTestCase {
     assertFalse(pollIt.hasNext());
 
     TimeBase.setReal();
+  }
+
+  public void testStoreIdentityAgreements() throws Exception {
+    IdentityManager.IdentityAgreement id1 = new IdentityManager.IdentityAgreement("id1");
+    id1.setLastAgree(123);
+    id1.setLastDisagree(321);
+    IdentityManager.IdentityAgreement id2 = new IdentityManager.IdentityAgreement("id2");
+    id2.setLastAgree(456);
+    id2.setLastDisagree(654);
+
+    repository.storeIdentityAgreements(ListUtil.list(id1, id2));
+    String filePath = LockssRepositoryImpl.mapAuToFileLocation(tempDirPath +
+        HistoryRepositoryImpl.HISTORY_ROOT_NAME, mau);
+    filePath += HistoryRepositoryImpl.IDENTITY_AGREEMENT_FILE_NAME;
+    File xmlFile = new File(filePath);
+    assertTrue(xmlFile.exists());
+
+    List idList = repository.loadIdentityAgreements();
+    assertEquals(2, idList.size());
+    id1 = (IdentityManager.IdentityAgreement)idList.get(0);
+    assertEquals("id1", id1.getId());
+    assertEquals(123, id1.getLastAgree());
+    assertEquals(321, id1.getLastDisagree());
+
+    id2 = (IdentityManager.IdentityAgreement)idList.get(1);
+    assertEquals("id2", id2.getId());
+    assertEquals(456, id2.getLastAgree());
+    assertEquals(654, id2.getLastDisagree());
   }
 
   private PollHistoryBean createPollHistoryBean(int voteCount) throws Exception {

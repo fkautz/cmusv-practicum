@@ -101,11 +101,11 @@ public class MockHistoryRepository implements HistoryRepository {
     return (NodeState)storedNodes.get(cus);
   }
 
-  public void storeIdentityAgreement(List list) {
+  public void storeIdentityAgreements(List list) {
     this.storedIdentityAgreement = list;
   }
 
-  public List loadIdentityAgreement() {
+  public List loadIdentityAgreements() {
     return loadedIdentityAgreement;
   }
 

@@ -70,13 +70,15 @@ public interface HistoryRepository extends LockssAuManager {
 
   /**
    * Stores IdentityAgreement list
+  * @param list the list of {@link IdentityAgreement}s
    */
-  public void storeIdentityAgreement(List list);
+  public void storeIdentityAgreements(List list);
 
   /**
    * Loads and returns IdentityAgreement list
+   * @return List the list of {@link IdentityAgreement}s
    */
-  public List loadIdentityAgreement();
+  public List loadIdentityAgreements();
 
   /**
    * Stores the AuState for this ArchivalUnit
