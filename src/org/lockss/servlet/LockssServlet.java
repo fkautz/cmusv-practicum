@@ -683,12 +683,7 @@ public abstract class LockssServlet extends HttpServlet
   // Common page footer
   public Element getFooter() {
     Composite comp = new Composite();
-
-    String vDaemon = BuildInfo.getBuildInfoString();
-    String vPlatform = Configuration.getParam(PARAM_PLATFORM_VERSION);
-    if (vPlatform != null) {
-      vDaemon = vDaemon + ", CD " + vPlatform;
-    }
+    String vDaemon = theDaemon.getVersionInfo();
 
     addNotes(comp);
     comp.add("<p>");
