@@ -141,11 +141,12 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
     } catch (MalformedURLException mue) { }
   }
 
+  static final String PARAM_CACHE_LOCATION =
+    LockssRepositoryImpl.PARAM_CACHE_LOCATION;
+
   public static void configCacheLocation(String location)
     throws IOException {
-    String s = Configuration.PREFIX +
-               LockssRepositoryImpl.LOCKSS_CACHE_LOCATION_PARAM +
-               "=" + location;
+    String s = PARAM_CACHE_LOCATION + "=" + location;
     TestConfiguration.setCurrentConfigFromUrlList(ListUtil.list(FileUtil.urlOfString(s)));
   }
 

@@ -43,6 +43,11 @@ import org.lockss.daemon.*;
 import org.lockss.util.*;
 
 class HashQueue implements Serializable {
+  static final String PREFIX = Configuration.PREFIX + "hasher.";
+  static final String PARAM_PRIORITY = PREFIX + "priority";
+  static final String PARAM_STEP_BYTES = PREFIX + "stepBytes";
+  static final String PARAM_NUM_STEPS = PREFIX + "numSteps";
+
   protected static Logger log = Logger.getLogger("HashQueue");
 
   private LinkedList qlist = new LinkedList();
@@ -186,14 +191,9 @@ class HashQueue implements Serializable {
   }
 
   private void setConfig() {
-    hashPriority =
-      Configuration.getIntParam(Configuration.PREFIX + "hasher.priority", -1);
-    hashStepBytes =
-      Configuration.getIntParam(Configuration.PREFIX + "hasher.stepBytes",
-				10000);
-    hashNumSteps =
-      Configuration.getIntParam(Configuration.PREFIX + "hasher.numSteps",
-				10);
+    hashPriority = Configuration.getIntParam(PARAM_PRIORITY, -1);
+    hashStepBytes = Configuration.getIntParam(PARAM_STEP_BYTES, 10000);
+    hashNumSteps = Configuration.getIntParam(PARAM_NUM_STEPS, 10);
   }
 
   // Request - hash queue element.
