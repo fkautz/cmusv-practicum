@@ -153,7 +153,59 @@ public class TestBaseArchivalUnit extends LockssTestCase {
 
     reader = new StringReader(s_rev);
     assertFalse(mbau.checkCrawlPermission(reader));
+  }
 
+  public void testCheckCrawlPermissionWithWhitespace() {
+    int firstWS = BaseArchivalUnit.PERMISSION_STRING.indexOf(' ');
+    if (firstWS <=0) {
+      fail("No spaces in permission string, or starts with space");
+    }
+
+    String subStr1 = BaseArchivalUnit.PERMISSION_STRING.substring(0, firstWS);
+    String subStr2 = BaseArchivalUnit.PERMISSION_STRING.substring(firstWS+1);
+
+    // standard
+    StringBuffer sb = new StringBuffer("laa-dee-dah-LOCK-KCOL\n\n");
+    sb.append(subStr1);
+    sb.append(' ');
+    sb.append(subStr2);
+    sb.append("\n\nTheEnd!");
+    String testStr = sb.toString();
+
+    Reader reader = new StringReader(testStr);
+    assertTrue(mbau.checkCrawlPermission(reader));
+
+    // different whitespace
+    sb = new StringBuffer("laa-dee-dah-LOCK-KCOL\n\n");
+    sb.append(subStr1);
+    sb.append("\n");
+    sb.append(subStr2);
+    sb.append("\n\nTheEnd!");
+    testStr = sb.toString();
+
+    reader = new StringReader(testStr);
+    assertTrue(mbau.checkCrawlPermission(reader));
+
+    // extra whitespace
+    sb = new StringBuffer("laa-dee-dah-LOCK-KCOL\n\n");
+    sb.append(subStr1);
+    sb.append(" \n\r\t ");
+    sb.append(subStr2);
+    sb.append("\n\nTheEnd!");
+    testStr = sb.toString();
+
+    reader = new StringReader(testStr);
+    assertTrue(mbau.checkCrawlPermission(reader));
+
+    // missing whitespace
+    sb = new StringBuffer("laa-dee-dah-LOCK-KCOL\n\n");
+    sb.append(subStr1);
+    sb.append(subStr2);
+    sb.append("\n\nTheEnd!");
+    testStr = sb.toString();
+
+    reader = new StringReader(testStr);
+    assertFalse(mbau.checkCrawlPermission(reader));
   }
 
   public static void main(String[] argv) {
