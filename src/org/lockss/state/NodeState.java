@@ -35,7 +35,6 @@ package org.lockss.state;
 
 import java.util.Iterator;
 import org.lockss.plugin.CachedUrlSet;
-import org.lockss.daemon.CachedUrlSetSpec;
 
 /**
  * NodeState contains the current state information for a node, as well as the
@@ -184,5 +183,11 @@ public interface NodeState {
    * @return the state as a string
    */
   public String getStateString();
+
+  /**
+   * Returns true iff the node or one of its children has damage.
+   * @return true iff damage present
+   */
+  public boolean hasDamage();
 
 }
