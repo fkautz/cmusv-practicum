@@ -65,8 +65,10 @@ public class TestLcapRouter extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     setConfig();
-    rtr = daemon.getRouterManager();
     idmgr = daemon.getIdentityManager();
+    // this causes error messages, but need to start comm so it gets idmgr.
+    daemon.getCommManager().startService();
+    rtr = daemon.getRouterManager();
     rtr.startService();
     TimeBase.setSimulated(20000);
   }
