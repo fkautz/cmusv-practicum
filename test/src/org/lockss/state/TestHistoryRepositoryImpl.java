@@ -419,6 +419,7 @@ public class TestHistoryRepositoryImpl extends LockssTestCase {
     throws IOException {
     Properties p = new Properties();
     p.setProperty(HistoryRepositoryImpl.PARAM_HISTORY_LOCATION, rootLocation);
+    p.setProperty(LockssRepositoryImpl.PARAM_CACHE_LOCATION, rootLocation);
     p.setProperty(IdentityManager.PARAM_LOCAL_IP, "127.0.0.1");
     ConfigurationUtil.setCurrentConfigFromProps(p);
   }
