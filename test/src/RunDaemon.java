@@ -133,6 +133,7 @@ public class RunDaemon {
 
   private void crawlContent() {
     CrawlSpec spec = new CrawlSpec(sau.SIMULATED_URL_START, null);
-    org.lockss.crawler.GoslingCrawlerImpl.doCrawl(sau, spec);
+    Crawler crawler = new GoslingCrawlerImpl();
+    crawler.doCrawl(sau, spec.getStartingUrls(), true, false, Deadline.NEVER);
   }
 }
