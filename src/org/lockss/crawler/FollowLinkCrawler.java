@@ -451,7 +451,7 @@ public abstract class FollowLinkCrawler extends CrawlerImpl {
 	if (wdog != null) {
 	  wdog.pokeWDog();
 	}
-	updateCacheStats(uc.cache());
+	updateCacheStats(uc.cache(), uc);
 	return; //cache didn't throw
       } catch (CacheException.RetryableException e) {
 	logger.debug("Exception when trying to cache "+uc, e);
