@@ -209,7 +209,7 @@ public class ProxyHandler extends AbstractHttpHandler {
     }
     if (isRepairRequest || neverProxy) {
       if (cu != null && cu.hasContent()) {
-	if (log.isDebug()) {
+	if (isRepairRequest && log.isDebug()) {
 	  log.debug("Serving repair to " + request.getRemoteAddr() + ", " + cu);
 	}
 	serveFromCache(pathInContext, pathParams, request,
