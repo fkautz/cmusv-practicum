@@ -227,8 +227,9 @@ public class BaseUrlCacher implements UrlCacher {
       }
       if (value!=null) {
         // only store headers with values
+        // qualify header names to avoid conflict with our properties
         if (key!=null) {
-          props.setProperty(key, value);
+          props.setProperty("header-"+key, value);
         } else {
           // the first header field has a null key
           props.setProperty("header-"+index, value);
