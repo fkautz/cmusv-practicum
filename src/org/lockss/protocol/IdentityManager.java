@@ -965,11 +965,11 @@ public class IdentityManager
       PeerIdentity pid = id.getPeerIdentity();
       if (isLocalIdentity(pid)) {
 	StatusTable.DisplayedValue val =
-	  new StatusTable.DisplayedValue(pid.toString());
+	  new StatusTable.DisplayedValue(pid.getIdString());
 	val.setBold(true);
 	row.put("ip", val);
       } else {
-	row.put("ip", pid.toString());
+	row.put("ip", pid.getIdString());
       }
       row.put("lastPkt", new Long(id.getLastActiveTime()));
       row.put("lastOp", new Long(id.getLastOpTime()));
