@@ -151,7 +151,7 @@ public class MockUrlCacher implements UrlCacher {
     this.cachingRuntimException = e;
   }
 
-  public void cache() throws IOException {
+  public int cache() throws IOException {
     if (cus != null) {
       cus.signalCacheAttempt(url);
     }
@@ -176,6 +176,7 @@ public class MockUrlCacher implements UrlCacher {
     if (cu != null) {
       cu.setExists(true);
     }
+    return CACHE_RESULT_FETCHED;
   }
 
   public InputStream getUncachedInputStream(){

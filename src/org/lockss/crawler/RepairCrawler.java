@@ -265,7 +265,6 @@ public class RepairCrawler extends CrawlerImpl {
 	}
       }
       crawlStatus.signalUrlFetched();
-      numUrlsFetched++;
 
     } catch (CacheException e) {
       if (e.isAttributeSet(CacheException.ATTRIBUTE_FAIL)) {

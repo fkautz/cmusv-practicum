@@ -78,6 +78,12 @@ public interface UrlCacher {
     new RedirectScheme(REDIRECT_OPTION_IF_CRAWL_SPEC +
 		       REDIRECT_OPTION_STORE_ALL);
 
+  // Return codes from cache()
+  /** 304 not modified */
+  public static final int CACHE_RESULT_NOT_MODIFIED = 1;
+  /** fetched */
+  public static final int CACHE_RESULT_FETCHED = 2;
+
   /**
    * Return the url being represented
    * @return the {@link String} url being represented.
@@ -122,9 +128,12 @@ public interface UrlCacher {
   /**
    * Copies the content and properties from the source into the cache.
    * If forceRefetch is false, only caches if the content has been modified.
+   * @return CACHE_RESULT_FETCHED if the content was fetched and stored,
+   * CACHE_RESULT_NOT_MODIFIED if the server reported the contents as
+   * unmodified.
    * @throws java.io.IOException on many possible I/O problems.
    */
-  public void cache() throws IOException;
+  public int cache() throws IOException;
 
   /**
    * Gets an InputStream for this URL.

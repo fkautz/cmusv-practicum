@@ -439,7 +439,7 @@ public class TestCrawlerImpl extends LockssTestCase {
     Crawler.Status crawlStatus = crawler.getStatus();
     assertEquals(expectedStart, crawlStatus.getStartTime());
     assertEquals(expectedEnd, crawlStatus.getEndTime());
-    assertEquals(4, crawlStatus.getNumFetched());
+    assertEquals(5, crawlStatus.getNumFetched());
     assertEquals(4, crawlStatus.getNumParsed());
   }
 
@@ -594,9 +594,9 @@ public class TestCrawlerImpl extends LockssTestCase {
       public MockUrlCacherThatStepsTimebase(String url, MockCachedUrlSet cus) {
 	super(url, cus);
     }
-    public void cache() throws IOException {
+    public int cache() throws IOException {
       TimeBase.step();
-      super.cache();
+      return super.cache();
     }
 
     public InputStream getUncachedInputStream() {

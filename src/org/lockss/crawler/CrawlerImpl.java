@@ -84,8 +84,6 @@ public abstract class CrawlerImpl implements Crawler {
 
   protected Crawler.Status crawlStatus = null;
 
-  protected int numUrlsFetched = 0;
-
   protected CrawlSpec spec = null;
 
   protected AuState aus = null;
@@ -231,6 +229,7 @@ public abstract class CrawlerImpl implements Crawler {
     uc.setRedirectScheme(UrlCacher.REDIRECT_SCHEME_FOLLOW_ON_HOST);
 
     InputStream is = new BufferedInputStream(uc.getUncachedInputStream());
+    crawlStatus.signalUrlFetched();
     // allow us to reread contents if reasonable size
     boolean needPermission = true;
     try {
@@ -249,6 +248,7 @@ public abstract class CrawlerImpl implements Crawler {
             uc = makeUrlCacher(ownerCus, permissionPage);
             uc.setRedirectScheme(UrlCacher.REDIRECT_SCHEME_FOLLOW_ON_HOST);
             is = new BufferedInputStream(uc.getUncachedInputStream());
+	    crawlStatus.signalUrlFetched();
           }
         }
       }
@@ -277,6 +277,7 @@ public abstract class CrawlerImpl implements Crawler {
             uc = makeUrlCacher(ownerCus, permissionPage);
             uc.setRedirectScheme(UrlCacher.REDIRECT_SCHEME_FOLLOW_ON_HOST);
             is = new BufferedInputStream(uc.getUncachedInputStream());
+	    crawlStatus.signalUrlFetched();
           }
         }
       }
@@ -306,7 +307,18 @@ public abstract class CrawlerImpl implements Crawler {
     // XXX can't reuse UrlCacher
     UrlCacher uc = makeUrlCacher(ownerCus, permissionPage);
     uc.setRedirectScheme(UrlCacher.REDIRECT_SCHEME_FOLLOW);
-    uc.cache();
+    updateCacheStats(uc.cache());
+  }
+
+  protected void updateCacheStats(int cacheResult) {
+    switch (cacheResult) {
+    case UrlCacher.CACHE_RESULT_FETCHED:
+      crawlStatus.signalUrlFetched();
+      break;
+    case UrlCacher.CACHE_RESULT_NOT_MODIFIED:
+      crawlStatus.signalUrlNotModified();
+      break;
+    }
   }
 
   /** All UrlCachers should be made via this method, so they get their
