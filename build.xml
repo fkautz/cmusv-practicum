@@ -726,9 +726,9 @@ The target you have selected requires compiling under JDK 1.4.  Use the rant -1.
      <map from="${lib}" to="." />
     </pathconvert>
     <echo file="${temp.pkg.dir}/runtool">#!/bin/sh
-java -classpath ${tmp.ptool.clspth.unix} org.lockss.devtools.plugindef.PluginDefinerApp
+java -classpath &quot;${tmp.ptool.clspth.unix}&quot; org.lockss.devtools.plugindef.PluginDefinerApp
 </echo>
-    <echo file="${temp.pkg.dir}/runtool.bat">java -classpath ${tmp.ptool.clspth.dos} org.lockss.devtools.plugindef.PluginDefinerApp
+    <echo file="${temp.pkg.dir}/runtool.bat">java -classpath &quot;${tmp.ptool.clspth.dos}&quot; org.lockss.devtools.plugindef.PluginDefinerApp
 </echo>
     <tar destfile="plugintool.tgz" compression="gzip">
      <tarfileset dir="${temp.pkg.dir}" mode="755" includes="runtool" />
