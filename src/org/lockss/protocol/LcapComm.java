@@ -234,6 +234,7 @@ public class LcapComm implements LockssManager {
     if (uniSendToPort < 0) {
       throw new IllegalStateException("Unicast port not configured");
     }
+    log.debug("sendTo(" + ld + ", " + id + ")");
     sendTo(ld,
 	   (uniSendToAddr == null ? id.getAddress() : uniSendToAddr),
 	   uniSendToPort);
