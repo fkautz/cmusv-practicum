@@ -84,8 +84,10 @@ public class MockArchivalUnit implements ArchivalUnit {
     newContentUrls = urls;
   }
 
-  public void setConfiguration(Configuration config) {
+  public void setConfiguration(Configuration config)
+      throws ArchivalUnit.ConfigurationException {
     this.config = config;
+    auId = new MockPlugin().getAUIdFromConfig(config);
   }
 
   public Configuration getConfiguration() {
