@@ -110,4 +110,20 @@ public class CollectionUtil {
   private static boolean isCompatibleTypes(Collection a, Collection b) {
     return (a instanceof Set) == (b instanceof Set);
   }
+
+  /**
+   * Removes and returns an arbitrary element from the collection
+   */
+  public static Object removeElement(Collection coll) {
+    if (coll == null) {
+      throw new IllegalArgumentException("Called with null collection");
+    } else if (coll.size() == 0) {
+      return null;
+    } 
+    Iterator it = coll.iterator();
+    Object next = it.next();
+    coll.remove(next);
+    return next;
+  }
+
 }
