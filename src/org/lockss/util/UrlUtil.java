@@ -53,15 +53,6 @@ public class UrlUtil {
    */
   public static final char URL_PATH_SEPARATOR_CHAR = '/';
 
-  /** Compare two URLs for equality.  Unlike URL.equals(), this does not
-   * cause DNS lookups.
-   * @param u1 a URL
-   * @param u2 a nother URL
-   * @return true iff the URLs have the same protocol (case-independent),
-   * the same host (case-independent), the same port number on the host,
-   * and the same file and anchor on the host.
-   */
-
   /** Normalize URL to a canonical form: lowercase scheme and hostname,
    * normalize path.  Removes any reference part.  XXX need to add
    * character escaping */
@@ -151,7 +142,7 @@ public class UrlUtil {
     return -1;
   }
 
-  /* Normalize the path component.  Replaces multiple consecutive "/" with
+  /** Normalize the path component.  Replaces multiple consecutive "/" with
    *  a single "/", removes "." components and resolves ".."  * components.
    *  Exactly mimics the behavior of Java 1.4 URI.normalize(), becuase we
    *  don't want the canonical form to change if/when we switch to that. */
@@ -223,6 +214,14 @@ public class UrlUtil {
     return sb.toString();
   }
 
+  /** Compare two URLs for equality.  Unlike URL.equals(), this does not
+   * cause DNS lookups.
+   * @param u1 a URL
+   * @param u2 a nother URL
+   * @return true iff the URLs have the same protocol (case-independent),
+   * the same host (case-independent), the same port number on the host,
+   * and the same file and anchor on the host.
+   */
   public static boolean equalUrls(URL u1, URL u2) {
     return
       u1.getPort() == u2.getPort() &&
