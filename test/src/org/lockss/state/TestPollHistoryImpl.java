@@ -35,54 +35,38 @@ package org.lockss.state;
 
 import java.util.*;
 import org.lockss.daemon.CachedUrlSet;
+import org.lockss.test.LockssTestCase;
+import org.lockss.poller.Poll;
 
-/**
- * NodeState contains the current state information for a node, as well as the
- * poll histories.
- */
-public class NodeStateImpl implements NodeState {
-  CachedUrlSet cus;
-  CrawlState crawlState;
-  List polls;
-  List pollHistories = null;
-  StateRepository repository;
+public class TestPollHistoryImpl extends LockssTestCase {
+  private PollHistory history;
 
-  NodeStateImpl(CachedUrlSet cus, CrawlState crawlState, List polls,
-                StateRepository repository) {
-    this.cus = cus;
-    this.crawlState = crawlState;
-    this.polls = polls;
-    this.repository = repository;
+  public TestPollHistoryImpl(String msg) {
+    super(msg);
   }
 
-  public CachedUrlSet getCachedUrlSet() {
-    return cus;
+  public void setUp() throws Exception {
+    PollState state = new PollState(1, "none", 1, 0, null);
+    Collection votes = new ArrayList();
+    votes.add(new String("test"));
+    history = new PollHistory(state, 0, votes);
   }
 
-  public CrawlState getCrawlState() {
-    return crawlState;
+  public void testVotesImmutability() {
+    Iterator voteIter = history.getVotes();
+    try {
+      voteIter.remove();
+      fail("Iterator should be immutable.");
+    } catch (Exception e) { }
   }
 
-  public Iterator getActivePolls() {
-    return Collections.unmodifiableList(polls).iterator();
+  public void testCompareTo() {
+    PollState state = new PollState(1, "none", 1, 0, null);
+    PollState state2 = new PollState(2, "none2", 1, 0, null);
+    PollState state3 = new PollState(1, "non", 1, 0, null);
+    assertEquals(-1, state.compareTo(state2));
+    assertEquals(0, history.compareTo(state));
+    assertEquals(1, state.compareTo(state3));
   }
 
-  public Iterator getPollHistories() {
-    if (pollHistories==null) {
-      repository.loadPollHistories(this);
-    }
-    return Collections.unmodifiableList(pollHistories).iterator();
-  }
-
-  void addPollState(PollState new_poll) {
-    polls.add(new_poll);
-  }
-
-  void closeActivePoll(PollHistory finished_poll) {
-    if (pollHistories==null) {
-      repository.loadPollHistories(this);
-    }
-    pollHistories.add(finished_poll);
-    polls.remove(finished_poll);
-  }
 }

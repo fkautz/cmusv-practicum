@@ -43,7 +43,6 @@ import org.lockss.protocol.LcapIdentity;
 public class PollHistory extends PollState {
   long duration;
   Collection votes;
-  Collection immutableVotes;
 
   /**
    * Empty constructor used for marshalling.  Needed to create the
@@ -53,14 +52,12 @@ public class PollHistory extends PollState {
     super(-1, null, -1, 0, null);
     duration = 0;
     votes = null;
-    immutableVotes = null;
   }
 
   PollHistory(PollState state, long duration, Collection votes) {
     super(state.type, state.regExp, state.status, state.startTime, null);
     this.duration = duration;
     this.votes = votes;
-    immutableVotes = null;
   }
 
   /**
@@ -72,13 +69,10 @@ public class PollHistory extends PollState {
   }
 
   /**
-   * Returns an immutable collection of Votes.
-   * @return a Collection of Poll.Vote objects.
+   * Returns an immutable iterator of Votes.
+   * @return an Iterator of Poll.Vote objects.
    */
-  public Collection getVotes() {
-    if (immutableVotes==null) {
-      immutableVotes = Collections.unmodifiableCollection(votes);
-    }
-    return immutableVotes;
+  public Iterator getVotes() {
+    return Collections.unmodifiableCollection(votes).iterator();
   }
 }

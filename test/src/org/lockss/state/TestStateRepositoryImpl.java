@@ -33,56 +33,15 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.state;
 
-import java.util.*;
 import org.lockss.daemon.CachedUrlSet;
+import org.lockss.test.LockssTestCase;
 
-/**
- * NodeState contains the current state information for a node, as well as the
- * poll histories.
- */
-public class NodeStateImpl implements NodeState {
-  CachedUrlSet cus;
-  CrawlState crawlState;
-  List polls;
-  List pollHistories = null;
-  StateRepository repository;
+public class TestStateRepositoryImpl extends LockssTestCase {
 
-  NodeStateImpl(CachedUrlSet cus, CrawlState crawlState, List polls,
-                StateRepository repository) {
-    this.cus = cus;
-    this.crawlState = crawlState;
-    this.polls = polls;
-    this.repository = repository;
+  public TestStateRepositoryImpl(String msg) {
+    super(msg);
   }
 
-  public CachedUrlSet getCachedUrlSet() {
-    return cus;
-  }
+  public void testNothing() { }
 
-  public CrawlState getCrawlState() {
-    return crawlState;
-  }
-
-  public Iterator getActivePolls() {
-    return Collections.unmodifiableList(polls).iterator();
-  }
-
-  public Iterator getPollHistories() {
-    if (pollHistories==null) {
-      repository.loadPollHistories(this);
-    }
-    return Collections.unmodifiableList(pollHistories).iterator();
-  }
-
-  void addPollState(PollState new_poll) {
-    polls.add(new_poll);
-  }
-
-  void closeActivePoll(PollHistory finished_poll) {
-    if (pollHistories==null) {
-      repository.loadPollHistories(this);
-    }
-    pollHistories.add(finished_poll);
-    polls.remove(finished_poll);
-  }
 }

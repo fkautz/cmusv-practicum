@@ -53,7 +53,7 @@ public class PollHistoryBean extends PollHistory {
 
   /**
    * Sets the regular expression.
-   * @param regexp the new regexp
+   * @param regExp the new regexp
    */
   public void setRegExp(String regExp) {
     super.regExp = regExp;
