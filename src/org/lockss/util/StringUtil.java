@@ -58,17 +58,20 @@ public class StringUtil {
     if (oldLen == 0 || oldstr.equals(newstr)) {
       return line;
     }
+    int thisIdx = line.indexOf(oldstr);
+    if (thisIdx < 0) {
+      return line;
+    }
     int lineLen = line.length();
     StringBuffer sb = new StringBuffer(lineLen);
     int oldIdx = 0;
-    int thisIdx;
-    while ((thisIdx = line.indexOf(oldstr, oldIdx)) >= 0) {
+    do {
       for (int ix = oldIdx; ix < thisIdx; ix++) {
 	sb.append(line.charAt(ix));
       }
       sb.append(newstr);
       oldIdx = thisIdx + oldLen;
-    }
+    } while ((thisIdx = line.indexOf(oldstr, oldIdx)) >= 0);
     for (int ix = oldIdx; ix < lineLen; ix++) {
       sb.append(line.charAt(ix));
     }
@@ -80,19 +83,19 @@ public class StringUtil {
     if (oldLen == 0 || oldstr.equals(newstr)) {
       return line;
     }
-    int lineLen = line.length();
-    StringBuffer sb = new StringBuffer(lineLen);
     int index = line.indexOf(oldstr);
     if (index < 0) {
       return line;
     } else {
+      int lineLen = line.length();
+      StringBuffer sb = new StringBuffer(lineLen);
       sb.append(line.substring(0, index));
       sb.append(newstr);
-      if (index + oldLen < line.length()) {
+      if (index + oldLen < lineLen) {
         sb.append(line.substring(index + oldLen));
       }
+      return sb.toString();
     }
-    return sb.toString();
   }
 
   /**
