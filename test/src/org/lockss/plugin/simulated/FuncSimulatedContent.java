@@ -268,7 +268,7 @@ public class FuncSimulatedContent
     /* Cache the file again; this time the damage should be gone */
     String file = sau.SIMULATED_URL_ROOT + DAMAGED_CACHED_URL;
     UrlCacher uc = sau.urlCacherFactory(sau.getAUCachedUrlSet(),file);
-    uc.cache();
+    uc.forceCache();
     checkUrlContent(DAMAGED_CACHED_URL, 2, 2, 2, false, false);
   }
 
