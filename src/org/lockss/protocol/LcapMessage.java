@@ -197,7 +197,7 @@ public class LcapMessage {
    * @param opcode
    * @param timeRemaining
    * @param localID
-   * @return
+   * @return message
    * @throws IOException
    */
   static public LcapMessage makeRequestMsg(String targetUrl,
