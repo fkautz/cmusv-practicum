@@ -41,6 +41,11 @@ import java.util.*;
 public interface StatusService {
 
   /**
+   * Name of the table that contains references to all tables
+   */
+  public static final String ALL_TABLES_TABLE = "table of all tables";
+
+  /**
    * Returns the StatusService.Table object identified by the tableName 
    * and key specified.
    * @param tableName name of the table to get
