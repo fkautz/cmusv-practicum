@@ -87,7 +87,7 @@ public class NullPlugin {
       return null;
     }
 
-    public List getAUConfigProperties() {
+    public List getAuConfigProperties() {
       return null;
     }
 
@@ -95,18 +95,18 @@ public class NullPlugin {
       return Collections.EMPTY_LIST;
     }
 
-    public org.lockss.plugin.ArchivalUnit configureAU(Configuration config,
+    public org.lockss.plugin.ArchivalUnit configureAu(Configuration config,
 						      org.lockss.plugin.ArchivalUnit au)
 	throws org.lockss.plugin.ArchivalUnit.ConfigurationException {
       return null;
     }
 
-    public org.lockss.plugin.ArchivalUnit createAU(Configuration auConfig)
+    public org.lockss.plugin.ArchivalUnit createAu(Configuration auConfig)
 	throws org.lockss.plugin.ArchivalUnit.ConfigurationException {
       return null;
     }
 
-    public Collection getAllAUs() {
+    public Collection getAllAus() {
       return null;
     };
 
@@ -326,7 +326,7 @@ public class NullPlugin {
       return null;
     }
 
-    public org.lockss.plugin.CachedUrlSet getAUCachedUrlSet() {
+    public org.lockss.plugin.CachedUrlSet getAuCachedUrlSet() {
       return null;
     }
 
@@ -350,7 +350,7 @@ public class NullPlugin {
       return "null_plugin_id";
     }
 
-    public String getAUId() {
+    public String getAuId() {
       return "null_au_id";
     }
 

@@ -99,7 +99,7 @@ public class AcsPlugin extends BasePlugin {
     AUPARAM_YEAR, "2003"}
   };
 
-  public ArchivalUnit createAU(Configuration auConfig)
+  public ArchivalUnit createAu(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
     ArchivalUnit au = new AcsArchivalUnit(this);
     au.setConfiguration(auConfig);
@@ -119,7 +119,7 @@ public class AcsPlugin extends BasePlugin {
     return CURRENT_VERSION;
   }
 
-  public List getAUConfigProperties() {
+  public List getAuConfigProperties() {
     return ListUtil.list(PD_BASE, PD_ARTICLE, PD_JKEY, PD_VOL, PD_YEAR);
   }
 

@@ -42,7 +42,7 @@ import org.lockss.test.*;
 
 public class DoHighwireCrawl {
 
-  private static HighWireArchivalUnit makeAU(URL url, int volume)
+  private static HighWireArchivalUnit makeAu(URL url, int volume)
       throws ArchivalUnit.ConfigurationException, ClassNotFoundException {
     Properties props = new Properties();
     props.setProperty(HighWirePlugin.AUPARAM_VOL, Integer.toString(volume));
@@ -73,7 +73,7 @@ public class DoHighwireCrawl {
     URL base = new URL(args[i]);
     int volume = Integer.parseInt(args[i+1]);
 
-    ArchivalUnit au = makeAU(base, volume);
+    ArchivalUnit au = makeAu(base, volume);
     MockLockssDaemon daemon = new MockLockssDaemon(null);
     daemon.startDaemon();
     PluginUtil.registerArchivalUnit(au);

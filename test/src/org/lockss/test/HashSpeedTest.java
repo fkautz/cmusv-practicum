@@ -108,7 +108,7 @@ public class HashSpeedTest extends LockssTestCase {
     theDaemon.getHashService().startService();
 
     sau =
-        (SimulatedArchivalUnit)theDaemon.getPluginManager().getAllAUs().get(0);
+        (SimulatedArchivalUnit)theDaemon.getPluginManager().getAllAus().get(0);
     theDaemon.getLockssRepository(sau);
   }
 
@@ -143,7 +143,7 @@ public class HashSpeedTest extends LockssTestCase {
     System.out.println("  Algorithm: "+digest.getAlgorithm());
     System.out.println("  Duration: "+duration+"ms");
     System.out.println("  Byte/step: "+byteStep+"bytes");
-    CachedUrlSetHasher hasher = sau.getAUCachedUrlSet().getContentHasher(digest);
+    CachedUrlSetHasher hasher = sau.getAuCachedUrlSet().getContentHasher(digest);
 
     SystemMetrics metrics = SystemMetrics.getSystemMetrics();
     double estimate = metrics.getBytesPerMsHashEstimate(hasher, digest);

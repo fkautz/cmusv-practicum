@@ -50,7 +50,7 @@ public class TestProjectMusePlugin extends LockssTestCase {
 
   public void testGetAuNullConfig() throws ArchivalUnit.ConfigurationException {
     try {
-      plugin.configureAU(null, null);
+      plugin.configureAu(null, null);
       fail("Didn't throw ArchivalUnit.ConfigurationException");
     } catch (ArchivalUnit.ConfigurationException e) { }
   }
@@ -58,7 +58,7 @@ public class TestProjectMusePlugin extends LockssTestCase {
   private ProjectMuseArchivalUnit makeAuFromProps(Properties props)
       throws ArchivalUnit.ConfigurationException {
     Configuration config = ConfigurationUtil.fromProps(props);
-    return (ProjectMuseArchivalUnit)plugin.configureAU(config, null);
+    return (ProjectMuseArchivalUnit)plugin.configureAu(config, null);
   }
 
   public void testGetAuHandlesBadUrl()
@@ -99,7 +99,7 @@ public class TestProjectMusePlugin extends LockssTestCase {
     assertEquals(ListUtil.list(ConfigParamDescr.BASE_URL,
                                ConfigParamDescr.JOURNAL_DIR,
 			       ConfigParamDescr.VOLUME_NUMBER),
-		 plugin.getAUConfigProperties());
+		 plugin.getAuConfigProperties());
   }
 
   public void testGetDefiningProperties() {

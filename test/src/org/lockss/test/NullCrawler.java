@@ -42,7 +42,7 @@ public class NullCrawler implements Crawler {
     throw new UnsupportedOperationException("Not implemented");
   }
 
-  public ArchivalUnit getAU() {
+  public ArchivalUnit getAu() {
     throw new UnsupportedOperationException("Not implemented");
   }
 

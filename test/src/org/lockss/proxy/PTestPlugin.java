@@ -123,7 +123,7 @@ public class PTestPlugin {
       return map.containsKey(url);
     }
 
-    public org.lockss.plugin.CachedUrlSet getAUCachedUrlSet() {
+    public org.lockss.plugin.CachedUrlSet getAuCachedUrlSet() {
       return null;
     }
 
@@ -151,7 +151,7 @@ public class PTestPlugin {
     "<html><h3>this is two html</h3></html>",
   };
 
-  public static ArchivalUnit makeTestAU() {
+  public static ArchivalUnit makeTestAu() {
     AU au = new AU();
     for (int i = 0; i < testUrls.length; i++) {
       au.storeCachedUrl(new CU(testUrls[i], testTypes[i], testContents[i]));

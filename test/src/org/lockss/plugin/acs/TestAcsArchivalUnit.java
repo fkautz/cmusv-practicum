@@ -210,7 +210,7 @@ public class TestAcsArchivalUnit
     assertEquals(uc.shouldBeCached(), shouldCache);
   }
 
-  public void testStartURLConstruction() throws Exception {
+  public void testStartUrlConstruction() throws Exception {
     String expected = ROOT_URL +
         "acs/journals/toc.njs_select_issue?in_coden=" +
         JOURNAL_KEY + "&in_volume=" + VOL_ID + "&in_decade=2000";

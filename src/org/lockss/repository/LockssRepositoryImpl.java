@@ -152,10 +152,10 @@ public class LockssRepositoryImpl extends BaseLockssManager implements LockssRep
     String url2 = cus2.getUrl();
 
     // check for top-level urls
-    if (spec1.isAU() || spec2.isAU()) {
+    if (spec1.isAu() || spec2.isAu()) {
       if (spec1.equals(spec2)) {
         return LockssRepository.SAME_LEVEL_OVERLAP;
-      } else if (spec1.isAU()) {
+      } else if (spec1.isAu()) {
         return LockssRepository.ABOVE;
       } else {
         return LockssRepository.BELOW;
@@ -405,7 +405,7 @@ public class LockssRepositoryImpl extends BaseLockssManager implements LockssRep
       nameMap.put(auKey, auDir);
       String auLocation = buffer.toString() + auDir;
       Properties idProps = new Properties();
-      idProps.setProperty(AU_ID_PROP, au.getAUId());
+      idProps.setProperty(AU_ID_PROP, au.getAuId());
       saveAuIdProperties(auLocation, idProps);
     }
     buffer.append(auDir);
@@ -497,6 +497,6 @@ public class LockssRepositoryImpl extends BaseLockssManager implements LockssRep
   }
 
   static String getAuKey(ArchivalUnit au) {
-    return au.getAUId();
+    return au.getAuId();
   }
 }

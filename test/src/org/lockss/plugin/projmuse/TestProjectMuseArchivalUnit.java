@@ -176,7 +176,7 @@ public class TestProjectMuseArchivalUnit extends LockssTestCase {
     assertTrue(uc.shouldBeCached()==shouldCache);
   }
 
-  public void testStartURLConstruction() throws Exception {
+  public void testStartUrlConstruction() throws Exception {
     URL url = new URL(ROOT_URL);
 
     // 2 digit

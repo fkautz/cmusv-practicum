@@ -165,7 +165,7 @@ public class TreeWalkHandler {
   }
 
   private void nodeTreeWalk() {
-    CachedUrlSet cus = theAu.getAUCachedUrlSet();
+    CachedUrlSet cus = theAu.getAuCachedUrlSet();
     recurseTreeWalk(cus);
   }
 

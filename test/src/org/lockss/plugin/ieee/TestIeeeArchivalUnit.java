@@ -162,7 +162,7 @@ public class TestIeeeArchivalUnit
     assertEquals(shouldCache, uc.shouldBeCached());
   }
 
-  public void testStartURLConstruction() throws Exception {
+  public void testStartUrlConstruction() throws Exception {
     String expected = ROOT_URL +
         "xpl/RecentIssue.jsp?puNumber=" + PUB_NUMBER + "&year=" + VOL_YEAR;
     URL base = new URL(ROOT_URL);

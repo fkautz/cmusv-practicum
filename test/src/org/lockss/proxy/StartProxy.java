@@ -41,7 +41,7 @@ import org.lockss.test.*;
 public class StartProxy {
   public static void main(String args[]) {
     MockLockssDaemon daemon = new MockLockssDaemon(null);
-    ArchivalUnit au = PTestPlugin.makeTestAU();
+    ArchivalUnit au = PTestPlugin.makeTestAu();
     PluginUtil.registerArchivalUnit(au);
 
     ProxyManager manager = new ProxyManager();

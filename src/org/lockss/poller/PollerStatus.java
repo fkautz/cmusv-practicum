@@ -184,7 +184,7 @@ public class PollerStatus {
       PollSpec spec = entry.spec;
       String keyValue = key.substring(key.indexOf(':') + 1);
       if (key.startsWith("AU:")) {
-        if (spec.getAUId().equals(keyValue)) {
+        if (spec.getAuId().equals(keyValue)) {
           isMatch = true;
         }
       }
@@ -330,12 +330,12 @@ public class PollerStatus {
 
   }
 
-  static class ManagerStatusAURef implements ObjectReferenceAccessor {
+  static class ManagerStatusAuRef implements ObjectReferenceAccessor {
 
     int howManyPollsRunning(ArchivalUnit au) {
       ManagerStatus ms = new ManagerStatus();
       try {
-        return ms.getRows("AU:" + au.getAUId()).size();
+        return ms.getRows("AU:" + au.getAuId()).size();
       } catch (StatusService.NoSuchTableException e) {
         theLog.debug("no table", e);
         return 0;
@@ -345,7 +345,7 @@ public class PollerStatus {
     public StatusTable.Reference getReference(Object obj, String tableName) {
       ArchivalUnit au = (ArchivalUnit)obj;
       return new StatusTable.Reference(howManyPollsRunning(au) + " polls",
-                                       tableName, "AU:" + au.getAUId());
+                                       tableName, "AU:" + au.getAuId());
     }
   }
 }

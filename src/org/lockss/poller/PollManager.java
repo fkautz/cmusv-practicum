@@ -127,7 +127,7 @@ public class PollManager  extends BaseLockssManager {
                                       new PollerStatus.PollStatus());
     statusServ.registerObjectReferenceAccessor(PollerStatus.MANAGER_STATUS_TABLE_NAME,
 					       ArchivalUnit.class,
-					       new PollerStatus.ManagerStatusAURef());
+					       new PollerStatus.ManagerStatusAuRef());
   }
 
   /**
