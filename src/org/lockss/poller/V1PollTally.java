@@ -46,6 +46,7 @@ import org.lockss.util.*;
 import org.lockss.state.PollHistory;
 import org.lockss.state.NodeManager;
 import org.lockss.daemon.status.*;
+import org.lockss.alert.*;
 
 /**
  * V1PollTally is a struct-like class which maintains the current
@@ -245,8 +246,14 @@ public class V1PollTally extends PollTally {
       act_margin = (double) numDisagree / num_votes;
     }
     if (act_margin < req_margin) {
-      log.warning("Poll results too close.  Required vote margin is " +
-                req_margin + ". This poll's margin is " + act_margin);
+      String err = "Poll results too close.\nNumber Agrees Votes = " + numAgree +
+          " Number Disagree Votes = " + numDisagree +
+          " Required vote margin is " +
+          req_margin + ". This poll's margin is " + act_margin;
+      log.warning(err);
+      poll.m_pollmanager.raiseAlert(Alert.auAlert(Alert.INCONCLUSIVE_POLL,
+                                                  poll.m_cus.getArchivalUnit()).
+                                    setAttribute(Alert.ATTR_TEXT, err));
       return false;
     }
     return true;

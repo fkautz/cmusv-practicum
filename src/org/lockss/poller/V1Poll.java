@@ -446,12 +446,10 @@ public abstract class V1Poll extends BasePoll {
                   String.valueOf(B64Code.encode(m_hash)));
         m_pollstate = PS_WAIT_VOTE;
         scheduleVote();
-
       }
       else {
         log.debug("Hash failed : " + e.getMessage());
         m_pollstate = ERR_HASHING;
-
       }
     }
   }
