@@ -198,7 +198,8 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     // get the new content crawl interval
     newContentCrawlIntv = config.getTimeInterval(NEW_CONTENT_CRAWL_KEY,
                                                  defaultContentCrawlIntv);
-    logger.debug2("Set new content crawl interval to " + newContentCrawlIntv);
+    logger.debug2("Setting new content crawl interval to " +
+		  StringUtil.timeIntervalToString(newContentCrawlIntv));
 
     // make the start url
     startUrlString = makeStartUrl();
