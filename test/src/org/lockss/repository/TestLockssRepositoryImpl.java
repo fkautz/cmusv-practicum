@@ -74,13 +74,13 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
   }
 
   public void testFileLocation() throws Exception {
-    // tk will have to change when AUId -> path uses some encoding
-    tempDirPath += "cache/" + mau.getAUId() + "/";
+    tempDirPath += RepositoryLocationUtil.mapAuToFileLocation("cache/", mau);
     File testFile = new File(tempDirPath);
     assertTrue(!testFile.exists());
 
     createLeaf("http://www.example.com/testDir/branch1/leaf1",
                "test stream", null);
+    System.out.println(testFile.getAbsolutePath());
     assertTrue(testFile.exists());
     tempDirPath += "www.example.com/http/";
     testFile = new File(tempDirPath);

@@ -41,11 +41,12 @@ import org.lockss.plugin.ArchivalUnit;
  */
 public class AuStateBean extends AuState {
   public AuStateBean() {
-    super(null, -1, -1);
+    super(null, -1, -1, -1);
   }
 
   AuStateBean(AuState auState) {
-    super(auState.au, auState.lastCrawlTime, auState.lastTopLevelPoll);
+    super(auState.au, auState.lastCrawlTime, auState.lastTopLevelPoll,
+          auState.lastTreeWalk);
   }
 
   /**
@@ -71,4 +72,13 @@ public class AuStateBean extends AuState {
   public void setLastTopLevelPollTime(long newPollTime) {
     lastTopLevelPoll = newPollTime;
   }
+
+  /**
+   * Sets the last treewalk time to a new value.
+   * @param newTreeWalkTime in ms
+   */
+  public void setLastTreeWalkTime(long newTreeWalkTime) {
+    lastTreeWalk = newTreeWalkTime;
+  }
+
 }

@@ -47,7 +47,7 @@ public class TestAuStateImpl extends LockssTestCase {
   }
 
   public void testCrawlFinished() {
-    AuState auState = new AuState(null, 123, 321);
+    AuState auState = new AuState(null, 123, -1, -1);
     assertEquals(123, auState.getLastCrawlTime());
 
     TimeBase.setSimulated(TimeBase.nowMs());
@@ -56,13 +56,23 @@ public class TestAuStateImpl extends LockssTestCase {
   }
 
   public void testPollFinished() {
-    AuState auState = new AuState(null, 123, 321);
-    assertEquals(321, auState.getLastTopLevelPollTime());
+    AuState auState = new AuState(null, -1, 123, -1);
+    assertEquals(123, auState.getLastTopLevelPollTime());
 
     TimeBase.setSimulated(TimeBase.nowMs());
     auState.newPollFinished();
     assertEquals(TimeBase.nowMs(), auState.getLastTopLevelPollTime());
   }
+
+  public void testTreeWalkFinished() {
+    AuState auState = new AuState(null, -1, -1, 123);
+    assertEquals(123, auState.getLastTreeWalkTime());
+
+    TimeBase.setSimulated(TimeBase.nowMs());
+    auState.treeWalkFinished();
+    assertEquals(TimeBase.nowMs(), auState.getLastTreeWalkTime());
+  }
+
 
   public static void main(String[] argv) {
     String[] testCaseList = { TestAuStateImpl.class.getName()};
