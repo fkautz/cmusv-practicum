@@ -36,10 +36,9 @@ import java.util.*;
 import org.lockss.util.*;
 import org.lockss.plugin.*;
 import org.lockss.daemon.*;
-import org.lockss.crawler.CrawlManager;
-import org.lockss.poller.PollSpec;
-import org.lockss.app.LockssDaemon;
 import org.lockss.scheduler.*;
+import org.lockss.crawler.CrawlManager;
+import org.lockss.app.LockssDaemon;
 
 /**
  * The treewalk thread handler in the NodeManager.  This starts a thread which
@@ -551,6 +550,7 @@ public class TreeWalkHandler {
      * @param start start time
      * @param est estimated length
      * @return a BackgroundTask
+     * @throws InterruptedException
      */
     BackgroundTask scheduleTreeWalk(long start, long est)
 	throws InterruptedException {
