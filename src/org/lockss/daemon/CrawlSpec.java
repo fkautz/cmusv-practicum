@@ -75,7 +75,7 @@ public interface CrawlSpec {
    * Checks the crawlWindow to see if it is a good time to crawl
    * @return true iff the crawl time falls into the crawl window
    */
-  public boolean canCrawl();
+  public boolean inCrawlWindow();
 
   /**
    * Gets the list of permission checkers

@@ -292,7 +292,7 @@ public abstract class FollowLinkCrawler extends CrawlerImpl {
   }
 
   protected boolean withinCrawlWindow() {
-    if ((spec!=null) && (!spec.canCrawl())) {
+    if ((spec!=null) && (!spec.inCrawlWindow())) {
       logger.info("Crawl canceled: outside of crawl window");
       return false;
     }

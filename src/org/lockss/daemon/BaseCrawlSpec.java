@@ -105,7 +105,7 @@ public abstract class BaseCrawlSpec implements CrawlSpec {
     return (rule == null) ? true : (rule.match(url) == CrawlRule.INCLUDE);
   }
 
-  public boolean canCrawl() {
+  public boolean inCrawlWindow() {
     return (window==null) ? true : window.canCrawl();
   }
 

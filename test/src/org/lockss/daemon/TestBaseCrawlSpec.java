@@ -129,9 +129,9 @@ public class TestBaseCrawlSpec extends LockssTestCase {
       new TestableBaseCrawlSpec(ListUtil.list("foo"),
                     new CrawlRules.RE("foo[12]*", CrawlRules.RE.MATCH_INCLUDE), null);
     cs1.setCrawlWindow(window);
-    assertTrue(cs1.canCrawl());
+    assertTrue(cs1.inCrawlWindow());
     window.setAllowCrawl(false);
-    assertFalse(cs1.canCrawl());
+    assertFalse(cs1.inCrawlWindow());
   }
 
   private static class TestableBaseCrawlSpec extends BaseCrawlSpec {
