@@ -294,6 +294,10 @@ public class NullPlugin {
     public void setConfiguration(Configuration config) {
     }
 
+    public Configuration getConfiguration() {
+      return null;
+    }
+
     public org.lockss.plugin.CachedUrlSet makeCachedUrlSet(CachedUrlSetSpec spec) {
       return null;
     }
@@ -312,6 +316,10 @@ public class NullPlugin {
 
     public Collection getUrlStems() {
       return Collections.EMPTY_LIST;
+    }
+
+    public org.lockss.plugin.Plugin getPlugin() {
+      return null;
     }
 
     public String getPluginId() {

@@ -124,6 +124,10 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     auConfig = config;
   }
 
+  public Configuration getConfiguration() {
+    return auConfig;
+  }
+
   private void checkLegalConfigChange(Configuration newConfig)
       throws ArchivalUnit.ConfigurationException {
     Collection defKeys = plugin.getDefiningConfigKeys();
@@ -143,7 +147,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
    * Returns the plugin for this AU
    * @return the plugin for this AU
    */
-  protected Plugin getPlugin() {
+  public Plugin getPlugin() {
     return plugin;
   }
 

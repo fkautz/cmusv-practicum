@@ -137,6 +137,10 @@ public class MockArchivalUnit implements ArchivalUnit {
     return urlsToCache.contains(url);
   }
 
+  public Plugin getPlugin() {
+    return null;
+  }
+
   public String getPluginId() {
     if (plugin != null) {
       return plugin.getPluginId();
