@@ -576,16 +576,14 @@ class HashQueue implements Serializable {
       return res;
     }
 
-    public StatusTable getStatusTable(String key) {
-      StatusTable table = new StatusTable(key, getTitle(key),
-					  getColumnDescriptors(key),
-					  getDefaultSortRules(key),
-					  getRows(key), getSummaryInfo(key));
-      table.setTitleFootnote(FOOT_TITLE);
-      return table;
+    public void populateTable(StatusTable table) {
+      String key = table.getKey();
+      table.setTitle(getTitle(key));
+      table.setColumnDescriptors(getColumnDescriptors(key));
+      table.setDefaultSortRules(getDefaultSortRules(key));
+      table.setRows(getRows(key));
+      table.setSummaryInfo(getSummaryInfo(key));
     }
-
-
   }
 
   static class ReqState implements Comparable {

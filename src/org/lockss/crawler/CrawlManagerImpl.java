@@ -342,12 +342,11 @@ public class CrawlManagerImpl implements CrawlManager, LockssManager {
       return false;
     }
 
-    public StatusTable getStatusTable(String key) 
-	throws StatusService.NoSuchTableException {
-      StatusTable table = new StatusTable(key, "Crawl Status",
-					  colDescs, null,
-					  getRows(key), null);
-      return table;
+    public void populateTable(StatusTable table) {
+      String key = table.getKey();
+      table.setTitle("Crawl Status");
+      table.setColumnDescriptors(colDescs);
+      table.setRows(getRows(key));
     }
   }
 }

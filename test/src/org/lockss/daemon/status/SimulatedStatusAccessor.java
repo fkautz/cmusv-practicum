@@ -136,32 +136,15 @@ public class SimulatedStatusAccessor {
       return sortRules;
     }
 
-//     public List getColumnDescriptors(String key) {
-//       return columns;
-//     }
-
-//     public List getRows(String key) {
-//       return rows;
-//     }
-
-//     public List getDefaultSortRules(String key) {
-//       return sortRules;
-//     }
-
     public boolean requiresKey() {
       return false;
     }
 
-//     public String getTitle(String key) {
-//       return title;
-//     }
-
-    public StatusTable getStatusTable(String key) 
-	throws StatusService.NoSuchTableException {
-      
-      StatusTable table = new StatusTable(key, title, columns, 
-					  sortRules,  rows, null);
-      return table;
+    public void populateTable(StatusTable table) {
+      table.setTitle(title);
+      table.setColumnDescriptors(columns);
+      table.setDefaultSortRules(sortRules);
+      table.setRows(rows);
     }
   }
   
