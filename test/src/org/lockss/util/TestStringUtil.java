@@ -250,9 +250,35 @@ public class TestStringUtil extends LockssTestCase {
   }
 
   public void testFromReader() throws Exception {
-    String s = "asdfjsfd";
+    String s = makeTestString(45);
     Reader r = new InputStreamReader(new StringInputStream(s));
     assertEquals(s, StringUtil.fromReader(r));
+  }
+
+  String makeTestString(int approxLen) {
+    String s = "asdfjsfdsdfkljasdlkjasdflkjasdlfkjasdflkjasldkfjasd";
+    if (s.length() >= approxLen) return s;
+    StringBuffer sb = new StringBuffer(approxLen + 100);
+    while (sb.length() < approxLen) {
+      sb.append(s);
+    }
+    return sb.toString();
+  }
+
+  public void testFromReaderUnderLimit() throws Exception {
+    String s = makeTestString(100000);
+    Reader r = new InputStreamReader(new StringInputStream(s));
+    assertEquals(s, StringUtil.fromReader(r, 200000));
+  }
+
+  public void testFromReaderOverLimit() throws Exception {
+    String s = makeTestString(100000);
+    Reader r = new InputStreamReader(new StringInputStream(s));
+    try {
+      StringUtil.fromReader(r, 50000);
+      fail("Should have thrown, over max size");
+    } catch (StringUtil.FileTooLargeException e) {
+    }
   }
 
   public void testFromInputStream() throws Exception {
