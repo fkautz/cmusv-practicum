@@ -108,6 +108,11 @@ public class ProxyManager extends JettyManager {
     }
   }
 
+  /** @return the proxy port */
+  public int getProxyPort() {
+    return port;
+  }
+
   void setIpFilter() {
     if (accessHandler != null) {
       try {
