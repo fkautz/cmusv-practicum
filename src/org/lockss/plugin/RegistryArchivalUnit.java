@@ -38,7 +38,6 @@ import org.lockss.daemon.*;
 import org.lockss.state.*;
 import org.lockss.plugin.*;
 import org.lockss.plugin.base.*;
-import gnu.regexp.REException;
 
 /**
  * <p>PluginArchivalUnit: The Archival Unit Class for PluginPlugin.
@@ -89,9 +88,8 @@ public class RegistryArchivalUnit extends BaseArchivalUnit {
    * return the collection of crawl rules used to crawl and cache a
    * list of Plugin JAR files.
    * @return CrawlRule
-   * @throws REException
    */
-  protected CrawlRule makeRules() throws REException {
+  protected CrawlRule makeRules() {
     return new RegistryRule();
   }
 

@@ -35,7 +35,7 @@ import java.util.*;
 import java.io.*;
 import java.text.*;
 import java.lang.reflect.*;
-import gnu.regexp.*;
+import org.apache.oro.text.regex.*;
 
 /**
  * This is a class to contain generic string utilities
@@ -376,14 +376,18 @@ public class StringUtil {
       "." + method.getName();
   }
 
-  static RE alphanum = new UncheckedRE("([^a-zA-Z0-9])");
+  static Pattern alphanum =
+    RegexpUtil.uncheckedCompile("([^a-zA-Z0-9])",
+				Perl5Compiler.READ_ONLY_MASK);
 
   /** Return a copy of the string with all non-alphanumeric chars
    * escaped by backslash.  Useful when embedding an unknown string in
    * a regexp
    */
   public static String escapeNonAlphaNum(String str) {
-    return alphanum.substituteAll(str, "\\$1");
+    Substitution subst = new Perl5Substitution("\\\\$1");
+    return Util.substitute(RegexpUtil.getMatcher(), alphanum, subst, str,
+			   Util.SUBSTITUTE_ALL);
   }
 
   /**

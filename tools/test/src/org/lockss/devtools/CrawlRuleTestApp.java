@@ -148,7 +148,7 @@ public class CrawlRuleTestApp {
           rules.add(new CrawlRules.RE(regexp, CrawlRules.RE.NO_MATCH_EXCLUDE));
         }
       }
-      catch (REException ex) {
+      catch (LockssRegexpException ex) {
         System.err.println("Error creating crawl rule: " + ex);
       }
     }

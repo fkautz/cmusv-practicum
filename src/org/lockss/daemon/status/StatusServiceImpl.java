@@ -33,10 +33,10 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.daemon.status;
 
 import java.util.*;
+import org.apache.oro.text.regex.*;
 import org.lockss.app.*;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
-import gnu.regexp.*;
 
 /**
  * Main implementation of {@link StatusService}
@@ -94,14 +94,12 @@ public class StatusServiceImpl
     return table;
   }
 
+  static Pattern badTablePat =
+    RegexpUtil.uncheckedCompile("[^a-zA-Z0-9_-]",
+				Perl5Compiler.READ_ONLY_MASK);
+
   private boolean isBadTableName(String tableName) {
-    try {
-      RE re = new RE(".*[^a-zA-Z0-9_-].*");
-      return re.isMatch(tableName);
-    } catch (REException ree) {
-      logger.error("Bad regular expression", ree);
-      return false;
-    }
+    return RegexpUtil.getMatcher().contains(tableName, badTablePat);
   }
 
   public void registerStatusAccessor(String tableName, 
