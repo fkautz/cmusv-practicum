@@ -149,6 +149,10 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
                                         Deadline.in(state.getDuration()),
                                         state.isMyPoll());
     ( (NodeStateImpl) nodeState).addPollState(pollState);
+    logger.debug2("Starting poll for url '" +
+                  nodeState.getCachedUrlSet().getUrl() + " " +
+                  pollState.getLwrBound() + "-" +
+                  pollState.getUprBound() + "'");
   }
 
   public boolean shouldStartPoll(CachedUrlSet cus, PollTally state) {
