@@ -209,7 +209,7 @@ public class LockssDaemon {
   /**
    * return the proxy handler instance
    * @return the ProxyHandler
-   * @throws IllegalAccessException if the manager is not available.
+   * @throws IllegalArgumentException if the manager is not available.
   */
   public ProxyHandler getProxyHandler() {
     return (ProxyHandler) getManager(PROXY_HANDLER);
