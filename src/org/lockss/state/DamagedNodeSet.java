@@ -121,7 +121,7 @@ public class DamagedNodeSet {
   }
 
   synchronized public boolean hasLocalizedDamage(CachedUrlSet cus) {
-    if(cus.isLeaf()) {
+    if(cus.getSpec().isSingleNode()) {
       Iterator damagedIt = nodesWithDamage.iterator();
       while (damagedIt.hasNext()) {
         String url = (String) damagedIt.next();
