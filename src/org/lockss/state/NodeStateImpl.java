@@ -50,7 +50,7 @@ public class NodeStateImpl implements NodeState {
   protected List pollHistories = null;
   protected HistoryRepository repository;
   protected long hashDuration = -1;
-  protected int curState = UNKNOWN;
+  protected int curState = INITIAL;
 
   // for marshalling only
   NodeStateImpl() { }
@@ -127,7 +127,7 @@ public class NodeStateImpl implements NodeState {
         return "Unrepairable Names";
       case NodeState.POSSIBLE_DAMAGE_BELOW:
         return "Possible Damage Below";
-      case NodeState.UNKNOWN:
+      case NodeState.INITIAL:
         return "Unknown";
       case NodeState.OK:
         return "Ok";
@@ -145,7 +145,7 @@ public class NodeStateImpl implements NodeState {
     repository.storeNodeState(this);
   }
 
-  void setState(int newState) {
+  public void setState(int newState) {
     curState = newState;
     repository.storeNodeState(this);
   }

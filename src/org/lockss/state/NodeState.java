@@ -43,9 +43,9 @@ import org.lockss.daemon.CachedUrlSetSpec;
  */
 public interface NodeState {
   /**
-   * Integer representing the unknown state.
+   * Integer representing the initial state.
    */
-  public static final int UNKNOWN = 0;
+  public static final int INITIAL = 0;
   /**
    * Integer representing the ok state.  Nothing needs doing.
    */
@@ -172,6 +172,12 @@ public interface NodeState {
    * @return the state
    */
   public int getState();
+
+  /**
+   * Sets the state.
+   * @param newState the state
+   */
+  public void setState(int newState);
 
   /**
    * Returns a string from of the state of the node, for display.

@@ -217,7 +217,7 @@ public class TestNodeStateImpl extends LockssTestCase {
   }
 
   public void testState() throws Exception {
-    assertEquals(NodeState.UNKNOWN, state.getState());
+    assertEquals(NodeState.INITIAL, state.getState());
     state.setState(NodeState.OK);
     assertEquals(NodeState.OK, state.getState());
   }

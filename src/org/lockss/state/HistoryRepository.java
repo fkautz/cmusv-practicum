@@ -82,4 +82,18 @@ public interface HistoryRepository extends LockssManager {
    * @return the {@link AuState}
    */
   public AuState loadAuState(ArchivalUnit au);
+
+  /**
+   * Stores the DamagedNodeSet for a particular ArchivalUnit
+   * @param nodeSet the set to store
+   */
+  public void storeDamagedNodeSet(DamagedNodeSet nodeSet);
+
+  /**
+   * Loads the DamagedNodeSet for a particular ArchivalUnit
+   * @param au the ArchivalUnit state to load
+   * @return the {@link DamagedNodeSet}
+   */
+  public DamagedNodeSet loadDamagedNodeSet(ArchivalUnit au);
+
 }

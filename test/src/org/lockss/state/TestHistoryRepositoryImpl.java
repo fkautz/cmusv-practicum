@@ -236,6 +236,29 @@ public class TestHistoryRepositoryImpl extends LockssTestCase {
     assertEquals(mau.getAUId(), auState.getArchivalUnit().getAUId());
   }
 
+  public void testStoreDamagedNodeSet() throws Exception {
+    DamagedNodeSet damNodes = new DamagedNodeSet(mau, repository);
+    damNodes.add("test1");
+    damNodes.add("test2");
+    assertTrue(damNodes.contains("test1"));
+    assertTrue(damNodes.contains("test2"));
+    assertFalse(damNodes.contains("test3"));
+
+    repository.storeDamagedNodeSet(damNodes);
+    String filePath = LockssRepositoryServiceImpl.mapAuToFileLocation(tempDirPath +
+        HistoryRepositoryImpl.HISTORY_ROOT_NAME, mau);
+    filePath += HistoryRepositoryImpl.DAMAGED_NODES_FILE_NAME;
+    File xmlFile = new File(filePath);
+    assertTrue(xmlFile.exists());
+
+    damNodes = null;
+    damNodes = repository.loadDamagedNodeSet(mau);
+    assertTrue(damNodes.contains("test1"));
+    assertTrue(damNodes.contains("test2"));
+    assertFalse(damNodes.contains("test3"));
+    assertEquals(mau.getAUId(), damNodes.theAu.getAUId());
+  }
+
   public void testStoreOverwrite() throws Exception {
     AuState auState = new AuState(mau, 123, 321, -1, repository);
     repository.storeAuState(auState);
