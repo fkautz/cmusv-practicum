@@ -204,7 +204,7 @@ public abstract class Configuration {
       String url = (String)iter.next();
       ConfigFile cf = null;
       try {
-	cf = configCache.get(url);
+	cf = configCache.justGet(url);
       } catch (IOException ignore) {
       }
       if (cf != null && !cf.isLoaded()) {

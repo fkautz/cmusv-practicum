@@ -396,7 +396,11 @@ public class ConfigManager implements LockssManager {
       String url = (String)iter.next();
       try {
 	ConfigFile cf = configCache.get(url);
-	config.load(cf);
+	if (cf.isLoaded()) {
+	  config.load(cf);
+	} else {
+	  throw new IOException(cf.getLoadErrorMessage());
+	}
       } catch (IOException e) {
 	if (e instanceof FileNotFoundException &&
 	    StringUtil.endsWithIgnoreCase(url, ".opt")) {
