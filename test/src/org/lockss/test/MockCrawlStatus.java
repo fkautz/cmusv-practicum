@@ -40,7 +40,7 @@ public class MockCrawlStatus extends Crawler.Status {
   int crawlStatus = 0;
   
   public MockCrawlStatus(int type) {
-    super(null, type);
+    super(null, null, type);
   }
 
   public MockCrawlStatus() {
