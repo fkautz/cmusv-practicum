@@ -149,7 +149,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   public final String getAUId() {
     if (auId != null) {
       return auId;
-    }
+    } 
     if (plugin == null) {
       return defaultAUId;
     }
@@ -205,9 +205,6 @@ public class MockArchivalUnit implements ArchivalUnit {
     shouldCallTopLevelPoll = val;
   }
 
-  public boolean isDamaged(String url) {
-    return false;
-  }
 
 }
 
