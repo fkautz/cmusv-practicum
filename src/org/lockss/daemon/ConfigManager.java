@@ -59,6 +59,10 @@ public class ConfigManager implements LockssManager {
   static final String PARAM_CONFIG_PATH = MYPREFIX + "configFilePath";
   static final String DEFAULT_CONFIG_PATH = "config";
 
+  /** Config param written to local config files to indicate file version */
+  static final String PARAM_CONFIG_FILE_VERSION =
+    MYPREFIX + "fileVersion.<filename>";
+
   /** Common prefix of platform config params */
   static final String PLATFORM = Configuration.PLATFORM;
 
@@ -533,12 +537,23 @@ public class ConfigManager implements LockssManager {
     }
     File cfile = new File(cacheConfigDir, cacheConfigFileName);
     OutputStream os = new FileOutputStream(cfile);
-    config.store(os, header);
+
+    // make a copy and add the config file version number, write the copy
+    Configuration tmpConfig = config.copy();
+    tmpConfig.put(configVersionProp(cacheConfigFileName), "1");
+    tmpConfig.store(os, header);
     os.close();
     log.debug2("Wrote cache config file: " + cfile.toString());
     if (handlerThread != null) {
       handlerThread.forceReload();
     }
+  }
+
+  /** Return the config version prop key for the named config file */
+  static String configVersionProp(String cacheConfigFileName) {
+    String noExt = StringUtil.upToFinal(cacheConfigFileName, ".");
+    return StringUtil.replaceString(PARAM_CONFIG_FILE_VERSION,
+				    "<filename>", noExt);
   }
 
   /** Replace one AU's config keys in the local AU config file.

@@ -262,6 +262,11 @@ public class TestConfigManager extends LockssTestCase {
     Configuration config = Configuration.getCurrentConfig();
   }
 
+  public void testConfigVersionProp() {
+    assertEquals("org.lockss.config.fileVersion.foo",
+		 ConfigManager.configVersionProp("foo"));
+  }
+
   public void testWriteAndReadCacheConfigFile() throws Exception {
     String fname = "test-config";
     String tmpdir = getTempDir().toString();
@@ -282,7 +287,9 @@ public class TestConfigManager extends LockssTestCase {
 
     Configuration config2 = mgr.readCacheConfigFile(fname);
     assertEquals("12345", config2.get("foo.bar"));
-    assertEquals(1, config2.keySet().size());
+    assertEquals("1", config2.get("org.lockss.config.fileVersion." + fname));
+    assertEquals("wrong number of keys in written config file",
+		 2, config2.keySet().size());
   }
 
   public void testCacheConfigFile() throws Exception {
