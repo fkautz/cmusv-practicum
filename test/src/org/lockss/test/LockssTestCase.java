@@ -81,7 +81,10 @@ public class LockssTestCase extends TestCase {
 	DoLater doer = (DoLater)iter.next();
 	doer.cancel();
       }
-      doLaters = null;
+      // do NOT set doLaters to null here.  It may be referenced by
+      // exiting DoLaters.  It won't hurt anything because the next test
+      // will create a new instance of the test case, and get a different
+      // doLaters list
     }
     super.tearDown();
   }
