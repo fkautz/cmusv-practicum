@@ -150,7 +150,6 @@ public class PollManager  extends BaseLockssManager {
   }
 
 
-
   /**
    * make an election by sending a request packet.  This is only
    * called from the tree walk. The poll remains pending in the
@@ -614,7 +613,7 @@ public class PollManager  extends BaseLockssManager {
    * generate a random array of 20 bytes
    * @return the array of bytes
    */
-  byte[] generateRandomBytes() {
+  public byte[] generateRandomBytes() {
     byte[] secret = new byte[20];
     theRandom.nextBytes(secret);
     return secret;
@@ -714,12 +713,17 @@ public class PollManager  extends BaseLockssManager {
       case LcapMessage.CONTENT_POLL_REQ:
       case LcapMessage.CONTENT_POLL_REP:
         long estTime = cus.estimatedHashDuration();
-//      long adjTime = estTime * SystemMetrics.getAverageHashRate() / m_lowestHashRate;
+        long my_rate = SystemMetrics.getSystemMetrics().
+            getBytesPerMsHashEstimate();
+        long slow_rate = SystemMetrics.getSystemMetrics().getSlowestRate();
+        if (my_rate > slow_rate) {
+          estTime = estTime * my_rate / slow_rate;
+        }
         ret = estTime * 2 * (quorum + 1);
         ret = ret < m_minContentPollDuration ? m_minContentPollDuration :
             (ret > m_maxContentPollDuration ? m_maxContentPollDuration : ret);
         theLog.debug2("Content Poll duration: " +
-		      StringUtil.timeIntervalToString(ret));
+                      StringUtil.timeIntervalToString(ret));
         break;
 
       default:
