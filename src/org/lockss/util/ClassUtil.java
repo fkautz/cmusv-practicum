@@ -40,7 +40,9 @@ package org.lockss.util;
  * @version 1.0
  */
 
-public class LockssUtil {
+import java.util.*;
+
+public class ClassUtil {
 
   /** Returns true of the classname passed is a Java primitive type; false if
    * it is an object
@@ -54,6 +56,28 @@ public class LockssUtil {
     }
     else {
       return false;
+    }
+  }
+
+  /** Returns the name of a class without the package prefix */
+  public static String getClassNameWithoutPackage(Class cl) {
+    String fullname = cl.getName();
+    int pos = fullname.lastIndexOf('.');
+    return (pos==-1) ? fullname : fullname.substring(pos + 1);
+  }
+
+  public static String objectTypeName(String name) {
+    if (!isPrimitive(name)) {
+      return name;
+    }
+    else if (name.equals("int")) {
+      return "Integer";
+    }
+    else if (name.equals("char")) {
+      return "Character";
+    }
+    else {
+      return StringUtil.titleCase(name);
     }
   }
 
