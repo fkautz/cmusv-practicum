@@ -119,9 +119,16 @@ public class TimeBase {
   }
 
   /** Return the number of milliseconds since the argument
-   * @param when the start of a time interval
+   * @param when a time
    */
   public static long msSince(long when) {
     return nowMs() - when;
+  }
+
+  /** Return the number of milliseconds until the argument
+   * @param when a time
+   */
+  public static long msUntil(long when) {
+    return when - nowMs();
   }
 }
