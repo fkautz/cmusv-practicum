@@ -136,7 +136,8 @@ public class ProxyHandler extends NullHandler implements LockssManager {
     System.err.println("URI="+uri);
 
     String urlString = uri.toString();
-    ArchivalUnit au = pluginMgr.findArchivalUnit(urlString);
+//     ArchivalUnit au = pluginMgr.findArchivalUnit(urlString);
+    ArchivalUnit au = null;
     if (au != null) {
       CachedUrlSet cus = au.getAUCachedUrlSet();
       if (cus != null) {
