@@ -240,9 +240,7 @@ public class MockUrlCacher implements UrlCacher {
     this.permissionMapSource = pmSource;
   }
 
-  /*
-  public PermissionMap getPermissionMap() {
-    return permissionMap;
+  public PermissionMapSource getPermissionMapSource() {
+    return permissionMapSource;
   }
-  */
 }
