@@ -44,7 +44,6 @@ import org.apache.commons.collections.ReferenceMap;
  * reference map to protect against multiple instances of the same NodeState.
  */
 public class NodeStateCache {
-  private HistoryRepository repository;
   LRUMap lruMap;
   ReferenceMap refMap = new ReferenceMap(ReferenceMap.HARD,
                                          ReferenceMap.WEAK);
@@ -54,9 +53,8 @@ public class NodeStateCache {
   private int refHits = 0;
   private int refMisses = 0;
 
-  public NodeStateCache(HistoryRepository repo, int maxSize) {
+  public NodeStateCache(int maxSize) {
     lruMap = new LRUMap(maxSize);
-    repository = repo;
   }
 
   /**

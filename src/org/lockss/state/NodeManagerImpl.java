@@ -88,7 +88,7 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
     lockssRepo = theDaemon.getLockssRepository(managedAu);
     pollManager = theDaemon.getPollManager();
 
-    nodeCache = new NodeStateCache(historyRepo, maxMapSize);
+    nodeCache = new NodeStateCache(maxMapSize);
 
     auState = historyRepo.loadAuState(managedAu);
 
