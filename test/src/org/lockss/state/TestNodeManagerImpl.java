@@ -92,8 +92,6 @@ public class TestNodeManagerImpl extends LockssTestCase {
     theDaemon.setHistoryRepository(historyRepo, mau);
     nodeManager.historyRepo = historyRepo;
     nodeManager.startService();
-    // don't need the thread
-    nodeManager.killTreeWalk();
 
     theDaemon.getHashService().startService();
 
