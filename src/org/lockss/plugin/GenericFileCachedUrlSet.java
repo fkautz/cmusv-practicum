@@ -37,7 +37,7 @@ import java.security.MessageDigest;
 import java.net.MalformedURLException;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
-import org.lockss.hasher.GenericCachedUrlSetHasher;
+import org.lockss.hasher.*;
 import org.lockss.repository.*;
 import gnu.regexp.RE;
 
@@ -168,12 +168,12 @@ public class GenericFileCachedUrlSet extends BaseCachedUrlSet {
   }
 
   protected CachedUrlSetHasher contentHasherFactory(CachedUrlSet owner,
-      MessageDigest hasher) {
-    return new GenericCachedUrlSetHasher(owner, hasher, false);
+						    MessageDigest hasher) {
+    return new GenericContentHasher(owner, hasher);
   }
   protected CachedUrlSetHasher nameHasherFactory(CachedUrlSet owner,
-      MessageDigest hasher) {
-    return new GenericCachedUrlSetHasher(owner, hasher, true);
+						 MessageDigest hasher) {
+    return new GenericNameHasher(owner, hasher);
   }
 
   private class UrlComparator implements Comparator {
