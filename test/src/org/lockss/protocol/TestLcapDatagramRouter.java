@@ -46,20 +46,20 @@ public class TestLcapDatagramRouter extends LockssTestCase {
 
   private LcapDatagramRouter rtr;
 
-  private static String urlstr = "http://www.example.com";
-  private static byte[] testbytes = {1,2,3,4,5,6,7,8,9,10};
-  private static String lwrbnd = "test1.doc";
-  private static String uprbnd = "test3.doc";
-  private static ArrayList testentries;
+  private final static String urlstr = "http://www.example.com";
+  private final static byte[] testbytes = {1,2,3,4,5,6,7,8,9,10};
+  private final static String lwrbnd = "test1.doc";
+  private final static String uprbnd = "test3.doc";
+  private final static String archivalID = "TestAU_1.0";
 
-  private static MockLockssDaemon daemon;
+  private MockLockssDaemon daemon;
   private IdentityManager idmgr;
   protected IPAddr testaddr;
   protected PeerIdentity testID;
   protected LcapMessage testmsg;
-  protected static String archivalID = "TestAU_1.0";
   LockssDatagram dg;
   LockssReceivedDatagram rdg;
+  private ArrayList testentries;
 
   public void setUp() throws Exception {
     super.setUp();

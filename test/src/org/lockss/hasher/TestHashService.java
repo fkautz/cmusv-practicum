@@ -53,7 +53,7 @@ public class TestHashService extends LockssTestCase {
   private static String PARAM_ESTIMATE_PAD_PERCENT =
     HashService.PARAM_ESTIMATE_PAD_PERCENT;
 
-  private static MockLockssDaemon theDaemon;
+  private MockLockssDaemon theDaemon;
 
   private HashService svc;
 
