@@ -893,6 +893,25 @@ public class LockssTestCase extends TestCase {
    */
   public static void assertReaderMatchesString(String expected, Reader reader)
       throws IOException{
+    int len = expected.length() * 2;
+    char[] ca = new char[len];
+    StringBuffer actual = new StringBuffer(expected.length());
+
+    int n;
+    while ((n = reader.read(ca)) != -1) {
+      actual.append(ca, 0, n);
+    }
+    assertEquals(expected, actual.toString());
+  }
+
+  /**
+   * Asserts that a string matches the content of a reader.  Old, character
+   * at a time version.  Should be integrated into tests because it
+   * possibly causes different behavior in the stream under test.
+   */
+  public static void assertReaderMatchesStringSlow(String expected,
+						   Reader reader)
+      throws IOException{
     StringBuffer actual = new StringBuffer(expected.length());
     int kar;
     while ((kar = reader.read()) != -1) {
