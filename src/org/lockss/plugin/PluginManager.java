@@ -84,6 +84,12 @@ public class PluginManager extends BaseLockssManager {
   static String DEFAULT_KEYSTORE_PASSWORD =
     "password";
 
+  static String PARAM_REGISTRY_CRAWL_INTERVAL =
+    "plugin.registries.crawl.interval";
+  static String DEFAULT_REGISTRY_CRAWL_INTERVAL =
+    "1d"; // not specified as a long value because this will be passed as
+          // a string literal to the AU config.
+
   public static final String PARAM_PLUGIN_LOAD_TIMEOUT =
     Configuration.PREFIX + "plugin.load.timeout";
   public static final long DEFAULT_PLUGIN_LOAD_TIMEOUT =
@@ -930,10 +936,14 @@ public class PluginManager extends BaseLockssManager {
       String url = (String)iter.next();
       Configuration auConf = ConfigManager.newConfiguration();
       auConf.put(ConfigParamDescr.BASE_URL.getKey(), url);
-      auConf.put("nc_interval", "8m"); // TODO: Change -- for testing only!
+      auConf.put("nc_interval",
+		 Configuration.getCurrentConfig().get(PARAM_REGISTRY_CRAWL_INTERVAL,
+						      DEFAULT_REGISTRY_CRAWL_INTERVAL));
 
       String auId = generateAuId(registryPlugin, auConf);
       String auKey = auKeyFromAuId(auId);
+      log.debug2("Setting Registry AU " + auKey + " recrawl interval to " +
+		 auConf.get("nc_interval"));
 
       // Only process this registry if it is new.
       if (!auMap.containsKey(auId)) {
