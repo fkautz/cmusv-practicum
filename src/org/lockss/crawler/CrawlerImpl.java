@@ -182,7 +182,7 @@ public abstract class CrawlerImpl implements Crawler {
 	  Reader reader =
 	    new InputStreamReader(is, Constants.DEFAULT_ENCODING);
 	  if (!au.checkCrawlPermission(reader)) {
-	    logger.error("Couldn't start crawl due to missing permission.");
+	    logger.error("No crawl permission on " + permissionPage);
 	    crawl_ok = PermissionRecord.PERMISSION_NOT_OK;
 	    alertMgr.raiseAlert(Alert.auAlert(Alert.NO_CRAWL_PERMISSION,
 					      au).
