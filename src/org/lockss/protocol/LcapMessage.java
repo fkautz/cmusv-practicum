@@ -660,7 +660,7 @@ public class LcapMessage {
 
   public String getKey() {
     if (m_key == null) {
-      m_key = String.valueOf(B64Code.encode(m_challenge));
+      m_key = V1Poll.challengeToKey(m_challenge);
     }
     return m_key;
   }

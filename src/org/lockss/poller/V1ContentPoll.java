@@ -51,15 +51,20 @@ import org.lockss.plugin.*;
  */
 public class V1ContentPoll extends V1Poll {
 
-  V1ContentPoll(LcapMessage msg, PollSpec pollspec, PollManager pm) {
-    super(msg, pollspec, pm);
+  V1ContentPoll(PollSpec pollspec,
+		PollManager pm,
+		PeerIdentity orig,
+		byte[] challenge,
+		long duration,
+		String hashAlg) {
+    super(pollspec, pm, orig, challenge, duration);
     m_replyOpcode = LcapMessage.CONTENT_POLL_REP;
     m_tally = new V1PollTally(this,
                               CONTENT_POLL,
                               m_createTime,
-                              msg.getDuration(),
+                              duration,
                               V1PollFactory.getQuorum(),
-                              msg.getHashAlgorithm());
+                              hashAlg);
   }
 
 

@@ -51,23 +51,27 @@ class V1VerifyPoll extends V1Poll {
 
   BasePoll originalPoll;
 
-  public V1VerifyPoll(LcapMessage msg,
-			      PollSpec pollspec, PollManager pm) {
-    super(msg, pollspec, pm);
+  public V1VerifyPoll(PollSpec pollspec,
+		      PollManager pm,
+		      PeerIdentity orig,
+		      byte[] challenge,
+		      long duration,
+		      String hashAlg,
+		      byte[] verifier) {
+    super(pollspec, pm, orig, challenge, duration);
     m_replyOpcode = LcapMessage.VERIFY_POLL_REP;
     m_tally = new V1PollTally(this,
                               VERIFY_POLL,
                               m_createTime,
-                              msg.getDuration(),
+                              duration,
                               1,
-                              msg.getHashAlgorithm());
+                              hashAlg);
     if(idMgr.isLocalIdentity(m_callerID)) {
        // if we've called the poll, we aren't going to vote
        // so we set our state to wait for a tally.
        m_pollstate = PS_WAIT_TALLY;
     }
-    String key = String.valueOf(B64Code.encode(msg.getVerifier()));
-    originalPoll = m_pollmanager.getPoll(key);
+    originalPoll = m_pollmanager.getPoll(challengeToKey(verifier));
   }
 
 
