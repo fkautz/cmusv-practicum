@@ -641,6 +641,24 @@ public class LockssTestCase extends TestCase {
     }
   }
 
+  public static void assertEmpty(Collection coll) {
+    assertEmpty(null, coll);
+  }
+
+  public static void assertEmpty(String message, Collection coll) {
+    if (coll.size() > 0) {
+      StringBuffer sb = new StringBuffer();
+      if (message != null) {
+	sb.append(message);
+	sb.append(" ");
+      }
+      sb.append("Expected empty Collection, but containted ");
+      sb.append(coll);
+      fail(sb.toString());
+    }
+  }
+
+
   private static void failEquals(String message,
 				 Object expected, Object actual) {
     StringBuffer sb = new StringBuffer();
