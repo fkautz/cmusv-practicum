@@ -687,7 +687,7 @@ Test results in ${test.results}
 
   <!-- ==================================================================== -->
   <target name="func-all"
-   depends="prepare.test,check.junit,jar-tests"
+   depends="prepare.run.test,check.junit,jar-tests"
    description="Run all the functional tests (test/src/**/Func*.class" >
     <echo>
 Test results in ${test.results}
