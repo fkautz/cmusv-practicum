@@ -159,7 +159,7 @@ public class TestBaseOaiMetadataHandler extends LockssTestCase {
 	    String xmlText = xmlSBText.toString();
 
 	    try {
-		Document tempDoc = builder.parse(new StringBufferInputStream(xmlText));
+		Document tempDoc = builder.parse(new StringInputStream(xmlText));
 		nodeSet.addNode(tempDoc.getDocumentElement());
 		logger.debug3(OaiHandler.displayXML(tempDoc.getDocumentElement()));
 	    } catch (SAXException saxe) {
