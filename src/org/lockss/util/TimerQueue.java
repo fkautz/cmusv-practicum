@@ -97,6 +97,7 @@ public class TimerQueue implements Serializable {
     } catch (Exception e) {
       log.error("Timer callback threw", e);
     }
+    queue.remove(req);
   }    
 
   public void stop() {
