@@ -668,10 +668,15 @@ public class PollManager  extends BaseLockssManager {
 
 // ----------------  Callbacks -----------------------------------
 
-  static class RouterMessageHandler implements LcapRouter.MessageHandler {
+  class RouterMessageHandler implements LcapRouter.MessageHandler {
     public void handleMessage(LcapMessage msg) {
       theLog.debug3("received from router message:" + msg.toString());
-      handleMessage(msg);
+      try {
+	PollManager.this.handleMessage(msg);
+      }
+      catch (IOException ex) {
+	theLog.error("handle incoming message failed.");
+      }
     }
   }
 
