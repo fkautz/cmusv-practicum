@@ -30,8 +30,8 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.daemon
-;
+package org.lockss.daemon;
+
 import java.util.*;
 import junit.framework.TestCase;
 import org.apache.oro.text.regex.*;
