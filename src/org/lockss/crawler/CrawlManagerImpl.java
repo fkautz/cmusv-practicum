@@ -466,7 +466,7 @@ public class CrawlManagerImpl extends BaseLockssManager
       row.put(NUM_URLS_FETCHED, new Long(crawler.getNumFetched()));
       row.put(NUM_URLS_PARSED, new Long(crawler.getNumParsed()));
       row.put(START_URLS,
-	      (ListUtil.listToString(crawler.getStartUrls(), "\n")));
+	      (StringUtil.separatedString(crawler.getStartUrls(), "\n")));
       if (au instanceof BaseArchivalUnit) {
 	BaseArchivalUnit bau = (BaseArchivalUnit)au;
 	row.put(NUM_CACHE_HITS, new Long(bau.getCrawlSpecCacheHits()));
