@@ -426,6 +426,9 @@ public class IdentityManager extends BaseLockssManager {
 		  new ColumnDescriptor("sendFwd", "Fwd",
 				       ColumnDescriptor.TYPE_INT,
 				       "Packets forwarded by IP to us."),
+		  new ColumnDescriptor("dup", "Dup",
+				       ColumnDescriptor.TYPE_INT,
+				       "Duplicate packets received from IP."),
 		  new ColumnDescriptor("reputation", "Reputation",
 				       ColumnDescriptor.TYPE_INT)
 		  );
@@ -474,7 +477,7 @@ public class IdentityManager extends BaseLockssManager {
 	      new Long(id.getEventCount(LcapIdentity.EVENT_SEND_ORIG)));
       row.put("sendFwd",
 	      new Long(id.getEventCount(LcapIdentity.EVENT_SEND_FWD)));
-//       row.put("dupl", new Long(id.getEventCount(LcapIdentity.EVENT_DUPL)));
+      row.put("dup", new Long(id.getEventCount(LcapIdentity.EVENT_DUPLICATE)));
       row.put("reputation", new Long(id.getReputation()));
       return row;
     }
