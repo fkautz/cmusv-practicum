@@ -93,6 +93,8 @@ public class TestConfiguration extends LockssTestCase {
       fail("getInt(missing) didn't throw");
     } catch (Configuration.InvalidParam e) {
     }
+    assertTrue(config.containsKey("prop1"));
+    assertTrue(! config.containsKey("propnot"));
   }
 
   public void testLoadList() throws IOException {

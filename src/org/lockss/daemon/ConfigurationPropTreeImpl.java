@@ -88,6 +88,10 @@ public class ConfigurationPropTreeImpl extends Configuration {
     return PropUtil. differentKeys(getPropertyTree(), oc.getPropertyTree());
   }
 
+  public boolean containsKey(String key) {
+    return props.containsKey(key);
+  }
+
   public String get(String key) {
     return (String)props.get(key);
   }
