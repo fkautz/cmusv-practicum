@@ -130,9 +130,8 @@ public class TestCrawlerImpl extends LockssTestCase {
     cus.addUrl(url3);
 
     crawler.abortCrawl();
-    crawler.doCrawl();
-    Set expected = SetUtil.set(startUrl);
-    assertEquals(expected, cus.getCachedUrls());
+    assertFalse(crawler.doCrawl());
+    assertEmpty(cus.getCachedUrls());
 //     assertFalse(crawler.doCrawl0Called());
   }
 

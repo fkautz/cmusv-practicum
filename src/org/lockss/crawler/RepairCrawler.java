@@ -129,8 +129,15 @@ public class RepairCrawler extends CrawlerImpl {
 	break;
       }
     }
-    // unsuccessful crawl if window closed
+    if (crawlAborted) {
+      logger.info("Crawl aborted: "+au);
+      if (crawlStatus.getCrawlError() == 0) {
+	crawlStatus.setCrawlError(Crawler.STATUS_INCOMPLETE);
+      }
+      return false;
+    }
     if (windowClosed) {
+      // unsuccessful crawl if window closed
       crawlStatus.setCrawlError(Crawler.STATUS_WINDOW_CLOSED);
     }
     if (crawlStatus.getCrawlError() != 0) {

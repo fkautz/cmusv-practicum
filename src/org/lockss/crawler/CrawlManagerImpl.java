@@ -259,13 +259,6 @@ public class CrawlManagerImpl extends BaseLockssManager
       logger.debug("Couldn't schedule new content crawl due "+
 		   "to activity lock.");
       callCallback(cb, cookie, false);
-//       if (cb != null) {
-// 	try {
-// 	  cb.signalCrawlAttemptCompleted(false, cookie);
-// 	} catch (Exception e) {
-// 	  logger.error("Callback threw", e);
-// 	}
-//       }
     }
   }
 
@@ -364,25 +357,22 @@ public class CrawlManagerImpl extends BaseLockssManager
       } finally {
         // free all locks, regardless of exceptions
         if (locks != null) {
-          Iterator lockIt = locks.iterator();
-          while (lockIt.hasNext()) {
-            // loop through expiring all locks
-            ActivityRegulator.Lock lock =
-	      (ActivityRegulator.Lock)lockIt.next();
-            lock.expire();
-          }
+	  try {
+	    Iterator lockIt = locks.iterator();
+	    while (lockIt.hasNext()) {
+	      // loop through expiring all locks
+	      ActivityRegulator.Lock lock =
+		(ActivityRegulator.Lock)lockIt.next();
+	      lock.expire();
+	    }
+	  } catch (Exception e) {
+	    logger.warning("Threw freeing locks", e);
+	  }
         }
 	synchronized(runningCrawls) {
 	  runningCrawls.remove(crawler.getAu(), crawler);
 	}
 	callCallback(cb, cookie, crawlSuccessful);
-// 	if (cb != null) {
-// 	  try {
-// 	    cb.signalCrawlAttemptCompleted(crawlSuccessful, cookie);
-// 	  } catch (Exception e) {
-// 	    logger.error("Callback threw", e);
-// 	  }
-// 	}
       }
     }
   }
@@ -395,11 +385,6 @@ public class CrawlManagerImpl extends BaseLockssManager
     }
     public void signalCrawlAttemptCompleted(boolean success, Object cookie) {
       callCallback(cb, cookie, false);
-//       try {
-// 	cb.signalCrawlAttemptCompleted(false, cookie);
-//       } catch (Exception e) {
-// 	logger.error("Callback threw", e);
-//       }
     }
   }
 
