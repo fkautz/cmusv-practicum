@@ -75,7 +75,7 @@ public abstract class IpAccessControl extends LockssServlet {
 
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
-    configMgr = getLockssDaemon().getConfigManager();
+    configMgr = getLockssApp().getConfigManager();
   }
 
   public void lockssHandleRequest() throws IOException {
