@@ -33,6 +33,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.state;
 
+import java.util.Date;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.util.TimeBase;
 
@@ -111,7 +112,10 @@ public class AuState {
     StringBuffer sb = new StringBuffer();
     sb.append("[AuState: ");
     sb.append("lastCrawlTime=");
-    sb.append(lastCrawlTime);
+    sb.append(new Date(lastCrawlTime));
+    sb.append(", ");
+    sb.append("lastTopLevelPoll=");
+    sb.append(new Date(lastTopLevelPoll));
     sb.append("]");
     return sb.toString();
   }
