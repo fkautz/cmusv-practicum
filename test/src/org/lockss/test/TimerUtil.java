@@ -62,7 +62,7 @@ public class TimerUtil {
 //    }
 
   /**
-   * Sleep for <code>ms</code> milliseconds, ignoring interrupts
+   * Sleep for <code>ms</code> milliseconds, returning early if interrupted
    * @param ms length to sleep, in ms
    */
   public static void guaranteedSleep(long ms) {
@@ -74,6 +74,7 @@ public class TimerUtil {
       try {
 	sleep(expMS - nowMS);
       } catch (InterruptedException e) {
+	return;
       }
     }
   }
