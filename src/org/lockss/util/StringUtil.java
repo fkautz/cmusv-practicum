@@ -390,6 +390,31 @@ public class StringUtil {
 			   Util.SUBSTITUTE_ALL);
   }
 
+  /** Escape all commas and backslashes with backslash, allowing result to
+   * be included in csv text */
+  public static String csvEncode(String s) {
+    int pos = Math.max(s.indexOf('\\'), s.indexOf(','));
+    if (pos < 0) return s;
+    int len = s.length();
+    StringBuffer sb = new StringBuffer(len + 8);
+    for (int ix = 0; ix < len; ix++) {
+      char c = s.charAt(ix);
+      switch(c) {
+	// Special characters
+      case '\\':
+	sb.append("\\\\");
+	break;
+      case ',':
+	sb.append("\\,");
+	break;
+      default:
+	sb.append(c);
+	break;
+      }
+    }
+    return sb.toString();
+  }
+
   /**
    * Returns the number of instances of a particular substring in a string.
    * This ignores overlap, starting from the left, so 'xxxxxy' would have

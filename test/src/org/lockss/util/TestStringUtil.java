@@ -138,6 +138,12 @@ public class TestStringUtil extends LockssTestCase {
     assertEquals("\\ 1\\.2\\\\3\\?", StringUtil.escapeNonAlphaNum(" 1.2\\3?"));
   }
 
+  public void testCsvEncode() {
+    assertEquals("", StringUtil.csvEncode(""));
+    assertSame("foo", StringUtil.csvEncode("foo"));
+    assertEquals("foo\\\\bar\\,x", StringUtil.csvEncode("foo\\bar,x"));
+  }
+
   public void testCountOccurences() {
     assertEquals(0, StringUtil.countOccurences("", ""));
     assertEquals(0, StringUtil.countOccurences("test", ""));
