@@ -61,11 +61,8 @@ public abstract class JettyManager extends BaseLockssManager {
    */
   public void startService() {
     super.startService();
-    // install Jetty logger once only
-    if (!jettyLogInited) {
-      org.mortbay.util.Log.instance().add(new LoggerLogSink());
-      jettyLogInited = true;
-    }
+    installJettyLog();
+    resetConfig();
   }
 
   // synchronized on class
@@ -80,11 +77,13 @@ public abstract class JettyManager extends BaseLockssManager {
   // Set Jetty debug properties from config params
   protected void setConfig(Configuration config, Configuration prevConfig,
 			   Set changedKeys) {
-    Properties p = System.getProperties();
-    Code.setDebug(config.getBoolean(PARAM_JETTY_DEBUG, false));
-    Code.setDebugPatterns(config.get(PARAM_JETTY_DEBUG_PATTERNS));
-    if (changedKeys.contains(PARAM_JETTY_DEBUG_VERBOSE)) {
-      Code.setVerbose(config.getInt(PARAM_JETTY_DEBUG_VERBOSE, 0));
+    if (jettyLogInited) {
+      Properties p = System.getProperties();
+      Code.setDebug(config.getBoolean(PARAM_JETTY_DEBUG, false));
+      Code.setDebugPatterns(config.get(PARAM_JETTY_DEBUG_PATTERNS));
+      if (changedKeys.contains(PARAM_JETTY_DEBUG_VERBOSE)) {
+	Code.setVerbose(config.getInt(PARAM_JETTY_DEBUG_VERBOSE, 0));
+      }
     }
   }
 }
