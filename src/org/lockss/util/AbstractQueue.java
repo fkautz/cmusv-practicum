@@ -127,4 +127,12 @@ public abstract class AbstractQueue implements Queue {
   public boolean isEmpty() {
     return queue.isEmpty();
   }
+
+  /**
+   * Return a snapshot of the queue contents
+   */
+  public synchronized List copyAsList() {
+    return new ArrayList(queue);
+  }
+
 }

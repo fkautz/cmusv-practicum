@@ -81,4 +81,10 @@ public interface Queue {
    * Return true iff the queue is empty
    */
   public boolean isEmpty();
+
+  /**
+   * Return a snapshot of the queue contents
+   */
+  public List copyAsList();
+
 }
