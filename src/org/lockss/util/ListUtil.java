@@ -198,6 +198,15 @@ public class ListUtil {
 	return l;
     }
 
+  /** Create a list containing the elements of an iterator */
+  public static List fromIterator(Iterator iterator) {
+    List l = list();
+    while (iterator.hasNext()) {
+      l.add(iterator.next());
+    }
+    return l;
+  }
+
   /** Create a list containing the elements of a comma separated string */
     public static List fromCSV(String csv) {
 	List res = list();

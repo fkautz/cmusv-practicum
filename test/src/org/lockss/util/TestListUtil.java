@@ -54,6 +54,12 @@ public class TestListUtil extends LockssTestCase {
     assertIsomorphic(arr, ListUtil.fromArray(arr));
   }
 
+  public void testFromIterator() {
+    String arr[] = {"1", "2", "4"};
+    assertEquals(ListUtil.fromArray(arr),
+		 ListUtil.fromIterator(new ArrayIterator(arr)));
+  }
+
   public void testFromCSV() {
     String csv = "1,2,4";
     String arr[] = {"1", "2", "4"};
