@@ -392,7 +392,7 @@ public class HistoryRepositoryImpl
       try {
         mapping.loadMapping(mappingLoc);
       } catch (Exception e) {
-        logger.error("Couldn't load mapping file '"+mappingLoc+"'");
+        logger.error("Couldn't load mapping file '"+mappingLoc+"'", e);
         throw new LockssDaemonException("Couldn't load mapping file.");
       }
     }
