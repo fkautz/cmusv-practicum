@@ -98,11 +98,11 @@ public class PollState implements Comparable {
   public String getTypeString() {
     switch (type) {
       case 0:
-        return "Name Poll";
+        return "N";
       case 1:
-        return "Content Poll";
+        return "C";
       default:
-        return "Undefined";
+        return "Unknown";
     }
   }
 
@@ -169,9 +169,9 @@ public class PollState implements Comparable {
       case UNREPAIRABLE:
         return "Unrepairable";
       case ERR_SCHEDULE_HASH:
-        return "Error scheduling hash";
+        return "Hash Busy";
       case ERR_HASHING:
-        return "Error hashing";
+        return "Error Hashing";
       case ERR_IO:
         return "Error I/0";
       case ERR_UNDEFINED:
