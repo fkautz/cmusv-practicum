@@ -78,6 +78,7 @@ public class LeafNodeImpl extends RepositoryNodeImpl implements LeafNode {
       throw new UnsupportedOperationException("New version already"+
                                               " initialized.");
     }
+    ensureCurrentVersionLoaded();
     if (currentVersion == 0) {
       File cacheDir = getCacheLocation();
       if (!cacheDir.exists()) {
