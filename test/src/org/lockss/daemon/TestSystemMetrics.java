@@ -49,8 +49,8 @@ public class TestSystemMetrics extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     metrics = new SystemMetrics();
-    configHashParams(SystemMetrics.DEFAULT_HASH_DURATION,
-                     SystemMetrics.DEFAULT_HASH_STEP);
+    configHashParams(Integer.parseInt(SystemMetrics.DEFAULT_HASH_DURATION),
+                     Integer.parseInt(SystemMetrics.DEFAULT_HASH_STEP));
   }
 
   public void testHashEstimation() throws IOException {
@@ -61,7 +61,8 @@ public class TestSystemMetrics extends LockssTestCase {
     long endTime = TimeBase.nowMs();
     assertTrue(estimate > 0);
     //XXX fix using simulated time
-    assertTrue(endTime - startTime > (100000/SystemMetrics.DEFAULT_HASH_STEP));
+    int expectedTime = (10000 * 10) / Integer.parseInt(SystemMetrics.DEFAULT_HASH_STEP);
+    assertTrue(endTime - startTime > expectedTime);
   }
 
   public void testEstimationCaching() throws IOException {
