@@ -32,21 +32,22 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.util;
 
+import java.lang.reflect.*;
 import java.util.*;
 import junit.framework.*;
 import org.lockss.test.LockssTestCase;
 
 /**
- * <p>Title: TestTimedHashMap </p>
- * <p>Description: A set of unit test for the TimedHashMap class.</p>
+ * <p>Title: TestVariableTimedMap </p>
+ * <p>Description: A set of unit test for the VariableTimedMap class.</p>
  * @author Tyrone Nicholas
  * @version 1.0
  */
 
-public class TestTimedHashMap extends LockssTestCase {
+public class TestVariableTimedMap extends LockssTestCase {
 
   public static Class testedClasses[] = {
-    org.lockss.util.TimedHashMap.class
+    org.lockss.util.VariableTimedMap.class
   };
 
   protected void setUp() throws Exception {
@@ -59,109 +60,83 @@ public class TestTimedHashMap extends LockssTestCase {
     super.tearDown();
   }
 
-  static int timeout = 60000;
+  Object keys[] = { new Integer(3),"foo",new Double(4.0), new Float(4.3) };
+  Object values[] = { "three","bar",new Integer(4), new Boolean(true) };
+  int timeouts[] = { 10000, 20000, 30000, 40000 };
 
-  Object keys[] = { new Integer(3),"foo",new Double(4.0) };
-  Object values[] = { "three","bar",new Integer(4) };
 
-  TimedHashMap makeGeneric()
+  VariableTimedMap makeGeneric()
   {
-    TimedHashMap map = new TimedHashMap(timeout);
-    map.put(keys[0],values[0]);
-    assertTrue(timeout>10);
-    TimeBase.step(timeout/10);
-    map.put(keys[1],values[1]);
-    map.put(keys[2],values[2]);
+    VariableTimedMap map = new VariableTimedMap();
+    for (int var=0; var<Array.getLength(keys); var++) {
+      map.put(keys[var],values[var],timeouts[var]);
+    }
     return map;
+
   }
 
   public void testTimeout()
   {
-    TimedHashMap map = makeGeneric();
-    TimeBase.step(timeout*9/10-1);
+    VariableTimedMap map = makeGeneric();
+    TimeBase.step(timeouts[0]-1);
     Object value = map.get(keys[0]);
     assertSame(value,values[0]);
     TimeBase.step(1);
     value = map.get(keys[0]);
     assertNull(value);
+    assertSame(map.get(keys[1]),values[1]);
   }
 
   public void testClear()
   {
-    TimedHashMap map = makeGeneric();
+    VariableTimedMap map = makeGeneric();
     assertFalse(map.isEmpty());
     map.clear();
     assertTrue(map.isEmpty());
   }
 
   public void testPutGet() {
-    TimedHashMap map = makeGeneric();
+    VariableTimedMap map = makeGeneric();
     assertEquals(keys.length,values.length);
     for (int i=0; i<keys.length; i++)
       assertEquals(map.get(keys[i]),values[i]);
   }
 
   public void testOverwrite() {
-    TimedHashMap map = makeGeneric();
-    map.put(keys[1],"joe");
+    VariableTimedMap map = makeGeneric();
+    map.put(keys[1],"joe",timeouts[1]);
     String joe = (String)map.get(keys[1]);
     assertSame(joe,"joe");
   }
 
   public void testUpdate() {
-    TimedHashMap map = makeGeneric();
-    TimeBase.step(timeout-1);
-    map.put(keys[1],values[1]);
-    TimeBase.step(timeout-1);
-    assertTrue(map.containsKey(keys[1]));
-  }
-
-  public void testEqualityHash() {
-    TimeBase.setSimulated();
-    TimedHashMap map = makeGeneric();
-    TimeBase.setSimulated();
-    TimedHashMap map3 = makeGeneric();
-    TimedHashMap map2 = new TimedHashMap(timeout);
-    map2.putAll(map);
-    /*assertNotEquals(map,map2);
-    assertEquals(map,map3);*/
-    assertEquals(map.hashCode(),map3.hashCode());
+    VariableTimedMap map = makeGeneric();
+    TimeBase.step(timeouts[0]-1);
+    map.put(keys[0],values[0],timeouts[0]);
+    TimeBase.step(timeouts[0]-1);
+    assertTrue(map.containsKey(keys[0]));
   }
 
   public void testSizeRemove() {
-    TimedHashMap map = makeGeneric();
+    VariableTimedMap map = makeGeneric();
     assertEquals(map.size(),keys.length);
-    map.put("joe","sue");
+    map.put("joe","sue",10000);
     assertEquals(map.size(),keys.length+1);
     map.remove("joe");
     assertEquals(map.size(),keys.length);
   }
 
-  public void testPutAll() {
-    TimedHashMap map = makeGeneric();
-    Map t = new HashMap();
-    t.put("hack","burn");
-    t.put(new Integer(18),"eighteen");
-    Integer eight = new Integer(8);
-    t.put(new Float(8.8),eight);
-    map.putAll(t);
-    t = null;
-    assertSame(map.get("hack"),"burn");
-    assertEquals(map.size(),keys.length+3);
-    assertSame(map.get(new Float(8.8)),eight);
-  }
-
-
   void checkCollection(Collection coll,Object[] objs) {
     int loc = 0;
     Iterator it = coll.iterator();
     assertEquals(coll.size(), objs.length);
-    while (it.hasNext()) {
-      assertEquals(it.next(), objs[loc++]);
+    for (loc=0; loc<objs.length; loc ++) {
+      assertTrue(coll.contains(objs[loc]));
     }
   }
+
   public void testSets() {
-    TimedHashMap map = makeGeneric();
+    VariableTimedMap map = makeGeneric();
 
     Set keyset = map.keySet();
     checkCollection(keyset,keys);
@@ -171,20 +146,72 @@ public class TestTimedHashMap extends LockssTestCase {
   }
 
   public void testEntrySet() {
-    TimedHashMap map = makeGeneric();
+    VariableTimedMap map = makeGeneric();
     int loc = 0;
     Set entryset = map.entrySet();
     Iterator it = entryset.iterator();
     assertEquals(entryset.size(), keys.length);
     assertEquals(entryset.size(), values.length);
+    List keylist = Arrays.asList(keys);
+    List valuelist = Arrays.asList(values);
     while (it.hasNext()) {
       Map.Entry entry = (Map.Entry) it.next();
-      assertEquals(entry.getKey(), keys[loc]);
-      assertEquals(entry.getValue(), values[loc++]);
+      assertTrue(keylist.contains(entry.getKey()));
+      assertTrue(valuelist.contains(entry.getValue()));
     }
   }
 
+  public void testIteratorExpiry() {
+    VariableTimedMap map = makeGeneric();
+    Set entryset = map.entrySet();
+    Iterator entryit = entryset.iterator();
+    TimeBase.step(timeouts[0] + 1);
+    Object obj;
+    try {
+      obj = entryit.next();
+      fail("Should have thrown TimedIteratorExpiredException");
+    } catch (TimedIteratorExpiredException e) {
+      Iterator keyit = map.keySet().iterator();
+      TimeBase.step(timeouts[1] + 1);
+      try {
+        obj = keyit.next();
+        fail("Should have thrown TimedIteratorExpiredException");
+      } catch (TimedIteratorExpiredException f) {
+        Iterator valueit = map.values().iterator();
+        TimeBase.step(timeouts[2] + 1);
+        try {
+          obj = valueit.next();
+          fail("Should have thrown TimedIteratorExpiredException");
+        } catch (TimedIteratorExpiredException g) {
+        }
+      }
+    }
+  }
+
+  void verifyIteratorInList(Iterator it, List list) {
+    while (it.hasNext()) {
+      assertTrue(list.contains(it.next()));
+    }
+  }
+
+  public void testIterators() {
+    VariableTimedMap map = makeGeneric();
+    Iterator entryit = map.entrySet().iterator();
+    Iterator keyit = map.keySet().iterator();
+    Iterator valueit = map.values().iterator();
+    List keylist = Arrays.asList(keys);
+    List valuelist = Arrays.asList(values);
+    while (entryit.hasNext()) {
+      Map.Entry entry = (Map.Entry)entryit.next();
+      assertTrue(keylist.contains(entry.getKey()));
+      assertTrue(valuelist.contains(entry.getValue()));
+    }
+    verifyIteratorInList(keyit,keylist);
+    verifyIteratorInList(valueit,valuelist);
+  }
+
+
   public static Test suite() {
-    return new TestSuite(TestTimedHashMap.class);
+    return new TestSuite(TestVariableTimedMap.class);
   }
 }
