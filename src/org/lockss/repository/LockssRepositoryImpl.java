@@ -42,6 +42,7 @@ import org.lockss.plugin.*;
 import org.lockss.util.*;
 import org.apache.commons.collections.LRUMap;
 import org.apache.commons.collections.ReferenceMap;
+import java.net.MalformedURLException;
 
 /**
  * LockssRepository is used to organize the urls being cached.
@@ -276,4 +277,13 @@ public class LockssRepositoryImpl implements LockssRepository {
   int getRefHits() { return refHits; }
   int getRefMisses() { return refMisses; }
 
+  void consistencyCheck(RepositoryNodeImpl node) {
+    logger.warning("Inconsistent node state found; node content deactivated.");
+    if (!node.cacheLocationFile.exists()) {
+      node.cacheLocationFile.mkdirs();
+    }
+    // manually deactivate
+    node.currentVersion = RepositoryNodeImpl.INACTIVE_VERSION;
+    node.curProps = null;
+  }
 }

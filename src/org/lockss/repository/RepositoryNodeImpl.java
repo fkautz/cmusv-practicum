@@ -56,15 +56,15 @@ public class RepositoryNodeImpl implements RepositoryNode {
   private boolean newOutputCalled = false;
   private boolean newPropsSet = false;
   private File curInputFile;
-  private Properties curProps;
+  protected Properties curProps;
   private String versionName;
-  private int currentVersion = -1;
+  protected int currentVersion = -1;
 
   private String contentBufferStr = null;
   protected File nodeRootFile = null;
-  private File cacheLocationFile;
-  private File currentCacheFile;
-  private File currentPropsFile;
+  protected File cacheLocationFile;
+  protected File currentCacheFile;
+  protected File currentPropsFile;
   private File tempCacheFile;
   private File tempPropsFile;
 
@@ -335,12 +335,13 @@ public class RepositoryNodeImpl implements RepositoryNode {
     }
     try {
       InputStream is =
-	new BufferedInputStream(new FileInputStream(curInputFile));
-      return new
-	RepositoryNode.RepositoryNodeContents(is,
-					      (Properties)curProps.clone());
+          new BufferedInputStream(new FileInputStream(curInputFile));
+      return new RepositoryNode.RepositoryNodeContents(is,
+          (Properties)curProps.clone());
     } catch (FileNotFoundException fnfe) {
       logger.error("Couldn't get inputstream for '"+curInputFile.getPath()+"'");
+      logger.debug3("Running consistency check on node '"+url+"'");
+      repository.consistencyCheck(this);
       throw new LockssRepository.RepositoryStateException("Couldn't get info for node.");
     }
   }

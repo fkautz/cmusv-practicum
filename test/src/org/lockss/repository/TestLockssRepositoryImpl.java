@@ -241,6 +241,29 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
     assertEquals(LockssRepository.NO_RELATION, repo.cusCompare(cus1, cus2));
   }
 
+  public void testConsistencyCheck() throws Exception {
+    createLeaf("http://www.example.com/testDir/leaf1", "test stream", null);
+
+    RepositoryNodeImpl leaf = (RepositoryNodeImpl)
+        repo.getNode("http://www.example.com/testDir/leaf1");
+    assertTrue(leaf.hasContent());
+
+    // delete content directory
+    leaf.currentCacheFile.delete();
+    // version still indicates content
+    assertEquals(1, leaf.getCurrentVersion());
+
+    try {
+      leaf.getNodeContents();
+      fail("Should have thrown state exception.");
+    } catch (LockssRepository.RepositoryStateException rse) { }
+
+    assertTrue(leaf.cacheLocationFile.exists());
+    assertEquals(RepositoryNodeImpl.INACTIVE_VERSION, leaf.getCurrentVersion());
+    assertFalse(leaf.hasContent());
+  }
+
+
   private RepositoryNode createLeaf(String url, String content,
                                     Properties props) throws Exception {
     return TestRepositoryNodeImpl.createLeaf(repo, url, content, props);
