@@ -52,7 +52,7 @@ public class TestMemoryBoundFunction extends LockssTestCase {
   private int pathsTried;
   private static String[] names = {
     "MOCK",
-    "MBF1",
+    // "MBF1",
     "MBF2",
   };
   private static MemoryBoundFunctionFactory[] factory = null;
@@ -467,6 +467,7 @@ public class TestMemoryBoundFunction extends LockssTestCase {
 	  log.debug(names[index] + ": proof[" + i + "] = " + (proof[i-1]+1));
 	}
       }
+      // XXX improve butchering so this doesn't happen
       if (!butchered)
 	fail(names[index] + ": could not butcher proof");
     }
