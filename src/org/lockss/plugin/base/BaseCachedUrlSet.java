@@ -279,11 +279,6 @@ public class BaseCachedUrlSet implements CachedUrlSet {
     SystemMetrics metrics = theDaemon.getSystemMetrics();
     long bytesPerMs = 0;
     try {
-      // SystemMetrics doesn't use the hasher currently anyway, so don't
-      // bother creating it
-//         MessageDigest hasher = LcapMessage.getDefaultHasher();
-//         CachedUrlSetHasher cush = contentHasherFactory(this, hasher);
-//         bytesPerMs = metrics.getBytesPerMsHashEstimate(cush, hasher);
       bytesPerMs = metrics.getBytesPerMsHashEstimate();
       if (bytesPerMs > 0) {
 	return /*(long)*/(size / bytesPerMs);

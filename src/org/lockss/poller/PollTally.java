@@ -194,11 +194,12 @@ public abstract class PollTally implements Tallier{
    * @param voterID the LcapIdentity of the voter to check
    * @return true if a vote can be found for this Identity.
    */
-  boolean hasVoted(LcapIdentity voterID) {
+  boolean hasVoted(LcapIdentity voter) {
     Iterator it = pollVotes.iterator();
+    String voterID = voter.getIdKey();
     while(it.hasNext()) {
       Vote vote = (Vote) it.next();
-      if(voterID.isEqual(vote.getIDAddress())) {
+      if(voterID.compareTo(vote.getIdentityKey()) == 0) {
         return true;
       }
     }

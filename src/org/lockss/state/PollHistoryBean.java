@@ -173,12 +173,7 @@ public class PollHistoryBean extends PollHistory {
     Iterator beanIter = voteBeans.iterator();
     while (beanIter.hasNext()) {
       VoteBean bean = (VoteBean)beanIter.next();
-      try {
-        votes.add(bean.getVote());
-      }
-      catch (UnknownHostException ex) {
-        log.error("invalid address in Vote Bean");
-      }
+      votes.add(bean.getVote());
     }
   }
 

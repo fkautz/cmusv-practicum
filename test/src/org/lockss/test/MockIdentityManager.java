@@ -55,11 +55,11 @@ public class MockIdentityManager extends IdentityManager {
     idMap = new HashMap();
   }
 
-  public void changeReputation(IPAddr id, int changeKind) {
+  public void changeReputation(String id, int changeKind) {
     idMap.put(id, new Integer(changeKind));
   }
 
-  public int lastChange(IPAddr id) {
+  public int lastChange(String id) {
     Integer change = (Integer)idMap.get(id);
     if (change==null) {
       return -1;

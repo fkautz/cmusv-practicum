@@ -420,7 +420,7 @@ public class TestHistoryRepositoryImpl extends LockssTestCase {
   }
 
   private String createIdentityKey() throws Exception {
-    theDaemon.getIdentityManager().findIdentity(IPAddr.getByName("127.0.0.1"));
+    theDaemon.getIdentityManager().findIdentity("127.0.0.1");
     return "127.0.0.1";
   }
 

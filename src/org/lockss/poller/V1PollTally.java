@@ -274,12 +274,12 @@ public class V1PollTally extends PollTally {
 
 
 
-  void adjustReputation(LcapIdentity voterID, int repDelta) {
+  void adjustReputation(LcapIdentity voter, int repDelta) {
     synchronized (this) {
       Iterator it = pollVotes.iterator();
       while (it.hasNext()) {
         Vote vote = (Vote) it.next();
-        if (voterID.isEqual(vote.getIDAddress())) {
+        if (voter.getIdKey().equals(vote.getIdentityKey())) {
           if (vote.isAgreeVote()) {
             wtAgree += repDelta;
           }
@@ -418,7 +418,7 @@ class ReplayVoteCallback implements HashService.Callback {
 
       if (hash_completed) {
         Vote v = (Vote) cookie;
-        LcapIdentity id = idManager.findIdentity(v.getIDAddress());
+        LcapIdentity id = idManager.findIdentity(v.getIdentityKey());
         if (idManager.isLocalIdentity(id)) {
           poll.copyVote(v,true);
         }

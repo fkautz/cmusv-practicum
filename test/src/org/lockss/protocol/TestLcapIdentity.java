@@ -77,14 +77,14 @@ public class TestLcapIdentity extends LockssTestCase {
       setCurrentConfigFromUrlList(ListUtil.list(FileTestUtil.urlOfString(prop)));
     idmgr = daemon.getIdentityManager();
     try {
-      fakeId = new LcapIdentity(IPAddr.getByName(fakeIdString));
+      fakeId = new LcapIdentity(fakeIdString);
       testAddress = IPAddr.getByName("127.0.0.1");
     }
     catch (UnknownHostException ex) {
       fail("can't open test host");
     }
     testReputation = IdentityManager.INITIAL_REPUTATION;
-    testIdKey = LcapIdentity.makeIdKey(testAddress);
+    testIdKey = LcapIdentity.makeIdKey(testAddress, 0);
     PollSpec spec = new MockPollSpec(archivalid, urlstr, lwrbnd, uprbnd);
     testMsg = LcapMessage.makeRequestMsg(spec,
 					 testentries,
@@ -97,7 +97,7 @@ public class TestLcapIdentity extends LockssTestCase {
 
   /** test for method getIdentity(..) */
   public void testGetIdentity() {
-    LcapIdentity id1 = idmgr.findIdentity(testAddress);
+    LcapIdentity id1 = idmgr.findIdentity(testAddress, 0);
     assertTrue(id1 != null);
     // try and get the identity we just added
     LcapIdentity id2 = idmgr.getIdentity(id1.m_idKey);
@@ -122,7 +122,7 @@ public class TestLcapIdentity extends LockssTestCase {
 
   /** test for method isEqual(..) */
   public void testIsEqual() {
-    LcapIdentity id1 = idmgr.findIdentity(testAddress);
+    LcapIdentity id1 = idmgr.findIdentity(testAddress, 0);
     LcapIdentity id2 = idmgr.getIdentity(id1.m_idKey);
     assertEquals((String)id1.m_idKey,(String)id2.m_idKey);
   }
