@@ -592,8 +592,8 @@ public class PluginManager extends BaseLockssManager {
     String pluginName = pluginNameFromKey(pluginKey);
     String confFile = null;
     if (xmlPlugins.contains(pluginName)) {
-      confFile = StringUtil.replaceString(pluginName, ".", "/") + ".xml";
-      pluginName = CONFIGURABLE_PLUGIN_NAME;
+      confFile = "/" + StringUtil.replaceString(pluginName, ".", "/") + ".xml";
+      pluginName = getConfigurablePluginName();
     }
     Class pluginClass;
     try {
@@ -662,6 +662,10 @@ public class PluginManager extends BaseLockssManager {
     }
     pluginMap.put(pluginKey, plugin);
     titleMap = null;
+  }
+
+  protected String getConfigurablePluginName() {
+    return CONFIGURABLE_PLUGIN_NAME;
   }
 
   /**
