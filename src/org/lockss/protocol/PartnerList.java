@@ -80,6 +80,9 @@ class PartnerList {
       log.error("Default partner list is empty");
     }
     defaultPartnerList = newDefaultList;
+    if (partners.isEmpty()) {
+      addDefaultPartners();
+    }
   }
 
   Set getPartners() {
@@ -110,6 +113,13 @@ class PartnerList {
     if (partners.size() == 0) {
       addFromDefaultList();
     }      
+  }
+
+  void addDefaultPartners() {
+    for (Iterator iter = defaultPartnerList.iterator(); iter.hasNext(); ) {
+      InetAddress ip = (InetAddress)iter.next();
+      addPartner(ip);
+    }
   }
 
   void removeLeastRecent() {
