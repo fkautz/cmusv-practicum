@@ -169,7 +169,7 @@ public class EncodedProperty extends Properties {
     String value = getProperty(key);
 
     if(value != null) {
-      ret = new Boolean(value).booleanValue();
+      ret = Boolean.valueOf(value).booleanValue();
      }
     return ret;
   }

@@ -152,5 +152,10 @@ public class ColumnDescriptor {
 	    type == colDesc.getType() &&
 	    columnName.equals(colDesc.getColumnName()));
   }
+
+  public int hashCode() {
+    throw new UnsupportedOperationException();
+  }
+
 }
 

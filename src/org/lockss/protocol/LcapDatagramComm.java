@@ -469,8 +469,9 @@ public class LcapDatagramComm
    * @param protocol an int representing the protocol
    */
   public void unregisterMessageHandler(int protocol) {
-    if (protocol < messageHandlers.size());
-    messageHandlers.set(protocol, null);
+    if (protocol < messageHandlers.size()) {
+      messageHandlers.set(protocol, null);
+    }
   }
 
 
@@ -575,7 +576,7 @@ public class LcapDatagramComm
 
   // Statistics
 
-  private class Stats {
+  private static class Stats {
     int port;
     int proto;
     boolean multicast;

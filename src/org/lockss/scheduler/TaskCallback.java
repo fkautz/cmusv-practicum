@@ -37,7 +37,7 @@ import java.io.*;
  * <code>TaskCallback</code> is used to notify task requestors
  * that their task has succeeded or failed.
  */
-public interface TaskCallback extends Serializable {
+public interface TaskCallback {
 
   /**
    * Called to indicate that a task has changed state.  Normally

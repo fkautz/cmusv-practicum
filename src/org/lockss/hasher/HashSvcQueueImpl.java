@@ -124,7 +124,7 @@ public class HashSvcQueueImpl
 				    MessageDigest hasher,
 				    Deadline deadline,
 				    Callback callback,
-				    Serializable cookie) {
+				    Object cookie) {
     HashQueue.Request req =
       new HashQueue.Request(urlset, hasher, deadline,
 			    callback, cookie,
@@ -157,7 +157,7 @@ public class HashSvcQueueImpl
 				  MessageDigest hasher,
 				  Deadline deadline,
 				  Callback callback,
-				  Serializable cookie) {
+				  Object cookie) {
     HashQueue.Request req =
       new HashQueue.Request(urlset, hasher, deadline,
 			    callback, cookie,

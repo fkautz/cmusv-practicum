@@ -173,7 +173,7 @@ public class StatusServiceImpl
     logger.debug("Unregistered ObjectReferenceAccessor for table "+tableName);
   }
 
-  private class ObjRefAccessorSpec {
+  private static class ObjRefAccessorSpec {
     Class cls;
     String table;
     ObjectReferenceAccessor accessor;

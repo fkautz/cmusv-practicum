@@ -100,7 +100,7 @@ public class V1NamePoll extends V1Poll {
    * @param callback the hashing callback to use on return
    * @return true if hash successfully completed.
    */
-  boolean scheduleHash(MessageDigest hasher, Deadline timer, Serializable key,
+  boolean scheduleHash(MessageDigest hasher, Deadline timer, Object key,
                        HashService.Callback callback) {
 
     HashService hs = m_pollmanager.getHashService();
@@ -291,6 +291,10 @@ public class V1NamePoll extends V1Poll {
         return (sameEntries( ( (NameVote) obj).knownEntries));
       }
       return false;
+    }
+
+    public int hashCode() {
+      throw new UnsupportedOperationException();
     }
 
     boolean sameEntries(ArrayList entries) {

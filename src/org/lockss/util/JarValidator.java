@@ -269,7 +269,7 @@ public class JarValidator {
    * If the Jar doesn't verify, this exception will
    * explain exactly why.
    */
-  public class JarValidationException extends Exception {
+  public static class JarValidationException extends Exception {
     JarValidationException(String s) {
       super(s);
     }

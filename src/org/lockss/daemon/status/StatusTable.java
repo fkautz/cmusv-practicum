@@ -404,6 +404,10 @@ public class StatusTable {
       //true iff both strings are equal or null
       return StringUtil.equalStrings(key, ref.getKey());
     }
+
+    public int hashCode() {
+      throw new UnsupportedOperationException();
+    }
   }
 
   /**

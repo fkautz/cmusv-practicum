@@ -187,6 +187,10 @@ public class Schedule {
       return false;
     }
 
+    public int hashCode() {
+      throw new UnsupportedOperationException();
+    }
+
     public String toString() {
       StringBuffer sb = new StringBuffer();
       sb.append("[BEvnt:");
@@ -275,6 +279,10 @@ public class Schedule {
 		runTime == oc.getRunTime());
       }
       return false;
+    }
+
+    public int hashCode() {
+      throw new UnsupportedOperationException();
     }
 
     public String toString() {

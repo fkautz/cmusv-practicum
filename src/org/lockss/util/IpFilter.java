@@ -222,6 +222,10 @@ public class IpFilter {
       return false;
     }
 
+    public int hashCode() {
+      return 3*addr + mask;
+    }
+
     /** Return true if ip is equal to this, or if either ip or this is a
      * mask that matches the other.
      */

@@ -1178,7 +1178,7 @@ public class PluginManager
 
   /** Comparator for sorting Aus alphabetically by title.  This is used in a
    * TreeSet, so must return 0 only for identical objects. */
-  class AuOrderComparator implements Comparator {
+  static class AuOrderComparator implements Comparator {
     CatalogueOrderComparator coc = CatalogueOrderComparator.SINGLETON;
 
     public int compare(Object o1, Object o2) {
@@ -1568,7 +1568,7 @@ public class PluginManager
    * CrawlManager callback that is responsible for handling Registry
    * AUs when they're finished with their initial crawls.
    */
-  private class RegistryCallback implements CrawlManager.Callback {
+  private static class RegistryCallback implements CrawlManager.Callback {
     private BinarySemaphore bs;
 
     List registryUrls = Collections.synchronizedList(new ArrayList());

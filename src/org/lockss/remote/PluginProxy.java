@@ -132,7 +132,7 @@ public class PluginProxy {
     return remoteApi.mapAusToProxies(plugin.getAllAus());
   }
 
-  public class NoSuchPlugin extends Exception {
+  public static class NoSuchPlugin extends Exception {
     public NoSuchPlugin(String msg) {
       super(msg);
     }

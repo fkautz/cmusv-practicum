@@ -174,7 +174,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
   protected static HashMap auManagerMaps = new HashMap();
 
   // Maps managerKey -> LockssAuManager.Factory instance
-  protected static HashMap auManagerFactoryMap = new HashMap();
+  protected HashMap auManagerFactoryMap = new HashMap();
 
   private static LockssDaemon theDaemon;
 

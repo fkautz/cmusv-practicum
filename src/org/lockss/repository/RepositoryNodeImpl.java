@@ -1339,7 +1339,7 @@ public class RepositoryNodeImpl implements RepositoryNode {
   /**
    * Simple comparator which uses File.compareTo() for sorting.
    */
-  private class FileComparator implements Comparator {
+  private static class FileComparator implements Comparator {
     public int compare(Object o1, Object o2) {
       // compares file pathnames
       return ((File)o1).getName().compareToIgnoreCase(((File)o2).getName());

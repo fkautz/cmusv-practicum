@@ -286,4 +286,7 @@ public class PollState implements Comparable {
     }
   }
 
+  public int hashCode() {
+    throw new UnsupportedOperationException();
+  }
 }

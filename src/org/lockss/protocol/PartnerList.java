@@ -76,7 +76,6 @@ class PartnerList {
   long minPartnerRemoveInterval;
   int maxPartners;
   private IdentityManager idMgr;
-  PeerIdentity localPeer;
 
   /** Create a PartnerList */
   public PartnerList(IdentityManager idMgr) {

@@ -159,7 +159,7 @@ public abstract class V1Poll extends BasePoll {
    * @return true if hash successfully completed.
    */
   abstract boolean scheduleHash(MessageDigest hasher, Deadline timer,
-                                Serializable key,
+                                Object key,
                                 HashService.Callback callback);
   /**
    * schedule a vote by a poll.  we've already completed the hash so we're

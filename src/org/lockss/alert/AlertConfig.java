@@ -91,6 +91,10 @@ public class AlertConfig {
     return false;
   }
 
+  public int hashCode() {
+    throw new UnsupportedOperationException();
+  }
+
   public String toString() {
     return "{AlertConfig: " + filters + "]";
   }

@@ -332,7 +332,7 @@ public abstract class CrawlerImpl implements Crawler {
       try {
         is.close();
       }
-      catch (IOException ex) {
+      catch (IOException ignore) {
       }
     }
 

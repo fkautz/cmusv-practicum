@@ -52,7 +52,6 @@ public class AuTreeWalkManager
   TreeWalkManager twm;
   NodeManager nodeMgr;
   SchedService schedSvc;
-  TreeWalkRunner runner;
 
   // The currently scheduled or running task.  If null, there is no task
   // scheduld, but there should be a timer event pending which will attempt

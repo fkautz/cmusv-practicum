@@ -200,7 +200,7 @@ public class PlatformInfo {
   /** Exception thrown if no implementation is available for the current
    * platform, or a platform-dependent error occurs.
    * In the case of an error, the original exception is available. */
-  public class UnsupportedException extends Exception {
+  public static class UnsupportedException extends Exception {
     Throwable e;
 
     public UnsupportedException(String msg) {

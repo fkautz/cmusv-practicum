@@ -379,7 +379,7 @@ public class ConfigParamDescr implements Comparable {
     return hash;
   }
 
-  public class InvalidFormatException extends Exception {
+  public static class InvalidFormatException extends Exception {
     private Throwable nestedException;
 
     public InvalidFormatException(String msg) {

@@ -179,7 +179,7 @@ public class GoslingHtmlParser implements ContentParser {
       if (reader != null) {
 	try {
 	  reader.close();
-	} catch (IOException e) {}
+	} catch (IOException ignore) {}
 	reader = null;
       }
     }

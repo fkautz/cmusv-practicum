@@ -76,7 +76,7 @@ public class UrlManager extends BaseLockssDaemonManager {
 
   /** A URLStreamHandlerFactory that returns URLStreamHandlers for
       locksscu: and lockssau: protocols. */
-  private class LockssUrlFactory implements URLStreamHandlerFactory {
+  private static class LockssUrlFactory implements URLStreamHandlerFactory {
     public URLStreamHandler createURLStreamHandler(String protocol) {
       if (PROTOCOL_CU.equalsIgnoreCase(protocol)) {
 	// locksscu: gets a CuUrlConnection

@@ -94,6 +94,10 @@ public class ConfigurationPropTreeImpl extends Configuration {
     return PropUtil.equalProps(props, c0.getPropertyTree());
   }
 
+  public int hashCode() {
+    throw new UnsupportedOperationException();
+  }
+
   /** Return the set of keys whose values differ.
    * @param otherConfig the config to compare with.  May be null.
    */

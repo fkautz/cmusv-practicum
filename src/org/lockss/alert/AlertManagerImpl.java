@@ -64,7 +64,7 @@ public class AlertManagerImpl extends BaseLockssDaemonManager
 
   static final String PARAM_ALERT_ALL_EMAIL = PREFIX + "allEmail";
 
-  public static String CONFIG_FILE_ALERT_CONFIG = "alertconfig.xml";
+  public static final String CONFIG_FILE_ALERT_CONFIG = "alertconfig.xml";
 
   private ConfigManager configMgr;
   private AlertConfig alertConfig;
@@ -251,7 +251,6 @@ public class AlertManagerImpl extends BaseLockssDaemonManager
   class PendingActions {
     AlertAction action;
     List alerts;
-    Alert initial;
     Deadline trigger;
     long latestTrigger;
     boolean isProcessed = false;

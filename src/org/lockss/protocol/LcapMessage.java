@@ -47,8 +47,7 @@ import java.util.*;
  * @version 1.0
  */
 
-public class LcapMessage
-    implements Serializable {
+public class LcapMessage {
   public static final int NAME_POLL_REQ = 0;
   public static final int NAME_POLL_REP = 1;
   public static final int CONTENT_POLL_REQ = 2;

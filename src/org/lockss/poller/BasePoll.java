@@ -54,7 +54,7 @@ import org.lockss.daemon.status.*;
  * @version 1.0
  */
 
-public abstract class BasePoll implements Poll, Serializable {
+public abstract class BasePoll implements Poll {
 
   static final String[] ERROR_STRINGS = {"Poll Complete","Hasher Busy",
       "Hashing Error", "IO Error"

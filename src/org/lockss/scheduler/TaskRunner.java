@@ -45,7 +45,7 @@ import org.lockss.daemon.*;
 import org.lockss.daemon.status.*;
 import org.lockss.util.*;
 
-class TaskRunner implements Serializable {
+class TaskRunner {
   // Sort options for displaying queue
   static final int PEND_REV = 1;
   static final int HIST_REV = 2;

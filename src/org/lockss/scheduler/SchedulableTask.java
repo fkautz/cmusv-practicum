@@ -39,7 +39,7 @@ import org.lockss.daemon.*;
 import org.lockss.util.*;
 
 /** Description of a computation to be scheduled and executed */
-public class SchedulableTask implements Serializable, Cloneable {
+public class SchedulableTask {
   //  protected static Logger log = Logger.getLogger("Task");
 
   Deadline earliestStart;

@@ -257,11 +257,11 @@ public class V1TreeWalkImpl implements TreeWalker {
     }
 
     // at each node, check for recrawl needed
-    if (node.getCachedUrlSet().hasContent()) {
-      //XXX if (crawlMgr.shouldRecrawl(managerAu, node)) {
-      // then CrawlManager.scheduleBackgroundCrawl()
-      // return false;
-    }
+//     if (node.getCachedUrlSet().hasContent()) {
+//       //XXX if (crawlMgr.shouldRecrawl(managerAu, node)) {
+//       // then CrawlManager.scheduleBackgroundCrawl()
+//       // return false;
+//     }
 
     // check recent histories to see if something needs fixing
     PollHistory lastHistory = node.getLastPollHistory();

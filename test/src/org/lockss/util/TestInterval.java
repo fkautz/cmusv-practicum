@@ -82,4 +82,9 @@ public class TestInterval extends LockssTestCase {
     assertTrue(int01.equals(int01));
     assertTrue(int13.equals(new Interval(1, 3)));
   }
+
+  public void testHash() {
+    assertEquals(new Interval(2,4).hashCode(),
+		 new Interval(2,4).hashCode());
+  }
 }

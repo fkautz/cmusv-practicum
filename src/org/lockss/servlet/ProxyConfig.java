@@ -284,7 +284,7 @@ public class ProxyConfig extends LockssServlet {
     String fmt = "action=" + format;
     String absUrl = "<code>" + srvAbsURL(desc, fmt) + "</code>";
     Composite elem = new Composite();
-    elem.add(StringUtil.replaceString(text, "#", absUrl.toString()));
+    elem.add(StringUtil.replaceString(text, "#", absUrl));
     addFmtElement(comp, title, format, elem);
   }
 

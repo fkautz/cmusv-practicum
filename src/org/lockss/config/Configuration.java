@@ -210,7 +210,7 @@ public abstract class Configuration {
 	load(configCache.get(url));
       } catch (IOException e) {
 	if (e instanceof FileNotFoundException &&
-	    StringUtil.endsWithIgnoreCase(url.toString(), ".opt")) {
+	    StringUtil.endsWithIgnoreCase(url, ".opt")) {
 	  log.info("Not loading props from nonexistent optional file: " + url);
 	} else {
 	  // This load failed.  Fail the whole thing.
@@ -762,7 +762,7 @@ public abstract class Configuration {
   }
 
   /** Exception thrown for errors in accessors. */
-  public class InvalidParam extends Exception {
+  public static class InvalidParam extends Exception {
     public InvalidParam(String message) {
       super(message);
     }

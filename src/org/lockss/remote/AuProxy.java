@@ -125,7 +125,7 @@ public class AuProxy {
     return au.getName();
   }
 
-  public class NoSuchAU extends Exception {
+  public static class NoSuchAU extends Exception {
     public NoSuchAU(String msg) {
       super(msg);
     }

@@ -271,6 +271,7 @@ public abstract class LockssServlet extends HttpServlet
   /** Common request handling. */
   public void service(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
+    multiReq = null;
     try {
       this.req = req;
       this.resp = resp;
@@ -953,7 +954,7 @@ public abstract class LockssServlet extends HttpServlet
 
   /** Exception thrown if multipart form data is longer than the
    * caller-supplied max */
-  public class FormDataTooLongException extends Exception {
+  public static class FormDataTooLongException extends Exception {
     public FormDataTooLongException(String message) {
       super(message);
     }

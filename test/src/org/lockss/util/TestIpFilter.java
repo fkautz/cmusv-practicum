@@ -132,6 +132,22 @@ public class TestIpFilter extends LockssTestCase {
     assertMalformed("36.48.0.2/", true);
   }
 
+  public void testMaskEquals() throws Exception {
+    IpFilter.Mask m1 = new IpFilter.Mask("1.2.3.4", true);
+    IpFilter.Mask m2 = new IpFilter.Mask(new String("1.2.3.4"), true);
+    IpFilter.Mask m3 = new IpFilter.Mask("4.4.4.4", true);
+    IpFilter.Mask m4 = new IpFilter.Mask("1.2.3.4/30", true);
+    assertEquals(m1, m2);
+    assertNotEquals(m1, m3);
+    assertNotEquals(m1, m4);
+  }
+
+  public void testHash() throws Exception {
+    IpFilter.Mask m1 = new IpFilter.Mask("1.2.3.4", true);
+    IpFilter.Mask m2 = new IpFilter.Mask(new String("1.2.3.4"), true);
+    assertEquals(m1.hashCode(), m2.hashCode());
+  }
+
   public void testMatch() throws Exception {
     assertMatch("127.0.1.0/24", "127.0.1.0/24");
     assertMatch("127.0.1.0/24", "127.0.1.0");
