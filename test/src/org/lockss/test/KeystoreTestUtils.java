@@ -83,7 +83,7 @@ public class KeystoreTestUtils {
    * @param l   The City/Locality for the X.509 cert's DN.
    * @param s   The State for the X.509 cert's DN.
    * @param c   The Country for the X.509 cert's DN.
-   * @param day  The number of days the certificate is valid.
+   * @param days  The number of days the certificate is valid.
    * @param len   The size of the key in bits.
    */
   public static void createKeystores(String pub, String priv,

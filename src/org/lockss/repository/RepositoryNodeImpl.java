@@ -73,13 +73,13 @@ public class RepositoryNodeImpl implements RepositoryNode {
   /** If true, input streams are monitored for missed close()s */
   public static final String PARAM_MONITOR_INPUT_STREAMS =
     Configuration.PREFIX + "monitor.inputStreams";
-  public static boolean DEFAULT_MONITOR_INPUT_STREAMS = false;
+  public static final boolean DEFAULT_MONITOR_INPUT_STREAMS = false;
 
   /** If true, the release method actually closes streams.  If false it
    * does nothing.  This should go away after the 1.6 release. */
   public static final String PARAM_ENABLE_RELEASE =
     Configuration.PREFIX + "repository.enableRelease";
-  public static boolean DEFAULT_ENABLE_RELEASE = true;
+  public static final boolean DEFAULT_ENABLE_RELEASE = true;
 
   // properties set in the content properties, such as 'current.props'
   static final String LOCKSS_VERSION_NUMBER = "org.lockss.version.number";

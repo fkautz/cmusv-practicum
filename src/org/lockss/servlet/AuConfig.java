@@ -425,9 +425,10 @@ public class AuConfig extends LockssServlet {
       sel.attribute("onchange",
 		    "cascadeSelectEnable(this,'plugin_input')");
       sel.add("-no selection-", true, "");
-      for (Iterator iter = pMap.keySet().iterator(); iter.hasNext(); ) {
-	String pName = (String)iter.next();
-	PluginProxy p = (PluginProxy)pMap.get(pName);
+      for (Iterator iter = pMap.entrySet().iterator(); iter.hasNext(); ) {
+	Map.Entry entry = (Map.Entry)iter.next();
+	String pName = (String)entry.getKey();
+	PluginProxy p = (PluginProxy)entry.getValue();
 	sel.add(encodeText(pName), false, p.getPluginId());
       }
       setTabOrder(sel);

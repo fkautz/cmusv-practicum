@@ -127,7 +127,6 @@ public class GoslingHtmlParser implements ContentParser {
 
   private CharRing ring;
   private int ringCapacity;
-  private int ringSize;			// current ring size
   private boolean isTrace = logger.isDebug2();
 
   public GoslingHtmlParser() {
@@ -319,8 +318,6 @@ public class GoslingHtmlParser implements ContentParser {
    *
    * @param link StringBuffer containing the text of a link tag (everything
    * between < and > (ie, "a href=http://www.test.org")
-   * @param srcUrl URL object representing the page on which this
-   * url was taken from (for resolving relative tags)
    * @return string representation of the url from the link tag
    * @throws MalformedURLException
    */

@@ -109,7 +109,6 @@ public class XmlMarshaller {
     if (!rootDir.exists()) {
       rootDir.mkdirs();
     }
-    File storeFile = new File(rootDir, fileName);
     store(new File(rootDir, fileName), storeObj, mapping);
   }
 

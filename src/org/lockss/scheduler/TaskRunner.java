@@ -1212,7 +1212,6 @@ class TaskRunner {
 
     String taskStatsString(int stats[]) {
       List lst = new ArrayList();
-      StringBuffer sb = new StringBuffer();
       stxt(lst, stats[STAT_ACCEPTED], " scheduled", true);
       stxt(lst, stats[STAT_REFUSED], " refused");
       if (stats == backgroundStats) {

@@ -50,8 +50,6 @@ public class WhiteSpaceFilter extends Reader {
   boolean inWhiteSpace;
   boolean hitEOF;
   Reader reader;
-  int bufsize;
-  byte[] buf;
   int bufrem = 0;
   int bufptr = 0;
 
@@ -66,16 +64,8 @@ public class WhiteSpaceFilter extends Reader {
       throw new IllegalArgumentException("Called with a null reader");
     }
     this.reader = reader;
-    if (bufsize < 0) {
-      bufsize = Configuration.getIntParam(PARAM_BUFFER_CAPACITY,
-                                          DEFAULT_BUFFER_CAPACITY);
-    }
-    this.bufsize = bufsize;
-
     inWhiteSpace = false;
     hitEOF = false;
-    this.bufsize = bufsize;
-    buf = new byte[bufsize];
   }
 
   // Read one byte

@@ -59,7 +59,7 @@ public class MockPollSpec extends PollSpec {
    * @param url the url
    * @param lwrBound the lower bound of the url
    * @param uprBound the upper bound of the url
-   * @param cus the cached url set
+   * @param pollType one of the types defined by Poll
    */
   public MockPollSpec(String auId, String url,
 		      String lwrBound, String uprBound,

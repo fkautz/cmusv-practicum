@@ -51,13 +51,10 @@ public class UrlManager extends BaseLockssDaemonManager {
 
   private static Logger log = Logger.getLogger("UrlManager");
 
-  private PluginManager pluginManager;
   private int startCnt = 0;
 
   /** Install the URLStreamHandlerFactory */
   public void startService() {
-    pluginManager = theDaemon.getPluginManager();
-
     try {
       URL.setURLStreamHandlerFactory(new LockssUrlFactory());
     } catch (Error e) {

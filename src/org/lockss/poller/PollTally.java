@@ -64,7 +64,7 @@ public abstract class PollTally implements Tallier{
   protected Deadline replayDeadline = null;
   protected Iterator replayIter = null;
   protected ArrayList originalVotes = null;
-  protected static IdentityManager idManager = null;
+  protected IdentityManager idManager = null;
   protected ActivityRegulator.Lock activityLock;
 
   static Logger log=Logger.getLogger("PollTally");

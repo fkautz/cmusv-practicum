@@ -410,7 +410,7 @@ public class MockLockssDaemon extends LockssDaemon {
 
   /**
    * Set the RepositoryManager
-   * @param treeWalkMan the new manager
+   * @param repositoryMan the new manager
    */
   public void setRepositoryManager(RepositoryManager repositoryMan) {
     repositoryManager = repositoryMan;

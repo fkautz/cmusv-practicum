@@ -35,5 +35,5 @@ package org.lockss.util.urlconn;
  * LockssUrlConnection)}.  */
 public class CacheSuccess {
   /** Static var whose value is the class. */
-  public static Class MARKER = CacheSuccess.class;
+  public static final Class MARKER = CacheSuccess.class;
 }

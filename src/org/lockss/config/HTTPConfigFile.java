@@ -58,7 +58,6 @@ public class HTTPConfigFile extends ConfigFile {
       throws IOException, MalformedURLException {
     InputStream in = null;
     
-    URL u = new URL(url);
     LockssUrlConnection conn = UrlUtil.openConnection(url);
 
     if (m_config != null && m_lastModified != null) {

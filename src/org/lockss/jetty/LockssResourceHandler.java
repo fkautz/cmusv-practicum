@@ -876,10 +876,9 @@ public class LockssResourceHandler extends AbstractHttpHandler {
                     in=resource.getInputStream();
                     pos=0;
                 }
-                if (pos<start)
+                while (pos<start)
                 {
-                    in.skip(start-pos);
-                    pos=start;
+                    pos += in.skip(start-pos);
                 }
                 IO.copy(in,out,size);
                 pos+=size;

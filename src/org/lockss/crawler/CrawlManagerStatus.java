@@ -84,8 +84,6 @@ public class CrawlManagerStatus implements StatusAccessor {
   private static final String NC_TYPE = "New Content";
   private static final String REPAIR_TYPE = "Repair";
   private static final String OAI_TYPE = "Oai";
-  private Map newContentCrawls = null;
-  private Map repairCrawls = null;
   private CrawlManager.StatusSource statusSource;
   private PluginManager pluginMgr;
 

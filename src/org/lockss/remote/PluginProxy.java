@@ -54,7 +54,7 @@ public class PluginProxy {
   }
 
   /** Create a PluginProxy for the plugin with the given ID.
-   * @param pluginid the plugin ID string.
+   * @param pluginId the plugin ID string.
    * @param remoteApi the RemoteApi service
    * @throws NoSuchPlugin if no Plugin with the given ID exists
    */

@@ -111,7 +111,7 @@ public abstract class Configuration {
 
   /** A Configuration.Differences object representing a totally different
    * Configuration */
-  public static Differences DIFFERENCES_ALL = new DifferencesAll();
+  public static final Differences DIFFERENCES_ALL = new DifferencesAll();
 
   public static Configuration getPlatformConfig() {
     return ConfigManager.getPlatformConfig();

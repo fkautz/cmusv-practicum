@@ -264,9 +264,10 @@ public class ProxyInfo {
     sb.append(":");
     sb.append(getProxyPort());
     sb.append("\n\n");
-    for (Iterator iter = urlStems.keySet().iterator(); iter.hasNext(); ) {
-      String urlStem = (String)iter.next();
-      ArchivalUnit au = (ArchivalUnit)urlStems.get(urlStem);
+    for (Iterator iter = urlStems.entrySet().iterator(); iter.hasNext(); ) {
+      Map.Entry entry = (Map.Entry)iter.next();
+      String urlStem = (String)entry.getKey();
+      ArchivalUnit au = (ArchivalUnit)entry.getValue();
       generateEZProxyEntry(sb, urlStem, au.getName());
     }
     sb.append("Proxy\n");

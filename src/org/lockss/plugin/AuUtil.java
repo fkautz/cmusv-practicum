@@ -94,7 +94,6 @@ public class AuUtil {
   public static boolean isConfigCompatibleWithPlugin(Configuration config,
 						     Plugin plugin) {
     Set have = config.keySet();
-    Set need = new HashSet();
     for (Iterator iter = plugin.getAuConfigDescrs().iterator();
 	 iter.hasNext();) {
       ConfigParamDescr descr = (ConfigParamDescr)iter.next();

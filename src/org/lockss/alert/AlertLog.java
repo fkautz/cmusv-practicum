@@ -56,7 +56,7 @@ public class  AlertLog {
 
   /** 
    * Create a new AlertLog with room for n elements. 
-   * @param max maximum number of elements to keep on the list.
+   * @param capacity maximum number of elements to keep on the list.
    */
   public AlertLog(String name, int capacity) {
     this.max = capacity;
@@ -80,7 +80,7 @@ public class  AlertLog {
   /**
    * Add to the end of the list, discarding an old entry if necessary to
    * keep list within maximum size.
-   * @param obj the object to add
+   * @param alert the alert to add
    */
   public boolean add(Alert alert) {
     trim(max - 1);

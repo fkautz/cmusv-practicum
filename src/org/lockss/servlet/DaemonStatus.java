@@ -412,7 +412,7 @@ public class DaemonStatus extends LockssServlet {
       wrtr.println("Error getting table: " + e.toString());
       return;
     }
-    java.util.List colList = statTable.getColumnDescriptors();
+//     java.util.List colList = statTable.getColumnDescriptors();
     java.util.List rowList = getRowList(statTable);
     String title0 = statTable.getTitle();
     String titleFoot = statTable.getTitleFootnote();
@@ -420,21 +420,15 @@ public class DaemonStatus extends LockssServlet {
     Table table = null;
 
     // convert list of ColumnDescriptors to array of ColumnDescriptors
-    ColumnDescriptor cds[];
-    int cols;
-    if (colList != null) {
-      cds = (ColumnDescriptor [])colList.toArray(new ColumnDescriptor[0]);
-      cols = cds.length;
-    } else {
-      cds = new ColumnDescriptor[0];
-      cols = 1;
-    }
+//     ColumnDescriptor cds[];
+//     if (colList != null) {
+//       cds = (ColumnDescriptor [])colList.toArray(new ColumnDescriptor[0]);
+//     }
     if (true || !rowList.isEmpty()) {
       // if table not empty, output column headings
 
       // Make the table.  Make a narrow empty column between real columns,
       // for spacing.  Resulting table will have 2*cols-1 columns
-      table = new Table(0, "ALIGN=CENTER CELLSPACING=2 CELLPADDING=0");
       wrtr.println();
       wrtr.println("table=" + title0);
       if (tableKey != null) {

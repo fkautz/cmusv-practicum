@@ -47,8 +47,6 @@ public class StringFilter extends Reader {
   private static Logger logger = Logger.getLogger("StringFilter");
   private boolean streamDone = false;
 
-  private int bufferCapacity;
-
   private CharRing charBuffer = null;
   private int ringSize;
   private Reader reader;
@@ -94,7 +92,6 @@ public class StringFilter extends Reader {
       bufferCapacity = Configuration.getIntParam(PARAM_BUFFER_CAPACITY,
 						 DEFAULT_BUFFER_CAPACITY);
     }
-    this.bufferCapacity = bufferCapacity;
     this.replaceStr = replaceStr;
     if (replaceStr != null) {
       replaceLen = replaceStr.length();

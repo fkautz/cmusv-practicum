@@ -94,7 +94,6 @@ public class OaiCrawler extends FollowLinkCrawler {
    * follow the link from the content of the URLs.
    */
   protected boolean doCrawl0(){
-    Set extractedUrls = new HashSet();
     if (shouldFollowLink() ) {
       logger.info("crawling in follow link mode");
     } else {

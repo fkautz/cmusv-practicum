@@ -523,9 +523,10 @@ public class BatchAuConfig extends LockssServlet {
     tbl.addHeading("Free");
     tbl.addHeading("%Full");
     int ix = 1;
-    for (Iterator iter = repoMap.keySet().iterator(); iter.hasNext(); ix++) {
-      String repo = (String)iter.next();
-      PlatformInfo.DF df = (PlatformInfo.DF)repoMap.get(repo);
+    for (Iterator iter = repoMap.entrySet().iterator(); iter.hasNext(); ix++) {
+      Map.Entry entry = (Map.Entry)iter.next();
+      String repo = (String)entry.getKey();
+      PlatformInfo.DF df = (PlatformInfo.DF)entry.getValue();
       tbl.newRow("align=center");
       tbl.newCell("align=center");
       tbl.add(radioButton(null, Integer.toString(ix),

@@ -42,7 +42,7 @@ import org.lockss.util.*;
 public class StatusTable {
   /** Adding this key to a row, with a non-null value, requests a separator
    * before the row. */
-  public static Object ROW_SEPARATOR = new Object();
+  public static final Object ROW_SEPARATOR = new Object();
 
   public static final int OPTION_NO_ROWS = 1;
   public static final int OPTION_INCLUDE_INTERNAL_AUS = 2;

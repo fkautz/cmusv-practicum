@@ -149,8 +149,6 @@ public class RepairCrawler extends CrawlerImpl {
 //     logger.info("Beginning crawl of "+au);
 //     crawlStatus.signalCrawlStarted();
     CachedUrlSet cus = au.getAuCachedUrlSet();
-    List urlsFetched = new ArrayList();
-
 
     Iterator it = getStartingUrls();
 

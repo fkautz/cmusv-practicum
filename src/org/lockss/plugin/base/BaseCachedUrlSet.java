@@ -54,7 +54,6 @@ public class BaseCachedUrlSet implements CachedUrlSet {
   private static final int BYTES_PER_MS_DEFAULT = 100;
   static final double TIMEOUT_INCREASE = 1.5;
 
-  private Exception lastException = null;
   private LockssDaemon theDaemon;
   private LockssRepository repository;
   private NodeManager nodeManager;
@@ -208,7 +207,6 @@ public class BaseCachedUrlSet implements CachedUrlSet {
       nodeManager.getNodeState(this).getAverageHashDuration();
     long newEst;
 
-    lastException = err;
     if (err!=null) {
       if (err instanceof HashService.Timeout) {
         // timed out - guess 50% longer next time

@@ -538,9 +538,10 @@ public class ArchivalUnitStatus
 	table.setDefaultSortRules(sortRules);
 	Map statsMap = buildCacheStats(au, nodeMan);
 	List rowL = new ArrayList();
-	for (Iterator iter = statsMap.keySet().iterator(); iter.hasNext(); ) {
-	  PeerIdentity peer = (PeerIdentity)iter.next();
-	  CacheStats stats = (CacheStats)statsMap.get(peer);
+	for (Iterator iter = statsMap.entrySet().iterator(); iter.hasNext();) {
+	  Map.Entry entry = (Map.Entry)iter.next();
+	  PeerIdentity peer = (PeerIdentity)entry.getKey();
+	  CacheStats stats = (CacheStats)entry.getValue();
 	  if (! peer.isLocalIdentity()) {
 	    totalPeers++;
 	    if (stats.mostRecentVote.isAgreeVote()) {

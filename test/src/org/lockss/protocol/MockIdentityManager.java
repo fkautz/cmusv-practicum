@@ -98,9 +98,9 @@ public class MockIdentityManager extends IdentityManager {
   }
   
   /**
-   * getReputation returns the reputation of the peer
-   * @param id the PeerIdentity
-   * @return the reputation
+   * Change the the reputation of the peer
+   * @param peer the PeerIdentity
+   * @param reputation the new reputation
    */
   public void setReputation(PeerIdentity peer, int reputation) {
     try {

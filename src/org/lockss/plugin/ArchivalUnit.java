@@ -218,7 +218,6 @@ public interface ArchivalUnit {
 
   /**
    * Create a {@link CachedUrl} object within the set.
-   * @param owner the {@link CachedUrlSet} owner
    * @param url the url of interest
    * @return a {@link CachedUrl} object representing the url.
    */
@@ -226,7 +225,6 @@ public interface ArchivalUnit {
 
   /**
    * Create a {@link UrlCacher} object within the set.
-   * @param owner the {@link CachedUrlSet} owner
    * @param url the url of interest
    * @return a {@link UrlCacher} object representing the url.
    */

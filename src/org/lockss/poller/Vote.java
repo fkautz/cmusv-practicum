@@ -82,7 +82,7 @@ public class Vote {
    * @param challengeStr B64 encoded string of the challenge
    * @param verifierStr B64 encoded string of the challenge
    * @param hashStr B64 encoded string of the challenge
-   * @param id the peer ID of the voter's identity
+   * @param idStr the string representation of the voter's PeerIdentity
    * @param agree boolean indiciating agreement or disagreement
    * @return newly created Vote object
    */

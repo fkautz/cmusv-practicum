@@ -262,7 +262,6 @@ public class HashSvcSchedImpl
     CachedUrlSetHasher urlsetHasher;
     int hashReqSeq = -1;
     int type;
-    int sched;
     boolean finished = false;
     long bytesHashed = 0;
     long unaccountedBytesHashed = 0;

@@ -44,7 +44,7 @@ import org.xml.sax.helpers.*;
 
 public class XmlPropertyLoader {
 
-  public static char PROPERTY_SEPARATOR = '.';
+  public static final char PROPERTY_SEPARATOR = '.';
 
   private static final String TAG_LOCKSSCONFIG = "lockss-config";
   private static final String TAG_PROPERTY     = "property";

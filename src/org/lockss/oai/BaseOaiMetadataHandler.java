@@ -61,7 +61,7 @@ public class BaseOaiMetadataHandler implements OaiMetadataHandler{
    * to support plugin definable OaiMetadataHandler. 
    *
    * @param metadataPrefix the metadata prefix string
-   * @param metadataNamspaceUrl the url that describe the metadata namespace
+   * @param metadataNamespaceUrl the url that describe the metadata namespace
    * @param urlContainerTagName the tag name where a url can be found
    */
   public BaseOaiMetadataHandler(String metadataPrefix, 

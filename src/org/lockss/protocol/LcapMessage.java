@@ -743,9 +743,8 @@ public class LcapMessage {
 	sb.append(" H:");
 	sb.append(String.valueOf(B64Code.encode(m_hashed)));
       }
-      if(m_entries != null) {
-
-      }
+//       if(m_entries != null) {
+//       }
       if (m_pollVersion > 1)
 	sb.append(" ver " + m_pollVersion);
     }
