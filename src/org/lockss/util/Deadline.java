@@ -318,6 +318,9 @@ public class Deadline implements Comparable {
    * thread is otherwise interrupted.
    */
   public void sleep() throws InterruptedException {
+    if (expired()) {
+      return;
+    }
     final Thread thread = Thread.currentThread();
     Callback cb = new Callback() {
 	public void changed(Deadline deadline) {
