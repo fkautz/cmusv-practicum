@@ -52,7 +52,10 @@ public class PollTestPlugin {
     public PTCachedUrlSet(ArchivalUnit owner, CachedUrlSetSpec spec) {
       super(owner,spec);
     }
-    /** Set the duration that will be returned by estimatedHashDuration() */
+    /**
+     * Set the duration that will be returned by estimatedHashDuration()
+     * @param duration ths estimated hash duration
+     */
     public void setHashEstimate(long duration) {
       this.duration = duration;
     }
