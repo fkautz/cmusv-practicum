@@ -198,6 +198,26 @@ public class ListUtil {
 	return l;
     }
 
+  /** Add all elements of ofList to toList  */
+  public static LinkedList prependAll(List ofList, LinkedList toList) {
+    if (ofList == null) {
+      if (toList == null) {
+	return new LinkedList();
+      } else {
+	return toList;
+      }
+    }
+    if (toList == null) {
+      return new LinkedList(ofList);
+    }
+    List revOfList = new ArrayList(ofList);
+    Collections.reverse(revOfList);
+    for (Iterator iter = revOfList.iterator(); iter.hasNext(); ) {
+      toList.addFirst(iter.next());
+    }
+    return toList;
+  }
+
   /** Create a list containing the elements of an iterator */
   public static List fromIterator(Iterator iterator) {
     List l = list();
