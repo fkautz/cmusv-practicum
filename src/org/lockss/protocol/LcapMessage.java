@@ -730,6 +730,8 @@ public class LcapMessage
       if(m_entries != null) {
 
       }
+      if (m_version > 1)
+	sb.append(" ver " + m_version);
     }
     sb.append("]");
     return sb.toString();
