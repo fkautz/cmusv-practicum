@@ -616,7 +616,7 @@ public abstract class Poll implements Serializable {
 
     /**
      * return the votes cast in this poll
-     * @return
+     * @return the list of votes
      */
 
     public List getPollVotes() {
