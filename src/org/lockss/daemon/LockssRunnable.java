@@ -226,11 +226,11 @@ public abstract class LockssRunnable  implements LockssWatchdog, Runnable {
   protected void threadHung() {
     if (Configuration.getBooleanParam(PARAM_THREAD_WDOG_HUNG_DUMP,
 				      DEFAULT_THREAD_WDOG_HUNG_DUMP)) {
-      PlatformInfo.threadDump();
+      PlatformInfo.getInstance().threadDump();
       try {
 	Thread.sleep(30 * Constants.SECOND);
       } catch (InterruptedException ignore) {}
-      PlatformInfo.threadDump();
+      PlatformInfo.getInstance().threadDump();
     }
     exitDaemon(EXIT_CODE_THREAD_HUNG,
 	       "Thread hung for " + StringUtil.timeIntervalToString(interval));
