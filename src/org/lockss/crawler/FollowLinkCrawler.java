@@ -536,8 +536,9 @@ public abstract class FollowLinkCrawler extends CrawlerImpl {
 	return;
       }
       try {
+	logger.debug2("Found "+url);
 	String normUrl = UrlUtil.normalizeUrl(url, au);
-	logger.debug2("Found "+normUrl);
+	logger.debug2("Normalized to "+normUrl);
 	if (!parsedPages.contains(normUrl)
 	    && !extractedUrls.contains(normUrl)
 	    && au.shouldBeCached(normUrl)) {
