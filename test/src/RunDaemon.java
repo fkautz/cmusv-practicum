@@ -140,7 +140,7 @@ public class RunDaemon
   }
 
   private void startWalk(ArchivalUnit au) {
-    NodeManager nodeMgr = getNodeManager(au);
+    NodeManagerImpl nodeMgr = (NodeManagerImpl)getNodeManager(au);
     nodeMgr.forceTreeWalk();
   }
 
