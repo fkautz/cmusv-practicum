@@ -68,6 +68,13 @@ public class PluginUtil {
     }
     PluginTestable tp = (PluginTestable)plug;
     tp.registerArchivalUnit(au);
+    try {
+      PrivilegedAccessor.invokeMethod(mgr, "putAuMap",
+				      ListUtil.list(plug, au).toArray());
+    } catch (Exception e) {
+      log.error("Couldn't register AU", e);
+      throw new RuntimeException(e.toString());
+    }
     aulist.add(au);
   }
 
