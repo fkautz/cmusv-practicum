@@ -95,8 +95,6 @@ public class TestTreeWalkHandler extends LockssTestCase {
 
     treeWalkHandler = new TreeWalkHandler(nodeManager,
                                          theDaemon.getCrawlManager());
-    // need to set a deadline manually since the thread isn't running
-    treeWalkHandler.deadline = Deadline.NEVER;
 
     TestNodeManagerImpl.loadNodeStates(mau, nodeManager);
   }
