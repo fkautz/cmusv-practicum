@@ -556,7 +556,7 @@ public abstract class LockssServlet extends HttpServlet
       sb.append(buildHost);
     }
     if (vPlatform != null) {
-      sb.append(", cd ");
+      sb.append(", CD ");
       sb.append(vPlatform);
     }
     String vDaemon = sb.toString();
