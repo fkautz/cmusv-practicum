@@ -78,6 +78,6 @@ public class RateLimiter {
 
   /** Return true if an event could occur now without exceeding the limit */
   public boolean isEventOk() {
-    return (TimeBase.nowMs() - time[count]) >= interval;
+    return TimeBase.msSince(time[count]) >= interval;
   }
 }
