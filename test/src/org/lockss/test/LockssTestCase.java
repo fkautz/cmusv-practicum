@@ -610,6 +610,27 @@ public class LockssTestCase extends TestCase {
   }
 
   static private void failNotEquals(String message,
+				    long[] expected, long[] actual) {
+    String formatted= "";
+    if (message != null)
+      formatted= message+" ";
+    fail(formatted+"expected:<"+arrayString(expected)+
+	 "> but was:<"+arrayString(actual)+">");
+  }
+
+  static protected Object[] objArray(long[] a) {
+    Object[] o = new Object[a.length];
+    for (int ix = 0; ix < a.length; ix++) {
+      o[ix] = new Long(a[ix]);
+    }
+    return o;
+  }
+
+  static protected String arrayString(long[] a) {
+    return StringUtil.separatedString(objArray(a), ", ");
+  }
+
+  static private void failNotEquals(String message,
 				    byte[] expected, byte[] actual) {
     String formatted= "";
     if (message != null)
