@@ -425,7 +425,6 @@ public class PollManager  extends BaseLockssManager {
         default:
           throw new ProtocolException("Unknown opcode:" + msg.getOpcode());
       }
-      addPoll(ret_poll);
       return ret_poll;
     }
 
@@ -722,7 +721,7 @@ public class PollManager  extends BaseLockssManager {
   }
 
   void addPoll(Poll p) {
-      thePolls.put(p.m_key, new PollManagerEntry(p));
+    thePolls.put(p.m_key, new PollManagerEntry(p));
   }
 
   boolean isPollActive(String key) {

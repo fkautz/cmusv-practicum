@@ -102,7 +102,8 @@ public class TreeWalkHandler {
     logger.debug3("treeWalkInterval reset to "+treeWalkInterval);
   }
 
-  void doTreeWalk() {
+/* old version
+    void doTreeWalk() {
     logger.debug("Attempting tree walk: " + theAu.getName());
     NodeState topNode = manager.getNodeState(theAu.getAUCachedUrlSet());
     if (topNode==null) {
@@ -140,6 +141,7 @@ public class TreeWalkHandler {
     manager.getAuState().setLastTreeWalkTime();
     logger.debug("Tree walk finished.");
   }
+ */
 
 /**
  * The full treewalk only proceeds if no new content crawls or top level polls
@@ -147,12 +149,12 @@ public class TreeWalkHandler {
  * it triggers these actions by the CrawlManager and the NodeManager before
  * aborting its treewalk attempt.
  */
-  void doTreeWalk2() {
+  void doTreeWalk() {
     logger.debug("Attempting tree walk: " + theAu.getName());
 
     //get expiration time
     long expiration = DEFAULT_TREEWALK_INTERVAL;
-    if (getAverageTreeWalkDuration()!=-1) {
+    if (getAverageTreeWalkDuration() > 0) {
       expiration = 2 * getAverageTreeWalkDuration();
     }
     // check with regulator to see if treewalk can proceed
