@@ -70,13 +70,11 @@ public class MockCrawlManager implements CrawlManager, LockssManager {
    * @param cookie the cookie
    * @return true if can start
    */
-  public boolean canTreeWalkStart(ArchivalUnit au, AuState aus,
+  public boolean canTreeWalkStart(ArchivalUnit au, 
 				  CrawlManager.Callback cb, Object cookie) {
-    if (aus.getLastCrawlTime() <= 0) {
-      scheduleNewContentCrawl(au, cb, cookie);
-      return false;
-    }
-    return true;
+    if (au.shouldCrawlForNewContent(
+    scheduleNewContentCrawl(au, cb, cookie);
+    return false;
   }
 
   /**
