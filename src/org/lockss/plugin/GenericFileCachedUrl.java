@@ -77,7 +77,7 @@ public class GenericFileCachedUrl extends BaseCachedUrl {
       try {
         leaf = (LeafNode)repository.getRepositoryNode(url);
       } catch (MalformedURLException mue) {
-        logger.error("Couldn't load node due ot bad url: "+url);
+        logger.error("Couldn't load node due to bad url: "+url);
       }
     }
   }
