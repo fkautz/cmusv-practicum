@@ -60,6 +60,15 @@ public class RegexpUtil {
    * initializer, where exception handling is awkward, and there is no
    * possibility of the pattern being malformed.
    * @throws RuntimeException if RE is malformed */
+  public static Pattern uncheckedCompile(String re) {
+    return uncheckedCompile(re, Perl5Compiler.DEFAULT_MASK);
+  }
+
+  /** Compile a regexp into a pattern, without throwing a checked
+   * exception.  Intended for compiling a constant pattern in a static
+   * initializer, where exception handling is awkward, and there is no
+   * possibility of the pattern being malformed.
+   * @throws RuntimeException if RE is malformed */
   public static Pattern uncheckedCompile(String re, int options) {
     try {
       return getCompiler().compile(re, options);
