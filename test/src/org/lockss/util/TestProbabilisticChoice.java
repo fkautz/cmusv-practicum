@@ -34,6 +34,7 @@ package org.lockss.util;
 
 import java.util.*;
 import java.io.*;
+import java.text.*;
 import junit.framework.TestCase;
 import org.lockss.test.*;
 
@@ -62,7 +63,10 @@ public class TestProbabilisticChoice extends TestCase {
       }
     }
     double actual = (double)cnt/(double)REPEAT_EACH;
-    System.out.println("target probability: " + prob + ", actual: " + actual);
+    NumberFormat f = new DecimalFormat("0.000");
+    System.out.println("target probability: " + f.format(prob) +
+		       ", actual: " + f.format(actual) +
+		       ", delta: " + f.format(Math.abs(prob - actual)));
     assertEquals(prob, actual, ALLOWABLE_DELTA);
   }
 
