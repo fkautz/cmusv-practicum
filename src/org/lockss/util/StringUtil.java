@@ -357,11 +357,15 @@ public class StringUtil {
     return sb.toString();
   }
 
+  /* Return a string with all the characters from an InputStream */
+  public static String fromInputStream(InputStream in) throws IOException {
+    return fromReader(new InputStreamReader(in));
+  }
+
   /** Reads in the entire contents of a file into a string */
   public static String fromFile(String path) throws IOException {
     return fromReader(new FileReader(path));
   }
-
 
   /**
    * Test whether a string is null or the empty string
