@@ -108,6 +108,17 @@ public class TestFixedTimedMap extends LockssTestCase {
     assertSame(joe,"joe");
   }
 
+  public void testSameDeadline() {
+    FixedTimedMap map = new FixedTimedMap(1000);
+    map.put("1", "A");
+    map.put("2", "B");
+    assertEquals("A", map.get("1"));
+    assertEquals("B", map.get("2"));
+    TimeBase.step(2000);
+    assertEquals(null, map.get("1"));
+    assertEquals(null, map.get("2"));
+  }
+
   public void testUpdate() {
     FixedTimedMap map = makeGeneric();
     TimeBase.step(timeout-1);
