@@ -269,6 +269,7 @@ public class TestStringUtil extends LockssTestCase {
   public void testIsNullString() {
     assertTrue(StringUtil.isNullString(null));
     assertTrue(StringUtil.isNullString(""));
+    assertTrue(StringUtil.isNullString(new String()));
     assertFalse(StringUtil.isNullString(" "));
   }
 

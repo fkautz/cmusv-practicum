@@ -410,7 +410,7 @@ public class StringUtil {
    * @return true if s is null or the empty string
    */
   public static boolean isNullString(String s) {
-    return s == null || "".equals(s);
+    return s == null || s.length() == 0;
   }
 
   /**
