@@ -301,6 +301,12 @@ public class RemoteApi extends BaseLockssManager {
     return pluginMgr.pluginNameFromAuId(auid);
   }
 
+  public InputStream openCacheConfigFile(String cacheConfigFileName)
+      throws FileNotFoundException {
+    File cfile = configMgr.getCacheConfigFile(cacheConfigFileName);
+    return new FileInputStream(cfile);
+  }
+
   /** Comparator for sorting AuProxy lists.  Not suitable for use in a
    * TreeSet unless changed to never return 0. */
   class AuProxyOrderComparator implements Comparator {
