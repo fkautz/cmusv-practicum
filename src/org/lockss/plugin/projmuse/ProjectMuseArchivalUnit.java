@@ -175,8 +175,11 @@ public class ProjectMuseArchivalUnit extends BaseArchivalUnit {
       throw new ConfigurationException("Negative volume");
     }
     if (!EXPECTED_URL_PATH.equals(baseUrl.getPath())) {
+      logger.error("Illegal path: "+baseUrl.getPath() + ", expected: " +
+                   EXPECTED_URL_PATH);
       throw new ConfigurationException("Url has illegal path: " +
-                                       baseUrl.getPath());
+                                       baseUrl.getPath() + ", expected: " +
+                                       EXPECTED_URL_PATH);
     }
 
     // make our crawl spec
