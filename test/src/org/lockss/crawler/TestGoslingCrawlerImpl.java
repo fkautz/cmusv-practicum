@@ -180,6 +180,25 @@ public class TestGoslingCrawlerImpl extends LockssTestCase {
 		   "<tc background=", "</tc>");
   }
 
+  public void testDoCrawlWithEqualsInUrl() {
+    singleTagShouldCrawl(
+        "http://www.example.com/acs/a/toc.select?in_coden=jcisd8&in_volume=43",
+        "<a href=", "</a>");
+  }
+
+  public void testDoCrawlWithLineBreakBeforeTag() {
+    singleTagShouldCrawl("http://www.example.com/web_link.html",
+                         "<a\nhref=", "</a");
+  }
+
+  public void testDoNotCrawlWithHttpsLink() {
+    singleTagShouldNotCrawl("https://www.example.com/web_link.html", "<a\nhref=", "</a");
+  }
+
+  public void testDoCrawlWithAmpInUrl() {
+    singleTagShouldCrawl("http://www.example.com?pageid=pid&amp;parentid=parid&amp",
+                         "<a href=", "</a");
+  }
   public void testDoNotCrawlBadA() {
     String[] badTags = {
       "<a harf=",
