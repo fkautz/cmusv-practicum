@@ -68,7 +68,7 @@ public class SystemMetrics extends BaseLockssDaemonManager {
    */
   public static final String PARAM_DEFAULT_HASH_SPEED =
       PREFIX + "default.hash.speed";
-  static final int DEFAULT_HASH_SPEED = 250;
+  static final int DEFAULT_DEFAULT_HASH_SPEED = 250;
 
   /**
    * Configuration parameter name for the slowest hash rate in the cache group.
@@ -92,7 +92,7 @@ public class SystemMetrics extends BaseLockssDaemonManager {
 			Configuration prevConfig,
 			Set changedKeys) {
     defaultSpeed = newConfig.getInt(PARAM_DEFAULT_HASH_SPEED,
-                                    DEFAULT_HASH_SPEED);
+                                    DEFAULT_DEFAULT_HASH_SPEED);
   }
 
   /**

@@ -52,6 +52,7 @@ public class BaseCachedUrl implements CachedUrl {
 
   private static final String PARAM_SHOULD_FILTER_HASH_STREAM =
     Configuration.PREFIX+"baseCachedUrl.filterHashStream";
+  private static final boolean DEFAULT_SHOULD_FILTER_HASH_STREAM = true;
 
   public BaseCachedUrl(CachedUrlSet owner, String url) {
     this.cus = owner;
@@ -101,7 +102,7 @@ public class BaseCachedUrl implements CachedUrl {
    */
   public InputStream openForHashing() {
     if (Configuration.getBooleanParam(PARAM_SHOULD_FILTER_HASH_STREAM,
-				      true)) {
+				      DEFAULT_SHOULD_FILTER_HASH_STREAM)) {
       logger.debug3("Filtering on, returning filtered stream");
       return getFilteredStream();
     } else {

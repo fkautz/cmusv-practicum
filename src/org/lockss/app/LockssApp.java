@@ -62,6 +62,7 @@ public abstract class LockssApp {
   public static boolean DEFAULT_APP_EXIT_ONCE = false;
 
   public static String PARAM_DEBUG = PREFIX + "debug";
+  public static boolean DEFAULT_DEBUG = false;
 
   static final String PARAM_PLATFORM_VERSION =
     Configuration.PREFIX + "platform.version";
@@ -154,7 +155,7 @@ public abstract class LockssApp {
    * True if running in debug mode (org.lockss.app.debug=true).
    * @return true iff in debug mode */
   public static boolean isDebug() {
-    return ConfigManager.getBooleanParam(PARAM_DEBUG, false);
+    return ConfigManager.getBooleanParam(PARAM_DEBUG, DEFAULT_DEBUG);
   }
 
   /** Return the time the app started running.

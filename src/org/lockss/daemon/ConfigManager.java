@@ -384,6 +384,7 @@ public class ConfigManager implements LockssManager {
   }
 
   static final String PARAM_HASH_SVC = "org.lockss.manager.HashService";
+  static final String DEFAULT_HASH_SVC = "org.lockss.hasher.HashSvcSchedImpl";
 
   private void copyPlatformParams(Configuration config) {
     copyPlatformVersionParams(config);
@@ -392,7 +393,7 @@ public class ConfigManager implements LockssManager {
     // don't set if already has a value
     if (config.get(PARAM_HASH_SVC) == null &&
 	config.getBoolean(PARAM_NEW_SCHEDULER, DEFAULT_NEW_SCHEDULER)) {
-      config.put(PARAM_HASH_SVC, "org.lockss.hasher.HashSvcSchedImpl");
+      config.put(PARAM_HASH_SVC, DEFAULT_HASH_SVC);
     }
 
     String logdir = config.get(PARAM_PLATFORM_LOG_DIR);
