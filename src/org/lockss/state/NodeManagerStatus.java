@@ -350,10 +350,10 @@ public class NodeManagerStatus {
       }
       else {
         histories = state.getPollHistories();
-        while (histories.hasNext()) {
-          PollState history = (PollState) histories.next();
-          entriesL.add(makeRow(history));
-        }
+      }
+      while (histories.hasNext()) {
+        PollState history = (PollState) histories.next();
+        entriesL.add(makeRow(history));
       }
       return entriesL;
     }
