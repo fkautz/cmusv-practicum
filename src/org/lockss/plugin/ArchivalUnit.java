@@ -185,7 +185,7 @@ public interface ArchivalUnit {
     }
 
     public ConfigurationException(String msg, Throwable e) {
-      super(msg + ": " + e.getMessage());
+      super(msg + (e.getMessage() == null ? "" : (": " + e.getMessage())));
 //       super(msg + ": " + e.toString());
       this.nestedException = e;
     }
