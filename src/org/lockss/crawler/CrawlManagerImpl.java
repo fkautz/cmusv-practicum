@@ -217,6 +217,7 @@ public class CrawlManagerImpl implements CrawlManager, LockssManager {
 
     public void run() {
       crawler.doCrawl(deadline);
+      activeCrawls.remove(au);
       if (callbacks != null) {
 	Iterator it = callbacks.iterator();
 	while (it.hasNext()) {
