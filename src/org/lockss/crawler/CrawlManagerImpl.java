@@ -123,7 +123,7 @@ public class CrawlManagerImpl implements CrawlManager, LockssManager {
 
     CrawlThread crawlThread =
       new CrawlThread(au, ListUtil.list(url.toString()),
-		      false, Deadline.NEVER, ListUtil.list(cb), cookie);
+		      false, Deadline.MAX, ListUtil.list(cb), cookie);
     crawlThread.start();
   }
 
@@ -167,7 +167,7 @@ public class CrawlManagerImpl implements CrawlManager, LockssManager {
 
     CrawlThread crawlThread =
       new CrawlThread(au, au.getNewContentCrawlUrls(),
-		      true, Deadline.NEVER, callBackList, cookie);
+		      true, Deadline.MAX, callBackList, cookie);
     crawlThread.start();
     addNewContentCrawl(au, crawlThread.getCrawler());
   }

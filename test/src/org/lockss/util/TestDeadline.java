@@ -97,7 +97,7 @@ public class TestDeadline extends LockssTestCase {
   }
 
   public void testNever() {
-    Deadline never = Deadline.NEVER;
+    Deadline never = Deadline.MAX;
     try {
       never.expire();
       fail("Constant deadline allowed modification");

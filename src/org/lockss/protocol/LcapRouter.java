@@ -81,7 +81,7 @@ public class LcapRouter extends BaseLockssManager {
   private long beaconInterval = 0;
   private int initialHopCount = LcapMessage.MAX_HOP_COUNT_LIMIT;
 
-  private Deadline beaconDeadline = Deadline.at(TimeBase.NEVER);;
+  private Deadline beaconDeadline = Deadline.at(TimeBase.MAX);;
   private PartnerList partnerList = new PartnerList();
   private List messageHandlers = new ArrayList();
 

@@ -118,7 +118,7 @@ public class HashSpeedTest extends LockssTestCase {
     CrawlSpec spec = new CrawlSpec(sau.SIMULATED_URL_START, null);
     Crawler crawler = 
       new GoslingCrawlerImpl(sau, spec.getStartingUrls(), true);
-    crawler.doCrawl(Deadline.NEVER);
+    crawler.doCrawl(Deadline.MAX);
   }
 
   private void hashContent() throws Exception {

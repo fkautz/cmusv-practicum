@@ -108,7 +108,7 @@ public abstract class Configuration {
   /** Wait until the system is configured.  (<i>Ie</i>, until the first
    * time a configuration has been loaded.) */
   public static boolean waitConfig() {
-    return waitConfig(Deadline.NEVER);
+    return waitConfig(Deadline.MAX);
   }
 
   static void setCurrentConfig(Configuration newConfig) {

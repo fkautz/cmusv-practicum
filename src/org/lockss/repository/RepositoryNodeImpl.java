@@ -73,7 +73,7 @@ public class RepositoryNodeImpl implements RepositoryNode {
   protected static Logger logger = Logger.getLogger("RepositoryNode");
   protected LockssRepositoryImpl repository;
   // preset so testIllegalOperations() doesn't null pointer
-  private Deadline versionTimeout = Deadline.NEVER;
+  private Deadline versionTimeout = Deadline.MAX;
 
   RepositoryNodeImpl(String url, String nodeLocation,
                      LockssRepositoryImpl repository) {

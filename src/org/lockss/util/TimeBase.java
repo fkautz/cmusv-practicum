@@ -45,8 +45,8 @@ import java.util.*;
  * quickly and predictably.
  */
 public class TimeBase {
-  /** A long time from now (but not really never). */
-  public static final long NEVER = Long.MAX_VALUE;
+  /** A long time from now. */
+  public static final long MAX = Long.MAX_VALUE;
 
   private static volatile boolean isSimulated = false;
   private static volatile long simulatedTime;

@@ -49,9 +49,9 @@ public class TestNodeStateImpl extends LockssTestCase {
     MockCachedUrlSet mcus = new MockCachedUrlSet(mau, mspec);
 
     polls = new ArrayList(3);
-    polls.add(new PollState(1, "lwr1", "upr1", 1, 0, Deadline.NEVER));
-    polls.add(new PollState(2, "lwr2", "upr3", 1, 0, Deadline.NEVER));
-    polls.add(new PollState(3, "lwr3", "upr3", 1, 0, Deadline.NEVER));
+    polls.add(new PollState(1, "lwr1", "upr1", 1, 0, Deadline.MAX));
+    polls.add(new PollState(2, "lwr2", "upr3", 1, 0, Deadline.MAX));
+    polls.add(new PollState(3, "lwr3", "upr3", 1, 0, Deadline.MAX));
     state = new NodeStateImpl(mcus, new CrawlState(-1, -1, -1), polls,
                               new HistoryRepositoryImpl(tempDirPath));
   }
@@ -170,7 +170,7 @@ public class TestNodeStateImpl extends LockssTestCase {
   }
 
   public void testAddPollState() {
-    PollState state4 = new PollState(4, "lwr4", "upr4", 1, 0, Deadline.NEVER);
+    PollState state4 = new PollState(4, "lwr4", "upr4", 1, 0, Deadline.MAX);
     polls.add(state4);
     state.addPollState(state4);
     Iterator expectedIter = polls.iterator();

@@ -242,7 +242,7 @@ public class TestTreeWalkHandler extends LockssTestCase {
 
     // should ignore if active poll
     PollState pollState = new PollState(1, "", "", PollState.RUNNING, 1,
-                                        Deadline.NEVER);
+                                        Deadline.MAX);
     node.addPollState(pollState);
     treeWalkHandler.checkNodeState(node);
     // no poll in manager since we just created a PollState

@@ -84,7 +84,7 @@ public class DoHighwireCrawl {
     if (crawlFlg) {
       Crawler crawler = 
 	new GoslingCrawlerImpl(au, au.getCrawlSpec().getStartingUrls(), true);
-      crawler.doCrawl(Deadline.NEVER);
+      crawler.doCrawl(Deadline.MAX);
     }
   }
 }
