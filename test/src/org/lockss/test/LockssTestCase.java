@@ -164,6 +164,18 @@ public class LockssTestCase extends TestCase {
     fail(formatted+"expected:<"+expected+"> but was:<"+actual+">");
   }
 
+  static private void failNotEquals(String message,
+					Object[] expected, Object actual) {
+    StringBuffer sb = new StringBuffer(100);
+    sb.append("[");
+    for (int ix=0; ix<expected.length; ix++) {
+      sb.append(expected[ix]);
+      sb.append(", ");
+    }
+    sb.append("]");
+    failNotEquals(message, sb.toString(), actual);
+  }
+
   /** Asserts that the two DatagramPackets have equal contents */
   public static void assertEquals(DatagramPacket expected,
 				  DatagramPacket actual) {
