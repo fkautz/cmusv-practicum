@@ -54,6 +54,7 @@ public class TestSimulatedUrlCacher extends LockssTestCase {
   }
 
   public void setUp() throws Exception {
+    super.setUp();
     TestLockssRepositoryImpl.configCacheLocation("null");
     theDaemon.getLockssRepository(new MockArchivalUnit());
   }

@@ -65,8 +65,8 @@ public class TestLcapMessage extends LockssTestCase {
   }
 
 
-  public void setUp() {
-
+  public void setUp() throws Exception {
+    super.setUp();
     try {
       testaddr = InetAddress.getByName("127.0.0.1");
     }

@@ -46,6 +46,7 @@ public class TestPollHistoryImpl extends LockssTestCase {
   }
 
   public void setUp() throws Exception {
+    super.setUp();
     PollState state = new PollState(1, "none", null, 1, 0, null);
     Collection votes = new ArrayList();
     votes.add(new String("test"));

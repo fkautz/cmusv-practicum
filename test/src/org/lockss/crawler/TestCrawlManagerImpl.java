@@ -53,7 +53,8 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     super(msg);
   }
 
-  public void setUp() {
+  public void setUp() throws Exception {
+    super.setUp();
     mau = new MockArchivalUnit();
     
     urlList = ListUtil.list(startUrl);

@@ -62,6 +62,7 @@ public class TestHashQueue extends LockssTestCase {
   }
 
   public void setUp() throws Exception {
+    super.setUp();
     log.setLevel(Logger.LEVEL_DEBUG);
     if (dig == null) {
       dig = MessageDigest.getInstance(hashAlgorithm);

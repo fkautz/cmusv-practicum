@@ -59,7 +59,8 @@ public class TestLockssDatagram extends LockssTestCase {
   byte[] testData;
   int testPort;
 
-  public void setUp() {
+  public void setUp() throws Exception {
+    super.setUp();
     testStr = "This is test data";
     testData = testStr.getBytes();
     testPort = 1234;

@@ -73,7 +73,8 @@ public class TestGoslingCrawlerImpl extends LockssTestCase {
     super(msg);
   }
 
-  public void setUp() {
+  public void setUp() throws Exception {
+    super.setUp();
     TimeBase.setSimulated();
 
     mau = new MockArchivalUnit();

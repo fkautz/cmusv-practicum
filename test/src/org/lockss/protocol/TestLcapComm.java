@@ -95,6 +95,7 @@ public class TestLcapComm extends LockssTestCase {
 
 
   public void setUp() throws Exception {
+    super.setUp();
     testData = testStr.getBytes();
     testAddr = InetAddress.getByName("127.0.0.1");
     testSend = new LockssDatagram(LockssDatagram.PROTOCOL_TEST, testData);

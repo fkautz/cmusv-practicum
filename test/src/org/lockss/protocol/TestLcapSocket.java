@@ -62,6 +62,7 @@ public class TestLcapSocket extends LockssTestCase {
   DatagramPacket testPacket;
 
   public void setUp() throws Exception {
+    super.setUp();
     testAddr = InetAddress.getByName("127.0.0.1");
     testPacket =
       new DatagramPacket(testData, testData.length, testAddr, testPort);
