@@ -45,7 +45,7 @@ import org.lockss.test.MockCachedUrlSetSpec;
 public class MockArchivalUnit implements ArchivalUnit {
   private CrawlSpec spec;
   private String pluginId = "mock";
-  private String auId = "null";
+  private String auId = "none";
   private CachedUrlSet cus = null;
 
 
