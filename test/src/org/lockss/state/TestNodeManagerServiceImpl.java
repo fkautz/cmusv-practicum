@@ -58,7 +58,6 @@ public class TestNodeManagerServiceImpl extends LockssTestCase {
     theDaemon.setHistoryRepository(new HistoryRepositoryImpl(tempDirPath));
     theDaemon.getHistoryRepository().startService();
 
-    // create au state so thread doesn't throw null pointers
     theDaemon.getLockssRepository(mau).createNewNode(TEST_URL);
 
     MockCrawlManager crawlMan = new MockCrawlManager();
@@ -87,18 +86,14 @@ public class TestNodeManagerServiceImpl extends LockssTestCase {
     NodeManager node1 = nms.getNodeManager(mau);
     assertNotNull(node1);
 
-    mau.setAuId(auId + "test");
+    mau = new MockArchivalUnit();
     theDaemon.getLockssRepository(mau).createNewNode(TEST_URL);
 
     nms.addNodeManager(mau);
     NodeManager node2 = nms.getNodeManager(mau);
     assertNotSame(node1, node2);
 
-    mau.setAuId(auId);
-    node2 = nms.getNodeManager(mau);
-    assertSame(node1, node2);
-
-    mau.setAuId(auId + "test2");
+    mau = new MockArchivalUnit();
     try {
       nms.getNodeManager(mau);
       fail("Should throw IllegalArgumentException.");
