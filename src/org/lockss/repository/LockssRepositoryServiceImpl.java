@@ -84,28 +84,18 @@ public class LockssRepositoryServiceImpl implements LockssRepositoryService {
   }
 
   public void startService() {
-    Configuration.registerConfigurationCallback(new Configuration.Callback() {
-      public void configurationChanged(Configuration oldConfig,
-                                       Configuration newConfig,
-                                       Set changedKeys) {
-        setConfig(newConfig, oldConfig);
-      }
-    });
+    cacheLocation = Configuration.getParam(PARAM_CACHE_LOCATION);
     if (cacheLocation==null) {
       logger.error("Couldn't get "+PARAM_CACHE_LOCATION+" from Configuration");
       throw new LockssRepository.RepositoryStateException("Couldn't load param.");
     }
+    cacheLocation = extendCacheLocation(cacheLocation);
   }
 
   public void stopService() {
     // checkpoint here
     stopAllRepositories();
     theManager = null;
-  }
-
-  private void setConfig(Configuration config, Configuration oldConfig) {
-    cacheLocation = extendCacheLocation(config.getParam(PARAM_CACHE_LOCATION));
-    logger.info("Setting cache location to " + cacheLocation);
   }
 
   static String extendCacheLocation(String cacheDir) {

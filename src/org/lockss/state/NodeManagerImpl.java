@@ -171,6 +171,7 @@ public class NodeManagerImpl implements NodeManager {
 
   public void newContentCrawlFinished() {
     getAuState().newCrawlFinished();
+    historyRepo.storeAuState(getAuState());
   }
 
   public NodeState getNodeState(CachedUrlSet cus) {
@@ -521,6 +522,7 @@ public class NodeManagerImpl implements NodeManager {
     if ((AuUrl.isAuUrl(nodeState.getCachedUrlSet().getUrl())) &&
         (pollState.getType() == Poll.CONTENT_POLL)) {
       getAuState().newPollFinished();
+      historyRepo.storeAuState(getAuState());
       logger.info("Top level poll finished.");
     }
   }

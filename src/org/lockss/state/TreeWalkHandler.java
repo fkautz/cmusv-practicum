@@ -134,6 +134,7 @@ public class TreeWalkHandler {
     }
     //alert the AuState
     manager.getAuState().setLastTreeWalkTime();
+    manager.historyRepo.storeAuState(manager.getAuState());
     logger.debug("Tree walk finished.");
   }
 
@@ -245,6 +246,7 @@ public class TreeWalkHandler {
    */
   public void start() {
     logger.debug3("TreeWalkHandler started.");
+    treeWalkAborted = false;
     if (treeWalkThread==null) {
       treeWalkThread = new TreeWalkThread();
       treeWalkThread.start();
@@ -262,8 +264,6 @@ public class TreeWalkHandler {
       while (goOn) {
         long timeToStart = timeUntilTreeWalkStart();
         if (timeToStart <= 0) {
-
-	  treeWalkAborted = false;
           doTreeWalk();
         }
         else {
