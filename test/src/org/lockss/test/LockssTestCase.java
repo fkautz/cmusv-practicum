@@ -907,11 +907,13 @@ public class LockssTestCase extends TestCase {
 
     Interrupter(long waitMs, Thread thread) {
       super(waitMs);
+      setPriority(thread.getPriority() + 1);
       this.thread = thread;
     }
 
     /** Interrupt the thread */
     protected void doit() {
+      log.debug("Interrupting");
       if (threadDump) {
 	try {
 	  DebugUtils.getInstance().threadDump();
