@@ -75,7 +75,7 @@ public class TestConfigurableArchivalUnit extends LockssTestCase {
     map.putBoolean("BOOLEAN", true);
     map.putString("STRING", "Yo Mama!");
     map.putInt(ConfigParamDescr.YEAR.getKey(), 2003);
-    map.putInt(ConfigurableArchivalUnit.CM_AU_SHORT_YEAR_KEY +
+    map.putInt(ConfigurableArchivalUnit.CM_AU_SHORT_YEAR_PREFIX +
                ConfigParamDescr.YEAR.getKey(),3);
 
     String substr = "My Test Integer = %d\nINTEGER";
