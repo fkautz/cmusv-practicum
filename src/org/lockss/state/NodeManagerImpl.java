@@ -1293,11 +1293,11 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
 
   static int mapResultsErrorToPollError(int resultsErr) {
     switch (resultsErr) {
-      case BasePoll.ERR_HASHING:
+      case Poll.ERR_HASHING:
         return PollState.ERR_HASHING;
-      case BasePoll.ERR_IO:
+      case Poll.ERR_IO:
         return PollState.ERR_IO;
-      case BasePoll.ERR_SCHEDULE_HASH:
+      case Poll.ERR_SCHEDULE_HASH:
         return PollState.ERR_SCHEDULE_HASH;
     }
     return PollState.ERR_UNDEFINED;
