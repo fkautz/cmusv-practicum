@@ -100,7 +100,7 @@ public class FifoQueue implements Queue {
    * in the queue more than once, the behavior is undefined.
    * @return true iff the element was present in the queue
    */
-  public boolean remove(Object obj) {
+  public synchronized boolean remove(Object obj) {
     return queue.remove(obj);
   }
 
