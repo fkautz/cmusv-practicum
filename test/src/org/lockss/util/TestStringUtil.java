@@ -173,6 +173,14 @@ public class TestStringUtil extends LockssTestCase {
   		 StringUtil.replaceString("1234456", "4", "44"));
   }
 
+  public void testReplaceFirst() {
+    assertEquals("aabbcc", StringUtil.replaceFirst("aaddcc", "dd", "bb"));
+    assertEquals("aabb", StringUtil.replaceFirst("aadd", "dd", "bb"));
+    assertEquals("aabbccdd", StringUtil.replaceFirst("aaddccdd", "dd", "bb"));
+    assertEquals("aabbddcc", StringUtil.replaceFirst("aaddddcc", "dd", "bb"));
+    assertEquals("aabbcc", StringUtil.replaceFirst("aabbcc", "dd", "bb"));
+  }
+
   public void testOverlap(){
     String testStr = "xxx1xxx2xxx3xxx";
     assertEquals("ddx1ddx2ddx3ddx",

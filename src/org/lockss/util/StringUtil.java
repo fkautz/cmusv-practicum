@@ -75,6 +75,26 @@ public class StringUtil {
     return sb.toString();
   }
 
+  public static String replaceFirst(String line, String oldstr, String newstr) {
+    int oldLen = oldstr.length();
+    if (oldLen == 0 || oldstr.equals(newstr)) {
+      return line;
+    }
+    int lineLen = line.length();
+    StringBuffer sb = new StringBuffer(lineLen);
+    int index = line.indexOf(oldstr);
+    if (index < 0) {
+      return line;
+    } else {
+      sb.append(line.substring(0, index));
+      sb.append(newstr);
+      if (index + oldLen < line.length()) {
+        sb.append(line.substring(index + oldLen));
+      }
+    }
+    return sb.toString();
+  }
+
   /**
    * Concatenate elements of collection into string, with separators
    * @param c - Collection of object (on which toString() will be called)
