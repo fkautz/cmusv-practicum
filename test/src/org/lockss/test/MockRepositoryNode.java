@@ -55,6 +55,9 @@ public class MockRepositoryNode implements RepositoryNode {
   public String url;
   public String nodeLocation;
 
+  public MockRepositoryNode() {
+  }
+
   MockRepositoryNode(String url, String nodeLocation) {
     this.url = url;
     this.nodeLocation = nodeLocation;
