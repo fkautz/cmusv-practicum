@@ -994,15 +994,6 @@ public class RepositoryNodeImpl implements RepositoryNode {
    * Writes the node properties to disk.
    */
   private void writeNodeProperties() {
-    if (currentVersion == 0) {
-      if (!contentDir.exists()) {
-        if (!contentDir.mkdirs()) {
-          logger.error("Couldn't create cache directory for '"+
-                       contentDir.getAbsolutePath()+"'");
-          throw new LockssRepository.RepositoryStateException("Couldn't create cache directory.");
-        }
-      }
-    }
     try {
       OutputStream os = new BufferedOutputStream(new FileOutputStream(nodePropsFile));
       nodeProps.store(os, "Node properties");
