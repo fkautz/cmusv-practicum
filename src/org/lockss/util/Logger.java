@@ -460,7 +460,7 @@ public class Logger {
     if (tgts != null && !tgts.isEmpty()) {
       setTargets(tgts);
     } else {
-      myLog.error("Leaving log targets unchanged");
+      myLog.debug("Leaving log targets unchanged");
     }
   }
 
