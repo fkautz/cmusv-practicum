@@ -316,7 +316,8 @@ public class StringUtil {
     return str.regionMatches(true, str.length() - lend, end, 0, lend);
   }
 
-  /** Remove the extension from a filename */
+  /** Remove the substring beginning with the final occurrence of the
+   * separator, if any. */
   public static String upToFinal(String str, String sep) {
     int pos = str.lastIndexOf(sep);
     if (pos < 0) {
