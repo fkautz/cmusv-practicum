@@ -112,6 +112,7 @@ public class TestFileUtil extends LockssTestCase {
     assertTrue(new File(d2, "d2f1").createNewFile());
     assertFalse(dir.delete());
     assertTrue(FileUtil.delTree(dir));
+    assertFalse(dir.exists());
   }
 }
 
