@@ -170,7 +170,7 @@ public class TestMemoryBoundFunction extends LockssTestCase {
   /**
    * Test one generate/verify pair for invalid proof
    */
-  public void dontTestBadProofGoodNonce() throws IOException {
+  public void testBadProofGoodNonce() throws IOException {
     for (int i = 0; i < names.length; i++)
       onePair(i, 63, 2048, true, false);
   }
@@ -179,7 +179,7 @@ public class TestMemoryBoundFunction extends LockssTestCase {
   /**
    * Test one generate/verify pair for invalid nonce
    */
-  public void dontTestGoodProofBadNonce() throws IOException {
+  public void testGoodProofBadNonce() throws IOException {
     for (int i = 0; i < names.length; i++)
       onePair(i, 63, 2048, false, true);
   }

@@ -352,9 +352,9 @@ public class MBF2 extends MemoryBoundFunctionSPI {
 	  logger.debug("trace entry " + i + " is " + mbf.trace[i]);
 	}
       }
-      if (mbf.verify && proofFailed)
-	mbf.proof = null;
     }
+    if (mbf.verify && proofFailed)
+      mbf.proof = null;
   }
 
   // Instance initialization
