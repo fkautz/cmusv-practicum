@@ -44,7 +44,7 @@ import org.lockss.daemon.*;
 
 public class MockUrlCacher implements UrlCacher {
   private MockCachedUrlSet cus = null;
-  private CachedUrl cu;
+  private MockCachedUrl cu;
   private String url;
   private InputStream cachedIS;
   private InputStream uncachedIS;
@@ -87,7 +87,7 @@ public class MockUrlCacher implements UrlCacher {
     return cu;
   }
 
-  public void setCachedUrl(CachedUrl cu) {
+  public void setCachedUrl(MockCachedUrl cu) {
     this.cu = cu;
   }
 
@@ -122,6 +122,9 @@ public class MockUrlCacher implements UrlCacher {
     if (cus != null) {
       cus.addCachedUrl(url);
     } 
+    if (cu != null) {
+      cu.setExists(true);
+    }
   }
 
   public InputStream getUncachedInputStream(){
