@@ -66,11 +66,11 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
   /**
    * Standard constructor for HighWirePlugin.
    *
-   * @param start URL to start crawl
+   * @param base URL to start crawl
+   * @param volume volume number
    * @throws REException
-   * @throws MalformedURLException
    */
-  public HighWireArchivalUnit(URL base, int volume) 
+  public HighWireArchivalUnit(URL base, int volume)
       throws REException {
     super();
     if (base == null) {
@@ -103,7 +103,7 @@ public class HighWireArchivalUnit extends BaseArchivalUnit {
 
   private CrawlSpec makeCrawlSpec(URL base, int volume)
       throws REException {
-    
+
     CrawlRule rule = makeRules(base, volume);
     return new CrawlSpec(makeStartUrl(base, volume), rule);
   }

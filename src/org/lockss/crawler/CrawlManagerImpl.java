@@ -58,7 +58,7 @@ public class CrawlManagerImpl implements CrawlManager, LockssManager {
    * init the plugin manager.
    * @param daemon the LockssDaemon instance
    * @throws LockssDaemonException if we already instantiated this manager
-   * @see org.lockss.app.LockssManager.initService()
+   * @see org.lockss.app.LockssManager#initService(LockssDaemon daemon)
    */
   public void initService(LockssDaemon daemon) throws LockssDaemonException {
     if(theManager == null) {
@@ -72,14 +72,14 @@ public class CrawlManagerImpl implements CrawlManager, LockssManager {
 
   /**
    * start the plugin manager.
-   * @see org.lockss.app.LockssManager.startService()
+   * @see org.lockss.app.LockssManager#startService()
    */
   public void startService() {
   }
 
   /**
    * stop the plugin manager
-   * @see org.lockss.app.LockssManager.stopService()
+   * @see org.lockss.app.LockssManager#stopService()
    */
   public void stopService() {
     // checkpoint here
@@ -89,6 +89,7 @@ public class CrawlManagerImpl implements CrawlManager, LockssManager {
   /**
    * Schedules a repair crawl and calls cb.signalRepairAttemptCompleted
    * when done.
+   * @param au the AU being crawled
    * @param url URL that needs to be repaired
    * @param cb callback to talk to when repair attempt is done
    * @param cookie object that the callback needs to understand which

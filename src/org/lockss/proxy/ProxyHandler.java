@@ -56,7 +56,7 @@ public class ProxyHandler extends NullHandler implements LockssManager {
    * init the plugin manager.
    * @param daemon the LockssDaemon instance
    * @throws LockssDaemonException if we already instantiated this manager
-   * @see org.lockss.app.LockssManager.initService()
+   * @see org.lockss.app.LockssManager#initService(LockssDaemon daemon)
    */
   public void initService(LockssDaemon daemon) throws LockssDaemonException {
     if(theManager == null) {
@@ -71,14 +71,14 @@ public class ProxyHandler extends NullHandler implements LockssManager {
 
   /**
    * start the plugin manager.
-   * @see org.lockss.app.LockssManager.startService()
+   * @see org.lockss.app.LockssManager#startService()
    */
   public void startService() {
   }
 
   /**
    * stop the plugin manager
-   * @see org.lockss.app.LockssManager.stopService()
+   * @see org.lockss.app.LockssManager#stopService()
    */
   public void stopService() {
     // XXX undo whatever we did in start proxy.
