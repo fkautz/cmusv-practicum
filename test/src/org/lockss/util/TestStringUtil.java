@@ -568,4 +568,10 @@ System.out.println("s: "+s);
     assertEquals(0, StringUtil.compareToHandleNull("a", "a"));
   }
 
+  public void testProtectedDivide() {
+    assertEquals("2", StringUtil.protectedDivide(10, 5));
+    assertEquals("inf", StringUtil.protectedDivide(10, 0));
+    assertEquals("infinite", StringUtil.protectedDivide(10, 0, "infinite"));
+  }
+
 }

@@ -694,6 +694,19 @@ public class StringUtil {
     new UD("s", Constants.SECOND, 0),
   };
 
+  public static String protectedDivide(long numerator, long denominator) {
+    return protectedDivide(numerator, denominator, "inf");
+  }
+
+  public static String protectedDivide(long numerator, long denominator,
+				       String infStr) {
+    if (denominator == 0) {
+      return infStr;
+    }
+    long val = numerator / denominator;
+    return String.valueOf(val);
+  }
+
   /** Generate a string representing the time interval.
    * @param millis the time interval in milliseconds
    * @return a string in the form dDhHmMsS
