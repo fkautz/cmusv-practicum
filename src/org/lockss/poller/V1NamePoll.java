@@ -223,7 +223,7 @@ public class V1NamePoll extends V1Poll {
 				     lwrRem, uprRem,
 				     Poll.NAME_POLL,
 				     Poll.V1_POLL);
-	if (m_pollmanager.callPoll(spec)) {
+	if (!m_pollmanager.callPoll(spec)) {
           log.error("unable to call name poll for " + spec);
         }
 	log.debug3("buildPollLists 3");
