@@ -281,14 +281,13 @@ public class BaseCachedUrlSet implements CachedUrlSet {
     try {
       bytesPerMs = metrics.getBytesPerMsHashEstimate();
       if (bytesPerMs > 0) {
-	return /*(long)*/(size / bytesPerMs);
+	return (size / bytesPerMs);
       } else {
-	logger.warning("Hash speed estimate was 0, using size / " +
-		       BYTES_PER_MS_DEFAULT);
+	logger.warning("Hash speed estimate was 0, using default");
 	return size / BYTES_PER_MS_DEFAULT;
       }
     } catch (SystemMetrics.NoHashEstimateAvailableException ie) {
-      logger.error("Couldn't finish estimating hash time: " + ie);
+      logger.warning("No hash estimate available, using default");
       return size / BYTES_PER_MS_DEFAULT;
     }
   }
