@@ -382,6 +382,15 @@ public class TestCharRing extends LockssTestCase {
     }
   }
 
+  public void testSBRemove() throws Exception {
+    StringBuffer sb = new StringBuffer();
+    assertEquals(5, cr.remove(sb, 10));
+    assertEquals("abcde", sb.toString());
+    cr.add("1234".toCharArray());
+    assertEquals(3, cr.remove(sb, 3));
+    assertEquals("abcde123", sb.toString());
+  }
+  
   public void testIndexOf() throws Exception {
     assertEquals(1, cr.indexOf("bc", -1, false));
     assertEquals(-1, cr.indexOf("bb", -1, false));
