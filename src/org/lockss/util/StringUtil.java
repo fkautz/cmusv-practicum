@@ -399,6 +399,11 @@ public class StringUtil {
     return fromReader(new FileReader(path));
   }
 
+  /** Reads in the entire contents of a file into a string */
+  public static String fromFile(File file) throws IOException {
+    return fromReader(new FileReader(file));
+  }
+
   /**
    * Test whether a string is null or the empty string
    * @param s the string

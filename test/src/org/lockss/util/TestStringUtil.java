@@ -441,6 +441,22 @@ System.out.println("s: "+s);
     }
   }
 
+  public void testFromFileFile() {
+    try {
+      String txt = "Another string.";
+      File file = new File(getTempDir(), "test.txt");
+      FileWriter fw = new FileWriter(file);
+      fw.write(txt);
+      fw.close();
+      String readtxt = StringUtil.fromFile(file);
+      assertEquals(txt, readtxt);
+      file.delete();
+    }
+    catch (IOException e) {
+      fail(e.getMessage());
+    }
+  }
+
   public void testUpToFinal() {
     assertEquals("foo", StringUtil.upToFinal("foo.bar", "."));
     assertEquals("foo.a", StringUtil.upToFinal("foo.a.bar", "."));
