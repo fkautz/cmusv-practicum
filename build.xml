@@ -1595,7 +1595,7 @@ Test results in ${tools.test.results}
    depends="prepare.run.test,check.junit,jar-tests"
    description="Run a set of test classes through jcoverage, named by the 'include' property." >
     <property name="jcoverage.ser" value="jcoverage.ser" />
-    <property name="tests" value="${include}Test*" />
+    <property name="tests" value="${include}/Test*" />
     <taskdef classpath="${jcoverage.jar}" resource="tasks.properties"/>
     <delete file="${jcoverage.ser}" quiet="true" />
     <delete dir="${instrumented}" quiet="true" />
