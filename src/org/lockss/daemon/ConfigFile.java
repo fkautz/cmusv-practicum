@@ -208,7 +208,8 @@ public class ConfigFile {
       // This logic can and should go away when we're no longer in a
       // transition period, and the platform knows about XML config
       // files.
-      if (m_fileContents == null &&
+      if (!Boolean.getBoolean("org.lockss.config.noXmlHack") &&
+	  m_fileContents == null &&
 	  m_fileType == PROPERTIES_FILE && 
 	  UrlUtil.isHttpUrl(url)) {
 	String xmlUrl = makeXmlUrl(url);
