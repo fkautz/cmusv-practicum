@@ -101,4 +101,18 @@ public class TestStringUtil extends TestCase{
     assertEquals("blahTeStblah", testStr);
   }
   
+  public void testSeparatedString() {
+    assertEquals("1,2,3",
+		 StringUtil.separatedString(ListUtil.list("1","2","3"), ","));
+    assertEquals("'1','2','3'",
+		 StringUtil.separatedDelimitedString(ListUtil.list("1","2",
+								   "3"),
+						     ",", "'"));
+    assertEquals("[1],[2],[3]",
+		 StringUtil.separatedDelimitedString(ListUtil.list("1","2",
+								   "3"),
+						     ",", "[", "]"));
+    String a[] = {"a", "b", "c"};
+    assertEquals("a,b,c", StringUtil.separatedString(a, ","));
+  }
 }
