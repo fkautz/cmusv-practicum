@@ -135,9 +135,9 @@ public class TestConfigurablePlugin extends LockssTestCase {
     catch (Exception npe) {
     }
 
-    extMapName = "org.lockss.plugin.absinthe.AbsinthePlugin";
+    extMapName = "org.lockss.test.MockConfigurablePlugin";
     configurablePlugin.initPlugin(daemon, extMapName);
-    assertEquals("org.lockss.plugin.absinthe.AbsinthePlugin",
+    assertEquals("org.lockss.test.MockConfigurablePlugin",
                  configurablePlugin.getPluginId());
   }
 
@@ -152,7 +152,7 @@ public class TestConfigurablePlugin extends LockssTestCase {
     }
     assertEquals("ConfigurablePlugin", configurablePlugin.getPluginName());
 
-    extMapName = "org.lockss.plugin.configurable.AbsinthePlugin";
+    extMapName = "org.lockss.test.MockConfigurablePlugin";
     configurablePlugin.initPlugin(daemon, extMapName);
     assertEquals("Absinthe Literary Review",
                  configurablePlugin.getPluginName());
