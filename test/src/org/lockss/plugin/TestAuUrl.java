@@ -30,7 +30,7 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.poller;
+package org.lockss.plugin;
 
 import java.io.*;
 import java.net.*;
@@ -40,7 +40,7 @@ import org.lockss.test.*;
 
 
 /**
- * Test class for org.lockss.poller.AuUrl
+ * Test class for org.lockss.plugin.AuUrl
  */
 
 public class TestAuUrl extends LockssTestCase {
