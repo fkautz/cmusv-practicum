@@ -280,7 +280,6 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
     String val_str = printfString.substring(0, printfString.indexOf(","));
     int value = Integer.valueOf(val_str).intValue();
     return new CrawlRules.RE(rule, value);
-
   }
 
 /*
