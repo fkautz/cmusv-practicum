@@ -62,6 +62,11 @@ public class MockCrawlManager implements CrawlManager, LockssManager {
     scheduledRepairs.put(url.toString(), SCHEDULED);
   }
 
+  public void scheduleRepair(ArchivalUnit au, List urls,
+			     CrawlManager.Callback cb, Object cookie) {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
   /**
    * Currently returns false if last crawl time > 0, schedules new content
    * crawl and returns true otherwise.
