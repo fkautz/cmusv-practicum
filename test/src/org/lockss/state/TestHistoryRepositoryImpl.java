@@ -219,7 +219,7 @@ public class TestHistoryRepositoryImpl extends LockssTestCase {
 
 
   public void testStoreAuState() throws Exception {
-    LinkedList strCol = new LinkedList();
+    HashSet strCol = new HashSet();
     strCol.add("test");
     AuState auState = new AuState(mau, 123, 321, 456, strCol, repository);
     repository.storeAuState(auState);
