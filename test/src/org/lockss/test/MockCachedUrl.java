@@ -76,6 +76,9 @@ public class MockCachedUrl implements CachedUrl {
   }
 
   public Reader getReader() {
+    if (content != null) {
+      return new StringReader(content);
+    }
     throw new UnsupportedOperationException("Not implemented");
   }
 
