@@ -290,8 +290,9 @@ public class TestStringUtil extends LockssTestCase {
 
   public void testStackTraceString() {
     String s = StringUtil.stackTraceString(new Exception());
-    String exp = "java.lang.Exception\n" +
+    String exp = "java.lang.Exception" + Constants.EOL +
       "\tat org.lockss.util.TestStringUtil.testStackTraceString(TestStringUtil.java:";
+System.out.println("s: "+s);
     assertTrue(s.startsWith(exp));
   }
 
