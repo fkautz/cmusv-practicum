@@ -101,6 +101,6 @@ public class Deadline {
   // tk - should include "+n days" or some such
   private static DateFormat df = DateFormat.getTimeInstance();
   public String toString() {
-    return "['til:" + df.format(expiration) + "]";
+    return "[duration: " + duration + ",'til:" + df.format(expiration) + "]";
   }
 }
