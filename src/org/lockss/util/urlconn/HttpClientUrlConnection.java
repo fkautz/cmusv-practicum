@@ -302,6 +302,7 @@ public class HttpClientUrlConnection extends BaseLockssUrlConnection {
       return in;
     }
     if (in == null) {
+      log.warning("Returning null input stream");
       return null;
     }
     return new EofMonitoringInputStream(in);
