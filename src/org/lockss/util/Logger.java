@@ -104,8 +104,13 @@ public class Logger {
   // Default default log level if config parameter not set.
   private static final int DEFAULT_LEVEL = LEVEL_INFO;
 
-  private static final Map logs = new HashMap();
+  private static/* final*/ Map logs = new HashMap();
   private static List targets = new ArrayList();
+
+  /** Experimental for use in unit tests */
+  public static void resetLogs() {
+    logs = new HashMap();
+  }
 
   // allow default level to be specified on command line
   private static int globalDefaultLevel;
