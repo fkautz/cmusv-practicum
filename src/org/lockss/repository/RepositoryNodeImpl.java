@@ -299,7 +299,11 @@ public class RepositoryNodeImpl implements RepositoryNode {
       // call invalidate on parent
       RepositoryNodeImpl parentNode = determineParentNode();
       if (parentNode != null) {
-        parentNode.invalidateCachedValues(false);
+        if (!parentNode.getNodeUrl().equals(getNodeUrl())) {
+          // don't loop by mistake if we've reached the top
+          // (shouldn't be possible anyway)
+          parentNode.invalidateCachedValues(false);
+        }
       }
     }
   }
