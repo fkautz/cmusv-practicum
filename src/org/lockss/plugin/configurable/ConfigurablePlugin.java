@@ -56,7 +56,7 @@ public class ConfigurablePlugin extends BasePlugin {
       "plugin_exception_handler";
   static final String DEFAULT_PLUGIN_VERSION = "1";
 
-  String mapName = null;
+  protected String mapName = null;
 
   static Logger log = Logger.getLogger("ConfigurablePlugin");
 

@@ -31,12 +31,12 @@ in this Software without prior written authorization from Stanford University.
 */
 package org.lockss.plugin.configurable;
 
-import org.lockss.test.*;
-import gnu.regexp.*;
-import org.lockss.daemon.*;
-import org.lockss.plugin.*;
-import org.lockss.util.*;
 import java.util.*;
+
+import org.lockss.daemon.*;
+import org.lockss.test.*;
+import org.lockss.util.*;
+import gnu.regexp.*;
 
 /**
  * TestConfigurableArchivalUnit: test case for the ConfigurableArchivalUnit
@@ -150,6 +150,17 @@ public class TestConfigurableArchivalUnit extends LockssTestCase {
     String expectedReturn = "http://www.example.com/lockss-volume/43.html";
     String actualReturn = cau.makeStartUrl();
     assertEquals("return value", expectedReturn, actualReturn);
+  }
+
+  public void testGetManifestPage() {
+
+    map.putString("HOST", "www.example.com");
+    map.putInt("YEAR", 2003);
+    map.putString(ConfigurableArchivalUnit.CM_AU_MANIFEST_KEY,
+            "http://%s/contents-by-date.%d.shtml\nHOST\nYEAR");
+    String expectedReturn = "http://www.example.com/contents-by-date.2003.shtml";
+    String actualReturn = cau.getManifestPage();
+    assertEquals("return valuse", expectedReturn, actualReturn);
   }
 
 }
