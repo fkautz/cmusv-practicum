@@ -32,6 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.repository;
 import java.util.*;
+import org.lockss.util.Logger;
 
 /**
  * RepositoryNode is used to store the contents and
@@ -40,10 +41,21 @@ import java.util.*;
 public abstract class RepositoryNodeImpl implements RepositoryNode {
   protected String url;
   protected String cacheLocation;
+  protected static Logger logger = Logger.getLogger("RepositoryNode",
+                                                    Logger.LEVEL_DEBUG);
+  protected LockssRepositoryImpl repository;
 
-  protected RepositoryNodeImpl(String url, String cacheLocation) {
+  protected RepositoryNodeImpl(String url, String cacheLocation,
+                               LockssRepositoryImpl repository) {
     this.url = url;
     this.cacheLocation = cacheLocation;
+    this.repository = repository;
+  }
+
+  public void finalize() {
+    if (repository!=null) {
+      repository.removeReference(url);
+    }
   }
 
   public String getNodeUrl() {
@@ -60,4 +72,5 @@ public abstract class RepositoryNodeImpl implements RepositoryNode {
   public void storeState(Properties newProps) {
     //XXX implement
   }
+
 }

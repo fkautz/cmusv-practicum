@@ -51,7 +51,7 @@ public class TestLeafNodeImpl extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     File tempDir = super.getTempDir();
-    leaf = new LeafNodeImpl("test.cache", tempDir.getAbsolutePath() + File.separator);
+    leaf = new LeafNodeImpl("test.cache", tempDir.getAbsolutePath() + File.separator, null);
   }
 
   public void testMakeNewCache() {
