@@ -76,6 +76,9 @@ public class LockssRepositoryServiceImpl implements LockssRepositoryService {
 
   public void initService(LockssDaemon daemon) throws LockssDaemonException {
     if (theManager == null) {
+      // blank the name map
+      nameMap = null;
+
       theDaemon = daemon;
       theManager = this;
       cacheLocation = Configuration.getParam(PARAM_CACHE_LOCATION);
