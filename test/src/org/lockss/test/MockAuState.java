@@ -60,7 +60,7 @@ public class MockAuState extends AuState {
   }
 
   public MockAuState(ArchivalUnit au, long lastCrawlTime, long lastPollTime,
-                     long lastTreeWalk, List crawlUrls,
+                     long lastTreeWalk, LinkedList crawlUrls,
                      HistoryRepository historyRepo) {
     super(au, lastCrawlTime, lastPollTime, lastTreeWalk,
 	  crawlUrls, historyRepo);
@@ -82,7 +82,7 @@ public class MockAuState extends AuState {
     super.newCrawlFinished();
   }
 
-  public List getCrawlUrls() {
+  public LinkedList getCrawlUrls() {
     return crawlUrls;
   }
 

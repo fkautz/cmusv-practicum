@@ -86,7 +86,7 @@ public class TestAuStateImpl extends LockssTestCase {
   }
 
   public void testGetUrls() {
-    List stringList = new ArrayList();
+    LinkedList stringList = new LinkedList();
     stringList.add("test");
 
     AuState auState = new AuState(mau, -1, -1, 123, stringList, historyRepo);
@@ -98,7 +98,8 @@ public class TestAuStateImpl extends LockssTestCase {
   }
 
   public void testUpdateUrls() {
-    AuState auState = new AuState(mau, -1, -1, 123, new ArrayList(), historyRepo);
+    AuState auState =
+      new AuState(mau, -1, -1, 123, new LinkedList(), historyRepo);
     assertTrue(historyRepo.storedAus.isEmpty());
 
     Collection col = auState.getCrawlUrls();
@@ -123,7 +124,8 @@ public class TestAuStateImpl extends LockssTestCase {
   }
 
   public void testForceUpdateUrls() {
-    AuState auState = new AuState(mau, -1, -1, 123, new ArrayList(), historyRepo);
+    AuState auState =
+      new AuState(mau, -1, -1, 123, new LinkedList(), historyRepo);
     assertTrue(historyRepo.storedAus.isEmpty());
 
     Collection col = auState.getCrawlUrls();
