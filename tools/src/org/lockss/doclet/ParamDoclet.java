@@ -102,7 +102,7 @@ public class ParamDoclet {
 	      info.usedIn.add(className);
 	    }
 	  } else if (name.startsWith("DEFAULT_")) {
-	    info.defaultValue = getDefaultValue(field);
+	    info.defaultValue = getDefaultValue(field, root);
 	  }
 	}
       }
@@ -226,7 +226,7 @@ public class ParamDoclet {
   /**
    * Cheesily use reflection to obtain the default value.p
    */
-  public static String getDefaultValue(FieldDoc field) {
+  public static String getDefaultValue(FieldDoc field, RootDoc root) {
     String defaultVal = null;
     try {
       ClassDoc classDoc = field.containingClass();
