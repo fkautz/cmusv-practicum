@@ -93,8 +93,8 @@ public class HashSvcQueueImpl
 
   protected void setConfig(Configuration config, Configuration prevConfig,
 			   Set changedKeys) {
-    estPadConstant = config.getLong(PARAM_ESTIMATE_PAD_CONSTANT,
-				    DEFAULT_ESTIMATE_PAD_CONSTANT);
+    estPadConstant = config.getTimeInterval(PARAM_ESTIMATE_PAD_CONSTANT,
+					    DEFAULT_ESTIMATE_PAD_CONSTANT);
     estPadPercent = config.getLong(PARAM_ESTIMATE_PAD_PERCENT,
 				   DEFAULT_ESTIMATE_PAD_PERCENT);
   }

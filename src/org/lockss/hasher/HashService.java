@@ -55,13 +55,16 @@ public interface HashService extends LockssManager {
   static final String PARAM_NUM_STEPS = PREFIX + "numSteps";
   static final int DEFAULT_NUM_STEPS = 10;
 
+  static final String PARAM_NAME_HASH_ESTIMATE = PREFIX + "nameHashEstimate";
+  static final long DEFAULT_NAME_HASH_ESTIMATE = Constants.SECOND;
+
   static final String PARAM_COMPLETED_MAX = PREFIX + "historySize";
   static final int DEFAULT_COMPLETED_MAX = 50;
 
   /** Constant by which hash estimates are increased */
   static final String PARAM_ESTIMATE_PAD_CONSTANT =
     PREFIX + "estimate.pad.constant";
-  static final int DEFAULT_ESTIMATE_PAD_CONSTANT = 10;
+  static final long DEFAULT_ESTIMATE_PAD_CONSTANT = 10;
 
   /** Percentage by which hash estimates are increased */
   static final String PARAM_ESTIMATE_PAD_PERCENT =
