@@ -51,7 +51,7 @@ public class TestLcapRouter extends LockssTestCase {
   private static byte[] testbytes = {1,2,3,4,5,6,7,8,9,10};
   private static String lwrbnd = "test1.doc";
   private static String uprbnd = "test3.doc";
-  private static String[] testentries;
+  private static ArrayList testentries;
 
   private static MockLockssDaemon daemon = new MockLockssDaemon(null);
   private IdentityManager idmgr;
