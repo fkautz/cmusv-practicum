@@ -213,8 +213,8 @@ public class RepositoryNodeImpl implements RepositoryNode {
       int bufMaxLength = url.length() + child.getName().length() + 1;
       StringBuffer buffer = new StringBuffer(bufMaxLength);
       buffer.append(url);
-      if (!url.endsWith(File.separator)) {
-        buffer.append(File.separator);
+      if (!url.endsWith("/")) {
+        buffer.append('/');
       }
       buffer.append(child.getName());
 
