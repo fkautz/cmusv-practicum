@@ -317,6 +317,10 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     return misses;
   }
 
+  /** By default there is no site normalization */
+  public String siteNormalizeUrl(String url) {
+    return url;
+  }
 
   /**
    * Return the CachedUrlSet representing the entire contents

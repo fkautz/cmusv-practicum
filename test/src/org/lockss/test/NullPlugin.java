@@ -217,7 +217,8 @@ public class NullPlugin {
     public void setRedirectScheme(RedirectScheme scheme) {
     }
 
-    public void cache() throws IOException {
+    public int cache() throws IOException {
+      return CACHE_RESULT_NOT_MODIFIED;
     }
 
     public void storeContent(InputStream input,
@@ -355,6 +356,10 @@ public class NullPlugin {
 
     public boolean shouldBeCached(String url) {
       return false;
+    }
+
+    public String siteNormalizeUrl(String url) {
+      return url;
     }
 
     public Collection getUrlStems() {
