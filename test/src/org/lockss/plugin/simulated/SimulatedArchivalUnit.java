@@ -193,6 +193,25 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     return StringUtil.replaceString(filename, simRoot, SIMULATED_URL_ROOT);
   }
 
+  /** @return the number of links between the top index page and the url.
+   * This knows about the structure of the simulated content */
+  public int getLinkDepth(String url) {
+    String relname = StringUtil.replaceString(url, SIMULATED_URL_ROOT, "");
+    String absname = StringUtil.replaceString(url, SIMULATED_URL_ROOT,
+					      simRoot);
+    int dirDepth = StringUtil.countOccurences(relname, "/") - 1;
+    File absfile = new File(absname);
+    File relfile = new File(relname);
+    String name = (absfile.isDirectory()
+		   ? SimulatedContentGenerator.INDEX_NAME 
+		   : relfile.getName());
+    if (SimulatedContentGenerator.INDEX_NAME.equals(name)) {
+      return dirDepth;
+    } else {
+      return dirDepth + 1;
+    }
+  }
+
   public List getNewContentCrawlUrls() {
     return ListUtil.list(SIMULATED_URL_START);
   }

@@ -173,12 +173,23 @@ public class FuncSimulatedContent extends LockssTestCase {
     checkRoot();
     checkLeaf();
     checkStoredContent();
+    checkDepth();
   }
 
   private void hashContent() throws Exception {
     measureHashSpeed();
     hashSet(true);
     hashSet(false);
+  }
+
+  private void checkDepth() {
+    String URL_ROOT = SimulatedArchivalUnit.SIMULATED_URL_ROOT;
+    assertEquals(0, sau.getLinkDepth(URL_ROOT + "/index.html"));
+    assertEquals(0, sau.getLinkDepth(URL_ROOT + "/"));
+    assertEquals(1, sau.getLinkDepth(URL_ROOT + "/file1.html"));
+    assertEquals(1, sau.getLinkDepth(URL_ROOT + "/branch1/index.html"));
+    assertEquals(1, sau.getLinkDepth(URL_ROOT + "/branch1/"));
+    assertEquals(2, sau.getLinkDepth(URL_ROOT + "/branch1/file1.html"));
   }
 
   private void checkRoot() {
