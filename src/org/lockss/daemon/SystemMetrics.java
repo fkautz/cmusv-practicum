@@ -166,7 +166,9 @@ public class SystemMetrics extends BaseLockssManager {
       logger.warning("Test finished in zero time: using bytesHashed as estimate.");
       return (int)bytesHashed;
     }
-    return (int)(bytesHashed / timeTaken);
+    int res = (int)(bytesHashed / timeTaken);
+    logger.debug("Measured hash speed: " + res);
+    return res;
   }
 
   /**

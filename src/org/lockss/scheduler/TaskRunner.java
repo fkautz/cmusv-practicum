@@ -157,6 +157,9 @@ class TaskRunner implements Serializable {
   public boolean isTaskSchedulable(SchedulableTask task) {
     Collection tasks = getCombinedTasks(task);
     Scheduler scheduler = schedulerFactory.createScheduler(tasks);
+    boolean res = scheduler.createSchedule();
+    log.debug2((res ? "Task is schedulable: " : "Task is not schedulable: ")
+	       + task);
     return scheduler.createSchedule();
   }
 

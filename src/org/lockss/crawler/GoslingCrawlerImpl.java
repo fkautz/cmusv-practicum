@@ -468,8 +468,8 @@ public class GoslingCrawlerImpl implements Crawler {
 	}
 	numRetries++;
 	if (numRetries >= maxRetries) {
-	  logger.warning(uc+" threw "+numRetries
-			 +" when trying to cache.  Skipping");
+	  logger.warning("Failed to cache "+numRetries +" times.  Skipping "
+			 + uc);
 	  throw e;
 	}
 	Plugin plugin = uc.getCachedUrlSet().getArchivalUnit().getPlugin();
