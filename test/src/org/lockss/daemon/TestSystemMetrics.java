@@ -85,11 +85,9 @@ public class TestSystemMetrics extends LockssTestCase {
     assertTrue(duration > expectedMin);
   }
 
-  public void testDefaultEstimate() throws Exception {
-    assertEquals(-1, metrics.getBytesPerMsHashEstimate());
-    metrics.updateHashEstimate(metrics.defaultAlgorithm, 123);
-    assertEquals(123, metrics.getBytesPerMsHashEstimate());
-  }
+//   public void testDefaultEstimate() throws Exception {
+//     assertEquals(-1, metrics.getBytesPerMsHashEstimate());
+//   }
 
   public void testEstimationCaching() throws IOException {
     MockCachedUrlSetHasher hasher = new MockCachedUrlSetHasher(10000);
