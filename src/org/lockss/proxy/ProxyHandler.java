@@ -87,7 +87,7 @@ public class ProxyHandler extends AbstractHttpHandler {
 
     String urlString = uri.toString();
     CachedUrl cu = pluginMgr.findMostRecentCachedUrl(urlString);
-    log.debug2("cu: " + cu);
+    if (log.isDebug2()) log.debug2("cu: " + cu);
     if (cu != null && cu.hasContent()) {
       serveFromCache(pathInContext, pathParams, request, response, cu);
       return;
