@@ -226,6 +226,8 @@ public class ServletManager extends JettyManager {
     // Request dump servlet
     handler.addServlet("Dump", "/Dump", "org.mortbay.servlet.Dump");
     // Daemon status servlet
+    handler.addServlet("JournalConfig", "/AuConfig",
+		       "org.lockss.servlet.AuConfig");
     handler.addServlet("DaemonStatus", "/DaemonStatus",
 		       "org.lockss.servlet.DaemonStatus");
     handler.addServlet("AdminIpAccess", "/AdminIpAccess",
