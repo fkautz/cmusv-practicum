@@ -45,7 +45,10 @@ public class StreamUtil {
 
   /**
    * This function copies the contents of in InputStream to an Outputstream.
-   * It closes neither.
+   * It buffers the copying, and closes neither.
+   * @param is input
+   * @param os output
+   * @throws IOException
    */
    public static void copy(InputStream is, OutputStream os) throws IOException {
      if ((is==null) || (os==null)) return;
