@@ -69,6 +69,14 @@ public interface RepositoryNode {
   public long getContentSize();
 
   /**
+   * Returns the size of the content tree under (and including) this cache, in
+   * bytes.
+   * @param filter a spec to determine which urls to return
+   * @return size
+   */
+  public long getTreeContentSize(CachedUrlSetSpec filter);
+
+  /**
    * Returns the state information for the node.
    * @return state properties of the node
    */

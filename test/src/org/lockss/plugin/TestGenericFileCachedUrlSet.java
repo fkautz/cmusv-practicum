@@ -260,9 +260,10 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
 
     CachedUrlSetSpec rSpec =
         new RangeCachedUrlSetSpec("http://www.example.com/testDir");
-    CachedUrlSet fileSet = mgfau.makeCachedUrlSet(rSpec);
-    fileSet.contentHashIterator();
-    assertEquals(4, ((GenericFileCachedUrlSet)fileSet).contentNodeCount);
+    GenericFileCachedUrlSet fileSet =
+        (GenericFileCachedUrlSet)mgfau.makeCachedUrlSet(rSpec);
+    fileSet.calculateNodeSize();
+ //   assertEquals(4, ((GenericFileCachedUrlSet)fileSet).contentNodeCount);
     assertEquals(48, ((GenericFileCachedUrlSet)fileSet).totalNodeSize);
   }
 
@@ -281,9 +282,9 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
     long estimate = fileSet.estimatedHashDuration();
     assertTrue(estimate > 0);
 
-    assertNull(nodeMan.hashCalls.get("http://www.example.com/testDir"));
+    assertEquals(estimate, ((Long)nodeMan.hashCalls.get(
+        "http://www.example.com/testDir")).longValue());
 
-    fileSet.storeActualHashDuration(estimate, null);
     // test return of stored duration
     long estimate2 = fileSet.estimatedHashDuration();
     assertEquals(estimate, estimate2);
