@@ -62,6 +62,7 @@ public class SortScheduler implements Scheduler {
     for (Iterator iter = rawTasks.iterator(); iter.hasNext(); ) {
       SchedulableTask rawTask = (SchedulableTask)iter.next();
       if (!rawTask.isProperWindow()) {
+	log.warning("Task has improper window: " + rawTask);
 	throw new IllegalArgumentException("Task has improper window");
       }
 
