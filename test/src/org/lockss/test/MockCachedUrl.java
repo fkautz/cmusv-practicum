@@ -54,6 +54,7 @@ public class MockCachedUrl implements CachedUrl {
 
   private boolean doesExist = false;
   private String content = null;
+  private Reader reader = null;
 
   public MockCachedUrl(String url) {
     this.url = url;
@@ -80,6 +81,10 @@ public class MockCachedUrl implements CachedUrl {
     if (content != null) {
       return new StringReader(content);
     }
+    if (reader != null) {
+      return reader;
+    }
+
     throw new UnsupportedOperationException("Not implemented");
   }
 
@@ -147,6 +152,10 @@ public class MockCachedUrl implements CachedUrl {
 
   public void setContent(String content) {
     this.content = content;
+  }
+
+  public void setReader(Reader reader) {
+    this.reader = reader;
   }
 
   public void setProperties(CIProperties prop){
