@@ -106,6 +106,7 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
 	gen.setAbnormalFile(config.get(SimulatedPlugin.PARAM_BAD_FILE_LOC),
 			    config.getInt(SimulatedPlugin.PARAM_BAD_FILE_NUM));
       }
+      resetContentTree();
     } catch (Configuration.InvalidParam e) {
       throw new ArchivalUnit.ConfigurationException("Bad config value", e);
     }
