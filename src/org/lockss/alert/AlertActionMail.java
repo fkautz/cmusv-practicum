@@ -74,10 +74,10 @@ public class AlertActionMail extends AbstractAlertAction {
     this.recipients = to;
   }
 
-  /** Create an action that mails to a list of recipients */
-  public AlertActionMail(List recipients) {
-    this(StringUtil.separatedString(recipients, ", "));
-  }
+//   /** Create an action that mails to a list of recipients */
+//   public AlertActionMail(List recipients) {
+//     this(StringUtil.separatedString(recipients, ", "));
+//   }
 
   /** Return the recipients */
   public String getRecipients() {

@@ -52,8 +52,8 @@ public class AlertActions {
     return new AlertActionMail(to);
   }
 
-  public static AlertAction Mail(List addressees) {
-    return new AlertActionMail(addressees);
-  }
+//   public static AlertAction Mail(List addressees) {
+//     return new AlertActionMail(addressees);
+//   }
 
 }
