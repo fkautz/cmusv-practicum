@@ -158,7 +158,7 @@ public abstract class LockssServlet extends HttpServlet
       try {
 	return Class.forName(className);
       } catch (ClassNotFoundException e) {
-	return UnavailableServletMarker.class;
+	return UNAVAILABLE_SERVLET_MARKER;
       }	
     }
     boolean isPerClient() {
