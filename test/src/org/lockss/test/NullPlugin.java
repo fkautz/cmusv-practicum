@@ -308,6 +308,10 @@ public class NullPlugin {
     public String getUrl() {
       return "null";
     }
+
+    public int cusCompare(org.lockss.plugin.CachedUrlSet cus2) {
+      return -1;
+    }
   }
 
   public static class ArchivalUnit
