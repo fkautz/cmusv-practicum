@@ -124,6 +124,35 @@ public class TestRemoteApi extends LockssTestCase {
     assertSame(rapi.findPluginProxy(mp2), (PluginProxy)mapped.get(1));
   }
 
+  public void testCheckLegalProps() throws Exception {
+    Properties p = new Properties();
+    p.setProperty("org.lockss.au.foobar", "17");
+    p.setProperty("org.lockss.config.fileVersion.au", "1");
+    rapi.checkLegalProps(ConfigManager.fromProperties(p));
+    p.setProperty("org.lockss.other.prop", "foo");
+    try {
+      rapi.checkLegalProps(ConfigManager.fromProperties(p));
+      fail("checkLegalProps() allowed non-AU prop");
+    } catch (RemoteApi.InvalidAuConfigBackupFile e) {
+    }
+    p.remove("org.lockss.other.prop");
+    rapi.checkLegalProps(ConfigManager.fromProperties(p));
+    p.setProperty("org.lockss.au", "xx");
+    try {
+      rapi.checkLegalProps(ConfigManager.fromProperties(p));
+      fail("checkLegalProps() allowed non-AU prop");
+    } catch (RemoteApi.InvalidAuConfigBackupFile e) {
+    }
+    p.remove("org.lockss.au");
+    rapi.checkLegalProps(ConfigManager.fromProperties(p));
+    p.setProperty("org.lockss.config.fileVersion.au", "0");
+    try {
+      rapi.checkLegalProps(ConfigManager.fromProperties(p));
+      fail("checkLegalProps() allowed non-AU prop");
+    } catch (RemoteApi.InvalidAuConfigBackupFile e) {
+    }
+  }
+
   class MockPluginManager extends PluginManager {
     void mockInit() {
       MockArchivalUnit mau1 = new MockArchivalUnit();
