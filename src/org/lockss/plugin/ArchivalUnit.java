@@ -104,6 +104,13 @@ public interface ArchivalUnit {
   public String getAUId();
 
   /**
+   * Returns a globally unique id for this AU.  This is different from
+   * {@link #getAUId}, which is only unique within the {@link Plugin}
+   * @return globally unique id for this AU
+   */
+  public String getGloballyUniqueId();
+
+  /**
    * Returns a human-readable name for the <code>ArchivalUnit</code>.  This is
    * used in messages, so it is desirable that it succinctly identify the AU,
    * but it is not essential that it be unique.

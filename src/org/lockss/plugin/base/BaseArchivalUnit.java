@@ -98,6 +98,15 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
 					     String url);
 
   /**
+   * Returns a globally unique id for this AU.  This is different from
+   * get AUId, which is only unique within a plugin
+   * @return globally unique id for this AU
+   */
+  public String getGloballyUniqueId() {
+    return getPluginId()+"&"+getAUId();
+  }
+
+  /**
    * Return the Plugin's ID.
    * @return the Plugin's ID.
    */

@@ -300,15 +300,19 @@ public class NullPlugin {
       return false;
     }
     public String getPluginId() {
-      return "null";
+      return "null_plugin_id";
     }
 
     public String getAUId() {
-      return "null";
+      return "null_au_id";
+    }
+
+    public String getGloballyUniqueId() {
+      return "null_global_unique_id";
     }
 
     public String getName() {
-      return "null";
+      return "null_name";
     }
 
     public void pause() {
