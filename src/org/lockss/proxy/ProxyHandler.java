@@ -51,6 +51,7 @@ import org.lockss.app.*;
 public class ProxyHandler extends NullHandler implements LockssManager {
   private static LockssDaemon theDaemon = null;
   private static ProxyHandler theManager = null;
+  private static PluginManager pluginMgr = null;
 
   /**
    * init the plugin manager.
@@ -62,7 +63,6 @@ public class ProxyHandler extends NullHandler implements LockssManager {
     if(theManager == null) {
       theDaemon = daemon;
       theManager = this;
-      startProxy();
     }
     else {
       throw new LockssDaemonException("Multiple Instantiation.");
@@ -70,10 +70,13 @@ public class ProxyHandler extends NullHandler implements LockssManager {
   }
 
   /**
-   * start the plugin manager.
+   * start the proxy.
    * @see org.lockss.app.LockssManager#startService()
    */
   public void startService() {
+    pluginMgr = theDaemon.getPluginManager();
+    startProxy();
+
   }
 
   /**
@@ -133,7 +136,7 @@ public class ProxyHandler extends NullHandler implements LockssManager {
     System.err.println("URI="+uri);
 
     String urlString = uri.toString();
-    ArchivalUnit au = theDaemon.getPluginManager().findArchivalUnit(urlString);
+    ArchivalUnit au = pluginMgr.findArchivalUnit(urlString);
     if (au != null) {
       CachedUrlSet cus = au.getAUCachedUrlSet();
       if (cus != null) {
