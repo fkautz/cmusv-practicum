@@ -45,8 +45,8 @@ import java.util.*;
  * quickly and predictably.
  */
 public class TimeBase {
-  private static boolean isSimulated = false;
-  private static long simulatedTime;
+  private static volatile boolean isSimulated = false;
+  private static volatile long simulatedTime;
 
   /** No instances */
   private TimeBase() {
