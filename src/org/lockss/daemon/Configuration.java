@@ -323,7 +323,7 @@ public abstract class Configuration {
 	ProbabilisticTimer nextReload =
 	  new ProbabilisticTimer(reloadInterval, reloadInterval/4);
 	if (goOn) {
-	  nextReload.snoozeUntil();
+	  nextReload.sleepUntil();
 	}
       }
     }
