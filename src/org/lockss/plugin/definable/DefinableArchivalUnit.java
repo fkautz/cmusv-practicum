@@ -252,9 +252,11 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
     return urlNormalizer;
   }
 
-  protected FilterRule constructFilterRule(String mimeType) {
-    Object filter_el = definitionMap.getMapElement(mimeType
-        + AU_FILTER_SUFFIX);
+  protected FilterRule constructFilterRule(String contentType) {
+    String mimeType = HeaderUtil.getMimeTypeFromContentType(contentType);
+
+    Object filter_el =
+      definitionMap.getMapElement(mimeType + AU_FILTER_SUFFIX);
 
     if (filter_el instanceof String) {
       log.debug("Loading filter "+filter_el);
@@ -276,7 +278,8 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
    * @return GoslingHtmlParser if mimeType starts with "test/html",
    * null otherwise
    */
-  public ContentParser getContentParser(String mimeType) {
+  public ContentParser getContentParser(String contentType) {
+    String mimeType = HeaderUtil.getMimeTypeFromContentType(contentType);
     String parser_cl = definitionMap.getString(mimeType + AU_PARSER_SUFFIX,
                                                null);
     if (parser_cl != null) {
