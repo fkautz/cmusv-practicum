@@ -108,7 +108,7 @@ public class SimulatedContentGenerator {
   public SimulatedContentGenerator(String rootPath) {
     contentRootParent = rootPath;
     if (contentRootParent.length()>0 &&
-        contentRootParent.charAt(contentRootParent.length()-1)!=File.separatorChar) {
+        !contentRootParent.endsWith(File.separator)) {
       contentRootParent += File.separator;
     }
     contentRoot = contentRootParent + ROOT_NAME;
