@@ -82,8 +82,8 @@ public class TestPluginManager extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
 
-    theDaemon.useMockLockssService(true);
-    theDaemon.useMockNodeService(true);
+    theDaemon.setLockssRepositoryService(new MockLockssRepositoryService());
+    theDaemon.setNodeManagerService(new MockNodeManagerService());
 
     mgr = new PluginManager();
     mgr.initService(theDaemon);

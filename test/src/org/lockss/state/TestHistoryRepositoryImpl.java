@@ -57,13 +57,9 @@ public class TestHistoryRepositoryImpl extends LockssTestCase {
   private MockLockssDaemon theDaemon;
   private MockArchivalUnit mau;
 
-  public TestHistoryRepositoryImpl(String msg) {
-    super(msg);
-  }
-
   public void setUp() throws Exception {
     super.setUp();
-    theDaemon = new MockLockssDaemon(null);
+    theDaemon = new MockLockssDaemon();
     theDaemon.startDaemon();
     mau = new MockArchivalUnit();
     tempDirPath = getTempDir().getAbsolutePath() + File.separator;

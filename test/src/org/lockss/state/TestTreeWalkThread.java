@@ -80,7 +80,7 @@ public class TestTreeWalkThread extends LockssTestCase {
     pollMan = new MockPollManager();
     theDaemon.setPollManager(pollMan);
     theDaemon.setIdentityManager(new MockIdentityManager());
-    theDaemon.useMockLockssService(true);
+    theDaemon.setLockssRepositoryService(new MockLockssRepositoryService());
     pollMan.initService(theDaemon);
     pollMan.startService();
 

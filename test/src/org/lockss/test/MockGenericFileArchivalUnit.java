@@ -50,6 +50,10 @@ public class MockGenericFileArchivalUnit extends BaseArchivalUnit {
   private String pluginId = "mock-file";
   private String auId = "none-file";
 
+  public MockGenericFileArchivalUnit() {
+    super(null, null);
+  }
+
   public MockGenericFileArchivalUnit(CrawlSpec spec) {
     super(null, spec);
   }

@@ -54,6 +54,7 @@ public class TestNodeManagerServiceImpl extends LockssTestCase {
     mau.setAUCachedUrlSet(mcus);
 
     theDaemon = new MockLockssDaemon();
+    theDaemon.getLockssRepositoryService().startService();
     theDaemon.setHistoryRepository(new HistoryRepositoryImpl(tempDirPath));
 
     nms = new NodeManagerServiceImpl();

@@ -52,15 +52,17 @@ import org.lockss.repository.TestRepositoryNodeImpl;
 public class TestGenericFileCachedUrlSet extends LockssTestCase {
   private LockssRepository repo;
   private MockGenericFileArchivalUnit mgfau;
-  private MockLockssDaemon theDaemon = new MockLockssDaemon(null);
+  private MockLockssDaemon theDaemon;
 
   public void setUp() throws Exception {
     super.setUp();
     String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     TestLockssRepositoryServiceImpl.configCacheLocation(tempDirPath);
-    theDaemon.startDaemon();
 
-    mgfau = new MockGenericFileArchivalUnit(null);
+    theDaemon = new MockLockssDaemon();
+    theDaemon.getLockssRepositoryService().startService();
+
+    mgfau = new MockGenericFileArchivalUnit();
     repo = theDaemon.getLockssRepository(mgfau);
   }
 

@@ -37,9 +37,6 @@ import org.lockss.test.LockssTestCase;
 import org.lockss.util.TimeBase;
 
 public class TestAuStateImpl extends LockssTestCase {
-  public TestAuStateImpl(String msg) {
-    super(msg);
-  }
 
   public void tearDown() throws Exception {
     TimeBase.setReal();
@@ -72,7 +69,6 @@ public class TestAuStateImpl extends LockssTestCase {
     auState.setLastTreeWalkTime();
     assertEquals(456, auState.getLastTreeWalkTime());
   }
-
 
   public static void main(String[] argv) {
     String[] testCaseList = { TestAuStateImpl.class.getName()};

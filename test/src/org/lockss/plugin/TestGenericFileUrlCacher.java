@@ -48,17 +48,17 @@ import org.lockss.plugin.base.*;
  */
 public class TestGenericFileUrlCacher extends LockssTestCase {
   private MockGenericFileArchivalUnit mgfau;
-  private MockLockssDaemon theDaemon = new MockLockssDaemon(null);
-
-  public TestGenericFileUrlCacher(String msg) {
-    super(msg);
-  }
+  private MockLockssDaemon theDaemon;
 
   public void setUp() throws Exception {
     super.setUp();
     String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     mgfau = new MockGenericFileArchivalUnit(new CrawlSpec(tempDirPath, null));
     TestLockssRepositoryServiceImpl.configCacheLocation(tempDirPath);
+
+    theDaemon = new MockLockssDaemon();
+    theDaemon.getLockssRepositoryService().startService();
+
     theDaemon.getLockssRepository(mgfau);
   }
 

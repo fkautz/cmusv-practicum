@@ -73,7 +73,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     pollManager = new MockPollManager();
     theDaemon.setPollManager(pollManager);
     theDaemon.setIdentityManager(new MockIdentityManager());
-    theDaemon.useMockLockssService(true);
+    theDaemon.setLockssRepositoryService(new MockLockssRepositoryService());
     pollManager.initService(theDaemon);
     pollManager.startService();
 

@@ -34,14 +34,9 @@ import org.lockss.util.CollectionUtil;
 import java.io.*;
 import org.apache.commons.collections.TreeBag;
 
-public class TestNodeStateImpl
-    extends LockssTestCase {
+public class TestNodeStateImpl extends LockssTestCase {
   private NodeStateImpl state;
   private List polls;
-
-  public TestNodeStateImpl(String msg) {
-    super(msg);
-  }
 
   public void setUp() throws Exception {
     super.setUp();
