@@ -114,6 +114,7 @@ public class LcapSocket {
 	sock.receive(pkt);
 	LockssReceivedDatagram dg = new LockssReceivedDatagram(pkt);
 	dg.setReceiveSocket(this);
+	log.debug("Received " + dg);
 	processReceivedDatagram(dg);
       } catch (InterruptedIOException e) {
       }
