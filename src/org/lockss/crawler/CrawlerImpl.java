@@ -175,6 +175,9 @@ public abstract class CrawlerImpl implements Crawler {
     return false;
   }
 
+  public void setWatchdog(LockssWatchdog wdog) {
+  }
+
   public String toString() {
     StringBuffer sb = new StringBuffer();
     sb.append("[CrawlerImpl: ");

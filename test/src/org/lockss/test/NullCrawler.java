@@ -33,7 +33,7 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.test;
 
 import java.util.Collection;
-import org.lockss.daemon.Crawler;
+import org.lockss.daemon.*;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.util.Deadline;
 
@@ -75,5 +75,8 @@ public class NullCrawler implements Crawler {
 
   public void abortCrawl() {
     throw new UnsupportedOperationException("Not implemented");
+  }
+
+  public void setWatchdog(LockssWatchdog wdog) {
   }
 }

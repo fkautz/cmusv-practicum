@@ -92,6 +92,12 @@ public interface Crawler {
 
 
   /**
+   * Set a watchdog that should be poked periodically by the crawl
+   * @param wdog the watchdog
+   */
+  public void setWatchdog(LockssWatchdog wdog);
+
+  /**
    * Returns an int representing the status of this crawler
    */
   public Crawler.Status getStatus();
