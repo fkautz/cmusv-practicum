@@ -130,8 +130,12 @@ public class LockssTestCase extends TestCase {
     if (cfg != null) {
       cfg.stopService();
     }
-
+    TimerQueue.stopTimerQueue();
     super.tearDown();
+    if (Boolean.getBoolean("org.lockss.test.threadDump")) {
+      DebugUtils.getInstance().threadDump();
+      TimerUtil.guaranteedSleep(1000);
+    }
   }
 
   /**
