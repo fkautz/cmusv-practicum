@@ -71,6 +71,12 @@ public interface StatusService {
       throws StatusService.NoSuchTableException;
 
   /**
+   * Call the StatusAccessor to fill in the table, using the already stored
+   * name, key, options, etc. */
+  public void fillInTable(StatusTable table)
+      throws StatusService.NoSuchTableException;
+
+  /**
    * Register a StatusAccessor that knows how to get a table for a certain name
    * @param tableName name of the table that statusAccessor can provide
    * @param statusAccessor StatusAccessor that can provide the specified table

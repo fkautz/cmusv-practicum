@@ -259,6 +259,13 @@ public class TestStatusTable extends LockssTestCase {
     assertEquals(val, StatusTable.getActualValue(rdval));
   }
 
+  public void testReferenceProps() {
+    StatusTable.Reference ref = new StatusTable.Reference("C", "blah", null);
+    assertNull(ref.getProperties());
+    ref.setProperty("foo", "bar");
+    assertEquals("bar", ref.getProperties().getProperty("foo"));
+  }
+
   public void testReferenceEquals() {
     StatusTable.Reference ref = new StatusTable.Reference("C", "blah", null);
     assertFalse(ref.equals("blah"));
