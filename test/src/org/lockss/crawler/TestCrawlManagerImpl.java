@@ -424,9 +424,7 @@ public class TestCrawlManagerImpl extends LockssTestCase {
 
     public boolean doCrawl(Deadline deadline) {
       sem1.give();
-      System.err.println("Gave sem1, Waiting on sem2");
       sem2.take();
-      System.err.println("Took sem2");
       return true;
     }
   }
