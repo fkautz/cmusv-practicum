@@ -105,6 +105,24 @@ public class TestPropUtil extends TestCase {
     assertFalse( PropUtil.equalProps(p5, p1));
   }
 
+  public void testCopy() {
+    Properties copy = PropUtil.copy(p1);
+    assertTrue(PropUtil.equalProps(p1, copy));
+    copy.setProperty("foo", "bar");
+    assertEquals(null, p1.getProperty("foo"));
+    copy.setProperty("k1", "2");
+    assertEquals("1", p1.getProperty("k1"));
+  }
+
+  public void testFromArgs() {
+    Properties test1 = PropUtil.fromArgs("foo", "bar");
+    Properties props = new Properties();
+    props.setProperty("foo", "bar");
+    assertTrue(PropUtil.equalProps(props, test1));
+    Properties test2 = PropUtil.fromArgs("k1", "1", "k2", "two");
+    assertTrue(test2.toString(), PropUtil.equalProps(p1, test2));
+  }
+
   public void testDifferentKeys() {
     assertEquals(SetUtil.set(), PropUtil.differentKeys(p1, p1));
     assertEquals(SetUtil.set(), PropUtil.differentKeys(p1, p2));
