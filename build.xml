@@ -427,7 +427,7 @@ Args:
       It should pipe the names to etags as in:
       find . -name \*.java -print | etags -t -S - -->
   <target name="tags" depends="prepare"
-   description="Build an emacs TAGS file in src/" >
+   description="Build an emacs TAGS file" >
     <apply executable="etags" dir="${basedir}"
            relative="true"
            parallel="true">
@@ -436,6 +436,8 @@ Args:
 <!--        <arg file="${etags.filename}"/> -->
       <fileset dir="${basedir}" includes="**/*.java"/>
     </apply>
+    <property name="tagsfile" location="TAGS" />
+    <echo>Tags written to ${tagsfile}</echo>
   </target>
 
   <!-- ==================================================================== -->
