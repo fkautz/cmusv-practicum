@@ -126,24 +126,6 @@ public interface CachedUrlSet extends CachedUrlSetNode {
    */
   public void storeActualHashDuration(long elapsed, Exception err);
 
-  // Methods used by readers
-
-  /**
-   * Create a {@link CachedUrl} object within the set.
-   * @param url the url of interest
-   * @return a {@link CachedUrl} object representing the url.
-   */
-  public CachedUrl makeCachedUrl(String url);
-
-  // Methods used by writers
-
-  /**
-   * Create a {@link UrlCacher} object within the set.
-   * @param url the url of interest
-   * @return a {@link UrlCacher} object representing the url.
-   */
-  public UrlCacher makeUrlCacher(String url);
-
   /**
    * Needs to be overridden to hash CachedUrlSets properly.
    * @return the hashcode

@@ -37,7 +37,7 @@ import java.util.*;
 import org.lockss.daemon.*;
 import org.lockss.test.*;
 import org.lockss.util.StreamUtil;
-import org.lockss.repository.TestLockssRepositoryImpl;
+import org.lockss.repository.LockssRepositoryImpl;
 import org.lockss.plugin.base.*;
 
 /**
@@ -53,14 +53,18 @@ public class TestGenericFileUrlCacher extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
-    mgfau = new MockGenericFileArchivalUnit();
-    mgfau.setCrawlSpec(new CrawlSpec(tempDirPath, null));
-    TestLockssRepositoryImpl.configCacheLocation(tempDirPath);
+    Properties props = new Properties();
+    props.setProperty(LockssRepositoryImpl.PARAM_CACHE_LOCATION, tempDirPath);
+    ConfigurationUtil.setCurrentConfigFromProps(props);
 
     theDaemon = new MockLockssDaemon();
     theDaemon.getHashService();
 
+
+    mgfau = new MockGenericFileArchivalUnit();
+    mgfau.setCrawlSpec(new CrawlSpec(tempDirPath, null));
     MockPlugin plugin = new MockPlugin();
+    plugin.initPlugin(theDaemon);
     plugin.setDefiningConfigKeys(Collections.EMPTY_LIST);
     mgfau.setPlugin(plugin);
 

@@ -248,15 +248,16 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     return misses;
   }
 
-  /**
-   * Create a CachedUrlSet representing the content in this AU
-   * that matches the CachedUrlSetSpec
-   * @param cuss the spec
-   * @return the CachedUrlSet
-   */
   public CachedUrlSet makeCachedUrlSet(CachedUrlSetSpec cuss) {
-    CachedUrlSet cus = cachedUrlSetFactory(this, cuss);
-    return cus;
+    return cachedUrlSetFactory(this, cuss);
+  }
+
+  public CachedUrl makeCachedUrl(CachedUrlSet owner, String url) {
+    return cachedUrlFactory(owner, url);
+  }
+
+  public UrlCacher makeUrlCacher(CachedUrlSet owner, String url) {
+    return urlCacherFactory(owner, url);
   }
 
   /**

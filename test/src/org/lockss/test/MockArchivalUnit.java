@@ -129,6 +129,16 @@ public class MockArchivalUnit implements ArchivalUnit {
     return new MockCachedUrlSet(this, cuss);
   }
 
+  public CachedUrl makeCachedUrl(CachedUrlSet owner, String url) {
+    // keep functionality from MockCachedUrlSet
+    return ((MockCachedUrlSet)owner).makeCachedUrl(url);
+  }
+
+  public UrlCacher makeUrlCacher(CachedUrlSet owner, String url) {
+    // keep functionality from MockCachedUrlSet
+    return ((MockCachedUrlSet)owner).makeUrlCacher(url);
+  }
+
   protected void addUrlToBeCached(String url) {
     urlsToCache.add(url);
   }
@@ -157,7 +167,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   public final String getAUId() {
     if (auId != null) {
       return auId;
-    } 
+    }
     if (plugin == null) {
       return defaultAUId;
     }

@@ -60,9 +60,11 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
 
   /**
    * Called after plugin is loaded to give the plugin time to perform any
-   * needed initializations
+   * needed initializations.
+   * @param daemon the LockssDaemon
    */
   public void initPlugin(LockssDaemon daemon) {
+    super.initPlugin(daemon);
     initCtr++;
   }
 
@@ -129,6 +131,8 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
    * Create an ArchivalUnit for the AU specified by the configuration.
    * @param auConfig Configuration object with values for all properties
    * returned by {@link #getAUConfigProperties()}
+   * @return the ArchivalUnit
+   * @throws ArchivalUnit.ConfigurationException
    */
   public ArchivalUnit createAU(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {

@@ -121,6 +121,17 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
       return new SCUS(this, cuss);
     }
 
+    public CachedUrl makeCachedUrl(CachedUrlSet owner, String url) {
+      CachedUrl res = (CachedUrl)cuMap.get(url);;
+      log.debug("makeCachedUrl(" + url + ") = " + res);
+      return (CachedUrl)cuMap.get(url);
+    }
+
+    public org.lockss.plugin.UrlCacher makeUrlCacher(CachedUrlSet owner,
+        String url) {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
     public CachedUrlSet cachedUrlSetFactory(ArchivalUnit owner,
 					    CachedUrlSetSpec cuss) {
       throw new UnsupportedOperationException("Not implemented");
@@ -248,17 +259,6 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
 
     public long estimatedHashDuration() {
       return 1000;
-    }
-
-
-    public CachedUrl makeCachedUrl(String url) {
-      CachedUrl res = (CachedUrl)cuMap.get(url);;
-      log.debug("makeCachedUrl(" + url + ") = " + res);
-      return (CachedUrl)cuMap.get(url);
-    }
-
-    public org.lockss.plugin.UrlCacher makeUrlCacher(String url) {
-      throw new UnsupportedOperationException("Not implemented");
     }
   }
 

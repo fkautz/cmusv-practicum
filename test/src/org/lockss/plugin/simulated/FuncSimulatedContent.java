@@ -28,16 +28,14 @@ package org.lockss.plugin.simulated;
 
 import java.util.*;
 import java.io.*;
-import java.security.MessageDigest;
+import java.security.*;
 import org.lockss.app.*;
 import org.lockss.util.*;
 import org.lockss.test.*;
-import org.lockss.crawler.GoslingCrawlerImpl;
 import org.lockss.daemon.*;
 import org.lockss.repository.*;
-import org.lockss.plugin.PluginManager;
-import java.security.*;
 import org.lockss.plugin.*;
+import org.lockss.crawler.GoslingCrawlerImpl;
 import org.lockss.state.HistoryRepositoryImpl;
 import junit.framework.*;
 

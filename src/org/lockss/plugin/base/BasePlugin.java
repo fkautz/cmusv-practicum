@@ -108,7 +108,7 @@ public abstract class BasePlugin implements Plugin {
     setTitleConfig(map);
   }
 
-  // for now use the plugin's class name 
+  // for now use the plugin's class name
   // tk - this will have to change to account for versioning
   public String getPluginId() {
     return this.getClass().getName();

@@ -59,6 +59,9 @@ public class TestSimulatedUrlCacher extends LockssTestCase {
 
     theDaemon = new MockLockssDaemon();
     mau = new MockArchivalUnit();
+    MockPlugin plugin = new MockPlugin();
+    plugin.initPlugin(theDaemon);
+    mau.setPlugin(plugin);
 
     theDaemon.setLockssRepository(new MockLockssRepository(), mau);
   }

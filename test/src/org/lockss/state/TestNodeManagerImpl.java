@@ -1124,7 +1124,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
           break;
         case CachedUrlSetNode.TYPE_CACHED_URL:
           CachedUrlSetSpec rSpec = new RangeCachedUrlSetSpec(child.getUrl());
-          CachedUrlSet newSet = ( (BaseArchivalUnit) au).makeCachedUrlSet(rSpec);
+          CachedUrlSet newSet = au.makeCachedUrlSet(rSpec);
           nodeManager.createNodeState(newSet);
       }
     }

@@ -50,7 +50,10 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     tempDirPath = getTempDir().getAbsolutePath() + File.separator;
-    TestLockssRepositoryImpl.configCacheLocation(tempDirPath);
+    Properties props = new Properties();
+    props.setProperty(LockssRepositoryImpl.PARAM_CACHE_LOCATION, tempDirPath);
+    ConfigurationUtil.setCurrentConfigFromProps(props);
+
     mau = new MockArchivalUnit();
 
     theDaemon = new MockLockssDaemon();
