@@ -764,7 +764,6 @@ public class PluginManager
    */
   public Configuration getCurrentAuConfiguration(String auid) {
     String aukey = configKeyFromAuId(auid);
-    Configuration config = configMgr.readAuConfigFile();
     String prefix = PARAM_AU_TREE + "." + aukey;
     return ConfigManager.getCurrentConfig().getConfigTree(prefix);
   }

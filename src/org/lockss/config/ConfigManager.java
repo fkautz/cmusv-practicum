@@ -497,8 +497,8 @@ public class ConfigManager implements LockssManager {
 			 Configuration oldConfig,
 			 Configuration.Differences diffs) {
     Set diffSet = diffs.getDifferenceSet();
-    int numDiffs = diffSet.size();
     SortedSet keys = new TreeSet(diffSet != null ? diffSet : config.keySet());
+    int numDiffs = keys.size();
     for (Iterator iter = keys.iterator(); iter.hasNext(); ) {
       String key = (String)iter.next();
       if (numDiffs <= 40 || log.isDebug2() ||
