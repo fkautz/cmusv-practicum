@@ -128,6 +128,7 @@ public class TestHistoryRepositoryImpl extends LockssTestCase {
   }
 
   public void testStorePollHistories() throws Exception {
+    TimeBase.setSimulated(123321);
     MockCachedUrlSetSpec mspec =
         new MockCachedUrlSetSpec("http://www.example.com", null);
     CachedUrlSet mcus = new MockCachedUrlSet(mau, mspec);
@@ -167,6 +168,7 @@ public class TestHistoryRepositoryImpl extends LockssTestCase {
     assertEquals(expectVote.challengeStr, elemVote.challengeStr);
     assertEquals(expectVote.verifierStr, elemVote.verifierStr);
     assertEquals(expectVote.hashStr, elemVote.hashStr);
+    TimeBase.setReal();
   }
 
   public void testHandleEmptyFile() throws Exception {
