@@ -115,6 +115,23 @@ public class TestBaseUrlCacher extends LockssTestCase {
     assertEquals(1, pauseBeforeFetchCounter);
   }
 
+  public void testReCacheWCookie() throws IOException {
+    System.err.println("Stop1");
+    pauseBeforeFetchCounter = 0;
+
+    cacher._input = new StringInputStream("test stream");
+    CIProperties headers = new CIProperties();
+    headers.put("Set-Cookie", "blah");
+    cacher._headers = headers;
+    // should cache
+    assertEquals(UrlCacher.CACHE_RESULT_FETCHED, cacher.cache());
+    assertTrue(cacher.wasStored);
+    assertEquals(2, cacher.getUncachedInputStreamCount);
+    assertEquals(2, cacher.getUncachedPropertiesCount);
+    assertEquals(1, pauseBeforeFetchCounter);
+    System.err.println("Stop1");
+  }
+
   public void testLastModifiedCache() throws IOException {
     // add the 'cached' version
     CIProperties cachedProps = new CIProperties();
@@ -816,6 +833,8 @@ public class TestBaseUrlCacher extends LockssTestCase {
     InputStream _input = null;
     CIProperties _headers;
     boolean wasStored = false;
+    int getUncachedPropertiesCount = 0;
+    int getUncachedInputStreamCount = 0;
 
     public MyMockBaseUrlCacher(ArchivalUnit owner, String url) {
       super(owner, url);
@@ -824,6 +843,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
     public InputStream getUncachedInputStream(String lastModified) {
       // simple version which returns null if shouldn't fetch
 //       if (lastCached < TimeBase.nowMs()) {
+      getUncachedInputStreamCount++;
       long last = -1;
       if (lastModified != null) {
 	try {
@@ -839,6 +859,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
     }
 
     public CIProperties getUncachedProperties() {
+      getUncachedPropertiesCount++;
       return _headers;
     }
 
