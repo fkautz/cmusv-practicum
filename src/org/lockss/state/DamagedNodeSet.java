@@ -109,11 +109,6 @@ public class DamagedNodeSet {
    * @return boolean true iff has damage.
    */
   synchronized public boolean hasDamage(CachedUrlSet cus) {
-    boolean hasDamage = false;
-    // check if this url is damaged
-    if (nodesWithDamage.contains(cus.getUrl())) {
-      return true;
-    }
     // check if the CUS contains any of the other damaged nodes
     Iterator damagedIt = nodesWithDamage.iterator();
     while (damagedIt.hasNext()) {
@@ -122,23 +117,20 @@ public class DamagedNodeSet {
         return true;
       }
     }
-    return hasDamage;
+    return false;
   }
 
   synchronized public void clearDamage(CachedUrlSet cus) {
-    if(nodesWithDamage.contains(cus.getUrl())) {
       Iterator damagedIt = nodesWithDamage.iterator();
       ArrayList clearList = new ArrayList();
-      clearList.add(cus.getUrl());
       while (damagedIt.hasNext()) {
         String url = (String) damagedIt.next();
         if (cus.containsUrl(url)) {
           clearList.add(url);
         }
       }
-      for (int idx = 0; idx < clearList.size(); idx++) {
-        nodesWithDamage.remove(clearList.get(idx));
-      }
+      if(!clearList.isEmpty()) {
+      nodesWithDamage.removeAll(clearList);
       repository.storeDamagedNodeSet(this);
     }
   }
