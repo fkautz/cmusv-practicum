@@ -44,6 +44,13 @@ public class ReaderInputStream extends InputStream {
   char[] charBuffer = new char[1024];
   
 
+  public ReaderInputStream(Reader reader) {
+    if (reader == null) {
+      throw new IllegalArgumentException("Called with a null reader");
+    }
+    this.reader = reader;
+  }
+
   public int read() throws IOException {
     logger.debug3("Calling read");
     int kar = reader.read();
@@ -83,9 +90,4 @@ public class ReaderInputStream extends InputStream {
   private byte charToByte2(char kar) {
     return (byte)kar;
   }
-
-  public ReaderInputStream(Reader reader) {
-    this.reader = reader;//new BufferedReader(reader);
-  }
-
 }
