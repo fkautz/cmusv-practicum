@@ -451,6 +451,8 @@ public class GoslingCrawlerImpl implements Crawler {
 			 +" when trying to cache.  Skipping");
 	  throw e;
 	}
+	Plugin plugin = uc.getCachedUrlSet().getArchivalUnit().getPlugin();
+	uc = plugin.makeUrlCacher(uc.getCachedUrlSet(), uc.getUrl());
       }
     }
   }
