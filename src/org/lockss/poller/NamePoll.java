@@ -99,7 +99,7 @@ public class NamePoll extends Poll {
    */
   boolean scheduleHash(Deadline timer, Object key,
                                 HashService.Callback callback) {
-    MessageDigest hasher = getHasher();
+    MessageDigest hasher = PollManager.getHasher();
     hasher.update(m_challenge, 0, m_challenge.length);
     hasher.update(m_verifier, 0, m_verifier.length);
     return HashService.hashNames(m_urlSet,
