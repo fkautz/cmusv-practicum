@@ -257,6 +257,11 @@ public class NodeManagerImpl
       return false;
     }
 
+    if (managedAu.shouldCrawlForNewContent(auState)) {
+      logger.info("New content crawl needed, not starting poll: " + managedAu);
+      return false;
+    }
+
     return true;
   }
 
