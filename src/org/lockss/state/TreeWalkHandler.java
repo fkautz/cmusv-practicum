@@ -481,6 +481,7 @@ public class TreeWalkHandler {
       forceTreeWalk = true;
       if (threadWasNull) {
         treeWalkThread.start();
+	treeWalkThread.waitRunning();
       } else {
         // trigger the semaphore to curtail any wait
         treeWalkThread.treeWalkSemaphore.give();
@@ -504,6 +505,8 @@ public class TreeWalkHandler {
     public void lockssRun() {
       triggerWDogOnExit(true);
       setPriority(PRIORITY_PARAM_TREEWALK, PRIORITY_DEFAULT_TREEWALK);
+      nowRunning();
+
       while (!theDaemon.isDaemonRunning()) {
         // if the daemon isn't up yet, do a short sleep
         logger.debug2("Daemon not running yet. Sleeping...");

@@ -169,6 +169,7 @@ public class TimerQueue /*extends BaseLockssManager*/ implements Serializable {
       log.info("Starting thread");
       timerThread = new TimerThread("TimerQ");
       timerThread.start();
+      timerThread.waitRunning();
     } else {
       timerThread.interrupt();
     }
@@ -202,6 +203,7 @@ public class TimerQueue /*extends BaseLockssManager*/ implements Serializable {
       triggerWDogOnExit(true);
       setPriority(PRIORITY_PARAM_TIMERQUEUE, PRIORITY_DEFAULT_TIMERQUEUE);
       goOn = true;
+      nowRunning();
 
       while (goOn) {
 	try {

@@ -276,6 +276,7 @@ public class CrawlManagerImpl extends BaseLockssManager
       runningCrawls.put(au, crawler);
     }
     crawlThread.start();
+    crawlThread.waitRunning();
   }
 
   protected Crawler makeNewContentCrawler(ArchivalUnit au, CrawlSpec spec) {
@@ -314,6 +315,7 @@ public class CrawlManagerImpl extends BaseLockssManager
       setPriority(PRIORITY_PARAM_CRAWLER, PRIORITY_DEFAULT_CRAWLER);
       crawler.setWatchdog(this);
       startWDog(WDOG_PARAM_CRAWLER, WDOG_DEFAULT_CRAWLER);
+      nowRunning();
 
       boolean crawlSuccessful = crawler.doCrawl(deadline);
 

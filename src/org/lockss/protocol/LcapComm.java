@@ -358,6 +358,7 @@ public class LcapComm extends BaseLockssManager {
       log.info("Starting receive thread");
       rcvThread = new ReceiveThread("CommRcv");
       rcvThread.start();
+      rcvThread.waitRunning();
     }
   }
 
@@ -467,7 +468,7 @@ public class LcapComm extends BaseLockssManager {
 
   // Receive thread
   private class ReceiveThread extends LockssThread {
-    private boolean goOn = true;
+    private volatile boolean goOn = true;
     private long sleep = Constants.MINUTE;
     private Deadline timeout = Deadline.in(sleep);
 
@@ -477,7 +478,10 @@ public class LcapComm extends BaseLockssManager {
 
     public void lockssRun() {
       setPriority(PRIORITY_PARAM_COMM, PRIORITY_DEFAULT_COMM);
+      triggerWDogOnExit(true);
       startWDog(WDOG_PARAM_COMM, WDOG_DEFAULT_COMM);
+      nowRunning();
+
       while (goOn) {
 	pokeWDog();
 	try {
@@ -508,6 +512,7 @@ public class LcapComm extends BaseLockssManager {
     private void stopRcvThread() {
       synchronized (timeout) {
 	stopWDog();
+	triggerWDogOnExit(false);
 	goOn = false;
 	timeout.expire();
       }

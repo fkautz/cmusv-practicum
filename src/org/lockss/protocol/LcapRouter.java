@@ -418,6 +418,7 @@ public class LcapRouter extends BaseLockssManager {
       log.info("Starting beacon");
       beaconThread = new BeaconThread("Beacon");
       beaconThread.start();
+      beaconThread.waitRunning();
     }
   }
 
@@ -432,6 +433,7 @@ public class LcapRouter extends BaseLockssManager {
     public void lockssRun() {
       setPriority(PRIORITY_PARAM_BEACON, PRIORITY_DEFAULT_BEACON);
       goOn = true;
+      nowRunning();
 
       while (goOn) {
 	try {

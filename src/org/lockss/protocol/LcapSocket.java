@@ -101,6 +101,7 @@ public class LcapSocket {
 	log.info("Starting receive thread");
 	rcvThread = new ReceiveThread(getThreadName());
 	rcvThread.start();
+	rcvThread.waitRunning();
       }
     }
 
@@ -140,6 +141,7 @@ public class LcapSocket {
 	triggerWDogOnExit(true);
 	setPriority(PRIORITY_PARAM_SOCKET, PRIORITY_DEFAULT_SOCKET);
 	goOn = true;
+	nowRunning();
 
 	try {
 	  while (goOn) {
