@@ -358,7 +358,18 @@ public class LockssRepositoryImpl
     String auDir = LockssRepositoryImpl.mapAuToFileLocation(root, au);
     logger.debug("repo: " + auDir + ", au: " + au.getName());
     staticCacheLocation = extendCacheLocation(root);
-    return new LockssRepositoryImpl(auDir);
+    LockssRepositoryImpl repo = new LockssRepositoryImpl(auDir);
+    Plugin plugin = au.getPlugin();
+    if (plugin != null) {
+      LockssDaemon daemon = plugin.getDaemon();
+      if (daemon != null) {
+	RepositoryManager mgr = daemon.getRepositoryManager();
+	if (mgr != null) {
+	  mgr.setRepositoryForPath(auDir, repo);
+	}
+      }
+    }
+    return repo;
   }
 
   public static String getRepositoryRoot(ArchivalUnit au) {
@@ -677,7 +688,6 @@ public class LockssRepositoryImpl
    * each au subdir).  */
   static class LocalRepository {
     String repoPath;
-    String xrepoCachePath;
     File repoCacheFile;
     Map auMap;
 
