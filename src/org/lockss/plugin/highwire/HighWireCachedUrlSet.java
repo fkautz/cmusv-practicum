@@ -51,7 +51,6 @@ import org.lockss.plugin.*;
  
 public class HighWireCachedUrlSet extends BaseCachedUrlSet {
 
-  private String urlRoot; //url root for the web page, eg. http://www.bmj.org
   protected Logger logger = Logger.getLogger("HighWirePlugin");
 
   /**
@@ -62,7 +61,6 @@ public class HighWireCachedUrlSet extends BaseCachedUrlSet {
    */
   public HighWireCachedUrlSet(ArchivalUnit owner, CachedUrlSetSpec cuss) {
     super(owner, cuss);
-    this.urlRoot = (String)cuss.getPrefixList().get(0);;
   }
 
   /**
@@ -75,10 +73,6 @@ public class HighWireCachedUrlSet extends BaseCachedUrlSet {
     this(owner, new RECachedUrlSetSpec(urlRoot));
   }
 
-  public String getUrlRoot(){
-    return urlRoot;
-  }
-			    
 
     // Methods used by the poller
 
