@@ -41,6 +41,7 @@ import org.lockss.util.*;
  */
 public class StatusServiceImpl 
   extends BaseLockssManager implements StatusService {
+  private static Logger logger = Logger.getLogger("StatusServiceImpl");
   private Map statusAccessors;
 
 
@@ -76,10 +77,12 @@ public class StatusServiceImpl
 					   +tableName);
     }
     statusAccessors.put(tableName, statusAccessor);
+    logger.info("Registered statusAccessor for table "+tableName);
   }
 
   public synchronized void unregisterStatusAccessor(String tableName){
     statusAccessors.remove(tableName);
+    logger.info("Unregistered statusAccessor for table "+tableName);
   }
 
   private synchronized List getAllTableNames() {
