@@ -587,16 +587,17 @@ public class StatusTable {
 	  returnVal = compareHandlingNulls((Comparable)valA, (Comparable)valB);
 	  break;
 	case ColumnDescriptor.TYPE_STRING:
-	  if (valA != null && ! (valA instanceof String))
-	    logger.error("StatusTable.compare: valA not String but " +
+	  if (logger.isDebug2() && valA != null && ! (valA instanceof String))
+	    logger.debug2("StatusTable.compare: valA not String but " +
 			 valA.getClass().toString());
-	  if (valB != null && ! (valB instanceof String))
-	    logger.error("StatusTable.compare: valB not String but " +
+	  if (logger.isDebug2() && valB != null && ! (valB instanceof String))
+	    logger.debug2("StatusTable.compare: valB not String but " +
 			 valB.getClass().toString());
 	  returnVal = compareHandlingNulls((Comparable)valA, (Comparable)valB);
 	  break;
 	default: //if we don't know the type, assume comparable
-	  logger.error("StatusTable.compare " + getColumnType() + " unknown");
+	  logger.warning("StatusTable.compare " + getColumnType() + " unknown");
+	  returnVal = compareHandlingNulls((Comparable)valA, (Comparable)valB);
 	  break;
 	}
       }

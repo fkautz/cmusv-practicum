@@ -207,7 +207,8 @@ public class TestLcapMessage extends LockssTestCase {
   public void testRequestMessageCreation() throws Exception {
     LcapMessage req_msg = null;
     PollSpec spec =
-      new MockPollSpec(archivalID, urlstr, lwrbnd, uprbnd, "Plug42");
+      new MockPollSpec(archivalID, urlstr, lwrbnd, uprbnd, "Plug42",
+		       Poll.CONTENT_POLL);
     req_msg = LcapMessage.makeRequestMsg(spec,
 					 testentries,
 					 testbytes,

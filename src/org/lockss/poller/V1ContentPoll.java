@@ -58,7 +58,7 @@ public class V1ContentPoll extends V1Poll {
                               CONTENT_POLL,
                               m_createTime,
                               msg.getDuration(),
-                              pm.getQuorum(),
+                              V1PollFactory.getQuorum(),
                               msg.getHashAlgorithm());
   }
 

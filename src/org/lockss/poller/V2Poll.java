@@ -70,7 +70,7 @@ public abstract class V2Poll extends BasePoll {
                               CONTENT_POLL,
                               m_createTime,
                               msg.getDuration(),
-                              pm.getQuorum(),
+                              0, // XXX
                               msg.getHashAlgorithm());
   }
 

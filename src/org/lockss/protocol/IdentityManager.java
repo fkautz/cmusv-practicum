@@ -269,7 +269,7 @@ public class IdentityManager
    * @return boolean true if this is the local identity, false otherwise
    */
   public boolean isLocalIdentity(String id) {
-    return (localIdentityStr.compareTo(id) == 0);
+    return (localIdentityStr.equals(id));
   }
 
   /**

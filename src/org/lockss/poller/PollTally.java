@@ -199,7 +199,7 @@ public abstract class PollTally implements Tallier{
     String voterID = voter.getIdKey();
     while(it.hasNext()) {
       Vote vote = (Vote) it.next();
-      if(voterID.compareTo(vote.getIdentityKey()) == 0) {
+      if(voterID.equals(vote.getIdentityKey())) {
         return true;
       }
     }

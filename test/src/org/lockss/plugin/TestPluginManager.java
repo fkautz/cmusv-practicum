@@ -443,7 +443,7 @@ public class TestPluginManager extends LockssTestCase {
     // make a PollSpec with info from a manually created CUS, which should
     // match one of the registered AUs
     CachedUrlSet protoCus = makeCus(mpi, mauauid1, url, lower, upper);
-    PollSpec ps1 = new PollSpec(protoCus);
+    PollSpec ps1 = new PollSpec(protoCus, Poll.CONTENT_POLL);
 
     // verify PluginManager can make a CUS for the PollSpec
     CachedUrlSet cus = mgr.findCachedUrlSet(ps1);
@@ -461,7 +461,7 @@ public class TestPluginManager extends LockssTestCase {
     // have created & configured a real mock one.
 
     CachedUrlSet protoAuCus = makeAuCus(mpi, mauauid1);
-    PollSpec ps2 = new PollSpec(protoAuCus);
+    PollSpec ps2 = new PollSpec(protoAuCus, Poll.CONTENT_POLL);
 
     CachedUrlSet aucus = mgr.findCachedUrlSet(ps2);
     assertNotNull(aucus);
@@ -479,7 +479,7 @@ public class TestPluginManager extends LockssTestCase {
     // make a PollSpec with info from a manually created CUS, which should
     // match one of the registered AUs
     CachedUrlSet protoCus = makeCus(mpi, mauauid1, url, lower, null);
-    PollSpec ps1 = new PollSpec(protoCus);
+    PollSpec ps1 = new PollSpec(protoCus, Poll.CONTENT_POLL);
 
     // verify PluginManager can make a CUS for the PollSpec
     CachedUrlSet cus = mgr.findCachedUrlSet(ps1);

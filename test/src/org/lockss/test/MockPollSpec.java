@@ -62,20 +62,23 @@ public class MockPollSpec extends PollSpec {
    * @param cus the cached url set
    */
   public MockPollSpec(String auId, String url,
-		      String lwrBound, String uprBound) {
-    this(auId, url, lwrBound, uprBound, null);
+		      String lwrBound, String uprBound,
+		      int pollType) {
+    this(auId, url, lwrBound, uprBound, null, pollType);
   }
 
   public MockPollSpec(ArchivalUnit au, String url,
-		      String lwrBound, String uprBound) {
+		      String lwrBound, String uprBound,
+		      int pollType) {
     super(makeCus(au, url, lwrBound, uprBound, null),
-	  lwrBound, uprBound);
+	  lwrBound, uprBound, pollType);
   }
 
   public MockPollSpec(String auId, String url,
-		      String lwrBound, String uprBound, String pluginVersion) {
+		      String lwrBound, String uprBound, String pluginVersion,
+		      int pollType) {
     super(makeCus(auId, url, lwrBound, uprBound, pluginVersion),
-	  lwrBound, uprBound);
+	  lwrBound, uprBound, pollType);
   }
 
   public String getPluginVersion() {

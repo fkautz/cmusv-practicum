@@ -98,7 +98,7 @@ public class ActivityRegulator
   /**
    * Integer representing no activity. AU or CUS level.
    */
-  static final int NO_ACTIVITY = -1;
+  public static final int NO_ACTIVITY = -1;
 
   private static Logger logger = Logger.getLogger("ActivityRegulator");
 
