@@ -56,7 +56,6 @@ public class TestActivityRegulator extends LockssTestCase {
     mau = new MockArchivalUnit();
     theDaemon = new MockLockssDaemon();
     regulator = theDaemon.getActivityRegulator(mau);
-    regulator.initService(theDaemon);
     TimeBase.setSimulated(123);
   }
 

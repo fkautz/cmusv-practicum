@@ -427,7 +427,6 @@ public class TestPollManager extends LockssTestCase {
 
     theDaemon.getHashService().startService();
     theDaemon.getRouterManager().startService();
-    theDaemon.getActivityRegulator(testau).initService(theDaemon);
 
     theDaemon.setNodeManager(new MockNodeManager(), testau);
     pollmanager.startService();

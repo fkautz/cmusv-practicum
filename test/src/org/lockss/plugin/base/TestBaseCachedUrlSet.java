@@ -87,7 +87,6 @@ public class TestBaseCachedUrlSet extends LockssTestCase {
 
     repo = theDaemon.getLockssRepository(mau);
     nodeMan = theDaemon.getNodeManager(mau);
-    nodeMan.initService(theDaemon);
     nodeMan.startService();
     ((NodeManagerImpl)nodeMan).killTreeWalk();
   }
