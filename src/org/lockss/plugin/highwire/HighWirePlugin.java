@@ -128,7 +128,8 @@ public class HighWirePlugin extends BaseArchivalUnit {
   }
   public String getAUId() {
     try {
-      return ""+getUrlVolumeNumber((String)getCrawlSpec().getStartingUrls().get(0));
+      String url = (String)getCrawlSpec().getStartingUrls().get(0);
+      return Integer.toString(getUrlVolumeNumber(url));
     } catch (MalformedURLException ex) {
       return "null";
     }
