@@ -214,7 +214,7 @@ public abstract class V1Poll extends BasePoll {
     else {
       verify = (((double)weight) / (2*max)) * m_disagreeVer;
     }
-    log.debug2("probablitiy of verifying this vote = " + verify);
+    log.debug3("probablitiy of verifying this vote = " + verify);
     try {
       if(ProbabilisticChoice.choose(verify)) {
         long remainingTime = m_deadline.getRemainingTime();
