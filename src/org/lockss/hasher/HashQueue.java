@@ -212,6 +212,19 @@ class HashQueue implements Serializable {
     return true;
   }
 
+  /** Return the average hash speed, or -1 if not known.
+   * @param digest the hashing algorithm
+   * @return hash speed in bytes/ms, or -1 if not known
+   */
+  int getHashSpeed(MessageDigest digest) {
+    if (totalTime < 5 * Constants.SECOND) {
+      return -1;
+    }
+    int bpms =
+      totalBytesHashed.divide(BigInteger.valueOf(totalTime)).intValue();
+    return bpms;
+  }
+
   void init() {
     registerConfigCallback();
   }

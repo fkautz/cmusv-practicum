@@ -174,6 +174,17 @@ public class HashService extends BaseLockssManager {
     return scheduleReq(req);
   }
 
+  /** Return the average hash speed, or -1 if not known.
+   * @param digest the hashing algorithm
+   * @return hash speed in bytes/ms, or -1 if not known
+   */
+  public int getHashSpeed(MessageDigest digest) {
+    if (theQueue == null) {
+      throw new IllegalStateException("HashService has not been initialized");
+    }
+    return theQueue.getHashSpeed(digest);
+  }
+
   /** Add the configured padding percentage, plus the constant */
   long padEstimate(long estimate) {
     return estimate + ((estimate * estPadPercent) / 100) + estPadConstant;
