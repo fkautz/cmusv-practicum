@@ -94,7 +94,7 @@ public class SystemMetrics {
       long bytesHashed = 0;
       boolean earlyFinish = false;
       long hashDuration =
-          Configuration.getLongParam(PARAM_HASH_TEST_DURATION,
+          Configuration.getTimeIntervalParam(PARAM_HASH_TEST_DURATION,
           DEFAULT_HASH_DURATION);
       int hashStep =
           Configuration.getIntParam(PARAM_HASH_TEST_BYTE_STEP,
