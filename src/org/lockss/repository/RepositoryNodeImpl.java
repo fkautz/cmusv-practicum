@@ -529,10 +529,11 @@ public class RepositoryNodeImpl implements RepositoryNode {
     }
     if (newProps!=null) {
       newPropsSet = true;
-      Properties myProps = (Properties)newProps.clone();
+      // copy the props and sort
+      Properties myProps = SortedProperties.fromProperties(newProps);
       try {
         OutputStream os = new BufferedOutputStream(new FileOutputStream(tempPropsFile));
-        myProps.setProperty(LOCKSS_VERSION_NUMBER, ""+(currentVersion+1));
+        myProps.setProperty(LOCKSS_VERSION_NUMBER, Integer.toString(currentVersion+1));
         myProps.store(os, "HTTP headers for " + url);
         os.close();
       } catch (IOException ioe) {
