@@ -50,11 +50,14 @@ public class FuncCommonsLoggingLogger extends LockssTestCase {
     Log log = LogFactory.getLog(logName);
     Logger lockssLog = Logger.getLogger(logName);
     lockssLog.setTarget(target);
+    // disable thread id, makes message order dependent on debug level
+    lockssLog.setIdThread(false);
     assertEmpty(target.getMessages());
     log.warn(msg);
     List m = target.getMessages();
-    assertEquals(2, m.size());
-    String m0 = (String)m.get(1);
+    System.out.println("loglog: " + m);
+    assertEquals(1, m.size());
+    String m0 = (String)m.get(0);
     assertNotEquals(-1, m0.indexOf(msg));
   }
 }

@@ -63,10 +63,6 @@ public class MockLogTarget implements LogTarget{
     sb.append(message);
     String str = sb.toString();
     messages.add(str);
-    if (Logger.LEVEL_DEBUG == msgLevel) {
-      System.err.println("Recursive log call; should only happen once.");
-      log.debug("This is a recursive log message which should not be logged");
-    }
   }
 
   public Iterator messageIterator() {
