@@ -56,7 +56,7 @@ public class TestNodeStateImpl extends LockssTestCase {
     MockCachedUrlSetSpec mspec =
         new MockCachedUrlSetSpec("http://www.example.com", null);
     MockCachedUrlSet mcus = new MockCachedUrlSet(mau, mspec);
-    historyRepo = new HistoryRepositoryImpl(tempDirPath);
+    historyRepo = new HistoryRepositoryImpl(mau, tempDirPath);
     historyRepo.startService();
 
     polls = new ArrayList(3);

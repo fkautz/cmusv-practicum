@@ -88,9 +88,9 @@ public class TestNodeManagerImpl extends LockssTestCase {
 
     nodeManager = new NodeManagerImpl(mau);
     nodeManager.initService(theDaemon);
-    historyRepo = new HistoryRepositoryImpl(tempDirPath);
+    historyRepo = HistoryRepositoryImpl.createNewHistoryRepository(mau);
     historyRepo.startService();
-    theDaemon.setHistoryRepository(historyRepo);
+    theDaemon.setHistoryRepository(historyRepo, mau);
     nodeManager.historyRepo = historyRepo;
     nodeManager.startService();
     // don't need the thread
