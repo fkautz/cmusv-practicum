@@ -145,11 +145,10 @@ public class EDPInspectorCellEditor extends AbstractCellEditor
   private void prepareDialog(JDialog dialog, JTable table, int row, int column) {
     table.setRowSelectionInterval(row, row);
     table.setColumnSelectionInterval(column,column);
-    Point p = table.getLocationOnScreen();
     Rectangle r = table.getCellRect(row, column, true);
-    dialog.setLocation(r.x + p.x + dialog.getWidth(),
-                       r.y + p.y + dialog.getHeight());
-
+    Dimension dlgSize = dialog.getPreferredSize();
+    dialog.setLocation(r.x  + dlgSize.width, r.y  + dlgSize.height);
+    dialog.pack();
   }
 
   static class CellEditorEntry {
