@@ -195,6 +195,29 @@ public class TestPluginManager extends LockssTestCase {
     assertTrue(aucuss instanceof AUCachedUrlSetSpec);
   }
 
+
+
+  public void testFindMostRecentCachedUrl() throws Exception {
+    String prefix = "http://foo.bar/";
+    String url1 = "http://foo.bar/baz";
+    String url2 = "http://foo.bar/not";
+    doConfig();
+    MockPlugin mpi = (MockPlugin)mgr.getPlugin(mockPlugId);
+
+    // get the two archival units
+    MockArchivalUnit au1 = (MockArchivalUnit)mpi.getAU(mauauidkey1);
+    ArchivalUnit au2 = mpi.getAU(mauauidkey2);
+    assertNull(mgr.findMostRecentCachedUrl(url1));
+    CachedUrlSetSpec cuss = new MockCachedUrlSetSpec(prefix, null);
+    MockCachedUrlSet mcuss = new MockCachedUrlSet(au1, cuss);
+    mcuss.addUrl("foo", url1, true, true, null);
+    au1.setAUCachedUrlSet(mcuss);
+    CachedUrl cu = mgr.findMostRecentCachedUrl(url1);
+    assertNotNull(cu);
+    assertEquals(url1, cu.getUrl());
+    assertNull(mgr.findMostRecentCachedUrl(url2));
+  }
+
   public CachedUrlSet makeCUS(String pluginid, String auid, String url,
 			       String lower, String upper) {
     MockArchivalUnit au = new MockArchivalUnit();
