@@ -808,5 +808,18 @@ public abstract class LockssServlet extends HttpServlet
     }
   }
 
+  /** Convenience method */
+  protected String encodeText(String s) {
+    return HtmlUtil.encode(s, HtmlUtil.ENCODE_TEXT);
+  }
 
+  /** Convenience method */
+  protected String encodeTextArea(String s) {
+    return HtmlUtil.encode(s, HtmlUtil.ENCODE_TEXTAREA);
+  }
+
+  /** Convenience method */
+  protected String encodeAttr(String s) {
+    return HtmlUtil.encode(s, HtmlUtil.ENCODE_ATTR);
+  }
 }
