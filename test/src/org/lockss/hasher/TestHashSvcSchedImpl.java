@@ -65,7 +65,7 @@ public class TestHashSvcSchedImpl extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
-    theDaemon = new MockLockssDaemon();
+    theDaemon = getMockLockssDaemon();
     SchedService schedSvc = this.theDaemon.getSchedService();
     svc = new HashSvcSchedImpl();
     theDaemon.setHashService(svc);

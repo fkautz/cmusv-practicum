@@ -57,7 +57,7 @@ public class TestSimulatedUrlCacher extends LockssTestCase {
     super.setUp();
     tempDirPath = getTempDir().getAbsolutePath() + File.separator;
 
-    theDaemon = new MockLockssDaemon();
+    theDaemon = getMockLockssDaemon();
     mau = new MockArchivalUnit();
     MockPlugin plugin = new MockPlugin();
     plugin.initPlugin(theDaemon);

@@ -51,12 +51,13 @@ public class FuncSchedService extends LockssTestCase {
     org.lockss.scheduler.TaskRunner.class,
   };
 
-  private static MockLockssDaemon theDaemon = new MockLockssDaemon();
+  private MockLockssDaemon theDaemon;
 
   private SchedService svc;
 
   public void setUp() throws Exception {
     super.setUp();
+    theDaemon = getMockLockssDaemon();
     svc = theDaemon.getSchedService();
     svc.startService();
   }

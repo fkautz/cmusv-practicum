@@ -96,10 +96,10 @@ public class LockssTestCase extends TestCase {
   }
 
   /**
-   * Return the MockLockssDaemon instance for this testcase, creating one
-   * if necessary.
+   * Return the MockLockssDaemon instance for this testcase.  All test code
+   * should use this method rather than creating a MockLockssDaemon.
    */
-  public synchronized MockLockssDaemon getMockLockssDaemon() {
+  public MockLockssDaemon getMockLockssDaemon() {
     return mockDaemon;
   }
 

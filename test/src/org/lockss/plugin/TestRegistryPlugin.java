@@ -50,7 +50,7 @@ public class TestRegistryPlugin extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
-    m_theDaemon = new MockLockssDaemon();
+    m_theDaemon = getMockLockssDaemon();
     m_plugin = new RegistryPlugin();
     m_plugin.initPlugin(m_theDaemon);
   }

@@ -54,7 +54,7 @@ public class TestAuNodeImpl extends LockssTestCase {
 
     MockArchivalUnit mau = new MockArchivalUnit();
 
-    theDaemon = new MockLockssDaemon();
+    theDaemon = getMockLockssDaemon();
     repo = theDaemon.getLockssRepository(mau);
   }
 

@@ -65,7 +65,7 @@ public class TestMailTarget extends LockssTestCase {
         FileTestUtil.urlOfString(s5)
 	));
     target = new MailTarget();
-    theDaemon = new MockLockssDaemon();
+    theDaemon = getMockLockssDaemon();
     idmanager = theDaemon.getIdentityManager();
     idmanager.startService();
 

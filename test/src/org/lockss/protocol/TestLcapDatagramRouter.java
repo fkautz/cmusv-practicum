@@ -52,7 +52,7 @@ public class TestLcapDatagramRouter extends LockssTestCase {
   private static String uprbnd = "test3.doc";
   private static ArrayList testentries;
 
-  private static MockLockssDaemon daemon = new MockLockssDaemon(null);
+  private static MockLockssDaemon daemon;
   private IdentityManager idmgr;
   protected IPAddr testaddr;
   protected PeerIdentity testID;
@@ -63,6 +63,7 @@ public class TestLcapDatagramRouter extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
+    daemon = getMockLockssDaemon();
     setConfig();
     idmgr = daemon.getIdentityManager();
     // this causes error messages, but need to start comm so it gets idmgr.

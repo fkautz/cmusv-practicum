@@ -85,7 +85,7 @@ public class TestPluginManagerWrapping extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
 
-    theDaemon = new MockLockssDaemon();
+    theDaemon = getMockLockssDaemon();
 
     mgr = new PluginManager();
     theDaemon.setPluginManager(mgr);

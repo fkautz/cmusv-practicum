@@ -59,7 +59,7 @@ public class TestPollSpec extends LockssTestCase {
     p.setProperty(IdentityManager.PARAM_LOCAL_IP, "127.0.0.1");
     ConfigurationUtil.setCurrentConfigFromProps(p);
 
-    theDaemon = new MockLockssDaemon();
+    theDaemon = getMockLockssDaemon();
     theDaemon.getIdentityManager();
     theDaemon.getPluginManager();
   }

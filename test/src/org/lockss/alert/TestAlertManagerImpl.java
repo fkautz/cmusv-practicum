@@ -53,7 +53,7 @@ public class TestAlertManagerImpl extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
-    daemon = new MockLockssDaemon();
+    daemon = getMockLockssDaemon();
     mgr = new MyMockAlertManagerImpl();
     daemon.setAlertManager(mgr);
     mgr.initService(daemon);

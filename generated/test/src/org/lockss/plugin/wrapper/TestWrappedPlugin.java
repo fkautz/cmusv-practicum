@@ -64,7 +64,7 @@ public class TestWrappedPlugin extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
-    MockLockssDaemon daemon = new MockLockssDaemon();
+    MockLockssDaemon daemon = getMockLockssDaemon();
     DefinablePlugin hplug = new DefinablePlugin();
     hplug.initPlugin(daemon,"org.lockss.plugin.highwire.HighWirePlugin");
     plugin = (WrappedPlugin)WrapperState.getWrapper(hplug);

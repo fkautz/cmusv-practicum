@@ -52,7 +52,7 @@ public class TestWatchdogService extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
-    daemon = new MockLockssDaemon();
+    daemon = getMockLockssDaemon();
     wdog = daemon.getWatchdogService();
     TimeBase.setSimulated();
   }

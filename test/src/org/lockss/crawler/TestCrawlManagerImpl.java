@@ -70,7 +70,7 @@ public class TestCrawlManagerImpl extends LockssTestCase {
 
     crawlManager = new TestableCrawlManagerImpl();
     statusSource = (CrawlManager.StatusSource)crawlManager;
-    theDaemon = new MockLockssDaemon();
+    theDaemon = getMockLockssDaemon();
     nodeManager = new MockNodeManager();
     theDaemon.setNodeManager(nodeManager, mau);
 

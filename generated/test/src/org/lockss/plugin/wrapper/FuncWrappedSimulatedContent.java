@@ -90,7 +90,7 @@ public class FuncWrappedSimulatedContent extends LockssTestCase {
     super.setUp();
 
     ConfigurationUtil.setCurrentConfigFromString(makeConfig());
-    theDaemon = new MockLockssDaemon();
+    theDaemon = getMockLockssDaemon();
     theDaemon.setDaemonInited(true);
     init();
   }

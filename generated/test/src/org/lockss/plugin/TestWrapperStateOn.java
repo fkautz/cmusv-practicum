@@ -112,7 +112,7 @@ public class TestWrapperStateOn extends LockssTestCase {
   }
 
   public void testRetrieveWrappedPlugin() throws Exception {
-    MockLockssDaemon theDaemon = new MockLockssDaemon();
+    MockLockssDaemon theDaemon = getMockLockssDaemon();
      WrappedPlugin wplug = (WrappedPlugin)WrapperState.retrieveWrappedPlugin(
         "org|lockss|test|MockPlugin",theDaemon);
      assertNotNull(wplug);
@@ -210,7 +210,7 @@ public class TestWrapperStateOn extends LockssTestCase {
   }
 
   public void testDaemon() throws Exception {
-    MockLockssDaemon daemon = new MockLockssDaemon();
+    MockLockssDaemon daemon = getMockLockssDaemon();
     Plugin plugin = new MockPlugin();
     WrappedPlugin wplug = (WrappedPlugin)WrapperState.getWrapper(plugin);
     Properties p = new Properties();

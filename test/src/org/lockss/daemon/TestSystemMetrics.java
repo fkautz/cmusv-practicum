@@ -46,7 +46,7 @@ public class TestSystemMetrics extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
-    theDaemon = new MockLockssDaemon();
+    theDaemon = getMockLockssDaemon();
     Properties props = new Properties();
     props.setProperty(SystemMetrics.PARAM_HASH_TEST_DURATION,
                       Long.toString(SystemMetrics.DEFAULT_HASH_TEST_DURATION));

@@ -63,7 +63,7 @@ public class LockssServletTestCase extends LockssTestCase {
 
   protected void setUp() throws Exception {
     super.setUp();
-    theDaemon = new MockLockssDaemon();
+    theDaemon = getMockLockssDaemon();
 //     theDaemon.setDaemonInited(true);
   }
 

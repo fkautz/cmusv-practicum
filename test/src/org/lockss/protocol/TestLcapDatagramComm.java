@@ -67,7 +67,7 @@ public class TestLcapDatagramComm extends LockssTestCase {
   static final String PARAM_UNI_PORT_SEND = LcapDatagramComm.PARAM_UNI_PORT_SEND;
   static final String PARAM_MULTI_VERIFY = LcapDatagramComm.PARAM_MULTI_VERIFY;
 
-  private static MockLockssDaemon daemon = new MockLockssDaemon(null);
+  private static MockLockssDaemon daemon;
 
   String testStr = "This is test data";
   byte[] testData;
@@ -96,6 +96,7 @@ public class TestLcapDatagramComm extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
+    daemon = getMockLockssDaemon();
     testData = testStr.getBytes();
     String tempDirPath = null;
     try {

@@ -69,7 +69,7 @@ public class TestBaseCachedUrlSet extends LockssTestCase {
 		      Integer.toString(HASH_SPEED));
     ConfigurationUtil.setCurrentConfigFromProps(props);
 
-    theDaemon = new MockLockssDaemon();
+    theDaemon = getMockLockssDaemon();
     hashService = theDaemon.getHashService();
     hashService.startService();
     metrics = theDaemon.getSystemMetrics();

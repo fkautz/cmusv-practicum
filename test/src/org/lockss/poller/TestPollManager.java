@@ -524,7 +524,7 @@ public class TestPollManager extends LockssTestCase {
   }
 
   private void initRequiredServices() {
-    theDaemon = new MockLockssDaemon();
+    theDaemon = getMockLockssDaemon();
     pollmanager = theDaemon.getPollManager();
     idmanager = theDaemon.getIdentityManager();
 

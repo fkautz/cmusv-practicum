@@ -58,7 +58,7 @@ public class TestCuUrl extends LockssTestCase {
     props.setProperty(LockssRepositoryImpl.PARAM_CACHE_LOCATION, tempDirPath);
     ConfigurationUtil.setCurrentConfigFromProps(props);
 
-    theDaemon = new MockLockssDaemon();
+    theDaemon = getMockLockssDaemon();
 
     // make and init a real Pluginmgr
     pluginMgr = theDaemon.getPluginManager();
