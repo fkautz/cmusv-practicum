@@ -112,8 +112,9 @@ public class OaiCrawler extends FollowLinkCrawler {
      Set extractedUrls = new HashSet();
      OaiRequestData oaiRequestData = spec.getOaiRequestData();
      
-     OaiHandler oaiHandler = 
-       new OaiHandler(oaiRequestData, getFromTime(), getUntilTime(), maxOaiRetries);
+     OaiHandler oaiHandler = new OaiHandler();
+     oaiHandler.issueRequest(oaiRequestData, getFromTime(), getUntilTime());
+     oaiHandler.processResponse(maxOaiRetries);
      
      List errList = oaiHandler.getErrors();
      if ( !errList.isEmpty() ){
