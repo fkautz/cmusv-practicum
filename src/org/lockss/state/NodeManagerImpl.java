@@ -1452,7 +1452,7 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
             break;
           case CachedUrlSetNode.TYPE_CACHED_URL:
             CachedUrlSetSpec rSpec = new RangeCachedUrlSetSpec(child.getUrl());
-            cus = ( (BaseArchivalUnit) managedAu).makeCachedUrlSet(rSpec);
+            cus = managedAu.makeCachedUrlSet(rSpec);
         }
         childList.add(cus);
       }

@@ -71,10 +71,10 @@ public class PollHistory
   }
 
   /**
-   * Returns an immutable iterator of Votes.
+   * Returns an iterator of Votes.
    * @return an Iterator of Vote objects.
    */
   public Iterator getVotes() {
-    return Collections.unmodifiableCollection(votes).iterator();
+    return (new ArrayList(votes)).iterator();
   }
 }

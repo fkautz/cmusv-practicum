@@ -151,7 +151,7 @@ public class NodeStateImpl implements NodeState {
   }
 
   public Iterator getActivePolls() {
-    return Collections.unmodifiableList(polls).iterator();
+    return (new ArrayList(polls)).iterator();
   }
 
   public Iterator getPollHistories() {
@@ -159,7 +159,7 @@ public class NodeStateImpl implements NodeState {
       repository.loadPollHistories(this);
       Collections.sort(pollHistories, new HistoryComparator());
     }
-    return Collections.unmodifiableList(pollHistories).iterator();
+    return (new ArrayList(pollHistories)).iterator();
   }
 
   public PollHistory getLastPollHistory() {
@@ -205,6 +205,7 @@ public class NodeStateImpl implements NodeState {
     }
     // remove this poll, and any lingering PollStates for it
     while (polls.contains(finished_poll)) {
+//XXX concurrent
       polls.remove(finished_poll);
     }
     // checkpoint state, store histories
