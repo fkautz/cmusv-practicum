@@ -225,7 +225,7 @@ public class TestActivityRegulator extends LockssTestCase {
   }
 
   public void testIsAllowedOnAu() {
-    // using NO_ACTIVITY as a generic activity marker, since this functions
+    // using NO_ACTIVITY as a generic activity marker, since these functions
     // don't specifically handle it
 
     // nothing allowed on these
@@ -247,7 +247,7 @@ public class TestActivityRegulator extends LockssTestCase {
   }
 
   public void testIsAllowedOnCus() {
-    // using NO_ACTIVITY as a generic activity marker, since this functions
+    // using NO_ACTIVITY as a generic activity marker, since these functions
     // don't specifically handle it
 
     // if a crawl-
