@@ -75,8 +75,8 @@ public class IdentityManager implements LockssManager {
   static final String PARAM_VOTE_VERIFIED = Configuration.PREFIX + "id.voteVerified";
   static final String PARAM_VOTE_DISOWNED = Configuration.PREFIX + "id.voteDisowned";
 
-  static final String PARAM_IDDB_DIR = Configuration.PREFIX + "id.databaseDir";
-  static final String PARAM_IDDB_MAP_DIR = Configuration.PREFIX + "id.mappingFile";
+  static final String PARAM_IDDB_DIR = Configuration.PREFIX + "id.database.dir";
+  static final String PARAM_IDDB_MAP_DIR = Configuration.PREFIX + "id.mapping.file";
 
   static final String IDDB_FILENAME = "iddb.xml";
   static final String IDDB_MAP_FILENAME = "idmapping.xml";
@@ -373,7 +373,7 @@ public class IdentityManager implements LockssManager {
                          + File.separator + IDDB_MAP_FILENAME;
       File mpFile =  mpFile = new File(mappingFile);
       if(mpFile == null || !mpFile.exists()) {
-        theLog.error("Unable to find mapping file: " + mpFile.getName());
+        theLog.error("Unable to find mapping file: " + mpFile.getAbsolutePath());
         return null;
       }
 
