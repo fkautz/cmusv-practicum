@@ -343,4 +343,10 @@ public class TestStringUtil extends LockssTestCase {
     assertFalse(StringUtil.endsWithIgnoreCase("21", "2"));
     assertFalse(StringUtil.endsWithIgnoreCase("foo.opt", "xopt"));
   }
+
+  public void testTitleCase() {
+    String txt1 = "this is 8 words.  can it be handled?";
+    String txt2 = "This Is 8 Words.  Can It Be Handled?";
+    assertEquals(StringUtil.titleCase(txt1),txt2);
+  }
 }
