@@ -68,6 +68,20 @@ public class TestWatchdogService extends LockssTestCase {
     wdog.startService();
   }
 
+  // nor if the file doesn't exist
+  public void testNoFile() throws Exception {
+    String tmpfile = "/tmp/nexist-pas";
+    assertFalse(new File(tmpfile).exists());
+
+    // configure a 1 second watchdog
+    Properties props = new Properties();
+    props.put(WatchdogService.PARAM_PLATFORM_WDOG_FILE, tmpfile.toString());
+    props.put(WatchdogService.PARAM_PLATFORM_WDOG_INTERVAL, "10s");
+    ConfigurationUtil.setCurrentConfigFromProps(props);
+    TimeBase.setSimulated(9000);
+    wdog.startService();
+  }
+
   public void testWdogOn() throws Exception {
     SimpleBinarySemaphore sem = new SimpleBinarySemaphore();
     File tmpfile = new MockFile(FileUtil.tempFile("wdog").toString(), sem);

@@ -69,6 +69,9 @@ public class WatchdogService extends BaseLockssManager {
 	log.info("Platform watchdog interval: " +
 		 StringUtil.timeIntervalToString(interval) +
 		 ", file: " + watchedFile);
+	if (!watchedFile.exists()) {
+	  log.warning("Watchdog file does not exist");
+	}
 	if (theDaemon.isDaemonRunning()) {
 	  enable();
 	}
