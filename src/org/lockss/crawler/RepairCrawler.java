@@ -68,7 +68,7 @@ public class RepairCrawler extends CrawlerImpl {
     }
     this.repairUrls = repairUrls;
     this.percentFetchFromCache = percentFetchFromCache;
-    //XXX hack, since crawlStatus will get set twice
+
     crawlStatus = new Crawler.Status(au, repairUrls, getType());
   }
 
