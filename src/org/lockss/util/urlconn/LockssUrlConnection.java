@@ -150,4 +150,12 @@ public interface LockssUrlConnection {
    * automatically, but this should be called if no input stream is
    * obtained (<i>eg</i>, in case of error responses) */
   public void release();
+
+
+  /** Exception thrown if a timeout occured while opening the socket. */
+  public class ConnectionTimeoutException extends IOException {
+    public ConnectionTimeoutException(String msg) {
+      super(msg);
+    }
+  }
 }
