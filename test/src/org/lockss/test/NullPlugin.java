@@ -83,7 +83,7 @@ public class NullPlugin {
       return null;
     }
 
-    public Configuration getConfigForTitle(String title) {
+    public TitleConfig getTitleConfig(String title) {
       return null;
     }
 
