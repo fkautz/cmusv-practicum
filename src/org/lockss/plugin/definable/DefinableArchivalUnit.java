@@ -97,11 +97,9 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
 
     if (permission_el instanceof String) {
       templateList = ListUtil.list((String)permission_el);
-    }
-    else if (permission_el instanceof List) {
+    } else if (permission_el instanceof List) {
        templateList = (List) permission_el;
-    }
-    else {
+    } else {
       return super.getPermissionPages();
     }
     List permission_list = new ArrayList();
