@@ -119,7 +119,7 @@ class PartnerList {
     }
     if (partners.size() == 0) {
       addFromDefaultList();
-    }      
+    }
   }
 
   void addDefaultPartners() {
@@ -174,7 +174,7 @@ class PartnerList {
 //     Element(LcapIdentity id) throws UnknownHostException {
 //       this(id.getAddress());
 //     }
-    
+
 //     Element(InetAddress ip) {
 //       addr = ip;
 //     }

@@ -53,12 +53,11 @@ public class TestNodeStateMap extends LockssTestCase {
     super.setUp();
     tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     String s = HistoryRepositoryImpl.PARAM_HISTORY_LOCATION +
-        "=" + tempDirPath + "\n" + NodeStateMap.PARAM_NODESTATE_MAP_SIZE +
-        "=10";
+        "=" + tempDirPath;
     TestConfiguration.setCurrentConfigFromString(s);
 
     repo = new MockHistoryRepository();
-    map = new NodeStateMap(repo);
+    map = new NodeStateMap(repo, 10);
   }
 
   public void testCaching() throws Exception {

@@ -102,7 +102,7 @@ public class AuState {
   /**
    * Sets the last treewalk time to the current time.
    */
-  void treeWalkFinished() {
+  void setLastTreeWalkTime() {
     lastTreeWalk = TimeBase.nowMs();
   }
 
