@@ -193,13 +193,16 @@ public abstract class IpAccessControl extends LockssServlet {
 
     table.newRow();
     table.newCell("align=center");
+    setTabOrder(incArea);
     table.add(incArea);
     table.newCell("align=center");
+    setTabOrder(excArea);
     table.add(excArea);
 
     centeredBlock.add(table);
     frm.add(centeredBlock);
     Input submit = new Input(Input.Submit, "action", "Update");
+    setTabOrder(submit);
     frm.add("<br><center>"+submit+"</center>");
     comp.add(frm);
     return comp;
