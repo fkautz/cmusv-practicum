@@ -121,5 +121,15 @@ public class ColumnDescriptor {
     sb.append("]");
     return sb.toString();
   }
+
+  public boolean equals(Object obj) {
+    if (!(obj instanceof ColumnDescriptor)) {
+      return false;
+    }
+    ColumnDescriptor colDesc = (ColumnDescriptor) obj;
+    return (title.equals(colDesc.getTitle()) &&
+	    type == colDesc.getType() &&
+	    columnName.equals(colDesc.getColumnName()));
+  }
 }
 
