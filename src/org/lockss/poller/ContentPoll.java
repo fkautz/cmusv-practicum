@@ -48,11 +48,10 @@ import org.mortbay.util.B64Code;
  * @author Claire Griffin
  * @version 1.0
  */
-
 public class ContentPoll extends Poll {
 
-  ContentPoll(LcapMessage msg, CachedUrlSet urlSet) {
-    super(msg, urlSet);
+  ContentPoll(LcapMessage msg, CachedUrlSet urlSet, PollManager pm) {
+    super(msg, urlSet, pm);
     m_replyOpcode = LcapMessage.CONTENT_POLL_REP;
   }
 

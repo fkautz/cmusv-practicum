@@ -266,7 +266,7 @@ public class LcapMessage implements Serializable {
    * @return a new Message object
    * @throws IOException
    */
-  static LcapMessage decodeToMsg(byte[] data,
+  static public LcapMessage decodeToMsg(byte[] data,
 				 boolean mcast) throws IOException {
     LcapMessage msg = new LcapMessage(data);
     if(msg != null) {
