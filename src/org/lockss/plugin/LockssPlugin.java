@@ -99,6 +99,6 @@ public interface LockssPlugin {
    * @param configInfo the properties needed by this Archival Unit
    * @return the ArchivalUnit
    */
-  public ArchivalUnit getAUClass(Properties configInfo);
-
+  public ArchivalUnit findAU(Properties configInfo) 
+      throws AUInstantiationException;
 }
