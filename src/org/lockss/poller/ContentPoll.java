@@ -106,7 +106,7 @@ public class ContentPoll extends Poll implements Runnable {
     hasher.update(C, 0, C.length);
     hasher.update(V, 0, V.length);
     return HashService.hashContent( urlSet, hasher, timer,
-                                    new HashCallback(), V);
+                                    new HashCallback(), this);
   }
 
   static class CPVoteChecker extends VoteChecker {
