@@ -41,6 +41,11 @@ import java.util.Date;
 public class StdErrTarget extends PrintStreamTarget {
   /** Create a log target that outputs to System.err */
   public StdErrTarget() {
-    super(System.err);
+    super(null);
+  }
+
+  /** Refetch System.err on each use, as JUnit changes it between tests. */
+  protected PrintStream getPrintStream() {
+    return System.err;
   }
 }

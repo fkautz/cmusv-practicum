@@ -89,7 +89,15 @@ public class PrintStreamTarget implements LogTarget {
     sb.append(msgLevel);
     sb.append(": ");
     sb.append(message);
-    stream.println(sb.toString());
-    stream.flush();
+    PrintStream s = getPrintStream();
+    s.println(sb.toString());
+    s.flush();
   }
+
+  /** Return the stored stream; override this if need to fetch the stream
+      on each call. */
+  protected PrintStream getPrintStream() {
+    return stream;
+  }
+
 }
