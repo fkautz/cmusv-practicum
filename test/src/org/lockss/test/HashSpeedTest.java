@@ -41,6 +41,7 @@ import org.lockss.util.ListUtil;
 import org.lockss.poller.PollManager;
 import org.lockss.crawler.GoslingCrawlerImpl;
 import org.lockss.util.Deadline;
+import org.lockss.protocol.*;
 
 public class HashSpeedTest extends LockssTestCase {
   private SimulatedArchivalUnit sau;
@@ -110,7 +111,7 @@ public class HashSpeedTest extends LockssTestCase {
   }
 
   private void hashContent() throws Exception {
-    MessageDigest digest = PollManager.getPollManager().getHasher();
+    MessageDigest digest = LcapMessage.getDefaultHasher();
     System.out.println("Hashing-");
     System.out.println("  Algorithm: "+digest.getAlgorithm());
     System.out.println("  Duration: "+duration+"ms");

@@ -88,6 +88,7 @@ public class LcapIdentity implements Serializable {
 
 
   // accessor methods
+
   /**
    * return the address of the Identity
    * @return the <code>InetAddress<\code> for this Identity

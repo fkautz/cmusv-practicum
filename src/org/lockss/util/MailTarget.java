@@ -92,7 +92,7 @@ public class MailTarget {
                                          Set changedKeys) {
           loadConfiguration();
         }});
-    localHostName = IdentityManager.getIdentityManager().getLocalHostName();
+    localHostName = IdentityManager.getLocalHostName();
 
     if (localHostName == null) {
       logger.error("Couldn't find localhost from IdentityManager; "+

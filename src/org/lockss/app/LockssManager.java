@@ -43,8 +43,10 @@ public interface LockssManager {
    * init the manager - There is no guarentee that any other manager is
    * loaded into memory.
    * @param daemon the daemon that can be used to get additional services
+   * @throws LockssDaemonException if this manager was already inited.
    */
-  public void initService(LockssDaemon daemon);
+  public void initService(LockssDaemon daemon)
+      throws LockssDaemonException;
 
   /**
    * start the manager.  All managers are inited at this point

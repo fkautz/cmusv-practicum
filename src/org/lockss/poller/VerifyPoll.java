@@ -178,7 +178,10 @@ class VerifyPoll extends Poll {
 
     LcapIdentity originator = msg.getOriginID();
     log.debug("sending our verification reply to " + originator.toString());
-    m_pollmanager.sendMessageTo(repmsg, PluginManager.findArchivalUnit(url), originator);
+
+    m_pollmanager.sendMessageTo(repmsg,
+                                m_pollmanager.getPluginManager().findArchivalUnit(url),
+                                originator);
   }
 
   private void startVoteCheck(LcapMessage msg) {

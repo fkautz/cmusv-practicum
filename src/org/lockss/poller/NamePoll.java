@@ -128,7 +128,8 @@ public class NamePoll extends Poll {
    */
   boolean scheduleHash(MessageDigest hasher, Deadline timer, Serializable key,
                                 HashService.Callback callback) {
-    return HashService.hashNames(m_urlSet, hasher, timer, callback, key);
+    return m_pollmanager.getHashService().hashNames(m_urlSet,
+        hasher, timer, callback, key);
   }
 
 

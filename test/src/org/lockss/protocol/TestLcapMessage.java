@@ -39,6 +39,7 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 import junit.framework.TestCase;
+import org.lockss.test.*;
 
 /** JUnitTest case for class: org.lockss.protocol.Message */
 public class TestLcapMessage extends TestCase {
@@ -49,6 +50,8 @@ public class TestLcapMessage extends TestCase {
   private static String[] testentries = {"test1.doc",
                                          "test2.doc", "test3.doc"};
 
+  private static MockLockssDaemon daemon = new MockLockssDaemon(null);
+  private IdentityManager idmgr = daemon.getIdentityManager();
   protected InetAddress testaddr;
   protected LcapIdentity testID;
   protected LcapMessage testmsg;

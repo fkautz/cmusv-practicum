@@ -35,13 +35,22 @@ package org.lockss.proxy;
 import java.io.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
+import org.lockss.app.*;
 
 public class StartProxy {
   public static void main(String args[]) {
     PTestPlugin.makeTest();
-    System.out.println("Plugin.findArchivalUnit(http://foo.bar/one) = " +
-		       PluginManager.findArchivalUnit("http://foo.bar/one"));
-    ProxyHandler.startProxy();
+    ProxyHandler handler = new ProxyHandler();
+    try {
+      handler.initService(null);
+    }
+    catch (LockssDaemonException ex) {
+      System.err.println("Init called twice!");
+    }
+//    System.out.println("pm.findArchivalUnit(http://foo.bar/one) = " +
+//		       pm.findArchivalUnit("http://foo.bar/one"));
+
+    handler.startProxy();
     System.err.println("Proxy started");
   }
 }

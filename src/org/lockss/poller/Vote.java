@@ -53,16 +53,6 @@ public class Vote implements Serializable {
   protected Vote() {
   }
 
-  protected Vote makeVote(String challengeStr, String verifierStr, String hashStr,
-                 String idStr, boolean agree) {
-    Vote vote = new Vote();
-    vote.id = IdentityManager.getIdentityManager().findIdentity(idStr);
-    vote.agree = agree;
-    vote.challenge = B64Code.decode(challengeStr.toCharArray());
-    vote.verifier = B64Code.decode(verifierStr.toCharArray());
-    vote.hash = B64Code.decode(hashStr.toCharArray());
-    return vote;
-  }
 
   Vote(byte[] challenge, byte[] verifier, byte[] hash,
        LcapIdentity id, boolean agree) {
@@ -83,6 +73,21 @@ public class Vote implements Serializable {
          msg.getOriginID(), agree);
   }
 
+
+  protected Vote makeVote(String challengeStr, String verifierStr, String hashStr,
+                 String idStr, boolean agree) {
+    Vote vote = new Vote();
+    try {
+      vote.id = IdentityManager.getIdentityManager().findIdentity(idStr);
+    }
+    catch (Exception ex) {
+    }
+    vote.agree = agree;
+    vote.challenge = B64Code.decode(challengeStr.toCharArray());
+    vote.verifier = B64Code.decode(verifierStr.toCharArray());
+    vote.hash = B64Code.decode(hashStr.toCharArray());
+    return vote;
+  }
 
   boolean setAgreeWithHash(byte[] new_hash) {
     agree = Arrays.equals(hash, new_hash);
