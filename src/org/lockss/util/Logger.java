@@ -102,6 +102,7 @@ public class Logger {
 
   // allow default level to be specified on command line
   private static int defaultLevel;
+  private static String defaultLevelName;
 
   private static boolean deferredInitDone = false;
 
@@ -185,7 +186,7 @@ public class Logger {
       Configuration.getParam(StringUtil.replaceString(PARAM_LOG_LEVEL,
 						      "<logname>", name),
 			     Configuration.getParam(PARAM_DEFAULT_LEVEL,
-						    DEFAULT_DEFAULT_LEVEL));
+						    defaultLevelName));
     int level = 0;
     try {
       level = levelOf(levelName);
@@ -323,6 +324,7 @@ public class Logger {
    */
   private static void setInitialDefaultLevel() {
     defaultLevel = getInitialDefaultLevel();
+    defaultLevelName = nameOf(defaultLevel);
   }
 
   /** Register callback to reset log levels when config changes
