@@ -190,12 +190,13 @@ public abstract class Configuration {
 	}
       }
     }
-    // First load all the configuration files into the cache
-    // (it will only update file contents if necessary)
+
+    // Load all of the config files in order.
     for (Iterator iter = urls.iterator(); iter.hasNext();) {
       String url = (String)iter.next();
       try {
 	configCache.load(url);
+	load(configCache.get(url));
       } catch (IOException e) {
 	if (e instanceof FileNotFoundException &&
 	    StringUtil.endsWithIgnoreCase(url.toString(), ".opt")) {
@@ -212,26 +213,6 @@ public abstract class Configuration {
       }
     }
 
-    try {
-      // Load each remote file.
-      List remoteFiles = configCache.getRemoteConfigFiles();
-      for (Iterator iter = remoteFiles.iterator(); iter.hasNext(); ) {
-	load((ConfigFile)iter.next());
-      }
-
-      // Load each local file, so that local values can override
-      // remote values.
-      List localFiles = configCache.getLocalConfigFiles();
-      for (Iterator iter = localFiles.iterator(); iter.hasNext(); ) {
-	load((ConfigFile)iter.next());
-      }
-    } catch (IOException e) {
-      if (!failOk) {
-	log.warning("Couldn't load config file: " + e.toString());
-	reset();  // ensure config is empty
-      }
-      return false;
-    }
     return true;
   }
 

@@ -86,6 +86,7 @@ public class ConfigCache {
       // If we catch any IO exception, remove the offending
       // file from the cache.  The daemon will try to reload it
       // at the next reload interval anyway.
+      log.debug2("Unable to load file, not caching.");
       remove(url);
       throw ex;
     }
