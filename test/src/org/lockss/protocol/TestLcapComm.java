@@ -62,14 +62,14 @@ public class TestLcapComm extends LockssTestCase {
   static final String PARAM_MULTI_PORT = LcapComm.PARAM_MULTI_PORT;
   static final String PARAM_UNI_PORT = LcapComm.PARAM_UNI_PORT;
   static final String PARAM_UNI_PORT_SEND = LcapComm.PARAM_UNI_PORT_SEND;
-  static final String PARAM_VERIFY_MULTICAST = LcapComm.PARAM_MULTI_VERIFY;
+  static final String PARAM_MULTI_VERIFY = LcapComm.PARAM_MULTI_VERIFY;
 
   private static final String c1 =
     PARAM_MULTI_GROUP + "=239.3.4.5" + "\n" +
     PARAM_MULTI_PORT + "=5432" + "\n" +
     PARAM_UNI_PORT + "=2345" + "\n" +
 //     PARAM_UNI_PORT_SEND + "=" + "\n" +
-    PARAM_VERIFY_MULTICAST + "=yes";
+    PARAM_MULTI_VERIFY + "=yes";
 
   String testStr = "This is test data";
   byte[] testData;
