@@ -62,17 +62,17 @@ public abstract class GenericFileUrlCacher extends BaseUrlCacher {
 
   protected void storeContent(InputStream input, Properties headers)
       throws IOException {
+    logger.debug3("Caching url '"+url+"'");
     RepositoryNode leaf = repository.createNewNode(url);
     leaf.makeNewVersion();
-    if (input != null) {
-      OutputStream os = leaf.getNewOutputStream();
-      StreamUtil.copy(input, os);
-      os.close();
-      input.close();
-    }
-    if (headers!=null) {
-      leaf.setNewProperties(headers);
-    }
+
+    OutputStream os = leaf.getNewOutputStream();
+    StreamUtil.copy(input, os);
+    os.close();
+    input.close();
+
+    leaf.setNewProperties(headers);
+
     leaf.sealNewVersion();
   }
 

@@ -407,8 +407,8 @@ public class TestNodeManagerImpl
     assertEquals(MockCrawlManager.SCHEDULED,
                  ( (MockCrawlManager) theDaemon.getCrawlManager()).getUrlStatus(
         repairUrl));
-    assertEquals(MockCrawlManager.SCHEDULED,
-                 ( (MockCrawlManager) theDaemon.getCrawlManager()).getUrlStatus(
+    // only one repair per poll
+    assertNull(( (MockCrawlManager) theDaemon.getCrawlManager()).getUrlStatus(
         repairUrl2));
     assertTrue(repoNode.isInactive());
   }

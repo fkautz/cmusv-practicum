@@ -259,9 +259,10 @@ public class TestActivityRegulator extends LockssTestCase {
     assertFalse(allower.isAllowedOnCus(allower.NO_ACTIVITY, allower.STANDARD_CONTENT_POLL, allower.RELATION_SAME));
     assertTrue(allower.isAllowedOnCus(allower.STANDARD_NAME_POLL, allower.STANDARD_CONTENT_POLL, allower.RELATION_SAME));
     assertTrue(allower.isAllowedOnCus(allower.REPAIR_CRAWL, allower.STANDARD_CONTENT_POLL, allower.RELATION_SAME));
-    //   allow only content polls on sub-nodes if parent with name poll
+    //   allow only content polls and repairs on sub-nodes if parent with name poll
     assertFalse(allower.isAllowedOnCus(allower.NO_ACTIVITY, allower.STANDARD_CONTENT_POLL, allower.RELATION_PARENT));
     assertTrue(allower.isAllowedOnCus(allower.STANDARD_CONTENT_POLL, allower.STANDARD_NAME_POLL, allower.RELATION_PARENT));
+    assertTrue(allower.isAllowedOnCus(allower.REPAIR_CRAWL, allower.STANDARD_NAME_POLL, allower.RELATION_PARENT));
     //   allow only crawls if child
     assertFalse(allower.isAllowedOnCus(allower.NO_ACTIVITY, allower.STANDARD_CONTENT_POLL, allower.RELATION_CHILD));
     assertTrue(allower.isAllowedOnCus(allower.REPAIR_CRAWL, allower.STANDARD_CONTENT_POLL, allower.RELATION_CHILD));
