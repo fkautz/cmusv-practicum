@@ -64,11 +64,11 @@ public class TestLcapRouter extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
-    TimeBase.setSimulated();
+    setConfig();
     rtr = daemon.getRouterManager();
     idmgr = daemon.getIdentityManager();
     rtr.startService();
-    setConfig();
+    TimeBase.setSimulated(20000);
   }
 
   public void testIsEligibleToForward() throws Exception {
@@ -91,6 +91,7 @@ public class TestLcapRouter extends LockssTestCase {
     p.put(LcapRouter.PARAM_BEACON_INTERVAL, "1m");
     p.put(LcapRouter.PARAM_INITIAL_HOPCOUNT, "3");
     p.put(LcapRouter.PARAM_PROB_PARTNER_ADD, "100");
+    p.put(IdentityManager.PARAM_LOCAL_IP, "127.0.0.1");
     ConfigurationUtil.setCurrentConfigFromProps(p);
   }
 

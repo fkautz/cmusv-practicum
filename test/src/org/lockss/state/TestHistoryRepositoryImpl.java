@@ -341,8 +341,10 @@ public class TestHistoryRepositoryImpl extends LockssTestCase {
 
   public static void configHistoryParams(String rootLocation)
     throws IOException {
-    String s = HistoryRepositoryImpl.PARAM_HISTORY_LOCATION + "=" + rootLocation;
-    TestConfiguration.setCurrentConfigFromString(s);
+    Properties p = new Properties();
+    p.setProperty(HistoryRepositoryImpl.PARAM_HISTORY_LOCATION, rootLocation);
+    p.setProperty(IdentityManager.PARAM_LOCAL_IP, "127.0.0.1");
+    ConfigurationUtil.setCurrentConfigFromProps(p);
   }
 
   public static void main(String[] argv) {

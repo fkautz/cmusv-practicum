@@ -43,7 +43,10 @@ public class MockIdentityManager extends IdentityManager {
   public HashMap idMap = new HashMap();
 
   public MockIdentityManager() { }
-  public void initService(LockssDaemon daemon) throws LockssDaemonException { }
+  public void initService(LockssDaemon daemon) throws LockssDaemonException {
+    localIdentityStr = "127.1.2.3";
+    makeLocalIdentity();
+  }
   public void startService() { }
   public void stopService() {
     idMap = new HashMap();
