@@ -160,6 +160,27 @@ public class TitleConfig {
     return res;
   }
 
+  /** Return true if it the suppied config is consistent with this title,
+   * and there are no editable definitional params.  This is used to
+   * determine whether this title's title is apporpriate to use for an
+   * AU */
+  public boolean matchesConfig(Configuration config) {
+    if (params == null || config == null) {
+      return false;
+    }
+    for (Iterator iter = params.iterator(); iter.hasNext(); ) {
+      ConfigParamAssignment cpa = (ConfigParamAssignment)iter.next();
+      ConfigParamDescr cpd = cpa.getParamDescr();
+      if (cpd.isDefinitional()) {
+	if (cpa.isEditable() ||
+	    !StringUtil.equalStrings(cpa.getValue(), config.get(cpd.getKey()))) {
+	  return false;
+	}
+      }
+    }
+    return true;
+  }
+
   /** Generate Properties that will result in this TitleConfig when loaded
    * by BasePlugin */
   public Properties toProperties(String propAbbr) {
