@@ -37,8 +37,8 @@ package org.lockss.app;
 
 public abstract class BaseLockssManager implements LockssManager {
 
-  static private LockssManager theManager = null;
-  static private LockssDaemon theDaemon = null;
+  private LockssManager theManager = null;
+  private LockssDaemon theDaemon = null;
 
   public void initService(LockssDaemon daemon) throws LockssDaemonException {
     if(theManager == null) {
