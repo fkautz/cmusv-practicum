@@ -986,6 +986,7 @@ class TaskRunner {
 	      log.warning("Exception in task callback", e);
 	    }
 	  }
+	  pokeWDog();
 	}
 	stopWDog();
 	triggerWDogOnExit(false);
