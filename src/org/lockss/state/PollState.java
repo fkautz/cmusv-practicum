@@ -64,7 +64,7 @@ public class PollState implements Comparable {
     this.uprBound = bean.getUprBound();
     this.status = bean.getStatus();
     this.startTime = bean.getStartTime();
-    this.deadline = Deadline.at(bean.getDeadlineTime());
+    this.deadline = Deadline.restoreDeadlineAt(bean.getDeadlineTime());
   }
 
   PollState(int type, String lwrBound, String uprBound, int status,
