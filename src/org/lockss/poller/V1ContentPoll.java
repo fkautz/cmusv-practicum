@@ -54,7 +54,12 @@ public class V1ContentPoll extends V1Poll {
   V1ContentPoll(LcapMessage msg, PollSpec pollspec, PollManager pm) {
     super(msg, pollspec, pm);
     m_replyOpcode = LcapMessage.CONTENT_POLL_REP;
-    m_tally.type = CONTENT_POLL;
+    m_tally = new V1PollTally(this,
+                              CONTENT_POLL,
+                              m_createTime,
+                              msg.getDuration(),
+                              pm.getQuorum(),
+                              msg.getHashAlgorithm());
   }
 
 
