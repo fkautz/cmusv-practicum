@@ -154,7 +154,7 @@ public abstract class Configuration {
    * Return a new <code>Configuration</code> instance loaded from the
    * url list
    */
-  static Configuration readConfig(List urlList) {
+  public static Configuration readConfig(List urlList) {
     if (urlList == null) {
       return null;
     }
