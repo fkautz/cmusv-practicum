@@ -52,7 +52,7 @@ public class HighWirePlugin extends BasePlugin {
   public Map archivalUnits = null;
 
   // public only so test methods can use them
-  public static final String BASE_URL_PROP =  "base_url";
+  public static final String BASE_URL_PROP = "base_url";
   public static final String VOL_PROP = "volume";
 
   public void initPlugin() {
