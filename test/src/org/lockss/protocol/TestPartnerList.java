@@ -95,7 +95,7 @@ public class TestPartnerList extends LockssTestCase {
     peer2 = idmgr.stringToPeerIdentity("1.1.1.2");
     peer3 = idmgr.stringToPeerIdentity("1.1.1.3");
     peer4 = idmgr.stringToPeerIdentity("1.1.1.4");
-    pl = new PartnerList();
+    pl = new PartnerList(idmgr);
     setConfig(pl, getConfig(DEF_MIN_PARTNER_REMOVE_INTERVAL, DEF_MAX_PARTNERS,
 			    DEF_MULTICAST_INTERVAL, DEF_PARTNERS));
   }
@@ -227,7 +227,7 @@ public class TestPartnerList extends LockssTestCase {
   }
 
   public void testAddFromDefaultWhenEmpty() {
-    pl = new PartnerList();
+    pl = new PartnerList(idmgr);
     setConfig(pl, getConfig(DEF_MIN_PARTNER_REMOVE_INTERVAL, DEF_MAX_PARTNERS,
 			    DEF_MULTICAST_INTERVAL, ""));
     removeAll();

@@ -185,7 +185,6 @@ public class IdentityManager
 							  new Status());
     Vote.setIdentityManager(this); 
     LcapMessage.setIdentityManager(this);
-    PartnerList.setIdentityManager(this);
     IdentityAgreement.setIdentityManager(this);
   }
 
@@ -202,7 +201,6 @@ public class IdentityManager
     super.stopService();
     Vote.setIdentityManager(null);
     LcapMessage.setIdentityManager(null);
-    PartnerList.setIdentityManager(null);
   }
 
   /**

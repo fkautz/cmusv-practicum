@@ -74,16 +74,12 @@ class PartnerList {
   long recentMulticastInterval;
   long minPartnerRemoveInterval;
   int maxPartners;
-  static IdentityManager idMgr = null;
+  private IdentityManager idMgr;
   PeerIdentity localPeer;
 
   /** Create a PartnerList */
-  public PartnerList() {
-  }
-
-  /** Tell us the local peer ID */
-  public static void setIdentityManager(IdentityManager im) {
-    idMgr = im;
+  public PartnerList(IdentityManager idMgr) {
+    this.idMgr = idMgr;
   }
 
   /** Configure the PartnerList */
