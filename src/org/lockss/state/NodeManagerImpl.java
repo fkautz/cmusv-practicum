@@ -496,6 +496,17 @@ public class NodeManagerImpl extends BaseLockssManager implements NodeManager {
       case PollState.REPAIRED:
         // if this is a poll with a range make sure we don't have
         // a lost poll lurking underneath this one.
+        if (lastHistory.getType() == Poll.CONTENT_POLL) {
+          if (shouldRecallLastPoll) {
+            if (lastHistory.lwrBound != null && lastHistory.uprBound != null) {
+              // look at the polls below this one for a range poll that failed
+              Iterator history_it = node.getPollHistories();
+              while(history_it.hasNext()) {
+                PollHistory history = (PollHistory) history_it.next();
+              }
+            }
+          }
+        }
         break;
       case PollState.LOST:
         // for name polls the important poll is just below this so it's
