@@ -1681,7 +1681,9 @@ public class PluginManager
       this.bs = bs;
     }
 
-    public void signalCrawlAttemptCompleted(boolean success, Object cookie) {
+    public void signalCrawlAttemptCompleted(boolean success, Set urlsFetched,
+					    Object cookie,
+					    Crawler.Status status) {
       String url = (String)cookie;
 
       processPluginsIfReady(url);

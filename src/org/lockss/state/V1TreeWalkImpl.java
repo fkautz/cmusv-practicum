@@ -315,7 +315,9 @@ public class V1TreeWalkImpl implements TreeWalker {
       this.registryAu = au;
     }
 
-    public void signalCrawlAttemptCompleted(boolean success, Object cookie) {
+    public void signalCrawlAttemptCompleted(boolean success, Set urlsFetched,
+					    Object cookie,
+					    Crawler.Status status) {
       if (success) {
 	log.debug2("Registry crawl completed successfully, loading new plugins (if any)...");
 	pluginMgr.processRegistryAus(ListUtil.list(registryAu));

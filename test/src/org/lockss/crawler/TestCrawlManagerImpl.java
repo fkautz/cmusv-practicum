@@ -589,7 +589,9 @@ public class TestCrawlManagerImpl extends LockssTestCase {
       this.sem = sem;
     }
 
-    public void signalCrawlAttemptCompleted(boolean success, Object cookie) {
+    public void signalCrawlAttemptCompleted(boolean success, Set urlsFetched,
+					    Object cookie,
+					    Crawler.Status status) {
       this.success = success;
       called = true;
       this.cookie = cookie;

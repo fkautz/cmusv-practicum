@@ -32,7 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.crawler;
 
-import java.util.Collection;
+import java.util.*;
 import org.lockss.daemon.*;
 import org.lockss.app.*;
 import org.lockss.state.*;
@@ -81,10 +81,13 @@ public interface CrawlManager {
     /**
      * Called when the crawl is completed
      * @param success whether the crawl was successful or not
+     * @param urlsFetched URLs sucessfully fetched
      * @param cookie object used by callback to designate which crawl
      * attempt this is
      */
-    public void signalCrawlAttemptCompleted(boolean success, Object cookie);
+    public void signalCrawlAttemptCompleted(boolean success, Set urlsFetched,
+					    Object cookie,
+					    Crawler.Status status);
   }
 
   public interface StatusSource {
