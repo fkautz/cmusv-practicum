@@ -314,4 +314,12 @@ public class TestLockssTestCase extends LockssTestCase {
     } catch (AssertionFailedError afe) {
     }
   }
+
+  public void testAssertMatchesRE() {
+    assertMatchesRE("", "foo");
+    assertNotMatchesRE("^$", "foo");
+    assertMatchesRE(".*", "foo");
+    assertMatchesRE("bar", "foobar");
+    assertNotMatchesRE("bar", "baz");
+  }
 }
