@@ -191,6 +191,23 @@ public class TestLogger extends LockssTestCase {
     TestConfiguration.setCurrentConfigFromString(s);
   }
 
+  private void configLogLevelOnly(String logName, int level)
+      throws IOException {
+    String s =
+      "org.lockss.log." + logName + ".level=" + Logger.nameOf(level) + "\n";
+    TestConfiguration.setCurrentConfigFromString(s);
+  }
+
+  public void testGetConfiguredLevel()
+      throws IOException {
+    System.getProperties().setProperty("org.lockss.defaultLogLevel", "debug2");
+    Logger.setInitialDefaultLevel();
+    assertEquals(Logger.LEVEL_DEBUG2, Logger.getConfiguredLevel("foobar"));
+    configLogLevelOnly("foo", Logger.LEVEL_WARNING);
+    assertEquals(Logger.LEVEL_WARNING, Logger.getConfiguredLevel("foo"));
+    assertEquals(Logger.LEVEL_DEBUG2, Logger.getConfiguredLevel("foobar"));
+  }
+
   public void testLevelconfig()
       throws IOException {
     String lName = "test-log";
