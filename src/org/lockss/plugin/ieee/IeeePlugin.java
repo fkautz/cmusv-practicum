@@ -31,15 +31,11 @@ in this Software without prior written authorization from Stanford University.
 */
 package org.lockss.plugin.ieee;
 
-import org.lockss.plugin.base.BasePlugin;
-import org.lockss.plugin.*;
-import org.lockss.daemon.*;
-import org.lockss.util.*;
-
-import java.util.List;
-import java.util.Collection;
 import org.lockss.app.*;
+import org.lockss.daemon.*;
+import org.lockss.plugin.*;
 import org.lockss.plugin.configurable.*;
+import org.lockss.util.*;
 
 /**
  * IeeePlugin: Plugin class for the Ieee Explore Plugin

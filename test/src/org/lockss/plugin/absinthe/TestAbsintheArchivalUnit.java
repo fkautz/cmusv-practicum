@@ -66,8 +66,9 @@ public class TestAbsintheArchivalUnit extends LockssTestCase {
       props.setProperty(AbsinthePlugin.AUPARAM_BASE_URL, url.toString());
     }
     Configuration config = ConfigurationUtil.fromProps(props);
-    AbsintheArchivalUnit au = new AbsintheArchivalUnit(new AbsinthePlugin());
-    au.getPlugin().initPlugin(theDaemon);
+    AbsinthePlugin ap = new AbsinthePlugin();
+    ap.initPlugin(theDaemon,ap.getClass().getName());
+    AbsintheArchivalUnit au = new AbsintheArchivalUnit(ap);
     au.setConfiguration(config);
     return au;
   }

@@ -76,8 +76,9 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
     }
     props.setProperty(HighWireArchivalUnit.AUPARAM_USE_CRAWL_WINDOW, ""+true);
     Configuration config = ConfigurationUtil.fromProps(props);
-    HighWireArchivalUnit au = new HighWireArchivalUnit(new HighWirePlugin());
-    au.getPlugin().initPlugin(theDaemon);
+    HighWirePlugin ap = new HighWirePlugin();
+    ap.initPlugin(theDaemon,ap.getClass().getName());
+    HighWireArchivalUnit au = new HighWireArchivalUnit(ap);
     au.setConfiguration(config);
     return au;
   }

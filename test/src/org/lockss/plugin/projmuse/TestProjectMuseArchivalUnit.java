@@ -75,9 +75,9 @@ public class TestProjectMuseArchivalUnit extends LockssTestCase {
       props.setProperty(ProjectMusePlugin.AUPARAM_JOURNAL_DIR, journalDir);
     }
     Configuration config = ConfigurationUtil.fromProps(props);
-    ProjectMuseArchivalUnit au = new ProjectMuseArchivalUnit(
-        new ProjectMusePlugin());
-    au.getPlugin().initPlugin(theDaemon);
+    ProjectMusePlugin ap = new ProjectMusePlugin();
+    ap.initPlugin(theDaemon,ap.getClass().getName());
+    ProjectMuseArchivalUnit au = new ProjectMuseArchivalUnit(ap);
     au.setConfiguration(config);
     return au;
   }

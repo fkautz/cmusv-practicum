@@ -75,9 +75,9 @@ public class TestHistoryCooperativeArchivalUnit extends LockssTestCase {
       props.setProperty(HistoryCooperativePlugin.AUPARAM_JOURNAL_DIR, journalDir);
     }
     Configuration config = ConfigurationUtil.fromProps(props);
-    HistoryCooperativeArchivalUnit au = new HistoryCooperativeArchivalUnit(
-        new HistoryCooperativePlugin());
-    au.getPlugin().initPlugin(theDaemon);
+    HistoryCooperativePlugin ap = new HistoryCooperativePlugin();
+    ap.initPlugin(theDaemon,ap.getClass().getName());
+    HistoryCooperativeArchivalUnit au = new HistoryCooperativeArchivalUnit(ap);
     au.setConfiguration(config);
     return au;
   }

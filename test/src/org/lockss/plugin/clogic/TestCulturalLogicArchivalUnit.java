@@ -68,9 +68,9 @@ public class TestCulturalLogicArchivalUnit extends LockssTestCase {
       props.setProperty(CulturalLogicPlugin.AUPARAM_BASE_URL, url.toString());
     }
     Configuration config = ConfigurationUtil.fromProps(props);
-    CulturalLogicArchivalUnit au = new CulturalLogicArchivalUnit(
-        new CulturalLogicPlugin());
-    au.getPlugin().initPlugin(theDaemon);
+    CulturalLogicPlugin ap = new CulturalLogicPlugin();
+    ap.initPlugin(theDaemon,ap.getClass().getName());
+    CulturalLogicArchivalUnit au = new CulturalLogicArchivalUnit(ap);
     au.setConfiguration(config);
     return au;
   }

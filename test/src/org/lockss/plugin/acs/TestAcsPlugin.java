@@ -45,7 +45,8 @@ public class TestAcsPlugin extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     plugin = new AcsPlugin();
-    plugin.initPlugin(getMockLockssDaemon());
+    plugin.initPlugin(getMockLockssDaemon(),
+                      "org.lockss.plugin.acs.AcsPlugin");
   }
 
 

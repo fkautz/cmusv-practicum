@@ -45,7 +45,9 @@ public class TestIeeePlugin extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     plugin = new IeeePlugin();
-    plugin.initPlugin(getMockLockssDaemon());
+    plugin.initPlugin(getMockLockssDaemon(),
+                      "org.lockss.plugin.ieee.IeeePlugin");
+
   }
 
   public void testGetAUNullConfig() throws ArchivalUnit.ConfigurationException {

@@ -68,9 +68,9 @@ public class TestBlackbirdArchivalUnit extends LockssTestCase {
       props.setProperty(BlackbirdPlugin.AUPARAM_BASE_URL, url.toString());
     }
     Configuration config = ConfigurationUtil.fromProps(props);
-    BlackbirdArchivalUnit au = new BlackbirdArchivalUnit(
-        new BlackbirdPlugin());
-    au.getPlugin().initPlugin(theDaemon);
+    BlackbirdPlugin ap = new BlackbirdPlugin();
+    ap.initPlugin(theDaemon,ap.getClass().getName());
+    BlackbirdArchivalUnit au = new BlackbirdArchivalUnit(ap);
     au.setConfiguration(config);
     return au;
   }

@@ -75,8 +75,9 @@ public class TestIeeeArchivalUnit
     props.setProperty(IeeePlugin.AUPARAM_YEAR, Integer.toString(year));
 
     Configuration config = ConfigurationUtil.fromProps(props);
-    IeeeArchivalUnit au = new IeeeArchivalUnit(new IeeePlugin());
-    au.getPlugin().initPlugin(theDaemon);
+    IeeePlugin ap = new IeeePlugin();
+    ap.initPlugin(theDaemon,ap.getClass().getName());
+    IeeeArchivalUnit au = new IeeeArchivalUnit(ap);
     au.setConfiguration(config);
     return au;
   }

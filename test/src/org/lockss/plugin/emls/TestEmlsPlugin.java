@@ -45,7 +45,8 @@ public class TestEmlsPlugin extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     plugin = new EmlsPlugin();
-    plugin.initPlugin(getMockLockssDaemon());
+    plugin.initPlugin(getMockLockssDaemon(),
+                      "org.lockss.plugin.emls.EmlsPlugin");
   }
 
   public void testGetAuNullConfig() throws ArchivalUnit.ConfigurationException {

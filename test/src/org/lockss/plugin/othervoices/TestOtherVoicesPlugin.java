@@ -46,6 +46,8 @@ public class TestOtherVoicesPlugin extends LockssTestCase {
     super.setUp();
     plugin = new OtherVoicesPlugin();
     plugin.initPlugin(getMockLockssDaemon());
+    plugin.initPlugin(getMockLockssDaemon(),
+                      "org.lockss.plugin.othervoices.OtherVoicesPlugin");
   }
 
   public void testGetAuNullConfig() throws ArchivalUnit.ConfigurationException {

@@ -45,8 +45,9 @@ public class TestHistoryCooperativePlugin extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     plugin = new HistoryCooperativePlugin();
-    plugin.initPlugin(getMockLockssDaemon());
-  }
+    plugin.initPlugin(getMockLockssDaemon(),
+                      "org.lockss.plugin.histcoop.HistoryCooperativePlugin");
+ }
 
   public void testGetAuNullConfig() throws ArchivalUnit.ConfigurationException {
     try {

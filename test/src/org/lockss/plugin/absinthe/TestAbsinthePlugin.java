@@ -46,13 +46,14 @@ public class TestAbsinthePlugin extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     plugin = new AbsinthePlugin();
-    plugin.initPlugin(getMockLockssDaemon());
+    plugin.initPlugin(getMockLockssDaemon(),
+                      "org.lockss.plugin.absinthe.AbsinthePlugin");
   }
 
   public void testCreateAu() {
     Properties props = new Properties();
-    //props.setProperty(AbsinthePlugin.AUPARAM_BASE_URL, "http://www.example.com/");
-    //props.setProperty(AbsinthePlugin.AUPARAM_YEAR, "2003");
+    props.setProperty(AbsinthePlugin.AUPARAM_BASE_URL, "http://www.example.com/");
+    props.setProperty(AbsinthePlugin.AUPARAM_YEAR, "2003");
 
     AbsintheArchivalUnit au = null;
     try {
@@ -60,8 +61,8 @@ public class TestAbsinthePlugin extends LockssTestCase {
     }
     catch (ConfigurationException ex) {
     }
-
   }
+
   public void testGetAuNullConfig() throws ArchivalUnit.ConfigurationException {
     try {
       plugin.configureAu(null, null);

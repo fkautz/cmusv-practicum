@@ -85,8 +85,9 @@ public class TestAcsArchivalUnit
     props.setProperty(AcsPlugin.AUPARAM_YEAR, Integer.toString(year));
 
     Configuration config = ConfigurationUtil.fromProps(props);
-    AcsArchivalUnit au = new AcsArchivalUnit(new AcsPlugin());
-    au.getPlugin().initPlugin(theDaemon);
+    AcsPlugin ap = new AcsPlugin();
+    ap.initPlugin(theDaemon, ap.getClass().getName());
+    AcsArchivalUnit au = new AcsArchivalUnit(ap);
     au.setConfiguration(config);
     return au;
   }

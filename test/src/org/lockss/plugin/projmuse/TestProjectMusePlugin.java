@@ -46,7 +46,8 @@ public class TestProjectMusePlugin extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     plugin = new ProjectMusePlugin();
-    plugin.initPlugin(getMockLockssDaemon());
+    plugin.initPlugin(getMockLockssDaemon(),
+                      "org.lockss.plugin.projmuse.ProjectMusePlugin");
   }
 
   public void testGetAuNullConfig() throws ArchivalUnit.ConfigurationException {

@@ -31,18 +31,15 @@ in this Software without prior written authorization from Stanford University.
 */
 package org.lockss.plugin.acs;
 
-import org.lockss.plugin.base.*;
-import org.lockss.plugin.*;
-import org.lockss.daemon.*;
-import org.lockss.util.*;
-
-import gnu.regexp.*;
-
 import java.net.*;
 import java.util.*;
-import org.lockss.state.*;
-import org.lockss.daemon.Configuration.*;
+
+import org.lockss.daemon.*;
+import org.lockss.plugin.*;
+import org.lockss.plugin.ArchivalUnit.*;
 import org.lockss.plugin.configurable.*;
+import org.lockss.util.*;
+import gnu.regexp.*;
 
 /**
  * AcsArchivalUnit: The Archival Unit Class for American Chemical Society
@@ -176,5 +173,7 @@ public class AcsArchivalUnit extends ConfigurableArchivalUnit {
     logger.debug("Rules: " + rules);
     return new CrawlRules.FirstMatch(rules);
   }
+
+
 
 }
