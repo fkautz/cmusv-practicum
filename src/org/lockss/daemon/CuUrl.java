@@ -170,7 +170,13 @@ public class CuUrl {
 	return null;
       }
       Properties props = cu.getProperties();
-      return props.getProperty(name);
+      String val = searchProps(props, name);
+      if (val != null) return val;
+      val = searchProps(props, BaseUrlCacher.HEADER_PREFIX + name);
+      if (val != null) return val;
+      // old header prefix
+      val = searchProps(props, "_header" + name);
+      return val;
     }
 
     public String getContentType() {
@@ -181,9 +187,18 @@ public class CuUrl {
       }
       return getHeaderField(HttpFields.__ContentType);
     }
+
+    // need case-independent prop lookup
+    private String searchProps(Properties props, String name) {
+      String val = props.getProperty(name);
+      if (val != null) return val;
+      for (Iterator iter = props.keySet().iterator(); iter.hasNext(); ) {
+	String key = (String)iter.next();
+	if (name.equalsIgnoreCase(key)) {
+	  return props.getProperty(key);
+	}
+      }
+      return null;
+    }
   }
-
-
 }
-
-
