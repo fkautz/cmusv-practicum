@@ -86,10 +86,10 @@ public interface LockssPlugin {
    * returns the configuration properties for a archival unit with the given
    * name.
    * @param AUName the name of the ArchivalUnit - from the list of
-   * supported AU Names;
+   * supported AU Names
    * @return a Property containing the properties need to configure this
    * archival unit
-   * @see getSupportedAUNames();
+   * @see #getSupportedAUNames()
    */
   public Properties getConfigInfo(String AUName);
 
