@@ -621,7 +621,8 @@ public class PluginManager extends BaseLockssManager {
     "org.lockss.plugin.absinthe.AbsinthePlugin",
     "org.lockss.plugin.emls.EmlsPlugin",
     "org.lockss.plugin.ieee.IeeePlugin",
-    "org.lockss.plugin.histcoop.HistoryCooperativePlugin"
+    "org.lockss.plugin.histcoop.HistoryCooperativePlugin",
+    "org.lockss.plugin.othervoices.OtherVoicesPlugin"
 //     "org.lockss.plugin.simulated.SimulatedPlugin",
   };
 
