@@ -216,6 +216,12 @@ public class TestNodeStateImpl extends LockssTestCase {
     assertTrue(state.isInternalNode());
   }
 
+  public void testState() throws Exception {
+    assertEquals(NodeState.UNKNOWN, state.getState());
+    state.setState(NodeState.OK);
+    assertEquals(NodeState.OK, state.getState());
+  }
+
   public void testLastHashDuration() throws Exception {
     assertEquals(-1, state.getAverageHashDuration());
     state.setLastHashDuration(123);

@@ -43,6 +43,7 @@ import org.lockss.plugin.CachedUrlSet;
 public class NodeStateBean {
   CrawlStateBean crawlBean;
   List pollBeans = new ArrayList();
+  int curState;
   long hashDuration = -1;
 
   public NodeStateBean() { }
@@ -55,6 +56,7 @@ public class NodeStateBean {
       pollBeans.add(new PollStateBean(poll));
     }
     hashDuration = nodeState.getAverageHashDuration();
+    curState = nodeState.getState();
   }
 
   /**
@@ -103,6 +105,22 @@ public class NodeStateBean {
    */
   public void setAverageHashDuration(long newDuration) {
     hashDuration = newDuration;
+  }
+
+  /**
+   * Returns the state.
+   * @return the state
+   */
+  public int getState() {
+    return curState;
+  }
+
+  /**
+   * Sets the state.
+   * @param newState the state
+   */
+  public void setState(int newState) {
+    curState = newState;
   }
 
 }
