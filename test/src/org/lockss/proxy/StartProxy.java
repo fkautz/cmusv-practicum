@@ -40,9 +40,9 @@ import org.lockss.app.*;
 public class StartProxy {
   public static void main(String args[]) {
     PTestPlugin.makeTest();
-    ProxyHandler handler = new ProxyHandler();
+    ProxyManager manager = new ProxyManager();
     try {
-      handler.initService(null);
+      manager.initService(null);
     }
     catch (LockssDaemonException ex) {
       System.err.println("Init called twice!");
@@ -50,7 +50,7 @@ public class StartProxy {
 //    System.out.println("pm.findArchivalUnit(http://foo.bar/one) = " +
 //		       pm.findArchivalUnit("http://foo.bar/one"));
 
-    handler.startProxy();
+    manager.startProxy();
     System.err.println("Proxy started");
   }
 }
