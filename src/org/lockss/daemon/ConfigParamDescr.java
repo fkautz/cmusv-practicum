@@ -119,8 +119,18 @@ public class ConfigParamDescr implements Comparable {
     JOURNAL_ID.setDescription("Identifier for journal (often used as part of file names)");
   }
 
+  public static final ConfigParamDescr PUBLISHER_NAME = new ConfigParamDescr();
+  static {
+    PUBLISHER_NAME.setKey("publisher_name");
+    PUBLISHER_NAME.setDisplayName("Publisher Name");
+    PUBLISHER_NAME.setType(TYPE_STRING);
+    PUBLISHER_NAME.setSize(40);
+    PUBLISHER_NAME.setDescription("Publisher Name for Archival Unit");
+
+  }
+
   public static final ConfigParamDescr[] DEFAULT_DESCR_ARRAY = {
-      BASE_URL, VOLUME_NUMBER, YEAR, JOURNAL_ID
+      BASE_URL, VOLUME_NUMBER, YEAR, JOURNAL_ID, PUBLISHER_NAME, ISSUE_RANGE
   };
 
 
