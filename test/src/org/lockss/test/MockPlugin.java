@@ -49,7 +49,6 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
   public static final String CONFIG_PROP_1 = "base_url";
   public static final String CONFIG_PROP_2 = "volume";
 
-//   private String pluginId = "MockPlugin";
   private String pluginId;
   private int initCtr = 0;
   private int stopCtr = 0;

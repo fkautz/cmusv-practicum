@@ -210,7 +210,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   }
 
   public String toString() {
-    return "[BAU: "+getPluginId()+":"+getAUId()+"]";
+    return "[BAU: "+getAUId()+"]";
   }
 
   /**

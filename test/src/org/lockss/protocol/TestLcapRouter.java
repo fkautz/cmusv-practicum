@@ -60,7 +60,6 @@ public class TestLcapRouter extends LockssTestCase {
   protected InetAddress testaddr;
   protected LcapIdentity testID;
   protected LcapMessage testmsg;
-  protected static String pluginID = "TestPlugin_1.0";
   protected static String archivalID = "TestAU_1.0";
   LockssDatagram dg;
   LockssReceivedDatagram rdg;
@@ -126,7 +125,6 @@ public class TestLcapRouter extends LockssTestCase {
     testmsg.m_hashed = testbytes;
     testmsg.m_opcode = LcapMessage.CONTENT_POLL_REQ;
     testmsg.m_entries = testentries = TestPoll.makeEntries(1, 25);
-    testmsg.m_pluginID = pluginID;
     testmsg.m_archivalID = archivalID;
     dg = new LockssDatagram(LockssDatagram.PROTOCOL_LCAP, testmsg.encodeMsg());
     rdg = new LockssReceivedDatagram(dg.makeSendPacket(testaddr, 0));

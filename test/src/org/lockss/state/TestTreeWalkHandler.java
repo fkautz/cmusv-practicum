@@ -272,8 +272,7 @@ public class TestTreeWalkHandler extends LockssTestCase {
     try {
 
       testmsg = LcapMessage.makeRequestMsg(
-          new PollSpec(mau.getPluginId(),
-                       mau.getAUId(),
+          new PollSpec(mau.getAUId(),
                        url, "lwr", "upr", null),
           null,
           bytes,

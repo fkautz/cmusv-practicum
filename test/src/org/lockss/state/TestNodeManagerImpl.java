@@ -656,8 +656,7 @@ public class TestNodeManagerImpl
     try {
 
       testmsg = LcapMessage.makeRequestMsg(
-          new PollSpec(mau.getPluginId(),
-                       mau.getAUId(),
+          new PollSpec(mau.getAUId(),
                        url, lwrBound, uprBound, null),
           null,
           bytes,

@@ -326,8 +326,6 @@ public class PluginManager extends BaseLockssManager {
       ListUtil.list(
 		    new ColumnDescriptor("au", "Journal Volume",
 					 ColumnDescriptor.TYPE_STRING),
-		    new ColumnDescriptor("pluginid", "Plugin ID",
-					 ColumnDescriptor.TYPE_STRING),
 		    new ColumnDescriptor("auid", "AUID",
 					 ColumnDescriptor.TYPE_STRING),
 		    new ColumnDescriptor("poll", "Poll Status",
@@ -354,7 +352,6 @@ public class PluginManager extends BaseLockssManager {
 	Map row = new HashMap();
 	ArchivalUnit au = (ArchivalUnit)iter.next();
 	row.put("au", au.getName());
-	row.put("pluginid", au.getPluginId());
 	row.put("auid", au.getAUId());
 	row.put("poll",
 		statusSvc.getReference(PollerStatus.MANAGER_STATUS_TABLE_NAME,
