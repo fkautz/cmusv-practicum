@@ -124,9 +124,20 @@ public class ConfigurationPropTreeImpl extends Configuration {
     isSealed = true;
   }
 
+  public boolean isSealed() {
+    return isSealed;
+  }
+
   public Configuration getConfigTree(String key) {
     PropertyTree tree = props.getTree(key);
-    return (tree == null) ? null : new ConfigurationPropTreeImpl(tree);
+    if (tree == null) {
+      return null;
+    }
+    Configuration res = new ConfigurationPropTreeImpl(tree);
+    if (isSealed()) {
+      res.seal();
+    }
+    return res;
   }
 
   public Set keySet() {
