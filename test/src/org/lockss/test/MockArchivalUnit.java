@@ -46,6 +46,11 @@ public class MockArchivalUnit implements ArchivalUnit {
   private CrawlSpec spec;
   private String pluginId = "mock";
   private String auId = "null";
+  private CachedUrlSet cus = null;
+
+
+  public MockArchivalUnit(){
+  }
 
   public MockArchivalUnit(CrawlSpec spec) {
     this.spec = spec;
@@ -55,9 +60,18 @@ public class MockArchivalUnit implements ArchivalUnit {
     return spec;
   }
 
-  public CachedUrlSet getAUCachedUrlSet() {
-    return null;
+  public void setCrawlSpec(CrawlSpec spec) {
+    this.spec = spec;
   }
+
+  public CachedUrlSet getAUCachedUrlSet() {
+    return cus;
+  }
+
+  public void setAUCachedUrlSet(CachedUrlSet cus) {
+    this.cus = cus;
+  }
+
 
   /**
    * Make a new MockArchivalUnit object with a list populated with
