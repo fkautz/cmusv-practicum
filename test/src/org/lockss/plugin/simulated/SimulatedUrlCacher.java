@@ -59,7 +59,7 @@ public class SimulatedUrlCacher extends GenericFileUrlCacher {
   public InputStream getUncachedInputStream() {
     if (contentFile!=null) {
       try {
-        return new FileInputStream(contentFile);
+        return new BufferedInputStream(new FileInputStream(contentFile));
       } catch (FileNotFoundException fnfe) {
         logger.error("Couldn't find content file '"+contentFile.getAbsolutePath()+"'");
         return null;
@@ -75,7 +75,7 @@ public class SimulatedUrlCacher extends GenericFileUrlCacher {
     }
     contentFile = new File(contentName);
     try {
-      return new FileInputStream(contentFile);
+      return new BufferedInputStream(new FileInputStream(contentFile));
     } catch (FileNotFoundException fnfe) {
       logger.error("Couldn't find content file '"+contentFile.getAbsolutePath()+"'");
       return null;
