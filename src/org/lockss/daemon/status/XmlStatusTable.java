@@ -46,11 +46,10 @@ public class XmlStatusTable {
   /**
    * The SimpleDateFormat pattern for Date entries.
    */
-  public static final String DATE_FORMAT = "yyyy.MM.dd GGG HH:mm";
+  public static final String DATE_FORMAT = "MM/dd/yy HH:mm:ss";
 
-//XXX fix values
-  XmlDomBuilder xmlBuilder = new XmlDomBuilder("sa",
-      "http://lockss.stanford.edu/statusui", "1.0");
+  XmlDomBuilder xmlBuilder = new XmlDomBuilder("st",
+      "http://lockss.org/statusui", "1.0");
 
   StatusTable statusTable = null;
   Document tableDocument = null;
