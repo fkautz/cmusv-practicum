@@ -622,6 +622,8 @@ public class SimulatedContentGenerator {
     }
     File[] children = directory.listFiles();
 
+    Arrays.sort(children);    // must sort to ensure index page always same
+
     for (int ii=0; ii<children.length; ii++) {
       File child = children[ii];
       String subLink = child.getName();
