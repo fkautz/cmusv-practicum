@@ -44,16 +44,16 @@ public interface LockssManager {
    * loaded into memory.
    * @param daemon the daemon that can be used to get additional services
    */
-  public void init(RunDaemon daemon);
+  public void initService(LockssDaemon daemon);
 
   /**
    * start the manager.  All managers are inited at this point
    */
-  public void start();
+  public void startService();
 
   /**
    * stop the manager
    */
-  public void stop();
+  public void stopService();
 
 }
