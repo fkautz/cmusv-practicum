@@ -277,6 +277,10 @@ public class GoslingHtmlParser implements ContentParser {
     if (returnStr != null) {
       returnStr = StringUtil.trimAfterChars(returnStr, " #\"");
       logger.debug3("Generating url from: " + srcUrl + " and " + returnStr);
+      if (StringUtil.getIndexIgnoringCase(returnStr, "https") == 0) {
+	logger.debug3("Ignoring https url: "+returnStr);
+        return null;
+      }
       URL retUrl = new URL(srcUrl, returnStr);
       returnStr = retUrl.toString();
       logger.debug3("Parsed: " + returnStr);

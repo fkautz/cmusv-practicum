@@ -303,6 +303,20 @@ public class TestGoslingHtmlParser extends LockssTestCase {
 //     Set expected = SetUtil.set(url);
 //     assertEquals(expected, parsedUrls);
 
+  public void testDoesntCollectHttps() throws IOException {
+    String source =
+      "<html><head><title>Test</title></head><body>"+
+      "<a href=\"https://www.example.com/link3.html\">link3</a>";
+
+    MockCachedUrl mcu = new MockCachedUrl("http://www.example.com");
+    mcu.setContent(source);
+
+    parser.parseForUrls(mcu, cb);
+    
+    Set expected = SetUtil.set();
+    assertEquals(expected, cb.getFoundUrls());
+  }
+
   public void testParsesFileWithQuotedUrls() throws IOException {
     String url= "http://www.example.com/link3.html";
 
