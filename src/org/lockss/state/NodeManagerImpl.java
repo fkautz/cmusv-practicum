@@ -55,7 +55,7 @@ import org.lockss.daemon.status.*;
  */
 public class NodeManagerImpl implements NodeManager {
   /**
-   * This parameter indicates the size of the {@link NodeStateMap} used by the
+   * This parameter indicates the size of the {@link NodeStateCache} used by the
    * node manager.
    */
   public static final String PARAM_NODESTATE_MAP_SIZE =
