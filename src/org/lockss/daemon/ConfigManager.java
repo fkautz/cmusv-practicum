@@ -137,6 +137,7 @@ public class ConfigManager implements LockssManager {
 
   private long reloadInterval = 10 * Constants.MINUTE;
 
+  private ConfigCache configCache = new ConfigCache();
 
   public ConfigManager() {
     this(null);
@@ -147,6 +148,15 @@ public class ConfigManager implements LockssManager {
       configUrlList = new ArrayList(urls);
     }
     registerConfigurationCallback(Logger.getConfigCallback());
+  }
+
+  public ConfigCache getConfigCache() {
+    return configCache;
+  }
+
+  // Used only for testing.
+  public void resetConfigCache() {
+    configCache = new ConfigCache();
   }
 
   public void initService(LockssDaemon daemon) throws LockssDaemonException {
