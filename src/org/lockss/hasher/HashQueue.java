@@ -225,7 +225,7 @@ class HashQueue implements Serializable {
   }
 
   private void setConfig(Configuration config, Set changedKeys) {
-    hashPriority = config.getInt(PARAM_PRIORITY, -1);
+    hashPriority = config.getInt(PARAM_PRIORITY, Thread.MIN_PRIORITY);
     hashStepBytes = config.getInt(PARAM_STEP_BYTES, 10000);
     hashNumSteps = config.getInt(PARAM_NUM_STEPS, 10);
     int cMax = config.getInt(PARAM_COMPLETED_MAX, 50);
