@@ -217,4 +217,15 @@ public class TestUrlUtil extends LockssTestCase {
     assertFalse(UrlUtil.isAbsoluteUrl("blah/blah"));
   }
 
+  public void testStripsParams() throws MalformedURLException {
+    assertNull(UrlUtil.stripQuery(null));
+    assertEquals(null, UrlUtil.stripQuery(""));
+    assertEquals("http://www.example.com/",
+		 UrlUtil.stripQuery("http://www.example.com/"));
+    assertEquals("http://www.example.com/blah",
+		 UrlUtil.stripQuery("http://www.example.com/blah?param1=blah"));
+    assertEquals("rtsp://www.example.com/blah",
+		 UrlUtil.stripQuery("rtsp://www.example.com/blah?param1=blah"));
+  }
+
 }

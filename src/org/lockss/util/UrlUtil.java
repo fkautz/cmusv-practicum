@@ -190,6 +190,31 @@ public class UrlUtil {
   }
 
   /**
+   * Strips the query string off of a url and returns the rest
+   * @param url url string from which to remove the query
+   * @return url with the query string stripped, or null if url isn't absolute
+   * @throws MalformedURLException if we can't parse the url
+   */
+  public static String stripQuery(String url) throws MalformedURLException {
+    if (url != null) {
+      try {
+	URI uri = new URI(url.toCharArray());
+	if (uri.isAbsoluteURI()) {
+	  StringBuffer sb = new StringBuffer();
+	  sb.append(uri.getScheme());
+	  sb.append("://");
+	  sb.append(uri.getHost());
+	  sb.append(uri.getPath());
+	  return sb.toString();
+	} 
+      } catch (URIException e) {
+	throw new MalformedURLException(e.toString());
+      }
+    }
+    return null;
+  }
+
+  /**
    * Return a list of header fields (in the format "key;fieldValue") for conn
    * @param conn URLConnection to get headers from
    * @return list of header fields (in the format "key;fieldValue") for conn
