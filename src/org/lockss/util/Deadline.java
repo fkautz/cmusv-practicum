@@ -61,6 +61,7 @@ public class Deadline implements Comparable {
   private Deadline(Date at, long duration) {
     expiration = at;
     this.duration = duration;
+    checkReasonable();
   }
 
   /** Create a Deadline that expires at the specified Date.
@@ -69,6 +70,7 @@ public class Deadline implements Comparable {
   private Deadline(Date at) {
     duration = at.getTime() - nowMs();
     expiration = at;
+    checkReasonable();
   }
 
   /** Create a Deadline that expires at the specified date.
@@ -183,6 +185,15 @@ public class Deadline implements Comparable {
 //   public Deadline withinOf(double stddev, long meanDuration) {
 //     super(meanDuration + (long)(stddev * getRandom().nextGaussian()));
 //   }
+
+  private void checkReasonable() {
+    if (duration < 0 ||
+	(duration > (4 * Constants.WEEK) &&
+	 getExpirationTime() != TimeBase.NEVER)) {
+      log.warning("Unreasonable deadline: " + expiration,
+		  new Throwable());
+    }
+  }
 
   /**
    * Return the absolute expiration time, in milliseconds
