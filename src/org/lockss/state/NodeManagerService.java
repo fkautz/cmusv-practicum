@@ -54,7 +54,6 @@ public interface NodeManagerService extends LockssManager {
    * Factory method to add NodeManager.  Calls 'startService()' on the
    * ArchivalUnit-specific NodeManager.
    * @param au the ArchivalUnit being managed
-   * @return the NodeManager created
    */
-  public NodeManager addNodeManager(ArchivalUnit au);
+  public void addNodeManager(ArchivalUnit au);
 }

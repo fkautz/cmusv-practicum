@@ -124,5 +124,5 @@ public interface NodeManager extends LockssManager {
   /**
    * Alerts the NodeManager that a new top-level content crawl has finished.
    */
-  public void newTopLevelCrawlFinished();
+  public void newContentCrawlFinished();
 }

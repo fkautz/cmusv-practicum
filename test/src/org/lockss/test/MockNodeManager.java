@@ -109,7 +109,7 @@ public class MockNodeManager implements NodeManager, LockssManager {
     throw new UnsupportedOperationException("Not implemented");
   }
 
-  public void newTopLevelCrawlFinished() {
+  public void newContentCrawlFinished() {
     aus.newCrawlFinished();
   }
 }
