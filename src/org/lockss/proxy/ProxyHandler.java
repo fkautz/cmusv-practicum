@@ -107,7 +107,7 @@ public class ProxyHandler extends AbstractHttpHandler {
 	{
 	  Code.debug("host=",host);
 	  Code.debug("port="+port);
-	  Code.debug("path=",path);
+	  Code.debug("uri=",uri.toString());
 	}
             
       // XXX associate this socket with the connection so
@@ -136,7 +136,7 @@ public class ProxyHandler extends AbstractHttpHandler {
       ByteArrayISO8859Writer writer = new ByteArrayISO8859Writer();
       writer.write(request.getMethod());
       writer.write(' ');
-      writer.write(path);
+      writer.write(uri.toString());
       writer.write(' ');
       // tk - for now always use 1.0 to avoid chunked responses, which we
       // don't handle right
@@ -246,7 +246,7 @@ public class ProxyHandler extends AbstractHttpHandler {
     request.setField("Lockss-Cu", CuUrl.fromCu(cu).toString());
     request.setState(oldState);
     // Add a header to the response to identify content from LOCKSS cache
-    response.setField("X-LOCKSS", "from cache");
+    response.setField("X-LOCKSS", "from-cache");
     if (log.isDebug2()) {
       log.debug2("serveFromCache(" + request + ")");
     }
