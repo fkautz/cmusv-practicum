@@ -178,11 +178,11 @@ public class ArchivalUnitStatus extends BaseLockssManager {
   static final StatusTable.DisplayedValue DAMAGE_STATE_OK =
     new StatusTable.DisplayedValue("Ok");
   static final StatusTable.DisplayedValue DAMAGE_STATE_DAMAGED =
-    new StatusTable.DisplayedValue("Damaged");
+    new StatusTable.DisplayedValue("Repairing");
 
   static {
 //     DAMAGE_STATE_OK.setColor("green");
-    DAMAGE_STATE_DAMAGED.setColor("red");
+    DAMAGE_STATE_DAMAGED.setColor("yellow");
   }
 
   static class AuStatus implements StatusAccessor {
