@@ -70,6 +70,27 @@ public class MockCachedUrlSetSpec implements CachedUrlSetSpec {
   }
 
   public boolean matches(String url) {
-    return url.startsWith(root);
+    throw new UnsupportedOperationException("Not Implemented");
   }
+
+  public boolean isAU() {
+    throw new UnsupportedOperationException("Not Implemented");
+  }
+
+  public boolean isSingleNode() {
+    throw new UnsupportedOperationException("Not Implemented");
+  }
+
+  public boolean isRangeRestricted() {
+    throw new UnsupportedOperationException("Not Implemented");
+  }
+
+  public boolean isDisjoint(CachedUrlSetSpec spec) {
+    throw new UnsupportedOperationException("Not Implemented");
+  }
+
+  public boolean subsumes(CachedUrlSetSpec spec) {
+    throw new UnsupportedOperationException("Not Implemented");
+  }
+
 }

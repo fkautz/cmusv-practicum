@@ -64,4 +64,38 @@ public interface CachedUrlSetSpec {
    * @return the url
    */
   public String getUrl();
+
+  /**
+   * Return true if CachedUrlSetSpec specifies a set which is disjoint from
+   * the argument set.  It is not meaningful to compare CUSSes belonging to
+   * different AUs.
+   * @return true if the two sets are disjoint
+   */
+  public boolean isDisjoint(CachedUrlSetSpec spec);
+
+  /**
+   * Return true if CachedUrlSetSpec specifies a set which completely
+   * contains the argument argument set.  It is not meaningful to compare
+   * CUSSes belonging to different AUs.
+   * @return true if the argument set is subsumes by this one
+   */
+  public boolean subsumes(CachedUrlSetSpec spec);
+
+  /**
+   * Return true if CachedUrlSetSpec specifies an entire AU
+   * @return true if an AUCUSS
+   */
+  public boolean isAU();
+
+  /**
+   * Return true if CachedUrlSetSpec specifies the content at a single node
+   * @return true if a SNCUSS
+   */
+  public boolean isSingleNode();
+
+  /**
+   * Return true if CachedUrlSetSpec specifies a restricted range of children
+   * @return true if a range restricted RangeCachedUrlSetSpec
+   */
+  public boolean isRangeRestricted();
 }

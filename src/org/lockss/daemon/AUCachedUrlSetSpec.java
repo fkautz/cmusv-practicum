@@ -67,6 +67,26 @@ public class AUCachedUrlSetSpec implements CachedUrlSetSpec {
     return true;
   }
 
+  public boolean isAU() {
+    return true;
+  }
+
+  public boolean isSingleNode() {
+    return false;
+  }
+
+  public boolean isRangeRestricted() {
+    return false;
+  }
+
+  public boolean isDisjoint(CachedUrlSetSpec spec) {
+    return false;
+  }
+
+  public boolean subsumes(CachedUrlSetSpec spec) {
+    return true;
+  }
+
   /**
    * overrides Object.toString()
    * @return String representaion of this object

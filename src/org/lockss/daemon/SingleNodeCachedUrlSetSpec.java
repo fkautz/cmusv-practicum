@@ -64,6 +64,35 @@ public class SingleNodeCachedUrlSetSpec implements CachedUrlSetSpec {
     return this.url.equals(url);
   }
 
+  public boolean isAU() {
+    return false;
+  }
+
+  public boolean isSingleNode() {
+    return true;
+  }
+
+  public boolean isRangeRestricted() {
+    return false;
+  }
+
+  public boolean isDisjoint(CachedUrlSetSpec spec) {
+    if (spec.isSingleNode()) {
+      return !equals(spec);
+    }
+    if (spec.isAU()) {
+      return false;
+    }
+    return !spec.subsumes(this);
+  }
+
+  public boolean subsumes(CachedUrlSetSpec spec) {
+    if (spec.isSingleNode()) {
+      return equals(spec);
+    }
+    return false;
+  }
+
   /**
    * overrides Object.toString()
    * @return String representaion of this object
