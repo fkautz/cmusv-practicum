@@ -92,7 +92,9 @@ public class BlackbirdArchivalUnit extends ConfigurableArchivalUnit {
     String ret;
     StringBuffer sb = new StringBuffer();
     sb.append(baseUrl.toString());
-    sb.append("lockss.htm");
+    sb.append("lockss-volume");
+    sb.append(volume);
+    sb.append(".htm");
     ret = sb.toString();
     logger.debug("starting url is " + ret);
     return ret;

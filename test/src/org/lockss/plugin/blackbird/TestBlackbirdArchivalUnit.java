@@ -171,7 +171,7 @@ public class TestBlackbirdArchivalUnit extends LockssTestCase {
   public void testStartUrlConstruction() throws Exception {
     URL url = new URL(ROOT_URL);
 
-    String expectedStr = ROOT_URL+"lockss.htm";
+    String expectedStr = ROOT_URL+"lockss-volume2.htm";
     BlackbirdArchivalUnit bbAu = makeAu(url, 2);
     assertEquals(expectedStr, bbAu.makeStartUrl());
   }
