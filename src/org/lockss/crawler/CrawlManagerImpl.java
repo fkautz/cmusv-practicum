@@ -132,15 +132,20 @@ public class CrawlManagerImpl implements CrawlManager, LockssManager {
     if (au == null) {
       throw new IllegalArgumentException("Called with null AU");
     }
+    logger.debug3("Checking to see if we should do a new content crawl on "+
+		  au);
     NodeManager nodeManager = theDaemon.getNodeManager(au);
-    if (au.shouldCrawlForNewContent(nodeManager.getAuState())) {
-      synchronized (activeCrawls) {
-	if (!activeCrawls.contains(au)) {
-	  logger.debug3("No crawls for "+au+", scheduling new content crawl");
-	  activeCrawls.add(au);
-	  scheduleNewContentCrawl(au, cb, cookie);
-	  return true;
-	}
+    synchronized (activeCrawls) {
+      if (activeCrawls.contains(au)) {
+	logger.debug3("Already crawling "+au
+		      +", not starting new content crawl");
+	return true;
+      }
+      if (au.shouldCrawlForNewContent(nodeManager.getAuState())) {
+	logger.debug3("No crawls for "+au+", scheduling new content crawl");
+	activeCrawls.add(au);
+	scheduleNewContentCrawl(au, cb, cookie);
+	return true;
       }
     }
     return false;
