@@ -145,7 +145,7 @@ public class RunDaemon
 
     CachedUrlSet cus = getPluginManager().findCachedUrlSet(spec);
     try {
-      Thread.currentThread().sleep(10000);
+      Thread.currentThread().sleep(6000);
       getPollManager().requestPoll(poll_type, new PollSpec(cus));
     }
     catch (Exception e) {
