@@ -534,6 +534,11 @@ public class ConfigManager implements LockssManager {
     cacheConfigInited = true;
   }
 
+  /** Return a File for the named cache config file */
+  public File getCacheConfigFile(String cacheConfigFileName) {
+    return new File(ConfigManager.cacheConfigDir, cacheConfigFileName);
+  }
+
   List loadCacheConfigInto(Configuration config) {
     if (cacheConfigDir == null) {
       return null;
