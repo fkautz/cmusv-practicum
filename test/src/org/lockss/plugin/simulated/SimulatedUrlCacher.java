@@ -70,7 +70,7 @@ public class SimulatedUrlCacher extends BaseUrlCacher {
   }
 
   // overrides base behavior to get local file
-  protected InputStream getUncachedInputStream(long lastCached)
+  public InputStream getUncachedInputStream(long lastCached)
       throws IOException {
     if (contentFile!=null) {
       return getDefaultStream(contentFile, lastCached);
@@ -101,7 +101,7 @@ public class SimulatedUrlCacher extends BaseUrlCacher {
   }
 
   // overrides base behavior
-  protected Properties getUncachedProperties() throws IOException {
+  public Properties getUncachedProperties() throws IOException {
     if (props!=null) {
       return props;
     }

@@ -164,6 +164,10 @@ public class BaseUrlCacher implements UrlCacher {
     leaf.sealNewVersion();
   }
 
+  public InputStream getUncachedInputStream() throws IOException {
+    return getUncachedInputStream(0);
+  }
+
   /**
    * Gets an InputStream for this URL, using the 'lastCached' time as
    * 'if-modified-since'.  If a 304 is generated (not modified), it returns
@@ -189,7 +193,7 @@ public class BaseUrlCacher implements UrlCacher {
     return input;
   }
 
-  protected Properties getUncachedProperties() throws IOException {
+  public Properties getUncachedProperties() throws IOException {
     openConnection();
     Properties props = new Properties();
     // set header properties in which we have interest
