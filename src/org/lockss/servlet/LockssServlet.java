@@ -417,6 +417,11 @@ public abstract class LockssServlet extends HttpServlet
     return p1 + "&" + p2;
   }
 
+  protected String urlEncode(String param) {
+    return URLEncoder.encode(param);
+  }
+
+
   // Build servlet navigation table
   private Table getNavTable() {
     Table navTable = new Table(0, " CELLSPACING=2 CELLPADDING=0 ");
