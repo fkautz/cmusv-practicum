@@ -101,8 +101,12 @@ public class ConfigurationPropTreeImpl extends Configuration {
     return (tree == null) ? null : new ConfigurationPropTreeImpl(tree);
   }
 
+  public Set keySet() {
+    return Collections.unmodifiableSet(props.keySet());
+  }
+
   public Iterator keyIterator() {
-    return props.keySet().iterator();
+    return keySet().iterator();
   }
 
   public Iterator nodeIterator() {
