@@ -128,6 +128,9 @@ public class PollHistoryBean extends PollHistory {
    * for marshalling purposes, since the Vote objects cannot be marshalled.
    */
   private void convertVotesToVoteBeans() {
+    if (votes==null) {
+      votes = new ArrayList();
+    }
     voteBeans = new ArrayList(votes.size());
     Iterator voteIter = votes.iterator();
     while (voteIter.hasNext()) {

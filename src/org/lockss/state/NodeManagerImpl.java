@@ -324,10 +324,12 @@ public class NodeManagerImpl implements NodeManager, LockssManager {
           // if node is cached
           if (node.getCachedUrlSet().isCached(
               node.getCachedUrlSet().getPrimaryUrl())) {
-            // if CrawlManager.shouldCrawl()
+            // if (theCrawlManager.shouldRecrawl(managerAu, node)) {
             // then CrawlManager.scheduleBackgroundCrawl()
           }
         }
+      default:
+        break;
     }
     // check recent histories to see if something needs fixing
     // if there are no current polls
