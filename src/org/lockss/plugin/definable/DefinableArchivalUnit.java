@@ -257,6 +257,7 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
         + AU_FILTER_SUFFIX);
 
     if (filter_el instanceof String) {
+      log.debug("Loading filter "+filter_el);
       return (FilterRule) loadClass( (String) filter_el, FilterRule.class);
     }
     else if (filter_el instanceof List) {
