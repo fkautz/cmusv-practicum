@@ -33,19 +33,22 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.daemon.status;
 
 public class XmlStatusConstants {
-  public final static String COLUMNDESCRIPTOR = "columndescriptor";
-  public final static String NAME = "name";
-  public final static String KEY = "key";
-  public final static String TABLE = "table";
-  public final static String TITLE = "title";
-  public final static String TYPE = "type";
-  public final static String VALUE = "value";
-  public final static String ROW = "row";
-  public final static String STANDARD_ELEM = "standard";
-  public final static String REFERENCE_ELEM = "reference";
-  public final static String FOOTNOTE = "footnote";
-  public final static String SUMMARYINFO = "summaryinfo";
-  public final static String COLOR = "color";
-  public final static String BOLD = "bold";
-  public final static String UNKNOWN = "*unknown*";
+  public static final String COLUMNDESCRIPTOR = "columndescriptor";
+  public static final String NAME = "name";
+  public static final String KEY = "key";
+  public static final String TABLE = "table";
+  public static final String TITLE = "title";
+  public static final String TYPE = "type";
+  public static final String VALUE = "value";
+  public static final String ROW = "row";
+  public static final String STANDARD_ELEM = "standard";
+  public static final String REFERENCE_ELEM = "reference";
+  public static final String FOOTNOTE = "footnote";
+  public static final String SUMMARYINFO = "summaryinfo";
+  public static final String COLOR = "color";
+  public static final String BOLD = "bold";
+  public static final String UNKNOWN = "*unknown*";
+  public static final String NS_PREFIX = "st";
+  public static final String NS_URI = "http://lockss.org/statusui";
+  public static final String ERROR = "error";
 }
