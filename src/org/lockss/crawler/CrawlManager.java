@@ -71,6 +71,11 @@ public interface CrawlManager {
                                    Object cookie, ActivityRegulator.Lock lock);
 
 
+  /**
+   * Expires the deadline on all crawls for the au
+   */
+  public void cancelAuCrawls(ArchivalUnit au);
+
   public interface Callback {
     /**
      * Called when the crawl is completed
@@ -100,5 +105,5 @@ public interface CrawlManager {
      * objects for <code>au</code>
      */
     public Collection getCrawlStatus(String auid);
-  }
+  } 
 }
