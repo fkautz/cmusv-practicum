@@ -240,17 +240,6 @@ public class CrawlManagerImpl extends BaseLockssManager
     crawlHistory.put(au.getAuId(), crawler);
   }
 
-  private void addCrawl(Map crawlMap, ArchivalUnit au, Crawler crawler) {
-    synchronized (crawlMap) {
-      Collection crawlsForAu = (Collection)crawlMap.get(au);
-      if (crawlsForAu == null) {
-	crawlsForAu = new HashSet();
-	crawlMap.put(au, crawlsForAu);
-      }
-      crawlsForAu.add(crawler);
-    }
-  }
-
   protected Crawler makeNewContentCrawler(ArchivalUnit au, CrawlSpec spec) {
     NodeManager nodeManager = theDaemon.getNodeManager(au);
     return
