@@ -203,7 +203,7 @@ public abstract class V1Poll extends BasePoll {
    */
   boolean randomVerify(Vote vote, boolean isAgreeVote) {
     LcapIdentity id = idMgr.findIdentity(vote.getIDAddress());
-    int max = idMgr.getMaxReputaion();
+    int max = idMgr.getMaxReputation();
     int weight = id.getReputation();
     double verify;
     boolean callVerifyPoll = false;
