@@ -192,7 +192,7 @@ public class LockssTestCase extends TestCase {
 	}
       }
     } finally {
-      if (failures > 0) {
+      if (successMaxFailures > 0 && failures > 0) {
 	System.err.println(getName() + " failed " + failures +
 			   " of " + rpt + " tries, " +
 			   ((failures > successMaxFailures) ? "not " : "") +
