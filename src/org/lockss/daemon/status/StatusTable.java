@@ -46,7 +46,7 @@ public class StatusTable {
 
   private String name;
   private String key;
-  private String title;
+  private String title = null;
   private String titleFootnote;
   private List columnDescriptors;
   private List rows;
