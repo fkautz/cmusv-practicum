@@ -609,6 +609,15 @@ public class StringUtil {
    */
   public static String timeIntervalToString(long millis) {
     StringBuffer sb = new StringBuffer();
+
+    if (millis < 0) {
+      sb.append("-");
+      millis = -millis;
+    }
+    return posTimeIntervalToString(millis, sb);
+  }
+
+  private static String posTimeIntervalToString(long millis, StringBuffer sb) {
     if (millis < 10 * Constants.SECOND) {
       sb.append(millis);
       sb.append("ms");
