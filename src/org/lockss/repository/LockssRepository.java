@@ -58,6 +58,19 @@ public interface LockssRepository {
   public RepositoryNode createNewNode(String url) throws MalformedURLException;
 
   /**
+   * Delete the node.
+   * @param url the url to be deleted
+   * @throws MalformedURLException
+   */
+  public void deleteNode(String url) throws MalformedURLException;
+
+  /**
+   * Traverses the node hierarchy and tests internal state consistency for each
+   * node.  Corrects and logs any correctable errors it encounters.
+   */
+//  public void nodeConsistencyCheck();
+
+  /**
    * Thrown when an unexpected error is encountered while caching.
    * Typically this is a file system error.
    */

@@ -97,6 +97,14 @@ public class LockssRepositoryImpl implements LockssRepository {
       throws MalformedURLException {
     return getNode(url, true);
   }
+
+  public void deleteNode(String url) throws MalformedURLException {
+    RepositoryNode node = getNode(url, false);
+    if (node!=null) {
+      node.deactivate();
+    }
+  }
+
   private synchronized RepositoryNode getNode(String url, boolean create)
       throws MalformedURLException {
     // check LRUMap cache for node
