@@ -66,6 +66,14 @@ public class ConfigParamDescr implements Comparable {
     VOLUME_NUMBER.setSize(8);
   }
 
+  public static final ConfigParamDescr ISSUE_RANGE = new ConfigParamDescr();
+  static {
+    ISSUE_RANGE.setKey("issue_range");
+    ISSUE_RANGE.setDisplayName("Issue Range");
+    ISSUE_RANGE.setType(TYPE_STRING);
+    ISSUE_RANGE.setSize(20);
+  }
+
   public static final ConfigParamDescr YEAR = new ConfigParamDescr();
   static {
     YEAR.setKey("year");
