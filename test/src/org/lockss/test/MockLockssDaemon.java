@@ -55,6 +55,7 @@ import org.apache.commons.collections.map.LinkedMap;
 public class MockLockssDaemon extends LockssDaemon {
   private static Logger log = Logger.getLogger("MockLockssDaemon");
 
+  ResourceManager resourceManager = null;
   WatchdogService wdogService = null;
   MailService mailService = null;
   AlertManager alertManager = null;
@@ -162,6 +163,18 @@ public class MockLockssDaemon extends LockssDaemon {
       managerMap.put(LockssDaemon.MAIL_SERVICE, mailService);
     }
     return mailService;
+  }
+
+  /**
+   * return the resource manager instance
+   * @return the ResourceManager
+   */
+  public ResourceManager getResourceManager() {
+    if (resourceManager == null) {
+      resourceManager = (ResourceManager)newManager(RESOURCE_MANAGER);
+      managerMap.put(RESOURCE_MANAGER, resourceManager);
+    }
+    return resourceManager;
   }
 
   /**

@@ -118,6 +118,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
   // Manager descriptors.  The order of this table determines the order in
   // which managers are initialized and started.
   protected static final ManagerDesc[] managerDescs = {
+    new ManagerDesc(RESOURCE_MANAGER, DEFAULT_RESOURCE_MANAGER),
     new ManagerDesc(MAIL_SERVICE, DEFAULT_MAIL_SERVICE),
     new ManagerDesc(ALERT_MANAGER, "org.lockss.alert.AlertManagerImpl"),
     new ManagerDesc(STATUS_SERVICE, DEFAULT_STATUS_SERVICE),
