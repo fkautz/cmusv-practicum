@@ -85,7 +85,7 @@ public class HashService {
 			    callback, cookie,
 			    urlset.getContentHasher(hasher),
 			    urlset.hashDuration()); 
-    return schedule(req);
+    return scheduleReq(req);
   }
 
   /**
@@ -116,11 +116,11 @@ public class HashService {
       new HashQueue.Request(urlset, hasher, deadline,
 			    callback, cookie,
 			    urlset.getNameHasher(hasher), 0); 
-    return schedule(req);
+    return scheduleReq(req);
   }
 
-  private static boolean schedule(HashQueue.Request req) {
-    return theQueue.schedule(req);
+  private static boolean scheduleReq(HashQueue.Request req) {
+    return theQueue.scheduleReq(req);
   }
 
   /** Create a queue ready to receive and execute requests */
