@@ -43,7 +43,6 @@ import org.lockss.plugin.*;
 import org.lockss.state.*;
 import org.lockss.filter.*;
 import org.lockss.daemon.*;
-import org.lockss.daemon.Configuration.*;
 import org.apache.commons.collections.LRUMap;
 
 /**
@@ -150,10 +149,10 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     if (auConfig != null) {
       checkLegalConfigChange(config);
     }
-    auConfig = config;
     if (config == null) {
       throw new ConfigurationException("Null Configuration");
     }
+    auConfig = config;
     loadAuConfigDescrs(config);
     setBaseAuParams(config);
   }
@@ -586,7 +585,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     int value = -1;
     try {
       value = config.getInt(key);
-    } catch (InvalidParam ip) {
+    } catch (Configuration.InvalidParam ip) {
       throw new ConfigurationException("Invalid value for " +
 				       paramString(descr) +
 				       ": " + ip.getMessage());
