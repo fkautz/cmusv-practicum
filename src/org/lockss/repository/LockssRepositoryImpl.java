@@ -294,8 +294,7 @@ public class LockssRepositoryImpl extends BaseLockssManager implements LockssRep
       node.cacheLocationFile.mkdirs();
     }
     // manually deactivate
-    node.currentVersion = RepositoryNodeImpl.INACTIVE_VERSION;
-    node.curProps = null;
+    node.deactivateContent();
   }
 
   // static calls
