@@ -257,7 +257,7 @@ public class PluginManager implements LockssManager {
   /**
    * Find the CachedUrlSet from a PollSpec.
    * @param spec the PollSpec (from an incoming message)
-   * @returns a CachedUrlSet for the plugin, au and URL in the spec, or
+   * @return a CachedUrlSet for the plugin, au and URL in the spec, or
    * null if au not present on this cache
    */
   public CachedUrlSet findCachedUrlSet(PollSpec spec) {

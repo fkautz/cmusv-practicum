@@ -35,7 +35,8 @@ import java.util.*;
 import java.text.DateFormat;
 
 
-/** Probabilistic decisions
+/**
+ * Probabilistic decisions
  */
 public class ProbabilisticChoice {
   static Random random = new Random();
@@ -43,7 +44,8 @@ public class ProbabilisticChoice {
   private ProbabilisticChoice() {
   }
 
-  /** Return <code>true</code> with probability <code>prob</code>.
+  /** 
+   * Return <code>true</code> with probability <code>prob</code>
    * (0.0 <= <code>prob</code> < 1.0)
    */
   public static boolean choose(double prob) {
