@@ -67,6 +67,13 @@ public class TimerQueue /*extends BaseLockssManager*/ implements Serializable {
     singleton.runAllExpired0();
   }
 
+  /** Called by LockssTestCase.tearDown() to prevent events from happening
+   * after tests complete.  tk - fix when this is made a LockssManager. */
+  public static void stopTimerQueue() {
+    singleton.stop();
+    singleton.queue = new PriorityQueue();
+  }
+
   private Request add(Deadline deadline, Callback callback, Object cookie) {
     Request req = new Request(deadline, callback, cookie);
     req.deadline.registerCallback(req.deadlineCb);
@@ -80,7 +87,9 @@ public class TimerQueue /*extends BaseLockssManager*/ implements Serializable {
       req.cancelled = true;
       req.deadline = Deadline.EXPIRED;
     }
-    timerThread.interrupt();
+    if (timerThread != null) {
+      timerThread.interrupt();
+    }
   }
 
   private void runAllExpired0() {
@@ -199,7 +208,6 @@ public class TimerQueue /*extends BaseLockssManager*/ implements Serializable {
 	  log.error("Unexpected exception caught in TimerQueue thread", e);
 	}
       }
-      timerThread = null;
     }
 
     private void stopScheduler() {
