@@ -56,17 +56,20 @@ public class GenericContentHasher extends GenericHasher {
     iterator = cus.treeIterator();
   }
 
-  protected int hashElementUpToNumBytes(UrlElement element, int numBytes)
+  protected int hashElementUpToNumBytes(CachedUrlSetNode element, int numBytes)
       throws IOException {
     CachedUrl cu = null;
-    if (element instanceof CachedUrlSet) {
-      CachedUrlSet cus = (CachedUrlSet)element;
-      cu = cus.makeCachedUrl(cus.getUrl());
-    } else if (element instanceof CachedUrl) {
-      cu = (CachedUrl)element;
+    switch (element.getType()) {
+      case CachedUrlSetNode.TYPE_CACHED_URL_SET:
+        CachedUrlSet cus = (CachedUrlSet)element;
+        cu = cus.makeCachedUrl(cus.getUrl());
+        break;
+      case CachedUrlSetNode.TYPE_CACHED_URL:
+        cu = (CachedUrl)element;
+        break;
     }
-    int totalHashed = 0;
 
+    int totalHashed = 0;
     if (hashState == HASHING_NAME) {
       log.debug("Hashing name");
       if (nameBytes == null) {

@@ -53,12 +53,16 @@ public abstract class BaseCachedUrl implements CachedUrl {
     this.url = url;
   }
 
-  /**
-   * Return the URL
-   * @return the url
-   */
   public String getUrl() {
     return url;
+  }
+
+  public int getType() {
+    return CachedUrlSetNode.TYPE_CACHED_URL;
+  }
+
+  public boolean isLeaf() {
+    return true;
   }
 
   /**

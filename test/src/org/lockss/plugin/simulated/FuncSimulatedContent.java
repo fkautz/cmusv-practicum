@@ -142,7 +142,7 @@ public class FuncSimulatedContent extends LockssTestCase {
     Iterator setIt = set.flatSetIterator();
     ArrayList childL = new ArrayList(7);
     while (setIt.hasNext()) {
-      childL.add(((UrlElement)setIt.next()).getUrl());
+      childL.add(((CachedUrlSetNode)setIt.next()).getUrl());
     }
     String[] expectedA = new String[] {
       sau.SIMULATED_URL_ROOT+"/branch1",
@@ -163,7 +163,7 @@ public class FuncSimulatedContent extends LockssTestCase {
     Iterator setIt = set.treeIterator();
     ArrayList childL = new ArrayList(15);
     while (setIt.hasNext()) {
-      childL.add(((UrlElement)setIt.next()).getUrl());
+      childL.add(((CachedUrlSetNode)setIt.next()).getUrl());
     }
     String[] expectedA = new String[] {
       parent+"/branch1/file1.html",

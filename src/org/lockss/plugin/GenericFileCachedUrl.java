@@ -55,7 +55,7 @@ public class GenericFileCachedUrl extends BaseCachedUrl {
     super(owner, url);
   }
 
-  public boolean exists() {
+  public boolean hasContent() {
     ensureLeafLoaded();
     return leaf.hasContent();
   }

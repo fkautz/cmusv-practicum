@@ -45,7 +45,7 @@ import java.security.MessageDigest;
  * @author  David S. H. Rosenthal
  * @version 0.0
  */
-public interface CachedUrlSet extends UrlElement {
+public interface CachedUrlSet extends CachedUrlSetNode {
   /**
    * @return the {@link ArchivalUnit} to which this CachedUrlSet belongs
    */

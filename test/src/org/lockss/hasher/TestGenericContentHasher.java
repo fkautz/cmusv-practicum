@@ -161,12 +161,15 @@ public class TestGenericContentHasher extends LockssTestCase {
 
     while (it.hasNext()) {
       CachedUrl cu = null;
-      Object element = it.next();
-      if (element instanceof CachedUrlSet) {
-        CachedUrlSet cus2 = (CachedUrlSet)element;
-        cu = cus2.makeCachedUrl(cus.getUrl());
-      } else if (element instanceof CachedUrl) {
-        cu = (CachedUrl)element;
+      CachedUrlSetNode element = (CachedUrlSetNode)it.next();
+      switch (element.getType()) {
+        case CachedUrlSetNode.TYPE_CACHED_URL_SET:
+          CachedUrlSet cus2 = (CachedUrlSet)element;
+          cu = cus2.makeCachedUrl(cus2.getUrl());
+          break;
+        case CachedUrlSetNode.TYPE_CACHED_URL:
+          cu = (CachedUrl)element;
+          break;
       }
       String delimStr = String.valueOf(DELIMITER);
       byte[] nameBytes = (delimStr+cu.getUrl()+delimStr).getBytes();

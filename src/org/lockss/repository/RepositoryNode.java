@@ -81,6 +81,12 @@ public interface RepositoryNode {
   public void storeState(Properties newProps);
 
   /**
+   * Returns true if node has no children.
+   * @return true if no children
+   */
+  public boolean isLeaf();
+
+  /**
    * Returns the immediate children of the entry, possibly filtered (null
    * indicates no filtering).  Includes leaf and internal nodes, but not
    * inactive nodes unless 'includeInactive' is true.

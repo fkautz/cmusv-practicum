@@ -69,8 +69,16 @@ class PTestPlugin {
       return url;
     }
 
-    public boolean exists() {
+    public boolean hasContent() {
       return contents != null;
+    }
+
+    public boolean isLeaf() {
+      return true;
+    }
+
+    public int getType() {
+      return CachedUrlSetNode.TYPE_CACHED_URL;
     }
 
     public InputStream openForReading() {

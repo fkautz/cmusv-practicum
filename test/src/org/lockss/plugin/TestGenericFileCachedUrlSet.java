@@ -79,7 +79,7 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
     Iterator setIt = fileSet.flatSetIterator();
     ArrayList childL = new ArrayList(3);
     while (setIt.hasNext()) {
-      childL.add(((UrlElement)setIt.next()).getUrl());
+      childL.add(((CachedUrlSetNode)setIt.next()).getUrl());
     }
     // should be sorted
     String[] expectedA = new String[] {
@@ -101,14 +101,17 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
         new RangeCachedUrlSetSpec("http://www.example.com/testDir");
     CachedUrlSet fileSet = mau.makeCachedUrlSet(rSpec);
     Iterator setIt = fileSet.flatSetIterator();
-    UrlElement element = (UrlElement)setIt.next();
+    CachedUrlSetNode element = (CachedUrlSetNode)setIt.next();
     assertEquals("http://www.example.com/testDir/branch1", element.getUrl());
+    assertEquals(CachedUrlSetNode.TYPE_CACHED_URL_SET, element.getType());
     assertTrue(element instanceof CachedUrlSet);
-    element = (UrlElement)setIt.next();
+    element = (CachedUrlSetNode)setIt.next();
     assertEquals("http://www.example.com/testDir/branch2", element.getUrl());
+    assertEquals(CachedUrlSetNode.TYPE_CACHED_URL_SET, element.getType());
     assertTrue(element instanceof CachedUrlSet);
-    element = (UrlElement)setIt.next();
+    element = (CachedUrlSetNode)setIt.next();
     assertEquals("http://www.example.com/testDir/leaf1", element.getUrl());
+    assertEquals(CachedUrlSetNode.TYPE_CACHED_URL, element.getType());
     assertTrue(element instanceof CachedUrl);
   }
 
@@ -127,7 +130,7 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
     Iterator setIt = fileSet.treeIterator();
     ArrayList childL = new ArrayList(4);
     while (setIt.hasNext()) {
-      childL.add(((UrlElement)setIt.next()).getUrl());
+      childL.add(((CachedUrlSetNode)setIt.next()).getUrl());
     }
     // should be sorted
     String[] expectedA = new String[] {
@@ -156,23 +159,29 @@ public class TestGenericFileCachedUrlSet extends LockssTestCase {
         new RangeCachedUrlSetSpec("http://www.example.com/testDir");
     CachedUrlSet fileSet = mau.makeCachedUrlSet(rSpec);
     Iterator setIt = fileSet.treeIterator();
-    UrlElement element = (UrlElement)setIt.next();
+    CachedUrlSetNode element = (CachedUrlSetNode)setIt.next();
     assertEquals("http://www.example.com/testDir/branch1", element.getUrl());
+    assertEquals(CachedUrlSetNode.TYPE_CACHED_URL_SET, element.getType());
     assertTrue(element instanceof CachedUrlSet);
-    element = (UrlElement)setIt.next();
+    element = (CachedUrlSetNode)setIt.next();
     assertEquals("http://www.example.com/testDir/branch1/leaf1", element.getUrl());
+    assertEquals(CachedUrlSetNode.TYPE_CACHED_URL, element.getType());
     assertTrue(element instanceof CachedUrl);
-    element = (UrlElement)setIt.next();
+    element = (CachedUrlSetNode)setIt.next();
     assertEquals("http://www.example.com/testDir/branch2", element.getUrl());
+    assertEquals(CachedUrlSetNode.TYPE_CACHED_URL_SET, element.getType());
     assertTrue(element instanceof CachedUrlSet);
-    element = (UrlElement)setIt.next();
+    element = (CachedUrlSetNode)setIt.next();
     assertEquals("http://www.example.com/testDir/branch2/branch3", element.getUrl());
+    assertEquals(CachedUrlSetNode.TYPE_CACHED_URL_SET, element.getType());
     assertTrue(element instanceof CachedUrlSet);
-    element = (UrlElement)setIt.next();
+    element = (CachedUrlSetNode)setIt.next();
     assertEquals("http://www.example.com/testDir/branch2/branch3/leaf2", element.getUrl());
+    assertEquals(CachedUrlSetNode.TYPE_CACHED_URL, element.getType());
     assertTrue(element instanceof CachedUrl);
-    element = (UrlElement)setIt.next();
+    element = (CachedUrlSetNode)setIt.next();
     assertEquals("http://www.example.com/testDir/leaf3", element.getUrl());
+    assertEquals(CachedUrlSetNode.TYPE_CACHED_URL, element.getType());
     assertTrue(element instanceof CachedUrl);
   }
 

@@ -51,7 +51,7 @@ public class GenericNameHasher extends GenericHasher {
     iterator = cus.flatSetIterator();
   }
 
-  protected int hashElementUpToNumBytes(UrlElement element, int numBytes) {
+  protected int hashElementUpToNumBytes(CachedUrlSetNode element, int numBytes) {
     if (nameBytes == null) {
       String nameStr = element.getUrl();
       StringBuffer sb = new StringBuffer(nameStr.length()+1);

@@ -52,9 +52,7 @@ public class MockCachedUrl implements CachedUrl {
   private Properties cachedProp;
 
   private boolean doesExist = false;
-
   private String content = null;
-
 
   public MockCachedUrl(String url) {
     this.url = url;
@@ -73,8 +71,16 @@ public class MockCachedUrl implements CachedUrl {
     return cus;
   }
 
-  public boolean exists() {
+  public boolean hasContent() {
     return doesExist;
+  }
+
+  public boolean isLeaf() {
+    return true;
+  }
+
+  public int getType() {
+    return CachedUrlSetNode.TYPE_CACHED_URL;
   }
 
   public void setExists(boolean doesExist) {

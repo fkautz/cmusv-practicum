@@ -188,7 +188,7 @@ public class GoslingCrawlerImpl implements Crawler {
 
 	  //XXX quick fix; if statement should be removed when we rework
 	  //handling of error condition
-	  if (cu.exists()) {
+	  if (cu.hasContent()) {
 	    addUrlsToList(cu, extractedUrls);//IOException if the CU can't be read
 	    parsedPages.add(uc.getUrl());
 	  }

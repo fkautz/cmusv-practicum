@@ -139,7 +139,7 @@ public class ProxyHandler extends NullHandler implements LockssManager {
       if (cus != null) {
 	CachedUrl cu = cus.makeCachedUrl(urlString);
 	System.err.println("proxy: cu = " + cu);
-	if (cu.exists()) {
+	if (cu.hasContent()) {
 	  serveFromCache(pathInContext, pathParams, request, response, cu);
 	  return;
 	}

@@ -159,7 +159,7 @@ public class NamePoll
       ArrayList alist = new ArrayList();
       String baseUrl = m_urlSet.getSpec().getUrl();
       while(it.hasNext()) {
-        String name = ((UrlElement)it.next()).getUrl();
+        String name = ((CachedUrlSetNode)it.next()).getUrl();
         if(name.startsWith(baseUrl)) {
           name = name.substring(name.length());
         }

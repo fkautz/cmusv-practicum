@@ -120,6 +120,23 @@ public class RepositoryNodeImpl implements RepositoryNode {
     //XXX implement
   }
 
+  public boolean isLeaf() {
+    if (nodeRootFile==null) loadNodeRoot();
+    if (!nodeRootFile.exists()) {
+      logger.error("No cache directory located for: "+url);
+      throw new LockssRepository.RepositoryStateException("No cache directory located.");
+    }
+    if (cacheLocationFile==null) loadCacheLocation();
+    File[] children = nodeRootFile.listFiles();
+    for (int ii=0; ii<children.length; ii++) {
+      File child = children[ii];
+      if (!child.isDirectory()) continue;
+      if (child.getName().equals(cacheLocationFile.getName())) continue;
+      return false;
+    }
+    return true;
+  }
+
   public Iterator listNodes(CachedUrlSetSpec filter, boolean includeInactive) {
     if (nodeRootFile==null) loadNodeRoot();
     if (!nodeRootFile.exists()) {
