@@ -81,4 +81,9 @@ public interface ArchivalUnit {
    */
   public String getAUId();
 
+  /**
+   * Sleeps for the interval needed between requests to the server
+   */
+  public void pause();
+
 }

@@ -217,6 +217,9 @@ public class NullPlugin {
     public String getAUId() {
       return "null";
     }
+
+    public void pause() {
+    }
   }
 
 /**

@@ -102,4 +102,8 @@ public class MockArchivalUnit implements ArchivalUnit {
     auId = newId;
   }
 
+  public void pause() {
+  }
+
 }
+
