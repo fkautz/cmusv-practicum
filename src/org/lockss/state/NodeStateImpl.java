@@ -128,7 +128,7 @@ public class NodeStateImpl implements NodeState {
       case NodeState.POSSIBLE_DAMAGE_BELOW:
         return "Possible Damage Below";
       case NodeState.INITIAL:
-        return "Unknown";
+        return "Initial";
       case NodeState.OK:
         return "Ok";
       default:

@@ -44,7 +44,10 @@ public class DamagedNodeSet {
   HistoryRepository repository;
   ArchivalUnit theAu;
 
-  public DamagedNodeSet() { }
+  public DamagedNodeSet() {
+    // initialize here so that if there's no set to load, it's not null
+    nodes = new HashSet();
+  }
 
   public DamagedNodeSet(ArchivalUnit au, HistoryRepository repository) {
     this.theAu = au;
