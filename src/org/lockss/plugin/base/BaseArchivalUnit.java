@@ -431,9 +431,8 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     String matchstr = PERMISSION_STRING.toLowerCase();
     boolean wasWhiteSpace = false;  // last char was ws
 
-    Reader filteredReader = getCrawlPermissionFilter(reader);
-
     try {
+      Reader filteredReader = getCrawlPermissionFilter(reader);
       do {
         ch = filteredReader.read();
         char nextChar = matchstr.charAt(p_index);
@@ -454,7 +453,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     return crawl_ok;
   }
 
-  private Reader getCrawlPermissionFilter(Reader reader) {
+  private Reader getCrawlPermissionFilter(Reader reader) throws IOException {
     // convert html tags to whitespace
     Reader replaceReader = StringFilter.makeNestedFilter(reader,
         new String[][] {
@@ -466,7 +465,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     // condense whitespace
     InputStream wsIs =
         new WhiteSpaceFilter(new ReaderInputStream(replaceReader));
-    return new InputStreamReader(wsIs);
+    return new InputStreamReader(wsIs, Constants.DEFAULT_ENCODING);
   }
 
   /**
