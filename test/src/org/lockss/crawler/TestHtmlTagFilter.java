@@ -462,17 +462,6 @@ public class TestHtmlTagFilter extends LockssTestCase {
   }
 
 
-  private void assertReaderMatchesString(String expected, Reader reader)
-      throws IOException{
-    StringBuffer actual = new StringBuffer(expected.length());
-    int kar;
-    while ((kar = reader.read()) != -1) {
-      actual.append((char)kar);
-    }
-    assertEquals(expected, actual.toString());
-  }
-
-
   //Tests for TagPair
   public void testCanNotCreateTagPairWithNullStrings() {
     try {

@@ -164,16 +164,6 @@ public class TestStringFilter extends LockssTestCase {
     assertReaderMatchesString("This is a test string", sf);
   }
 
-  private void assertReaderMatchesString(String expected, Reader reader)
-      throws IOException{
-    StringBuffer actual = new StringBuffer(expected.length());
-    int kar;
-    while ((kar = reader.read()) != -1) {
-      actual.append((char)kar);
-    }
-    assertEquals(expected, actual.toString());
-  }
-
   public static void main(String[] argv) {
     String[] testCaseList = { TestStringFilter.class.getName()};
     junit.textui.TestRunner.main(testCaseList);
