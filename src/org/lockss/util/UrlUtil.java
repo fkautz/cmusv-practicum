@@ -47,6 +47,24 @@ public class UrlUtil {
    */
   public static final char URL_PATH_SEPARATOR_CHAR = '/';
 
+  /** Compare two URLs for equality.  Unlike URL.equals(), this does not
+   * cause DNS lookups.
+   * @param u1 a URL
+   * @param u2 a nother URL
+   * @return true iff the URLs have the same protocol (case-independent),
+   * the same host (case-independent), the same port number on the host,
+   * and the same file and anchor on the host.
+   */
+
+  public static boolean equalUrls(URL u1, URL u2) {
+    return
+      u1.getPort() == u2.getPort() &&
+      StringUtil.equalStringsIgnoreCase(u1.getProtocol(), u2.getProtocol()) &&
+      StringUtil.equalStringsIgnoreCase(u1.getHost(), u2.getHost()) &&
+      StringUtil.equalStrings(u1.getFile(), u2.getFile()) &&
+      StringUtil.equalStrings(u1.getRef(), u2.getRef());
+  }
+
   /** Return input stream for url iff 200 response code, else throw.
    * In Java 1.1.7, URL.openStream() returns an InputStream in some cases
    * where it should throw, e.g., a 403 response on a filename that
