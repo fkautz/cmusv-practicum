@@ -88,7 +88,7 @@ public class AuState {
   /**
    * Sets the last crawl time to the current time.
    */
-  void newCrawlFinished() {
+  protected void newCrawlFinished() {
     lastCrawlTime = TimeBase.nowMs();
   }
 
