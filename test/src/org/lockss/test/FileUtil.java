@@ -43,7 +43,12 @@ public class FileUtil {
    */
   public static File tempFile(String prefix)
       throws IOException {
-    File f = File.createTempFile(prefix, null, null);
+    return tempFile(prefix, null);
+  }
+
+  public static File tempFile(String prefix, File dir) 
+      throws IOException {
+    File f = File.createTempFile(prefix, null, dir);
     f.deleteOnExit();
     return f;
   }
