@@ -98,7 +98,7 @@ public class PollHistory {
 
   /**
    * Returns an Iterator of Votes.
-   * @return an Iterator of PollResults.Vote objects.
+   * @return an Iterator of Poll.Vote objects.
    */
   public Iterator getVotes() {
     return votes.iterator();

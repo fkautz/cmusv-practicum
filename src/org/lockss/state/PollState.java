@@ -65,7 +65,7 @@ public class PollState {
   /**
    * Returns the poll type.
    * @return an int representing the type
-   * @see LcapMessage
+   * @see org.lockss.protocol.LcapMessage
    */
   public int getType() {
     return type;
