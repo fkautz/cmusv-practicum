@@ -86,13 +86,13 @@ public class AcsArchivalUnit extends BaseArchivalUnit {
     journalKey = configMap.getString(AcsPlugin.AUPARAM_JOURNAL_KEY, null);
 
     // get the volume string
-    volume = loadConfigInt(AcsPlugin.AUPARAM_VOL, config);
+    volume = loadConfigInt(AcsPlugin.PD_VOL, config);
     if (volume < 0) {
       throw new ConfigurationException("Negative volume");
     }
 
     // get the volume year
-    year = loadConfigInt(AcsPlugin.AUPARAM_YEAR, config);
+    year = loadConfigInt(AcsPlugin.PD_YEAR, config);
     if (year < 1900) {
       throw new ConfigurationException("Year out of range - must be after 1900");
     }
