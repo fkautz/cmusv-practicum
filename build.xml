@@ -96,6 +96,7 @@ Args:
   <property name="commons.collections.jar"
   				  value="${lib}/commons-collections.jar"/>
   <property name="junit.jar"      value="${test.lib}/junit.jar"/>
+  <property name="junit.addons.jar" value="${test.lib}/junit-addons.jar"/>
   <property name="tools.jar"      value="${java.lib}/tools.jar"/>
 
   <property name="lockss.jar"     value="${lib}/lockss.jar"/>
@@ -141,6 +142,7 @@ Args:
     <path refid="compile.classpath" />
     <pathelement path="${lockss.jar}" />
     <pathelement path="${junit.jar}" />
+    <pathelement path="${junit.addons.jar}" />
   </path>
 
   <path id="test.run.classpath">
