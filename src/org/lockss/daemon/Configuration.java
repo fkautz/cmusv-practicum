@@ -131,9 +131,15 @@ public abstract class Configuration {
   static void runCallbacks(Configuration oldConfig,
 			   Configuration newConfig) {
     Set diffs = newConfig.differentKeys(oldConfig);
-    for (Iterator iter = configChangedCallbacks.iterator();
-	 iter.hasNext();) {
-      runCallback((Callback)iter.next(), oldConfig, newConfig, diffs);
+    // copy the list of callbacks as it could change during the loop.
+    List cblist = new ArrayList(configChangedCallbacks);
+    for (Iterator iter = cblist.iterator(); iter.hasNext();) {
+      try {
+	Callback cb = (Callback)iter.next();
+	runCallback(cb, oldConfig, newConfig, diffs);
+      } catch (RuntimeException e) {
+	throw e;
+      }
     }
   }
 
@@ -206,6 +212,7 @@ public abstract class Configuration {
    * immediately.
    * @param c <code>Configuration.Callback</code> to add.  */
   public static void registerConfigurationCallback(Callback c) {
+    log.debug("registering " + c);
     if (!configChangedCallbacks.contains(c)) {
       configChangedCallbacks.add(c);
       if (haveConfig.isFull()) {
@@ -218,8 +225,8 @@ public abstract class Configuration {
    * Unregister a <code>Configuration.Callback</code>.
    * @param c <code>Configuration.Callback</code> to remove.
    */
-  public static void
-    unregisterConfigurationCallback(Callback c) {
+  public static void unregisterConfigurationCallback(Callback c) {
+    log.debug("unregistering " + c);
     configChangedCallbacks.remove(c);
   }
 
