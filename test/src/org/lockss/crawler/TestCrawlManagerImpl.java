@@ -235,6 +235,16 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     activityRegulator.assertNewContentCrawlFinished();
   }
 
+  //If the AU throws, the crawler should trap it and call the callbacks
+  public void testCallbacksCalledWhenPassedThrowingAU() {
+    SimpleBinarySemaphore sem = new SimpleBinarySemaphore();
+    TestCrawlCB cb = new TestCrawlCB(sem);
+    ThrowingAU au = new ThrowingAU();
+    theDaemon.setActivityRegulator(activityRegulator, au);
+    crawlManager.startNewContentCrawl(au, cb, null, null);
+    assertTrue(cb.wasTriggered());
+  }
+
   public void testRepairCrawlFreesActivityLockWhenDone() {
     String url1 = "http://www.example.com/index1.html";
     String url2 = "http://www.example.com/index2.html";
@@ -637,6 +647,40 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     public boolean doCrawl(Deadline deadline) {
       sem.give();
       return true;
+    }
+  }
+
+  private class ThrowingAU extends NullPlugin.ArchivalUnit {
+    public CachedUrlSet makeCachedUrlSet(CachedUrlSetSpec spec) {
+      throw new ExpectedRuntimeException("I throw");
+    }
+
+    public CachedUrl makeCachedUrl(CachedUrlSet owner, String url) {
+      throw new ExpectedRuntimeException("I throw");
+    }
+
+    public UrlCacher makeUrlCacher(CachedUrlSet owner, String url) {
+      throw new ExpectedRuntimeException("I throw");
+    }
+
+    public CachedUrlSet getAuCachedUrlSet() {
+      throw new ExpectedRuntimeException("I throw");
+    }
+
+    public CrawlSpec getCrawlSpec() {
+      throw new ExpectedRuntimeException("I throw");
+    }
+
+    public boolean shouldBeCached(String url) {
+      throw new ExpectedRuntimeException("I throw");
+    }
+
+    public Collection getUrlStems() {
+      throw new ExpectedRuntimeException("I throw");
+    }
+
+    public Plugin getPlugin() {
+      throw new ExpectedRuntimeException("I throw");
     }
   }
 
