@@ -178,7 +178,7 @@ public class MockCachedUrlSet implements CachedUrlSet {
 		     boolean exists, boolean shouldCache,
 		     Properties props) {
     MockCachedUrl cu = new MockCachedUrl(url);
-    cu.setInputStream(new StringInputStream(source));
+    cu.setContent(source);
     cu.setProperties(props);
     cu.setExists(exists);
 
