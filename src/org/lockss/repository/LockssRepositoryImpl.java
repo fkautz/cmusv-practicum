@@ -378,8 +378,8 @@ public class LockssRepositoryImpl
     buffer.append(url.getHost().toLowerCase());
     buffer.append(File.separator);
     buffer.append(url.getProtocol());
-    buffer.append(escapePath(StringUtil.replaceString(url.getPath(), "/",
-        File.separator)));
+    buffer.append(escapePath(StringUtil.replaceString(url.getPath(),
+        UrlUtil.URL_PATH_SEPARATOR, File.separator)));
     String query = url.getQuery();
     if (query!=null) {
       buffer.append("?");
