@@ -59,7 +59,7 @@ public class ReaderInputStream extends InputStream {
     return bytes[0];
   }
   
-  public ReaderInputStream(Reader reader) throws IOException {
+  public ReaderInputStream(Reader reader) {
     this.reader = new BufferedReader(reader);
   }
 
