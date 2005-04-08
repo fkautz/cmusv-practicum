@@ -44,6 +44,11 @@ import org.lockss.plugin.FilterRule;
 public class IOPFilterRule implements FilterRule {
   public Reader createFilteredReader(Reader reader) {
     List tagList = ListUtil.list(
+	//cruft in the TOC
+        new HtmlTagFilter.TagPair("<td class=\"toc_left\">", "</td>", true),
+
+        new HtmlTagFilter.TagPair("&nbsp;|&nbsp; <a title=\"Citing articles: ", "Citing articles</a>", true),
+
 	//content box
         new HtmlTagFilter.TagPair("<div id=\"art-opts\">", "</div>", true),
         new HtmlTagFilter.TagPair("<ul class=\"art-opts-mm\">", "</ul>", true),
