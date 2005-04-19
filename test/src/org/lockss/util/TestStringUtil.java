@@ -83,6 +83,10 @@ public class TestStringUtil extends LockssTestCase {
 		 StringUtil.trimAfterChars("test blah", "! \""));
     assertEquals("test",
 		 StringUtil.trimAfterChars("test\"blah", "! \""));
+
+    assertEquals("test",
+		 StringUtil.trimAfterChars("test !blah", "! \""));
+
   }
 
   public void testTruncateAt() {
