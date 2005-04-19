@@ -430,4 +430,25 @@ public class TestUrlUtil extends LockssTestCase {
 		 UrlUtil.stripQuery("rtsp://www.example.com/blah?param1=blah"));
   }
 
+  public void testResolveJavascriptUrl() {
+    assertEquals("http://www.example.com/link2.html",
+		 UrlUtil.parseJavascriptUrl("javascript:popup(http://www.example.com/link2.html)"));
+
+    assertEquals("http://www.example.com/link2.html",
+		 UrlUtil.parseJavascriptUrl("javascript:newWindow(http://www.example.com/link2.html)"));
+
+    assertEquals("http://www.example.com/link2.html",
+		 UrlUtil.parseJavascriptUrl("javascript:popup('http://www.example.com/link2.html')"));
+
+    assertEquals("http://www.example.com/link2.html",
+		 UrlUtil.parseJavascriptUrl("javascript:newWindow('http://www.example.com/link2.html')"));
+
+    assertEquals("link2.html",
+		 UrlUtil.parseJavascriptUrl("javascript:popup(link2.html)"));
+
+    assertEquals("link2.html",
+		 UrlUtil.parseJavascriptUrl("javascript:newWindow(link2.html)"));
+
+  }
+
 }
