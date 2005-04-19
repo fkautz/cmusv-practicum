@@ -66,7 +66,7 @@ public class V1ContentPoll extends V1Poll {
    * handle a message which may be a incoming vote
    * @param msg the Message to handle
    */
-  void receiveMessage(LcapMessage msg) {
+  protected void receiveMessage(LcapMessage msg) {
     int opcode = msg.getOpcode();
 
     if (m_msg == null) {

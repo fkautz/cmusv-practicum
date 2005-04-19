@@ -93,7 +93,7 @@ public class V1NamePoll extends V1Poll {
    * @param msg
    *          the Message to handle
    */
-  void receiveMessage(LcapMessage msg) {
+  protected void receiveMessage(LcapMessage msg) {
     if (msg.getPollVersion() != 1) {
       log.error("Not a V1 message: " + msg);
       return;
@@ -304,7 +304,7 @@ public class V1NamePoll extends V1Poll {
     return new NameVote(msg, agree);
   }
 
-  Vote copyVote(Vote vote, boolean agree) {
+  protected Vote copyVote(Vote vote, boolean agree) {
     NameVote v = new NameVote((NameVote) vote);
     v.agree = agree;
     return v;

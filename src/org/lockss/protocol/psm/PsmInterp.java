@@ -95,6 +95,10 @@ public class PsmInterp {
     return isFinalState() ? curState : null;
   }
 
+  public PsmState getCurrentState() {
+    return curState;
+  }
+
   /** Return true if the machine is waiting for an event. */
   public boolean isWaiting() {
     return isWaiting;

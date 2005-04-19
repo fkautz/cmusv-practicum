@@ -115,4 +115,21 @@ public class ByteArray {
     BigInteger bigI = new BigInteger(b);
     return bigI.longValue();
   }
+
+  /**
+   * Return a pseudo-random array of bytes of length len.
+   *
+   * @param len The size of the array to return.
+   * @return A pseudo-random array of bytes.
+   */
+  public static byte[] makeRandomBytes(int len) {
+    byte[] retVal = new byte[len];
+    int top = 0xFF;
+
+    LockssRandom rand = new LockssRandom();
+    for (int i = 0; i < len; i++) {
+      retVal[i] = (byte)rand.nextInt(top);
+    }
+    return retVal;
+  }
 }
