@@ -100,4 +100,28 @@ public class ResourceManager extends BaseLockssManager  {
   public synchronized boolean releaseTcpPort(int port, Object token) {
     return release("tcp:" + port, token);
   }
+
+  /** Return list of unfiltered tcp ports not already assigned to another
+   * server */
+  public List getUsableTcpPorts(String serverName) {
+    List unfilteredPorts = PlatformInfo.getInstance().getUnfilteredTcpPorts();
+    if (unfilteredPorts == null || unfilteredPorts.isEmpty()) {
+      return null;
+    }
+    List res = new ArrayList();
+    for (Iterator iter = unfilteredPorts.iterator(); iter.hasNext(); ) {
+      String str = (String)iter.next();
+      try {
+	int port = Integer.parseInt(str);
+	if (isTcpPortAvailable(port, serverName)){
+	  res.add(str);
+	}
+      } catch (NumberFormatException e) {
+	// allow port number ranges, not checked for availability
+	res.add(str);
+      }
+    }
+    return res;
+  }
+
 }

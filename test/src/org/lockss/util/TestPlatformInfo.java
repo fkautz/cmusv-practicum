@@ -45,8 +45,18 @@ import org.lockss.test.*;
 public class TestPlatformInfo extends LockssTestCase {
   PlatformInfo info;
 
-  public void setUp() {
+  public void setUp() throws Exception {
+    super.setUp();
     info = PlatformInfo.getInstance();
+  }
+
+  public void testGetUnfilteredTcpPorts() throws Exception {
+    assertEmpty(info.getUnfilteredTcpPorts());
+    ConfigurationUtil.setFromArgs(PlatformInfo.PARAM_UNFILTERED_PORTS, "9909");
+    assertEquals(ListUtil.list("9909"), info.getUnfilteredTcpPorts());
+    ConfigurationUtil.setFromArgs(PlatformInfo.PARAM_UNFILTERED_PORTS,
+				  "9900;1234");
+    assertEquals(ListUtil.list("9900", "1234"), info.getUnfilteredTcpPorts());
   }
 
   public void testDiskUsageNonexistentPath() throws Exception {
