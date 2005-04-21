@@ -423,7 +423,7 @@ public class UrlUtil {
       urlStart++;
     }
     String url = jsUrl.substring(urlStart); 
-    return StringUtil.trimAfterChars(url, ")'");
+    return StringUtil.truncateAtAny(url, ")'");
   }
 
   // resolveUri() using HttpClient URI.  Allows all protocols (no
