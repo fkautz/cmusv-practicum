@@ -77,6 +77,10 @@ public class OaiRequestData {
     this.urlContainerTagName = tagName;
     this.auSetSpec = setSpec;
     this.metadataPrefix = prefix;
+
+    //XXX added
+    this.metadataHandler = new Oai_dcHandler();
+
   }
 
   /**
