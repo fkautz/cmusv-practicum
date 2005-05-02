@@ -175,7 +175,7 @@ public abstract class IpAccessControl extends LockssServlet {
     String excString = null;
 
     Composite comp = new Composite();
-    Form frm = new Form(srvURL(myServletDescr(), null));
+    Form frm = new Form(srvURL(myServletDescr()));
     frm.method("POST");
 
     if (errMsg != null) {

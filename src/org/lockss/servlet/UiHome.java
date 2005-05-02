@@ -88,7 +88,7 @@ public class UiHome extends LockssServlet {
 	navTable.newRow("valign=top");
 	navTable.newCell();
 	navTable.add("<font size=+1>");
-	navTable.add(srvLink(d, d.heading, null));
+	navTable.add(srvLink(d, d.heading));
 	navTable.add("</font>");
 	navTable.newCell();
 	navTable.add(expl);

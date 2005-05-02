@@ -305,7 +305,7 @@ public class BatchAuConfig extends LockssServlet {
       tbl.newRow();
       tbl.newCell("align=center colspan=2");
       tbl.add(submitButton("Select Titles", ACTION_SELECT_AUS));
-      Form frm = new Form(srvURL(myServletDescr(), null));
+      Form frm = new Form(srvURL(myServletDescr()));
       frm.method("POST");
       frm.add(new Input(Input.Hidden, ACTION_TAG));
       frm.add(new Input(Input.Hidden, KEY_VERB, verb.valStr));
@@ -374,7 +374,7 @@ public class BatchAuConfig extends LockssServlet {
     }      
     Element exp = getExplanationBlock(expl);
     page.add(exp);
-    Form frm = new Form(srvURL(myServletDescr(), null));
+    Form frm = new Form(srvURL(myServletDescr()));
     frm.method("POST");
     frm.add(new Input(Input.Hidden, ACTION_TAG));
     frm.add(new Input(Input.Hidden, KEY_VERB, verb.valStr));
@@ -719,7 +719,7 @@ public class BatchAuConfig extends LockssServlet {
     Page page = newPage();
     addJavaScript(page);
     page.add(getErrBlock());
-    Form frm = new Form(srvURL(myServletDescr(), null));
+    Form frm = new Form(srvURL(myServletDescr()));
     frm.method("POST");
     frm.attribute("enctype", "multipart/form-data");
     frm.add(new Input(Input.Hidden, ACTION_TAG));

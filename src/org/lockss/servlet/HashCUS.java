@@ -350,7 +350,7 @@ public class HashCUS extends LockssServlet {
     Composite comp = new Composite();
     Block centeredBlock = new Block(Block.Center);
 
-    Form frm = new Form(srvURL(myServletDescr(), null));
+    Form frm = new Form(srvURL(myServletDescr()));
     frm.method("POST");
 
     Table autbl = new Table(0, "cellpadding=0");
