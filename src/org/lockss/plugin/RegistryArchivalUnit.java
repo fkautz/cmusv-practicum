@@ -84,7 +84,8 @@ public class RegistryArchivalUnit extends BaseArchivalUnit {
     this.m_registryUrl = config.get(ConfigParamDescr.BASE_URL.getKey());
     // Now we can construct a valid CC permission checker.
     m_permissionCheckers =
-      ListUtil.list(new CreativeCommonsPermissionChecker(m_registryUrl));
+//       ListUtil.list(new CreativeCommonsPermissionChecker(m_registryUrl));
+      ListUtil.list(new CreativeCommonsPermissionChecker());
 
     paramMap.putLong(TreeWalkManager.PARAM_TREEWALK_START_DELAY,
 		     ConfigManager
