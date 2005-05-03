@@ -95,7 +95,7 @@ public class TestRepairCrawler extends LockssTestCase {
 
     List repairUrls = ListUtil.list(url1);
     crawler = new RepairCrawler(mau, spec, aus, repairUrls, 0);
-    ((CrawlerImpl)crawler).lockssCheckers =
+    ((CrawlerImpl)crawler).daemonPermissionCheckers =
       ListUtil.list(new MockPermissionChecker(1));
   }
 

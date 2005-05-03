@@ -51,7 +51,7 @@ public class MockPermissionChecker implements PermissionChecker {
    * @param reader Reader
    * @return boolean
    */
-  public boolean checkPermission(Reader reader) {
+  public boolean checkPermission(Reader reader, String permissionUrl) {
     if (numPermissionGranted-- > 0) {
       return true;
     } else {

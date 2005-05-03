@@ -71,7 +71,7 @@ public class StringPermissionChecker implements PermissionChecker {
     m_encoding = encoding;
   }
 
-  public boolean checkPermission(Reader reader) {
+  public boolean checkPermission(Reader reader, String permissionUrl) {
     boolean permission_ok = false;
     String matchstr = m_matchString;
     int ch;

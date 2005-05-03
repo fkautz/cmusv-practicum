@@ -38,7 +38,8 @@ public interface PermissionChecker {
    * check for a permission object by reading data from a InputStream.
    *
    * @param inputReader the InputStream to search for the content
+   * @param url url of the permission page we're checking
    * @return boolean true iff the permission object is found.
    */
-  public boolean checkPermission(Reader inputReader);
+  public boolean checkPermission(Reader inputReader, String url);
 }
