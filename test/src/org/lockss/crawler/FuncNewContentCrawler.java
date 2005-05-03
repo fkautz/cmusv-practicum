@@ -159,9 +159,11 @@ public class FuncNewContentCrawler extends LockssTestCase {
 
 	   CachedUrl cu = sau.makeCachedUrl(fileUrl);
 	   if (fileLevel <= maxDepth) {
-	     assertTrue(cu !=null && cu.hasContent());
+// 	     assertTrue(cu !=null && cu.hasContent());
+	     assertTrue(cu + " has no content", cu.hasContent());
 	   } else {
-	     assertFalse(cu.hasContent());
+	     assertFalse(cu + " has content when it shouldn't",
+			 cu.hasContent());
 	   }
 	 }
     }
