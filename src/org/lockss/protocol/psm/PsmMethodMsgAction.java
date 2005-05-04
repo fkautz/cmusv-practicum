@@ -39,32 +39,10 @@ import java.lang.reflect.*;
  */
 public class PsmMethodMsgAction extends PsmMethodAction {
   public PsmMethodMsgAction(Class c, String m) {
-    // This prevents IllegalAccessExceptions when attempting to
-    // invoke methods on a class that is in another package and not
-    // defined 'public'.
-    if (!Modifier.isPublic(c.getModifiers())) {
-      throw new PsmMethodActionException("Action class must be public.");
-    }
-					
-    try {
-      method = c.getMethod(m, new Class[] {PsmMsgEvent.class, PsmInterp.class});
-    } catch (NoSuchMethodException ex) {
-      throw new PsmMethodActionException(ex.toString() + ": method " + m);
-    }
-
-    if (!Modifier.isStatic(method.getModifiers())) {
-      throw new PsmMethodActionException("Method " + m +
-					 " is not static.");
-    }
+    super(c, m, new Class[] {PsmMsgEvent.class, PsmInterp.class});
   }
 
   public PsmEvent run(PsmEvent event, PsmInterp interp) {
-    try {
-      return (PsmEvent)method.invoke(null, new Object[]{(PsmMsgEvent)event, interp});
-    } catch (IllegalAccessException ex) {
-      throw new PsmMethodActionException(ex.toString());
-    } catch (InvocationTargetException ex) {
-      throw new PsmMethodActionException(ex.toString());
-    }
+    return super.run(event, interp, new Object[]{(PsmMsgEvent)event, interp});
   }
 }
