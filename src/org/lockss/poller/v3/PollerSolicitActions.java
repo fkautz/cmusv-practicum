@@ -32,12 +32,52 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.poller.v3;
 
-import org.lockss.protocol.psm.PsmInterp;
+import org.lockss.protocol.psm.*;
 
-public interface StateTable {
+class PollerSolicitActions {
+  public static PsmEvent handleInitialize(PsmEvent evt, PsmInterp interp) {
+    // XXX: Implement.
+    return V3Events.evtOk;
+  }
 
-  /**
-   * Return the state machine interpreter for this table.
-   */
-  public PsmInterp getInterp();
+  public static PsmEvent handleProveIntroEffort(PsmEvent evt, PsmInterp interp) {
+    // XXX: Implement.
+    return V3Events.evtOk;
+  }
+
+  public static PsmEvent handleSendPoll(PsmEvent evt, PsmInterp interp) {
+    // XXX: Implement.
+    return V3Events.evtOk;
+  }
+
+  public static PsmEvent handleReceivedPollAck(PsmMsgEvent evt, PsmInterp interp) {
+    // XXX: Implement.
+    return V3Events.evtOk;
+  }
+
+  public static PsmEvent handleVerifyPollAckEffort(PsmEvent evt, PsmInterp interp) {
+    // XXX: Implement.
+    return V3Events.evtOk;
+  }
+
+  public static PsmEvent handleProveRemainingEffort(PsmEvent evt,
+						    PsmInterp interp) {
+    // XXX: Implement.
+    return V3Events.evtOk;
+  }
+
+  public static PsmEvent handleSendPollProof(PsmEvent evt, PsmInterp interp) {
+    // XXX: Implement.
+    return V3Events.evtOk;
+  }
+
+  public static PsmEvent handleReceivedVote(PsmMsgEvent evt, PsmInterp interp) {
+    // XXX: Implement.
+    return V3Events.evtOk;
+  }
+
+  public static PsmEvent handleError(PsmEvent evt, PsmInterp interp) {
+    // XXX: Implement.
+    return V3Events.evtOk;
+  }
 }
