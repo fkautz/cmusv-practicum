@@ -66,7 +66,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     mau.setAuCachedUrlSet(makeFakeCus(mau, TEST_URL, 2, 2));
     theDaemon.getNodeManagerManager();
     theDaemon.getPluginManager();
-    PluginUtil.registerArchivalUnit(mau);
+    PluginTestUtil.registerArchivalUnit(mau);
     crawlManager = new MockCrawlManager();
     theDaemon.setCrawlManager(crawlManager);
     pollManager = new MockPollManager();
@@ -99,7 +99,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     idManager.stopService();
     theDaemon.getLockssRepository(mau).stopService();
     theDaemon.getHashService().stopService();
-    PluginUtil.unregisterAllArchivalUnits();
+    PluginTestUtil.unregisterAllArchivalUnits();
     theDaemon.stopDaemon();
     TimeBase.setReal();
     super.tearDown();

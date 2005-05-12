@@ -86,7 +86,7 @@ public class DoHighwireCrawl {
     theDaemon.startDaemon();
 
     ArchivalUnit au = makeAu(base, volume,2004);
-    PluginUtil.registerArchivalUnit(au);
+    PluginTestUtil.registerArchivalUnit(au);
     if (proxyFlg) {
 //  This should already be started now.
 //      daemon.getProxyHandler().startProxy();

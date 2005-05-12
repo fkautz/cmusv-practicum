@@ -85,7 +85,7 @@ public class TestTitleSetActiveAus extends LockssTestCase {
   }
 
   public void testFromAu() throws Exception {
-    PluginUtil.registerArchivalUnit(mp, mau1);
+    PluginTestUtil.registerArchivalUnit(mp, mau1);
     mau1.setTitleConfig(tc1);
     Collection set =
       new TitleSetActiveAus(getMockLockssDaemon()).getTitles();
@@ -95,7 +95,7 @@ public class TestTitleSetActiveAus extends LockssTestCase {
   }
 
   public void testSynthesized() throws Exception {
-    PluginUtil.registerArchivalUnit(mp, mau2);
+    PluginTestUtil.registerArchivalUnit(mp, mau2);
     Collection set =
       new TitleSetActiveAus(getMockLockssDaemon()).getTitles();
     assertEquals(1, set.size());

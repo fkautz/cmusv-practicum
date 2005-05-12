@@ -532,7 +532,7 @@ public class TestPollManager extends LockssTestCase {
     theDaemon.getPluginManager();
     testau = PollTestPlugin.PTArchivalUnit.createFromListOfRootUrls(rooturls);
     ((MockArchivalUnit)testau).setPlugin(new MockPlugin());
-    PluginUtil.registerArchivalUnit(testau);
+    PluginTestUtil.registerArchivalUnit(testau);
 
     Properties p = new Properties();
     addRequiredConfig(p);

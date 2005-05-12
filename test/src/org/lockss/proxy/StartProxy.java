@@ -42,7 +42,7 @@ public class StartProxy {
   public static void main(String args[]) {
     MockLockssDaemon daemon = new MockLockssDaemon(null);
     ArchivalUnit au = PTestPlugin.makeTestAu();
-    PluginUtil.registerArchivalUnit(au);
+    PluginTestUtil.registerArchivalUnit(au);
 
     ProxyManager manager = new ProxyManager();
     try {

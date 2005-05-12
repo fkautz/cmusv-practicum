@@ -66,7 +66,7 @@ public class TestV1TreeWalkImpl extends LockssTestCase {
     mau.setAuCachedUrlSet(TestNodeManagerImpl.makeFakeAuCus(mau,
 	TEST_URL, 2, 2));
     theDaemon.getPluginManager();
-    PluginUtil.registerArchivalUnit(mau);
+    PluginTestUtil.registerArchivalUnit(mau);
 
     crawlMan = new MockCrawlManager();
     theDaemon.setCrawlManager(crawlMan);
@@ -102,7 +102,7 @@ public class TestV1TreeWalkImpl extends LockssTestCase {
     nodeManager.stopService();
     pollMan.stopService();
     crawlMan.stopService();
-    PluginUtil.unregisterAllArchivalUnits();
+    PluginTestUtil.unregisterAllArchivalUnits();
     theDaemon.stopDaemon();
     TimeBase.setReal();
     super.tearDown();

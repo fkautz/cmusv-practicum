@@ -72,7 +72,7 @@ public class TestCuUrl extends LockssTestCase {
     StaticContentPlugin spl = new StaticContentPlugin();
     spl.initPlugin(theDaemon);
     au = (StaticContentPlugin.SAU)spl.createAu(null);
-    PluginUtil.registerArchivalUnit(spl, au);
+    PluginTestUtil.registerArchivalUnit(spl, au);
     fillAu(au);
 
     theDaemon.getLockssRepository(au);

@@ -43,8 +43,8 @@ import org.lockss.app.*;
  * Utilities for manipulating plugins and their components in tests
  */
 
-public class PluginUtil {
-  static Logger log = Logger.getLogger("PluginUtil");
+public class PluginTestUtil {
+  static Logger log = Logger.getLogger("PluginTestUtil");
   static List aulist = new LinkedList();
 
   public static void registerArchivalUnit(Plugin plug, ArchivalUnit au) {

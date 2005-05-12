@@ -459,7 +459,7 @@ public class TestPoll extends LockssTestCase {
 
     theDaemon.getPluginManager();
     testau = PollTestPlugin.PTArchivalUnit.createFromListOfRootUrls(rootV1urls);
-    PluginUtil.registerArchivalUnit(testau);
+    PluginTestUtil.registerArchivalUnit(testau);
 
     String tempDirPath = null;
     try {

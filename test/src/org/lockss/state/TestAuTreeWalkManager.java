@@ -56,7 +56,7 @@ public class TestAuTreeWalkManager extends LockssTestCase {
     mau = new MockArchivalUnit();
     mau.setPlugin(new MockPlugin());
     theDaemon.getPluginManager();
-    PluginUtil.registerArchivalUnit(mau);
+    PluginTestUtil.registerArchivalUnit(mau);
 
     theDaemon.getTreeWalkManager().startService();
 
