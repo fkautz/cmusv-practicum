@@ -93,6 +93,10 @@ public class StringFilter extends Reader {
       bufferCapacity = Configuration.getIntParam(PARAM_BUFFER_CAPACITY,
 						 DEFAULT_BUFFER_CAPACITY);
     }
+    // Avoid problems caused by buffer smaller than search string
+    if (bufferCapacity < strlen) {
+      bufferCapacity = strlen;
+    }
     this.replaceStr = replaceStr;
     if (replaceStr != null) {
       replaceLen = replaceStr.length();
