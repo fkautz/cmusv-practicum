@@ -66,7 +66,9 @@ public class ProbePermissionChecker implements PermissionChecker {
   public boolean checkPermission(Reader inputReader, String permissionUrl) {
     CustomHtmlParser parser = new CustomHtmlParser();
     try {
-      parser.parseForUrls(au.makeCachedUrl(permissionUrl),
+      CachedUrl cu = au.makeCachedUrl(permissionUrl);
+      Reader reader = cu.openForReading();
+      parser.parseForUrls(reader, PluginUtil.getBaseUrl(cu),
 			  new MyFoundUrlCallback());
     } catch (IOException ex) {
       logger.error("Exception trying to parse permission url "+permissionUrl,

@@ -45,8 +45,14 @@ public class BlackbirdRamParser implements ContentParser {
     parser = RamParser.makeTranslatingRamParser(source, dest);
   }
 
-  public void parseForUrls(CachedUrl cu, ContentParser.FoundUrlCallback cb)
+//   public void parseForUrls(CachedUrl cu, ContentParser.FoundUrlCallback cb)
+//       throws IOException {
+//     parser.parseForUrls(cu, cb);
+//   }
+
+  public void parseForUrls(Reader reader, String srcUrl,
+			   ContentParser.FoundUrlCallback cb)
       throws IOException {
-    parser.parseForUrls(cu, cb);
+    parser.parseForUrls(reader, srcUrl, cb);
   }
 }

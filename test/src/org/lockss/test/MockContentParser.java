@@ -32,7 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.test;
 import java.util.*;
-import java.io.IOException;
+import java.io.*;
 import org.lockss.plugin.*;
 import org.lockss.crawler.ContentParser;
 
@@ -41,9 +41,33 @@ public class MockContentParser implements ContentParser {
   private String urlToReturn = null;
   private HashMap urlSets = new HashMap();
 
+  private Set srcUrls = new HashSet();
+
   public MockContentParser() {
   }
+  
+  public void parseForUrls(Reader reader, String srcUrl,
+			   ContentParser.FoundUrlCallback cb) {
+    srcUrls.add(srcUrl);
+    if (urlToReturn != null) {
+      cb.foundUrl(urlToReturn);
+    } else if (urlSets != null) {
+      Set setToAdd = (Set)urlSets.get(srcUrl);
+      if (setToAdd != null) {
+	Iterator it = setToAdd.iterator();
+	while(it.hasNext()) {
+	  cb.foundUrl((String)it.next());
+	}
+      }
+    }
+    
+  }
 
+  public Set getSrcUrls() {
+    return srcUrls;
+  }
+
+  /*
   public void parseForUrls(CachedUrl cu, ContentParser.FoundUrlCallback cb) 
       throws IOException {
     if (urlToReturn != null) {
@@ -57,7 +81,7 @@ public class MockContentParser implements ContentParser {
 	}
       }
     }
-  }
+    }*/
 
   public void setUrlToReturn(String url) {
     this.urlToReturn = url;

@@ -340,7 +340,9 @@ public abstract class FollowLinkCrawler extends CrawlerImpl {
 	  ContentParser parser = getContentParser(cu);
 	  if (parser != null) {
 	    //IOException if the CU can't be read
-	    parser.parseForUrls(cu, new MyFoundUrlCallback(parsedPages,
+	    parser.parseForUrls(cu.openForReading(),
+				PluginUtil.getBaseUrl(cu),
+				new MyFoundUrlCallback(parsedPages,
 							   extractedUrls, au));
 	    if (extractedUrls.remove(url)){
 	      logger.debug3("Removing self reference in "+url+" from the extracted list");
