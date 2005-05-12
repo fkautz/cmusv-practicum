@@ -109,7 +109,7 @@ public class TestProbePermissionChecker extends LockssTestCase {
 
     pc = new ProbePermissionChecker(new MockPermissionChecker(100),
 				    mau); 
-    assertTrue("Gave permission when there was no probe",
+    assertTrue("Didn't give permission when there was a probe",
 		pc.checkPermission(new StringReader(htmlSourceWProbe),
 				   "http://www.example.com"));
   }
