@@ -166,6 +166,25 @@ public class TestFollowLinkCrawler extends LockssTestCase {
     assertEquals(expected, cus.getCachedUrls());
   }
 
+  public void testHandlesRedirects() {
+    String url1="http://www.example.com/blah.html";
+
+    ((TestableFollowLinkCrawler)crawler).setUrlsToFollow(SetUtil.set(url1));
+
+    MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
+    mau.addUrl(startUrl, false, true);
+    CIProperties props = new CIProperties();
+    props.put(CachedUrl.PROPERTY_CONTENT_URL,
+	      "http://www.example.com/extra_level/");
+    mau.addUrl(url1, false, true, props);
+
+    assertTrue(crawler.doCrawl());
+
+    Set expected = SetUtil.set(startUrl);
+    Set expectedSrcUrls = SetUtil.set("http://www.example.com/extra_level/");
+    assertEquals(expectedSrcUrls, parser.getSrcUrls());
+  }
+
   public void testReturnsFalseWhenFailingUnretryableExceptionThrown() {
     MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
     String url1="http://www.example.com/blah.html";
