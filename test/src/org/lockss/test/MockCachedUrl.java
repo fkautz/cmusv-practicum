@@ -96,7 +96,7 @@ public class MockCachedUrl implements CachedUrl {
       return reader;
     }
 
-    throw new UnsupportedOperationException("Not implemented");
+    return new StringReader("");
   }
 
   public boolean hasContent() {
