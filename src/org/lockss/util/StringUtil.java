@@ -846,6 +846,7 @@ public class StringUtil {
 
     return idx;
   }
+  
 
   /**
    * Scans through the reader looking for the String str; case sensitive
@@ -885,8 +886,9 @@ public class StringUtil {
     } else if (str == null) {
       throw new NullPointerException("Called with a null string");
     } else if (str.length() == 0) {
-      logger.warning("containsString called with an empty string");
-      return false;
+      throw new IllegalArgumentException("Called with a blank String");
+    } else if (buffSize <= 0) {
+      throw new IllegalArgumentException("Called with a buffSize < 0");
     }
 
     if (ignoreCase) {
@@ -918,29 +920,6 @@ public class StringUtil {
       }
     }
     return false;
- /*
-    boolean permission_ok = false;
-    int ch;
-    int p_index = 0;
-    if (ignoreCase) {
-      str = str.toLowerCase();
-    }
-    do {
-      ch = reader.read();
-      if(ignoreCase && ch != -1) {
-	ch = Character.toLowerCase((char)ch);
-      }
-      char nextChar = str.charAt(p_index);
-      
-      if (nextChar == ch) {
-	if (++p_index == str.length()) {
-	  return true;
-	}
-      } else {
-	p_index = 0;
-      }
-    } while (ch != -1); // while not eof
-    return false;*/
   }
 
 
