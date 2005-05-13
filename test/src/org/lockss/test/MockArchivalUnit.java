@@ -141,7 +141,7 @@ public class MockArchivalUnit implements ArchivalUnit {
     CachedUrl cu = null;
     if (cuHash != null) {
       cu = (CachedUrl)cuHash.get(url);
-      logger.debug(cu+" came from cuHash");
+      logger.debug(cu+" came from cuHash for "+url);
     } else {
       logger.debug("cuHash is null, so makeCachedUrl is returning null");
     }
