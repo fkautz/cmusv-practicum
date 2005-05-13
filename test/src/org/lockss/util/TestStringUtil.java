@@ -622,11 +622,6 @@ System.out.println("s: "+s);
 					 stringToFind));
   }
   
-  public void testGetCharsNullStr() throws IOException {
-    assertEquals(new Char[0], StringUtil.getChars(null));
-  }
-
-
   //To make sure searching for an empty string throws
   public void testFindStringBlankString() throws IOException {
     try {
