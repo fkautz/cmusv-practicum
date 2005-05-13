@@ -64,6 +64,12 @@ public class TestStringPermissionChecker extends LockssTestCase {
 
   }
 
+  public void testCheckPermissionRequiresBackup() {
+    checker = new StringPermissionChecker("ab");
+    Reader reader = new StringReader("aab");
+    assertTrue(checker.checkPermission(reader, null));
+  }
+
   public void testSetIgnoreCaseFlag() {
     StringBuffer sb = new StringBuffer("laa-dee-dah-LOCK-KCOL\n\n");
     sb.append(PERMISSION_STRING);
