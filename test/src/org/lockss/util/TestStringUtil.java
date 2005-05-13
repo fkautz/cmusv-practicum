@@ -647,10 +647,35 @@ System.out.println("s: "+s);
 		StringUtil.containsString(new StringReader("Test BlaH test"),
 					  "blah", false));
   }
-
   public void testContainsStringParamCaseInsensitive() throws IOException {
     assertTrue("Didn't matched string ignoring case",
 	       StringUtil.containsString(new StringReader("Test BlaH test"),
 					 "blah", true));
+  }
+
+  public void testContainsStringPartialMatch() throws IOException {
+    String testStr = "123456aaaaaaaaa1234";
+    String searchStr = "aaaaaaaaa";
+    assertTrue("Didn't find string when it should",
+	       StringUtil.containsString(new StringReader(testStr),
+					 searchStr, 10));
+    
+  }
+
+
+  public void testContainsStringPartialMatchIncomplete() throws IOException {
+    String testStr = "123456aaaaa";
+    String searchStr = "aaaaaaaaa";
+    assertFalse("Found string when it shouldn't",
+		StringUtil.containsString(new StringReader(testStr),
+					  searchStr, 10));
+}
+
+  public void testFindStringRequiresBackup() throws IOException {
+    String stringToFind = "ab";
+    String readerStr = "aab";
+    assertTrue("Didn't find string when it should",
+               StringUtil.containsString(new StringReader(readerStr),
+                                         stringToFind));
   }
 }
