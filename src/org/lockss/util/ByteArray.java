@@ -73,6 +73,15 @@ public class ByteArray {
     b[pos    ] = (byte)(n & 0xFF);
   }
 
+  /**
+   * Decode 1 byte at pos into an int (treating byte as unsigned)
+   * @param b byte array
+   * @param pos position in array
+   */
+  public static int decodeByte(byte[] b, int pos) {
+    return (((int)b[pos]) & 0xFF);
+  }
+
   /** Return the concatenation of two byte arrays. */
   public static byte[] concat(byte[] a, byte[] b) {
     byte[] res = new byte[a.length + b.length];

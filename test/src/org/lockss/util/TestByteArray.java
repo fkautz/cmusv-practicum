@@ -101,6 +101,14 @@ public class TestByteArray extends LockssTestCase {
     assertEquals(-1, ByteArray.decodeInt(tst, 4));
   }
 
+  public void testDecodeByte() {
+    byte arr[] = {1, 2, (byte)0xff, (byte)0x80};
+    assertEquals(1, ByteArray.decodeByte(arr, 0));
+    assertEquals(2, ByteArray.decodeByte(arr, 1));
+    assertEquals(0xff, ByteArray.decodeByte(arr, 2));
+    assertEquals(0x80, ByteArray.decodeByte(arr, 3));
+  }
+
   public void testEncodeLongSimple() {
     byte[] expectedBytes = {5};
     byte[] actualBytes = ByteArray.encodeLong(5);
