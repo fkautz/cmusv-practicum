@@ -599,6 +599,16 @@ public class Logger {
     idThread = ena;
   }
 
+  public void threadNameChanged() {
+    Thread thread = Thread.currentThread();
+    synchronized (threadIds) {
+      String id = (String)threadIds.get(thread);
+      if (id != null) {
+	info("ThreadId " + id + " is now " + thread.getName());
+      }
+    }
+  }
+
   String getThreadId(Thread thread) {
     String id;
     boolean created = false;
