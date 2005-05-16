@@ -216,7 +216,7 @@ public class JarValidator {
 	  // more work to see if our keystore holds the signing public
 	  // key under a different certificate (this should usually
 	  // not be the case!)
-	  log.debug("Found trusted certificate alias: " + signer);
+	  log.debug2("Found trusted certificate alias: " + signer);
 	  return;
 	}
 
