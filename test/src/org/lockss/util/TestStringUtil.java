@@ -705,4 +705,26 @@ System.out.println("s: "+s);
                StringUtil.containsString(new StringReader(readerStr),
                                          stringToFind));
   }
+
+
+  //network streams can underfill buffers; this test make sure we 
+  //handle a situation when the reader will return a series of small chars
+  public void testFindStringUnderfullsBuffer() throws IOException {
+    String stringToFind = "abcdefgh";
+    String readerStr = "blah abcdefgh blah";
+    assertTrue("Didn't find string when it should",
+               StringUtil.containsString(new SlowStringReader(readerStr),
+                                         stringToFind));
+  }
+
+
+  private static class SlowStringReader extends StringReader {
+    public SlowStringReader(String str) {
+      super(str);
+    }
+
+    public int read(char[] cbuf, int off, int len) throws IOException {
+      return super.read(cbuf, off, (len < 2 ? len : 2));
+    }
+  }
 }
