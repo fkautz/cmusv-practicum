@@ -60,7 +60,7 @@ public class LockssReceivedDatagram extends LockssDatagram {
   }
 
   /** Return the received DatagramPacket */
-  public DatagramPacket getPacket() {
+  DatagramPacket getPacket() {
     return packet;
   }
 
