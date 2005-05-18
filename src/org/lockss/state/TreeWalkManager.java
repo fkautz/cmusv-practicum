@@ -180,7 +180,7 @@ public class TreeWalkManager
     pool = new PooledExecutor(paramMaxPoolSize);
     pool.setMinimumPoolSize(paramMinPoolSize);
     pool.setKeepAliveTime(paramPoolKeepaliveTime);
-    log.debug2("Threewalk thread pool min, max: " +
+    log.debug2("Treewalk thread pool min, max: " +
 	      pool.getMinimumPoolSize() + ", " + pool.getMaximumPoolSize());
     pool.abortWhenBlocked();
   }
