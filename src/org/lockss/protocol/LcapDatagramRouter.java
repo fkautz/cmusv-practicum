@@ -94,7 +94,7 @@ public class LcapDatagramRouter
   static final String PRIORITY_PARAM_BEACON = "Beacon";
   static final int PRIORITY_DEFAULT_BEACON = -1;
 
-  static Logger log = Logger.getLogger("Router");
+  static Logger log = Logger.getLogger("DGramRouter");
 
   private boolean enabled = LcapDatagramComm.DEFAULT_ENABLED;
   private LcapDatagramComm comm;

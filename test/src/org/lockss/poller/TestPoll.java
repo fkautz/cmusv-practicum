@@ -89,6 +89,7 @@ public class TestPoll extends LockssTestCase {
     theDaemon.getLockssRepository(testau).stopService();
     theDaemon.getHashService().stopService();
     theDaemon.getDatagramRouterManager().stopService();
+    theDaemon.getRouterManager().stopService();
     theDaemon.getSystemMetrics().stopService();
     TimeBase.setReal();
     for(int i=0; i<testV1msg.length; i++) {
@@ -484,6 +485,7 @@ public class TestPoll extends LockssTestCase {
     //theDaemon.getSchedService().startService();
     theDaemon.getHashService().startService();
     theDaemon.getDatagramRouterManager().startService();
+    theDaemon.getRouterManager().startService();
     theDaemon.getSystemMetrics().startService();
     theDaemon.getActivityRegulator(testau).startService();
     theDaemon.setNodeManager(new MockNodeManager(), testau);

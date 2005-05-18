@@ -86,10 +86,10 @@ public class PollManager
   private static LockssRandom theRandom = new LockssRandom();
 
   private static PollManager theManager = null;
-  private static LcapDatagramRouter.MessageHandler  m_msgHandler;
+  private static LcapRouter.MessageHandler m_msgHandler;
   private static IdentityManager theIDManager;
   private static HashService theHashService;
-  private static LcapDatagramRouter theRouter = null;
+  private static LcapRouter theRouter = null;
   private AlertManager theAlertManager = null;
   private static SystemMetrics theSystemMetrics = null;
 
@@ -120,7 +120,7 @@ public class PollManager
     theAlertManager = theDaemon.getAlertManager();
 
     // register a message handler with the router
-    theRouter = theDaemon.getDatagramRouterManager();
+    theRouter = theDaemon.getRouterManager();
     m_msgHandler =  new RouterMessageHandler();
     theRouter.registerMessageHandler(m_msgHandler);
 
@@ -882,7 +882,7 @@ public class PollManager
 
   // ----------------  Callbacks -----------------------------------
 
-  class RouterMessageHandler implements LcapDatagramRouter.MessageHandler {
+  class RouterMessageHandler implements LcapRouter.MessageHandler {
     public void handleMessage(LcapMessage msg) {
       theLog.debug3("received from router message:" + msg.toString());
       try {
