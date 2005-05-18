@@ -100,7 +100,11 @@ public abstract class LockssRunnable  implements LockssWatchdog, Runnable {
   }
 
   private String getName() {
-    return name;
+    if (thread != null) {
+      return thread.getName();
+    } else {
+      return name;
+    }
   }
 
   /** Declare that the thread is running and initialized. */
