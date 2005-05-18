@@ -105,8 +105,11 @@ public class LcapIdentity {
       throws IdentityManager.MalformedIdentityKeyException {
     this(pid);
     m_idKey = idKey;
-    m_address = stringToAddr(idKey);
-    m_port = stringToPort(idKey);
+    PeerAddress.Ip pa = (PeerAddress.Ip)pid.getPeerAddress();
+    m_address = pa.getIPAddr();
+    if (pa instanceof PeerAddress.Tcp) {
+      m_port = ((PeerAddress.Tcp)pa).getPort();
+    }
     m_reputation = reputation;
   }
 
@@ -296,54 +299,7 @@ public class LcapIdentity {
   }
 
   static String makeIdKey(IPAddr addr, int port) {
-    return addrToString(addr, port);
+    return IdentityManager.ipAddrToKey(addr, port);
   }
 
-  /**
-   * turn an IPAddr into a dotted quartet string since
-   * get host address doesn't necessarily return an address
-   * @param addr the address to turn into a string
-   * @param port the port
-   * @return the address as dotted quartet sting
-   */
-  public static String addrToString(IPAddr addr, int port)  {
-    String ret = addr.getHostAddress();
-    if (port != 0)
-      ret += ":" + port;
-    return ret;
-  }
-
-  public static IPAddr stringToAddr(String idKey)
-      throws IdentityManager.MalformedIdentityKeyException {
-    IPAddr ret = null;
-    try {
-      int colon = idKey.indexOf(':');
-      if (colon > 0) {
-	// XXX V3 identity not really supported
-	ret = IPAddr.getByName(idKey.substring(0,colon));
-      } else if (colon < 0) {
-	// V1 identity,  no port part
-	ret = IPAddr.getByName(idKey);
-      }
-    } catch (UnknownHostException ignore) {
-    }
-    if (ret == null) {
-      throw new IdentityManager.MalformedIdentityKeyException(idKey);
-    }
-    return ret;
-  }
-
-  public static int stringToPort(String idKey)
-      throws IdentityManager.MalformedIdentityKeyException {
-    int colon = idKey.indexOf(':');
-    int ret = 0;
-    if (colon >= 0) {
-      try {
-	ret = Short.parseShort(idKey.substring(colon+1));
-      } catch (NumberFormatException nfe) {
-	throw new IdentityManager.MalformedIdentityKeyException(idKey);
-      }
-    }
-    return ret;
-  }
 }
