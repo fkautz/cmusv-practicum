@@ -97,4 +97,11 @@ public class IOUtil {
       s.close();
     } catch (Exception e) {}
   }
+
+  /** Call close() on the ServerSocket, ignoring any errors */
+  public static void safeClose(ServerSocket s) {
+    try {
+      s.close();
+    } catch (Exception e) {}
+  }
 }    
