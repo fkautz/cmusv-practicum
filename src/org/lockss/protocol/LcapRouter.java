@@ -179,6 +179,8 @@ public class LcapRouter
       runHandlers(lmsg);
     } catch (Exception e) {
       log.warning("Processing incoming " + pmsg);
+    } finally {
+      pmsg.delete();
     }
   }
 
