@@ -388,7 +388,11 @@ public class TestPsmInterp extends LockssTestCase {
 
   // A more functional test.  Creates a user object in which actions track
   // their progress.  Schedules a "computation" using the TimerQueue to
-  // generate the TaskComplete event.
+  // generate the TaskComplete event.  Because the "computation" runs in
+  // another thread, it might finish immediately, before the action that
+  // started it continues running.  This will affect the order of user
+  // evants but should have no effect on the state machine.  Force this
+  // situation with artificial delay to ensure it occurs in test.
 
   // User objext tracks user events
   static class TestObj {

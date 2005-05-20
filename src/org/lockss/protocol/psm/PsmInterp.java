@@ -255,7 +255,7 @@ public class PsmInterp {
   static class StateTimerCallback implements TimerQueue.Callback {
     public void timerExpired(Object cookie) {
       log.debug2("StateTimerCallback: " + cookie);
-      ((StateTimer)cookie).timerExpired();
+      ((PsmInterp.StateTimer)cookie).timerExpired();
     }
     public String toString() {
       return "PSMStateTimer";
