@@ -341,6 +341,23 @@ public class TestDefinableArchivalUnit extends LockssTestCase {
     } 
   }
 
+  public void testMakeLoginPageCheckers() {
+    assertNull(cau.makeLoginPageChecker());
+  }
+
+  public void testMakeLoginPageChecker() {
+    defMap.putString(DefinableArchivalUnit.AU_LOGIN_PAGE_CHECKER,
+ 		  "org.lockss.plugin.definable.TestDefinableArchivalUnit$MyLoginPageChecker");
+    assertNotNull(cau.makeLoginPageChecker()); 
+  }
+
+  public static class MyLoginPageChecker implements LoginPageChecker {
+    public boolean isLoginPage(Properties props, Reader reader) {
+      throw new UnsupportedOperationException("not implemented");
+    }
+  }
+
+
   /*
   public void testMakeCrawlSpec() throws Exception {
     Properties props = new Properties();
