@@ -139,7 +139,7 @@ public class RegistryArchivalUnit extends BaseArchivalUnit {
     CrawlRule rule = makeRules();
     List startUrls = ListUtil.list(startUrlString);
     return new SpiderCrawlSpec(startUrls, startUrls, rule,
-			 m_maxRefetchDepth, m_permissionCheckers);
+			       m_maxRefetchDepth, m_permissionCheckers, null);
   }
 
   /**

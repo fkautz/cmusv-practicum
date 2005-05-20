@@ -83,6 +83,11 @@ public interface CrawlSpec {
    */
   public List getPermissionCheckers();
 
+  /**
+   * @return the LoginPageChecker for this crawl, or null if there isn't one
+   */
+  public LoginPageChecker getLoginPageChecker();
+
 }
 
 

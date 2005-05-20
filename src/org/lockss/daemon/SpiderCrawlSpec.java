@@ -59,9 +59,10 @@ public final class SpiderCrawlSpec extends BaseCrawlSpec {
   public SpiderCrawlSpec(List startUrls, 
 		       List permissionUrls,
 		       CrawlRule rule, 
-		       int refetchDepth
-		       ) throws ClassCastException {
-    this(startUrls, permissionUrls, rule, refetchDepth, Collections.EMPTY_LIST);
+		       int refetchDepth)
+      throws ClassCastException {
+    this(startUrls, permissionUrls, rule, refetchDepth,
+	 Collections.EMPTY_LIST, null);
   }
 
   /**
@@ -81,9 +82,10 @@ public final class SpiderCrawlSpec extends BaseCrawlSpec {
 			 List permissionUrls,
 			 CrawlRule rule,
 			 int refetchDepth,
-			 List permissionCheckers
-			 ) throws ClassCastException {
-    super(permissionUrls, rule, permissionCheckers);
+			 List permissionCheckers,
+			 LoginPageChecker loginPageChecker)
+      throws ClassCastException {
+    super(permissionUrls, rule, permissionCheckers, loginPageChecker);
     if(startUrls.isEmpty()) {
       throw new
           IllegalArgumentException("CrawlSpec starting url must not be empty");
