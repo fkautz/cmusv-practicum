@@ -111,7 +111,7 @@ public class TestExternalizableMap extends LockssTestCase {
     assertEquals(1.0, map.getFloat("test-f", (float)1.0), 0.01);
     assertEquals(1, map.getInt("test-i", 1));
     assertEquals(1, map.getLong("test-l", 1));
-//    assertEqual(new HashMap(), map.getMap("test-m", new HashMap()));
+//    assertEquals(new HashMap(), map.getMap("test-m", new HashMap()));
     assertEquals("foo", map.getString("test-s", "foo"));
     assertEquals(new URL("http://foo.com"),
                  map.getUrl("test-u", new URL("http://foo.com")));
@@ -133,7 +133,7 @@ public class TestExternalizableMap extends LockssTestCase {
     assertEquals(2.12, map.getFloat("test-f", (float)1.0), 0.01);
     assertEquals(123, map.getInt("test-i", 1));
     assertEquals(123321, map.getLong("test-l", 1));
-//    assertEqual(testMap, map.getMap("test-m", new HashMap()));
+//    assertEquals(testMap, map.getMap("test-m", new HashMap()));
     assertEquals("test string", map.getString("test-s", "foo"));
     assertEquals(testUrl, map.getUrl("test-u", new URL("http://foo.com")));
     assertIsomorphic(testCpd,
