@@ -79,7 +79,7 @@ public class PeerIdentity {
   public PeerAddress getPeerAddress()
       throws IdentityManager.MalformedIdentityKeyException {
     if (pAddr == null) {
-      pAddr = PeerAddress.makePeerAddress(this, key);
+      pAddr = PeerAddress.makePeerAddress(key);
     }
     return pAddr;
   }
