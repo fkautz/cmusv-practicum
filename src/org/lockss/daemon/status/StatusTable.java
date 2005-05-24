@@ -531,6 +531,10 @@ public class StatusTable {
       this.value = value;
     }
 
+    public SummaryInfo(String title, int type, int value) {
+      this(title, type, new Integer(value));
+    }
+
     public String getTitle() {
       return this.title;
     }

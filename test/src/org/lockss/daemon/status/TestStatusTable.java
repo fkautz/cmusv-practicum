@@ -340,4 +340,16 @@ public class TestStatusTable extends LockssTestCase {
 						   new Properties())));
   }
 
+  public void testSummaryInfo() {
+    StatusTable.SummaryInfo si =
+      new StatusTable.SummaryInfo("Foo", ColumnDescriptor.TYPE_STRING, "val");
+    assertEquals("Foo", si.getTitle());
+    assertEquals(ColumnDescriptor.TYPE_STRING, si.getType());
+    assertEquals("val", si.getValue());
+
+    si = new StatusTable.SummaryInfo("bar", ColumnDescriptor.TYPE_INT, 23);
+    assertEquals("bar", si.getTitle());
+    assertEquals(ColumnDescriptor.TYPE_INT, si.getType());
+    assertEquals(new Integer(23), si.getValue());
+  }
 }
