@@ -119,7 +119,7 @@ public class DefinablePlugin extends BasePlugin {
     return au;
   }
 
-  ExternalizableMap getDefinitionMap() {
+  public ExternalizableMap getDefinitionMap() {
     return definitionMap;
   }
 
