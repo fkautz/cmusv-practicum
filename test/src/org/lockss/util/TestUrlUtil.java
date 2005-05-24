@@ -451,4 +451,10 @@ public class TestUrlUtil extends LockssTestCase {
 
   }
 
+  public void testIsMalformedUrl() {
+    assertFalse(UrlUtil.isMalformedUrl("http://www.example.com"));
+    assertTrue(UrlUtil.isMalformedUrl("blah blah blah"));
+    assertTrue(UrlUtil.isMalformedUrl("javascript:popup(blah)"));
+  }
+
 }

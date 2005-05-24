@@ -452,6 +452,16 @@ public class UrlUtil {
 //     }
 //   }
 
+  public static boolean isMalformedUrl(String url) {
+    try {
+      new URL(url);
+      return false;
+    } catch (MalformedURLException ex) {
+      log.warning("Malformed URL "+url, ex);
+      return true;
+    }
+  }
+
   public static boolean isAbsoluteUrl(String url) {
     if (url != null) {
       try {
