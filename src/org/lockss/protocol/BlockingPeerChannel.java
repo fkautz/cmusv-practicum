@@ -423,8 +423,14 @@ class BlockingPeerChannel implements PeerChannel {
       switch (op) {
       case OP_PEERID:
 	readPeerId();
-	reader.setRunnerName();
-	writer.setRunnerName();
+	// Ensure thread name includes peer, for better logging.
+	synchronized (stateLock) {
+	  if (state != STATE_CLOSING) {
+	    // reader, writer can get set to null while in STATE_CLOSING
+	    if (reader != null) reader.setRunnerName();
+	    if (writer != null) writer.setRunnerName();
+	  }
+	}
 	break;
       case OP_DATA:
 	readDataMsg();

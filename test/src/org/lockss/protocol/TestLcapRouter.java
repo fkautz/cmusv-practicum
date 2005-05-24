@@ -54,22 +54,18 @@ public class TestLcapRouter extends LockssTestCase {
   static Logger log = Logger.getLogger("TestRouter");
 
   private MockLockssDaemon daemon;
-  private IdentityManager idmgr;
   MyLcapRouter rtr;
 
   PeerIdentity pid1;
 
   public void setUp() throws Exception {
     super.setUp();
-    daemon = getMockLockssDaemon();
     ConfigurationUtil.setFromArgs(IdentityManager.PARAM_LOCAL_IP, "127.0.0.1");
-    idmgr = new MyIdentityManager();
-    daemon.setIdentityManager(idmgr);
-    idmgr.initService(daemon);
-    daemon.setDaemonInited(true);
-    idmgr.startService();
+    daemon = getMockLockssDaemon();
+    // V3LcapMessage.decode needs idmgr
+    daemon.getIdentityManager().startService();
     rtr = new MyLcapRouter();
-    pid1 = idmgr.findPeerIdentity(IdentityManager.ipAddrToKey("129.3.3.3", 4321));
+    pid1 = newPI("129.3.3.3" + IdentityManager.V3_ID_SEPARATOR + "4321");
   }
 
   public void tearDown() throws Exception {
@@ -113,11 +109,4 @@ public class TestLcapRouter extends LockssTestCase {
       return new MemoryPeerMessage();
     }
   }
-
-
-  static class MyIdentityManager extends IdentityManager {
-    public void storeIdentities() throws ProtocolException {
-    }
-  }
-
 }

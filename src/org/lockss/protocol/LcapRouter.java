@@ -156,7 +156,6 @@ public class LcapRouter
 
   /** Decode a PeerMessage into a V3LcapMessage  */
   V3LcapMessage makeV3LcapMessage(PeerMessage pmsg) throws IOException {
-    OutputStream out = null;
     InputStream in = null;
     try {
       in = pmsg.getInputStream();
