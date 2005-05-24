@@ -140,6 +140,8 @@ public class GoslingHtmlParser implements ContentParser {
   private boolean shouldParseJavaScript;
   private boolean isTrace = logger.isDebug2();
 
+  private boolean malformedBaseUrl = false;
+
   public GoslingHtmlParser() {
     ringCapacity = Configuration.getIntParam(PARAM_BUFFER_CAPACITY,
 					     DEFAULT_BUFFER_CAPACITY);
@@ -359,10 +361,15 @@ public class GoslingHtmlParser implements ContentParser {
           returnStr = getAttributeValue(BACKGROUNDSRC, link);
         } else if (beginsWithTag(link, BASETAG)) {
 	  String newBase = getAttributeValue(HREF, link);
- 	  if (UrlUtil.isAbsoluteUrl(newBase)) {
-	    logger.debug3("base tag found, setting srcUrl to: " + newBase);
-	    srcUrl = newBase;
-	    baseUrl = null;
+	  if (UrlUtil.isMalformedUrl(newBase)) {
+	    malformedBaseUrl = true;
+	  }  else {
+  	    malformedBaseUrl = false;
+	    if (UrlUtil.isAbsoluteUrl(newBase)) {
+	      logger.debug3("base tag found, setting srcUrl to: " + newBase);
+	      srcUrl = newBase;
+	      baseUrl = null;
+	    }
  	  }
 	}
         break;
@@ -412,6 +419,11 @@ public class GoslingHtmlParser implements ContentParser {
     if (returnStr != null) {
       if (isTrace) {
 	logger.debug2("Generating url from: " + srcUrl + " and " + returnStr);
+      }
+      if (malformedBaseUrl) {
+	//if we have a malformed base URL, we can't interpret relative urls
+	//so we only will return absoluet ones
+	return UrlUtil.isAbsoluteUrl(returnStr) ? returnStr : null;
       }
       try {
 	if (baseUrl == null) {
