@@ -38,10 +38,15 @@ import java.util.*;
 
 import org.lockss.test.*;
 import org.lockss.util.*;
+import org.lockss.servlet.*;
 
 import org.w3c.dom.*;
 
 public class TestXmlStatusTable extends LockssTestCase {
+
+  static LockssServlet.ServletDescr srvDescr =
+    new LockssServlet.ServletDescr(LockssServlet.class, "name");
+
 
   // The expected value for this test is in statustest1.xml in this dir.
   // Edit it to correspond to changes in the xml generation or the table
@@ -73,7 +78,7 @@ public class TestXmlStatusTable extends LockssTestCase {
       {dispValue, refValue},
       {new Integer(99997), Collections.EMPTY_LIST},
       {new Integer(99998)},		// sparse row
-      {new Integer(99999),
+      {new StatusTable.SrvLink(new Integer(99999), srvDescr, null),
        ListUtil.list("cc", new StatusTable.Reference("x1", "tt", "k42"))},
     };
 
