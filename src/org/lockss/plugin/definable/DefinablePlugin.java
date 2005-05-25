@@ -58,6 +58,7 @@ public class DefinablePlugin extends BasePlugin {
       "plugin_cache_result_handler";
   static final public String CM_EXCEPTION_LIST_KEY =
       "plugin_cache_result_list";
+  static final public String CM_NOTES_KEY = "plugin_notes";
   static final public String CM_CRAWL_TYPE =
       "plugin_crawl_type";
   static final public String CM_FOLLOW_LINKS = "plugin_follow_link";
@@ -108,6 +109,10 @@ public class DefinablePlugin extends BasePlugin {
 
   public String getVersion() {
     return definitionMap.getString(CM_VERSION_KEY, DEFAULT_PLUGIN_VERSION);
+  }
+
+  public String getPluginNotes() {
+    return definitionMap.getString(CM_NOTES_KEY, null);
   }
 
   public List getAuConfigDescrs() throws InvalidDefinitionException {
