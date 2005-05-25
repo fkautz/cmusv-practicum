@@ -83,8 +83,9 @@ public class NewContentCrawler extends FollowLinkCrawler {
 
     Iterator it = spec.getStartingUrls().iterator(); 
     cachingStartUrls = true; //added to report error when fail to fetch startUrl
+    logger.debug3("refetchDepth: "+refetchDepth);
     for (int ix=0; ix<refetchDepth && it.hasNext(); ix++) {
-
+      logger.debug3("Refetching level "+ix);
       //don't use clear() or it will empty the iterator
       extractedUrls = new HashSet();
 
