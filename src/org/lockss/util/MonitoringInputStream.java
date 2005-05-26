@@ -46,7 +46,7 @@ public class MonitoringInputStream extends InputStream {
   private InputStream in;
   private String name;
   private String openTrace;
-  private String closeTrace;
+//   private String closeTrace;
   private String closeAbortTrace;
   private boolean isOpen = true;
 
@@ -71,7 +71,7 @@ public class MonitoringInputStream extends InputStream {
     return in.available();
   }
   public void close() throws IOException {
-    closeTrace = StringUtil.stackTraceString(new Exception("Close"));
+//     closeTrace = StringUtil.stackTraceString(new Exception("Close"));
     try {
       in.close();
     } catch (IOException e) {
