@@ -96,8 +96,10 @@ public class HtmlUtil {
 	sb.append("&quot;");
 	break;
 	// Special characters
+      case '\n':
+	sb.append("<br>");
+	break;
 	/*
-	  case '\n':
 	  case '\t':
 	  case '\r':
 	  break;
