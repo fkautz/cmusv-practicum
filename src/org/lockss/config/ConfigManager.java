@@ -408,8 +408,7 @@ public class ConfigManager implements LockssManager {
 	} else {
 	  // This load failed.  Fail the whole thing.
 	  if (!failOk) {
-	    log.warning("Couldn't load props from " + url + ": " +
-			e.toString());
+	    log.warning("Couldn't load props from " + url, e);
 	    config.reset();  // ensure config is empty
 	  }
 	  return false;
