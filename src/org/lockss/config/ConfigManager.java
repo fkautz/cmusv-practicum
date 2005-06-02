@@ -61,7 +61,7 @@ public class ConfigManager implements LockssManager {
   static final long DEFAULT_RELOAD_INTERVAL = 30 * Constants.MINUTE;
 
   static final String WDOG_PARAM_CONFIG = "Config";
-  static final long WDOG_DEFAULT_CONFIG = Constants.HOUR;
+  static final long WDOG_DEFAULT_CONFIG = 2 * Constants.HOUR;
 
   public static final String PARAM_CONFIG_PATH = MYPREFIX + "configFilePath";
   public static final String DEFAULT_CONFIG_PATH = "config";
@@ -1078,6 +1078,7 @@ public class ConfigManager implements LockssManager {
 	    }
 	  }
 	}
+	pokeWDog();			// in case update took a long time
 	long reloadRange = reloadInterval/4;
 	nextReload = Deadline.inRandomRange(reloadInterval - reloadRange,
 					    reloadInterval + reloadRange);
