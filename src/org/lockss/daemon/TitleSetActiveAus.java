@@ -51,11 +51,14 @@ public class TitleSetActiveAus extends BaseTitleSet {
   /** Return the titles currently configured on the cache.
    * @return a collection of {@link TitleConfig} */
   public Collection getTitles() {
-    List aus = daemon.getPluginManager().getAllAus();
+    PluginManager pmgr = daemon.getPluginManager();
+    List aus = pmgr.getAllAus();
     List res = new ArrayList(aus.size());
     for (Iterator iter = aus.iterator(); iter.hasNext();) {
       ArchivalUnit au = (ArchivalUnit)iter.next();
-      res.add(titleConfigFromAu(au));
+      if (!pmgr.isInternalAu(au)) {
+	res.add(titleConfigFromAu(au));
+      }
     }
     return res;
   }

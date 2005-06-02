@@ -117,7 +117,7 @@ public class ProxyInfo {
     Map map = new HashMap();
     PluginManager pmgr =
       (PluginManager)LockssDaemon.getManager(LockssDaemon.PLUGIN_MANAGER);
-    for (Iterator iter = pmgr.getAllAus().iterator(); iter.hasNext(); ) {
+    for (Iterator iter = aus.iterator(); iter.hasNext(); ) {
       ArchivalUnit au = (ArchivalUnit)iter.next();
       if (!pmgr.isInternalAu(au)) {
 	for (Iterator urlIter = au.getUrlStems().iterator();

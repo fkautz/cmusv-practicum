@@ -95,6 +95,7 @@ public class TestRegistryArchivalUnit extends LockssTestCase {
 		 paramMap.getLong(ArchivalUnit.AU_NEW_CRAWL_INTERVAL));
     assertEquals(12 * Constants.SECOND,
 		 paramMap.getLong(ArchivalUnit.AU_FETCH_DELAY));
+    assertEquals("org|lockss|plugin|TestRegistryArchivalUnit$MyRegistryPlugin&base_url~http%3A%2F%2Ffoo%2Ecom%2Fbar", au.getAuId());
   }
 
   public void testShouldCallTopLevelPoll() throws Exception {
