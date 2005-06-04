@@ -138,7 +138,7 @@ public class XmlUtils extends XmlDomBuilder implements ApiParameters {
   /**
    * Copy an XML document, adding it as a child of the target document root
    * to the global response
-   * @param document Document to copy
+   * @param source Document to copy
    * @param target Recieving document
    */
   public static void copyDocument(Document source, Document target) { 
@@ -148,7 +148,7 @@ public class XmlUtils extends XmlDomBuilder implements ApiParameters {
   /**
    * Return a list of named Elements (in our namespace)
    * @param element Root element for search
-   * @param Element name to look up
+   * @param name name to look up
    * @return NodeList of matching elements
    */
   public NodeList getList(Element element, String name) {

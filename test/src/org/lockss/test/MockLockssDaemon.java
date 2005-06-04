@@ -414,7 +414,7 @@ public class MockLockssDaemon extends LockssDaemon {
 
   /**
    * Set the stream CommManager
-   * @param commMan the new manager
+   * @param scommMan the new manager
    */
   public void setStreamCommManager(LcapStreamComm scommMan) {
     scommManager = scommMan;
@@ -423,7 +423,7 @@ public class MockLockssDaemon extends LockssDaemon {
 
   /**
    * Set the DatagramRouterManager
-   * @param routerMan the new manager
+   * @param datagramRouterMan the new manager
    */
   public void setDatagramRouterManager(LcapDatagramRouter datagramRouterMan) {
     datagramRouterManager = datagramRouterMan;

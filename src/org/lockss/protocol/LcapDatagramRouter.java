@@ -201,7 +201,7 @@ public class LcapDatagramRouter
 
   /** Multicast a message to all caches holding the ArchivalUnit.  All
    * messages originated by this cache go through either this or {@link
-   * #sendTo(LcapMessage, ArchivalUnit, PeerIdentity)}.
+   * #sendTo(V1LcapMessage, ArchivalUnit, PeerIdentity)}.
    * @param msg the message to send
    * @param au archival unit for which this message is relevant.  Used to
    * determine which multicast socket/port to send to.
@@ -224,7 +224,7 @@ public class LcapDatagramRouter
 
   /** Unicast a message to a single cache.  All
    * messages originated by this cache go through either this or {@link
-   * #send(LcapMessage, ArchivalUnit)}.
+   * #send(V1LcapMessage, ArchivalUnit)}.
    * @param msg the message to send
    * @param au archival unit for which this message is relevant.  Used to
    * determine which multicast socket/port to send to.

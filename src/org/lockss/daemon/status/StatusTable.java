@@ -462,7 +462,8 @@ public class StatusTable {
      * Create a SrvLink object with an embedded value and a URL to link to.
      * @param value value to be displayed.  Any value is legal except
      * another LinkValue.
-     * @param url the URL to link to
+     * @param srvDescr descriptor for servlet to link to
+     * @param args optional servlet parameters
      */
     public SrvLink(Object value, ServletDescr srvDescr, Properties args){
       if (value instanceof LinkValue) {

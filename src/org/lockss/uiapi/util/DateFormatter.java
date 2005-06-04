@@ -71,7 +71,7 @@ import java.text.*;
   
   /**
    * Format a "short" date
-   * @date Date object
+   * @param date Date object
    * @return <code>MM/dd/yy HH:mm:ss</code>
    */
   public static String shortFormat(Date date) {
@@ -80,7 +80,7 @@ import java.text.*;
   
   /**
    * Format a "long" date
-   * @date Date object
+   * @param date Date object
    * @return <code>dd-MM-yyyy HH:mm:ss</code>
    */
   public static String explicitFormat(Date date) {

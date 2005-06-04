@@ -38,7 +38,7 @@ public interface PermissionCheckerFactory {
 
   /**
    * @param au ArchivalUnit that these permission checkers will be used on
-   * @returns a list of permission checkers, which may be empty
+   * @return a list of permission checkers, which may be empty
    */
   public List createPermissionCheckers(ArchivalUnit au);
 

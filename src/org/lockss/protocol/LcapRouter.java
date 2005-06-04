@@ -126,7 +126,6 @@ public class LcapRouter
 
   /** Send a message to a peer.
    * @param msg the message to send
-   * @param au archival unit for which this message is relevant (not used).
    * @param id the identity of the peer to which to send the message
    * @throws IOException if message couldn't be sent
    */

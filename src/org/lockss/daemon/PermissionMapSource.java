@@ -39,7 +39,7 @@ import org.lockss.crawler.*;
  */
 public interface PermissionMapSource {
   /**
-   * @returns an appropriate PermissionMap object
+   * @return an appropriate PermissionMap object
    */
   public PermissionMap getPermissionMap();
 }

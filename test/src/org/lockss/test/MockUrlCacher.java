@@ -234,7 +234,7 @@ public class MockUrlCacher implements UrlCacher {
   /**
    * setPermissionMap
    *
-   * @param permissionMap PermissionMap
+   * @param pmSource PermissionMap source
    */
   public void setPermissionMapSource(PermissionMapSource pmSource) {
     this.permissionMapSource = pmSource;
