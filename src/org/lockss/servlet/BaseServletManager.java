@@ -50,7 +50,8 @@ import org.mortbay.jetty.servlet.*;
  * not running (<i>e.g.</i>, for {@link org.lockss.servlet.TinyUi}), so it
  * must not rely on any non-static app services, nor any other managers.
  */
-public abstract class BaseServletManager extends JettyManager {
+public abstract class BaseServletManager
+  extends JettyManager implements ServletManager {
 
   public static final String UI_REALM = "LOCKSS Admin";
   public static final String PASSWORD_PROPERTY_FILE = "admin.props";
