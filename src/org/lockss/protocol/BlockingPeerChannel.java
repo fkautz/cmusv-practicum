@@ -264,7 +264,7 @@ class BlockingPeerChannel implements PeerChannel {
 
   /** Start threads in response to incoming connection
    */
-  public void startIncoming() throws IOException {
+  public void startIncoming() {
     if (stateTrans(STATE_ACCEPTED, STATE_STARTING, "startIncoming")) {
       try {
 	startConnectedChannel();
