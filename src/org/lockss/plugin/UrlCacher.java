@@ -93,6 +93,7 @@ public interface UrlCacher {
   /**
    * Return the {@link CachedUrlSet} to which this UrlCacher belongs.
    * @return the parent set
+   * @deprecated Not used, kept only for plugin binary compatibility
    */
   public CachedUrlSet getCachedUrlSet();
 
