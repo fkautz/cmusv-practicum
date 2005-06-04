@@ -43,7 +43,6 @@ import java.net.MalformedURLException;
  * Plugins may extend this to get some common CachedUrl functionality.
  */
 public class BaseCachedUrl implements CachedUrl {
-  protected CachedUrlSet cus;
   protected ArchivalUnit au;
   protected String url;
   protected static Logger logger = Logger.getLogger("CachedUrl");
