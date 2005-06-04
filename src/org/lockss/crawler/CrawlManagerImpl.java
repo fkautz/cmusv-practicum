@@ -171,8 +171,8 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
       newConfig.getPercentage(PARAM_REPAIR_FROM_CACHE_PERCENT,
 			      DEFAULT_REPAIR_FROM_CACHE_PERCENT);
     crawlerEnabled =
-      newConfig.getBooleanParam(PARAM_CRAWLER_ENABLED,
-				DEFAULT_CRAWLER_ENABLED);
+      newConfig.getBoolean(PARAM_CRAWLER_ENABLED,
+			   DEFAULT_CRAWLER_ENABLED);
     if (changedKeys.contains(MAX_REPAIR_RATE_PREFIX)) {
       resetRateLimiters(newConfig, repairRateLimiters,
  			PARAM_MAX_REPAIR_CRAWLS_PER_INTERVAL,

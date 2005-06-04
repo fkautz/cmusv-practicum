@@ -392,11 +392,11 @@ public class LcapDatagramComm
     if (uniPort >= 0) {
       try {
 	log.debug("new LcapSocket.Unicast("+socketInQ+", "+uniPort);
-	LcapSocket.Unicast uSock =
+	LcapSocket.Unicast lsu =
 	  sockFact.newUnicastSocket(socketInQ, uniPort);
-	uSock.start();
-	this.uSock = uSock;
-	log.info("Unicast socket started: " + uSock);
+	lsu.start();
+	uSock = lsu;
+	log.info("Unicast socket started: " + lsu);
       } catch (IOException e) {
 	log.error("Can't create unicast socket", e);
       }

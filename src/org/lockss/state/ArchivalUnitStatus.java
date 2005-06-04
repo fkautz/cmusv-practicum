@@ -394,7 +394,7 @@ public class ArchivalUnitStatus
           continue;
         }
         CachedUrlSet cus;
-        if (cusn.getType() == cusn.TYPE_CACHED_URL_SET) {
+        if (cusn.getType() == CachedUrlSetNode.TYPE_CACHED_URL_SET) {
           cus = (CachedUrlSet)cusn;
         } else {
           CachedUrlSetSpec spec = new RangeCachedUrlSetSpec(cusn.getUrl());

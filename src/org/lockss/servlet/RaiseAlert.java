@@ -164,9 +164,9 @@ public class RaiseAlert extends LockssServlet {
     Select sel = new Select(KEY_AUID, false);
     sel.add("", auid == null, "");
     for (Iterator iter = pluginMgr.getAllAus().iterator(); iter.hasNext(); ) {
-      ArchivalUnit au = (ArchivalUnit)iter.next();
-      String id = au.getAuId();
-      sel.add(au.getName(), id.equals(auid), id);
+      ArchivalUnit au0 = (ArchivalUnit)iter.next();
+      String id = au0.getAuId();
+      sel.add(au0.getName(), id.equals(auid), id);
     }
     autbl.newRow(); autbl.newCell();
     setTabOrder(sel);

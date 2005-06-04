@@ -454,8 +454,8 @@ public abstract class LockssApp {
 
     // temporary while debugging jvm DNS problem
     if (changedKeys.contains(PARAM_EXERCISE_DNS)) {
-      IPAddr.setExerciseDNS(config.getBooleanParam(PARAM_EXERCISE_DNS,
-						   DEFAULT_EXERCISE_DNS));
+      IPAddr.setExerciseDNS(config.getBoolean(PARAM_EXERCISE_DNS,
+					      DEFAULT_EXERCISE_DNS));
     }
 
     long life = config.getTimeInterval(PARAM_APP_EXIT_AFTER,

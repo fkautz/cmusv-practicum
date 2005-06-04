@@ -49,7 +49,7 @@ public class TimerUtil {
    * @throws InterruptedException
    */
   public static void sleep(long ms) throws InterruptedException {
-    Thread.currentThread().sleep(ms);
+    Thread.sleep(ms);
   }
 
   // Is there a use for one that just returns if interrupted?

@@ -78,7 +78,7 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
   }
 
   static class RepoStatusAccessor implements StatusAccessor {
-    private static LockssDaemon daemon;
+    private LockssDaemon daemon;
     private PluginManager pluginMgr;
     private RepositoryManager repoMgr;
 
@@ -177,7 +177,7 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
       if (auid == null) {
 	row.put("status", "No AUID");
       } else {
-	String auKey = pluginMgr.auKeyFromAuId(auid);
+	String auKey = PluginManager.auKeyFromAuId(auid);
 	row.put("auid", auKey);
 	row.put("plugin", PluginManager.pluginNameFromAuId(auid));
 	ArchivalUnit au = pluginMgr.getAuFromId(auid);
@@ -292,7 +292,7 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
   }
 
   static class RepoSpaceStatusAccessor implements StatusAccessor {
-    private static LockssDaemon daemon;
+    private LockssDaemon daemon;
     private RemoteApi remoteApi;
 
     private static final List columnDescriptors = ListUtil.list

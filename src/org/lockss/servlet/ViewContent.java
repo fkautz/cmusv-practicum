@@ -87,8 +87,7 @@ public class ViewContent extends LockssServlet {
     pluginMgr = getLockssDaemon().getPluginManager();
     try {
       srvltMgr =
-	(LocalServletManager)
-	getLockssDaemon().getManager(LockssDaemon.SERVLET_MANAGER);
+	(LocalServletManager) getLockssDaemon().getServletManager();
     } catch (RuntimeException e) {
       log.warning("Can't find LocalServletManager", e);
     }

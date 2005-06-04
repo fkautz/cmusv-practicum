@@ -78,9 +78,6 @@ public class V1LcapMessage extends LcapMessage {
   protected byte[] m_verifier; // the verifier bytes
   protected byte[] m_hashed; // the hash of content
 
-
-  static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
-
   /*
     byte
     0-3       signature
@@ -169,7 +166,7 @@ public class V1LcapMessage extends LcapMessage {
   /**
    * decode the raw packet data into a property table
    *
-   * @param encodedBytes the array of encoded bytes
+   * @param is the InputStrem from which the encoded message data will be read
    * @throws IOException
    */
   public void decodeMsg(InputStream is) throws IOException {

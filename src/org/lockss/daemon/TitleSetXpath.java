@@ -69,7 +69,7 @@ public class TitleSetXpath extends BaseTitleSet {
       throw new IllegalArgumentException("XPath predicate must be enclosed in \"[\" ... \"]\"");
     }
     xpath = "." + xpathPred;
-    expr = sharedContext.compile(xpath);
+    expr = JXPathContext.compile(xpath);
   }
 
   /** Filter a collection of titles by the xpath predicate

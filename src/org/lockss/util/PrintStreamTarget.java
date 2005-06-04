@@ -69,7 +69,7 @@ public class PrintStreamTarget implements LogTarget {
       emitTimestamp(log);
       nextTimestamp.expireIn(Constants.DAY);
     }
-    writeMessage(log, log.nameOf(msgLevel), message);
+    writeMessage(log, Logger.nameOf(msgLevel), message);
   }
 
   protected void emitTimestamp(Logger log) {

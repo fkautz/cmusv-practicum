@@ -285,12 +285,12 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
   }
 
   protected UrlNormalizer makeUrlNormalizer() {
-    UrlNormalizer urlNormalizer = null;
+    UrlNormalizer normmalizer = null;
     String normalizerClass = definitionMap.getString(AU_URL_NORMALIZER_KEY, null);
     if (normalizerClass != null) {
-      urlNormalizer = (UrlNormalizer)loadClass(normalizerClass, UrlNormalizer.class);
+      normmalizer = (UrlNormalizer)loadClass(normalizerClass, UrlNormalizer.class);
     }
-    return urlNormalizer;
+    return normmalizer;
   }
 
   protected FilterRule constructFilterRule(String contentType) {

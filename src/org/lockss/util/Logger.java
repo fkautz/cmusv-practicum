@@ -523,8 +523,7 @@ public class Logger {
    * @param levelName level string
    */
   public void setLevel(String levelName) {
-    int level = levelOf(levelName);
-    setLevel(level);
+    setLevel(levelOf(levelName));
   }
 
   /**

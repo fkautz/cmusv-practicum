@@ -271,7 +271,7 @@ public class NodeManagerManager
         new StatusTable.SortRule("URL", true)
         );
 
-    private static NodeManagerManager mgr;
+    private NodeManagerManager mgr;
 
     ManagerStatus(NodeManagerManager mgr) {
       this.mgr = mgr;
@@ -428,7 +428,7 @@ public class NodeManagerManager
     private static final List sortRules =
         ListUtil.list(new StatusTable.SortRule("StartTime", false));
 
-    private static NodeManagerManager mgr;
+    private NodeManagerManager mgr;
 
     PollHistoryStatus(NodeManagerManager mgr) {
       this.mgr = mgr;

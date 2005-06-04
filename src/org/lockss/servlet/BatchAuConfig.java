@@ -266,8 +266,8 @@ public class BatchAuConfig extends LockssServlet {
     int actualRows = 0;
     boolean isAnySelectable = false;
     String greyAction =
-      configMgr.getParam(PARAM_GREY_TITLESET_ACTION,
-			 DEFAULT_GREY_TITLESET_ACTION);
+      ConfigManager.getParam(PARAM_GREY_TITLESET_ACTION,
+			     DEFAULT_GREY_TITLESET_ACTION);
     boolean doGrey = "All".equalsIgnoreCase(greyAction) ||
       (verb == VERB_ADD && "Add".equalsIgnoreCase(greyAction));
     for (Iterator iter = sets.iterator(); iter.hasNext(); ) {

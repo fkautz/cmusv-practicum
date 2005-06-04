@@ -82,7 +82,7 @@ public class AntTaskTarget implements LogTarget {
       sb.append(")");
     }
     sb.append(": ");
-    sb.append(log.nameOf(msgLevel));
+    sb.append(Logger.nameOf(msgLevel));
     sb.append(": ");
     sb.append(message);
     writeMsg(sb.toString());
