@@ -81,7 +81,7 @@ public class PollerTallyStateMachineFactory {
 		   new PsmMethodAction(actionClass, "handleSendRepairRequest"),
 		   new PsmResponse(V3Events.evtOk, "WaitRepair"),
 		   new PsmResponse(V3Events.evtElse, "Error")),
-      new PsmState("WaitRepair",
+      new PsmState("WaitRepair", PsmWait.FOREVER,
 		   new PsmResponse(V3Events.msgRepair,
 				   new PsmMethodMsgAction(actionClass,
 							  "handleReceivedRepair")),

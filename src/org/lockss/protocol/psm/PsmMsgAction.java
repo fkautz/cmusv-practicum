@@ -38,8 +38,8 @@ import java.util.*;
  */
 public abstract class PsmMsgAction extends PsmAction {
   /** Calls {@link #runMsg} */
-  public final PsmEvent run(PsmEvent event, PsmInterp interp) {
-    return runMsg((PsmMsgEvent)event, interp);
+  public final PsmEvent run(PsmEvent triggerEvent, PsmInterp interp) {
+    return runMsg((PsmMsgEvent)triggerEvent, interp);
   }
 
   /** Concrete subclasses should implement this method to process the
@@ -50,5 +50,6 @@ public abstract class PsmMsgAction extends PsmAction {
    * user object.
    * @return the next event
    */
-  protected abstract PsmEvent runMsg(PsmMsgEvent event, PsmInterp interp);
+  protected abstract PsmEvent runMsg(PsmMsgEvent triggerEvent,
+				     PsmInterp interp);
 }

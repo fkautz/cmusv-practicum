@@ -32,40 +32,20 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.protocol.psm;
 
+import java.util.*;
+import org.lockss.util.*;
 import org.lockss.test.*;
 
+public class TestPsmAction extends LockssTestCase {
 
-public class TestPsmEvent extends LockssTestCase {
-
-  class MsgEventInvitation extends PsmMsgEvent {
+  public void testConst() {
+    PsmAction w = new MyAction();
+    assertFalse(w.isWaitAction());
   }
 
-  class MsgEventEngravedInvitation extends MsgEventInvitation {
-  }
-
-  class MsgEventVote extends PsmMsgEvent {
-  }
-
-  public void testUserVal() {
-    PsmEvent e = new PsmEvent();
-    assertEquals(0, e.getUserVal());
-    PsmEvent e2 = e.withUserVal(12345);
-    assertEquals(12345, e2.getUserVal());
-    assertNotSame(e, e2);
-    assertEquals(0, e.getUserVal());
-  }
-
-  public void testIsa() {
-    PsmEvent vote = new MsgEventVote();
-    PsmEvent invite = new MsgEventInvitation();
-    PsmEvent engraved = new MsgEventEngravedInvitation();
-    assertTrue(invite.isa(PsmEvents.Event));
-    assertTrue(invite.isa(PsmEvents.MsgEvent));
-    assertTrue(invite.isa(invite));
-    assertTrue(engraved.isa(invite));
-    assertTrue(engraved.isa(PsmEvents.MsgEvent));
-    assertFalse(invite.isa(engraved));
-    assertFalse(invite.isa(vote));
-    assertFalse(vote.isa(invite));
+  class MyAction extends PsmAction {
+    protected PsmEvent run(PsmEvent event, PsmInterp interp) {
+      return null;
+    }
   }
 }

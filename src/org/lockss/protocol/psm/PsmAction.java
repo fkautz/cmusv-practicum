@@ -39,11 +39,18 @@ import java.util.*;
  */
 public abstract class PsmAction {
   /** Perform the action, return the next event.
-   * @param event the event to which this action is running in response, or
-   * null if the action is a state entry action.
+   * @param event the event that caused this action to run.  On entry to a
+   * state, it's the event that caused the state transition.
    * @param interp the state interpreter, from which the action can get the
    * user object.
    * @return the next event
    */
-  protected abstract PsmEvent run(PsmEvent event, PsmInterp interp);
+  protected abstract PsmEvent run(PsmEvent triggerEvent, PsmInterp interp);
+
+  /** This is currently not reliable, as any action can return a
+   * PsmWaitEvent.
+   */
+  final boolean isWaitAction() {
+    return this instanceof PsmWait;
+  }
 }

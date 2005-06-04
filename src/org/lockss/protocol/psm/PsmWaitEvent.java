@@ -1,10 +1,10 @@
 /*
- * $Id$
+* $Id$
  */
 
 /*
 
-Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,43 +29,31 @@ be used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from Stanford University.
 
 */
-
 package org.lockss.protocol.psm;
 
-import org.lockss.test.*;
+import java.util.*;
+import org.lockss.protocol.*;
 
+/**
+ * Special event that causes interpreter to wait in the current state,
+ * optionally setting a timeout.
+ */
+public final class PsmWaitEvent extends PsmEvent {
+  public final static PsmWaitEvent FOREVER = new PsmWaitEvent();
 
-public class TestPsmEvent extends LockssTestCase {
+  private long timeout = 0;
 
-  class MsgEventInvitation extends PsmMsgEvent {
+  public PsmWaitEvent() {
+    super();
   }
 
-  class MsgEventEngravedInvitation extends MsgEventInvitation {
+  /** Create a wait event that will timeout in the specified time */
+  public PsmWaitEvent(long timeout) {
+    super();
+    this.timeout = timeout;
   }
 
-  class MsgEventVote extends PsmMsgEvent {
-  }
-
-  public void testUserVal() {
-    PsmEvent e = new PsmEvent();
-    assertEquals(0, e.getUserVal());
-    PsmEvent e2 = e.withUserVal(12345);
-    assertEquals(12345, e2.getUserVal());
-    assertNotSame(e, e2);
-    assertEquals(0, e.getUserVal());
-  }
-
-  public void testIsa() {
-    PsmEvent vote = new MsgEventVote();
-    PsmEvent invite = new MsgEventInvitation();
-    PsmEvent engraved = new MsgEventEngravedInvitation();
-    assertTrue(invite.isa(PsmEvents.Event));
-    assertTrue(invite.isa(PsmEvents.MsgEvent));
-    assertTrue(invite.isa(invite));
-    assertTrue(engraved.isa(invite));
-    assertTrue(engraved.isa(PsmEvents.MsgEvent));
-    assertFalse(invite.isa(engraved));
-    assertFalse(invite.isa(vote));
-    assertFalse(vote.isa(invite));
+  public long getTimeout() {
+    return timeout;
   }
 }
