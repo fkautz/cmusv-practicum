@@ -81,6 +81,8 @@ public class FuncCommons extends LockssTestCase {
       if (map.size() < lastSize) {
 	// Map is smaller than last time.  Some entries have been removed.
 	drop--;
+      } else if ((ii % 100) == 0) {
+	System.gc();
       }
       lastSize = map.size();
     }
