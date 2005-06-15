@@ -197,6 +197,15 @@ public class TestConfigManager extends LockssTestCase {
 		 config.get(FileTarget.PARAM_FILE));
   }
 
+  public void testGroup() throws Exception {
+    Properties props = new Properties();
+    ConfigurationUtil.setCurrentConfigFromProps(props);
+    assertEquals("nogroup", Configuration.getPlatformGroup());
+    props.put(ConfigManager.PARAM_DAEMON_GROUP, "foog");
+    ConfigurationUtil.setCurrentConfigFromProps(props);
+    assertEquals("foog", Configuration.getPlatformGroup());
+  }
+
   // platform access not set, ui and proxy access not set
   public void testPlatformAccess0() throws Exception {
     Properties props = new Properties();

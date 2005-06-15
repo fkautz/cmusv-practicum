@@ -109,15 +109,16 @@ public class FileConfigFile extends ConfigFile {
 	in = new FileInputStream(m_fileFile);
       } catch (FileNotFoundException ex) {
 	// Perfectly normal behavior for some local config files which
-	// may not exist.  Throw and let the ConfigCache worry about
-	// it, don't bother logging.
+	// may not exist.
 	m_IOException = ex;
+	m_loadError = ex.toString();
 	throw ex;
       } catch (IOException ex) {
 	// Other, unexpected IO exception.
 	log.warning("Unexpected exception trying to load " +
 		    "config file (" + m_fileUrl + "): " + ex);
 	m_IOException = ex;
+	m_loadError = ex.toString();
 	throw ex;
       }
 
@@ -127,7 +128,7 @@ public class FileConfigFile extends ConfigFile {
 	  m_lastModified = Long.toString(m_fileFile.lastModified());
 	  m_loadError = null;
 	} catch (Exception ex) {
-	  log.error("Unable to load configuration. " + ex);
+	  log.error("Unable to load configuration", ex);
 	  m_loadError = ex.getMessage();
 	} finally {
 	  in.close();

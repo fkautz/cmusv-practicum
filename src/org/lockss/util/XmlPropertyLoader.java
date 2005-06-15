@@ -88,19 +88,19 @@ public class XmlPropertyLoader {
   }
 
   public Version getDaemonVersion() {
-    return Configuration.getDaemonVersion();
+    return ConfigManager.getDaemonVersion();
   }
 
   public Version getPlatformVersion() {
-    return Configuration.getPlatformVersion();
+    return ConfigManager.getPlatformVersion();
   }
 
   public String getPlatformHostname() {
-    return Configuration.getPlatformHostname();
+    return ConfigManager.getPlatformHostname();
   }
 
   public String getPlatformGroup() {
-    return Configuration.getPlatformGroup();
+    return ConfigManager.getPlatformGroup();
   }
 
   /**
