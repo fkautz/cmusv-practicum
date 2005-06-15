@@ -975,7 +975,7 @@ public class PluginManager
       return info;
     } else {
       // Error -- this plugin was not found.
-      log.error(pluginName + " could not be loaded.", new Throwable());
+      log.error(pluginName + " could not be loaded.");
       return null;
     }
   }
