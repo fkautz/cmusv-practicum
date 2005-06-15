@@ -52,7 +52,6 @@ public class ConfigDump {
     String groupName = null;
     String outputFile = null;
     String hostName = null;
-    boolean includeTitles = false;
     boolean xmlHack = false;
 
     if (argv.length == 0) {
@@ -108,6 +107,10 @@ public class ConfigDump {
     MockLockssDaemon daemon = new MockLockssDaemon();
     ConfigManager mgr = ConfigManager.makeConfigManager();
     Configuration config = mgr.readConfig(configUrls, groupName);
+    if (config == null) {
+      System.err.println("Couldn't load config");
+      System.exit(1);
+    }
     SortedSet keys = new TreeSet(config.keySet());
     for (Iterator iter = keys.iterator(); iter.hasNext(); ) {
       String key = (String)iter.next();
