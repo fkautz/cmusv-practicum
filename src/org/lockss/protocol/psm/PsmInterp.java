@@ -174,6 +174,10 @@ public class PsmInterp {
     if (event == null) {
       throw new PsmException.NullEvent("Action: " + action + " returned null");
     } else if (event instanceof PsmWaitEvent) {
+      if (!action.isWaitAction()) {
+	throw new PsmException.IllegalEvent("Non-wait action: " + action +
+					    " returned wait event: " + event);
+      }
       handleWait((PsmWaitEvent)event);
     } else {
       handleEvent1(event, eventCtr);

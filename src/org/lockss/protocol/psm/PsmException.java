@@ -129,4 +129,12 @@ public class PsmException extends RuntimeException {
     }
   }
 
+  /** An illegal event was signalled.  <i>Eg</i>, a PsmWaitEvent was
+   * returned by a non-wait action */
+  public static class IllegalEvent extends PsmException {
+    public IllegalEvent(String msg) {
+      super(msg);
+    }
+  }
+
 }
