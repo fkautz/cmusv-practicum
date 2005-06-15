@@ -184,9 +184,9 @@ public abstract class LockssApp {
   /** Return a string describing the version of the app and platform */
   public String getVersionInfo() {
     String vApp = BuildInfo.getBuildInfoString();
-    String vPlatform = Configuration.getParam(PARAM_PLATFORM_VERSION);
-    if (vPlatform != null) {
-      vApp = vApp + ", CD " + vPlatform;
+    PlatformVersion plat = Configuration.getPlatformVersion();
+    if (plat != null) {
+      vApp = vApp + ", " + plat.displayString();
     }
     return vApp;
   }
