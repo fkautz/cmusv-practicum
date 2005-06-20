@@ -403,7 +403,7 @@ public class PollManager
    * @throws ProtocolException if message opcode is unknown
    */
   BasePoll makePoll(LcapMessage msg) throws ProtocolException {
-    theLog.debug("Got message: " + msg);
+    theLog.debug2("Got message: " + msg);
     BasePoll ret_poll = null;
     PollSpec spec = null;
 
@@ -439,7 +439,7 @@ public class PollManager
     CachedUrlSet cus = spec.getCachedUrlSet();
     // check for presence of item in the cache
     if (cus == null) {
-      theLog.debug("Ignoring poll request, don't have AU: " + spec.getAuId());
+      theLog.debug2("Ignoring poll request, don't have AU: " + spec.getAuId());
       return null;
     }
     ArchivalUnit au = cus.getArchivalUnit();
