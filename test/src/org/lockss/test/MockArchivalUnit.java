@@ -86,7 +86,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   }
 
   public Collection getUrlStems() {
-    throw new UnsupportedOperationException("Not implemented");
+    return null;
   }
 
   public CachedUrlSet getAuCachedUrlSet() {

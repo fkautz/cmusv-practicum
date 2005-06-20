@@ -134,13 +134,17 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
   public ArchivalUnit createAu(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
     log.debug("createAu(" + auConfig + ")");
-    MockArchivalUnit au = new MockArchivalUnit();
+    MockArchivalUnit au = newMockArchivalUnit();
     au.setConfiguration(auConfig);
     au.setPlugin(this);
     return au;
   }
 
   // MockPlugin methods, not part of Plugin interface
+
+  protected MockArchivalUnit newMockArchivalUnit() {
+    return new MockArchivalUnit();
+  }
 
   public int getInitCtr() {
     return initCtr;
