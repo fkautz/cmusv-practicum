@@ -44,18 +44,14 @@ public class V3Events {
   public static class RepairNeeded extends PsmEvent {}
   public static class RepairNotNeeded extends PsmEvent{}
 
-  public static class PollProof extends PsmMsgEvent {
-  }
-  public static class RepairRequest extends PsmMsgEvent {
-  }
-  public static class Repair extends PsmMsgEvent {
-  }
-  public static class Receipt extends PsmMsgEvent {
-  }
-  public static class PollAck extends PsmMsgEvent {
-  }
-  public static class Vote extends PsmMsgEvent {
-  }
+  // Each msg event here probably wants a corresponsing instance below, and
+  // an entry in msgEvents mapping opcode to instance
+  public static class PollProof extends PsmMsgEvent {}
+  public static class RepairRequest extends PsmMsgEvent {}
+  public static class Repair extends PsmMsgEvent {}
+  public static class Receipt extends PsmMsgEvent {}
+  public static class PollAck extends PsmMsgEvent {}
+  public static class Vote extends PsmMsgEvent {}
 
   // Instances
   public static PsmEvent evtElse = PsmEvents.Else;
