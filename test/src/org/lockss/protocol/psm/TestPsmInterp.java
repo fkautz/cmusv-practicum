@@ -70,22 +70,15 @@ public class TestPsmInterp extends LockssTestCase {
   private static PsmEvent MsgOk = new MsgOk();
   private static PsmEvent MsgDone = new MsgDone();
 
-  private static PsmMsgEvent RcvMsgA = new RcvMsgA();
-  private static PsmMsgEvent RcvMsgA1 = new RcvMsgA1();
-  private static PsmMsgEvent RcvMsgB = new RcvMsgB();
-  private static PsmMsgEvent RcvMsgC = new RcvMsgC();
-
-  // Store message instance into message events
+  // messages to go into message events
   private static LcapMessage lmA = makeMsg("msgA");
   private static LcapMessage lmB = makeMsg("msgB");
   private static LcapMessage lmC = makeMsg("msgC");
 
-  static {
-    RcvMsgA.setMessage(lmA);
-    RcvMsgA1.setMessage(lmA);
-    RcvMsgB.setMessage(lmB);
-    RcvMsgC.setMessage(lmC);
-  }
+  private static PsmMsgEvent RcvMsgA = new RcvMsgA().withMessage(lmA);
+  private static PsmMsgEvent RcvMsgA1 = new RcvMsgA1().withMessage(lmA);
+  private static PsmMsgEvent RcvMsgB = new RcvMsgB().withMessage(lmB);
+  private static PsmMsgEvent RcvMsgC = new RcvMsgC().withMessage(lmC);
 
   public void testNullConstructorArgs() {
     PsmState[] states = {
