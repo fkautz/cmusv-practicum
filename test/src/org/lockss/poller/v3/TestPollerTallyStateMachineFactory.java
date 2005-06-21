@@ -70,10 +70,11 @@ public class TestPollerTallyStateMachineFactory extends LockssTestCase {
     this.id = theIdMgr.stringToPeerIdentity("127.0.0.1");
 
     this.msgRepair =
-      new V3Events.Repair(new V3LcapMessage(V3LcapMessage.MSG_REPAIR_REP, this.id,
-					    "http://www.test.com/",
-					    123456789, 987654321,
-					    ByteArray.makeRandomBytes(20)));
+      V3Events.fromMessage(new V3LcapMessage(V3LcapMessage.MSG_REPAIR_REP,
+					     this.id,
+					     "http://www.test.com/",
+					     123456789, 987654321,
+					     ByteArray.makeRandomBytes(20)));
 
     this.msgNoOp = new PsmMsgEvent(V3LcapMessage.makeNoOpMsg(this.id));
 
