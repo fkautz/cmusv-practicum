@@ -224,7 +224,7 @@ public class ParamDoclet {
   }
 
   /**
-   * Cheesily use reflection to obtain the default value.p
+   * Cheesily use reflection to obtain the default value.
    */
   public static String getDefaultValue(FieldDoc field, RootDoc root) {
     String defaultVal = null;
@@ -244,11 +244,18 @@ public class ParamDoclet {
       } else if (boolean.class == cls) {
 	defaultVal = (new Boolean(fld.getBoolean(null))).toString();
       } else {
-	Object dval = fld.get(null);
-	defaultVal = (dval != null) ? dval.toString() : "(null)";
+	try {
+	  // This will throw NPE if the field isn't static; don't know how
+	  // to get initial value in that case
+	  Object dval = fld.get(null);
+	  defaultVal = (dval != null) ? dval.toString() : "(null)";
+	} catch (NullPointerException e) {
+	  defaultVal = "(unknown: non-static default)";
+	}
       }
     } catch (Exception e) {
-      root.printError(field.name() + ": " + e);
+      root.printError(field.position(), field.name() + ": " + e);
+      root.printError(StringUtil.stackTraceString(e));
     }
 
     return defaultVal;
