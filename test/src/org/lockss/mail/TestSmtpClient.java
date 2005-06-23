@@ -51,7 +51,7 @@ public class TestSmtpClient extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
-    ConfigurationUtil.setFromArgs(ConfigManager.PARAM_PLATFORM_HOSTNAME,
+    ConfigurationUtil.setFromArgs(ConfigManager.PARAM_PLATFORM_FQDN,
 				  "foohost");
     client = new MyMockSmtpClient("hostx");
     baos = new ByteArrayOutputStream(128);
