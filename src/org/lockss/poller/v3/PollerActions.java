@@ -127,11 +127,4 @@ public class PollerActions {
     // XXX: Implement.
     return V3Events.evtOk;
   }
-
-  /**
-   * Convenience method.
-   */
-  private static ParticipantState getVoterState(PsmInterp interp) {
-    return (ParticipantState)interp.getUserData();
-  }
 }

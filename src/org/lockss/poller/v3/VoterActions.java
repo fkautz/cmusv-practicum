@@ -113,8 +113,4 @@ public class VoterActions {
     // XXX: Implement.
     return V3Events.evtOk;
   }
-
-  private static ParticipantState getVoterState(PsmInterp interp) {
-    return (ParticipantState)interp.getUserData();
-  }
 }
