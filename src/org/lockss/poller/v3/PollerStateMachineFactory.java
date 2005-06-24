@@ -32,22 +32,20 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.poller.v3;
 
-import org.lockss.util.*;
-import org.lockss.protocol.*;
 import org.lockss.protocol.psm.*;
 
-public class PollerTallyStateMachineFactory {
+public class PollerStateMachineFactory {
 
   /**
-   * Obtain a PsmMachine for the PollerTally state table.
+   * Obtain a PsmMachine for the Poller state table.
    *
-   * @return A PsmMachine representing the PollerTally
+   * @return A PsmMachine representing the Poller
    *         state table.
    * @param actionClass A class containing static handler methods
    *                    for the state machine to call.
    */
   public static PsmMachine getMachine(Class actionClass) {
-    return new PsmMachine("PollerTally",
+    return new PsmMachine("Poller",
 			  makeStates(actionClass),
 			  "Initialize");
   }
@@ -56,22 +54,58 @@ public class PollerTallyStateMachineFactory {
    * Mapping of states to response handlers.
    */
   private static PsmState[] makeStates(Class actionClass) {
-    /**
-     * Mapping of states to response handlers.
-     */
     PsmState[] states = {
       new PsmState("Initialize",
 		   new PsmMethodAction(actionClass, "handleInitialize"),
-		   new PsmResponse(V3Events.evtOk, "VerifyVoteEffort"),
+		   new PsmResponse(V3Events.evtOk, "ProveIntroEffort"),
 		   new PsmResponse(V3Events.evtElse, "Error")),
-      new PsmState("VerifyVoteEffort",
-		   new PsmMethodAction(actionClass, "handleVerifyVoteEffort"),
-		   new PsmResponse(V3Events.evtOk, "Tally"),
+      new PsmState("ProveIntroEffort",
+		   new PsmMethodAction(actionClass, "handleProveIntroEffort"),
+		   new PsmResponse(V3Events.evtOk, "SendPoll"),
 		   new PsmResponse(V3Events.evtElse, "Error")),
-      new PsmState("Tally",
-		   new PsmMethodAction(actionClass, "handleTally"),
-		   new PsmResponse(V3Events.evtRepairNeeded, "ProveRepairEffort"),
-		   new PsmResponse(V3Events.evtRepairNotNeeded, "SendReceipt"),
+      new PsmState("SendPoll",
+		   new PsmMethodAction(actionClass, "handleSendPoll"),
+		   new PsmResponse(V3Events.evtOk, "WaitPollAck"),
+		   new PsmResponse(V3Events.evtElse, "Error")),
+      new PsmState("WaitPollAck", PsmWait.FOREVER,
+		   new PsmResponse(V3Events.msgPollAck,
+				   new PsmMethodMsgAction(actionClass,
+							  "handleReceivePollAck")),
+		   new PsmResponse(V3Events.evtOk, "VerifyPollAckEffort"),
+		   new PsmResponse(V3Events.evtElse, "Error")),
+      new PsmState("VerifyPollAckEffort",
+		   new PsmMethodAction(actionClass, "handleVerifyPollAckEffort"),
+		   new PsmResponse(V3Events.evtOk, "ProveRemainingEffort"),
+		   new PsmResponse(V3Events.evtElse, "Error")),
+      new PsmState("ProveRemainingEffort",
+		   new PsmMethodAction(actionClass, "handleProveRemainingEffort"),
+		   new PsmResponse(V3Events.evtOk, "SendPollProof"),
+		   new PsmResponse(V3Events.evtElse, "Error")),
+      new PsmState("SendPollProof",
+		   new PsmMethodAction(actionClass, "handleSendPollProof"),
+		   new PsmResponse(V3Events.evtOk, "WaitNominate"),
+		   new PsmResponse(V3Events.evtElse, "Error")),
+      new PsmState("WaitNominate", PsmWait.FOREVER,
+		   new PsmResponse(V3Events.msgNominate,
+				   new PsmMethodMsgAction(actionClass,
+							  "handleReceiveNominate")),
+		   new PsmResponse(V3Events.evtOk, "SendVoteRequest"),
+		   new PsmResponse(V3Events.evtElse, "Error")),
+      new PsmState("SendVoteRequest",
+		   new PsmMethodAction(actionClass, "handleSendVoteRequest"),
+		   new PsmResponse(V3Events.evtOk, "WaitVote"),
+		   new PsmResponse(V3Events.evtElse, "Error")), 
+      new PsmState("WaitVote", PsmWait.FOREVER,
+		   new PsmResponse(V3Events.msgVote,
+				   new PsmMethodMsgAction(actionClass,
+							  "handleReceiveVote")),
+		   new PsmResponse(V3Events.evtOk, "TallyVote"),
+		   new PsmResponse(V3Events.evtElse, "Error")),
+      new PsmState("TallyVote",
+		   new PsmMethodAction(actionClass, "handleTallyVote"),
+		   new PsmResponse(V3Events.evtVoteIncomplete, "SendVoteRequest"),
+		   new PsmResponse(V3Events.evtVoteComplete, "SendReceipt"),
+		   new PsmResponse(V3Events.evtNeedRepair, "ProveRepairEffort"),
 		   new PsmResponse(V3Events.evtElse, "Error")),
       new PsmState("ProveRepairEffort",
 		   new PsmMethodAction(actionClass, "handleProveRepairEffort"),
@@ -84,8 +118,12 @@ public class PollerTallyStateMachineFactory {
       new PsmState("WaitRepair", PsmWait.FOREVER,
 		   new PsmResponse(V3Events.msgRepair,
 				   new PsmMethodMsgAction(actionClass,
-							  "handleReceivedRepair")),
-		   new PsmResponse(V3Events.evtRepairOk, "SendReceipt"),
+							  "handleReceiveRepair")),
+		   new PsmResponse(V3Events.evtOk, "ProcessRepair"),
+		   new PsmResponse(V3Events.evtElse, "Error")),
+      new PsmState("ProcessRepair",
+		   new PsmMethodAction(actionClass, "handleProcessRepair"),
+		   new PsmResponse(V3Events.evtOk, "TallyVote"),
 		   new PsmResponse(V3Events.evtElse, "Error")),
       new PsmState("SendReceipt",
 		   new PsmMethodAction(actionClass, "handleSendReceipt"),
@@ -96,7 +134,7 @@ public class PollerTallyStateMachineFactory {
 		   new PsmResponse(V3Events.evtOk, "Finalize")),
       new PsmState("Finalize")
     };
+
     return states;
   }
-
 }
