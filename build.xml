@@ -1042,8 +1042,11 @@ java -classpath &quot;${tmp.ptool.clspth.unix}&quot; org.lockss.devtools.plugind
   </target>
 
   <!-- ==================================================================== -->
-  <target name="javadoc" depends="prepare-javadoc,jar-tests,-load-build-info,-param-docs-if-1.4,dot"
+  <target name="javadoc" depends="-do-javadoc,dot"
    description="Build the LOCKSS javadoc">
+  </target>
+
+  <target name="-do-javadoc" depends="prepare-javadoc,jar-tests,-load-build-info,-param-docs-if-1.4">
     <property name="javadoc.header"
               value="Built ${build.timestamp} on ${build.host}" />
     <!-- Write the text param doc into the doc tree -->
