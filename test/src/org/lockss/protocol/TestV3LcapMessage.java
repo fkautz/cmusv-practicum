@@ -279,6 +279,9 @@ public class TestV3LcapMessage extends LockssTestCase {
     assertEquals(a.getChallenge(), b.getChallenge());
     assertEquals(a.getPluginVersion(), b.getPluginVersion());
     assertEquals(a.getHashAlgorithm(), b.getHashAlgorithm());
+    assertEquals(a.isVoteComplete(), b.isVoteComplete());
+    assertEquals(a.getLastVoteBlockURL(), b.getLastVoteBlockURL());
+    assertIsomorphic(a.getNominees(), b.getNominees());
     List aVoteBlocks = ListUtil.fromIterator(a.getVoteBlockIterator());
     List bVoteBlocks = ListUtil.fromIterator(b.getVoteBlockIterator());
     assertTrue(aVoteBlocks.equals(bVoteBlocks));
