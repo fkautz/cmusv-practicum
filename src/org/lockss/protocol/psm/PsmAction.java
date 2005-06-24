@@ -39,8 +39,8 @@ import java.util.*;
  */
 public abstract class PsmAction {
   /** Perform the action, return the next event.
-   * @param event the event that caused this action to run.  On entry to a
-   * state, it's the event that caused the state transition.
+   * @param triggerEvent the event that caused this action to run.  On
+   * entry to a state, it's the event that caused the state transition.
    * @param interp the state interpreter, from which the action can get the
    * user object.
    * @return the next event

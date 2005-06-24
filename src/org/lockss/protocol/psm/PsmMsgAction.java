@@ -44,8 +44,8 @@ public abstract class PsmMsgAction extends PsmAction {
 
   /** Concrete subclasses should implement this method to process the
    * message event.  The message is event.getMessage()
-   * @param event the message event to which this action is running in
-   * response.
+   * @param triggerEvent the message event to which this action is running
+   * in response.
    * @param interp the state interpreter, from which the action can get the
    * user object.
    * @return the next event
