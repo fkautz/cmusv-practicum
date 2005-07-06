@@ -505,10 +505,11 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   abstract protected String makeName();
 
   /**
-   * Simplified implementation which returns true if a crawl has never
-   * been done, otherwise false
+   * Returns true if there has been no treewalk within the last
+   * newContentCrawlIntv
+   *
    * @param aus the {@link AuState}
-   * @return true iff no crawl done
+   * @return true iff no crawl has happened in the last newContentCrawlIntv
    */
   public boolean shouldCrawlForNewContent(AuState aus) {
     long timeDiff = TimeBase.msSince(aus.getLastCrawlTime());
