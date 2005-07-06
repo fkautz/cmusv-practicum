@@ -311,6 +311,9 @@ public class GoslingHtmlParser implements ContentParser {
   }
 
 
+  /**
+   * Method overridden in some sub classes, so change with care
+   */
   protected String extractLinkFromTag(StringBuffer link) {
     String returnStr = null;
     switch (link.charAt(0)) {
