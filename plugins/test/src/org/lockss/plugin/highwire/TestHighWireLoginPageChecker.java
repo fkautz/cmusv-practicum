@@ -78,7 +78,6 @@ public class TestHighWireLoginPageChecker extends LockssTestCase {
     MyStringReader reader = new MyStringReader(loginPageText);
 
     assertTrue(checker.isLoginPage(props, reader));
-    assertTrue(reader.readWasCalled());
   }
 
   public void testHasIsLoginPageDiffCase() throws IOException {
@@ -89,7 +88,6 @@ public class TestHighWireLoginPageChecker extends LockssTestCase {
     MyStringReader reader = new MyStringReader(loginPageText);
 
     assertTrue(checker.isLoginPage(props, reader));
-    assertTrue(reader.readWasCalled());
   }
 
 
@@ -101,7 +99,6 @@ public class TestHighWireLoginPageChecker extends LockssTestCase {
     MyStringReader reader = new MyStringReader(notLoginPageText);
 
     assertFalse(checker.isLoginPage(props, reader));
-    assertTrue(reader.readWasCalled());
   }
 
   public void testHasDifferenCacheControlHeader() throws IOException {
@@ -110,6 +107,18 @@ public class TestHighWireLoginPageChecker extends LockssTestCase {
     props.put("Cache-Control", "blah");
 
     MyStringReader reader = new MyStringReader(notLoginPageText);
+
+    assertFalse(checker.isLoginPage(props, reader));
+    assertFalse(reader.readWasCalled());
+  }
+
+  public void testHasDifferenCacheControlHeaderButLoginPage()
+      throws IOException {
+    HighWireLoginPageChecker checker = new HighWireLoginPageChecker();
+    CIProperties props = new CIProperties();
+    props.put("Cache-Control", "blah");
+
+    MyStringReader reader = new MyStringReader(loginPageText);
 
     assertFalse(checker.isLoginPage(props, reader));
     assertFalse(reader.readWasCalled());
