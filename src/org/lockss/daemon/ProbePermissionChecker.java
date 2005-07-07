@@ -46,11 +46,11 @@ import org.lockss.crawler.*;
  */
 
 public class ProbePermissionChecker implements PermissionChecker {
+//   static final int PERM_BUFFER_MAX = 16 * 1024;
+
+
   String probeUrl = null; 
   LoginPageChecker checker;
-
-  static final int PERM_BUFFER_MAX = 16 * 1024;
-
 
   private static Logger logger = Logger.getLogger("ProbePermissionChecker");
 
@@ -81,7 +81,7 @@ public class ProbePermissionChecker implements PermissionChecker {
       logger.debug3("Found probeUrl "+probeUrl);
       try {
 	UrlCacher uc = au.makeUrlCacher(probeUrl);
-	InputStream is = new BufferedInputStream(uc.getUncachedInputStream());
+ 	InputStream is = new BufferedInputStream(uc.getUncachedInputStream());
 	Properties props = uc.getUncachedProperties();
 
 //         is.mark(PERM_BUFFER_MAX);
@@ -115,7 +115,7 @@ public class ProbePermissionChecker implements PermissionChecker {
 	  if (beginsWithTag(link, LINKTAG)) {
 	    returnStr = getAttributeValue(HREF, link);
 	    String probeStr = getAttributeValue(LOCKSSPROBE, link);
-	    if (probeStr == null || !"true".equalsIgnoreCase(probeStr)) {
+	    if (!"true".equalsIgnoreCase(probeStr)) {
 	      returnStr = null;
 	    }
 	  }
