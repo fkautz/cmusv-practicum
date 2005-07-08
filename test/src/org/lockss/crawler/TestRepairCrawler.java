@@ -182,6 +182,44 @@ public class TestRepairCrawler extends LockssTestCase {
     wdog.assertPoked(3);
   }
 
+  public void testRepairCrawlObeysCrawlSepc() {
+    String repairUrl1 = "http://www.example.com/url1.html";
+    String repairUrl2 = "http://www.example.com/url2.html";
+
+    mau.addUrl(repairUrl1);
+    mau.addUrl(repairUrl2);
+
+    crawlRule.addUrlToCrawl(repairUrl1);
+
+    List repairUrls = ListUtil.list(repairUrl1, repairUrl2);
+    spec = new SpiderCrawlSpec(startUrls, startUrls, crawlRule, 1);
+    crawler = new RepairCrawler(mau, spec, aus, repairUrls, 0);
+
+    crawler.doCrawl();
+
+    Set cachedUrls = cus.getForceCachedUrls();
+    assertSameElements(ListUtil.list(repairUrl1), cachedUrls);
+  }
+
+  public void testRepairCrawlObeysCrawlSepcV1Hack() {
+    String repairUrl1 = "http://www.example.com/2005";
+    String repairUrl2 = "http://www.example.com/2005/";
+
+    mau.addUrl(repairUrl1);
+    mau.addUrl(repairUrl2);
+
+    crawlRule.addUrlToCrawl(repairUrl2);
+
+    List repairUrls = ListUtil.list(repairUrl1);
+    spec = new SpiderCrawlSpec(startUrls, startUrls, crawlRule, 1);
+    crawler = new RepairCrawler(mau, spec, aus, repairUrls, 0);
+
+    crawler.doCrawl();
+
+    Set cachedUrls = cus.getForceCachedUrls();
+    assertSameElements(ListUtil.list(repairUrl2), cachedUrls);
+  }
+
   public void testRepairCrawlDoesntFollowLinks() {
     String repairUrl1 = "http://www.example.com/forcecache.html";
     String repairUrl2 = "http://www.example.com/link3.html";

@@ -163,6 +163,14 @@ public class RepairCrawler extends CrawlerImpl {
 	// break from while loop
 	break;
       }
+      if (!spec.isIncluded(url)) {
+	if (url.charAt(url.length()-1) != '/') {
+	  String newUrl = url+'/';
+	  if (spec.isIncluded(newUrl)) {
+	    url = newUrl;
+	  }
+	}
+      }
       if (spec.isIncluded(url)) {
 	String crawlRes = null;
 	try {
