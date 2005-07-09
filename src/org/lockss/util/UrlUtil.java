@@ -284,6 +284,11 @@ public class UrlUtil {
     return StringUtil.startsWithIgnoreCase(url, "jar:");
   }
 
+  /** Return a jar file URL pointing to the entry in the jar */
+  public static String makeJarFileUrl(String jarPath, String entryName) {
+    return "jar:file://" + jarPath + "!/" + entryName;
+  }
+
   /**
    * @param urlStr string representation of a url
    * @return Prefix of url including protocol and host (and port).  Ends
