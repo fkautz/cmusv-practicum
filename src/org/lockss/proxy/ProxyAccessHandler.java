@@ -93,7 +93,9 @@ public class ProxyAccessHandler extends IpAccessHandler {
 
 	org.mortbay.util.URI uri = request.getURI();
 	String urlString = uri.toString();
-	CachedUrl cu = pluginMgr.findMostRecentCachedUrl(urlString);
+	// XXX this should check all AUs containing URL for *any* with
+	// legal access, then should pass cuurl to next handler
+	CachedUrl cu = pluginMgr.findOneCachedUrl(urlString);
 	if (log.isDebug2()) {
 	  log.debug2("cu: " + cu);
 	}
@@ -107,9 +109,12 @@ public class ProxyAccessHandler extends IpAccessHandler {
 	Map agreeMap = idMgr.getAgreed(au);
 	boolean didAgree = agreeMap != null && agreeMap.containsKey(ip);
 	if (didAgree) {
-	  // allow the request to be processed by the ProxyHandler
+	  // Allow the request to be processed by the ProxyHandler.
+	  // Do not call cu.release(), as the input stream will likely be
+	  // used by ProxyHandler
 	  return;
 	} else {
+	  AuUtil.safeRelease(cu);
 	  if (isLogForbidden()) {
 	    log.info("Not serving repair of " + cu + " to " + ip +
 		     " because it never agreed with us.");
