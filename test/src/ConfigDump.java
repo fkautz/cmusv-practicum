@@ -132,8 +132,10 @@ public class ConfigDump {
   static String createLocalConfig(String hostName) {
     String result = null;
     try {
-      File localTxt = new File(FileTestUtil.createTempDir("configdump", null),
-			       "local.txt");
+      File tmpdir = FileTestUtil.createTempDir("configdump", null);
+      tmpdir.deleteOnExit();
+      File localTxt = new File(tmpdir, "local.txt");
+      localTxt.deleteOnExit();
       Properties localProps = new Properties();
       localProps.setProperty(ConfigManager.PARAM_PLATFORM_FQDN,
 			     hostName);
