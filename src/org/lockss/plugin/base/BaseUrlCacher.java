@@ -500,10 +500,10 @@ public class BaseUrlCacher implements UrlCacher {
       }
       conn.execute();
     } catch (MalformedURLException ex) {
-      logger.warning("openConnection", ex);
+      logger.debug2("openConnection", ex);
       throw resultMap.getMalformedURLException(ex);
     } catch (IOException ex) {
-      logger.warning("openConnection", ex);
+      logger.debug2("openConnection", ex);
       throw resultMap.getHostException(ex);
     } catch (RuntimeException e) {
       logger.warning("openConnection: unexpected exception", e);
