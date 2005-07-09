@@ -169,8 +169,8 @@ public abstract class Configuration {
    * will overwrite any existing properties with the properties from
    * the Config File.
    */
-  void load(ConfigFile file) {
-    copyConfigTreeFrom(file.getConfiguration());
+  void load(ConfigFile cf) throws IOException {
+    copyConfigTreeFrom(cf.getConfiguration());
   }
 
   /** Return the first ConfigFile that got an error */
@@ -178,11 +178,10 @@ public abstract class Configuration {
     ConfigCache configCache = getConfigCache();
     for (Iterator iter = urls.iterator(); iter.hasNext();) {
       String url = (String)iter.next();
-      ConfigFile cf = null;
-      try {
-	cf = configCache.justGet(url);
-      } catch (IOException ignore) {
+      if (StringUtil.endsWithIgnoreCase(url, ".opt")) {
+	continue;
       }
+      ConfigFile cf = configCache.get(url);
       if (cf != null && !cf.isLoaded()) {
 	return cf;
       }
