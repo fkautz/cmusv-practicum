@@ -112,4 +112,10 @@ public class AuUtil {
     return true;
   }
 
+  /** Call release() on the CachedUrl, ignoring any errors */
+  public static void safeRelease(CachedUrl cu) {
+    try {
+      cu.release();
+    } catch (Exception e) {}
+  }
 }
