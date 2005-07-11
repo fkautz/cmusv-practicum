@@ -107,8 +107,10 @@ public class ProxyAccessHandler extends IpAccessHandler {
 	ArchivalUnit au = cu.getArchivalUnit();
 	String ip = request.getRemoteAddr();
 	Map agreeMap = idMgr.getAgreed(au);
-	boolean didAgree = agreeMap != null && agreeMap.containsKey(ip);
-	if (didAgree) {
+// 	if (agreeMap != null
+// 	    && agreeMap.containsKey(ip)) {
+ 	if (agreeMap != null
+ 	    && agreeMap.containsKey(idMgr.stringToPeerIdentity(ip))) {
 	  // Allow the request to be processed by the ProxyHandler.
 	  // Do not call cu.release(), as the input stream will likely be
 	  // used by ProxyHandler
@@ -118,6 +120,7 @@ public class ProxyAccessHandler extends IpAccessHandler {
 	  if (isLogForbidden()) {
 	    log.info("Not serving repair of " + cu + " to " + ip +
 		     " because it never agreed with us.");
+	    log.info("agreeMap: "+agreeMap);
 	  }
 	  response.sendError(HttpResponse.__403_Forbidden);
 	  request.setHandled(true);
