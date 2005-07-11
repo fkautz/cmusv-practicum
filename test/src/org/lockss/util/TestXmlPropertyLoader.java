@@ -295,9 +295,15 @@ public class TestXmlPropertyLoader extends LockssTestCase {
     assertNull(m_props.get("org.lockss.test.t"));
   }
 
+  public void testHostMembership() throws Exception {
+    assertNull(m_props.get("org.lockss.test.platformName.linux"));
+    assertEquals("openbsd", m_props.get("org.lockss.test.platformName.openbsd"));
+  }
+
   public void testThenElse() {
     assertEquals("foo", m_props.get("org.lockss.test.u"));
     assertEquals("bar", m_props.get("org.lockss.test.v"));
+    assertEquals("openbsd", m_props.get("org.lockss.test.ifelse.platformName"));
   }
 
   public void testConditionalCombo() throws Exception {
@@ -387,7 +393,7 @@ public class TestXmlPropertyLoader extends LockssTestCase {
    * Set default values for testing conditionals.
    */
   private void setDefaultVersions() {
-    ((MockXmlPropertyLoader)m_xmlPropertyLoader).setVersions("1.2.8", "135", "testhost", "beta");
+    ((MockXmlPropertyLoader)m_xmlPropertyLoader).setVersions("1.2.8", "OpenBSD CD-135", "testhost", "beta");
   }
 
   /**
