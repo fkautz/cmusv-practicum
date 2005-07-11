@@ -300,6 +300,13 @@ public class TestXmlPropertyLoader extends LockssTestCase {
     assertEquals("openbsd", m_props.get("org.lockss.test.platformName.openbsd"));
   }
 
+  public void testUnknownContionalsAreFalse() throws Exception {
+    assertNull(m_props.get("org.lockss.test.unknown.a"));
+    assertEquals("bar", m_props.get("org.lockss.test.unknown.b"));
+    assertNull(m_props.get("org.lockss.test.unknown.c"));
+    assertNull(m_props.get("org.lockss.test.unknown.d"));
+  }
+
   public void testThenElse() {
     assertEquals("foo", m_props.get("org.lockss.test.u"));
     assertEquals("bar", m_props.get("org.lockss.test.v"));
