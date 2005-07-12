@@ -271,8 +271,12 @@ public abstract class CrawlerImpl implements Crawler, PermissionMapSource {
 
         }
       }
-    }
-    catch (Exception ex) {
+    } catch (CacheException.RepositoryException ex) {
+      logger.error("RepositoryException storing permission page", ex);
+      // XXX should be an alert here
+      crawl_ok = PermissionMap.FETCH_PERMISSION_FAILED;
+      err = Crawler.STATUS_REPO_ERR;
+    } catch (Exception ex) {
       logger.error("Exception reading permission page", ex);
       alertMgr.raiseAlert(Alert.auAlert(Alert.PERMISSION_PAGE_FETCH_ERROR, au).
                           setAttribute(Alert.ATTR_TEXT,
@@ -356,14 +360,8 @@ public abstract class CrawlerImpl implements Crawler, PermissionMapSource {
       } else {
         uc.storeContent(is, uc.getUncachedProperties());
       }
-
-    }
-    finally {
-      try {
-        is.close();
-      }
-      catch (IOException ignore) {
-      }
+    } finally {
+      IOUtil.safeClose(is);
     }
 
     return true;

@@ -61,6 +61,7 @@ public interface Crawler {
   public static final String STATUS_WINDOW_CLOSED = "Crawl window closed";
   public static final String STATUS_FETCH_ERROR = "Fetch error";
   public static final String STATUS_PUB_PERMISSION = "No permission from publisher";
+  public static final String STATUS_REPO_ERR = "Repository error";
   //public static final String STATUS_UNKNOWN = "Unknown";
 
   /**
