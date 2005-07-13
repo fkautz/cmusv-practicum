@@ -271,10 +271,14 @@ public abstract class V1Poll extends BasePoll {
     PeerIdentity id = vote.getVoterIdentity();
     int maxRep = idMgr.getMaxReputation();
     int rep = idMgr.getReputation(id);
-    if (log.isDebug3()) log.debug3(id + "'s rep  is " + rep);
     double verify;
 
     double weight = ((double)rep) / maxRep;
+    if (log.isDebug3()) {
+      log.debug3("Max reputation is "+maxRep);
+      log.debug3(id + "'s rep  is " + rep);
+      log.debug3("Weight is " + weight);
+    }
 
     if (isAgreeVote) {
       verify = (1.0 - weight) * m_agreeVer;
