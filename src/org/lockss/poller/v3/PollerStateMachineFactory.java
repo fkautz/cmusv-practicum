@@ -103,6 +103,8 @@ public class PollerStateMachineFactory {
 		   new PsmResponse(V3Events.evtElse, "Error")),
       new PsmState("TallyVote",
 		   new PsmMethodAction(actionClass, "handleTallyVote"),
+		   new PsmResponse(V3Events.evtWaitTallyComplete,
+				   PsmWait.FOREVER),
 		   new PsmResponse(V3Events.evtVoteIncomplete, "SendVoteRequest"),
 		   new PsmResponse(V3Events.evtVoteComplete, "SendReceipt"),
 		   new PsmResponse(V3Events.evtNeedRepair, "ProveRepairEffort"),

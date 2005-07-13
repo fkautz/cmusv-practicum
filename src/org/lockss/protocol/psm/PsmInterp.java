@@ -186,7 +186,7 @@ public class PsmInterp {
 
   private void enterState(PsmState newState, PsmEvent triggerEvent,
 			  int eventCtr) {
-    if (log.isDebug()) log.debug("Enter state: " + newState.getName());
+    if (log.isDebug2()) log.debug2("Enter state: " + newState.getName());
     eventMonitor(curState, triggerEvent, null, newState);
     curState = newState;
     PsmAction entryAction = newState.getEntryAction();
