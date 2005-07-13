@@ -101,6 +101,7 @@ public class TestV1Poll extends LockssTestCase {
 
     // if his reputation is 1000, never verify agreement,
     // verify disagreement 60% of time
+    idmgr.setMaxReputation(1000);
     idmgr.setReputation(peer1, 1000);
     assertEquals(0.0, poll.calcVerifyProb(vote, true), .01);
     assertEquals(.6, poll.calcVerifyProb(vote, false), .01);
