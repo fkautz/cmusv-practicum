@@ -262,7 +262,7 @@ public class TestRepairCrawler extends LockssTestCase {
   void setAgreeingPeers(int numPeers) throws MalformedIdentityKeyException {
     Map map = new HashMap();
     for (int ix = 0; ix < numPeers; ix++) {
-      PeerIdentity id = idm.stringToPeerIdentity("127.0.0."+ix);
+      MockPeerIdentity id = new MockPeerIdentity("127.0.0."+ix);
       map.put(id, new Long(10+ix));
     }
     idm.setAgeedForAu(mau, map);
