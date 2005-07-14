@@ -331,11 +331,12 @@ public class RepairCrawler extends CrawlerImpl {
     while ((it.hasNext()) && (iz < numCacheRetries) && !repaired ){
       PeerIdentity cacheId = null;
       try {
-	logger.debug("Trying repair "+iz+" of "+numCacheRetries);
 	cacheId = (PeerIdentity) it.next();
-	while (idm.isLocalIdentity(cacheId)) {
+	logger.debug3("Trying repair "+iz+" of "+numCacheRetries
+		      +" from "+cacheId);
+	if (idm.isLocalIdentity(cacheId)) {
 	  logger.debug("Got local peer identity, skipping");
-	  cacheId = (PeerIdentity) it.next();
+	  continue;
 	}
 	fetchFromCache(uc, cacheId);
 	repaired = true;
