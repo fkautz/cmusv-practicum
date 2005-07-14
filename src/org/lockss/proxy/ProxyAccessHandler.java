@@ -123,7 +123,7 @@ public class ProxyAccessHandler extends IpAccessHandler {
 	  if (isLogForbidden()) {
 	    log.info("Not serving repair of " + cu + " to " + ip +
 		     " because it never agreed with us.");
-	    log.info("agreeMap: "+agreeMap);
+	    log.debug3("agreeMap: "+agreeMap);
 	  }
 	  response.sendError(HttpResponse.__403_Forbidden);
 	  request.setHandled(true);
