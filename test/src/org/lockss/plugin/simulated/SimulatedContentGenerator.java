@@ -324,7 +324,7 @@ public class SimulatedContentGenerator {
    * Deletes the generated content tree.
    */
   public void deleteContentTree() {
-    FileTestUtil.delTree(new File(contentRoot));
+    FileUtil.delTree(new File(contentRoot));
   }
 /**
  * Generates a content tree using the current parameters.  Depth of 0 is

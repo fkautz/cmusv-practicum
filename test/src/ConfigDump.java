@@ -132,7 +132,7 @@ public class ConfigDump {
   static String createLocalConfig(String hostName) {
     String result = null;
     try {
-      File tmpdir = FileTestUtil.createTempDir("configdump", null);
+      File tmpdir = FileUtil.createTempDir("configdump", null);
       tmpdir.deleteOnExit();
       File localTxt = new File(tmpdir, "local.txt");
       localTxt.deleteOnExit();
