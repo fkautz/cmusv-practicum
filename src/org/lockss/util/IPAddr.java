@@ -77,6 +77,11 @@ public class IPAddr implements java.io.Serializable {
     return ina.isMulticastAddress();
   }
 
+  public boolean isLoopbackAddress() {
+    byte[] bytes = ina.getAddress();
+    return bytes[0] == 127 && bytes[1] == 0 && bytes[2] == 0 && bytes[3] != 0;
+  }
+
   public String getHostName() {
     return ina.getHostName();
   }
@@ -125,4 +130,11 @@ public class IPAddr implements java.io.Serializable {
     return new IPAddr(InetAddress.getLocalHost());
   }
 
+  public static boolean isLoopbackAddress(String addr) {
+    try {
+      return getByName(addr).isLoopbackAddress();
+    } catch (Exception e) {
+      return false;
+    }
+  }
 }
