@@ -50,6 +50,14 @@ public class TestPlatformInfo extends LockssTestCase {
     info = PlatformInfo.getInstance();
   }
 
+  public void testGetSystemTempDir() {
+    String javatmp = System.getProperty("java.io.tmpdir");
+    assertEquals(javatmp, PlatformInfo.getSystemTempDir());
+    String parmtmp = "/another/tmp/dir";
+    ConfigurationUtil.setFromArgs(PlatformInfo.PARAM_TMPDIR, parmtmp);
+    assertEquals(parmtmp, PlatformInfo.getSystemTempDir());
+  }
+
   public void testGetUnfilteredTcpPorts() throws Exception {
     assertEmpty(info.getUnfilteredTcpPorts());
     ConfigurationUtil.setFromArgs(PlatformInfo.PARAM_UNFILTERED_PORTS, "9909");
