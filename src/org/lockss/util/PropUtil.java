@@ -69,6 +69,18 @@ public class PropUtil {
     return props;
   }
 
+  public static Properties fromFile(File file) throws IOException {
+    Properties res = new Properties();
+    InputStream in = null;
+    try {
+      in = new BufferedInputStream(new FileInputStream(file));
+      res.load(in);
+    } finally {
+      IOUtil.safeClose(in);
+    }
+    return res;
+  }
+
   private static boolean isKeySame(String key, Properties p1, Properties p2) {
     Object o1 = p1.getProperty(key);
     Object o2 = p2.getProperty(key, noProp);

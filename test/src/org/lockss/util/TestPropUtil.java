@@ -123,6 +123,13 @@ public class TestPropUtil extends LockssTestCase {
     assertTrue(test2.toString(), PropUtil.equalProps(p1, test2));
   }
 
+  public void testFromFile() throws IOException {
+    File tmp = FileTestUtil.writeTempFile("test", "foo=bar\nx.y=z\n");
+    Properties exp = PropUtil.fromArgs("foo", "bar", "x.y", "z");
+    Properties props = PropUtil.fromFile(tmp);
+    assertEquals(exp, props);
+  }
+
   public void testDifferentKeys() {
     assertEquals(p1.keySet(), PropUtil.differentKeys(p1, null));
     assertEquals(p1.keySet(), PropUtil.differentKeys(null, p1));
