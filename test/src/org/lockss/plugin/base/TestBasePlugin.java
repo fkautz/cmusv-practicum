@@ -141,7 +141,7 @@ public class TestBasePlugin extends LockssTestCase {
       return name;
     }
 
-    public List getAuConfigDescrs() {
+    public List getLocalAuConfigDescrs() {
       return configDescrs;
     }
   }

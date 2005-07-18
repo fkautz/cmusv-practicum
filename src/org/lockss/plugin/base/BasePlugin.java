@@ -197,6 +197,19 @@ public abstract class BasePlugin
     pluginMgr.resetTitles();
   }
 
+  public List getAuConfigDescrs() {
+    List res = new ArrayList(getLocalAuConfigDescrs());
+    if (res.isEmpty()) {
+      // Don't add internal params if plugin has no params.  (testing)
+      return res;
+    }
+    res.add(ConfigParamDescr.AU_CLOSED);
+    res.add(ConfigParamDescr.PUB_DOWN);
+    return res;
+  }
+
+  abstract protected List getLocalAuConfigDescrs();
+
   /**
    * Find the ConfigParamDescr that this plugin uses for the specified key.
    * @return the element of {@link #getAuConfigDescrs()} whose key
