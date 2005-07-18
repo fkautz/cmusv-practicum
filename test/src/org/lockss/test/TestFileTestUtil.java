@@ -71,42 +71,6 @@ public class TestFileTestUtil extends LockssTestCase {
     assertEquals(testStr, res);
   }
 
-  public void testTempDir() throws IOException {
-    try {
-      File dir = FileTestUtil.createTempDir("pre", "suff", new File("/nosuchdir"));
-      fail("Shouldn't be able to create temp dir in /nosuchdir");
-    } catch (IOException e) {
-    }
-    File dir = FileTestUtil.createTempDir("pre", "suff");
-    assertTrue(dir.exists());
-    assertTrue(dir.isDirectory());
-    assertEquals(0, dir.listFiles().length);
-    File f = new File(dir, "foo");
-    assertFalse(f.exists());
-    assertTrue(f.createNewFile());
-    assertTrue(f.exists());
-    assertEquals(1, dir.listFiles().length);
-    assertEquals("foo", dir.listFiles()[0].getName());
-    assertTrue(f.delete());
-    assertEquals(0, dir.listFiles().length);
-    assertTrue(dir.delete());
-    assertFalse(dir.exists());
-  }
-
-  public void testDelTree() throws IOException {
-    File dir = FileTestUtil.createTempDir("deltree", null);
-    File d1 = new File(dir, "foo");
-    assertTrue(d1.mkdir());
-    File d2 = new File(d1, "bar");
-    assertTrue(d2.mkdir());
-    assertTrue(new File(dir, "f1").createNewFile());
-    assertTrue(new File(d1, "d1f1").createNewFile());
-    assertTrue(new File(d2, "d2f1").createNewFile());
-    assertFalse(dir.delete());
-    assertTrue(FileTestUtil.delTree(dir));
-    assertFalse(dir.exists());
-  }
-
   public void testEnumerateFilesNullFile() {
     try {
       FileTestUtil.enumerateFiles(null);
