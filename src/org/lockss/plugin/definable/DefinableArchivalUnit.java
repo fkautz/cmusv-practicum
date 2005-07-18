@@ -131,6 +131,14 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
       log.debug3("loading value for key: "+key);
 
       try {
+	if (!config.containsKey(key)) {
+	  if (descr.isDefinitional()) {
+	    throw new ConfigurationException("Missing required parameter: " +
+					     key);
+	  } else {
+	    continue;
+	  }
+	}
         Object val = descr.getValueOfType(config.get(key));
         paramMap.setMapElement(key, val);
         // we store years in two formats - short and long
@@ -145,6 +153,8 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
             paramMap.putString(key+AU_PATH_SUFFIX, url.getPath());
           }
         }
+      } catch (ConfigurationException ex) {
+	throw ex;
       } catch (Exception ex) {
         throw new ConfigurationException("Error configuring: " + key, ex);
       }
