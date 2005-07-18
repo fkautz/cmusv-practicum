@@ -512,13 +512,19 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
    * @return true iff no crawl has happened in the last newContentCrawlIntv
    */
   public boolean shouldCrawlForNewContent(AuState aus) {
+    if (AuUtil.isPubDown(this)) {
+      logger.debug2("Pub down: no new content crawl possible for "+aus);
+      return false;
+    }
     long timeDiff = TimeBase.msSince(aus.getLastCrawlTime());
     if (logger.isDebug2()) {
       logger.debug2("Deciding whether to do new content crawl for "+aus);
     }
     if (aus.getLastCrawlTime() == 0 || timeDiff > (newContentCrawlIntv)) {
+      logger.debug2("New content crawl needed for "+aus);
       return true;
     }
+    logger.debug2("No new content crawl needed for "+aus);
     return false;
   }
 

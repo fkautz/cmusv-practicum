@@ -413,6 +413,24 @@ public class TestBaseArchivalUnit extends LockssTestCase {
     TimeBase.setReal();
   }
 
+  public void testShouldCrawlForNewContent()
+      throws IOException, ArchivalUnit.ConfigurationException {
+    TimeBase.setSimulated(100);
+    MockAuState state;
+
+    state = new MockAuState(mbau, TimeBase.nowMs(), -1, -1, null);
+    assertFalse(mbau.shouldCrawlForNewContent(state));
+
+    TimeBase.step(BaseArchivalUnit.DEFAULT_NEW_CONTENT_CRAWL_INTERVAL + 1);
+    assertTrue(mbau.shouldCrawlForNewContent(state));
+
+    // mark publisher down; should then return false
+    Configuration conf =
+      ConfigurationUtil.fromArgs(ConfigParamDescr.PUB_DOWN.getKey(), "true",
+				 ConfigParamDescr.BASE_URL.getKey(), baseUrl);
+    mbau.setConfiguration(conf);
+    assertFalse(mbau.shouldCrawlForNewContent(state));
+  }
 
   public void testGetContentParserReturnsNullForNullMimeTupe() {
     assertNull(mbau.getContentParser(null));
