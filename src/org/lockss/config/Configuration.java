@@ -189,7 +189,7 @@ public abstract class Configuration {
     return null;
   }
 
-  abstract boolean store(OutputStream ostr, String header)
+  public abstract boolean store(OutputStream ostr, String header)
       throws IOException;
 
   /** Return a Configuration.Differences representing the set of keys whose

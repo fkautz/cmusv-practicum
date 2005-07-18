@@ -59,7 +59,7 @@ public class ConfigurationPropTreeImpl extends Configuration {
     return props;
   }
 
-  boolean store(OutputStream ostr, String header) throws IOException {
+  public boolean store(OutputStream ostr, String header) throws IOException {
     SortedProperties.fromProperties(props).store(ostr, header);
 //     props.store(ostr, header);
     return true;
