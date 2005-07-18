@@ -56,6 +56,7 @@ public class TestTitleSetInactiveAus extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
+    getMockLockssDaemon().setIdentityManager(new org.lockss.protocol.MockIdentityManager());
     pluginMgr = getMockLockssDaemon().getPluginManager();
     pluginMgr.startService();
     getMockLockssDaemon().getRemoteApi().startService();
