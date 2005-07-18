@@ -144,6 +144,12 @@ public abstract class ConfigFile {
 	  IOUtil.safeClose(in);
 	}
       }
+    } catch (FileNotFoundException ex) {
+      log.debug("Trying to load " +
+		  "config file (" + m_fileUrl + "): " + ex);
+      m_IOException = ex;
+      m_loadError = ex.toString();
+      throw ex;
     } catch (IOException ex) {
       log.warning("Unexpected exception trying to load " +
 		  "config file (" + m_fileUrl + "): " + ex);
