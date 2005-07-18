@@ -495,6 +495,14 @@ public class StringUtil {
     return fromReader(new FileReader(file));
   }
 
+  /* Write the string to the OutputStream */
+  public static void toOutputStream(OutputStream out, String s)
+      throws IOException {
+    Writer w = new OutputStreamWriter(out);
+    w.write(s);
+    w.flush();
+  }
+
   /**
    * Test whether a string is null or the empty string
    * @param s the string

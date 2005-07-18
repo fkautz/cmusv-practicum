@@ -294,6 +294,13 @@ public class TestStringUtil extends LockssTestCase {
     assertEquals(s, StringUtil.fromInputStream(new StringInputStream(s)));
   }
 
+  public void testToOutputStream() throws Exception {
+    String s = "asdfjsfd";
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    StringUtil.toOutputStream(baos, s);
+    assertEquals(s, baos.toString());
+  }
+
   public void testEqualStrings() {
     assertTrue(StringUtil.equalStrings(null, null));
     assertFalse(StringUtil.equalStrings("1", null));
