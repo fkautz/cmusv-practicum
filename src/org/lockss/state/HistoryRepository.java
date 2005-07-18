@@ -32,6 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.state;
 
+import java.io.*;
 import java.util.List;
 import org.lockss.plugin.*;
 import org.lockss.app.LockssAuManager;
@@ -81,6 +82,10 @@ public interface HistoryRepository extends LockssAuManager {
    * org.lockss.protocol.IdentityManager.IdentityAgreement}s
    */
   public List loadIdentityAgreements();
+
+  /** Return identity agreement File for this AU
+   */
+  public File getIdentityAgreementFile();
 
   /**
    * Stores the AuState for this ArchivalUnit

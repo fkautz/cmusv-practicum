@@ -208,6 +208,10 @@ public class HistoryRepositoryImpl
     }
   }
 
+  public File getIdentityAgreementFile() {
+    return new File(rootLocation, IDENTITY_AGREEMENT_FILE_NAME);
+  }    
+
   public void storeIdentityAgreements(List idList) {
     try {
       if (logger.isDebug3()) {
@@ -229,7 +233,7 @@ public class HistoryRepositoryImpl
         logger.debug3("Loading identity agreements for AU '" +
                       storedAu.getName() + "'");
       }
-      File idFile = new File(rootLocation, IDENTITY_AGREEMENT_FILE_NAME);
+      File idFile = getIdentityAgreementFile();
       IdentityAgreementList idList =
           (IdentityAgreementList)load(idFile, IdentityAgreementList.class);
       if (idList==null) {
