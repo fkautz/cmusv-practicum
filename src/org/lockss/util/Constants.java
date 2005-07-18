@@ -70,4 +70,8 @@ public interface Constants {
   /** X-LOCKSS value indicating this response comes from the cache */
   public static String X_LOCKSS_FROM_CACHE = "from-cache";
 
+  /** The real identity of a repairer sending a request to localhost, for
+   * testing */
+  public static String X_LOCKSS_REAL_ID = "X-Lockss-Id";
+
 }
