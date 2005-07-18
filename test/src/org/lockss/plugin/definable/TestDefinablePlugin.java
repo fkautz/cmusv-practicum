@@ -87,7 +87,7 @@ public class TestDefinablePlugin extends LockssTestCase {
     map.putCollection(DefinablePlugin.CM_CONFIG_PROPS_KEY,
                       expectedReturn);
 
-    List actualReturn = definablePlugin.getAuConfigDescrs();
+    List actualReturn = definablePlugin.getLocalAuConfigDescrs();
     assertIsomorphic("return value", expectedReturn, actualReturn);
   }
 

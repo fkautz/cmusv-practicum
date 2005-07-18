@@ -115,7 +115,7 @@ public class DefinablePlugin extends BasePlugin {
     return definitionMap.getString(CM_NOTES_KEY, null);
   }
 
-  public List getAuConfigDescrs() throws InvalidDefinitionException {
+  public List getLocalAuConfigDescrs() throws InvalidDefinitionException {
     List auConfigDescrs =
       (List) definitionMap.getCollection(CM_CONFIG_PROPS_KEY, null);
     if (auConfigDescrs == null) {

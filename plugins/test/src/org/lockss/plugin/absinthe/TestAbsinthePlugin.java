@@ -115,6 +115,6 @@ public class TestAbsinthePlugin extends LockssTestCase {
   public void testGetAuConfigProperties() {
     assertEquals(ListUtil.list(ConfigParamDescr.BASE_URL,
                                ConfigParamDescr.YEAR),
-                 plugin.getAuConfigDescrs());
+                 plugin.getLocalAuConfigDescrs());
   }
 }

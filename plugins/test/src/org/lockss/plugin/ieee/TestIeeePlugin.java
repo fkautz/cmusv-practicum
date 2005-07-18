@@ -113,7 +113,7 @@ public class TestIeeePlugin extends LockssTestCase {
     assertEquals(ListUtil.list(ConfigParamDescr.BASE_URL,
                                PU_NUMBER,
 			       ConfigParamDescr.YEAR),
-		 plugin.getAuConfigDescrs());
+		 plugin.getLocalAuConfigDescrs());
   }
 
   public static void main(String[] argv) {

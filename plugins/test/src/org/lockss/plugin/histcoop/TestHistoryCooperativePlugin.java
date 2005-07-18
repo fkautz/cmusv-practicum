@@ -105,6 +105,6 @@ public class TestHistoryCooperativePlugin extends LockssTestCase {
     assertEquals(ListUtil.list(ConfigParamDescr.BASE_URL,
                                ConfigParamDescr.JOURNAL_DIR,
 			       ConfigParamDescr.VOLUME_NUMBER),
-		 plugin.getAuConfigDescrs());
+		 plugin.getLocalAuConfigDescrs());
   }
 }

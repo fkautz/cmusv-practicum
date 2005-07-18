@@ -98,7 +98,7 @@ public class RegistryPlugin extends BasePlugin {
   /**
    * We only have one defining attribute, a base URL.
    */
-  public List getAuConfigDescrs() {
+  public List getLocalAuConfigDescrs() {
     return m_auConfigDescrs;
   }
 }

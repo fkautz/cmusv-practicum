@@ -75,7 +75,7 @@ public class TestRegistryPlugin extends LockssTestCase {
   }
 
   public void testGetAuConfigDescrs() throws Exception {
-    List descrs = m_plugin.getAuConfigDescrs();
+    List descrs = m_plugin.getLocalAuConfigDescrs();
     assertEquals(1, descrs.size());
     assertEquals(ConfigParamDescr.BASE_URL, descrs.get(0));
   }

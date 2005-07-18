@@ -121,7 +121,7 @@ public class TestAcsPlugin extends LockssTestCase {
                                JOURNAL_KEY,
 			       ConfigParamDescr.VOLUME_NUMBER,
                                ConfigParamDescr.YEAR),
-		 plugin.getAuConfigDescrs());
+		 plugin.getLocalAuConfigDescrs());
   }
 
   public static void main(String[] argv) {

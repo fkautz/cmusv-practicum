@@ -70,7 +70,7 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
     throw new UnsupportedOperationException("Not implemented");
   }
 
-  public List getAuConfigDescrs() {
+  public List getLocalAuConfigDescrs() {
     return Collections.EMPTY_LIST;
     //    throw new UnsupportedOperationException("Not implemented");
   }

@@ -126,7 +126,7 @@ public class TestHighWirePlugin extends LockssTestCase {
     assertEquals(ListUtil.list(ConfigParamDescr.VOLUME_NUMBER,
 			       ConfigParamDescr.BASE_URL),
 //                                ConfigParamDescr.YEAR),
-		 plugin.getAuConfigDescrs());
+		 plugin.getLocalAuConfigDescrs());
   }
 
   public void testHandles404Result() throws Exception {

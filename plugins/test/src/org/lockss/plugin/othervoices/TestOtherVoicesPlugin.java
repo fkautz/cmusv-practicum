@@ -105,6 +105,6 @@ public class TestOtherVoicesPlugin extends LockssTestCase {
   public void testGetAuConfigProperties() {
     assertEquals(ListUtil.list(ConfigParamDescr.BASE_URL,
                                ConfigParamDescr.VOLUME_NUMBER),
-                 plugin.getAuConfigDescrs());
+                 plugin.getLocalAuConfigDescrs());
   }
 }

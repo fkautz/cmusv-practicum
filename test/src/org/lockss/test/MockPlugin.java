@@ -116,7 +116,7 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
    * @return a List of strings which are the names of the properties for
    * which values are needed in order to configure an AU
    */
-  public List getAuConfigDescrs() {
+  public List getLocalAuConfigDescrs() {
     return auConfigDescrs;
   }
 
