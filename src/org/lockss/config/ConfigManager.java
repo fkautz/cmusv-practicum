@@ -749,6 +749,16 @@ public class ConfigManager implements LockssManager {
     cacheConfigInited = true;
   }
 
+  /** Return the list of cache config file names */
+  public List getCacheConfigFiles() {
+    List res = new ArrayList();
+    for (int ix = 0; ix < cacheConfigFiles.length; ix++) {
+      File cfile = new File(cacheConfigDir, cacheConfigFiles[ix]);
+      res.add(cfile);
+    }
+    return res;
+  }
+
   /** Return a File for the named cache config file */
   public File getCacheConfigFile(String cacheConfigFileName) {
     return new File(cacheConfigDir, cacheConfigFileName);
