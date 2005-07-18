@@ -405,6 +405,7 @@ public class TestNewContentCrawler extends LockssTestCase {
     assertEquals(SetUtil.set(startUrl, url1, url2, url3, permissionPage),
 		 crawlStatus.getUrlsFetched());
     assertEquals(4, crawlStatus.getNumParsed());
+    assertEquals(SetUtil.set("Publisher"), crawlStatus.getSources());
   }
 
   public void testGetStatusCrawlDoneNotModified() {

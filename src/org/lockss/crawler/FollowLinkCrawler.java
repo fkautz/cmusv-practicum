@@ -133,6 +133,7 @@ public abstract class FollowLinkCrawler extends CrawlerImpl {
     }
     logger.info("Beginning depth " + maxDepth + " crawl of " + au);
     crawlStatus.signalCrawlStarted();
+    crawlStatus.addSource("Publisher");
     cus = au.getAuCachedUrlSet();
     parsedPages = new HashSet();
 
