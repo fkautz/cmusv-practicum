@@ -77,7 +77,7 @@ public class TestEditableDefinablePlugin
     edPlugin.addConfigParamDescr(descr2);
 
     List expected = ListUtil.list(descr1, descr2);
-    List actual = edPlugin.getAuConfigDescrs();
+    List actual = edPlugin.getLocalAuConfigDescrs();
     assertIsomorphic("ConfigParamDescrs", expected, actual);
 
     edPlugin.removeConfigParamDescr(descr1.getKey());
