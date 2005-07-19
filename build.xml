@@ -1078,7 +1078,7 @@ java -classpath &quot;${tmp.ptool.clspth.unix}&quot; org.lockss.devtools.plugind
   </target>
 
   <target name="param-docs" depends="prepare-javadoc,jar-tools"
-   description="Generate an HTMl summary of LOCKSS configuration parameters.">
+   description="Generate an HTML summary of LOCKSS configuration parameters.">
     <!-- Write the HTML param doc into the doc tree -->
     <javadoc sourcepath="${src}"
 	     packagenames="org.lockss.*"
