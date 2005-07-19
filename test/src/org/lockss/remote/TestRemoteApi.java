@@ -515,6 +515,26 @@ public class TestRemoteApi extends LockssTestCase {
     assertEquals("doodah agree map 2", idMgr.getAgreeMap(au2));
   }
 
+  // ensure that we buffer up enough to reset the stream after checking the
+  // first line
+  public void testProcessSavedConfigLarge()  throws Exception {
+    int loop = 200;
+
+    Configuration config = null;
+    for (int ix = 0; ix < loop; ix++) {
+      Properties p = new Properties();
+      p.put(ConfigParamDescr.BASE_URL.getKey(), "http://foo.bar/");
+      p.put(ConfigParamDescr.VOLUME_NUMBER.getKey(), Integer.toString(ix));
+      String auid = PluginManager.generateAuId(PID1, p);
+      config = addAuTree(config, auid, p);
+    }
+    File file = toFile(config, FileTestUtil.tempFile("saved1"), true);
+    InputStream in = new FileInputStream(file);
+    RemoteApi.BatchAuStatus bas = rapi.processSavedConfig(in);
+    List statlist = bas.getStatusList();
+    assertEquals(loop, statlist.size());
+  }
+
 
   class Pair {
     Object one, two;
