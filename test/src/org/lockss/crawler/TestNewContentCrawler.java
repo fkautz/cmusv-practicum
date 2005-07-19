@@ -62,6 +62,13 @@ public class TestNewContentCrawler extends LockssTestCase {
     Configuration.PREFIX + "CrawlerImpl.numCacheRetries";
   private static final int DEFAULT_RETRY_TIMES = 3;
 
+  public static final String PARAM_CLEAR_DAMAGE_ON_FETCH =
+    Configuration.PREFIX + "CrawlerImpl.clearDamageOnFetch";
+
+  public static final String PARAM_REFETCH_IF_DAMAGED =
+    Configuration.PREFIX + "CrawlerImpl.refetchIfDamaged";
+
+
   public void setUp() throws Exception {
     super.setUp();
     TimeBase.setSimulated(10);
@@ -132,6 +139,55 @@ public class TestNewContentCrawler extends LockssTestCase {
     Set cachedUrls = cus.getCachedUrls();
     Set expected = SetUtil.set(startUrl, permissionPage);
     assertEquals(expected, cachedUrls);
+  }
+
+  public void testPassesParamsToUrlCacherDefault() {
+    MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
+    mau.addUrl(startUrl);
+
+    assertTrue(crawler.doCrawl());
+
+    MockUrlCacher uc = (MockUrlCacher)mau.makeUrlCacher(startUrl);
+    BitSet fetchFlags = uc.getFetchFlags();
+    assertFalse(fetchFlags.get(UrlCacher.REFETCH_FLAG));
+    assertTrue(fetchFlags.get(UrlCacher.CLEAR_DAMAGE_FLAG));
+    assertTrue(fetchFlags.get(UrlCacher.REFETCH_IF_DAMAGE_FLAG));
+  }
+
+  public void testPassesParamsToUrlCacherParamsNeg() {
+    Properties p = new Properties();
+    p.setProperty(PARAM_REFETCH_IF_DAMAGED, "false");
+    p.setProperty(PARAM_CLEAR_DAMAGE_ON_FETCH, "false");
+    ConfigurationUtil.setCurrentConfigFromProps(p);
+
+    MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
+    mau.addUrl(startUrl);
+
+    assertTrue(crawler.doCrawl());
+
+    MockUrlCacher uc = (MockUrlCacher)mau.makeUrlCacher(startUrl);
+    BitSet fetchFlags = uc.getFetchFlags();
+    assertFalse(fetchFlags.get(UrlCacher.REFETCH_FLAG));
+    assertFalse(fetchFlags.get(UrlCacher.CLEAR_DAMAGE_FLAG));
+    assertFalse(fetchFlags.get(UrlCacher.REFETCH_IF_DAMAGE_FLAG));
+  }
+
+  public void testPassesParamsToUrlCacherParamsPos() {
+    Properties p = new Properties();
+    p.setProperty(PARAM_REFETCH_IF_DAMAGED, "true");
+    p.setProperty(PARAM_CLEAR_DAMAGE_ON_FETCH, "true");
+    ConfigurationUtil.setCurrentConfigFromProps(p);
+
+    MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
+    mau.addUrl(startUrl);
+
+    assertTrue(crawler.doCrawl());
+
+    MockUrlCacher uc = (MockUrlCacher)mau.makeUrlCacher(startUrl);
+    BitSet fetchFlags = uc.getFetchFlags();
+    assertFalse(fetchFlags.get(UrlCacher.REFETCH_FLAG));
+    assertTrue(fetchFlags.get(UrlCacher.CLEAR_DAMAGE_FLAG));
+    assertTrue(fetchFlags.get(UrlCacher.REFETCH_IF_DAMAGE_FLAG));
   }
 
   public void testMultipleStartingUrls() {
