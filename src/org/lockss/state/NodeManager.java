@@ -111,6 +111,11 @@ public interface NodeManager extends LockssAuManager {
 
 
   /**
+   * Returns the set of damaged nodes for the given AU
+   */
+  public DamagedNodeSet getDamagedNodes();
+
+  /**
    * Looks at the state of the node, and indicates if a poll needs to be called.
    * It does not schedule polls, which should be done via
    * 'callNecessaryPolls()'.  Called from the treewalk

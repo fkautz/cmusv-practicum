@@ -52,6 +52,8 @@ public class MockNodeManager implements NodeManager {
   private HashMap nodeMap = new HashMap();
   public HashMap hashCalls = new HashMap();
 
+  private DamagedNodeSet dnSet;
+
   public void initService(LockssApp app)
       throws LockssAppException {
     throw new UnsupportedOperationException("Not implemented");
@@ -156,4 +158,11 @@ public class MockNodeManager implements NodeManager {
     throw new UnsupportedOperationException("Not implemented");
   }
 
+  public DamagedNodeSet getDamagedNodes() {
+    return this.dnSet;
+  }
+
+  public void setDamagedNodes(DamagedNodeSet dnSet) {
+    this.dnSet = dnSet;
+  }
 }

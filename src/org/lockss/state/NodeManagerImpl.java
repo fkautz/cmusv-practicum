@@ -120,6 +120,11 @@ public class NodeManagerImpl
   public void setAuConfig(Configuration auConfig) {
   }
 
+  public DamagedNodeSet getDamagedNodes() {
+    return damagedNodes;
+  }
+
+
   public synchronized NodeState getNodeState(CachedUrlSet cus) {
     String url = cus.getUrl();
     NodeState node = (NodeState)nodeCache.get(nodeCacheKey(url));
