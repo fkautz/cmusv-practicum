@@ -200,7 +200,7 @@ public class NullPlugin {
       return false;
     }
 
-    public void setForceRefetch(boolean force) {
+    public void setFetchFlags(BitSet fetchFlags) {
     }
 
     public void setRequestProperty(String key, String value) {

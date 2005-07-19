@@ -149,7 +149,10 @@ public class RepairCrawler extends CrawlerImpl {
   protected UrlCacher makeUrlCacher(CachedUrlSet cus, String url) {
     UrlCacher uc = super.makeUrlCacher(url);
     uc.setRedirectScheme(UrlCacher.REDIRECT_SCHEME_FOLLOW_IN_SPEC);
-    uc.setForceRefetch(true);
+//     uc.setForceRefetch(true);
+    BitSet fetchFlags = new BitSet();
+    fetchFlags.set(UrlCacher.REFETCH_FLAG);
+    uc.setFetchFlags(fetchFlags);
     return uc;
   }
 
