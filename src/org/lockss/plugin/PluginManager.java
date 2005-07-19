@@ -647,10 +647,11 @@ public class PluginManager
     theDaemon.getCrawlManager().cancelAuCrawls(au);
 
     try {
-      //     Plugin plugin = au.getPlugin();
-      //     plugin.removeAu(au);
+      Plugin plugin = au.getPlugin();
+      plugin.stopAu(au);
       theDaemon.stopAuManagers(au);
     } catch (Exception e) {
+      log.warning("Unexpected stopping AU", e);
       // Shouldn't happen, as stopAuManagers() catches errors in
       // stopService().  Not clear what to do anyway, if some of the
       // managers don't stop cleanly.

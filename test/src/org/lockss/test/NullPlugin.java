@@ -66,6 +66,9 @@ public class NullPlugin {
     public void stopPlugin() {
     }
 
+    public void stopAu(org.lockss.plugin.ArchivalUnit au) {
+    }
+
     public String getPluginId() {
       return "NullPlugin";
     }

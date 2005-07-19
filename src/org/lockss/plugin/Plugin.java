@@ -60,6 +60,11 @@ public interface Plugin {
   public void stopPlugin();
 
   /**
+   * Stop an AU (because it has been deleted or deactivated)
+   */
+  public void stopAu(ArchivalUnit au);
+
+  /**
    * Return a string that uniquely represents the identity of this plugin
    * @return a string that identifies this plugin
    */
