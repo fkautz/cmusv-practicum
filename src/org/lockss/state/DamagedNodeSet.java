@@ -122,14 +122,7 @@ public class DamagedNodeSet {
   }
 
   synchronized public boolean hasDamage(String nodeUrl) {
-    Iterator damagedIt = nodesWithDamage.iterator();
-    while (damagedIt.hasNext()) {
-      String url = (String) damagedIt.next();
-      if (url.equals(nodeUrl)) {
-        return true;
-      }
-    }
-    return false;
+    return nodesWithDamage.contains(nodeUrl);
   }
 
   synchronized public boolean hasLocalizedDamage(CachedUrlSet cus) {
