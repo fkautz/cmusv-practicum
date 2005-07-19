@@ -280,14 +280,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     urlNormalizer = makeUrlNormalizer();
     paramMap.setMapElement(AU_URL_NORMALIZER, urlNormalizer);
 
-    // make our name
-    titleConfig = findTitleConfig(config);
-    if (titleConfig != null) {
-      auTitle = titleConfig.getDisplayName();
-    }
-    auName = makeName();
-    paramMap.putString(AU_TITLE, auTitle != null ? auTitle : auName);
-
+    titleDbChanged();
   }
 
   TitleConfig findTitleConfig(Configuration config) {
@@ -303,6 +296,17 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
       }
     }
     return null;
+  }
+
+  /** Set up titledb-related data */
+  void titleDbChanged() {
+    TitleConfig tc = findTitleConfig(auConfig);
+    if (tc != null) {
+      titleConfig = tc;
+      auTitle = titleConfig.getDisplayName();
+    }
+    auName = makeName();
+    paramMap.putString(AU_TITLE, auTitle != null ? auTitle : auName);
   }
 
   public TitleConfig getTitleConfig() {

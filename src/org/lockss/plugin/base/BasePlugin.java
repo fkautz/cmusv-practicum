@@ -86,6 +86,11 @@ public abstract class BasePlugin
   public void stopPlugin() {
   }
 
+  public void stopAu(ArchivalUnit au) {
+    // Is there any reason to notify the AU itself?
+    aus.remove(au);
+  }
+
   /**
    * Default implementation collects keys from titleConfigMap.
    * @return a List
@@ -155,6 +160,7 @@ public abstract class BasePlugin
     //TODO: decide on how to support plug-ins which do not use the title registry
     if (!titleMap.isEmpty()) {
       setTitleConfigMap(titleMap);
+      notifyAusTitleDbChanged();
     }
   }
 
@@ -195,6 +201,18 @@ public abstract class BasePlugin
   protected void setTitleConfigMap(Map titleConfigMap) {
     this.titleConfigMap = titleConfigMap;
     pluginMgr.resetTitles();
+  }
+
+  protected void notifyAusTitleDbChanged() {
+    for (Iterator iter = getAllAus().iterator(); iter.hasNext(); ) {
+      //  They should all be BaseArchivalUnits, but just in case...
+      try {
+	BaseArchivalUnit au = (BaseArchivalUnit)iter.next();
+	au.titleDbChanged();
+      } catch (Exception e) {
+	log.warning("notifyAusTitleDbChanged: " + this, e);
+      }
+    }
   }
 
   public List getAuConfigDescrs() {
