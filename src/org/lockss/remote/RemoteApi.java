@@ -61,7 +61,7 @@ public class RemoteApi extends BaseLockssDaemonManager {
 
   static final String PARAM_BACKUP_FILE_VERSION =
     Configuration.PREFIX + "";
-  static final String DEFAULT_BACKUP_FILE_VERSION = "V1";
+  static final String DEFAULT_BACKUP_FILE_VERSION = "V2";
 
 
   static final String BACK_FILE_AU_PROPS = "auprops";
