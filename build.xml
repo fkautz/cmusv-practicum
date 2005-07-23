@@ -179,6 +179,8 @@ Args:
   <property name="concurrent.jar" value="${lib}/concurrent.jar"/>
   <property name="htmlparser.jar"  value="${lib}/htmlparser.jar"/>
   <property name="rdf.jar" value="${lib}/rdf-api-2001-01-19.jar" /> <!-- W3C RDF Parser -->
+	<property name="xstream.jar" value="${lib}/xstream-1.1.2.jar" />
+	<property name="xmlunit.jar" value="${lib}/xmlunit1.0.jar" />
   <!-- Needed by OAI harvester -->
   <property name="oai-harvester.jar" value="${lib}/harvester2-mod.jar"/>
   <property name="xalan.jar" value="${lib}/xalan.jar"/>
@@ -258,6 +260,7 @@ Args:
     <pathelement path="${oro.jar}" />
     <pathelement path="${htmlparser.jar}" />
     <pathelement path="${rdf.jar}" />
+  	<pathelement path="${xstream.jar}" />
     <!-- jars need to run the Oai harvester -->
     <pathelement path="${oai-harvester.jar}" />
     <pathelement path="${xalan.jar}" />
@@ -276,6 +279,7 @@ Args:
     <pathelement path="${httpunit.jar}" />
     <pathelement path="${nekohtml.jar}" />
     <pathelement path="${js.jar}" />
+  	<pathelement path="${xmlunit.jar}" />
     <!-- plugin jar -->
     <pathelement path="${lockss.plugins.jar}" />
   </path>
