@@ -2,6 +2,7 @@
 lockss-ant.jar
 lockss-generated-test.jar
 lockss-generated.jar
+lockss-platform.jar
 lockss-plugins-test.jar
 lockss-plugins.jar
 lockss-test.jar
