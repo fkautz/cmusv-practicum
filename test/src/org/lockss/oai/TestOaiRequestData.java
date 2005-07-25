@@ -66,11 +66,11 @@ public class TestOaiRequestData extends LockssTestCase {
 	new OaiRequestData( handler, ns, (String) null, setSpec, prefix);
       fail("OaiRequestData with null url container tag name  should throw");
     } catch (IllegalArgumentException e) { }
-    try {
-      OaiRequestData od = 
-	new OaiRequestData( handler, ns, tag, (String) null, prefix);
-      fail("OaiRequestData with null AU SetSpec should throw");
-    } catch (IllegalArgumentException e) { }
+//     try {
+//       OaiRequestData od = 
+// 	new OaiRequestData( handler, ns, tag, (String) null, prefix);
+//       fail("OaiRequestData with null AU SetSpec should throw");
+//     } catch (IllegalArgumentException e) { }
     try {
       OaiRequestData od = 
 	new OaiRequestData( handler, ns, tag, setSpec, (String) null);

@@ -68,7 +68,7 @@ public class OaiRequestData {
     } else if (tagName == null) {
       throw new IllegalArgumentException("Called with null url container tag name");
     } else if (setSpec == null) {
-      throw new IllegalArgumentException("Called with null url container tag name");
+      //       throw new IllegalArgumentException("Called with null url container tag name");
     } else if (prefix == null) {
       throw new IllegalArgumentException("Called with null metadata prefix");
     }
@@ -96,7 +96,7 @@ public class OaiRequestData {
     if (oaiRequestHandlerUrl == null) {
       throw new IllegalArgumentException("Called with null Oai request handler Url");
     } else if (setSpec == null) {
-      throw new IllegalArgumentException("Called with null url container tag name");
+//       throw new IllegalArgumentException("Called with null url container tag name");
     } else if (metadataHandler == null) {
       throw new IllegalArgumentException("Called with null metadataHandler");
     }

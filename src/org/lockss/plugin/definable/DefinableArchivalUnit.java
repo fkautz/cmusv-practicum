@@ -217,14 +217,14 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
     URL oai_request_url =
         paramMap.getUrl(ConfigParamDescr.OAI_REQUEST_URL.getKey());
     String oaiRequestUrlStr = oai_request_url.toString();
-    String oai_au_spec =
-        paramMap.getString(ConfigParamDescr.OAI_SPEC.getKey());
+    String oai_au_spec = null;
+//         paramMap.getString(ConfigParamDescr.OAI_SPEC.getKey());
     log.debug3("Creating OaiRequestData with oaiRequestUrlStr" + 
 	       oaiRequestUrlStr + " and oai_au_spec " + oai_au_spec);
     return new OaiRequestData(oaiRequestUrlStr,
                       "http://purl.org/dc/elements/1.1/",
                       "identifier",
-                      oai_au_spec,
+			      oai_au_spec,
                       "oai_dc"
                       );
 
