@@ -340,8 +340,8 @@ public class XStreamSerializer extends ObjectSerializer {
   /**
    * <p>Builds a new XStreamSerializer instance.</p>
    * <p>It is safe to use the same XStreamSerializer instance for
-   * multiple unrelated marshalling and unmarshalling operations.</p>   * <p>Uses a null context.</p>
-   * @param lockssContext A serialization context object.
+   * multiple unrelated marshalling and unmarshalling operations.</p>
+   * <p>Uses a null context.</p>
    * @see #XStreamSerializer(org.lockss.app.LockssApp)
    */
   public XStreamSerializer() {
