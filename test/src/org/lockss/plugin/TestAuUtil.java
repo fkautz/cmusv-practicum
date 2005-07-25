@@ -106,6 +106,15 @@ public class TestAuUtil extends LockssTestCase {
     assertFalse(AuUtil.isPubDown(mau));
   }
 
+  public void testIsPubDownTC() throws Exception {
+    assertTrue(AuUtil.isPubDown(makeTitleConfig(ConfigParamDescr.PUB_DOWN,
+						"true")));
+    assertFalse(AuUtil.isPubDown(makeTitleConfig(ConfigParamDescr.PUB_DOWN,
+						 "false")));
+    assertFalse(AuUtil.isPubDown(makeTitleConfig(ConfigParamDescr.BASE_URL,
+						 "http://foo.bar/")));
+  }
+
   public void testIsConfigCompatibleWithPlugin() {
     String plugName = "org.lockss.plugin.base.TestAuUtil$MyMockBasePlugin";
     mbp.setConfigDescrs(ListUtil.list(PD_VOL, PD_YEAR, PD_OPT));
