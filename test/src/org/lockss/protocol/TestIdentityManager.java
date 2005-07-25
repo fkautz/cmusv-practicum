@@ -410,6 +410,25 @@ public class TestIdentityManager extends LockssTestCase {
     assertEquals(expected, idmgr.getAgreed(mau));
   }
 
+  public void testGetIdentityAgreements() throws Exception {
+    TimeBase.setSimulated(10);
+    setupPeer123();
+
+    idmgr.signalAgreed(peer1, mau);
+    TimeBase.step();
+    idmgr.signalAgreed(peer2, mau);
+    idmgr.signalDisagreed(peer2, mau);
+    IdentityManager.IdentityAgreement ida1 =
+      new IdentityManager.IdentityAgreement(peer1);
+    ida1.setLastAgree(10);
+    IdentityManager.IdentityAgreement ida2 =
+      new IdentityManager.IdentityAgreement(peer2);
+    ida2.setLastAgree(11);
+    ida2.setLastDisagree(11);
+    assertEquals(SetUtil.set(ida1, ida2),
+		 SetUtil.theSet(idmgr.getIdentityAgreements(mau)));
+  }
+
   public void testHasAgreeMap() throws Exception {
     peer1 = idmgr.stringToPeerIdentity("127.0.0.1");
 
