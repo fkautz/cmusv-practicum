@@ -223,7 +223,7 @@ public class TestHttpClientUrlConnection extends LockssTestCase {
 
   public void testResponseStreamNoWrapper() throws Exception {
     ConfigurationUtil.setFromArgs(HttpClientUrlConnection.
-				  PARAM_DISABLE_WRAPPER_STREAM, "true");
+				  PARAM_USE_WRAPPER_STREAM, "false");
     client.setRes(200, 200);
     String test = "foo123";
     StringInputStream sis = new StringInputStream(test);
