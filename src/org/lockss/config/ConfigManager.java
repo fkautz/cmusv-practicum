@@ -178,6 +178,7 @@ public class ConfigManager implements LockssManager {
     this.titledbUrlList = new ArrayList();
     this.groupName = groupName;
     registerConfigurationCallback(Logger.getConfigCallback());
+    registerConfigurationCallback(MiscConfig.getConfigCallback());
   }
 
   public ConfigCache getConfigCache() {
