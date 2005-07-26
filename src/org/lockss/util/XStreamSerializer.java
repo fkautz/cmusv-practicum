@@ -370,7 +370,7 @@ public class XStreamSerializer extends ObjectSerializer {
       throw new IOException(streamE.getMessage());
     }
     catch (CannotResolveClassException crcE) {
-      throw new SerializationException(crcE.getMessage(), crcE);
+      throw new SerializationException(crcE);
     }
     catch (BaseException baseE) {
       /*
@@ -379,7 +379,7 @@ public class XStreamSerializer extends ObjectSerializer {
        * com.thoughtworks.xstream.converters.reflection.ObjectAccessException
        * com.thoughtworks.xstream.converters.reflection.ReflectionConverter.DuplicateFieldException
        */
-      throw new SerializationException(baseE.getMessage(), baseE);
+      throw new SerializationException(baseE);
     }
   }
   
