@@ -264,16 +264,6 @@ public class SimulatedPlugin extends BasePlugin implements PluginTestable {
   }
 
   /**
-   * Return the list of names of the Archival Units and volranges supported by
-   * this plugin
-   * @return a List of Strings
-   */
-  public List getSupportedTitles() {
-    return ListUtil.list("SimulatedSupportedTitle",
-			 "odd </html>chars");
-  }
-
-  /**
    * Return the set of configuration properties required to configure
    * an archival unit for this plugin.
    * @return a List of strings which are the names of the properties for
