@@ -299,7 +299,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   }
 
   /** Set up titledb-related data */
-  void titleDbChanged() {
+  protected void titleDbChanged() {
     TitleConfig tc = findTitleConfig(auConfig);
     if (tc != null) {
       titleConfig = tc;

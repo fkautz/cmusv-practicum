@@ -343,6 +343,8 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
     paramMap.putString(AU_START_URL, startUrlString);
     auName = makeName();
     paramMap.putString(AU_TITLE, auName);
+
+    titleDbChanged();
   }
 
   boolean isUrlToBeDamaged(String url) {
