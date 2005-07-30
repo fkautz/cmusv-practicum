@@ -165,11 +165,11 @@ public class LockssTestCase extends TestCase {
   }
 
   protected void disableThreadWatchdog() {
-    System.setProperty(LockssThread.PARAM_THREAD_WDOG_EXIT_IMM, "true");
+    System.setProperty(LockssRunnable.PARAM_THREAD_WDOG_EXIT_IMM, "false");
   }
 
   protected void enableThreadWatchdog() {
-    System.setProperty(LockssThread.PARAM_THREAD_WDOG_EXIT_IMM, "false");
+    System.setProperty(LockssRunnable.PARAM_THREAD_WDOG_EXIT_IMM, "true");
   }
 
   // variant harness
