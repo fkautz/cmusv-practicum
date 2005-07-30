@@ -247,10 +247,12 @@ public class TimerQueue {
 	  log.error("Unexpected exception caught in TimerQueue thread", e);
 	}
       }
+      if (!goOn) {
+	triggerWDogOnExit(false);
+      }
     }
 
     private void stopTimer() {
-      triggerWDogOnExit(false);
       goOn = false;
       this.interrupt();
     }
