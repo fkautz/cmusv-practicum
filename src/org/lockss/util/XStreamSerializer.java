@@ -381,10 +381,8 @@ public class XStreamSerializer extends ObjectSerializer {
   }
   
   public void serialize(Writer writer, Object obj)
-      throws IOException, 
-             NullArgumentException,
-             SerializationException {
-    if (obj == null) { throw new NullArgumentException(); } 
+      throws IOException, SerializationException {
+    if (obj == null) { throw new NullPointerException(); } 
     try {
       init();
       xs.toXML(obj, writer); // lazy instantiation

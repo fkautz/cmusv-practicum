@@ -228,10 +228,8 @@ public class CXSerializer extends ObjectSerializer {
   }
   
   public void serialize(Writer writer, Object obj)
-      throws IOException,
-             NullArgumentException,
-             SerializationException {
-    if (obj == null) { throw new NullArgumentException(); }
+      throws IOException, SerializationException {
+    if (obj == null) { throw new NullPointerException(); }
     ObjectSerializer serializer;
     if (getCurrentMode() == CASTOR_MODE) { serializer = castor; }
     else                                 { serializer = xstream; }

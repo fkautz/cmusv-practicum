@@ -210,10 +210,8 @@ public class CastorSerializer extends ObjectSerializer {
   }
 
   public void serialize(Writer writer, Object obj)
-      throws IOException, 
-             NullArgumentException, 
-             SerializationException {
-    if (obj == null) { throw new NullArgumentException(); }
+      throws IOException, SerializationException {
+    if (obj == null) { throw new NullPointerException(); }
     Marshaller marshaller = new Marshaller(writer);
     try {
       marshaller.setMapping(targetMapping);

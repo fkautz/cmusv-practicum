@@ -37,7 +37,6 @@ import java.net.URL;
 
 import org.custommonkey.xmlunit.XMLTestCase;
 import org.custommonkey.xmlunit.XMLUnit;
-import org.lockss.util.ObjectSerializer.NullArgumentException;
 
 /**
  * <p>Tests the {@link org.lockss.util.ObjectSerializer} abstract
@@ -207,7 +206,7 @@ public abstract class ObjectSerializerTest
     }
   }
   
-  public void testThrowsNullArgumentException()
+  public void testThrowsNullPointerException()
       throws Exception {
     ObjectSerializer serializer = makeObjectSerializer_ExtMapBean();
     File tempFile = File.createTempFile("test", ".xml");
@@ -218,7 +217,7 @@ public abstract class ObjectSerializerTest
       failGeneric("testThrowsNullArgumentException",
                   "NullArgumentException not thrown when marshalling null.");
     }
-    catch (NullArgumentException e) {
+    catch (NullPointerException e) {
       // succeed
     }
   }
