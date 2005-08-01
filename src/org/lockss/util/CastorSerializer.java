@@ -40,10 +40,7 @@ import java.util.*;
 
 import org.exolab.castor.mapping.Mapping;
 import org.exolab.castor.mapping.MappingException;
-import org.exolab.castor.xml.MarshalException;
-import org.exolab.castor.xml.Marshaller;
-import org.exolab.castor.xml.Unmarshaller;
-import org.exolab.castor.xml.ValidationException;
+import org.exolab.castor.xml.*;
 import org.lockss.app.LockssApp;
 import org.lockss.app.LockssAppException;
 
@@ -213,7 +210,10 @@ public class CastorSerializer extends ObjectSerializer {
   }
 
   public void serialize(Writer writer, Object obj)
-      throws IOException, SerializationException {
+      throws IOException, 
+             NullArgumentException, 
+             SerializationException {
+    if (obj == null) { throw new NullArgumentException(); }
     Marshaller marshaller = new Marshaller(writer);
     try {
       marshaller.setMapping(targetMapping);
