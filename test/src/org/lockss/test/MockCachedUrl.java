@@ -51,6 +51,8 @@ public class MockCachedUrl implements CachedUrl {
   private InputStream cachedIS;
   private CIProperties cachedProp;
 
+  private boolean isLeaf = true;
+
   private boolean doesExist = false;
   private String content = null;
   private Reader reader = null;
@@ -104,7 +106,11 @@ public class MockCachedUrl implements CachedUrl {
   }
 
   public boolean isLeaf() {
-    return true;
+    return isLeaf;
+  }
+
+  public void setIsLeaf(boolean isLeaf) {
+    this.isLeaf = isLeaf;
   }
 
   public int getType() {
