@@ -544,6 +544,8 @@ public class ProxyHandler extends AbstractHttpHandler {
       try {
 	conn.execute();
       } catch (IOException e) {
+	if (log.isDebug3()) log.debug3("conn.execute", e);
+
 	// If connection timed out, remember host is down for a little while.
 	// Remember this only for hosts whose content we hold.
 	if (e instanceof LockssUrlConnection.ConnectionTimeoutException) {
