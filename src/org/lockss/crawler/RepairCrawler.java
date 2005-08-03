@@ -313,6 +313,8 @@ public class RepairCrawler extends CrawlerImpl {
   }
 
   private boolean shouldFetchFromCache() {
+    logger.debug3("Checking if we should fetch from a cache, probability "
+		  + percentFetchFromCache);
     return AuUtil.isPubDown(au) ||
       ProbabilisticChoice.choose(percentFetchFromCache);
   }
@@ -412,7 +414,7 @@ public class RepairCrawler extends CrawlerImpl {
 
   public PermissionMap getPermissionMap() {
     if (permissionMap == null) {
-      populatePermissionMap();
+      permissionMap = new PermissionMap();
     }
     return permissionMap;
   }
