@@ -165,6 +165,9 @@ public class CXSerializer extends ObjectSerializer {
       success = true;
       return ret;
     }
+    catch (SerializationException se) {
+      throw failDeserialize(se, inputFile);
+    }
     finally {
       IOUtil.safeClose(reader);
       if (   getCurrentMode() == XSTREAM_OVERWRITE_MODE
