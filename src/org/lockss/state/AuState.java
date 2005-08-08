@@ -41,11 +41,11 @@ import org.lockss.util.TimeBase;
  * AuState contains the state information for an au.
  */
 public class AuState {
-  protected ArchivalUnit au;
+  protected transient ArchivalUnit au;
   protected long lastCrawlTime;
   protected long lastTopLevelPoll;
   protected long lastTreeWalk;
-  private HistoryRepository historyRepo;
+  private transient HistoryRepository historyRepo;
   protected HashSet crawlUrls;
 
   int urlUpdateCntr = 0;

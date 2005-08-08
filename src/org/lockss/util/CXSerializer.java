@@ -232,7 +232,7 @@ public class CXSerializer extends ObjectSerializer {
   
   public void serialize(Writer writer, Object obj)
       throws IOException, SerializationException {
-    if (obj == null) { throw new NullPointerException(); }
+    throwIfNull(obj);
     ObjectSerializer serializer;
     if (getCurrentMode() == CASTOR_MODE) { serializer = castor; }
     else                                 { serializer = xstream; }

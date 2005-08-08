@@ -160,7 +160,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     historyRepo.storeNodeState(node);
     // should keep poll active
     node = (NodeStateImpl) nodeManager.getNodeState(cus);
-    assertEquals(1, node.polls.size()); // XXX failing - its 0
+    assertEquals(1, node.polls.size());
     assertFalse(node.getPollHistories().hasNext());
     cus = getCus(mau, TEST_URL + "/branch4");
     // add to lockss repository
