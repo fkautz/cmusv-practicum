@@ -1099,8 +1099,8 @@ public class TestBlockingStreamComm extends LockssTestCase {
       stopSem = sem;
     }
 
-    long calcSendWaitTime() {
-      long res = super.calcSendWaitTime();
+    Deadline calcSendWaitDeadline() {
+      Deadline res = super.calcSendWaitDeadline();
       calcSendWaitCtr++;
       if (calcSendWaitSem != null) {
 	calcSendWaitSem.give();
