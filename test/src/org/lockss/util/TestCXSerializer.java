@@ -158,7 +158,7 @@ public class TestCXSerializer extends ObjectSerializerTest {
     }
     catch (SerializationException se) {
       StringBuffer buffer = new StringBuffer();
-      buffer.append("Serializationexception thrown while in correct mode. ");
+      buffer.append("SerializationException thrown while in correct mode. ");
       buffer.append("Nested message: ");
       buffer.append(se.getMessage());
       fail(buffer.toString());
