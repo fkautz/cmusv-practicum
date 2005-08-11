@@ -48,8 +48,8 @@ public class DamagedNodeSet {
   // while it is logical to use a Set instead of an ArrayList, it is not
   // possible due to Castor's inability to marshall groups of Sets correctly.
   HashMap cusToRepair = new HashMap();
-  HistoryRepository repository;
-  ArchivalUnit theAu;
+  transient HistoryRepository repository;
+  transient ArchivalUnit theAu;
 
   /**
    * Simple constructor to allow bean creation during unmarshalling.
