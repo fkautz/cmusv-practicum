@@ -143,9 +143,9 @@ public class BaseCachedUrl implements CachedUrl {
     return CIProperties.fromProperties(rnc.getProperties());
   }
 
-  public byte[] getUnfilteredContentSize() {
+  public long getContentSize() {
     ensureLeafLoaded();
-    return ByteArray.encodeLong(leaf.getContentSize());
+    return leaf.getContentSize();
   }
 
   public void release() {

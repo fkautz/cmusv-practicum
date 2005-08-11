@@ -127,16 +127,13 @@ public class TestBaseCachedUrl extends LockssTestCase {
 
      CachedUrl url =
        mau.makeCachedUrl("http://www.example.com/testDir/leaf1");
-     BigInteger bi = new BigInteger(url.getUnfilteredContentSize());
-     assertEquals(11, bi.intValue());
+     assertEquals(11, url.getContentSize());
 
      url = mau.makeCachedUrl("http://www.example.com/testDir/leaf2");
-     bi = new BigInteger(url.getUnfilteredContentSize());
-     assertEquals(12, bi.intValue());
+     assertEquals(12, url.getContentSize());
 
      url = mau.makeCachedUrl("http://www.example.com/testDir/leaf3");
-     bi = new BigInteger(url.getUnfilteredContentSize());
-     assertEquals(0, bi.intValue());
+     assertEquals(0, url.getContentSize());
    }
 
    public void testOpenForReading() throws Exception {
@@ -302,10 +299,6 @@ public class TestBaseCachedUrl extends LockssTestCase {
 
      public void setProperties(CIProperties props) {
        this.props = props;
-     }
-
-     public byte[] getUnfilteredContentSize() {
-       throw new UnsupportedOperationException("Not implemented");
      }
    }
 

@@ -119,8 +119,7 @@ public class ViewContent extends LockssServlet {
       displayError("URL " + url + " not found in AU: " + au.getName());
       return;
     }
-    byte[] sizeBytes = cu.getUnfilteredContentSize();
-    clen = ByteArray.decodeLong(sizeBytes);
+    clen = cu.getContentSize();
     try {
       props = cu.getProperties();
       ctype = props.getProperty(CachedUrl.PROPERTY_CONTENT_TYPE);
