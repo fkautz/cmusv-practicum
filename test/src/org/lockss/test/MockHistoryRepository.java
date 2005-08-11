@@ -52,6 +52,8 @@ public class MockHistoryRepository implements HistoryRepository {
   private List storedIdentityAgreement = null;
   private List loadedIdentityAgreement = null;
 
+  private int timesStoreDamagedNodeSetCalled = 0;
+
   public MockHistoryRepository() { }
 
   public void initService(LockssApp app) throws LockssAppException { }
@@ -90,7 +92,12 @@ public class MockHistoryRepository implements HistoryRepository {
   }
 
   public void storeDamagedNodeSet(DamagedNodeSet nodeSet) {
+    timesStoreDamagedNodeSetCalled++;
     theDamagedNodeSet = nodeSet;
+  }
+
+  public int timesStoreDamagedNodeSetCalled() {
+    return timesStoreDamagedNodeSetCalled;
   }
 
   public DamagedNodeSet loadDamagedNodeSet() {
