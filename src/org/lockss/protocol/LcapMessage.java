@@ -243,16 +243,16 @@ public abstract class LcapMessage {
     return algorithm;
   }
 
-  public static MessageDigest getDefaultHasher() {
-    MessageDigest hasher = null;
+  public static MessageDigest getDefaultMessageDigest() {
+    MessageDigest digest = null;
     try {
-      hasher = MessageDigest.getInstance(getDefaultHashAlgorithm());
+      digest = MessageDigest.getInstance(getDefaultHashAlgorithm());
     }
     catch (NoSuchAlgorithmException ex) {
-      log.error("Unable to run - no hasher");
+      log.error("Unable to run - no default MessageDigest");
     }
 
-    return hasher;
+    return digest;
   }
 
 
@@ -266,9 +266,9 @@ public abstract class LcapMessage {
    */
   protected boolean verifyHash(byte[] hashValue, byte[] data) {
     try {
-      MessageDigest hasher = MessageDigest.getInstance("SHA");
-      hasher.update(data);
-      byte[] hashed = hasher.digest();
+      MessageDigest digest = MessageDigest.getInstance("SHA");
+      digest.update(data);
+      byte[] hashed = digest.digest();
       return Arrays.equals(hashValue, hashed);
     } catch (java.security.NoSuchAlgorithmException e) {
       return false;
@@ -281,9 +281,9 @@ public abstract class LcapMessage {
    */
   protected byte[] computeHash(byte[] data) {
     try {
-      MessageDigest hasher = MessageDigest.getInstance("SHA");
-      hasher.update(data);
-      byte[] hashed = hasher.digest();
+      MessageDigest digest = MessageDigest.getInstance("SHA");
+      digest.update(data);
+      byte[] hashed = digest.digest();
       return hashed;
     } catch (java.security.NoSuchAlgorithmException e) {
       return new byte[0];

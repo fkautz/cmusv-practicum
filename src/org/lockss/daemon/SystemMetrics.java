@@ -89,7 +89,7 @@ public class SystemMetrics
   private static Logger logger = Logger.getLogger("SystemMetrics");
 
   Hashtable estimateTable = new Hashtable();
-  MessageDigest defaultDigest = LcapMessage.getDefaultHasher();
+  MessageDigest defaultDigest = LcapMessage.getDefaultMessageDigest();
   HashService hashService;
   private PluginManager pluginMgr;
   int defaultSpeed;

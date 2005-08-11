@@ -89,9 +89,9 @@ public class LcapMessageTestUtil {
 
   public static byte[] computeHash(String s) {
     try {
-      MessageDigest hasher = MessageDigest.getInstance("SHA");
-      hasher.update(s.getBytes());
-      byte[] hashed = hasher.digest();
+      MessageDigest digest = MessageDigest.getInstance("SHA");
+      digest.update(s.getBytes());
+      byte[] hashed = digest.digest();
       return hashed;
     } catch (java.security.NoSuchAlgorithmException e) {
       return new byte[0];

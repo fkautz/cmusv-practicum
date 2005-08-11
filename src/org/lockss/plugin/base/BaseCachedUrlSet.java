@@ -189,12 +189,12 @@ public class BaseCachedUrlSet implements CachedUrlSet {
     return new CusIterator();
   }
 
-  public CachedUrlSetHasher getContentHasher(MessageDigest hasher) {
-    return contentHasherFactory(this, hasher);
+  public CachedUrlSetHasher getContentHasher(MessageDigest digest) {
+    return contentHasherFactory(this, digest);
   }
 
-  public CachedUrlSetHasher getNameHasher(MessageDigest hasher) {
-    return nameHasherFactory(this, hasher);
+  public CachedUrlSetHasher getNameHasher(MessageDigest digest) {
+    return nameHasherFactory(this, digest);
   }
 
   public void storeActualHashDuration(long elapsed, Exception err) {
@@ -291,12 +291,12 @@ public class BaseCachedUrlSet implements CachedUrlSet {
   }
 
   protected CachedUrlSetHasher contentHasherFactory(CachedUrlSet owner,
-                                                    MessageDigest hasher) {
-    return new GenericContentHasher(owner, hasher);
+                                                    MessageDigest digest) {
+    return new GenericContentHasher(owner, digest);
   }
   protected CachedUrlSetHasher nameHasherFactory(CachedUrlSet owner,
-                                                 MessageDigest hasher) {
-    return new GenericNameHasher(owner, hasher);
+                                                 MessageDigest digest) {
+    return new GenericNameHasher(owner, digest);
   }
 
   void calculateNodeSize() {
