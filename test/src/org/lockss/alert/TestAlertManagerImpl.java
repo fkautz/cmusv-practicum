@@ -93,7 +93,7 @@ public class TestAlertManagerImpl extends LockssTestCase {
     File file = FileTestUtil.tempFile("foo");
     mgr.storeAlertConfig(file, config);
     assertTrue(file.exists());
-    AlertConfig c2 = (AlertConfig)mgr.load(file, AlertConfig.class);
+    AlertConfig c2 = (AlertConfig)mgr.load(file);
 //     assertEquals(config, c2);
   }
 

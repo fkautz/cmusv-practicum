@@ -36,7 +36,6 @@ import java.util.*;
 import java.io.*;
 
 import org.lockss.util.*;
-import org.lockss.util.XmlMarshaller.MarshallingException;
 import org.lockss.poller.*;
 import org.lockss.protocol.*;
 import org.lockss.protocol.psm.*;
