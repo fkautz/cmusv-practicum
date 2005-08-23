@@ -264,6 +264,22 @@ public class TestLogger extends LockssTestCase {
 		     target.getMessages());
   }
 
+  public void testgGetLoggerWithDefaultLevel() throws Exception {
+    Logger l;
+    l = Logger.getLoggerWithDefaultLevel("foo", "warning", "param_default");
+    assertEquals(Logger.LEVEL_WARNING, l.level);
+    configLogLevelOnly("foo", Logger.LEVEL_INFO);
+    assertEquals(Logger.LEVEL_INFO, l.level);
+
+    configLogLevelOnly("bar", Logger.LEVEL_INFO);
+    l = Logger.getLoggerWithDefaultLevel("bar", "warning", "param_default");
+    assertEquals(Logger.LEVEL_INFO, l.level);
+
+    ConfigurationUtil.setFromArgs("param_default", "debug2");
+    l = Logger.getLoggerWithDefaultLevel("baz", "warning", "param_default");
+    assertEquals(Logger.LEVEL_DEBUG2, l.level);
+  }
+
   public void testNoRecurse() {
     Logger l = Logger.getLogger("recurse");
     LocalMockLogTarget target = new LocalMockLogTarget();
@@ -313,6 +329,10 @@ public class TestLogger extends LockssTestCase {
     public void setDoRecurse(boolean val) {
       doRecurse = val;
     }
+  }
+
+  public void testFoo() {
+    System.out.println(System.getProperties().toString());
   }
 }
 

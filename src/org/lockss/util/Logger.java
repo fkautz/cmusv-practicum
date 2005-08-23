@@ -246,6 +246,7 @@ public class Logger {
       }
       l = new Logger(defaultLevel, name, defaultLevelParam);
       if (myLog != null) myLog.debug2("Creating logger: " + name);
+      l.setLevel(l.getConfiguredLevel());
       logs.put(name, l);
     }
     return l;
