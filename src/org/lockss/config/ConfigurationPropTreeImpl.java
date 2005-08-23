@@ -36,10 +36,9 @@ import java.io.*;
 import java.util.*;
 
 import org.lockss.util.*;
-import org.mortbay.tools.*;
 
 /** <code>ConfigurationPropTreeImpl</code> represents the config parameters
- * as a <code>PropertyTree</code>
+ * as a {@link org.lockss.util.PropertyTree}
  */
 public class ConfigurationPropTreeImpl extends Configuration {
   private PropertyTree props;
