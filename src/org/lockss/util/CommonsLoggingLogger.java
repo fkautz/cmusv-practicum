@@ -57,6 +57,10 @@ public class CommonsLoggingLogger implements org.apache.commons.logging.Log {
     if (StringUtil.isNullString(s)) {
       s = DEFAULT_DEFAULT_COMMONS_LOG_LEVEL;
     }
+    int pos = name.lastIndexOf('.');
+    if (pos > 0) {
+      name = name.substring(pos + 1);
+    }
     log = Logger.getLoggerWithDefaultLevel(name, s,
 					   PARAM_DEFAULT_COMMONS_LOG_LEVEL);
   }
