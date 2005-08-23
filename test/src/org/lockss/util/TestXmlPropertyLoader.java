@@ -36,7 +36,6 @@ import java.util.*;
 import java.io.*;
 import java.net.URL;
 import javax.xml.parsers.*;
-import org.mortbay.tools.PropertyTree;
 import org.xml.sax.*;
 import org.xml.sax.helpers.*;
 import org.lockss.test.*;

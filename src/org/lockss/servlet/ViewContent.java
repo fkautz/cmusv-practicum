@@ -40,7 +40,6 @@ import java.net.*;
 import java.text.*;
 import org.mortbay.http.*;
 import org.mortbay.html.*;
-import org.mortbay.tools.*;
 import org.mortbay.servlet.MultiPartRequest;
 import org.lockss.app.*;
 import org.lockss.util.*;

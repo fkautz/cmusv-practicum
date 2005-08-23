@@ -39,7 +39,6 @@ import java.util.*;
 import java.net.*;
 import java.text.*;
 import org.mortbay.html.*;
-import org.mortbay.tools.*;
 import org.mortbay.servlet.MultiPartRequest;
 import org.lockss.util.*;
 import org.lockss.plugin.*;

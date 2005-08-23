@@ -38,7 +38,6 @@ import java.util.*;
 import javax.xml.parsers.*;
 
 import org.lockss.config.*;
-import org.mortbay.tools.*;
 import org.xml.sax.*;
 import org.xml.sax.helpers.*;
 

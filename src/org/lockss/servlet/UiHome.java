@@ -41,7 +41,6 @@ import java.text.*;
 //  import com.mortbay.servlet.*;
 //  import org.mortbay.util.*;
 import org.mortbay.html.*;
-import org.mortbay.tools.*;
 import org.lockss.util.*;
 import org.lockss.config.*;
 import org.lockss.daemon.*;

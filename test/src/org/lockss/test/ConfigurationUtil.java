@@ -37,7 +37,6 @@ import org.lockss.config.ConfigManager;
 import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
-import org.mortbay.tools.*;
 
 /** Utilities for Configuration and ConfigManager
  */

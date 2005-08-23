@@ -34,7 +34,6 @@ package org.lockss.util;
 import java.util.*;
 import java.io.*;
 import java.net.URLEncoder;
-import org.mortbay.tools.*;
 
 
 /** Utilities for Properties

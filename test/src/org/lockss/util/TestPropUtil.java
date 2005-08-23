@@ -36,7 +36,6 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 import junit.framework.TestCase;
-import org.mortbay.tools.*;
 import org.lockss.test.*;
 
 /**

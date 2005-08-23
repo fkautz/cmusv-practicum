@@ -42,6 +42,7 @@ import org.lockss.util.*;
 import org.lockss.config.*;
 import org.lockss.jetty.*;
 import org.mortbay.http.*;
+import org.mortbay.http.BasicAuthenticator;
 import org.mortbay.http.handler.*;
 import org.mortbay.jetty.servlet.*;
 

@@ -40,7 +40,6 @@ import java.net.*;
 import java.text.*;
 import java.security.*;
 import org.mortbay.html.*;
-import org.mortbay.tools.*;
 import org.mortbay.util.B64Code;
 import org.lockss.app.*;
 import org.lockss.util.*;
