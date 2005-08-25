@@ -75,7 +75,7 @@ public class LocalServletManager extends BaseServletManager {
 
   private String redirectRootTo = DEFAULT_REDIRECT_ROOT;
   private LockssResourceHandler rootResourceHandler;
-  private HashUserRealm realm;
+  private MDHashUserRealm realm;
   private List inFrameContentTypes;
 
   public LocalServletManager() {
@@ -132,13 +132,13 @@ public class LocalServletManager extends BaseServletManager {
 	  URL propsUrl = this.getClass().getResource(PASSWORD_PROPERTY_FILE);
 	  if (propsUrl != null) {
 	    log.debug("passwd props file: " + propsUrl);
-	    realm = new HashUserRealm(UI_REALM, propsUrl.toString());
+	    realm = new MDHashUserRealm(UI_REALM, propsUrl.toString());
 	  }
 	} catch (IOException e) {
 	  log.warning("Error loading admin.props", e);
 	}
 	if (realm == null) {
-	  realm = new HashUserRealm(UI_REALM);
+	  realm = new MDHashUserRealm(UI_REALM);
 	}
 	setConfiguredPasswords(realm);
 	if (realm.isEmpty()) {
