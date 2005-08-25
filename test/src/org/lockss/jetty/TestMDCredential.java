@@ -95,16 +95,16 @@ public class TestMDCredential extends LockssTestCase {
     testIt("SHA-1");
   }
 
-  public void testSHA256() throws Exception {
-    testIt("SHA-256");
-  }
+//   public void testSHA256() throws Exception {
+//     testIt("SHA-256");
+//   }
 
-  public void testSHA384() throws Exception {
-    testIt("SHA-384");
-  }
+//   public void testSHA384() throws Exception {
+//     testIt("SHA-384");
+//   }
 
-  public void testSHA512() throws Exception {
-    testIt("SHA-512");
-  }
+//   public void testSHA512() throws Exception {
+//     testIt("SHA-512");
+//   }
 
 }
