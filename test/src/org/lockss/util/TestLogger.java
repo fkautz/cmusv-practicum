@@ -330,9 +330,5 @@ public class TestLogger extends LockssTestCase {
       doRecurse = val;
     }
   }
-
-  public void testFoo() {
-    System.out.println(System.getProperties().toString());
-  }
 }
 
