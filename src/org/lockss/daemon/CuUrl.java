@@ -86,7 +86,7 @@ public class CuUrl {
     if (log.isDebug3()) {
       log.debug3("fromCu("+cu+"): auid: " + auId +", url: " + url);
     }
-    URL res = new URL(PROTOCOL, auId, "/" + URLEncoder.encode(url));
+    URL res = new URL(PROTOCOL, auId, "/" + UrlUtil.encodeUrl(url));
     return res;
   }
 
@@ -113,7 +113,7 @@ public class CuUrl {
       if (spec != null && spec.startsWith("/")) {
 	spec = spec.substring(1, spec.length());
       }
-      cachedUrlString = URLDecoder.decode(spec);
+      cachedUrlString = UrlUtil.decodeUrl(spec);
       if (log.isDebug3()) {
 	log.debug3("parseUrl("+url+")");
 	log.debug3("id:" + id);

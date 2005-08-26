@@ -463,7 +463,7 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
   }
 
   public void testCharacterEscaping() throws MalformedURLException {
-    String testStr = "http://www.example.com/"+URLEncoder.encode("#")+"nodestate.xml";
+    String testStr = "http://www.example.com/"+UrlUtil.encodeUrl("#")+"nodestate.xml";
     String expectedStr = "root/www.example.com/http/##nodestate.xml";
 //    assertEquals(FileUtil.sysDepPath(expectedStr),
   //               LockssRepositoryImpl.mapUrlToFileLocation("root", testStr));

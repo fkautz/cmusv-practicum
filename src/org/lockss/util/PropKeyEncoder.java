@@ -126,6 +126,6 @@ public class PropKeyEncoder {
   public static String decode(String s) {
     // we encode in the same format as URLEncoder, so can use URLDecoder to
     // decode.
-    return java.net.URLDecoder.decode(s);
+    return UrlUtil.decodeUrl(s);
   }
 }

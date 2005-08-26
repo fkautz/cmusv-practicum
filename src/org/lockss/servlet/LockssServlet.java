@@ -670,7 +670,7 @@ public abstract class LockssServlet extends HttpServlet
   }
 
   protected String urlEncode(String param) {
-    return URLEncoder.encode(param);
+    return UrlUtil.encodeUrl(param);
   }
 
 
