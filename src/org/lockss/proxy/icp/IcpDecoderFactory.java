@@ -32,8 +32,16 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.proxy.icp;
 
+/**
+ * <p>An abstraction for classes that need to obtain ICP decoders.</p>
+ * @author Thib Guicherd-Callin
+ */
 public interface IcpDecoderFactory {
 
+  /**
+   * <p>Builds a new ICP decoder.</p>
+   * @return An object conforming to {@link IcpDecoder}.
+   */
   IcpDecoder makeIcpDecoder();
   
 }

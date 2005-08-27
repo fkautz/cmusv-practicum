@@ -32,9 +32,16 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.proxy.icp;
 
+/**
+ * <p>Denotes a class that is an ICP builder factory as well as an
+ * ICP encoder and decoder factory.</p>
+ * @author Thib Guicherd-Callin
+ */
 public interface IcpFactory
     extends IcpBuilderFactory,
             IcpEncoderFactory,
             IcpDecoderFactory {
 
+  // no new methods
+  
 }

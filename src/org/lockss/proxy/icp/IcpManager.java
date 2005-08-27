@@ -67,7 +67,6 @@ public class IcpManager
                                            DEFAULT_ICP_PORT);
       udpSocket = new DatagramSocket(port);
       icpSocket = new IcpSocketImpl("IcpSocketImpl",
-                                    logger,
                                     udpSocket,
                                     icpFactory.makeIcpEncoder(),
                                     icpFactory.makeIcpDecoder());
@@ -99,19 +98,19 @@ public class IcpManager
         String urlString = message.getPayloadUrl().toString();
         CachedUrl cu = pluginManager.findOneCachedUrl(urlString);
         IcpMessage response;
-        if (cu != null && cu.hasContent()) {
-          response = icpBuilder.makeHit(message);
+        if (cu == null) {
+          response = icpBuilder.makeMissNoFetch(message);
+        }
+        else if (!cu.hasContent()) {
+          response = icpBuilder.makeMiss(message);
         }
         else {
-          response = icpBuilder.makeMiss(message);
+          response = icpBuilder.makeHit(message);
         }
         icpSocket.send(response, message.getUdpAddress(), message.getUdpPort());
       }
-      catch (IcpProtocolException ipe) {
-        
-      }
-      catch (IOException ioe) {
-        
+      catch (Exception exc) {
+        logger.warning("Exception in icpReceived", exc);
       }
     }
   }
