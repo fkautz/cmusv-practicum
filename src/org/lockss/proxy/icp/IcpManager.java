@@ -32,8 +32,8 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.proxy.icp;
 
-import java.io.IOException;
-import java.net.*;
+import java.net.DatagramSocket;
+import java.net.SocketException;
 
 import org.lockss.app.BaseLockssDaemonManager;
 import org.lockss.app.LockssAppException;
