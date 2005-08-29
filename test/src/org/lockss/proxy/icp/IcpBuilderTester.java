@@ -252,7 +252,7 @@ public abstract class IcpBuilderTester extends TestCase {
                              byte expectedVersion,
                              int expectedRequestNumber,
                              InetAddress expectedSender,
-                             URL expectedPayloadUrl) {
+                             String expectedPayloadUrl) {
     assertEquals(expectedOpcode, message.getOpcode());
     assertEquals(expectedVersion, message.getVersion());
     assertEquals(expectedRequestNumber, message.getRequestNumber());

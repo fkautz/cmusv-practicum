@@ -126,7 +126,7 @@ public interface IcpMessage {
    * <p>Retrieves the URL contained in this message.</p>
    * @return This message's URL.
    */
-  public URL getPayloadUrl();
+  public String getPayloadUrl();
 
   /**
    * <p>If this message is an ICP query, retrieves the address of the
