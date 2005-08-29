@@ -34,6 +34,7 @@ package org.lockss.devtools.plugindef;
 import java.util.*;
 import javax.swing.event.*;
 import javax.swing.*;
+import org.lockss.daemon.*;
 
 public class EDPCellData {
   EditableDefinablePlugin m_plugin;
@@ -150,11 +151,16 @@ public class EDPCellData {
 
   public String toString() {
     if(m_displayString == null) {
-      if (m_data instanceof Collection || m_data instanceof Map) {
+      if (m_data instanceof Collection || m_data instanceof Map || 
+	  m_data instanceof CrawlWindows.Interval || 
+	  m_data instanceof CrawlWindows.Not) {
 	m_displayString = ELLIPSIS;
       }
       else if (m_data == null) {
-	m_displayString = "NONE";
+	  if(m_key.equals(m_plugin.AU_CRAWL_WINDOW))
+	      m_displayString = ELLIPSIS;
+	  else
+	      m_displayString = "NONE";
       }
       else {
 	m_displayString = m_data.toString();
@@ -200,10 +206,13 @@ public class EDPCellData {
       m_data = new Integer(data);
       m_plugin.setAuCrawlDepth(((Integer)m_data).intValue());
     }
+    //RI
+    /*
     else if(m_key.equals(m_plugin.AU_CRAWL_WINDOW)) {
       m_data = data;
       m_plugin.setAuCrawlWindow((String)m_data);
     }
+    */
     else if(m_key.equals(m_plugin.AU_PAUSE_TIME)) {
       m_data = new Long(data);
       m_plugin.setAuPauseTime(((Long)m_data).longValue());
