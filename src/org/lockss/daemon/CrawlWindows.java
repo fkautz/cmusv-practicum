@@ -159,6 +159,18 @@ public class CrawlWindows {
       this.fieldMask = fieldMask;
     }
 
+    public Calendar getStartCalendar(){
+	return start;
+    }
+
+    public Calendar getEndCalendar(){
+	return end;
+    }
+
+    public TimeZone getTimeZone(){
+	return timeZone;
+    }
+
     public boolean isMatch(Calendar cal) {
       if (bitTest(fieldMask, MONTH)) {
         if (!fieldMatches(Calendar.MONTH, cal)) {
@@ -377,6 +389,10 @@ public class CrawlWindows {
         throw new NullPointerException("CrawlWindows.Not with null window");
       }
       this.window = window;
+    }
+
+    public CrawlWindow getCrawlWindow(){
+	return window;
     }
 
     public boolean canCrawl() {
