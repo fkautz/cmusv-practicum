@@ -61,7 +61,11 @@ public class StringInputStream extends InputStream {
    * @return the source String
    */
   public String toString() {
-    return theString;
+    StringBuffer sb = new StringBuffer();
+    sb.append("[StringInputStream: ");
+    sb.append(theString);
+    sb.append("]");
+    return sb.toString();
   }
 
   public boolean markSupported() {

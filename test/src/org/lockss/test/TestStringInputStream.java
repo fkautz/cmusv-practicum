@@ -58,7 +58,7 @@ public class TestStringInputStream extends LockssTestCase {
 
   public void testToString() {
     StringInputStream sis = new StringInputStream("test");
-    assertEquals("test", sis.toString());
+    assertEquals("[StringInputStream: test]", sis.toString());
   }
 
   public void testMarkSupported() {
