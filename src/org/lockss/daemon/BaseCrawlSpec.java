@@ -101,6 +101,14 @@ public abstract class BaseCrawlSpec implements CrawlSpec {
   }
 
   /**
+   * Returns whether the rule is null
+   * @author Rebecca Illowsky
+   */
+  public boolean isRuleNull(){
+      return (rule == null);
+  }
+
+  /**
    * Determine whether a url is part of this CrawlSpec.
    * @param url The url to test
    * @return true iff the url matches the rule
