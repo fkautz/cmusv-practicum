@@ -32,7 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.test;
 
-import java.io.InputStream;
+import java.io.*;
 import junit.framework.TestCase;
 
 /**
@@ -60,4 +60,38 @@ public class TestStringInputStream extends LockssTestCase {
     StringInputStream sis = new StringInputStream("test");
     assertEquals("test", sis.toString());
   }
+
+  public void testMarkSupported() {
+    StringInputStream sis = new StringInputStream("test");
+    assertTrue(sis.markSupported());
+  }
+
+  public void testReset() throws IOException {
+    StringInputStream sis = new StringInputStream("test");
+    byte bytes[] = "test".getBytes();
+    for (int ix=0; ix<bytes.length; ix++){
+      assertEquals(bytes[ix], sis.read());
+    }
+    sis.reset();
+    for (int ix=0; ix<bytes.length; ix++){
+      assertEquals(bytes[ix], sis.read());
+    }
+    assertEquals(-1, sis.read());
+  }
+
+  public void testMark() throws IOException {
+    StringInputStream sis = new StringInputStream("test");
+    sis.read();
+    sis.mark(1024);
+    byte bytes[] = "est".getBytes();
+    for (int ix=0; ix<bytes.length; ix++){
+      assertEquals(bytes[ix], sis.read());
+    }
+    sis.reset();
+    for (int ix=0; ix<bytes.length; ix++){
+      assertEquals(bytes[ix], sis.read());
+    }
+    assertEquals(-1, sis.read());
+  }
+
 }

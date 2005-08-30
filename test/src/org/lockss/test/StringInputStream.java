@@ -32,7 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.test;
 
-import java.io.InputStream;
+import java.io.*;
 import java.io.ByteArrayInputStream;
 
 /**
@@ -62,6 +62,18 @@ public class StringInputStream extends InputStream {
    */
   public String toString() {
     return theString;
+  }
+
+  public boolean markSupported() {
+    return bais.markSupported();
+  }
+
+  public void reset() throws IOException {
+    bais.reset();
+  }
+
+  public void mark(int readLimit) {
+    bais.mark(readLimit);
   }
 
 }
