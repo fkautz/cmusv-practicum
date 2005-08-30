@@ -114,7 +114,7 @@ public class EDPInspectorCellEditor extends AbstractCellEditor
     editorEntries[PLUGIN_CRAWLRULES] =
       new CellEditorEntry(CRAWLRULE, new CrawlRuleEditor(parentFrame),
 			  makeButton(CRAWLRULE));
-    // craw window
+    // crawl window
     editorEntries[PLUGIN_CRAWLWINDOW]=
 	new CellEditorEntry(CRAWLWINDOW, new CrawlWindowEditor(parentFrame),
 			    makeButton(CRAWLWINDOW));
