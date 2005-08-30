@@ -92,7 +92,7 @@ public abstract class BaseProxyManager extends JettyManager {
     if (accessHandler != null) {
       try {
 	IpFilter filter = new IpFilter();
-	filter.setFilters(includeIps, excludeIps, ';');
+	filter.setFilters(includeIps, excludeIps);
 	accessHandler.setFilter(filter);
       } catch (IpFilter.MalformedException e) {
 	log.warning("Malformed IP filter, filters not changed", e);

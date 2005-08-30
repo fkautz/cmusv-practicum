@@ -150,7 +150,7 @@ public abstract class BaseServletManager
   void setIpFilter(IpAccessHandler ah) {
     try {
       IpFilter filter = new IpFilter();
-      filter.setFilters(includeIps, excludeIps, ';');
+      filter.setFilters(includeIps, excludeIps);
       ah.setFilter(filter);
     } catch (IpFilter.MalformedException e) {
       log.warning("Malformed IP filter, filters not changed", e);
