@@ -184,6 +184,10 @@ public class EDPInspectorTableModel extends AbstractTableModel
       // we handle the internal update here
       cell_data.updateStringData( (String) obj);
     }
+    else{
+	//notifies listeners that something has changed
+	cell_data.updateOtherData( (String) obj);
+    }
   }
 
   public boolean isCellEditable(int row, int column) {
@@ -254,6 +258,8 @@ public class EDPInspectorTableModel extends AbstractTableModel
    * @param e ChangeEvent
    */
   public void stateChanged(ChangeEvent e) {
+    //sets all dirty bits on
+    m_plugin.setPluginState(PersistentPluginState.ALL_DIRTY_BITS_ON,null,"on");
     fireTableDataChanged();
   }
 }

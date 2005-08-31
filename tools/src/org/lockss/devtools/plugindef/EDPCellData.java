@@ -234,4 +234,9 @@ public class EDPCellData {
 
     notifyListenersOfChange();
   }
+
+  public void updateOtherData(String data) { 
+    notifyListenersOfChange();
+  }
+ 
 }
