@@ -299,7 +299,7 @@ public class LcapIdentity {
   }
 
   static String makeIdKey(IPAddr addr, int port) {
-    return IdentityManager.ipAddrToKey(addr, port);
+    return IDUtil.ipAddrToKey(addr, port);
   }
 
 }
