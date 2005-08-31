@@ -181,7 +181,7 @@ public class TestBlockingStreamComm extends LockssTestCase {
   }
 
   PeerIdentity findPeerId(String addr, int port) {
-    String id = IdentityManager.ipAddrToKey(addr, port);
+    String id = IDUtil.ipAddrToKey(addr, port);
     return idmgr.findPeerIdentity(id);
   }
 
@@ -1123,10 +1123,19 @@ public class TestBlockingStreamComm extends LockssTestCase {
     }
   }
 
-  static class MyIdentityManager extends IdentityManager {
+  static class MyIdentityManager extends IdentityManagerImpl {
     public void storeIdentities() throws ProtocolException {
     }
   }
+
+  public void readIdentityAgreementFrom(ArchivalUnit au, InputStream in)
+      throws IOException {
+    throw new UnsupportedOperationException("not implemented");
+  }
+
+//   public void writeIdentityDbTo(OutputStream out) throws IOException {
+//     throw new UnsupportedOperationException("not implemented");
+//   }
 
   // Suppress delete() because it prevents comparison with messages that
   // have been sent
