@@ -1067,13 +1067,14 @@ public class PluginManager
     String pluginName = "";
     try {
       pluginName = pluginNameFromKey(pluginKey);
+      log.debug3("Trying to retrieve "+pluginKey);
       info = retrievePlugin(pluginKey, loader);
       if (info != null) {
 	setPlugin(pluginKey, info.getPlugin());
 	pluginfoMap.put(pluginKey, info);
 	return true;
-      }
-      else {
+      } else {
+	log.debug("Couldn't retrieve "+pluginKey);
 	return false;
       }
     } catch (Exception e) {
