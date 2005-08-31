@@ -133,7 +133,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
     new ManagerDesc(SCHED_SERVICE, DEFAULT_SCHED_SERVICE),
     new ManagerDesc(HASH_SERVICE, "org.lockss.hasher.HashSvcQueueImpl"),
     new ManagerDesc(SYSTEM_METRICS, "org.lockss.daemon.SystemMetrics"),
-    new ManagerDesc(IDENTITY_MANAGER, "org.lockss.protocol.IdentityManager"),
+    new ManagerDesc(IDENTITY_MANAGER, "org.lockss.protocol.IdentityManagerImpl"),
     new ManagerDesc(POLL_MANAGER, "org.lockss.poller.PollManager"),
     new ManagerDesc(CRAWL_MANAGER, "org.lockss.crawler.CrawlManagerImpl"),
     new ManagerDesc(REPOSITORY_MANAGER,
