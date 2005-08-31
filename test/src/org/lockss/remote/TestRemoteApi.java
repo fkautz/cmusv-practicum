@@ -634,15 +634,17 @@ public class TestRemoteApi extends LockssTestCase {
       return inactiveAuIds;
     }
   }
-  static class MyIdentityManager extends IdentityManager {
+  static class MyIdentityManager extends MockIdentityManager {
     private Map agreeMapContents = new HashMap();
 
     void setAgreeMap(ArchivalUnit au, String content) {
       agreeMapContents.put(au, content);
     }
+
     String getAgreeMap(ArchivalUnit au) {
       return (String)agreeMapContents.get(au);
     }
+
     void resetAgreeMap() {
       agreeMapContents.clear();
     }
