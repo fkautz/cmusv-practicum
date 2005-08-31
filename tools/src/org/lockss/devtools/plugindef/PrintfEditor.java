@@ -45,8 +45,7 @@ import org.lockss.util.*;
 import org.lockss.plugin.definable.*;
 
 
-public class PrintfEditor extends JDialog
-    implements EDPEditor, ConfigParamListener {
+public class PrintfEditor extends JDialog implements EDPEditor, ConfigParamListener {
   protected PrintfTemplate originalTemplate;
   protected PrintfTemplate editableTemplate;
   private EDPCellData m_data;
@@ -605,7 +604,7 @@ public class PrintfEditor extends JDialog
     return sb.toString();
   }
 
-    }
+}
 
 class PrintfTemplateEditor_saveButton_actionAdapter
     implements java.awt.event.ActionListener {

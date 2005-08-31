@@ -43,7 +43,7 @@ import javax.swing.table.*;
 /**
  * <p>Title: </p>
  * <p>@author Rebecca Illowsky</p>
- * <p>@version 2.0</p>
+ * <p>@version 0.7</p>
  * <p> </p>
  *  not attributable
  *
