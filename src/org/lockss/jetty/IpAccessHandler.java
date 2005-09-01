@@ -82,7 +82,7 @@ public class IpAccessHandler extends AbstractHttpHandler {
     this.allowLocal = allowLocal;
   }
 
-  boolean isIpAuthorized(String ip) throws IpFilter.MalformedException {
+  public boolean isIpAuthorized(String ip) throws IpFilter.MalformedException {
     return (filter.isIpAllowed(ip) || (allowLocal && localIps.contains(ip)));
   }
 

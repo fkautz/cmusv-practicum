@@ -237,4 +237,13 @@ public class ProxyManager extends BaseProxyManager {
       hostsEverDown.add(host);
     }
   }
+  
+  public boolean isIpAuthorized(String ip) {
+    try {
+      return accessHandler.isIpAuthorized(ip);
+    }
+    catch (Exception exc) {
+      return false;
+    }
+  }
 }

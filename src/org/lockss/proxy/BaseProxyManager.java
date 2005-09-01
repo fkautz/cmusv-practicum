@@ -54,7 +54,7 @@ public abstract class BaseProxyManager extends JettyManager {
   protected String includeIps;
   protected String excludeIps;
   protected boolean logForbidden;
-  private IpAccessHandler accessHandler;
+  protected IpAccessHandler accessHandler;
 
   /* ------- LockssManager implementation ------------------ */
   /**
