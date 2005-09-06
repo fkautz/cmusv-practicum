@@ -46,11 +46,45 @@ import org.lockss.app.*;
 public class MockMailService extends BaseLockssManager
   implements MailService {
 
+  List recs = new ArrayList();
+
   protected void setConfig(Configuration config, Configuration oldConfig,
 			   Configuration.Differences changedKeys) {
   }
 
-  public boolean sendMail(String sender, String recipient, String body) {
-    throw new UnsupportedOperationException();
+  public boolean sendMail(String sender, String recipient, MailMessage msg) {
+    Rec rec = new Rec();
+    rec.sender = sender;
+    rec.recipient = recipient;
+    rec.msg = msg;
+    recs.add(rec);
+    return true;
+  }
+
+  public List getRecs() {
+    return recs;
+  }
+
+  public Rec getRec(int idx) {
+    return (Rec)recs.get(idx);
+  }
+
+  public static class Rec {
+    String sender;
+    String recipient;
+    MailMessage msg;
+
+    public String getSender() {
+      return sender;
+    }
+
+    public String getRecipient() {
+      return recipient;
+    }
+
+    public MailMessage getMsg() {
+      return msg;
+    }
+
   }
 }

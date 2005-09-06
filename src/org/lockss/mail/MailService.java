@@ -45,5 +45,5 @@ public interface MailService extends LockssManager {
   static final String PARAM_ENABLED = PREFIX + "enabled";
   static final boolean DEFAULT_ENABLED = false;
 
-  public boolean sendMail(String sender, String recipient, String body);
+  public boolean sendMail(String sender, String recipient, MailMessage msg);
 }

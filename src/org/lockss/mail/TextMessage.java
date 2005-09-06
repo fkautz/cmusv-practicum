@@ -38,19 +38,68 @@ import org.lockss.util.*;
 import org.lockss.daemon.*;
 
 /**
- * Interface for messages handled by {@link MailService}
+ * Simple mail message with text body
  */
-public interface MailMessage  {
-  /** Add a header to the message */
-  public MailMessage addHeader(String name, String val);
+public class TextMessage implements MailMessage  {
+  protected static Logger log = Logger.getLogger("TextMessage");
+
+  private StringBuffer headers = new StringBuffer();
+  private String text;
+
+  public TextMessage() {
+  }
+
+  public MailMessage addHeader(String name, String val) {
+    headers.append(name);
+    headers.append(": ");
+    headers.append(val);
+    headers.append("\n");
+    return this;
+  }
+
+  public MailMessage setText(String text) {
+    this.text = text;
+    return this;
+  }
+
+  public String getBody() {
+    if (text == null) {
+      return headers + "\n";
+    }
+    StringBuffer body =
+      new StringBuffer(text.length() + headers.length() + 10);
+    body.append(headers);
+    body.append("\n");
+    body.append(text);
+    return body.toString();
+  }
 
   /** Send the body, ensuring proper network end-of-line, quoting any
-   * leading dots, and terminating with <nl>,<nl>
-   */
-  void sendBody(PrintStream ostrm) throws IOException;
+   * leading dots, and terminating with <nl>,<nl> */
+  public void sendBody(PrintStream ostrm) throws IOException {
+    String body = getBody();
+    char prev = 0;
+    for (int ix = 0, len = body.length(); ix < len; ix++) {
+      char c = (char)body.charAt(ix);
+      // double leading dots
+      if (prev == '\n' && c == '.') {
+	ostrm.write('.');
+      }
+      // convert newline to crlf
+      if (c == '\n' && prev != '\r') {
+	ostrm.write('\r');
+      }
+      ostrm.write(c);
+      prev = c;
+    }
+    // ensure ending crlf
+    if (prev != '\n') {
+      ostrm.print("\r\n");
+    }
+    log.debug3("Body sent");
+  }
 
-  /** Called just before message is discarded, to give message a chance to
-   * deleted any temporary files, etc.
-   */
-  void delete(boolean sentOk);
+  /** Does nothing */
+  public void delete(boolean sentOk) {
+  }
 }

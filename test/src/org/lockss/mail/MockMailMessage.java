@@ -30,27 +30,41 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.test;
+package org.lockss.mail;
 
+import java.io.*;
 import java.util.*;
-
-import org.lockss.config.Configuration;
-import org.lockss.daemon.*;
-import org.lockss.mail.*;
+import org.lockss.test.*;
 import org.lockss.util.*;
-import org.lockss.app.*;
 
-/**
- * Null version of the MailService.
- */
-public class NullMailService extends BaseLockssManager
-  implements MailService {
+public class MockMailMessage implements MailMessage {
+  private String text;
+  private boolean isDeleted = false;
+  private boolean wasSentOk;
 
-  protected void setConfig(Configuration config, Configuration oldConfig,
-			   Configuration.Differences changedKeys) {
+  MockMailMessage(String text) {
+    this.text = text;
   }
 
-  public boolean sendMail(String sender, String recipient, MailMessage msg) {
-    return true;
+  public MailMessage addHeader(String name, String val) {
+    throw new UnsupportedOperationException();
+  }
+
+  public void sendBody(PrintStream ostrm) throws IOException {
+    ostrm.print(text);
+  }
+
+  public void delete(boolean sentOk) {
+    isDeleted = true;
+    wasSentOk = sentOk;
+  }
+
+  public boolean isDeleted() {
+    return isDeleted;
+  }
+
+  public boolean wasSentOk() {
+    return wasSentOk;
   }
 }
+

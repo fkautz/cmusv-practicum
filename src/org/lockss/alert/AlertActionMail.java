@@ -46,7 +46,7 @@ import org.lockss.util.*;
 public class AlertActionMail extends AbstractAlertAction {
   private static Logger log = Logger.getLogger("AlertActionMail");
 
-  /** If sepcified, the sender address on alert emails.  If not specific,
+  /** If specified, the sender address on alert emails.  If not specified,
    * uses the admin email adress */
   static final String PARAM_EMAIL_SENDER = PREFIX + "mail.sender";
   /** Default sender, if PARAM_EMAIL_SENDER not present */
@@ -124,14 +124,14 @@ public class AlertActionMail extends AbstractAlertAction {
     Configuration config = Configuration.getCurrentConfig();
     if (config.getBoolean(PARAM_ENABLED, DEFAULT_ENABLED)) {
       MailService mailSvc = daemon.getMailService();
-      MailMessage msg = new MailMessage();
+      TextMessage msg = new TextMessage();
       msg.addHeader("From", getFrom(oneAlert, config));
       msg.addHeader("To", recipients);
       msg.addHeader("Date", headerDf.format(TimeBase.nowDate()));
       msg.addHeader("Subject", oneAlert.getMailSubject() + subjSuff);
       msg.addHeader("X-Mailer", getXMailer());
       msg.setText(body);
-      mailSvc.sendMail(getSender(config), recipients, msg.getBody());
+      mailSvc.sendMail(getSender(config), recipients, msg);
     }
   }
 

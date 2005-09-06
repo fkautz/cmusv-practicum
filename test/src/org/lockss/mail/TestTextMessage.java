@@ -30,27 +30,45 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.test;
+package org.lockss.mail;
 
+import java.io.*;
 import java.util.*;
-
-import org.lockss.config.Configuration;
-import org.lockss.daemon.*;
-import org.lockss.mail.*;
+import java.net.*;
+import org.lockss.test.*;
 import org.lockss.util.*;
-import org.lockss.app.*;
+import org.lockss.daemon.*;
+import org.lockss.plugin.*;
 
 /**
- * Null version of the MailService.
+ * This is the test class for org.lockss.mail.TextMessage
  */
-public class NullMailService extends BaseLockssManager
-  implements MailService {
+public class TestTextMessage extends LockssTestCase {
 
-  protected void setConfig(Configuration config, Configuration oldConfig,
-			   Configuration.Differences changedKeys) {
+  public void testNull() throws IOException {
+    TextMessage msg = new TextMessage();
+    assertEquals("\n", msg.getBody());
   }
 
-  public boolean sendMail(String sender, String recipient, MailMessage msg) {
-    return true;
+  public void testIt() throws IOException {
+    TextMessage msg = new TextMessage();
+    msg.addHeader("From", "me");
+    msg.addHeader("To", "you");
+    msg.addHeader("Subject", "topic");
+    msg.setText("Message\ntext");
+    String exp = "From: me\nTo: you\nSubject: topic\n\nMessage\ntext";
+    assertEquals(exp, msg.getBody());
   }
+
+  public void testSendBodyNL() throws IOException {
+    ByteArrayOutputStream baos = new ByteArrayOutputStream(128);
+    PrintStream pstrm = new PrintStream(baos);
+    TextMessage msg = new TextMessage();
+    msg.addHeader("From", "me");
+    msg.setText("foo\nbar\rbaz\r\nzot.\n.\n.foo");
+    msg.sendBody(pstrm);
+    assertEquals("From: me\r\n\r\nfoo\r\nbar\rbaz\r\nzot.\r\n..\r\n..foo\r\n",
+		 baos.toString());
+  }
+
 }
