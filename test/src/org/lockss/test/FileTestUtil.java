@@ -34,7 +34,7 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 import java.security.*;
-import org.lockss.util.ListUtil;
+import org.lockss.util.*;
 
 /** Utilities for Files involved in the test hierarchy
  */
@@ -80,9 +80,10 @@ public class FileTestUtil {
   }
 
   public static void writeFile(File file, String contents) throws IOException {
-    FileWriter fw = new FileWriter(file);
-    fw.write(contents);
-    fw.close();
+    Writer wrtr = new OutputStreamWriter(new FileOutputStream(file),
+					 Constants.DEFAULT_ENCODING);
+    wrtr.write(contents);
+    wrtr.close();
   }
 
   /** Store the string in a temp file and return a file: url for it */
