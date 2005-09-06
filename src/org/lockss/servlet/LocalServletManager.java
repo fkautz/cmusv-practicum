@@ -207,6 +207,8 @@ public class LocalServletManager extends BaseServletManager {
 		       "org.lockss.servlet.HashCUS");
     handler.addServlet("Raise Alert", "/RaiseAlert",
 		       "org.lockss.servlet.RaiseAlert");
+    handler.addServlet("Debug Panel", "/DebugPanel",
+		       "org.lockss.servlet.DebugPanel");
     handler.addServlet("ThreadDump", "/ThreadDump",
 		       "org.lockss.servlet.ThreadDump");
     addServletIfAvailable(handler, "Api", "/Api",

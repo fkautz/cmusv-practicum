@@ -237,6 +237,9 @@ public abstract class LockssServlet extends HttpServlet
   protected static final ServletDescr SERVLET_RAISE_ALERT =
     new ServletDescr(RaiseAlert.class, "Raise Alert",
 		     ServletDescr.NOT_IN_NAV);
+  protected static final ServletDescr SERVLET_DEBUG_PANEL =
+    new ServletDescr(DebugPanel.class, "Debug Panel",
+		     ServletDescr.NOT_IN_NAV);
   protected static final ServletDescr LINK_HELP =
     new ServletDescr(null, "Help", LocalServletManager.DEFAULT_HELP_URL,
 		     ServletDescr.NAME_IS_URL);
@@ -282,6 +285,7 @@ public abstract class LockssServlet extends HttpServlet
      LINK_LOGS,
      SERVLET_THREAD_DUMP,
      SERVLET_RAISE_ALERT,
+     SERVLET_DEBUG_PANEL,
      LINK_CONTACT,
      LINK_HELP,
   };
