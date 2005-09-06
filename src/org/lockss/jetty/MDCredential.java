@@ -161,7 +161,6 @@ public class MDCredential extends Credential {
     log.debug3("check(" + credentials + ")");
     try {
       byte[] digest=null;
-                
       if (credentials instanceof Password ||
 	  credentials instanceof String) {
 	digest = calculateDigest(credentials.toString());
