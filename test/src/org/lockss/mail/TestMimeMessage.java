@@ -200,7 +200,7 @@ public class TestMimeMessage extends LockssTestCase {
     assertMatchesRE(PAT_CONTENT_TRANSFER_ENCODING + "base64", blines[7]);
     assertMatchesRE(PAT_CONTENT_DISPOSITION, blines[8]);
     assertEquals("", blines[9]);
-    assertEquals("AAHCrMKtdGhpcyBpcyBhIHRlc3Q=", blines[10]);
+    assertEquals("AAGsrXRoaXMgaXMgYSB0ZXN0", blines[10]);
     assertMatchesRE(PAT_BOUNDARY, blines[11]);
 
     assertTrue(file.exists());
