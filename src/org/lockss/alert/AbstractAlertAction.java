@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -35,9 +35,11 @@ package org.lockss.alert;
 import java.util.*;
 
 import org.lockss.app.*;
+import org.lockss.util.LockssSerializable;
 
 /** AbstractAlertAction has common code for AlertActions */
-public abstract class AbstractAlertAction implements AlertAction {
+public abstract class AbstractAlertAction
+    implements AlertAction, LockssSerializable {
   /** Record a list of similar Alerts; override to provide smarter behavior
    * than just calling record() on each one;  */
   public void record(LockssDaemon daemon, List alerts) {

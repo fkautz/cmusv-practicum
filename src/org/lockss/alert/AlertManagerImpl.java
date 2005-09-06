@@ -132,7 +132,8 @@ public class AlertManagerImpl
     storeAlertConfig(file, config);
   }
 
-  void storeAlertConfig(File file, AlertConfig alertConfig) throws Exception {
+  void storeAlertConfig(File file, AlertConfig alertConfig)
+      throws Exception {
     try {
       //       store(file, new AlertConfigBean(alertConfig));
       store(file, alertConfig);
@@ -167,7 +168,7 @@ public class AlertManagerImpl
    * @param obj  An object to serialize.
    * @throws Exception if an error condition arises.
    */
-  void store(File file, Object obj) throws Exception {
+  void store(File file, LockssSerializable obj) throws Exception {
     ObjectSerializer serializer = makeObjectSerializer();
     serializer.serialize(file, obj);
   }

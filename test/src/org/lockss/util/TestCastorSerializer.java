@@ -32,7 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.util;
 
-public class TestCastorSerializer extends ObjectSerializerTest {
+public class TestCastorSerializer extends ObjectSerializerTester {
 
   protected ObjectSerializer makeObjectSerializer_ExtMapBean() {
     return new CastorSerializer(

@@ -38,7 +38,7 @@ import java.io.StringWriter;
 
 import org.lockss.util.ObjectSerializer.SerializationException;
 
-public class TestCXSerializer extends ObjectSerializerTest {
+public class TestCXSerializer extends ObjectSerializerTester {
 
   /**
    * <p>Tests whether a CXSerializer in Castor mode successfully

@@ -35,12 +35,13 @@ package org.lockss.state;
 
 import java.util.*;
 import org.lockss.plugin.ArchivalUnit;
+import org.lockss.util.LockssSerializable;
 import org.lockss.util.TimeBase;
 
 /**
  * AuState contains the state information for an au.
  */
-public class AuState {
+public class AuState implements LockssSerializable {
   protected transient ArchivalUnit au;
   protected long lastCrawlTime;
   protected long lastTopLevelPoll;

@@ -369,7 +369,7 @@ public interface IdentityManager extends LockssManager {
   public void readIdentityAgreementFrom(ArchivalUnit au, InputStream in)
       throws IOException;
 
-  public static class IdentityAgreement {
+  public static class IdentityAgreement implements LockssSerializable {
     private long lastAgree = 0;
     private long lastDisagree = 0;
     private String id = null;

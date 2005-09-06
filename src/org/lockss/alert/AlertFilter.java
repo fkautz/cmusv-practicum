@@ -42,7 +42,7 @@ import org.lockss.plugin.*;
 
 /** AlertFilter specifies a pattern and an action to be taken for all
  * alerts that match the pattern */
-public class AlertFilter {
+public class AlertFilter implements LockssSerializable {
   private AlertPattern pattern;
   private AlertAction action;
 

@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -35,15 +35,13 @@ package org.lockss.poller;
 import org.mortbay.util.B64Code;
 import org.lockss.protocol.*;
 import java.util.Arrays;
-import java.net.UnknownHostException;
-import org.lockss.app.LockssDaemon;
 import org.lockss.util.*;
 
 /**
  * Vote stores the information need to replay a single vote. These are needed
  * to run a repair poll.
  */
-public class Vote {
+public class Vote implements LockssSerializable {
   private PeerIdentity voterID = null;
   protected boolean agree = false;
   private ActiveVote activeInfo = null;
@@ -254,7 +252,7 @@ public class Vote {
 
 }
 
-class ActiveVote {
+class ActiveVote implements LockssSerializable {
   byte[] challenge;
   byte[] verifier;
 

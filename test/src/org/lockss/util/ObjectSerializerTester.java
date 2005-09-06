@@ -53,7 +53,7 @@ import org.custommonkey.xmlunit.XMLUnit;
  * {@link junit.framework.TestCase}.</p>
  * @author Thib Guicherd-Callin
  */
-public abstract class ObjectSerializerTest
+public abstract class ObjectSerializerTester
     extends XMLTestCase {
   
   /**
@@ -213,11 +213,20 @@ public abstract class ObjectSerializerTest
     tempFile.deleteOnExit();
     
     try {
-      serializer.serialize(tempFile, null);
+      serializer.serialize(tempFile, (Serializable)null);
       failGeneric("testThrowsNullArgumentException",
-                  "NullArgumentException not thrown when marshalling null.");
+                  "NullArgumentException not thrown: (Serializable)null");
     }
-    catch (NullPointerException e) {
+    catch (NullPointerException npe) {
+      // succeed
+    }
+    
+    try {
+      serializer.serialize(tempFile, (LockssSerializable)null);
+      failGeneric("testThrowsNullArgumentException",
+                  "NullArgumentException not thrown: (LockssSerializable)null");
+    }
+    catch (NullPointerException npe) {
       // succeed
     }
   }
@@ -334,7 +343,7 @@ public abstract class ObjectSerializerTest
   private static void failGeneric(String methodName, String message) {
     String separator = ": ";
     StringBuffer buffer = new StringBuffer();
-    buffer.append(ObjectSerializerTest.class.getName());
+    buffer.append(ObjectSerializerTester.class.getName());
     buffer.append(separator);
     buffer.append(methodName);
     buffer.append(separator);

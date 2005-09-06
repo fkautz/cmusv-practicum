@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -43,7 +43,7 @@ import org.lockss.util.*;
  * PollTally is a struct-like class which maintains the current state of
  * votes within a poll.
  */
-public abstract class PollTally implements Tallier{
+public abstract class PollTally implements Tallier {
   PollSpec pollSpec;
   String key;
   int type;
@@ -249,7 +249,7 @@ public abstract class PollTally implements Tallier{
   /**
    * Description: a class for the entries returned in a Name poll
    */
-  public static class NameListEntry {
+  public static class NameListEntry implements LockssSerializable {
     public boolean hasContent;
     public String name;
 
