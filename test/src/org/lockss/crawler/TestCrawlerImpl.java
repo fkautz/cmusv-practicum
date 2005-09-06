@@ -191,7 +191,7 @@ public class TestCrawlerImpl extends LockssTestCase {
 
     PermissionMap pMap = crawler.getPermissionMap();
     assertNotNull(pMap);
-    assertEquals(PermissionMap.PERMISSION_OK, 
+    assertEquals(PermissionRecord.PERMISSION_OK, 
 		 pMap.getStatus("http://example.com/blah.html"));
 
     //verify that it fetched the permission page
