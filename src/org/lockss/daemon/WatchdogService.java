@@ -113,9 +113,6 @@ public class WatchdogService
 
   public synchronized void stopService() {
     disable();
-    if (req != null) {
-      TimerQueue.cancel(req);
-    }
     super.stopService();
   }
 
@@ -160,7 +157,11 @@ public class WatchdogService
     new TimerQueue.Callback() {
       public void timerExpired(Object cookie) {
 	woof();
-      }};
+      }
+      public String toString() {
+	return "Java watchdog keepalive";
+      }
+    };
 
   // Touch the watchdog file, schedule a timer event for the next one.  If
   // can't update time on file, try to delete it so platform will know
