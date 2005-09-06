@@ -155,6 +155,13 @@ public class ConfigurationUtil {
     return installConfig(fromArgs(prop1, val1, prop2, val2));
   }
 
+  /** Add the values to the current config
+   */
+  public static boolean addFromProps(Properties props) {
+    return installConfig(merge(Configuration.getCurrentConfig(),
+			       fromProps(props)));
+  }
+
   /** Add the value to the current config
    */
   public static boolean addFromArgs(String prop, String val) {
