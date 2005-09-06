@@ -49,6 +49,9 @@ public interface Constants {
   /** The number of milliseconds in a week */
   public static final long WEEK = 7 * DAY;
 
+  /** The default timezone, GMT */
+  public static final TimeZone DEFAULT_TIMEZONE = TimeZone.getTimeZone("GMT");
+
   /** The line separator string on this system */
   public static String EOL = System.getProperty("line.separator");
 
