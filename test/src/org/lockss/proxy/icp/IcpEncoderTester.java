@@ -35,13 +35,15 @@ package org.lockss.proxy.icp;
 import java.net.DatagramPacket;
 import java.util.Arrays;
 
+import org.lockss.proxy.icp.IcpEncoder.Factory;
+
 import junit.framework.TestCase;
 
 public abstract class IcpEncoderTester extends TestCase {
 
-  protected abstract IcpEncoderFactory makeFactory();
+  protected abstract Factory makeFactory();
   
-  private IcpEncoderFactory factory;
+  private Factory factory;
   
   public void setUp() {
     this.factory = makeFactory();

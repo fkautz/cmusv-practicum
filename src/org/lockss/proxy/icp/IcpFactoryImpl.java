@@ -759,7 +759,7 @@ public class IcpFactoryImpl implements IcpFactory {
     return makeSingleton();
   }
   
-  public static IcpEncoderFactory makeEncoderFactory() {
+  public static IcpEncoder.Factory makeEncoderFactory() {
     return makeSingleton();
   }
   

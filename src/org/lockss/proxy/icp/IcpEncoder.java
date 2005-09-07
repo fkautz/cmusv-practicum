@@ -39,11 +39,26 @@ import java.net.InetAddress;
  * <p>Defines a simple abstraction for classes that are able to
  * encode an {@link IcpMessage} into a {@link DatagramPacket}.</p>
  * @author Thib Guicherd-Callin
- * @see IcpEncoderFactory
+ * @see Factory
  * @see IcpMessage
  */
 public interface IcpEncoder {
 
+  /**
+   * <p>An abstraction for classes that need to obtain ICP encoders.</p>
+   * @author Thib Guicherd-Callin
+   * @see IcpEncoder
+   */
+  public interface Factory {
+
+    /**
+     * <p>Builds a new ICP encoder.</p>
+     * @return An object conforming to {@link IcpEncoder}.
+     */
+    IcpEncoder makeIcpEncoder();
+    
+  }
+  
   /**
    * <p>Equivalent to calling
    * {@link #encode(IcpMessage, InetAddress, int)} with the port

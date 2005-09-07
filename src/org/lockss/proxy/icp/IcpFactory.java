@@ -39,7 +39,7 @@ package org.lockss.proxy.icp;
  */
 public interface IcpFactory
     extends IcpBuilderFactory,
-            IcpEncoderFactory,
+            IcpEncoder.Factory,
             IcpDecoderFactory {
 
   // no new methods
