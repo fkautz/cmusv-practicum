@@ -37,7 +37,7 @@ import java.util.*;
 import java.security.KeyStore;
 import junit.framework.*;
 import org.lockss.app.*;
-import org.lockss.config.Configuration;
+import org.lockss.config.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.definable.*;
 import org.lockss.poller.*;
@@ -102,7 +102,7 @@ public class TestPluginManager extends LockssTestCase {
     // Prepare the loadable plugin directory property, which is
     // created by mgr.startService()
     Properties p = new Properties();
-    p.setProperty(PluginManager.PARAM_PLATFORM_DISK_SPACE_LIST, tempDirPath);
+    p.setProperty(ConfigManager.PARAM_PLATFORM_DISK_SPACE_LIST, tempDirPath);
     p.setProperty(PluginManager.PARAM_PLUGIN_LOCATION, "plugins");
     ConfigurationUtil.setCurrentConfigFromProps(p);
 

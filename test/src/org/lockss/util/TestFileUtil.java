@@ -156,6 +156,13 @@ public class TestFileUtil extends LockssTestCase {
     assertEquals(0, dir.listFiles().length);
     assertTrue(dir.delete());
     assertFalse(dir.exists());
+    File parentDir = FileUtil.createTempDir("testTempDir", ".foo");
+    assertTrue(parentDir.exists());
+    assertTrue(parentDir.isDirectory());
+    // Test creating under another directory
+    File subDir = FileUtil.createTempDir("subTempDir", ".bar", parentDir);
+    assertTrue(subDir.exists());
+    assertTrue(subDir.isDirectory());
   }
 
   public void testDelTree() throws IOException {

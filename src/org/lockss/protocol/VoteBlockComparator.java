@@ -33,8 +33,8 @@ import java.util.*;
  */
 public class VoteBlockComparator implements Comparator {
   public int compare(Object o1, Object o2) {
-    int filteredLength1 = ((VoteBlock)o1).getFilteredLength();
-    int filteredLength2 = ((VoteBlock)o2).getFilteredLength();
+    long filteredLength1 = ((VoteBlock)o1).getFilteredLength();
+    long filteredLength2 = ((VoteBlock)o2).getFilteredLength();
 
     if (filteredLength1 > filteredLength2) {
       return 1;
@@ -44,8 +44,8 @@ public class VoteBlockComparator implements Comparator {
 
     // Filtered lengths are equal, compare unfiltered length
 
-    int unfilteredLength1 = ((VoteBlock)o1).getUnfilteredLength();
-    int unfilteredLength2 = ((VoteBlock)o2).getUnfilteredLength();
+    long unfilteredLength1 = ((VoteBlock)o1).getUnfilteredLength();
+    long unfilteredLength2 = ((VoteBlock)o2).getUnfilteredLength();
 
     if (unfilteredLength1 > unfilteredLength2) {
       return 1;

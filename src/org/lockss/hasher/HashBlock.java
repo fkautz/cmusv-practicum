@@ -31,13 +31,9 @@ in this Software without prior written authorization from Stanford University.
 */
 
 package org.lockss.hasher;
-import java.io.*;
-import java.util.*;
-import java.math.*;
 import java.security.*;
-import org.lockss.daemon.*;
+
 import org.lockss.plugin.*;
-import org.lockss.util.CollectionUtil;
 
 /** Result of a single-block V3 hash, passed to the ContentHasher's
  * HashBlockCallback */
