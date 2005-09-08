@@ -54,6 +54,7 @@ public interface IcpEncoder {
     /**
      * <p>Builds a new ICP encoder.</p>
      * @return An object conforming to {@link IcpEncoder}.
+     * @see IcpEncoder
      */
     IcpEncoder makeIcpEncoder();
     

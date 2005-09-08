@@ -38,11 +38,34 @@ import java.net.DatagramPacket;
  * <p>Defines a simple abstraction for classes that are able to
  * parse a {@link DatagramPacket} into an {@link IcpMessage}.</p>
  * @author Thib Guicherd-Callin
- * @see IcpDecoderFactory
+ * @see Factory
  * @see IcpMessage
  */
 public interface IcpDecoder {
 
+  /*
+   * begin NESTED INTERFACE
+   * ======================
+   */
+  /**
+   * <p>An abstraction for classes that need to obtain ICP decoders.</p>
+   * @author Thib Guicherd-Callin
+   * @see IcpDecoder
+   */
+  public interface Factory {
+
+    /**
+     * <p>Builds a new ICP decoder.</p>
+     * @return An object conforming to {@link IcpDecoder}.
+     */
+    IcpDecoder makeIcpDecoder();
+    
+  }
+  /*
+   * end NESTED INTERFACE
+   * ====================
+   */
+  
   /**
    * <p>Translates the given UDP packet into an {@link IcpMessage}
    * instance.</p>

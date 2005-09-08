@@ -32,10 +32,17 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.proxy.icp;
 
-public class TestIcpDecoder extends IcpDecoderTester {
+import org.lockss.proxy.icp.IcpBuilder.Factory;
 
-  protected IcpDecoderFactory makeFactory() {
-    return IcpFactoryImpl.makeDecoderFactory();
+/**
+ * <p>Tests the {@link IcpFactoryImpl.IcpBuilderImpl} class.</p>
+ * @author Thib Guicherd-Callin
+ */
+public class TestIcpBuilderImpl extends IcpBuilderTester {
+
+  /* Inherit documentation */
+  protected Factory makeFactory() {
+    return IcpFactoryImpl.makeBuilderFactory();
   }
-
+  
 }

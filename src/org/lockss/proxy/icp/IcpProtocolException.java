@@ -34,15 +34,30 @@ package org.lockss.proxy.icp;
 
 import java.net.ProtocolException;
 
+/**
+ * <p>An exception class for all errors related to the ICP
+ * protocol.</p>
+ * @author Thib Guicherd-Callin
+ */
 public class IcpProtocolException extends ProtocolException {
-  public IcpProtocolException() { super(); }
-  public IcpProtocolException(String message) { super(message); }
+
+
+  public IcpProtocolException() {
+    super();
+  }
+
+  public IcpProtocolException(String message) {
+    super(message);
+  }
+
   public IcpProtocolException(String message, Throwable cause) {
     super(message);
     initCause(cause);
   }
+  
   public IcpProtocolException(Throwable cause) {
     super();
     initCause(cause);
   } 
+  
 }

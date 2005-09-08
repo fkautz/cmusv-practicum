@@ -38,9 +38,9 @@ package org.lockss.proxy.icp;
  * @author Thib Guicherd-Callin
  */
 public interface IcpFactory
-    extends IcpBuilderFactory,
-            IcpEncoder.Factory,
-            IcpDecoderFactory {
+    extends IcpBuilder.Factory,
+            IcpDecoder.Factory,
+            IcpEncoder.Factory {
 
   // no new methods
   

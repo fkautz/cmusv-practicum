@@ -32,10 +32,29 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.proxy.icp;
 
+/**
+ * <p>Abstraction for classes that receive incoming ICP messages and
+ * that want to be observable.</p>
+ * @author Thib Guicherd-Callin
+ */
 public interface IcpReceiver {
 
+  /**
+   * <p>Registers an ICP handler if it is not already registered.</p>
+   * @param handler An ICP handler.
+   */
   void addIcpHandler(IcpHandler handler);
+  
+  /**
+   * <p>Unregisters an ICP handler if it is registered.</p>
+   * @param handler An ICP handler.
+   */
   void removeIcpHandler(IcpHandler handler);
+  
+  /**
+   * <p>Determines the number of currently registered handlers.</p>
+   * @return The number of ICP handlers registered with this class.
+   */
   int countIcpHandlers();
   
 }
