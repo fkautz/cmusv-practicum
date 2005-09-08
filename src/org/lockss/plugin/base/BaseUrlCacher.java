@@ -272,6 +272,7 @@ public class BaseUrlCacher implements UrlCacher {
     } catch (IOException e) {
       logger.debug("Couldn't reset input stream, so getting new one", e);
       is.close();
+      releaseConnection();
       is = new BufferedInputStream(getUncachedInputStream());
     }
     return is;
