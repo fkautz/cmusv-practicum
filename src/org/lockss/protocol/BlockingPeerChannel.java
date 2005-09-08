@@ -510,7 +510,6 @@ class BlockingPeerChannel implements PeerChannel {
       default:
 	throw new ProtocolException("Received unknown opcode: " + op);
       }
-      lastRcvTime = lastActiveTime = TimeBase.nowMs();
     }
   }
 
@@ -568,6 +567,9 @@ class BlockingPeerChannel implements PeerChannel {
       OutputStream msgOut = msg.getOutputStream();
       copyBytes(ins, msgOut, len);
       msgOut.close();
+      // update lastActiveTime *before* queuing message; produces more
+      // predictable behavior when running in simulated time in unit tests
+      lastRcvTime = lastActiveTime = TimeBase.nowMs();
       rcvQueue.put(msg);
       stats.msgsRcvd++;
     } catch (IOException e) {
@@ -649,7 +651,8 @@ class BlockingPeerChannel implements PeerChannel {
     long j = (lastActiveTime == 0) ? scomm.getChannelIdleTime()
       : TimeBase.msUntil(lastActiveTime + scomm.getChannelIdleTime());
     if (j < 0) j = 0;
-    if (log.isDebug3()) log.debug3("Send queue wait: " + (i < j ? i : j));
+    if (log.isDebug3()) log.debug3("Send queue wait: " + (i < j ? i : j) +
+				   ", lastActiveTime: " + lastActiveTime);
     return Deadline.in(i < j ? i : j);
   }
 
