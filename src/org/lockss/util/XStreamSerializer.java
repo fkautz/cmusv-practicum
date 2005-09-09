@@ -530,8 +530,8 @@ public class XStreamSerializer extends ObjectSerializer {
       init();
       xs.toXML(obj, writer); // lazy instantiation
     }
-    catch (LockssNotSerializableException inse) {
-      throw new NotSerializableException();
+    catch (LockssNotSerializableException lnse) {
+      throw new NotSerializableException(lnse.getMessage());
     }
     catch (StreamException se) {
       throw new IOException(se.getMessage());
