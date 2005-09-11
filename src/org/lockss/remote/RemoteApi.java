@@ -1367,6 +1367,12 @@ public class RemoteApi
   static final String PARAM_BACKUP_EMAIL_ENABLED = BACKUP_PREFIX + "enabled";
   static final boolean DEFAULT_BACKUP_EMAIL_ENABLED = false;
 
+  /** Frequency of periodic mailing of backup file; only supports "weekly"
+   * and "montly" */
+  public static final String PARAM_BACKUP_EMAIL_FREQ =
+    BACKUP_PREFIX + "frequency";
+  public static final String DEFAULT_BACKUP_EMAIL_FREQ = "monthly";
+
   /** If sepcified, the recipient of backup emails.    If not specified,
    * uses the admin email adress */
   static final String PARAM_BACKUP_EMAIL_RECIPIENT = BACKUP_PREFIX + "sendTo";
