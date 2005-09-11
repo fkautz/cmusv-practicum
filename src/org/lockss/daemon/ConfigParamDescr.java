@@ -42,7 +42,7 @@ import java.util.*;
  * for common parameters.  These have a sort order equal to the sort order
  * of their displayName.
  */
-public class ConfigParamDescr implements Comparable {
+public class ConfigParamDescr implements Comparable, LockssSerializable {
   /** Value is any string */
   public static final int TYPE_STRING = 1;
   /** Value is an integer */
