@@ -62,7 +62,7 @@ public class TextMessage implements MailMessage  {
     return this;
   }
 
-  public String getBody() {
+  String getBody() {
     if (text == null) {
       return headers + "\n";
     }
@@ -74,28 +74,12 @@ public class TextMessage implements MailMessage  {
     return body.toString();
   }
 
-  /** Send the body, ensuring proper network end-of-line, quoting any
-   * leading dots, and terminating with <nl>,<nl> */
-  public void sendBody(PrintStream ostrm) throws IOException {
+  public void writeData(OutputStream ostrm) throws IOException {
     String body = getBody();
-    char prev = 0;
-    for (int ix = 0, len = body.length(); ix < len; ix++) {
-      char c = (char)body.charAt(ix);
-      // double leading dots
-      if (prev == '\n' && c == '.') {
-	ostrm.write('.');
-      }
-      // convert newline to crlf
-      if (c == '\n' && prev != '\r') {
-	ostrm.write('\r');
-      }
-      ostrm.write(c);
-      prev = c;
-    }
-    // ensure ending crlf
-    if (prev != '\n') {
-      ostrm.print("\r\n");
-    }
+    OutputStreamWriter wrtr =
+      new OutputStreamWriter(ostrm, Constants.DEFAULT_ENCODING);
+    wrtr.write(body);
+    wrtr.flush();
     log.debug3("Body sent");
   }
 

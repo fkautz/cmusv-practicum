@@ -64,7 +64,9 @@ public class TestMimeMessage extends LockssTestCase {
   String toString(MailMessage msg) {
     try {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      msg.sendBody(new PrintStream(baos));
+      BufferedOutputStream out = new BufferedOutputStream(baos);
+      msg.writeData(out);
+      out.flush();
       return baos.toString();
     } catch (IOException e) {
       throw new RuntimeException("Error converting MimeMessage to string", e);
@@ -178,6 +180,18 @@ public class TestMimeMessage extends LockssTestCase {
     String[] blines = getBodyLines(msg);
     log.debug2("msg: " + StringUtil.separatedString(blines, ", "));
     assertTextPart("Message\ntext", blines, 0);
+  }
+
+  public void testDot() throws IOException {
+    MimeMessage msg = new MimeMessage();
+    msg.addHeader("From", "me");
+    msg.addHeader("To", "you");
+    msg.addTextPart("one\n.\ntwo\n");
+    assertHeader("me", "you", msg);
+
+    String[] blines = getBodyLines(msg);
+    log.debug2("msg: " + StringUtil.separatedString(blines, ", "));
+    assertTextPart("one\n.\ntwo\n", blines, 0);
   }
 
   public void testTextAndFile() throws IOException {

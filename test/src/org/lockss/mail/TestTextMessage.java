@@ -50,7 +50,7 @@ public class TestTextMessage extends LockssTestCase {
     assertEquals("\n", msg.getBody());
   }
 
-  public void testIt() throws IOException {
+  public void testGetBody() throws IOException {
     TextMessage msg = new TextMessage();
     msg.addHeader("From", "me");
     msg.addHeader("To", "you");
@@ -60,14 +60,14 @@ public class TestTextMessage extends LockssTestCase {
     assertEquals(exp, msg.getBody());
   }
 
-  public void testSendBodyNL() throws IOException {
+  public void testWriteData() throws IOException {
     ByteArrayOutputStream baos = new ByteArrayOutputStream(128);
-    PrintStream pstrm = new PrintStream(baos);
     TextMessage msg = new TextMessage();
     msg.addHeader("From", "me");
+    msg.addHeader("To", "you");
     msg.setText("foo\nbar\rbaz\r\nzot.\n.\n.foo");
-    msg.sendBody(pstrm);
-    assertEquals("From: me\r\n\r\nfoo\r\nbar\rbaz\r\nzot.\r\n..\r\n..foo\r\n",
+    msg.writeData(baos);
+    assertEquals("From: me\nTo: you\n\nfoo\nbar\rbaz\r\nzot.\n.\n.foo",
 		 baos.toString());
   }
 

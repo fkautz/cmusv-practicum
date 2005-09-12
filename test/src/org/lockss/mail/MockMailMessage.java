@@ -50,8 +50,10 @@ public class MockMailMessage implements MailMessage {
     throw new UnsupportedOperationException();
   }
 
-  public void sendBody(PrintStream ostrm) throws IOException {
-    ostrm.print(text);
+  public void writeData(OutputStream ostrm) throws IOException {
+    Writer wrtr = new OutputStreamWriter(ostrm, Constants.DEFAULT_ENCODING);
+    wrtr.write(text);
+    wrtr.flush();
   }
 
   public void delete(boolean sentOk) {

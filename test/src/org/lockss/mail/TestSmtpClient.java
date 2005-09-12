@@ -100,6 +100,23 @@ public class TestSmtpClient extends LockssTestCase {
     assertEquals(expectedMessage, client.getServerInput());
   }
 
+  public void testSendEncode() throws Exception {
+    client.setResponses("220\n250\n250\n250\n354\n250\n");
+    // newlines should all turn into crlf, leading dots doubled
+    int res = client.sendMsg("source@s.com", "target@t.com",
+			     new MockMailMessage("test\rmessage\n.foo"));
+    assertEquals(SmtpClient.RESULT_OK, res);
+    String expectedMessage = "HELO foohost\r\n" +
+                             "MAIL FROM: <source@s.com>\r\n" +
+                             "RCPT TO: <target@t.com>\r\n" +
+                             "DATA\r\n" +
+                             "test\r\nmessage\r\n" +
+                             "..foo\r\n" +
+                             ".\r\n" +
+                             "QUIT\r\n";
+    assertEquals(expectedMessage, client.getServerInput());
+  }
+
   public void testSendRetry() throws Exception {
     client.setResponses("220\n250\n250\n450\n354\n250\n");
     int res = client.sendMsg("source@s.com", "target@t.com",

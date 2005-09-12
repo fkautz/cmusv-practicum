@@ -29,13 +29,8 @@ in this Software without prior written authorization from Stanford University.
 */
 
 package org.lockss.mail;
-import java.io.*;
-import java.net.*;
-import java.util.*;
 import org.lockss.app.*;
-import org.lockss.util.*;
 import org.lockss.config.Configuration;
-import org.lockss.daemon.*;
 
 /** MailService is the interface to a mail system. */
 

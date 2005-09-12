@@ -165,9 +165,7 @@ public class SmtpClient extends TransferProtocolClient  {
       resp = sendResp("DATA");
       if (resp != RESP_START_MAIL_INPUT) return getErrResult(resp);
 
-      msg.sendBody(serverOutput);
-      // final .<crlf>
-      send(".");
+      sendData(msg);
       resp = resp();
       if (resp != RESP_ACTION_OK) return getErrResult(resp);
       result = RESULT_OK;
@@ -226,4 +224,12 @@ public class SmtpClient extends TransferProtocolClient  {
     send(msg);
     return resp();
   }
+
+  private void sendData(MailMessage msg) throws IOException {
+    SmtpOutputStream sout = new SmtpOutputStream(serverOutput);
+    msg.writeData(sout);
+    sout.flushSmtpData();
+    serverOutput.flush();
+  }
+
 }
