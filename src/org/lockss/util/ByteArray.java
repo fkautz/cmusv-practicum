@@ -131,11 +131,10 @@ public class ByteArray {
    * @param len The size of the array to return.
    * @return A pseudo-random array of bytes.
    */
+  private static LockssRandom rand = new LockssRandom();
   public static byte[] makeRandomBytes(int len) {
     byte[] retVal = new byte[len];
     int top = 0xFF;
-
-    LockssRandom rand = new LockssRandom();
     for (int i = 0; i < len; i++) {
       retVal[i] = (byte)rand.nextInt(top);
     }

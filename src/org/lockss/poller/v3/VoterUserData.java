@@ -71,6 +71,11 @@ public class VoterUserData implements Serializable {
   
   private static Logger log = Logger.getLogger("VoterUserData");
   
+  /** Package-level constructor used in tests. */
+  VoterUserData(V3VoterSerializer serializer) { 
+    this.serializer = serializer;
+  }
+  
   public VoterUserData(PollSpec spec, V3Voter voter, PeerIdentity pollerId,
                        String pollKey, long duration, String hashAlgorithm,
                        byte[] pollerNonce, byte[] voterNonce,

@@ -224,9 +224,7 @@ public class V3Poller {
   }
 
   /**
-   * <p>
    * Begin (or resume) polling the inner circle of voters.
-   * </p>
    */
   private void pollInnerCircle() {
     for (Iterator it = innerCircle.values().iterator(); it.hasNext();) {

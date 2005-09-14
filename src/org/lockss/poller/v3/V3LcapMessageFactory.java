@@ -94,7 +94,7 @@ public class V3LcapMessageFactory {
 				   V3LcapMessage.MSG_REPAIR_REQ,
 				   ud.getDeadline(),
 				   ud.getPollerId());
-    msg.setTarget(ud.getTarget());
+    msg.setTarget(ud.getRepairTarget());
     msg.setEffortProof(ud.getRepairEffortProof());
     return msg;
   }

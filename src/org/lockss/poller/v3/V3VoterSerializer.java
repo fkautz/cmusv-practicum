@@ -36,6 +36,9 @@ import org.lockss.protocol.psm.*;
 
 public class V3VoterSerializer extends V3Serializer {
 
+  private static final String VOTER_USER_DATA_FILE = "voter_user_data.xml";
+  private static final String VOTER_STATE_TABLE_FILE = "voter_state_table.xml";
+  
   private File voterUserDataFile;
   private File voterStateTableFile;
   
