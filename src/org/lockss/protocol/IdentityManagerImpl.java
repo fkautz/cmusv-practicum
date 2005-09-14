@@ -673,7 +673,7 @@ public class IdentityManagerImpl extends BaseLockssDaemonManager
         }
       }
       catch (Exception e) {
-        log.warning("Could not load identity database: " + e.getMessage());
+        log.warning("Could not load identity database", e);
       }
     }
   }
