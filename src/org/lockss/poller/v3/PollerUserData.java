@@ -41,7 +41,7 @@ import java.util.*;
 /**
  * Persistent user data state object used by V3Poller state machine.
  */
-public class PollerUserData implements Serializable {
+public class PollerUserData implements LockssSerializable {
 
   private PeerIdentity voterId;
   private String hashAlgorithm;

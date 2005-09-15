@@ -69,7 +69,7 @@ public abstract class V3Serializer {
                                     DEFAULT_V3_STATE_LOCATION);
     File stateDir = 
       ConfigManager.getConfigManager().getPlatformDir(relStateDir);
-    if (stateDir == null || (!stateDir.exists() && !stateDir.mkdirs())) {
+    if (!stateDir.exists() && !stateDir.mkdirs()) {
       throw new PollSerializerException("Could not create state directory "
                                         + stateDir);
     }

@@ -104,8 +104,7 @@ public class V3Poller {
     } else {
       // Pick a random number of participants for this poll between
       // minParticipants and maxParticipants
-      LockssRandom rand = new LockssRandom();
-      int randCount = rand.nextInt(maxParticipants - minParticipants);
+      int randCount = theRandom.nextInt(maxParticipants - minParticipants);
       pollSize = minParticipants + randCount;
     }
     this.pollerState = new PollerStateBean(spec, orig, key, duration,

@@ -40,7 +40,7 @@ import org.lockss.util.*;
 /**
  * Persistant state object for the V3Poller.
  */
-public class PollerStateBean implements Serializable {
+public class PollerStateBean implements LockssSerializable {
 
   private String pollKey;
   private long deadline;

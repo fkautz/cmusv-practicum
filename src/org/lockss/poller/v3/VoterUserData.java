@@ -42,7 +42,7 @@ import org.lockss.util.*;
 /**
  * Persistent user data state object used by V3Voter state machine.
  */
-public class VoterUserData implements Serializable {
+public class VoterUserData implements LockssSerializable {
   
   private PeerIdentity pollerId;
   private String auId;
