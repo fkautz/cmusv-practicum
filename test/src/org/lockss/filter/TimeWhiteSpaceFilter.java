@@ -65,7 +65,7 @@ public class TimeWhiteSpaceFilter extends LockssTiming {
 	   public void execute() throws Exception {
 	     InputStream is =
 	       new BufferedInputStream(new FileInputStream(file));
-	     incrBytes(readAll(is, false));
+	     incrBytesProcessed(readAll(is, false));
 	     is.close();
 	   }});
   }
@@ -76,7 +76,7 @@ public class TimeWhiteSpaceFilter extends LockssTiming {
 	   public void execute() throws Exception {
 	     InputStream is =
 	       new BufferedInputStream(new FileInputStream(file));
-	     incrBytes(readAll(is, true));
+	     incrBytesProcessed(readAll(is, true));
 	     is.close();
 	   }});
   }
@@ -88,7 +88,7 @@ public class TimeWhiteSpaceFilter extends LockssTiming {
 	     InputStream is =
 	       new BufferedInputStream(new FileInputStream(file));
 	     WhiteSpaceFilter wsf = new WhiteSpaceFilter(new InputStreamReader(is));
-	     incrBytes(readAll(wsf, false));
+	     incrBytesProcessed(readAll(wsf, false));
 	     wsf.close();
 	   }});
   }
@@ -100,7 +100,7 @@ public class TimeWhiteSpaceFilter extends LockssTiming {
 	     InputStream is =
 	       new BufferedInputStream(new FileInputStream(file));
 	     WhiteSpaceFilter wsf = new WhiteSpaceFilter(new InputStreamReader(is));
-	     incrBytes(readAll(wsf, true));
+	     incrBytesProcessed(readAll(wsf, true));
 	     wsf.close();
 	   }});
   }

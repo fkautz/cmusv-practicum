@@ -85,7 +85,7 @@ public class TimeHtmlTagFilter extends LockssTiming {
 	   public void execute() throws Exception {
 	     InputStream is =
 	       new BufferedInputStream(new FileInputStream(file));
-	     incrBytes(readAll(is, true));
+	     incrBytesProcessed(readAll(is, true));
 	     is.close();
 	   }});
   }
@@ -96,7 +96,7 @@ public class TimeHtmlTagFilter extends LockssTiming {
 	 new Computation() {
 	   public void execute() throws Exception {
 	     Reader rdr = newInputStreamReader(new BufferedInputStream(new FileInputStream(file)));
-	     incrBytes(readAll(rdr, true));
+	     incrBytesProcessed(readAll(rdr, true));
 	     rdr.close();
 	   }});
   }
@@ -108,7 +108,7 @@ public class TimeHtmlTagFilter extends LockssTiming {
 	   public void execute() throws Exception {
 	     Reader rdr = new HtmlTagFilter(newInputStreamReader(new FileInputStream(file)),
 					    tagpair);
-	     incrBytes(readAll(rdr, true));
+	     incrBytesProcessed(readAll(rdr, true));
 	     rdr.close();
 	   }});
   }
@@ -120,7 +120,7 @@ public class TimeHtmlTagFilter extends LockssTiming {
 	   public void execute() throws Exception {
 	     Reader rdr = new HtmlTagFilter(newInputStreamReader(new FileInputStream(file)),
 					    tagpair);
-	     incrBytes(readAll(rdr, true));
+	     incrBytesProcessed(readAll(rdr, true));
 	     rdr.close();
 	   }});
   }
