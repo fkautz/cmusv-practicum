@@ -33,6 +33,8 @@ package org.lockss.daemon;
 import java.util.*;
 
 import org.lockss.app.BaseLockssManager;
+import org.lockss.app.LockssApp;
+import org.lockss.app.LockssAppException;
 import org.lockss.util.Logger;
 import org.lockss.util.PlatformInfo;
 
@@ -54,13 +56,9 @@ public class ResourceManager extends BaseLockssManager  {
    */
   private Map inUse;
 
-  public void startService() {
-    super.startService();
+  public void initService(LockssApp app) throws LockssAppException {
+    super.initService(app);
     inUse = new HashMap();
-  }
-
-  public void stopService() {
-    super.stopService();
   }
 
   /**
