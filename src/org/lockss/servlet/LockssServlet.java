@@ -89,7 +89,7 @@ public abstract class LockssServlet extends HttpServlet
 
   protected ServletContext context;
 
-  protected LockssApp theApp = null;
+  private LockssApp theApp = null;
 
   // Request-local storage.  Convenient, but requires servlet instances
   // to be single threaded, and must ensure reset them to avoid carrying

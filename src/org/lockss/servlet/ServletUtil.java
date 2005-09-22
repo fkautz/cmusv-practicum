@@ -65,7 +65,7 @@ public class ServletUtil {
   public static void layoutFooter(LockssServlet servlet,
                                   Page page) {
     Composite comp = new Composite();
-    String vDaemon = servlet.theApp.getVersionInfo();
+    String vDaemon = servlet.getLockssApp().getVersionInfo();
 
     servlet.addNotes(comp);
     comp.add("<p>");
