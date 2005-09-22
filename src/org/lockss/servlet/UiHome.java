@@ -49,8 +49,7 @@ public class UiHome extends LockssServlet {
     Page page = newPage();
     resp.setContentType("text/html");
     page.add(getHomeHeader());
-    Table nav = getMainNavTable();
-    page.add(nav);
+    ServletUtil.layoutMenu(this, page, getDescriptors());
     page.add(getFooter());
     page.write(resp.getWriter());
   }
@@ -68,22 +67,22 @@ public class UiHome extends LockssServlet {
     return tab;
   }
 
-  protected Table getMainNavTable() {
-    Table navTable = new Table(0, "cellspacing=2 cellpadding=4 align=center");
-
-    for (int i = 0; i < servletDescrs.length; i++) {
-      ServletDescr d = servletDescrs[i];
-      String expl = d.getExplanation();
-      if (expl != null) {
-	navTable.newRow("valign=top");
-	navTable.newCell();
-	navTable.add("<font size=+1>");
-	navTable.add(srvLink(d, d.heading));
-	navTable.add("</font>");
-	navTable.newCell();
-	navTable.add(expl);
-      }
+  private static ServletDescr[] homeMenu;
+  
+  protected static ServletDescr[] getDescriptors() {
+    if (homeMenu == null) {
+      homeMenu = new ServletDescr[] {
+          SERVLET_BATCH_AU_CONFIG,
+          SERVLET_AU_CONFIG,
+          SERVLET_ADMIN_ACCESS_CONTROL,
+          SERVLET_PROXY_ACCESS_CONTROL,
+          SERVLET_DAEMON_STATUS,
+          SERVLET_PROXY_INFO,
+          SERVLET_DAEMON_STATUS,
+          LINK_HELP,
+      };
     }
-    return navTable;
+    return homeMenu;
   }
+  
 }

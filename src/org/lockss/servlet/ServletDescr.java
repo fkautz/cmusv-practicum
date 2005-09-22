@@ -78,7 +78,7 @@ public class ServletDescr {
          name,
          flags);
     setExplanation(expl);
-}
+  }
   
   public ServletDescr(Class cls,
                       String heading,
@@ -97,7 +97,7 @@ public class ServletDescr {
          heading,
          flags);
     setExplanation(expl);
-}
+  }
 
   
   public ServletDescr(String className,
@@ -116,7 +116,7 @@ public class ServletDescr {
          heading,
          flags);
     setExplanation(expl);
-}
+  }
 
   public ServletDescr(Class cls,
                       String heading) {
@@ -131,7 +131,7 @@ public class ServletDescr {
     this(cls,
          heading);
     setExplanation(expl);
-}
+  }
 
   
   static Class classForName(String className) {
