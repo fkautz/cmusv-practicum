@@ -204,5 +204,9 @@ public class MockListRecords extends ListRecords{
   
     return null;
   }
+
+  public String toString() {
+    return "[MockListRecords: ]";
+  }
   
 }
