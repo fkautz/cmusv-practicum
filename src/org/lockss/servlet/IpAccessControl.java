@@ -158,7 +158,7 @@ public abstract class IpAccessControl extends LockssServlet {
     page.add(getExplanationBlock(getExplanation()));
     page.add("<br>");
     page.add(getIncludeExcludeElement(incl, excl));
-    page.add(getFooter());
+    ServletUtil.layoutFooter(this, page);
     page.write(resp.getWriter());
   }
 

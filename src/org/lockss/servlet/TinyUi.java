@@ -208,7 +208,7 @@ public class TinyUi extends BaseServletManager {
       table.newCell("valign=top align=center");
       table.add(new Link(Constants.LOCKSS_HOME_URL,
 			 LockssServlet.IMAGE_LOGO_LARGE));
-      table.add(LockssServlet.IMAGE_TM);
+      table.add(ServletUtil.IMAGE_TM);
 
       Composite b = new Font(1, true);
       b.add("<br>This LOCKSS cache");

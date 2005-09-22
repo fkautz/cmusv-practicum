@@ -274,7 +274,7 @@ public class ProxyConfig extends LockssServlet {
 
     addFmtElement(frm, "Combined PAC file", "pacform", urlform);
     page.add(frm);
-    page.add(getFooter());
+    ServletUtil.layoutFooter(this, page);
     page.write(resp.getWriter());
   }
 
@@ -351,7 +351,7 @@ public class ProxyConfig extends LockssServlet {
 
     frm.add(tbl);
     page.add(frm);
-    page.add(getFooter());
+    ServletUtil.layoutFooter(this, page);
     page.write(resp.getWriter());
   }
 

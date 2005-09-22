@@ -50,7 +50,7 @@ public class UiHome extends LockssServlet {
     resp.setContentType("text/html");
     page.add(getHomeHeader());
     ServletUtil.layoutMenu(this, page, getDescriptors());
-    page.add(getFooter());
+    ServletUtil.layoutFooter(this, page);
     page.write(resp.getWriter());
   }
 
