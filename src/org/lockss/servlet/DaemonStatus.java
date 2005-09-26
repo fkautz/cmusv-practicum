@@ -197,7 +197,7 @@ public class DaemonStatus extends LockssServlet {
 
   private void doHtmlStatusTable() throws IOException {
     Page page = doHtmlStatusTable0();
-    ServletUtil.layoutFooter(this, page);
+    doLayoutFooter(page);
     page.write(resp.getWriter());
   }
 

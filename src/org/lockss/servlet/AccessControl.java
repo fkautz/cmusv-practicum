@@ -52,7 +52,7 @@ public class AccessControl extends LockssServlet {
     Page page = new Page();
     resp.setContentType("text/html");
     ServletUtil.layoutMenu(this, page, getDescriptors());
-    ServletUtil.layoutFooter(this, page);
+    doLayoutFooter(page);
     page.write(resp.getWriter());
   }
 
