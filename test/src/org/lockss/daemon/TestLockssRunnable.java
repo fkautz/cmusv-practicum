@@ -116,6 +116,19 @@ public class TestLockssRunnable extends LockssTestCase {
     assertTrue(runabl.waitRunning(Deadline.in(TIMEOUT_SHOULDNT)));
   }
 
+  public void testWaitExited() throws Exception {
+    TimeBase.setReal();
+    TestRunnable runabl = new TestRunnable("Test");
+    assertFalse(runabl.waitExited(Deadline.EXPIRED));
+    runSem = new SimpleBinarySemaphore();
+    Thread thr = start(runabl);
+    assertTrue(runabl.waitRunning(Deadline.in(TIMEOUT_SHOULDNT)));
+    assertTrue(thr.isAlive());
+    assertFalse(runabl.waitExited(Deadline.EXPIRED));
+    runSem.give();
+    assertTrue(runabl.waitExited(Deadline.in(TIMEOUT_SHOULDNT)));
+  }
+
   // Thread updates watchdog frequently enough
   public void testDogNoHang() throws Exception {
     TestRunnable runabl = new TestRunnable("Test");
@@ -215,6 +228,7 @@ public class TestLockssRunnable extends LockssTestCase {
 
   SimpleBinarySemaphore startSem;
   SimpleBinarySemaphore stopSem;
+  SimpleBinarySemaphore runSem;
   volatile boolean goOn;
   volatile long dogInterval;
   volatile long stepTime;
@@ -244,6 +258,9 @@ public class TestLockssRunnable extends LockssTestCase {
       }
       nowRunning();
       startSem.give();
+      if (runSem != null) {
+	runSem.take();
+      }
       if (dogInterval != 0) {
 	for (int ix = 0; ix < 10; ix++) {
 	  if (stepTime != 0) {
