@@ -199,7 +199,7 @@ public class ViewContent extends LockssServlet {
     try {
       long sdate =
 	Long.parseLong(props.getProperty(CachedUrl.PROPERTY_FETCH_TIME));
-      addPropRow(tbl, "Collected at", headerDf.format(new Date(sdate)));
+      addPropRow(tbl, "Collected at", ServletUtil.headerDf.format(new Date(sdate)));
     } catch (NumberFormatException ignore) {
     }
     page.add(tbl);

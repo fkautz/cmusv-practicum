@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2002 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,13 +33,10 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.ant;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.*;
 
-import org.apache.tools.ant.Project;
 import org.apache.tools.ant.types.Parameter;
 import org.apache.tools.ant.types.selectors.*;
-import org.apache.tools.ant.BuildException;
 
 /**
  * Selector that filters classes that have a

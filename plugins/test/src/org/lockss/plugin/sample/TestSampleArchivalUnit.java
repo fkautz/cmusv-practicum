@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -42,7 +42,6 @@ import org.lockss.util.*;
 import org.lockss.test.*;
 import org.lockss.plugin.*;
 import org.lockss.plugin.base.BaseCachedUrlSet;
-import org.lockss.state.AuState;
 import org.lockss.repository.LockssRepositoryImpl;
 
 public class TestSampleArchivalUnit extends LockssTestCase {
