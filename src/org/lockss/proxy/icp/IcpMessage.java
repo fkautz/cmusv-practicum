@@ -34,6 +34,8 @@ package org.lockss.proxy.icp;
 
 import java.net.*;
 
+import org.lockss.util.IPAddr;
+
 /**
  * <p>An abstraction for ICP messages as described in
  * {@link <a href="http://www.ietf.org/rfc/rfc2186.txt">RFC2186</a>}
@@ -140,7 +142,7 @@ public interface IcpMessage {
    * @see #getUdpPort
    * @see #isQuery
    */
-  public InetAddress getRequester();
+  public IPAddr getRequester();
 
   /**
    * <p>Retrieves the opaque request number.</p>
@@ -156,7 +158,7 @@ public interface IcpMessage {
    * some other meaningless value.</p>
    * @return The sender's IP address.
    */
-  public InetAddress getSender();
+  public IPAddr getSender();
 
   /**
    * <p>If this message is an ICP response and contains a source
@@ -180,7 +182,7 @@ public interface IcpMessage {
    * @see #getRequester
    * @see #getUdpPort
    */
-  public InetAddress getUdpAddress();
+  public IPAddr getUdpAddress();
   
   /**
    * <p>Retrieves the port from which this message's sender sent the
@@ -228,7 +230,7 @@ public interface IcpMessage {
    * received and translated into IcpMessage instances.</p>
    * @param udpAddress An IP address.
    */
-  public void setUdpAddress(InetAddress udpAddress);
+  public void setUdpAddress(IPAddr udpAddress);
   
   /**
    * <p>Sets this message's self-reported UDP port number.</p>

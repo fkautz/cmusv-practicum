@@ -111,6 +111,18 @@ public class IPAddr implements java.io.Serializable {
     }
   }
 
+  public static IPAddr getByAddress(int[] ipBytes)
+      throws UnknownHostException {
+    return getByAddress( new byte[] {
+        (byte)ipBytes[0], (byte)ipBytes[1], (byte)ipBytes[2], (byte)ipBytes[3]
+    });
+  }
+  
+  public static IPAddr getByAddress(byte[] ipBytes)
+      throws UnknownHostException {
+    return new IPAddr(InetAddress.getByAddress(ipBytes));
+  }
+  
   public static IPAddr getByName(String host) throws UnknownHostException {
     return new IPAddr(InetAddress.getByName(host));
   }
