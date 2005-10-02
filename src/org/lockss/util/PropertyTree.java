@@ -197,7 +197,9 @@ public class PropertyTree extends Properties
   }   
     
   /* ------------------------------------------------------------ */
-  /** From Properties */
+  /** From Properties
+   * @deprecated
+   */
   public synchronized void save(OutputStream out,String header)
   {
     PrintWriter writer = new PrintWriter(new OutputStreamWriter(out));

@@ -128,6 +128,9 @@ public class MockHttpRequest extends HttpRequest {
     throw new UnsupportedOperationException("not implemented");
   }
 
+  /**
+   * @deprecated
+   */
   public HttpResponse getResponse() {
     throw new UnsupportedOperationException("not implemented");
   }
