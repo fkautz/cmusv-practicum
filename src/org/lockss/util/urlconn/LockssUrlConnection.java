@@ -182,5 +182,13 @@ public interface LockssUrlConnection {
     public ConnectionTimeoutException(String msg) {
       super(msg);
     }
+    public ConnectionTimeoutException(String msg, Throwable t) {
+      super(msg);
+      initCause(t);
+    }
+    public ConnectionTimeoutException(Throwable t) {
+      super();
+      initCause(t);
+    }
   }
 }
