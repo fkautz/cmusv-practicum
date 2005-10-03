@@ -112,7 +112,7 @@ public class JavaUrlConnection extends BaseLockssUrlConnection {
    * Returns the value of the <code>content-length</code> header field.
    * @return  the content length, or -1 if not known.
    */
-  public int getResponseContentLength() {
+  public long getResponseContentLength() {
     assertExecuted();
     return urlConn.getContentLength();
   }
@@ -177,4 +177,11 @@ public class JavaUrlConnection extends BaseLockssUrlConnection {
    */
   public void release() {
   }
+
+  /**
+   * Abort the request.
+   */
+  public void abort() {
+  }
+
 }

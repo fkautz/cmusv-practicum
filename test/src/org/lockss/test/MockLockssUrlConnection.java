@@ -120,7 +120,7 @@ public class MockLockssUrlConnection extends BaseLockssUrlConnection {
     throw new UnsupportedOperationException();
   }
 
-  public int getResponseContentLength() {
+  public long getResponseContentLength() {
     throw new UnsupportedOperationException();
   }
 
@@ -175,6 +175,8 @@ public class MockLockssUrlConnection extends BaseLockssUrlConnection {
   boolean released = false;
   public void release() {
     released = true;
+  }
+  public void abort() {
   }
 
 }

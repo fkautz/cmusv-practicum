@@ -622,8 +622,8 @@ public class ProxyHandler extends AbstractHttpHandler {
       throws DateParseException {
     // common case, no conversion necessary
     if (datestr1.equalsIgnoreCase(datestr2)) return false;
-    long d1 = DateParser.parseDate(datestr1).getTime();
-    long d2 = DateParser.parseDate(datestr2).getTime();
+    long d1 = DateUtil.parseDate(datestr1).getTime();
+    long d2 = DateUtil.parseDate(datestr2).getTime();
     return d1 < d2;
   }
 

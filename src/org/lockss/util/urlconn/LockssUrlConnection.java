@@ -50,8 +50,12 @@ public interface LockssUrlConnection {
    *  </ul>
    */
   static final String PARAM_COOKIE_POLICY = PREFIX + "cookiePolicy";
-  static final String DEFAULT_COOKIE_POLICY = "COMPATIBILITY";
+  static final String DEFAULT_COOKIE_POLICY = "RFC2109";
 
+  /** All cookies sent in one header if true */
+  static final String PARAM_SINGLE_COOKIE_HEADER =
+    PREFIX + "singleCookieHeader";
+  static final boolean DEFAULT_SINGLE_COOKIE_HEADER = true;
 
   /** Send GET */
   public static int METHOD_GET = 1;
@@ -123,7 +127,7 @@ public interface LockssUrlConnection {
   /** Return the value of the content-length response header, as an int.
    * @return  the content length, or -1 if not known.
    */
-  public int getResponseContentLength();
+  public long getResponseContentLength();
 
   /**
    * Returns the value of the content-type response header.
@@ -165,6 +169,11 @@ public interface LockssUrlConnection {
    * automatically, but this should be called if no input stream is
    * obtained (<i>eg</i>, in case of error responses) */
   public void release();
+
+  /**
+   * Abort the request.
+   */
+  public void abort();
 
   /** Exception thrown by setProxy if the connection type doesn't support
    * proxying */
