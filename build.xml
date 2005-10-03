@@ -176,8 +176,10 @@ Args:
   				  value="${lib}/commons-collections-3.1.jar"/>
   <property name="commons.logging.jar"
   				  value="${lib}/commons-logging-1.0.4.jar"/>
+  <property name="commons.codec.jar"
+  				  value="${lib}/commons-codec-1.3.jar"/>
   <property name="commons.httpclient.jar"
-  				value="${lib}/commons-httpclient-2.0.jar"/>
+  			value="${lib}/commons-httpclient-3.0-nightly.jar"/>
   <property name="commons.jxpath.jar"
   				value="${lib}/commons-jxpath-1.2.jar"/>
   <property name="concurrent.jar" value="${lib}/concurrent.jar"/>
@@ -250,6 +252,7 @@ Args:
     <pathelement path="${commons.lang.jar}" />
     <pathelement path="${commons.collections.jar}" />
     <pathelement path="${commons.logging.jar}" />
+    <pathelement path="${commons.codec.jar}" />
     <pathelement path="${commons.httpclient.jar}" />
     <pathelement path="${commons.jxpath.jar}" />
     <pathelement path="${log4j.jar}" />
