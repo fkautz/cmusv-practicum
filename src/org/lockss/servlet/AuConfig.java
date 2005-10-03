@@ -936,7 +936,7 @@ public class AuConfig extends LockssServlet {
       page.add(srvLink(myServletDescr(), "Back to Journal Configuration"));
       page.add("</center>");
     }
-    doLayoutFooter(page);
+    layoutFooter(page);
     page.write(resp.getWriter());
   }
 

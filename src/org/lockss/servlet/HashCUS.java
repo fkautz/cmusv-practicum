@@ -285,7 +285,7 @@ public class HashCUS extends LockssServlet {
     if (showResult) {
       page.add(makeResult());
     }
-    doLayoutFooter(page);
+    layoutFooter(page);
     page.write(resp.getWriter());
   }
 

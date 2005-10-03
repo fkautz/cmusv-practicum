@@ -120,7 +120,7 @@ public class DebugPanel extends LockssServlet {
     page.add(getExplanationBlock("Debug Actions"));
     page.add(makeForm());
     page.add("<br>");
-    doLayoutFooter(page);
+    layoutFooter(page);
     page.write(resp.getWriter());
   }
 

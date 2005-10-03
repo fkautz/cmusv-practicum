@@ -271,7 +271,7 @@ public class ViewContent extends LockssServlet {
     comp.add(error);
     comp.add("</font></center><br>");
     page.add(comp);
-    doLayoutFooter(page);
+    layoutFooter(page);
     page.write(resp.getWriter());
   }
 

@@ -49,10 +49,10 @@ public class AccessControl extends LockssServlet {
   }
   
   protected void displayMenu() throws IOException {
-    Page page = new Page();
+    Page page = newPage();
     resp.setContentType("text/html");
     ServletUtil.layoutMenu(this, page, getDescriptors());
-    doLayoutFooter(page);
+    layoutFooter(page);
     page.write(resp.getWriter());
   }
 

@@ -137,7 +137,7 @@ public class RaiseAlert extends LockssServlet {
     page.add(getExplanationBlock("Raise an Alert"));
     page.add(makeForm());
     page.add("<br>");
-    doLayoutFooter(page);
+    layoutFooter(page);
     page.write(resp.getWriter());
   }
 
