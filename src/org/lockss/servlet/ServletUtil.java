@@ -112,12 +112,15 @@ public class ServletUtil {
                                   String versionInfo) {
     Composite comp = new Composite();
 
-    comp.add(NOTES_BEGIN);
-    comp.add(NOTES_LIST_BEFORE);
-    for (int nth = 1 ; notesIterator.hasNext() ; nth++) {
-      layoutFootnote(comp, (String)notesIterator.next(), nth);
+    if (notesIterator!= null && notesIterator.hasNext()) {
+      // if there are footnotes
+      comp.add(NOTES_BEGIN);
+      comp.add(NOTES_LIST_BEFORE);
+      for (int nth = 1 ; notesIterator.hasNext() ; nth++) {
+        layoutFootnote(comp, (String)notesIterator.next(), nth);
+      }
+      comp.add(NOTES_LIST_AFTER);
     }
-    comp.add(NOTES_LIST_AFTER);
 
     comp.add("<p>");
 

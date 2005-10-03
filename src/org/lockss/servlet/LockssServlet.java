@@ -943,13 +943,12 @@ public abstract class LockssServlet extends HttpServlet
   }
 
   protected void layoutFooter(Page page) {
-    if (footnotes == null || footNumber == 0) {
-      return;
-    }
     ServletUtil.layoutFooter(page,
-                             footnotes.iterator(),
+                             (footnotes == null ? null : footnotes.iterator()),
                              getLockssApp().getVersionInfo());
-    footnotes.removeAllElements();
+    if (footnotes != null) {
+      footnotes.removeAllElements();
+    }
   }
   
   /** Return the app instance.
