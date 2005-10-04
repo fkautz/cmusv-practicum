@@ -43,7 +43,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 import javax.xml.transform.TransformerException;
 
-import org.apache.xpath.NodeSet;
 // import org.lockss.util.XmlDomBuilder;
 // import org.lockss.util.XmlDomBuilder.XmlDomException;
 // import org.w3c.dom.Document;
@@ -172,7 +171,7 @@ public class MockListRecords extends ListRecords{
     while (numGetErrorExceptionThrown > 0) {
       throw getErrorException;
     }
-    return (NodeList) new NodeSet(errElm);  
+    return new MockNodeList().addNode(errElm);  
   }
 
   /**
