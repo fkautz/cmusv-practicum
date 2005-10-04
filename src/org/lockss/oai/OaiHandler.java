@@ -44,9 +44,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 
-import org.apache.xpath.XPathAPI;
-import org.apache.xpath.objects.XObject;
-
 import javax.xml.transform.TransformerException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.lang.NoSuchFieldException;
