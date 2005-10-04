@@ -361,12 +361,12 @@ class BlockingPeerChannel implements PeerChannel {
 
   /** Wait until all threads we started have exited.  Used by
    * BlockingStreamComm.stopService() */
-  void waitThreadsExited() {
+  void waitThreadsExited(Deadline timeout) {
     if (wtConnecter != null) {
-      wtConnecter.waitExited();
+      wtConnecter.waitExited(timeout);
     }
-    wtReader.waitExited();
-    wtWriter.waitExited();
+    wtReader.waitExited(timeout);
+    wtWriter.waitExited(timeout);
   }
 
   /** Called periodically by parent stream comm to check for hung sender
