@@ -403,6 +403,7 @@ public class TestHttpClientUrlConnection extends LockssTestCase {
     void setResponseContentLength(int l) {
       contentLength = l;
     }
+    /** @deprecated */
     public HostConfiguration getHostConfiguration() {
       return new HostConfiguration();
     }

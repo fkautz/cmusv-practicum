@@ -187,6 +187,7 @@ public class NullPlugin {
       return null;
     }
 
+    /** @deprecated */
     public org.lockss.plugin.CachedUrlSet getCachedUrlSet() {
       return null;
     }

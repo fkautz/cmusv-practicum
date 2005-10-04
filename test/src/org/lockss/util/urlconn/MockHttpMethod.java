@@ -49,6 +49,7 @@ public class MockHttpMethod implements HttpMethod {
     throw new UnsupportedOperationException();
   }
 
+  /** @deprecated */
   public HostConfiguration getHostConfiguration() {
     throw new UnsupportedOperationException();
   }
@@ -193,6 +194,7 @@ public class MockHttpMethod implements HttpMethod {
     throw new UnsupportedOperationException();
   }
 
+  /** @deprecated */
   public void recycle() {
     throw new UnsupportedOperationException();
   }
