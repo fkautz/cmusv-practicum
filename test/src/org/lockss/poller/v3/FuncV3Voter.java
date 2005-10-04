@@ -43,6 +43,7 @@ import org.lockss.protocol.*;
 import org.lockss.repository.*;
 import org.lockss.test.*;
 import org.lockss.util.*;
+import org.lockss.util.Queue;
 
 public class FuncV3Voter extends LockssTestCase {
 
