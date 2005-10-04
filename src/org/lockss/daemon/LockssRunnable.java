@@ -153,10 +153,12 @@ public abstract class LockssRunnable  implements LockssWatchdog, Runnable {
    * interrupted.
    */
   public boolean waitExited(Deadline timeout) {
+    if (Thread.currentThread().isInterrupted()) return false;
     try {
       if (log.isDebug3()) log.debug3("Waiting for " + getName() + " to exit");
       return exitedSem.waitFull(timeout);
     } catch (InterruptedException e) {
+      Thread.currentThread().interrupt(); // maintain interrupted status
     }
     return exitedSem.isFull();
   }
