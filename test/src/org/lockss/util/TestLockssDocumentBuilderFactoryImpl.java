@@ -48,6 +48,38 @@ public class TestLockssDocumentBuilderFactoryImpl extends LockssTestCase {
   static String SERVICE_FILE =
     "/META-INF/services/javax.xml.parsers.DocumentBuilderFactory";
 
+  public void testGetFeature() throws Exception {
+    LockssDocumentBuilderFactoryImpl fact =
+      new LockssDocumentBuilderFactoryImpl();
+    try {
+      fact.getFeature("random_feature");
+      // unlikely, but it's ok if it succeeds
+    } catch (ParserConfigurationException e) {
+      // expected if getFeature is supported
+    } catch (RuntimeException e) {
+      // expected if getFeature is not supported
+      if (!(e.getCause() instanceof NoSuchMethodException)) {
+	throw e;
+      }
+    }
+  }
+
+  public void testSetFeature() throws Exception {
+    LockssDocumentBuilderFactoryImpl fact =
+      new LockssDocumentBuilderFactoryImpl();
+    try {
+      fact.setFeature("random_feature", true);
+      // unlikely, but it's ok if it succeeds
+    } catch (ParserConfigurationException e) {
+      // expected if getFeature is supported
+    } catch (RuntimeException e) {
+      // expected if getFeature is not supported
+      if (!(e.getCause() instanceof NoSuchMethodException)) {
+	throw e;
+      }
+    }
+  }
+
   // ensure proper services definition file is found on classpath
   public void testServiceFile() {
     URL res = this.getClass().getResource(SERVICE_FILE);

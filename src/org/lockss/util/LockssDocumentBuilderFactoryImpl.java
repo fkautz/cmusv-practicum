@@ -33,6 +33,7 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.util;
 
 import java.util.*;
+import java.lang.reflect.*;
 import javax.xml.parsers.*;
 import org.xml.sax.*;
 import org.lockss.util.*;
@@ -121,6 +122,61 @@ public class LockssDocumentBuilderFactoryImpl extends DocumentBuilderFactory {
   public boolean isCoalescing() {
     return fact.isCoalescing();
   }
+
+  // Abstract methods added to DocumentBuilderFactory interface in 1.5.
+  // They must be implemented and proxied, but direct calls won't compile
+  // in 1.4, so invoke them using reflection.  Java 1.5 remove this?
+
+  static Class[] argsGetFeature = {String.class};
+
+  public boolean getFeature(String name) throws ParserConfigurationException {
+//     return fact.getFeature(name);
+    try {
+      Object res
+	= invoke("getFeatureccc", argsGetFeature, new Object[] {name});
+      return ((Boolean)res).booleanValue();
+    } catch (InvocationTargetException e) {
+      if (e.getCause() instanceof ParserConfigurationException) {
+	throw (ParserConfigurationException)e.getCause();
+      }
+      if (e.getCause() instanceof RuntimeException) {
+	throw (RuntimeException)e.getCause();
+      }
+      throw new RuntimeException(e);
+    }
+  }
+
+  static Class[] argsSetFeature = {String.class, Boolean.TYPE};
+
+  public void setFeature(String name, boolean value)
+      throws ParserConfigurationException {
+//     fact.setFeature(name, value);
+    try {
+      invoke("setFeature", argsSetFeature,
+	     new Object[] {name, Boolean.valueOf(value)});
+    } catch (InvocationTargetException e) {
+      if (e.getCause() instanceof ParserConfigurationException) {
+	throw (ParserConfigurationException)e.getCause();
+      }
+      if (e.getCause() instanceof RuntimeException) {
+	throw (RuntimeException)e.getCause();
+      }
+      throw new RuntimeException(e);
+    }
+  }
+
+  Object invoke(String method, Class[] argtypes, Object[] args)
+      throws InvocationTargetException {
+    try {
+      Method m = fact.getClass().getMethod(method, argtypes);
+      return m.invoke(fact, args);
+    } catch (NoSuchMethodException e) {
+      throw new RuntimeException(e);
+    } catch (IllegalAccessException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
 
   // This error handler uses a Logger to log error messages
   class MyErrorHandler implements ErrorHandler {
