@@ -76,6 +76,13 @@ public class LockssTestCase extends TestCase {
   }
 
   /**
+   * Return true if should skip tests that rely on a working network
+   */
+  public boolean isSkipNetworkTests() {
+    return Boolean.getBoolean("org.lockss.test.skipNetworkTests");
+  }
+
+  /**
    * Create and return the name of a temp dir.  The dir is created within
    * the default temp file dir.
    * It will be deleted following the test, by tearDown().  (So if you
