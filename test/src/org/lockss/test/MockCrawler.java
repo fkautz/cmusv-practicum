@@ -70,7 +70,6 @@ public class MockCrawler extends NullCrawler {
 
   public boolean doCrawl() {
     doCrawlCalled = true;
-    this.deadline = deadline;
     return crawlSuccessful;
   }
 
