@@ -111,8 +111,6 @@ public class TestBasePlugin extends LockssTestCase {
     assertNull(tc.getAttributes());
 
     tc = mbp.getTitleConfig(new String("Howl"));
-    log.info("tc: " + tc);
-    log.info("tc.getAttributes: " + tc.getAttributes());
     assertEquals("av111", tc.getAttributes().get("attr1"));
     assertEquals("av222", tc.getAttributes().get("attr2"));
   }
