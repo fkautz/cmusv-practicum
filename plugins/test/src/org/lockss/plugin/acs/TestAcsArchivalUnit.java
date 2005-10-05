@@ -136,7 +136,7 @@ public class TestAcsArchivalUnit
     URL a_url = new URL(ARTICLE_ROOT);
     URL base = new URL(ROOT_URL);
     try {
-      makeAu(base, a_url, null, VOL_ID, VOL_YEAR); ;
+      makeAu(base, a_url, null, VOL_ID, VOL_YEAR);
       fail("Should have thrown ArchivalUnit.ConfigurationException");
     }
     catch (ArchivalUnit.ConfigurationException e) {}

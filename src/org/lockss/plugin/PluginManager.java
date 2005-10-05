@@ -1902,7 +1902,7 @@ public class PluginManager
     private ClassLoader classLoader;
     private String cuUrl;
     private String jarUrl;
-    private boolean isOnLoadablePath = false;;
+    private boolean isOnLoadablePath = false;
 
     public PluginInfo(Plugin plugin, ClassLoader classLoader, String jarUrl) {
       this.plugin = plugin;

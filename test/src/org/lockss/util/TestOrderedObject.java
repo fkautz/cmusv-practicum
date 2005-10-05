@@ -86,7 +86,7 @@ public class TestOrderedObject extends LockssTestCase {
   public void testIll() {
     OrderedObject o1 = new OrderedObject("foo", 3);
     OrderedObject o2 = new OrderedObject("bar", 5);
-    OrderedObject o3 = new OrderedObject("a", "nonint");;
+    OrderedObject o3 = new OrderedObject("a", "nonint");
     List test = ListUtil.list(o3, o2, o1);
     try {
       Collections.sort(test);

@@ -336,7 +336,7 @@ public class PrintfEditor extends JDialog implements EDPEditor, ConfigParamListe
         return;
       }
       if(selectedPane == 0) {
-        insertText(format, PLAIN_ATTR, editorPane.getSelectionStart());;
+        insertText(format, PLAIN_ATTR, editorPane.getSelectionStart());
       }
       else if (selectedPane == 1) {
         // add the combobox data value to the edit box

@@ -330,7 +330,7 @@ public class RepairCrawler extends CrawlerImpl {
     boolean repaired = false;
     for (Iterator it = repairers.iterator();
 	 it.hasNext() && (iz < numCacheRetries); ) {
-      PeerIdentity cacheId = (PeerIdentity)it.next();;
+      PeerIdentity cacheId = (PeerIdentity)it.next();
       logger.debug3("Trying repair "+iz+" of "+numCacheRetries
 		    +" from "+cacheId);
       if (idm.isLocalIdentity(cacheId)) {

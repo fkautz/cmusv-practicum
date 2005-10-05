@@ -269,7 +269,7 @@ public class HashSvcSchedImpl
 	      }
 	    },
 	    cookie);
-      this.urlset = urlsetHasher.getCachedUrlSet();;
+      this.urlset = urlsetHasher.getCachedUrlSet();
       this.hashCallback = hashCallback;
       this.urlsetHasher = urlsetHasher;
       typeString = urlsetHasher.typeString();
