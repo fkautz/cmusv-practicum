@@ -221,7 +221,7 @@ public class IdentityManagerImpl extends BaseLockssDaemonManager
    * <p>Maps AU to its agreement map, which maps PeerIDentity to
    * IdentityAgreement.</p>
    */
-  private Map agreeMaps = new HashMap();;
+  private Map agreeMaps = new HashMap();
 
   private IdentityManagerStatus status;
 

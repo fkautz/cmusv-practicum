@@ -57,7 +57,7 @@ public class LockssServletTestCase extends LockssTestCase {
   /** Holds the ServletRunner after a call to initServletRunner() */
   protected LockssServletRunner sRunner;
   /** Holds the ServletUnitClient after a call to initServletRunner() */
-  protected ServletUnitClient sClient;;
+  protected ServletUnitClient sClient;
 
   protected MockLockssDaemon theDaemon;
 

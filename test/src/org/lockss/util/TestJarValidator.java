@@ -84,7 +84,7 @@ public class TestJarValidator extends LockssTestCase {
       File f = validator.getBlessedJar(goodCu);
       fail("Should have thrown JarValidationException.");
     } catch (JarValidator.JarValidationException ignore) {
-      ;
+      //expected
     }
   }
 
@@ -99,7 +99,7 @@ public class TestJarValidator extends LockssTestCase {
       f = validator.getBlessedJar(goodCu);
       fail("Should have thrown JarValidationException.");
     } catch (JarValidator.JarValidationException ignore) {
-      ;
+      //expected
     }
     assertNull("File should not exist.", f);
   }
@@ -125,7 +125,7 @@ public class TestJarValidator extends LockssTestCase {
       f = validator.getBlessedJar(badCu);
       fail("Should have thrown JarValidationException");
     } catch (JarValidator.JarValidationException ignore) {
-      ;
+      //expected
     }
     assertNull(f);
   }
@@ -142,7 +142,7 @@ public class TestJarValidator extends LockssTestCase {
     try {
       f = validator.getBlessedJar(tamperedCu);
     } catch (JarValidator.JarValidationException ignore) {
-      ;
+      //expected
     }
     assertNull(f);
   }
@@ -159,7 +159,7 @@ public class TestJarValidator extends LockssTestCase {
     try {
       f = validator.getBlessedJar(noManifestCu);
     } catch (JarValidator.JarValidationException ignore) {
-      ;
+      //expected
     }
     assertNull(f);
   }
@@ -176,7 +176,7 @@ public class TestJarValidator extends LockssTestCase {
       f = validator.getBlessedJar(unsignedCu);
       fail("Should have thrown JarValidationException");
     } catch (JarValidator.JarValidationException ignore) {
-      ;
+      //expected
     }
     assertNull(f);
   }

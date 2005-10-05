@@ -171,7 +171,7 @@ public class SchedulableTask {
   }
 
   void setNotified() {
-    hasBeenNotified = true;;
+    hasBeenNotified = true;
   }
 
   public boolean hasStarted() {
@@ -179,7 +179,7 @@ public class SchedulableTask {
   }
 
   void setStarted() {
-    hasStarted = true;;
+    hasStarted = true;
   }
 
   void setTaskRunner(TaskRunner runner) {

@@ -108,7 +108,7 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
     }
 
     public CachedUrl makeCachedUrl(String url) {
-      CachedUrl res = (CachedUrl)cuMap.get(url);;
+      CachedUrl res = (CachedUrl)cuMap.get(url);
       log.debug("makeCachedUrl(" + url + ") = " + res);
       return (CachedUrl)cuMap.get(url);
     }

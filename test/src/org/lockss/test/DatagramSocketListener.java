@@ -44,7 +44,7 @@ import java.util.*;
 public class DatagramSocketListener implements Runnable{
   private static final int BEGINNING_PORT=12000;
   private int port;
-  private static final String host = "127.0.0.1";;
+  private static final String host = "127.0.0.1";
   private DatagramSocket socket = null;
   private DatagramPacket packet = null;
   private Vector packets;

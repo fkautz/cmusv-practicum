@@ -786,7 +786,7 @@ public class TestTaskRunner extends LockssTestCase {
     }
 
     public Scheduler createScheduler() {
-      scheduler = new MyMockScheduler(results);;
+      scheduler = new MyMockScheduler(results);
       return scheduler;
     }
 

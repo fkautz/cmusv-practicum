@@ -91,7 +91,7 @@ public class RunHashTest {
   private void readContent(CachedUrl cu, byte bytes[]) {
     try {
       InputStream is = cu.openForHashing();
-      while (is.read(bytes) != -1) {;}
+      while (is.read(bytes) != -1) {}
     } catch (IOException e) {
       e.printStackTrace();
     }

@@ -116,7 +116,7 @@ public class TestXmlStatusTable extends LockssTestCase {
     assertNotNull(file + " missing.", url);
     Reader rdr = new InputStreamReader(UrlUtil.openInputStream(url.toString()),
 				       Constants.DEFAULT_ENCODING);
-    String exp = StringUtil.fromReader(rdr);;
+    String exp = StringUtil.fromReader(rdr);
     assertEquals(exp, wrtr.toString());
 
   }

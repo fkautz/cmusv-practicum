@@ -363,9 +363,10 @@ public class MockLcapDatagramComm extends LcapDatagramComm {
    * @param handler MessageHandler to remove
    */
   public void unregisterMessageHandler(int protocol, MessageHandler handler) {
-    if (protocol < messageHandlers.size());
+    if (protocol < messageHandlers.size()) {
     messageHandlers.set(protocol, null);
 //      messageHandlers.remove(handler);
+    }
   }
 
 

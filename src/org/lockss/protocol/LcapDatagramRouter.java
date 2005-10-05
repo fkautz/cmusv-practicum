@@ -108,7 +108,7 @@ public class LcapDatagramRouter
   private long beaconInterval = 0;
   private int initialHopCount = V1LcapMessage.MAX_HOP_COUNT_LIMIT;
 
-  private Deadline beaconDeadline = Deadline.at(TimeBase.MAX);;
+  private Deadline beaconDeadline = Deadline.at(TimeBase.MAX);
   private PartnerList partnerList;
   private Deadline refreshPartnersAt;
   private long partnerRefreshInterval = DEFAULT_PARTNER_REFRESH_INTERVAL;
@@ -124,7 +124,7 @@ public class LcapDatagramRouter
     pollMgr = daemon.getPollManager();
     partnerList = new PartnerList(idMgr);
     resetConfig();
-    refreshPartnersAt = Deadline.in(partnerRefreshInterval);;
+    refreshPartnersAt = Deadline.in(partnerRefreshInterval);
     comm.registerMessageHandler(LockssDatagram.PROTOCOL_LCAP,
 				new LcapDatagramComm.MessageHandler() {
 				  public void

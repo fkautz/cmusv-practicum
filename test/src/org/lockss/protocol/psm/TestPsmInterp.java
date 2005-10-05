@@ -420,7 +420,7 @@ public class TestPsmInterp extends LockssTestCase {
 				    true);
       while (!interp.isFinalState()) {
 	TimerUtil.sleep(10);
-      };
+      }
       intr.cancel();
       assertEquals("Time", interp.getFinalState().getName());
       assertEquals(ListUtil.list("Start", "Time"), interp.states);
@@ -525,7 +525,7 @@ public class TestPsmInterp extends LockssTestCase {
       intr = interruptMeIn(TIMEOUT_SHOULDNT, true);
       while (!interp.isFinalState()) {
 	TimerUtil.sleep(10);
-      };
+      }
       // user event "taskcomplete" happens in timer thread, could happen
       // before "sched"
       List okOrders =
@@ -575,7 +575,7 @@ public class TestPsmInterp extends LockssTestCase {
 				    true);
       while (!interp.isFinalState()) {
 	TimerUtil.sleep(10);
-      };
+      }
       intr.cancel();
       assertTrue("expected one of:<"+okEvents+"> but was:<"+obj.userEvents+">",
 		 okEvents.contains(obj.userEvents));

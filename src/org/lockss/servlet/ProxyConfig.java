@@ -239,7 +239,7 @@ public class ProxyConfig extends LockssServlet {
   }
 
   void generateHelpPage(String error) throws IOException {
-    Page page = newPage();;
+    Page page = newPage();
     resp.setContentType("text/html");
     //    table = new Table(0, "ALIGN=CENTER CELLSPACING=2 CELLPADDING=0");
     Form frm = new Form(srvURL(myServletDescr()));
@@ -300,7 +300,7 @@ public class ProxyConfig extends LockssServlet {
   }
 
   void generateEncapForm(String error) throws IOException {
-    Page page = newPage();;
+    Page page = newPage();
     resp.setContentType("text/html");
     Form frm = new Form(srvURL(myServletDescr()));
     frm.method("POST");

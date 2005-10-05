@@ -224,7 +224,7 @@ public abstract class LockssServlet extends HttpServlet
 	servletToDescr.put(d.cls, d);
       }
     }
-  };
+  }
 
   private ServletDescr findServletDescr(Object o) {
     ServletDescr d = (ServletDescr)servletToDescr.get(o.getClass());

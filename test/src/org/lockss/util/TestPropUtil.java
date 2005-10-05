@@ -59,7 +59,7 @@ public class TestPropUtil extends LockssTestCase {
   static {
     p1.put("k1", "1");
     p1.put("k2", "two");
-  };
+  }
 
   private static Properties p2 = (Properties)p1.clone(); // p2 same as p1
   static {

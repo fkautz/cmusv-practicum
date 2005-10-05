@@ -568,7 +568,7 @@ public class TestPluginManager extends LockssTestCase {
 
   static class ThrowingMockPlugin extends MockPlugin {
     RuntimeException rtEx;
-    ArchivalUnit.ConfigurationException cfgEx;;
+    ArchivalUnit.ConfigurationException cfgEx;
 
     public void setRtEx(RuntimeException rtEx) {
       this.rtEx = rtEx;

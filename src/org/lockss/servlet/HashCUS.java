@@ -100,7 +100,7 @@ public class HashCUS extends LockssServlet {
   boolean isRecord;
   File recordFile;
   String hashType;
-  boolean isContent;;
+  boolean isContent;
   boolean isName;
   boolean isSncuss;
   ArchivalUnit au;
@@ -131,7 +131,7 @@ public class HashCUS extends LockssServlet {
 
     isHash = true;
     isRecord = false;
-    isContent = false;;
+    isContent = false;
     isName = false;
     isSncuss = false;
     recordFile = null;

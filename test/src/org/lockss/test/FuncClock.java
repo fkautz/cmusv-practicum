@@ -48,7 +48,7 @@ public class FuncClock extends LockssTestCase {
     long min = Long.MAX_VALUE;
     long next;
     while (true) {
-      while (now == (next = System.currentTimeMillis())) {;}
+      while (now == (next = System.currentTimeMillis())) {}
       long delta = next - now;
       if (delta < min) {
 	min = delta;

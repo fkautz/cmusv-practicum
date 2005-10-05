@@ -108,7 +108,7 @@ public class FileUtil {
       }
       index = path.indexOf("/", index+1);
       if (index < 0) break;
-    };
+    }
     return true;
   }
 

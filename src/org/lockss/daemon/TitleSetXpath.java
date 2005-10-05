@@ -49,7 +49,7 @@ public class TitleSetXpath extends BaseTitleSet {
   static {
     sharedContext.setFunctions(new ClassFunctions(RegexpUtil.XpathUtil.class,
 						  "RE"));
-  };
+  }
 
   private String xpath;
   private CompiledExpression expr;

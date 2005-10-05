@@ -123,7 +123,7 @@ public class PsmMachine {
 
   private synchronized void buildStateMap() {
     if (stateMap == null) {
-      Map newmap = new HashMap();;
+      Map newmap = new HashMap();
       for (int ix = 0; ix < states.length; ix++) {
 	PsmState state = states[ix];
 	if (newmap.put(state.getName(), state) != null) {

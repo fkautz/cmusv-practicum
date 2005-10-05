@@ -373,7 +373,7 @@ public class TestSortScheduler extends LockssTestCase {
       chunk.setTaskEnd();
     }
     return chunk;
-  };
+  }
 
   Schedule.BackgroundEvent bevent(BackgroundTask task, int start,
 				  Schedule.EventType event) {

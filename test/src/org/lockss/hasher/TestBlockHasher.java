@@ -428,6 +428,6 @@ public class TestBlockHasher extends LockssTestCase {
     public List getEvents() {
       return events;
     }
-  };
+  }
 
 }

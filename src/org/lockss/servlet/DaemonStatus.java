@@ -728,7 +728,7 @@ public class DaemonStatus extends LockssServlet {
 //     if (bigIntFmt instanceof DecimalFormat) {
 //       ((DecimalFormat)bigIntFmt).setDecimalSeparatorAlwaysShown(true);
 //     }
-  };
+  }
 
   // turn a value into a display string
   public static String convertDisplayString(Object val, int type) {

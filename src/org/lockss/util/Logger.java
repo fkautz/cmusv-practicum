@@ -137,7 +137,7 @@ public class Logger {
   // Use weak map so dead threads can get GCed
   private static int threadCtr = 0;
   private static Map threadIds = new ReferenceMap(ReferenceMap.WEAK,
-						  ReferenceMap.HARD);;
+						  ReferenceMap.HARD);
 
 
   int level;			// this log's level

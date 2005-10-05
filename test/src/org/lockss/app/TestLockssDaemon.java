@@ -227,7 +227,7 @@ public class TestLockssDaemon extends LockssTestCase {
       this.caller = caller;
       this.event = event;
       this.arg = arg;
-    };
+    }
     Event(Object caller, String event) {
       this(caller, event, null);
     }

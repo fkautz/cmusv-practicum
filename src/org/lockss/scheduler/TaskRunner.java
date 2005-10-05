@@ -91,7 +91,7 @@ class TaskRunner {
   // config params
   private int maxDrop = DEFAULT_DROP_TASK_MAX;
   private long minCleanupInterval = DEFAULT_MIN_CLEANUP_INTERVAL;
-  private long statsUpdateInterval = DEFAULT_STATS_UPDATE_INTERVAL;;
+  private long statsUpdateInterval = DEFAULT_STATS_UPDATE_INTERVAL;
   private int sortScheme = DEFAULT_SORT_SCHEME;
 
   private FifoQueue notifyQueue = new FifoQueue();
