@@ -66,10 +66,7 @@ public class FuncFilesystem extends LockssTestCase {
 	    assertMatchesRE("Too many open files", e.getMessage());
 	    closeStreams(lst);
 	    return;
-	  } catch (IOException e) {
-	    fail("Unexpected IOException on iteration " + iter);
-	    closeStreams(lst);
-	  }
+	  } 
 	}
     }
     fail("opened " + (nfiles * nstreams) + " streams without error");
