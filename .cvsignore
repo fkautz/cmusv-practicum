@@ -4,3 +4,6 @@ instrumented
 javadoc
 jcoverage.ser
 tempbuild
+.settings
+.classpath
+.project
