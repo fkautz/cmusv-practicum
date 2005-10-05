@@ -73,6 +73,7 @@ public class MDCredential extends Credential {
    */
   private static MessageDigest getMessageDigest(String type)
       throws NoSuchAlgorithmException {
+    if (type == null) throw new NoSuchAlgorithmException("null algorithm");
     synchronized (mdMap) {
       MessageDigest md = (MessageDigest)mdMap.get(type);
       if (md == null) {
