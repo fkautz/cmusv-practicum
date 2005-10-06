@@ -706,21 +706,21 @@ public class TestRepairCrawler extends LockssTestCase {
     assertEquals(Crawler.STATUS_FETCH_ERROR, (String)errorUrls.get(repairUrl));
     assertEquals(SetUtil.set(), crawlStatus.getUrlsFetched());
   }
-  /*
+  
   public void testGetPermissionMap() throws MalformedURLException {
     Set cachedUrls = cus.getCachedUrls();
     assertSameElements(ListUtil.list(), cachedUrls);
 
     PermissionMap pMap = crawler.getPermissionMap();
     assertNotNull(pMap);
-    assertEquals(PermissionMap.PERMISSION_OK, 
+    assertEquals(PermissionRecord.PERMISSION_OK, 
 		 pMap.getStatus("http://example.com/blah.html"));
 
     //verify that it fetched the permission page
     cachedUrls = cus.getCachedUrls();
     assertSameElements(ListUtil.list(permissionPage), cachedUrls);
   }
-  */
+  
   private class MyMockCrawlWindow implements CrawlWindow {
     public boolean canCrawl() {
       return false;

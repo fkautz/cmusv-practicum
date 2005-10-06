@@ -58,8 +58,8 @@ public class TestProjectMuseFilterRule extends LockssTestCase {
     content = "This <a href=remove>content";
     reader = rule.createFilteredReader(new StringReader(content));
     assertEquals(expectedContent, StringUtil.fromReader(reader));
-    content = "This " + rule.MENU_START + " remove all this " +
-        rule.MENU_END + "content";
+    content = "This " + ProjectMuseFilterRule.MENU_START + " remove all this " +
+        ProjectMuseFilterRule.MENU_END + "content";
     reader = rule.createFilteredReader(new StringReader(content));
     assertEquals(expectedContent, StringUtil.fromReader(reader));
   }

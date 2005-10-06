@@ -184,7 +184,7 @@ public class EditAuConfigure extends AuActivityBase {
     auId = getAndVerifyParameter(AP_E_AUID); 
     setPlugin(getAnyAuProxy(auId));
 
-    key = pluginManager.pluginKeyFromId(getPlugin().getPluginId());
+    key = PluginManager.pluginKeyFromId(getPlugin().getPluginId());
     if (!pluginLoaded(key)) {
       return error("Plugin is not loaded: " + key);
     }

@@ -49,7 +49,7 @@ public class FuncCommonsLoggingLogger extends LockssTestCase {
     MockLogTarget target = new MockLogTarget();
     Log log = LogFactory.getLog(logName);
     Logger lockssLog = Logger.getLogger(logName);
-    lockssLog.setTarget(target);
+    Logger.setTarget(target);
     // disable thread id, makes message order dependent on debug level
     lockssLog.setIdThread(false);
     assertEmpty(target.getMessages());

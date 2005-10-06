@@ -158,10 +158,10 @@ public class AuMenu extends AuActivityBase {
       auElement     = xmlUtils.createElement(actionElement, AP_E_AU);
 
       nameElement = xmlUtils.createElement(auElement, AP_E_NAME);
-      xmlUtils.addText(nameElement, au.getName());
+      XmlUtils.addText(nameElement, au.getName());
         
       idElement = xmlUtils.createElement(auElement, AP_E_ID);
-      xmlUtils.addText(idElement, au.getAuId());
+      XmlUtils.addText(idElement, au.getAuId());
     }
   }
 }

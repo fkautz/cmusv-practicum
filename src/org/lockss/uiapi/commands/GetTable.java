@@ -122,13 +122,13 @@ public class GetTable extends ApiActivityBase {
        */
       element = getXmlUtils().getElement(getRequestRoot(), AP_E_NAME);
       ParseUtils.verifyMandatoryElement(element, AP_E_NAME);
-      name    = getXmlUtils().getText(element);
+      name    = XmlUtils.getText(element);
       
       element = getXmlUtils().getElement(getRequestRoot(), AP_E_KEY);
-      key     = getXmlUtils().getText(element);
+      key     = XmlUtils.getText(element);
       
       element = getXmlUtils().getElement(getRequestRoot(), AP_E_OPTION);
-      option  = getXmlUtils().getText(element);
+      option  = XmlUtils.getText(element);
       /*
        * Set up an empty status table, get any requested "bit set" options ...
        */
@@ -157,7 +157,7 @@ public class GetTable extends ApiActivityBase {
       /*
        * Copy the status table XML into our response document verbatim
        */
-      getXmlUtils().copyDocument(xmlStatusTable.getTableDocument(),
+      XmlUtils.copyDocument(xmlStatusTable.getTableDocument(),
                                  getResponseDocument());
       return true;
 

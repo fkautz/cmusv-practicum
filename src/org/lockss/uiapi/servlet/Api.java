@@ -164,7 +164,7 @@ public class Api extends ServletBase
        * command activity (either command setup or the command itself) and 
        * return the response document
        */
-      document = xmlUtils.parseXmlString(xml);
+      document = XmlUtils.parseXmlString(xml);
       
       responder.initialize(servletInterface, 
                            interfaceName,

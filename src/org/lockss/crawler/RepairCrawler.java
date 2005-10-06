@@ -414,7 +414,8 @@ public class RepairCrawler extends CrawlerImpl {
 
   public PermissionMap getPermissionMap() {
     if (permissionMap == null) {
-      permissionMap = new PermissionMap();
+      populatePermissionMap();
+//      permissionMap = new PermissionMap();
     }
     return permissionMap;
   }
