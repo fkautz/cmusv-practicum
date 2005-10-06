@@ -190,7 +190,7 @@ public class CXSerializer extends ObjectSerializer {
     return deserialize(reader, new MutableBoolean(false));
   }
   
-  /* Inherit documentation */
+  /* Inherit documentation */ // FIXME: This doesn't inherit from anywhere!
   public Object deserialize(Reader reader, MutableBoolean wasCastor)
       throws IOException, SerializationException {
     // Constants
@@ -203,7 +203,7 @@ public class CXSerializer extends ObjectSerializer {
     // Peek at beginning of input
     char[] buffer = new char[recognizeCastor.length()];
     bufReader.mark(recognizeCastor.length() + 1);
-    bufReader.read(buffer, 0, buffer.length);
+    bufReader.read(buffer, 0, buffer.length); // FIXME: Check return value
     bufReader.reset();
 
     // Guess format and deserialize
