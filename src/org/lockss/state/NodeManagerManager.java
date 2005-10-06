@@ -559,7 +559,6 @@ public class NodeManagerManager
       String url = key.substring(pos + 1);
       logger.debug("finding node state for url: " + url);
       ArchivalUnit au = nodeManager.getAuState().getArchivalUnit();
-      Plugin plugin = au.getPlugin();
       CachedUrlSet cus =
 	au.makeCachedUrlSet(new RangeCachedUrlSetSpec(url));
       NodeState state = nodeManager.getNodeState(cus);

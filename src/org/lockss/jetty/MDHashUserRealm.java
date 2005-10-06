@@ -362,7 +362,6 @@ public class MDHashUserRealm extends HashMap
   /* ------------------------------------------------------------ */
   private class User implements Principal
   {
-    List roles=null;
 
     /* ------------------------------------------------------------ */
     private UserRealm getUserRealm()

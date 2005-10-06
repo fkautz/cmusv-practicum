@@ -42,7 +42,6 @@ public class WhiteSpaceFilter extends Reader {
   boolean inWhiteSpace = false;
   boolean hitEOF = false;
   boolean isClosed = false;
-  char[] charbuf;
 
 
   // Create filtered stream, initialize state.

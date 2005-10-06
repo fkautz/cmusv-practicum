@@ -251,7 +251,6 @@ public class TitleConfig {
   private boolean assignsDescr(ConfigParamDescr descr) {
     ConfigParamAssignment cpa = findCpa(descr);
     if (cpa != null) {
-      ConfigParamDescr cpd = cpa.getParamDescr();
       return !cpa.isEditable();
     }
     return false;

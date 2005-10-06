@@ -241,9 +241,6 @@ public class LockssResourceHandler extends AbstractHttpHandler {
         if (resource==null)
             return;
 
-        if (resource==null)
-            return;
-
         // Is the method allowed?
         if (!isMethodAllowed(request.getMethod()))
         {

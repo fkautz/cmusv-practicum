@@ -58,7 +58,7 @@ public class LockssDaemon extends LockssApp {
 
   private static String PREFIX = Configuration.PREFIX + "daemon.";
 
-  public static float MIN_JAVA_VERSION = 1.4f;
+  public static final float MIN_JAVA_VERSION = 1.4f;
 
 /**
  * LOCKSS is a trademark of Stanford University.  Stanford hereby grants you

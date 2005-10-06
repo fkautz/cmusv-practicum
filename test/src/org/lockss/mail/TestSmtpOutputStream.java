@@ -33,12 +33,8 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.mail;
 
 import java.io.*;
-import java.util.*;
-import java.net.*;
 import org.lockss.test.*;
 import org.lockss.util.*;
-import org.lockss.daemon.*;
-import org.lockss.plugin.*;
 
 /**
  * This is the test class for org.lockss.mail.SmtpOutputStream

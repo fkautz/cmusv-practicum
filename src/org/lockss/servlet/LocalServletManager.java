@@ -121,8 +121,7 @@ public class LocalServletManager extends BaseServletManager {
       HttpServer server = new HttpServer();
 
       // Create a port listener
-      HttpListener listener =
-	server.addListener(new org.mortbay.util.InetAddrPort(port));
+      server.addListener(new org.mortbay.util.InetAddrPort(port));
 
       // create auth realm
       if (doAuth) {

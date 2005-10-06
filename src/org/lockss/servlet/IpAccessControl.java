@@ -270,6 +270,7 @@ public abstract class IpAccessControl extends LockssServlet {
 	String ipStr = (String)iter.next();
 	IpFilter.Mask ip;
 	try {
+	  // value not used, constructor called to check if malformed
 	  ip = new IpFilter.Mask(ipStr, true);
 	} catch (IpFilter.MalformedException e) {
 	  errorIPs.addElement(ipStr + ":  " + e.getMessage());

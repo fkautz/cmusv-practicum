@@ -67,7 +67,7 @@ public class OaiHandler {
   protected ListRecords listRecords;
   private String baseUrl;
   private int retries;
-  private int maxRetries;
+//   private int maxRetries;
   private OaiRequestData oaiData;
   private String fromDate;
   private String untilDate;

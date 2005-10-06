@@ -154,7 +154,6 @@ public class PluginManager
   private static Logger log = Logger.getLogger("PluginMgr");
 
   private ConfigManager configMgr;
-  private StatusService statusSvc;
 
   private File pluginDir = null;
   private AuOrderComparator auComparator = new AuOrderComparator();
@@ -209,7 +208,6 @@ public class PluginManager
   public void startService() {
     super.startService();
     configMgr = getDaemon().getConfigManager();
-    statusSvc = getDaemon().getStatusService();
     // Initialize the plugin directory.
     initPluginDir();
     PluginStatus.register(getDaemon(), this);

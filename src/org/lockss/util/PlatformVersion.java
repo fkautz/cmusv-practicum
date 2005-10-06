@@ -41,9 +41,9 @@ import org.apache.oro.text.regex.*;
 public class PlatformVersion implements Version {
 
   // This platform doesn't put its name in the version string
-  public final String DEFAULT_PLATFORM_NAME = "OpenBSD CD";
+  public static final String DEFAULT_PLATFORM_NAME = "OpenBSD CD";
 
-  private final int BASE = 10;
+  private static final int BASE = 10;
 
   // The platform name.
   private String m_name;

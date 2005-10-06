@@ -179,7 +179,7 @@ public class LockssDocumentBuilderFactoryImpl extends DocumentBuilderFactory {
 
 
   // This error handler uses a Logger to log error messages
-  class MyErrorHandler implements ErrorHandler {
+  static class MyErrorHandler implements ErrorHandler {
     private Logger log = Logger.getLogger(ERROR_LOGGER_NAME);
 
     //  This method is called in the event of a recoverable error

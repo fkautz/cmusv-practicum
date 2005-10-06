@@ -257,7 +257,6 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
 	PluginManager.pluginKeyFromId(PluginManager.pluginIdFromAuId(auid));
       Plugin plugin = pluginMgr.getPlugin(pluginKey);
       if (plugin == null) return true;
-      List descrs = plugin.getAuConfigDescrs();
       if (auidProps == null) {
 	return true;
       }

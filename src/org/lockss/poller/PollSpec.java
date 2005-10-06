@@ -69,7 +69,6 @@ public class PollSpec {
   static final String DEFAULT_PLUGIN_VERSION = "1";
 
   private static Logger theLog=Logger.getLogger("PollSpec");
-  private static LockssRandom theRandom = new LockssRandom();
   private String auId;
   private String pluginVersion;
   private String url;

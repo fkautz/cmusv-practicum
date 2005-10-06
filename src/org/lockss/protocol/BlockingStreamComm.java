@@ -622,14 +622,14 @@ public class BlockingStreamComm
    */
   void execute(Runnable run) throws InterruptedException {
     if (run == null)
-      log.warning("Executing " + run, new Throwable());
+      log.warning("Executing null", new Throwable());
     pool.execute(run);
   }
 
   void XXXexecute(Runnable run) {
     try {
       if (run == null)
-	log.warning("Executing " + run, new Throwable());
+	log.warning("Executing null", new Throwable());
       pool.execute(run);
     } catch (InterruptedException e) {
       // Shouldn't happen in abortWhenBlocked mode

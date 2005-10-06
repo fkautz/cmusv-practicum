@@ -105,7 +105,6 @@ public class IdentityManagerStatus implements StatusAccessor {
 
   private Map makeRow(LcapIdentity id) {
     Map row = new HashMap();
-    String idKey = id.getIdKey();
     PeerIdentity pid = id.getPeerIdentity();
     if (pid.isLocalIdentity()) {
       StatusTable.DisplayedValue val =

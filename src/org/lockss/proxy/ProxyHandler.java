@@ -742,8 +742,8 @@ public class ProxyHandler extends AbstractHttpHandler {
    */
   protected boolean isForbidden(URI uri) {
     String scheme=uri.getScheme();
-    String host=uri.getHost();
-    int port = uri.getPort();
+//     String host=uri.getHost();
+//     int port = uri.getPort();
     return isForbidden(scheme,true);
   }
     

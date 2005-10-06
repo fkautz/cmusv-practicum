@@ -34,12 +34,6 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.mail;
 
 import java.io.*;
-import java.net.*;
-import sun.net.TransferProtocolClient;
-import sun.net.NetworkClient;
-import org.lockss.util.*;
-import org.lockss.config.Configuration;
-import org.lockss.daemon.*;
 
 /**
  * Filter stream to send RFC822 data on SMTP connection - ensures network

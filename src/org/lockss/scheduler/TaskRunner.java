@@ -854,8 +854,8 @@ class TaskRunner {
     Deadline until = runningDeadline;
     boolean overOk = task.isOverrunAllowed();
     long timeDelta = 0;
-    long statsUpdateTime = TimeBase.nowMs() + statsUpdateInterval;
     long statsStartTime = TimeBase.nowMs();
+    long statsUpdateTime = statsStartTime + statsUpdateInterval;
 
     task.setStarted();
     task.setStepping(true);

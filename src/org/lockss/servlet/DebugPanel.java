@@ -126,8 +126,6 @@ public class DebugPanel extends LockssServlet {
 
   private Element makeForm() {
     Composite comp = new Composite();
-    Block centeredBlock = new Block(Block.Center);
-
     Form frm = new Form(srvURL(myServletDescr()));
     frm.method("POST");
 
