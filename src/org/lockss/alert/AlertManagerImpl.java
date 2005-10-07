@@ -219,7 +219,18 @@ public class AlertManagerImpl
   }
 
   /**
+   * <p>Convenience method to set the text of an alert and raise() it
+   * @param alert the alert to raise
+   * @param text text to be stored in text attribute of alert
+   */
+  public void raiseAlert(Alert alert, String text) {
+    alert.setAttribute(Alert.ATTR_TEXT, text);
+    raiseAlert(alert);
+  }
+
+  /**
    * <p>Raises an alert.</p>
+   * @param alert the alert to raise
    */
   public void raiseAlert(Alert alert) {
     if (!alertsEnabled || alertConfig == null) {

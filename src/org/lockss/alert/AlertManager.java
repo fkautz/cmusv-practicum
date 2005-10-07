@@ -40,7 +40,18 @@ public interface AlertManager extends LockssManager {
 
   static final String PREFIX = Configuration.PREFIX + "alert.";
 
+  /**
+   * Raise an alert
+   * @param alert the alert to raise
+   */
   public void raiseAlert(Alert alert);
+
+  /**
+   * Convenience method to set the text of an alert and raise() it
+   * @param alert the alert to raise
+   * @param text text to be stored in text attribute of alert
+   */
+  public void raiseAlert(Alert alert, String text);
 
   public AlertConfig getConfig();
 

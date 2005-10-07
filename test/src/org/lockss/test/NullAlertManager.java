@@ -52,6 +52,9 @@ public class NullAlertManager extends BaseLockssDaemonManager
 			   Configuration.Differences changedKeys) {
   }
 
+  public void raiseAlert(Alert alert, String text) {
+  }
+
   public void raiseAlert(Alert alert) {
   }
 
