@@ -129,4 +129,49 @@ public class TestTimerQueue extends LockssTestCase {
     // verify that the deadline didn't change
     assertEquals(dlexp, dl.getExpirationTime());
   }
+
+  public void testChangeEarlier() {
+    final SimpleQueue.Fifo q = new SimpleQueue.Fifo();
+    Deadline d1 = Deadline.in(500);
+    Deadline d2 = Deadline.in(300);
+    TimerQueue.Callback cb = new TimerQueue.Callback() {
+	public void timerExpired(Object cookie) {
+	  q.put(cookie);
+	}};
+    TimerQueue.schedule(d1, cb, "dd1");
+    TimerQueue.schedule(d2, cb, "dd2");
+    assertEquals(null, q.get(20));
+    d1.expireAt(200);
+    assertEquals(null, q.get(20));
+    TimeBase.step(201);
+    assertEquals("dd1", q.get(500));
+    TimeBase.step(100);
+    assertEquals("dd2", q.get(500));
+  }
+
+  public void testChangeLater() {
+    final SimpleQueue.Fifo q = new SimpleQueue.Fifo();
+    Deadline d1 = Deadline.at(500);
+    Deadline d2 = Deadline.at(300);
+    TimerQueue.Callback cb = new TimerQueue.Callback() {
+	public void timerExpired(Object cookie) {
+	  q.put(cookie);
+	}};
+    TimerQueue.schedule(d1, cb, "dd1");
+    TimerQueue.schedule(d2, cb, "dd2");
+    assertEquals(null, q.get(20));
+    d2.expireAt(1000);
+    assertEquals(null, q.get(20));
+    TimeBase.step(201);
+    assertEquals(null, q.get(20));
+    TimeBase.step(200);
+    assertEquals(null, q.get(20));
+    TimeBase.step(100);
+    assertEquals("dd1", q.get(500));
+    TimeBase.step(400);
+    assertEquals(null, q.get(20));
+    TimeBase.step(100);
+    assertEquals("dd2", q.get(500));
+  }
+
 }
