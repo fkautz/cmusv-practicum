@@ -137,11 +137,11 @@ public class TestCrawlerImpl extends LockssTestCase {
   }
 
   public void testIsSupportedUrlProtocol() {
-    assertTrue(crawler.isSupportedUrlProtocol("http://www.example.com"));
-    assertTrue(crawler.isSupportedUrlProtocol("HTTP://www.example.com"));
-    assertFalse(crawler.isSupportedUrlProtocol("ftp://www.example.com"));
-    assertFalse(crawler.isSupportedUrlProtocol("gopher://www.example.com"));
-    assertFalse(crawler.isSupportedUrlProtocol("https://www.example.com"));
+    assertTrue(CrawlerImpl.isSupportedUrlProtocol("http://www.example.com"));
+    assertTrue(CrawlerImpl.isSupportedUrlProtocol("HTTP://www.example.com"));
+    assertFalse(CrawlerImpl.isSupportedUrlProtocol("ftp://www.example.com"));
+    assertFalse(CrawlerImpl.isSupportedUrlProtocol("gopher://www.example.com"));
+    assertFalse(CrawlerImpl.isSupportedUrlProtocol("https://www.example.com"));
   }
 
   public void testGetAu() {

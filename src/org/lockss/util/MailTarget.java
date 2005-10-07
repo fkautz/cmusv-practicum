@@ -112,20 +112,20 @@ public class MailTarget {
     }
   }
 
-  public void handleMessage(Logger logger, int level, String message) {
+  public void handleMessage(int level, String message) {
     String levelStr = Logger.nameOf(level) + ": ";
     String subject = levelStr + ERROR_SUBJECT + localHostName;
     String body = df.format(new Date()) + ":\n" + levelStr + message;
     if (!emailEnabled) {
-      this.logger.warning("Email logging not enabled; message discarded: " +
-                          levelStr + message);
+      logger.warning("Email logging not enabled; message discarded: " 
+                     + levelStr + message);
       return;
     }
     try {
       SmtpMailer.sendMail(toAddr, fromAddr, subject, body, smtpHost,
                           smtpPort, localHostName);
     } catch (IOException ioe) {
-      this.logger.error("Couldn't send mail correctly.", ioe);
+      logger.error("Couldn't send mail correctly.", ioe);
     }
   }
 

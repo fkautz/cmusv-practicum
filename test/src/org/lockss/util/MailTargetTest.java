@@ -61,9 +61,9 @@ public class MailTargetTest extends LockssTestCase {
   }
 
   public void testEmailLogging() throws Exception {
-    target.handleMessage(null, Logger.LEVEL_INFO, "Email test 1");
+    target.handleMessage(Logger.LEVEL_INFO, "Email test 1");
     target.emailEnabled = false;
-    target.handleMessage(null, Logger.LEVEL_INFO,
+    target.handleMessage(Logger.LEVEL_INFO,
                          "Email test 2: should not be received");
   }
 }

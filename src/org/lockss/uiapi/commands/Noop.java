@@ -61,7 +61,7 @@ public class Noop extends ApiActivityBase {
      * Add a comment in the response document
      */
     element = xmlUtils.createElement(getResponseRoot(), AP_E_COMMENT);
-    xmlUtils.addText(element, DateFormatter.now());
+    XmlUtils.addText(element, DateFormatter.now());
 
     return true;
   }

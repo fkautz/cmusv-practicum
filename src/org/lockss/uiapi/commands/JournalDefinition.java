@@ -115,7 +115,7 @@ public class JournalDefinition extends ApiActivityBase {
     iterator = titleSet.iterator();
     while (iterator.hasNext()) {
       title = (String) iterator.next();
-      xmlUtils.addText(xmlUtils.createElement(root, AP_E_TITLE), title);
+      XmlUtils.addText(xmlUtils.createElement(root, AP_E_TITLE), title);
     }
     return true;
   }
