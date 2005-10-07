@@ -31,11 +31,10 @@ in this Software without prior written authorization from Stanford University.
 */
 
 package org.lockss.mbf;
+
 import java.math.*;
-import java.io.*;
 import java.util.*;
 import java.security.*;
-import org.lockss.util.*;
 
 /**
  * @author David S. H. Rosenthal

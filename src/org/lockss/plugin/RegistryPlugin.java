@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,6 +29,7 @@ be used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from Stanford University.
 
 */
+
 package org.lockss.plugin;
 
 import java.util.*;
@@ -38,9 +39,6 @@ import org.lockss.daemon.*;
 import org.lockss.plugin.base.BasePlugin;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.util.ListUtil;
-import org.lockss.util.Logger;
-import org.lockss.util.StringUtil;
-import org.lockss.app.LockssDaemon;
 
 /**
  * <p>RegistryPlugin: A plugin that archives other plugins.</p>

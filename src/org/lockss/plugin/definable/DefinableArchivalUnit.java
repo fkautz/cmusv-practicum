@@ -100,7 +100,7 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
     Object permission_el = definitionMap.getMapElement(AU_MANIFEST_KEY);
 
     if (permission_el instanceof String) {
-      templateList = ListUtil.list((String)permission_el);
+      templateList = ListUtil.list(permission_el.toString());
     } else if (permission_el instanceof List) {
        templateList = (List) permission_el;
     } else {

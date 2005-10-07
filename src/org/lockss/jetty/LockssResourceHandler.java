@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -38,8 +38,6 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.jetty;
 
 import java.io.*;
-import java.net.MalformedURLException;
-import java.text.DateFormat;
 import java.util.*;
 
 import org.apache.commons.logging.Log;
@@ -53,8 +51,6 @@ import org.lockss.proxy.ProxyManager;
 import org.lockss.config.*;
 
 import com.sun.jimi.core.*;
-import com.sun.jimi.core.encoder.png.*;
-import com.sun.jimi.core.decoder.gif.*;
 import com.sun.jimi.core.raster.*;
 
 /** Extension of ResourceHandler that allows flexibility in finding the

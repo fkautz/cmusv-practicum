@@ -74,7 +74,7 @@ public class V1ContentPoll extends V1Poll {
       log.debug("Setting message for " + this + " from " + msg);
     }
     if(opcode == V1LcapMessage.CONTENT_POLL_REP) {
-      startVoteCheck((V1LcapMessage)msg);
+      startVoteCheck(msg);
     }
   }
 

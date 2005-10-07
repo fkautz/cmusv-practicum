@@ -33,9 +33,7 @@ package org.lockss.poller.v3;
 import org.lockss.plugin.CachedUrlSet;
 import org.lockss.protocol.*;
 import org.lockss.util.*;
-import org.lockss.protocol.psm.*;
 
-import java.io.*;
 import java.util.*;
 
 /**

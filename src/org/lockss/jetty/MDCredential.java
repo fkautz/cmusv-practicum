@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -36,7 +36,6 @@ import java.io.*;
 import java.util.*;
 import java.security.*;
 
-import org.mortbay.http.*;
 import org.mortbay.util.*;
 import org.lockss.util.*;
 

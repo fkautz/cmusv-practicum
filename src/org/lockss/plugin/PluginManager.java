@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -37,11 +37,11 @@ import java.util.jar.*;
 import java.io.*;
 import java.net.*;
 import java.security.KeyStore;
+
 import org.apache.commons.collections.MultiMap;
 import org.apache.commons.collections.MultiHashMap;
 import org.lockss.app.*;
 import org.lockss.daemon.*;
-import org.lockss.daemon.status.*;
 import org.lockss.poller.*;
 import org.lockss.repository.*;
 import org.lockss.util.*;

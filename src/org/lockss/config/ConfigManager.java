@@ -658,7 +658,7 @@ public class ConfigManager implements LockssManager {
 	  (!key.startsWith(PARAM_TITLE_DB) &&
 	   !key.startsWith(PluginManager.PARAM_AU_TREE))) {
 	if (config.containsKey(key)) {
-	  log.debug(key + " = " + (String)config.get(key));
+	  log.debug(key + " = " + config.get(key));
 	} else if (oldConfig.containsKey(key)) {
 	  log.debug(key + " (removed)");
 	}

@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,10 +33,9 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.daemon;
 
 import java.util.*;
+
 import org.lockss.app.*;
-import org.lockss.util.*;
 import org.lockss.config.*;
-import org.lockss.plugin.*;
 import org.lockss.remote.*;
 
 /** The set of titles configured on the cache */

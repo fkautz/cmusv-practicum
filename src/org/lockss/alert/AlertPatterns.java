@@ -261,7 +261,7 @@ public class AlertPatterns {
 	case EQ: return equalObjects(attr, value);
 	case NE: return !equalObjects(attr, value);
 	default:
-	  int cmp = ((Comparable)attr).compareTo((Comparable)value);
+	  int cmp = ((Comparable)attr).compareTo(value);
 	  switch (relation) {
 	  case GT: return cmp > 0;
 	  case GE: return cmp >= 0;

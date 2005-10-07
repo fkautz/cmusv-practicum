@@ -274,7 +274,7 @@ public class LcapDatagramComm
       return sender.equals(getLocalIdentityAddr());
     } else {
       for (Iterator iter = localInterfaces.iterator(); iter.hasNext(); ) {
-	if (sender.equals((IPAddr)iter.next())) {
+	if (sender.equals(iter.next())) {
 	  return true;
 	}
       }

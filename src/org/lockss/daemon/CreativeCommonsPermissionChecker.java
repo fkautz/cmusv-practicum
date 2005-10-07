@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2002 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -35,15 +35,13 @@ package org.lockss.daemon;
 import java.io.*;
 import java.util.*;
 
-import edu.stanford.db.xml.util.*;
 import edu.stanford.db.rdf.model.i.StatementImpl;
-import edu.stanford.db.rdf.model.i.ModelImpl;
+
 import org.w3c.rdf.implementation.model.*;
 import org.w3c.rdf.implementation.syntax.sirpac.*;
 import org.w3c.rdf.model.*;
 import org.w3c.rdf.syntax.*;
 import org.w3c.rdf.util.*;
-import org.w3c.rdf.vocabulary.rdf_syntax_19990222.*;
 import org.xml.sax.*;
 
 import org.lockss.util.*;
@@ -166,7 +164,7 @@ public class CreativeCommonsPermissionChecker
       // for obtaining "permission" triples from this RDF model.
       Model license =
 // 	(Model)model.find(new ResourceImpl(m_licenseURI), LICENSE, null);
-	(Model)model.find(new ResourceImpl(permissionUrl), LICENSE, null);
+	model.find(new ResourceImpl(permissionUrl), LICENSE, null);
 
       if (license == null) {
 	log.warning("No 'license' resource.  Invalid CC RDF.");
@@ -190,7 +188,7 @@ public class CreativeCommonsPermissionChecker
 
       // Now loop through all the permission statement triples looking for one
       // that permits redistribution.
-      Model permission = (Model)model.find(new ResourceImpl(licenseType), null, null);
+      Model permission = model.find(new ResourceImpl(licenseType), null, null);
       for (Enumeration e = permission.elements(); e.hasMoreElements(); ) {
 	Statement triple = (StatementImpl)e.nextElement();
 	if (PERMITS.equals(triple.predicate()) &&

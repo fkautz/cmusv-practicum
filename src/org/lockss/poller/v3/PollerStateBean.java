@@ -30,8 +30,6 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.poller.v3;
 
-import java.io.*;
-
 import org.lockss.plugin.*;
 import org.lockss.poller.PollSpec;
 import org.lockss.protocol.*;

@@ -33,16 +33,11 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.protocol;
 
 import java.io.*;
-import java.net.UnknownHostException;
 import java.util.*;
 
 import org.lockss.app.*;
-import org.lockss.config.ConfigManager;
 import org.lockss.config.Configuration;
 import org.lockss.plugin.ArchivalUnit;
-import org.lockss.poller.Poll;
-import org.lockss.poller.Vote;
-import org.lockss.state.HistoryRepository;
 import org.lockss.util.*;
 
 /**
