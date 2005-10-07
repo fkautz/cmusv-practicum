@@ -492,6 +492,7 @@ public class PluginManager
 
   private void configurePlugin(String pluginKey, Configuration pluginConf,
 			       Configuration oldPluginConf) {
+    nextAU:
     for (Iterator iter = pluginConf.nodeIterator(); iter.hasNext(); ) {
       String auKey = (String)iter.next();
       String auId = generateAuId(pluginKey, auKey);
@@ -524,7 +525,7 @@ public class PluginManager
 	    } catch (RuntimeException e) {
 	      log.warning("Not configuring probable non-AU.  " +
 			  "Can't generate AUID from config: " + auConf);
-	      return;
+	      continue nextAU;
 	    }
 	    configureAu(plugin, auConf, auId);
 	    inactiveAuIds.remove(generateAuId(pluginKey, auKey));
