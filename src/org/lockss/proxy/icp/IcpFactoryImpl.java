@@ -456,8 +456,8 @@ public class IcpFactoryImpl implements IcpFactory {
     
     /**
      * <p>Reads an IP address from the given stream.</p>
-     * @param in A data input stream.
-     * @param offset TODO
+     * @param in     A byte buffer.
+     * @param offset A byte offset.
      * @return The IP address obtained from the next 4 bytes of the
      *         argument stream.
      * @throws IcpProtocolException if any exception arises.
@@ -482,7 +482,8 @@ public class IcpFactoryImpl implements IcpFactory {
     /**
      * <p>Reads a null-terminated URL from the given stream (and
      * consumes the null byte).</p>
-     * @param inData A data input stream.
+     * @param in     A byte buffer.
+     * @param offset A byte offset.
      * @return A URL string obtained from reading bytes from the
      *         stream.
      * @throws IcpProtocolException if any exception arises.
