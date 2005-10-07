@@ -82,7 +82,7 @@ public class TestPollSpec extends LockssTestCase {
 
     CachedUrlSet cus =
       new MockCachedUrlSet(au, new RangeCachedUrlSetSpec(url, lower, upper));
-    PollSpec ps = new PollSpec(cus, Poll.CONTENT_POLL);
+    PollSpec ps = new PollSpec(cus, Poll.V1_CONTENT_POLL);
     assertEquals(auid, ps.getAuId());
     assertEquals(url, ps.getUrl());
     assertEquals(lower, ps.getLwrBound());
@@ -102,7 +102,7 @@ public class TestPollSpec extends LockssTestCase {
     au.setPlugin(plug);
     CachedUrlSet cus =
       new MockCachedUrlSet(au, new RangeCachedUrlSetSpec(url, lower, upper));
-    PollSpec ps = new PollSpec(cus, Poll.CONTENT_POLL);
+    PollSpec ps = new PollSpec(cus, Poll.V1_CONTENT_POLL);
     PeerIdentity id = null;
     try {
       id = theDaemon.getIdentityManager().stringToPeerIdentity("127.0.0.1");

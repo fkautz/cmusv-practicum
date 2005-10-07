@@ -85,6 +85,14 @@ public class MockPollSpec extends PollSpec {
     super(ps, pollType);
   }
 
+  public MockPollSpec(CachedUrlSet cus, int pollType) {
+    super(cus, pollType);
+  }
+  
+  public MockPollSpec(CachedUrlSet cus, int pollType, int pollVersion) {
+    super(cus, pollType, pollVersion);
+  }
+  
   public String getPluginVersion() {
     return (overridePluginVersion != null)
       ? overridePluginVersion : super.getPluginVersion();

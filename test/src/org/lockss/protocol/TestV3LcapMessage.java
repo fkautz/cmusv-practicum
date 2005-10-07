@@ -134,10 +134,10 @@ public class TestV3LcapMessage extends LockssTestCase {
   public void testTestMessageToString() throws IOException {
     String expectedResult = "[V3LcapMessage: from " + m_testID.toString() +
       ", http://www.example.com Vote " +
+      "Key:key " +
       "PN:AQIDBAUGBwgJAAECAwQFBgcICQA= " +
       "VN:AQIDBAUGBwgJAAECAwQFBgcICQA= " +
-      "B:10 ver 1]";
-    log.debug("GOT THIS STRING: {" + m_testMsg.toString() + "}");
+      "B:10 ver 3]";
     assertEquals(expectedResult, m_testMsg.toString());
   }
 
@@ -162,6 +162,7 @@ public class TestV3LcapMessage extends LockssTestCase {
     Deadline deadline = Deadline.in(10000);
     V3LcapMessage reqMsg =
       V3LcapMessage.makeRequestMsg(spec,
+                                   "key",
 				   m_testBytes,
                                    m_testBytes,
 				   V3LcapMessage.MSG_REPAIR_REQ,
@@ -283,7 +284,8 @@ public class TestV3LcapMessage extends LockssTestCase {
   }
 
   private V3LcapMessage makeTestVoteMessage(Collection voteBlocks) {
-    V3LcapMessage msg = new V3LcapMessage(V3LcapMessage.MSG_VOTE, m_testID,
+    V3LcapMessage msg = new V3LcapMessage(V3LcapMessage.MSG_VOTE, "key",
+                                          m_testID,
                                           m_url, 123456789, 987654321,
                                           m_testBytes, m_testBytes);
 

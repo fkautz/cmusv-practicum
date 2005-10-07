@@ -89,6 +89,13 @@ public class MockPoll implements Poll {
   public void setPollSpec(PollSpec pollspec) {
     m_pollspec = pollspec;
   }
+  
+  /**
+   * Return the cached url set.
+   */
+  public CachedUrlSet getCachedUrlSet() {
+    return m_pollspec.getCachedUrlSet();
+  }
 
   /* Return the version of the protocol in use
    * @return the protocol version

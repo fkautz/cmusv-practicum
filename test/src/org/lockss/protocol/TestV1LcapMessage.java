@@ -219,7 +219,7 @@ public class TestV1LcapMessage extends LockssTestCase {
     V1LcapMessage req_msg = null;
     PollSpec spec =
       new MockPollSpec(archivalID, urlstr, lwrbnd, uprbnd, "Plug42",
-		       Poll.CONTENT_POLL);
+		       Poll.V1_CONTENT_POLL);
     req_msg = V1LcapMessage.makeRequestMsg(spec,
 					   testentries,
 					   testbytes,

@@ -40,6 +40,7 @@ import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.poller.*;
+
 import org.apache.commons.collections.map.LRUMap;
 import org.mortbay.util.B64Code;
 
@@ -441,8 +442,8 @@ public class LcapDatagramRouter
   void sendNoOp() {
     try {
       V1LcapMessage noOp =
-        V1LcapMessage.makeNoOpMsg(idMgr.getLocalPeerIdentity(Poll.V1_POLL),
-				  pollMgr.generateRandomBytes());
+        V1LcapMessage.makeNoOpMsg(idMgr.getLocalPeerIdentity(PollSpec.V1_PROTOCOL),
+				  ByteArray.makeRandomBytes(20));
       log.debug2("noop: " + noOp);
       send(noOp, null);
     } catch (IOException e) {

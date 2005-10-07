@@ -60,7 +60,7 @@ public class TestPsmMsgEvent extends LockssTestCase {
   }
   
   V3LcapMessage makeMsg(int opcode) {
-    return new V3LcapMessage(opcode, null, null, 0, 0, null, null);
+    return new V3LcapMessage(opcode, "key", null, null, 0, 0, null, null);
   }
 
   public void testFromMessage() {

@@ -54,7 +54,8 @@ public class LcapMessageTestUtil {
 
   public static V3LcapMessage makeTestVoteMessage(PeerIdentity peer,
 						  Collection voteBlocks) {
-    V3LcapMessage msg = new V3LcapMessage(V3LcapMessage.MSG_VOTE, peer, m_url,
+    V3LcapMessage msg = new V3LcapMessage(V3LcapMessage.MSG_VOTE, "key",
+                                          peer, m_url,
 					  123456789, 987654321,
                                           m_testBytes, m_testBytes);
 

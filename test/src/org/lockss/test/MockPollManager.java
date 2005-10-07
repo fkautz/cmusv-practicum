@@ -95,11 +95,11 @@ public class MockPollManager extends PollManager {
     // note: uses a different key than the other two, since we're not
     // creating an actual challenge and verifier to key off of.
     int opcode = ps.getPollType();
-    if (opcode == Poll.CONTENT_POLL) {
+    if (opcode == Poll.V1_CONTENT_POLL) {
       theLog.debug("MockPollManager: send V1 content poll request");
       thePolls.put(ps.getUrl(), CONTENT_REQUESTED);
     }
-    else if (opcode == Poll.NAME_POLL) { 
+    else if (opcode == Poll.V1_NAME_POLL) { 
       theLog.debug("MockPollManager: send V1 name poll request");
      thePolls.put(ps.getUrl(), NAME_REQUESTED);
     } else {

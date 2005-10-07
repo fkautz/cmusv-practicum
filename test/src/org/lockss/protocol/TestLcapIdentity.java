@@ -85,7 +85,7 @@ public class TestLcapIdentity extends LockssTestCase {
     }
     testReputation = IdentityManager.INITIAL_REPUTATION;
     PollSpec spec = new MockPollSpec(archivalid, urlstr, lwrbnd, uprbnd,
-				     Poll.CONTENT_POLL);
+				     Poll.V1_CONTENT_POLL);
     testMsg = V1LcapMessage.makeRequestMsg(spec,
 					   testentries,
 					   testbytes,

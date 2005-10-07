@@ -304,6 +304,14 @@ public class MockIdentityManager implements IdentityManager {
     throw new UnsupportedOperationException("not implemented");
   }
 
+  public Collection getUdpPeerIdentities() {
+    throw new UnsupportedOperationException("not implemented");
+  }
+
+  public Collection getTcpPeerIdentities() {
+    throw new UnsupportedOperationException("not implemented");
+  }
+
 //   protected String getLocalIpParam(Configuration config) {
 //     throw new UnsupportedOperationException("not implemented");
 //   }

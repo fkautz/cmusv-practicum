@@ -245,12 +245,12 @@ public class HashCUS extends LockssServlet {
 			  url,
 			  PollSpec.SINGLE_NODE_LWRBOUND,
 			  null,
-			  Poll.CONTENT_POLL,
-			  Poll.V1_POLL); // XXX select version
+			  Poll.V1_CONTENT_POLL,
+			  PollSpec.V1_PROTOCOL); // XXX select version
       } else {
 	// XXX select version
 	ps = new PollSpec(auid, url, lower, upper,
-			  Poll.CONTENT_POLL, Poll.V1_POLL);
+			  Poll.V1_CONTENT_POLL, PollSpec.V1_PROTOCOL);
       }
     } catch (Exception e) {
       errMsg = "Error making PollSpec: " + e.toString();

@@ -83,7 +83,7 @@ public class TestV1PollTally extends LockssTestCase {
 
   class MockV1PollTally extends V1PollTally {
     MockV1PollTally() {
-      super(Poll.NAME_POLL, 0, 4, 0, 0, 0, 0, 3, null);
+      super(Poll.V1_NAME_POLL, 0, 4, 0, 0, 0, 0, 3, null);
     }
   }
 

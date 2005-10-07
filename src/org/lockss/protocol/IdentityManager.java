@@ -293,6 +293,16 @@ public interface IdentityManager extends LockssManager {
   public IdentityListBean getIdentityListBean();
 
   /**
+   * Return a list of all known UDP (suitable for V1) peer identities.
+   */
+  public Collection getUdpPeerIdentities();
+  
+  /**
+   * Return a list of all known TCP (suitable for V1 or V3), peer identities.
+   */
+  public Collection getTcpPeerIdentities();
+  
+  /**
    * <p>Signals that we've agreed with pid on a top level poll on
    * au.</p>
    * <p>Only called if we're both on the winning side.</p>

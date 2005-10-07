@@ -176,7 +176,7 @@ public class LcapRouter
       LcapMessage lmsg = makeV3LcapMessage(pmsg);
       runHandlers(lmsg);
     } catch (Exception e) {
-      log.warning("Processing incoming " + pmsg);
+      log.warning("Exception while processing incoming " + pmsg, e);
     } finally {
       pmsg.delete();
     }

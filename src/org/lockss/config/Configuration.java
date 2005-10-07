@@ -307,6 +307,14 @@ public abstract class Configuration {
    * Return a list of values for the specified key.
    */
   public abstract List getList(String key);
+  
+  public List getList(String key, List dfault) {
+    List retVal = getList(key);
+    if (retVal == null) {
+      return dfault;
+    }
+    return retVal;
+  }
 
   /** Return the config value as a long.
    * @throws Configuration.InvalidParam if the value is missing or

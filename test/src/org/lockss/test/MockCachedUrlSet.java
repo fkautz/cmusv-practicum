@@ -74,7 +74,7 @@ public class MockCachedUrlSet implements CachedUrlSet {
   private static final Logger logger = Logger.getLogger("MockCachedUrlSet");
 
   public MockCachedUrlSet() {
-    this(new MockArchivalUnit(), (CachedUrlSetSpec)null);
+    this(new MockArchivalUnit(), (MockCachedUrlSetSpec)null);
   }
 
   public MockCachedUrlSet(MockArchivalUnit owner, CachedUrlSetSpec spec) {

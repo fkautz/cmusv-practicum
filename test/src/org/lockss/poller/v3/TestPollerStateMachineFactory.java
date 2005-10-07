@@ -74,6 +74,7 @@ public class TestPollerStateMachineFactory extends LockssTestCase {
 
     this.msgPollAck =
       V3Events.fromMessage(new V3LcapMessage(V3LcapMessage.MSG_POLL_ACK,
+                                             "key",
 					     this.id,
 					     "http://www.test.com/",
 					     123456789, 987654321,
@@ -81,6 +82,7 @@ public class TestPollerStateMachineFactory extends LockssTestCase {
                                              ByteArray.makeRandomBytes(20)));
     this.msgNominate =
       V3Events.fromMessage(new V3LcapMessage(V3LcapMessage.MSG_NOMINATE,
+                                             "key",
 					     this.id,
 					     "http://www.test.com/",
 					     123456789, 987654321,
@@ -88,6 +90,7 @@ public class TestPollerStateMachineFactory extends LockssTestCase {
                                              ByteArray.makeRandomBytes(20)));
     this.msgVote =
       V3Events.fromMessage(new V3LcapMessage(V3LcapMessage.MSG_VOTE,
+                                             "key",
 					     this.id,
 					     "http://www.test.com/",
 					     123456789, 987654321,
@@ -95,6 +98,7 @@ public class TestPollerStateMachineFactory extends LockssTestCase {
                                              ByteArray.makeRandomBytes(20)));
     this.msgRepair =
       V3Events.fromMessage(new V3LcapMessage(V3LcapMessage.MSG_REPAIR_REP,
+                                             "key",
 					     this.id,
 					     "http://www.test.com/",
 					     123456789, 987654321,

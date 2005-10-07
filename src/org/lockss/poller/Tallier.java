@@ -53,6 +53,7 @@ public interface Tallier {
    * @return a String representing the key
    */
   public String getPollKey();
+  
   /**
    * Returns true if the poll belongs to this Identity
    * @return true if this Identity owns the poll

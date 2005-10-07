@@ -44,7 +44,7 @@ import org.lockss.app.LockssDaemon;
  * scheduling or threading mechanisms.
  */
 public class V1TreeWalkImpl implements TreeWalker {
-  private static Logger log = Logger.getLogger("TreeWalkImpl");
+  private static Logger log = Logger.getLogger("V1TreeWalkImpl");
 
   // Managers, AU.  (All but the PluginManager are required for testing.)
   TreeWalkManager twm;
