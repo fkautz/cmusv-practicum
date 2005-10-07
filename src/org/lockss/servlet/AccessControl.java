@@ -33,10 +33,14 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.servlet;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 
+import org.apache.commons.collections.Predicate;
+import org.apache.commons.collections.iterators.FilterIterator;
+import org.apache.commons.collections.iterators.ObjectArrayIterator;
 import org.lockss.util.StringUtil;
 import org.mortbay.html.Page;
 
@@ -62,15 +66,14 @@ public class AccessControl extends LockssServlet {
     if (StringUtil.isNullString(action)) displayMenu();
   }
   
-  private static ServletDescr[] accessMenu;
-  
-  protected static ServletDescr[] getDescriptors() {
-    if (accessMenu == null) {
-      accessMenu = new ServletDescr[] {
-          SERVLET_ADMIN_ACCESS_CONTROL,
-      };
-    }
-    return accessMenu;
+  protected static Iterator getDescriptors() {
+    return new FilterIterator(
+        new ObjectArrayIterator(servletDescrs),
+        new Predicate() {
+          public boolean evaluate(Object obj) {
+            return ((ServletDescr)obj).isInAccessControl();
+          }
+        });
   }
   
 }
