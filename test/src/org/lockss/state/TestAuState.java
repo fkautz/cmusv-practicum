@@ -104,7 +104,7 @@ public class TestAuState extends LockssTestCase {
     assertNull(historyRepo.theAuState);
 
     Collection col = auState.getCrawlUrls();
-    for (int ii=1; ii<auState.URL_UPDATE_LIMIT; ii++) {
+    for (int ii=1; ii<AuState.URL_UPDATE_LIMIT; ii++) {
       col.add("test" + ii);
       auState.updatedCrawlUrls(false);
       assertEquals(ii, auState.urlUpdateCntr);
@@ -117,7 +117,7 @@ public class TestAuState extends LockssTestCase {
 
     // clear, and check that counter is reset
     historyRepo.theAuState = null;
-    if (auState.URL_UPDATE_LIMIT > 1) {
+    if (AuState.URL_UPDATE_LIMIT > 1) {
       col.add("test");
       auState.updatedCrawlUrls(false);
       assertNull(historyRepo.theAuState);
@@ -130,7 +130,7 @@ public class TestAuState extends LockssTestCase {
     assertNull(historyRepo.theAuState);
 
     Collection col = auState.getCrawlUrls();
-    if (auState.URL_UPDATE_LIMIT > 1) {
+    if (AuState.URL_UPDATE_LIMIT > 1) {
       col.add("test");
       auState.updatedCrawlUrls(true);
       assertEquals(0, auState.urlUpdateCntr);

@@ -352,8 +352,8 @@ public class TestBaseArchivalUnit extends LockssTestCase {
     }
 
     Properties props = new Properties();
-    props.setProperty(mbau.PARAM_TOPLEVEL_POLL_INTERVAL_MIN, "1s");
-    props.setProperty(mbau.PARAM_TOPLEVEL_POLL_INTERVAL_MAX, "2s");
+    props.setProperty(BaseArchivalUnit.PARAM_TOPLEVEL_POLL_INTERVAL_MIN, "1s");
+    props.setProperty(BaseArchivalUnit.PARAM_TOPLEVEL_POLL_INTERVAL_MAX, "2s");
     ConfigurationUtil.setCurrentConfigFromProps(props);
 
     mbau.checkNextPollInterval();

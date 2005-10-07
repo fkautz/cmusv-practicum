@@ -1142,7 +1142,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     }
 
     public void initService(LockssDaemon daemon) throws LockssAppException {
-      this.log.debug("MyIdentityManager: initService");
+      log.debug("MyIdentityManager: initService");
       super.initService(daemon);
     }
 
@@ -1155,12 +1155,12 @@ public class TestNodeManagerImpl extends LockssTestCase {
     }
 
     public void startService() {
-      this.log.debug("MyIdentityManager: startService");
+      log.debug("MyIdentityManager: startService");
       super.startService();
       idMap = new HashMap();
     }
     public void stopService() {
-      this.log.debug("MyIdentityManager: stopService");
+      log.debug("MyIdentityManager: stopService");
       super.stopService();
       idMap = null;
     }

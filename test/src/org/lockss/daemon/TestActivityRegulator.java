@@ -89,7 +89,7 @@ public class TestActivityRegulator extends LockssTestCase {
 
     regulator.setCusActivity(mcus2, ActivityRegulator.BACKGROUND_CRAWL, 123);
     assertEquals(ActivityRegulator.BACKGROUND_CRAWL, regulator.getCusActivity(mcus2));
-    assertEquals(regulator.REPAIR_CRAWL, regulator.getCusActivity(mcus));
+    assertEquals(ActivityRegulator.REPAIR_CRAWL, regulator.getCusActivity(mcus));
   }
 
   public void testStopService() {
