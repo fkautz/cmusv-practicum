@@ -54,22 +54,20 @@ public class UiHome extends LockssServlet {
     Page page = newPage();
     resp.setContentType("text/html");
     page.add(getHomeHeader());
-    ServletUtil.layoutMenu(this,
-                           page,
-                           getDescriptors());
+    layoutMenu(page, getDescriptors());
     layoutFooter(page);
     page.write(resp.getWriter());
   }
 
   protected Table getHomeHeader() {
-    Table tab = new Table(0, "align=center width=\"80%\"");
+    Table tab = new Table(0, "align=\"center\" width=\"80%\"");
     tab.newRow();
-    tab.newCell("align=center");
+    tab.newCell("align=\"center\"");
     tab.add("Welcome to the administration page for LOCKSS cache <b>");
     tab.add(getMachineName());
     tab.add("</b>.");
     tab.newRow();
-    tab.newCell("align=center");
+    tab.newCell("align=\"center\"");
     tab.add("&nbsp;");
     return tab;
   }
