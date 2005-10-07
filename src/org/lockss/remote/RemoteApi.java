@@ -72,6 +72,11 @@ public class RemoteApi
     PREFIX + "backupFileVersion";
   static final String DEFAULT_BACKUP_FILE_VERSION = "V2";
 
+  /** Config backup file externsion, used in place of <code>.zip</code> */
+  static final String PARAM_BACKUP_FILE_EXTENSION =
+    PREFIX + "backupFileExtension";
+  static final String DEFAULT_BACKUP_FILE_EXTENSION = "zip";
+
   /** Config backup file version: V1 is just AU config, V2 is zip including
    * AU config and agreement history */
   static final String PARAM_BACKUP_STREAM_MARK_SIZE =
@@ -99,6 +104,8 @@ public class RemoteApi
 
   private String paramBackupFileVer = DEFAULT_BACKUP_FILE_VERSION;
   private int paramBackupStreamMarkSize = DEFAULT_BACKUP_STREAM_MARK_SIZE;
+  private String paramBackupFileDotExtension =
+    makeExtension(DEFAULT_BACKUP_FILE_EXTENSION);
 
   // cache for proxy objects
   private ReferenceMap auProxies = new ReferenceMap(ReferenceMap.WEAK,
@@ -125,7 +132,17 @@ public class RemoteApi
       paramBackupStreamMarkSize =
 	config.getInt(PARAM_BACKUP_STREAM_MARK_SIZE,
 		      DEFAULT_BACKUP_STREAM_MARK_SIZE);
+      paramBackupFileDotExtension =
+	makeExtension(config.get(PARAM_BACKUP_FILE_EXTENSION,
+				 DEFAULT_BACKUP_FILE_EXTENSION));
     }
+  }
+
+  String makeExtension(String ext) {
+    if (ext.startsWith(".")) {
+      return ext;
+    }
+    return "." + ext;
   }
 
   /** Create or return an AuProxy for the AU corresponding to the auid.
@@ -1448,7 +1465,8 @@ public class RemoteApi
 			new Object[] {moreInfoUrl});
       }
       msg.addTextPart(text);
-      msg.addTmpFile(bfile, "LOCKSS_Backup_" + machineName + ".zip");
+      msg.addTmpFile(bfile, "LOCKSS_Backup_" + machineName +
+		     paramBackupFileDotExtension);
       msg.addHeader("From", getBackEmailFrom(config, machineName));
       msg.addHeader("To", to);
       msg.addHeader("Date", headerDf.format(TimeBase.nowDate()));
