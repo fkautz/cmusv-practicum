@@ -115,8 +115,8 @@ public class TestLockssThread extends LockssTestCase {
     TimeBase.setReal();
     TestThread thr = new TestThread("Test");
     assertFalse(thr.waitRunning(Deadline.EXPIRED));
-    thr.start();
     runSem = new SimpleBinarySemaphore();
+    thr.start();
     assertTrue(thr.waitRunning(Deadline.in(TIMEOUT_SHOULDNT)));
     assertTrue(thr.isAlive());
     assertFalse(thr.waitExited(Deadline.EXPIRED));
