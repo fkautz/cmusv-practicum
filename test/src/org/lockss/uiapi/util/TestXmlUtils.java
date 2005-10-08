@@ -200,7 +200,7 @@ public class TestXmlUtils extends LockssTestCase implements ApiParameters {
     assertEquals(nodeList.getLength(), 3);
 
     element = (Element) nodeList.item(2);
-    xmlUtils.addEncodedText(element, PLAIN_TEXT);
+    XmlUtils.addEncodedText(element, PLAIN_TEXT);
 
     text = element.getFirstChild().getNodeValue();
     assertEquals(ENCODED_TEXT, text);

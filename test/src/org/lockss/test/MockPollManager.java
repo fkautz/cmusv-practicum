@@ -44,7 +44,7 @@ import org.lockss.protocol.ProtocolException;
  * Mock override of the PollManager
  */
 public class MockPollManager extends PollManager {
-  public static Hashtable thePolls = new Hashtable();
+  public Hashtable thePolls = new Hashtable();
   public static final String NAME_REQUESTED = "name_requested";
   public static final String CONTENT_REQUESTED = "content_requested";
   public static final String SUSPENDED = "suspended";

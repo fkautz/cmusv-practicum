@@ -116,7 +116,7 @@ public class TestXmlDomBuilder extends LockssTestCase {
 
   public void testGetFormatter() {
     OutputFormat formatter = builder.getFormatter();
-    assertEquals(builder.ENCODING, formatter.getEncoding());
+    assertEquals(XmlDomBuilder.ENCODING, formatter.getEncoding());
     assertEquals(Method.XML, formatter.getMethod());
   }
 
