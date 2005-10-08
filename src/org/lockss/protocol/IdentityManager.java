@@ -280,7 +280,7 @@ public interface IdentityManager extends LockssManager {
   
   /**
    * <p>Copies the identity database file to the stream.</p>
-   * @param An OutputStream instance.
+   * @param out An OutputStream instance.
    */
   public void writeIdentityDbTo(OutputStream out) throws IOException;
   
@@ -288,7 +288,6 @@ public interface IdentityManager extends LockssManager {
    * <p>A Castor helper method to convert an identity map into a
    * serializable bean.</p>
    * @return An IdentityListBean corresponding to the identity map.
-   * @see #theIdentities
    */
   public IdentityListBean getIdentityListBean();
 

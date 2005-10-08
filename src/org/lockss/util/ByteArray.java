@@ -125,13 +125,13 @@ public class ByteArray {
     return bigI.longValue();
   }
 
+  private static LockssRandom rand = new LockssRandom();
   /**
    * Return a pseudo-random array of bytes of length len.
    *
    * @param len The size of the array to return.
-   * @return A pseudo-random array of bytes.
+   * @returns A pseudo-random array of bytes.
    */
-  private static LockssRandom rand = new LockssRandom();
   public static byte[] makeRandomBytes(int len) {
     byte[] retVal = new byte[len];
     int top = 0xFF;

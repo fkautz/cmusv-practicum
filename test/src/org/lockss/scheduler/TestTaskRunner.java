@@ -835,7 +835,7 @@ public class TestTaskRunner extends LockssTestCase {
      * @param nSteps number of steps to execute before isFinished returns
      * true.
      * @param eachStepTime if >0, ms to sleep on each step.  if <0, step
-     * @return some measure of amount of work done.
+     * @returns some measure of amount of work done.
      * simulated time by abs(eachStepTime) on each step.
      */
     MyMockStepper(int nSteps, int eachStepTime) {

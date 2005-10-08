@@ -65,7 +65,7 @@ public class TitleSetActiveAus extends BaseTitleSet {
 
   /** Return a TitleConfig for the AU.  Returns matching entry from the
    * title db if found, else creates one.
-   * @param the AU
+   * @param au the AU
    * @return an existing or synthesized TitleConfig describing the AU */
   TitleConfig titleConfigFromAu(ArchivalUnit au) {
     TitleConfig tc = au.getTitleConfig();

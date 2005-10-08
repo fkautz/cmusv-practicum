@@ -154,7 +154,7 @@ public class CXSerializer extends ObjectSerializer {
    * <p>See {@link ObjectSerializer#deserialize(File)} for a
    * description of this method's specification.</p>
    * @param inputFile {@inheritDoc}
-   * @throws FileNotFoundexception  {@inheritDoc}
+   * @throws FileNotFoundException  {@inheritDoc}
    * @throws IOException            {@inheritDoc}
    * @throws SerializationException {@inheritDoc}
    */

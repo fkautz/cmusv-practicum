@@ -656,7 +656,7 @@ public class StatusTable {
     
     /**
      * Lookup the column type in the columnDescriptors, store in self
-     * @param columnDescriptors
+     * @param columnDescriptorMap columnDescriptors
      */
     void inferColumnType(Map columnDescriptorMap){
       ColumnDescriptor col =
