@@ -85,9 +85,11 @@ public class TestNewContentCrawler extends LockssTestCase {
     crawlRule.addUrlToCrawl(startUrl);
     crawlRule.addUrlToCrawl(permissionPage);
     mau.addUrl(permissionPage);
-    spec = new SpiderCrawlSpec(startUrls, ListUtil.list(permissionPage), crawlRule, 1);
+    spec = new SpiderCrawlSpec(startUrls, ListUtil.list(permissionPage), 
+                               crawlRule, 1);
     crawler = new MyNewContentCrawler(mau, spec, aus);
-    ((CrawlerImpl)crawler).daemonPermissionCheckers = ListUtil.list(new MockPermissionChecker(1));
+    ((CrawlerImpl)crawler).daemonPermissionCheckers = 
+      ListUtil.list(new MockPermissionChecker(1));
 
     mau.setParser(parser);
     Properties p = new Properties();
