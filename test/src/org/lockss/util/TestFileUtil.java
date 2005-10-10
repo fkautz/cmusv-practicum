@@ -163,6 +163,8 @@ public class TestFileUtil extends LockssTestCase {
     File subDir = FileUtil.createTempDir("subTempDir", ".bar", parentDir);
     assertTrue(subDir.exists());
     assertTrue(subDir.isDirectory());
+    FileUtil.delTree(parentDir);
+    
   }
 
   public void testDelTree() throws IOException {

@@ -802,11 +802,15 @@ public class TestBlockingStreamComm extends LockssTestCase {
     comm1.sendTo(msg1, pid2, null);
     comm1.sendTo(msg2, pid2, null);
     msgIn = (PeerMessage)rcvdMsgs2.get(TIMEOUT_SHOULDNT);
-    assertEqualsMessageFrom(msg1, pid1, msgIn);
-    assertTrue(msgIn.toString(), msgIn instanceof MemoryPeerMessage);
-    msgIn = (PeerMessage)rcvdMsgs2.get(TIMEOUT_SHOULDNT);
-    assertEqualsMessageFrom(msg2, pid1, msgIn);
-    assertTrue(msgIn.toString(), msgIn instanceof FilePeerMessage);
+    try {
+      assertEqualsMessageFrom(msg1, pid1, msgIn);
+      assertTrue(msgIn.toString(), msgIn instanceof MemoryPeerMessage);
+      msgIn = (PeerMessage)rcvdMsgs2.get(TIMEOUT_SHOULDNT);
+      assertEqualsMessageFrom(msg2, pid1, msgIn);
+      assertTrue(msgIn.toString(), msgIn instanceof FilePeerMessage);
+    } finally {
+      msgIn.delete();
+    }
   }
 
   public void testMaxMsg() throws IOException {
