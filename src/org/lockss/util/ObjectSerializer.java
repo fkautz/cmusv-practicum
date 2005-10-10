@@ -35,6 +35,7 @@ package org.lockss.util;
 import java.io.*;
 
 import org.lockss.app.LockssApp;
+import org.lockss.config.Configuration;
 
 /**
  * <p>Specifies an interface for serializers that marshal Java objects
@@ -45,6 +46,12 @@ import org.lockss.app.LockssApp;
  * @author Thib Guicherd-Callin
  */
 public abstract class ObjectSerializer {
+
+  /** Set true to keep temporary serialization files that either aren't
+   * successfully written or can't be renamed.  Normally they are deleted. */
+  public static final String PARAM_SAVE_FAILED_TEMPFILES =
+    "org.lockss.serialization.saveFailedTempfiles";
+  public static final boolean DEFAULT_SAVE_FAILED_TEMPFILES = false;
 
   /*
    * begin PUBLIC STATIC INNER CLASS
@@ -395,11 +402,7 @@ public abstract class ObjectSerializer {
       if (success) {
         /* Serialization succeeded */
         success = tempFile.renameTo(outputFile);
-        if (success) {
-          // File renaming succeeded
-          tempFile.deleteOnExit();
-        }
-        else {
+        if (!success) {
           // File renaming failed
           StringBuffer buffer = new StringBuffer();
           buffer.append("Could not rename from ");
@@ -408,12 +411,23 @@ public abstract class ObjectSerializer {
           buffer.append(outputFile.getAbsolutePath());
           String str = buffer.toString();
           logger.error(str);
+	  maybeDelTempFile(tempFile);
           throw new IOException(str);
         }
+      } else {
+	maybeDelTempFile(tempFile);
       }
     }
   }
   
+  void maybeDelTempFile(File file) {
+    if (!Configuration.getBooleanParam(PARAM_SAVE_FAILED_TEMPFILES,
+				       DEFAULT_SAVE_FAILED_TEMPFILES)) {
+      logger.warning("Deleting unsuccessful serial file " + file);
+      file.delete();
+    }
+  }
+
   /**
    * <p>Convenience method to marshal a Java object to an XML file
    * that accepts an OutputStream instead of a Writer.</p>
