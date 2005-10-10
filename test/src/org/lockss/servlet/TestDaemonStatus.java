@@ -247,7 +247,8 @@ public class TestDaemonStatus extends LockssServletTestCase {
   public void testTextNonStringKey() throws Exception {
     MockStatusAccessor statusAccessor = new MockStatusAccessor();
     List cols = ListUtil.list("foo", StatusTable.ROW_SEPARATOR);
-    statusAccessor.setRows(statusAccessor.makeRowsFrom(cols, rowArray1), null);
+    statusAccessor.setRows(MockStatusAccessor.makeRowsFrom(cols, rowArray1), 
+                           null);
     statusAccessor.setColumnDescriptors(MockStatusAccessor.makeColumnDescriptorsFrom(colArray1), null);
 
     statSvc.registerStatusAccessor("testtbl", statusAccessor);

@@ -108,7 +108,7 @@ public class TestLockssDocumentBuilderFactoryImpl extends LockssTestCase {
     Logger l =
       Logger.getLogger(LockssDocumentBuilderFactoryImpl.ERROR_LOGGER_NAME);
     MockLogTarget target = new MockLogTarget();
-    l.setTarget(target);
+    Logger.setTarget(target);
 
     DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder = fact.newDocumentBuilder();

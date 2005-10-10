@@ -66,7 +66,7 @@ public class TestTitleSetInactiveAus extends LockssTestCase {
     props.setProperty(ConfigManager.PARAM_PLATFORM_DISK_SPACE_LIST, tempDir);
     ConfigurationUtil.setCurrentConfigFromProps(props);
 
-    String key = pluginMgr.pluginKeyFromName(MockPlugin.class.getName());
+    String key = PluginManager.pluginKeyFromName(MockPlugin.class.getName());
     pluginMgr.ensurePluginLoaded(key);
     mp = (MockPlugin)pluginMgr.getPlugin(key);
 

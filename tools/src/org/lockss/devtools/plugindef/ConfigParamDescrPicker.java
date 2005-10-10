@@ -169,7 +169,7 @@ public class ConfigParamDescrPicker
   void initLists() {
     Collection knownList = plugin.getKnownConfigParamDescrs();
     Collection pluginList = plugin.getConfigParamDescrs();
-    defaultDescrs = plugin.getDefaultConfigParamDescrs();
+    defaultDescrs = EditableDefinablePlugin.getDefaultConfigParamDescrs();
     PickerCellRenderer renderer = new PickerCellRenderer();
     Iterator it;
     // add current plugin parameters

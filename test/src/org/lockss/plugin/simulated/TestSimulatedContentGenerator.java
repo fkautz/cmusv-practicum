@@ -260,7 +260,8 @@ public class TestSimulatedContentGenerator extends LockssTestCase {
     File child = new File(childName);
     assertTrue("File not found.", child.exists() && !child.isDirectory());
     String content = getFileContent(child);
-    String expectedContent = scgen.getHtmlFileContent(scgen.getFileName(1,
+    String expectedContent = 
+      SimulatedContentGenerator.getHtmlFileContent(scgen.getFileName(1,
         SimulatedContentGenerator.FILE_TYPE_HTML), 1, 0, 0, false);
     assertEquals("content incorrect.", expectedContent, content);
   }

@@ -399,7 +399,7 @@ public class V1PollTally extends PollTally {
     
     if (!poll.scheduleHash(digest, deadline, poll.copyVote(vote, vote.agree),
                            new ReplayVoteCallback())) {
-      poll.m_pollstate = poll.ERR_SCHEDULE_HASH;
+      poll.m_pollstate = Poll.ERR_SCHEDULE_HASH;
       log.debug("couldn't schedule hash - stopping replay poll");
     }
   }

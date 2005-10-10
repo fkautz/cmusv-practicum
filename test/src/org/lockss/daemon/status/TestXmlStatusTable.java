@@ -83,7 +83,7 @@ public class TestXmlStatusTable extends LockssTestCase {
     };
 
       
-    List rowList = accessor.makeRowsFrom(colList, rowObj);
+    List rowList = MockStatusAccessor.makeRowsFrom(colList, rowObj);
     Map row97 = (Map)rowList.get(2);
     row97.put(StatusTable.ROW_SEPARATOR, "1");
     accessor.setRows(rowList, "key");
@@ -99,7 +99,7 @@ public class TestXmlStatusTable extends LockssTestCase {
        Collections.EMPTY_LIST},
     };
 
-    List sumList = accessor.makeSummaryInfoFrom(sumObj);
+    List sumList = MockStatusAccessor.makeSummaryInfoFrom(sumObj);
     accessor.setSummaryInfo("key", sumList);
     accessor.populateTable(table);
     table.setTitle("Splunge");
@@ -110,7 +110,7 @@ public class TestXmlStatusTable extends LockssTestCase {
 
     // serialize it and compare to the expected file, statustest1.xml
     StringWriter wrtr = new StringWriter();
-    xmlTable.getXmlDomBuilder().serialize(tableDoc, wrtr);
+    XmlDomBuilder.serialize(tableDoc, wrtr);
     String file = "statustest1.xml";
     URL url = getClass().getResource(file);
     assertNotNull(file + " missing.", url);

@@ -74,7 +74,7 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
   }
 
   String getCacheLocation() {
-    return repo.getCacheLocation();
+    return LockssRepositoryImpl.getCacheLocation();
   }
 
   public void testGetLocalRepository() throws Exception {

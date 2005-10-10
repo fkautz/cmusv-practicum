@@ -33,6 +33,7 @@ package org.lockss.util.urlconn;
 import java.util.*;
 import java.io.*;
 import java.net.*;
+
 import org.lockss.util.*;
 
 /** Encapsulates Java's HttpURLConnection impelementation as a
@@ -73,7 +74,7 @@ public class JavaHttpUrlConnection extends JavaUrlConnection {
   }
 
   public void setFollowRedirects(boolean followRedirects) {
-    hurlConn.setFollowRedirects(followRedirects);
+    HttpURLConnection.setFollowRedirects(followRedirects);
   }
 
   public int getResponseCode() {

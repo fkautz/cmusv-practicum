@@ -58,7 +58,7 @@ public class MockLogTarget implements LogTarget{
    */
   public void handleMessage(Logger log, int msgLevel, String message) {
     StringBuffer sb = new StringBuffer();
-    sb.append(log.nameOf(msgLevel));
+    sb.append(Logger.nameOf(msgLevel));
     sb.append(": ");
     sb.append(message);
     String str = sb.toString();

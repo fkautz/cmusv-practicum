@@ -113,7 +113,7 @@ public class TitleParams {
 		cout.println((ix+1) + ": " + p.getPluginName());
 	      }
 	    } else {
-	      String key = pluginMgr.pluginKeyFromName(line);
+	      String key = PluginManager.pluginKeyFromName(line);
 	      pluginMgr.ensurePluginLoaded(key);
 	      plugin = pluginMgr.getPlugin(key);
 	      if (plugin == null) {

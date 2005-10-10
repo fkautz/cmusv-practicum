@@ -190,7 +190,7 @@ public class AuActivityBase extends StatusActivityBase {
     getAuPropertiesFromForm(properties, AP_MD_AUDEFINING);
     getAuPropertiesFromForm(properties, AP_MD_AUEDIT);
   
-    return getLockssDaemon().getConfigManager().fromPropertiesUnsealed(properties);
+    return ConfigManager.fromPropertiesUnsealed(properties);
   }
 
   /**
@@ -205,7 +205,7 @@ public class AuActivityBase extends StatusActivityBase {
     getAuProperties(auConfig, properties);
     getAuPropertiesFromForm(properties, AP_MD_AUEDIT);
   
-    return getLockssDaemon().getConfigManager().fromProperties(properties);
+    return ConfigManager.fromProperties(properties);
   }
 
   /** 
