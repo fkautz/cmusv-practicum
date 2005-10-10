@@ -428,7 +428,7 @@ public class V3Voter extends BasePoll {
     }
 
     public void tallyVotes() {
-      ; // do nothing
+      // do nothing
     }
 
     public boolean stateIsActive() {
@@ -444,15 +444,15 @@ public class V3Voter extends BasePoll {
     }
 
     public void setStateSuspended() {
-      ; // do nothing
+      // do nothing
     }
 
     public void replayVoteCheck(Vote vote, Deadline deadline) {
-      ; // do nothing
+      // do nothing
     }
 
     public void adjustReputation(PeerIdentity voterID, int repDelta) {
-      ; // do nothing
+      // do nothing
     }
 
     public int getTallyResult() {
