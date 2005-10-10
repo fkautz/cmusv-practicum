@@ -61,7 +61,8 @@ public class OaiCrawler extends FollowLinkCrawler {
     super(au, crawlSpec, aus);
     spec = (OaiCrawlSpec) crawlSpec;
     String oaiHandlerUrl = spec.getOaiRequestData().getOaiRequestHandlerUrl();
-    crawlStatus = new Crawler.Status(au, ListUtil.list(oaiHandlerUrl), getType());
+    crawlStatus = new Crawler.Status(au, ListUtil.list(oaiHandlerUrl),
+				     getTypeString());
   }
 
   protected void setCrawlConfig(Configuration config) {
@@ -72,6 +73,14 @@ public class OaiCrawler extends FollowLinkCrawler {
 
   public int getType() {
     return Crawler.OAI;
+  }
+
+  public String getTypeString() {
+    return "OAI";
+  }
+
+  public boolean isWholeAU() {
+    return true;
   }
 
   /**

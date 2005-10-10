@@ -48,11 +48,20 @@ public class NewContentCrawler extends FollowLinkCrawler {
   public NewContentCrawler(ArchivalUnit au, CrawlSpec crawlSpec, AuState aus) {
     super(au, crawlSpec, aus);
     spec = (SpiderCrawlSpec) crawlSpec;
-    crawlStatus = new Crawler.Status(au, spec.getStartingUrls(), getType());
+    crawlStatus = new Crawler.Status(au, spec.getStartingUrls(),
+				     getTypeString());
   }
 
   public int getType() {
     return Crawler.NEW_CONTENT;
+  }
+
+  public String getTypeString() {
+    return "New Content";
+  }
+
+  public boolean isWholeAU() {
+    return true;
   }
 
   /**

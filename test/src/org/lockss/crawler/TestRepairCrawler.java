@@ -139,6 +139,11 @@ public class TestRepairCrawler extends LockssTestCase {
 
   public void testGetType() {
     assertEquals(Crawler.REPAIR, crawler.getType());
+    assertEquals("Repair", crawler.getTypeString());
+  }
+
+  public void testIsWholeAU() {
+    assertFalse(crawler.isWholeAU());
   }
 
   public void testRepairCrawlCallsForceCache() {

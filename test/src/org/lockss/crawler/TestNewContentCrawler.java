@@ -126,6 +126,11 @@ public class TestNewContentCrawler extends LockssTestCase {
 
   public void testReturnsProperType() {
     assertEquals(Crawler.NEW_CONTENT, crawler.getType());
+    assertEquals("New Content", crawler.getTypeString());
+  }
+
+  public void testIsWholeAU() {
+    assertTrue(crawler.isWholeAU());
   }
 
   public void testShouldFollowLink() {

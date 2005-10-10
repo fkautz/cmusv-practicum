@@ -484,7 +484,7 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
 
 	  crawlSuccessful = crawler.doCrawl();
 
-	  if (crawler.getType() == Crawler.NEW_CONTENT) {
+	  if (crawler.isWholeAU()) {
 	    if (crawlSuccessful) {
 	      NodeManager nodeManager =
 		theDaemon.getNodeManager(crawler.getAu());

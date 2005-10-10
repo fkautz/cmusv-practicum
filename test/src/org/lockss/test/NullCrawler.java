@@ -69,6 +69,10 @@ public class NullCrawler implements Crawler {
     throw new UnsupportedOperationException("Not implemented");
   }
 
+  public boolean isWholeAU() {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
   public Crawler.Status getStatus() {
     throw new UnsupportedOperationException("Not implemented");
   }

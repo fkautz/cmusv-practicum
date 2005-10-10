@@ -120,7 +120,7 @@ public class RepairCrawler extends CrawlerImpl {
     this.repairUrls = repairUrls;
     this.percentFetchFromCache = percentFetchFromCache;
 
-    crawlStatus = new Crawler.Status(au, repairUrls, getType());
+    crawlStatus = new Crawler.Status(au, repairUrls, getTypeString());
   }
 
   protected void setCrawlConfig(Configuration config) {
@@ -139,6 +139,14 @@ public class RepairCrawler extends CrawlerImpl {
 
   public int getType() {
     return Crawler.REPAIR;
+  }
+
+  public String getTypeString() {
+    return "Repair";
+  }
+
+  public boolean isWholeAU() {
+    return false;
   }
 
   protected Iterator getStartingUrls() {

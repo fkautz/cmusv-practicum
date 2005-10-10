@@ -112,6 +112,12 @@ public abstract class CrawlerImpl implements Crawler, PermissionMapSource {
   protected abstract boolean doCrawl0();
   public abstract int getType();
 
+
+  /** Return the type of crawl as a string
+   * @return crawl type
+   */
+  protected abstract String getTypeString();
+
   protected ArrayList pluginPermissionCheckers = new ArrayList();
   protected List daemonPermissionCheckers = null;
   protected AlertManager alertMgr;
@@ -198,7 +204,19 @@ public abstract class CrawlerImpl implements Crawler, PermissionMapSource {
     } else try {
       logger.info("Beginning crawl of "+au);
       crawlStatus.signalCrawlStarted();
-      return doCrawl0();
+      boolean res = doCrawl0();
+      if (res == false || crawlStatus.getCrawlError() != null) {
+	alertMgr.raiseAlert(Alert.auAlert(Alert.CRAWL_FAILED, au),
+			    getTypeString() + " Crawl failed: " +
+			    crawlStatus.getCrawlError());
+      }
+      return res;
+    } catch (RuntimeException e) {
+      logger.error("doCrawl0()", e);
+      alertMgr.raiseAlert(Alert.auAlert(Alert.CRAWL_FAILED, au),
+			  "Crawl of " + au.getName() +
+			  "threw " + e.getMessage());
+      throw e;
     } finally {
       crawlStatus.signalCrawlEnded();
     }

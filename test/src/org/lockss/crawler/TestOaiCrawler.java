@@ -110,6 +110,11 @@ public class TestOaiCrawler extends LockssTestCase {
 
   public void testReturnsProperType() {
     assertEquals(Crawler.OAI, crawler.getType());
+    assertEquals("OAI", crawler.getTypeString());
+  }
+
+  public void testIsWholeAU() {
+    assertTrue(crawler.isWholeAU());
   }
 
   public void testGetFromTime() {

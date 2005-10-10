@@ -588,6 +588,14 @@ public class TestCrawlerImpl extends LockssTestCase {
       throw new UnsupportedOperationException("not implemented");
     }
 
+    public String getTypeString() {
+      throw new UnsupportedOperationException("not implemented");
+    }
+
+    public boolean isWholeAU() {
+      throw new UnsupportedOperationException("not implemented");
+    }
+
     protected boolean doCrawl0() {
       if (crawlExceptionToThrow != null) {
 	throw crawlExceptionToThrow;

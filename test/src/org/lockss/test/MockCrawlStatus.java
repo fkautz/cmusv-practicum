@@ -51,12 +51,12 @@ public class MockCrawlStatus extends Crawler.Status {
   Map errorUrls = null;
 
 
-  public MockCrawlStatus(int type) {
+  public MockCrawlStatus(String type) {
     super(null, null, type);
   }
 
   public MockCrawlStatus() {
-    this(UNDEFINED_TYPE);
+    this(null);
   }
 
   public void setStartTime(long startTime) {
@@ -164,9 +164,9 @@ public class MockCrawlStatus extends Crawler.Status {
     return crawlEndSignaled;
   }
 
-  public void setType(int type) {
-    if (type == UNDEFINED_TYPE) {
-      throw new IllegalStateException("Called with an undefined type set");
+  public void setType(String type) {
+    if (type == null) {
+      throw new IllegalStateException("Called with null type");
     }
     this.type = type;
   }

@@ -45,6 +45,7 @@ public class MockCrawler extends NullCrawler {
   Deadline deadline = null;
   boolean crawlSuccessful = true;
   int type = -1;
+  boolean isWholeAU = false;
   long startTime = -1;
   long endTime = -1;
   long numFetched = -1;
@@ -107,6 +108,14 @@ public class MockCrawler extends NullCrawler {
 
   public int getType() {
     return type;
+  }
+
+  public void setIsWholeAU(boolean val) {
+    isWholeAU = val;
+  }
+
+  public boolean isWholeAU() {
+    return isWholeAU;
   }
 
   public Collection getStartUrls() {

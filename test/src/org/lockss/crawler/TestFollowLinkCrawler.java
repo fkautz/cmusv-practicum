@@ -967,7 +967,7 @@ public class TestFollowLinkCrawler extends LockssTestCase {
       super(au, spec, aus);
       crawlStatus = new Crawler.Status(au, 
 		    ((SpiderCrawlSpec)spec).getStartingUrls(),
-		    -1);
+		    null);
     }
 
     protected boolean shouldFollowLink(){
@@ -996,6 +996,14 @@ public class TestFollowLinkCrawler extends LockssTestCase {
     
     public int getType() {
       throw new UnsupportedOperationException("not implemented");
+    }
+
+    public String getTypeString() {
+      return "Follow Link";
+    }
+
+    public boolean isWholeAU() {
+      return false;
     }
 
   }

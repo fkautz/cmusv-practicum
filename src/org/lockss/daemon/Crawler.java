@@ -83,6 +83,11 @@ public interface Crawler {
   public int getType();
 
   /**
+   * Return true iff the crawl tries to collect the entire AU content.
+   */
+  public boolean isWholeAU();
+
+  /**
    * aborts the running crawl
    */
   public void abortCrawl();
@@ -109,7 +114,7 @@ public interface Crawler {
     protected String crawlError = null;
     protected Collection startUrls = null;
     protected ArchivalUnit au = null;
-    protected int type = -1;
+    protected String type;
 
     protected Map urlsWithErrors = new LinkedMap();
     protected Set urlsFetched = new ListOrderedSet();
@@ -118,7 +123,7 @@ public interface Crawler {
 
     protected Set sources = new ListOrderedSet();
 
-    public Status(ArchivalUnit au, Collection startUrls, int type) {
+    public Status(ArchivalUnit au, Collection startUrls, String type) {
       this.au = au;
       this.startUrls = startUrls;
       this.type = type;
@@ -275,7 +280,7 @@ public interface Crawler {
       return crawlError;
     }
 
-    public int getType() {
+    public String getType() {
       return type;
     }
 
