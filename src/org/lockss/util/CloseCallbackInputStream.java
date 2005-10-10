@@ -74,7 +74,7 @@ public class CloseCallbackInputStream extends InputStream {
       try {
 	cb.streamClosed(cookie);
       } catch (Exception e ) {
-	log.warning("foo", e);
+	log.warning("Error in streamClosed callback", e);
       }
     }
   }
