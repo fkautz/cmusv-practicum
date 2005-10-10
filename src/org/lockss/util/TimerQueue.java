@@ -157,7 +157,7 @@ public class TimerQueue {
 
   public void stop() {
     if (timerThread != null) {
-      log.info("Stopping thread");
+      log.debug("Stopping thread");
       timerThread.stopTimer();
       timerThread = null;
     }
@@ -166,7 +166,7 @@ public class TimerQueue {
   // tk add watchdog
   synchronized void startOrKickThread() {
     if (timerThread == null) {
-      log.info("Starting thread");
+      log.debug("Starting thread");
       timerThread = new TimerThread("TimerQ");
       timerThread.start();
       timerThread.waitRunning();
