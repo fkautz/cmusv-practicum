@@ -59,13 +59,13 @@ public interface IcpDecoder {
      * @return An object conforming to {@link IcpDecoder}.
      */
     IcpDecoder makeIcpDecoder();
-    
+
   }
   /*
    * end NESTED INTERFACE
    * ====================
    */
-  
+
   /**
    * <p>Translates the given UDP packet into an {@link IcpMessage}
    * instance.</p>

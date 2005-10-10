@@ -42,5 +42,5 @@ public interface IcpSocket
             IcpSender {
 
   // no new methods
-  
+
 }

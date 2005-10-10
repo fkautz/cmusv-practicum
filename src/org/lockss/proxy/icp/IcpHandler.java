@@ -46,5 +46,5 @@ public interface IcpHandler {
    * @param message The decoded ICP message.
    */
   void icpReceived(IcpReceiver source, IcpMessage message);
-  
+
 }

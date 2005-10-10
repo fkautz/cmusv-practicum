@@ -43,5 +43,5 @@ public interface IcpFactory
             IcpEncoder.Factory {
 
   // no new methods
-  
+
 }

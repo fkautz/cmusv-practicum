@@ -54,10 +54,10 @@ public class IcpProtocolException extends ProtocolException {
     super(message);
     initCause(cause);
   }
-  
+
   public IcpProtocolException(Throwable cause) {
     super();
     initCause(cause);
-  } 
-  
+  }
+
 }

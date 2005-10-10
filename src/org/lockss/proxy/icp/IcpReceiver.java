@@ -44,17 +44,17 @@ public interface IcpReceiver {
    * @param handler An ICP handler.
    */
   void addIcpHandler(IcpHandler handler);
-  
+
   /**
    * <p>Unregisters an ICP handler if it is registered.</p>
    * @param handler An ICP handler.
    */
   void removeIcpHandler(IcpHandler handler);
-  
+
   /**
    * <p>Determines the number of currently registered handlers.</p>
    * @return The number of ICP handlers registered with this class.
    */
   int countIcpHandlers();
-  
+
 }
