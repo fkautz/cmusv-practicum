@@ -138,7 +138,7 @@ public class TestProxyAccessHandler extends LockssTestCase {
 
      Map agreedMap = new HashMap();
      MockPeerIdentity mockPid = new MockPeerIdentity("55.0.0.1");
-     agreedMap.put(mockPid, "1010101010"); 
+     agreedMap.put(mockPid, "1010101010");
 
      idMgr.setAgeedForAu(mau, agreedMap);
      idMgr.addPeerIdentity("55.0.0.1", mockPid);

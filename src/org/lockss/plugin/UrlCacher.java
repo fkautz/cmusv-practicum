@@ -131,7 +131,7 @@ public interface UrlCacher {
    */
 //   public void setForceRefetch(boolean force);
 
-  public void setFetchFlags(BitSet fetchFlags); 
+  public void setFetchFlags(BitSet fetchFlags);
 
   /** Set a request header, overwriting any previous value */
   public void setRequestProperty(String key, String value);

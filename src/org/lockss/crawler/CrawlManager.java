@@ -117,5 +117,5 @@ public interface CrawlManager {
 
     /** Return the dameon instance */
     public LockssDaemon getDaemon();
-  } 
+  }
 }

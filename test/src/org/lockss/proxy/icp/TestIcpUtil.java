@@ -60,5 +60,5 @@ public class TestIcpUtil extends TestCase {
       op++;
     } while (op > Byte.MIN_VALUE);
   }
-  
+
 }

@@ -115,7 +115,7 @@ public class StreamUtil {
 
   /** Read size chars from reader into buf.  Keeps trying to read until
    * enough chars have been read or EOF or error.
-   * @param reader reader to read from 
+   * @param reader reader to read from
    * @param buf buffer to read into
    * @param size number of chars to read
    * @return number of chars read, which will be less than size iff EOF is

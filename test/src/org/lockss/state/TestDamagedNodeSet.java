@@ -46,7 +46,7 @@ import org.lockss.util.ExtMapBean;
 public class TestDamagedNodeSet extends LockssTestCase {
 
 //   public void setUp() {
-    
+
 //   }
 
   public void testHasDamage() {

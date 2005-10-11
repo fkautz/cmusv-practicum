@@ -58,8 +58,8 @@ public class TestV3LcapMessage extends LockssTestCase {
   private Comparator m_comparator;
 
   private LockssDaemon theDaemon;
-  
-  private byte[] m_testBytes = 
+
+  private byte[] m_testBytes =
     new byte[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0,
       1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 
@@ -75,7 +75,7 @@ public class TestV3LcapMessage extends LockssTestCase {
     }
 
     m_comparator = new VoteBlockComparator();
-    
+
     Properties p = new Properties();
     p.setProperty(IdentityManager.PARAM_IDDB_DIR, tempDirPath + "iddb");
     p.setProperty(LockssRepositoryImpl.PARAM_CACHE_LOCATION, tempDirPath);

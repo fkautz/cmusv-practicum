@@ -82,7 +82,7 @@ public class TestXmlStatusTable extends LockssTestCase {
        ListUtil.list("cc", new StatusTable.Reference("x1", "tt", "k42"))},
     };
 
-      
+
     List rowList = MockStatusAccessor.makeRowsFrom(colList, rowObj);
     Map row97 = (Map)rowList.get(2);
     row97.put(StatusTable.ROW_SEPARATOR, "1");

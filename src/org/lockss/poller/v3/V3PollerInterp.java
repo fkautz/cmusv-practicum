@@ -40,9 +40,9 @@ import org.lockss.util.*;
 public class V3PollerInterp extends PsmInterp {
   private V3PollerSerializer pollSerializer;
   private static final Logger log = Logger.getLogger("V3PollerInterp");
-  
+
   private PeerIdentity id;
-  
+
   public V3PollerInterp(PsmMachine stateMachine, PollerUserData userData,
                         PsmInterpStateBean stateBean,
                         V3PollerSerializer serializer) {
@@ -57,7 +57,7 @@ public class V3PollerInterp extends PsmInterp {
     this.pollSerializer = serializer;
   }
 
-  /** Called by parent class when it is appropriate to store the 
+  /** Called by parent class when it is appropriate to store the
    * interpreter's state
    */
   protected void store() {

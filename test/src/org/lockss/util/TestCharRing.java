@@ -125,7 +125,7 @@ public class TestCharRing extends LockssTestCase {
     assertEquals('a', cr.remove());
     assertEquals('b', cr.get(0));
   }
-  
+
   public void testRemoveThrowsIfNothingLeft() {
     while (cr.size() > 0) {
       cr.remove();
@@ -390,7 +390,7 @@ public class TestCharRing extends LockssTestCase {
     assertEquals(3, cr.remove(sb, 3));
     assertEquals("abcde123", sb.toString());
   }
-  
+
   public void testIndexOf() throws Exception {
     assertEquals(1, cr.indexOf("bc", -1, false));
     assertEquals(-1, cr.indexOf("bb", -1, false));

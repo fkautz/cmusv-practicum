@@ -46,7 +46,7 @@ public class PluginUtil {
   public static String getBaseUrl(CachedUrl cu) {
     CIProperties props = cu.getProperties();
     if (props != null) {
-      String redir = props.getProperty(CachedUrl.PROPERTY_CONTENT_URL); 
+      String redir = props.getProperty(CachedUrl.PROPERTY_CONTENT_URL);
       if (redir != null) {
 	return redir;
       }

@@ -255,17 +255,17 @@ public class EditableDefinablePlugin
 
   }
 
-  public CrawlWindow getAuCrawlWindow() {  
+  public CrawlWindow getAuCrawlWindow() {
 
-      return (CrawlWindow) (definitionMap.getMapElement(AU_CRAWL_WINDOW));  
+      return (CrawlWindow) (definitionMap.getMapElement(AU_CRAWL_WINDOW));
 
   }
 
-  public void removeAuCrawlWindow() {   
+  public void removeAuCrawlWindow() {
 
       definitionMap.removeMapElement(AU_CRAWL_WINDOW);
 
-  } 
+  }
 
   public void setAuFilter(String mimetype, List rules) {
     if (rules.size() > 0) {

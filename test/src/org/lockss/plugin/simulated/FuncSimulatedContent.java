@@ -203,7 +203,7 @@ public class FuncSimulatedContent extends LockssTestCase {
     log.debug("checkFilter()");
     CachedUrl cu = sau.makeCachedUrl(SimulatedArchivalUnit.SIMULATED_URL_ROOT
 				     + "/001file.html");
-    
+
     enableFilter(true);
     InputStream is = cu.openForHashing();
     String expected =

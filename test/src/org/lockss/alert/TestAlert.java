@@ -187,7 +187,7 @@ public class TestAlert extends LockssTestCase {
     assertEquals(ListUtil.list(a4), map.get(a4.getGroupKey()));
     assertEquals(ListUtil.list(a1, a2), map.get(a1.getGroupKey()));
   }
-    
+
 
   public void testAuAlert() {
     MockArchivalUnit mau = new MockArchivalUnit();

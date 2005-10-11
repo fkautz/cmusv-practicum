@@ -133,11 +133,11 @@ public class MockHttpMethod implements HttpMethod {
     throw new UnsupportedOperationException();
   }
 
-  public Header[] getRequestHeaders() { 
+  public Header[] getRequestHeaders() {
     throw new UnsupportedOperationException();
   }
 
-  public Header[] getRequestHeaders(String headerName) { 
+  public Header[] getRequestHeaders(String headerName) {
     throw new UnsupportedOperationException();
   }
 
@@ -189,7 +189,7 @@ public class MockHttpMethod implements HttpMethod {
     throw new UnsupportedOperationException();
   }
 
-  public int execute(HttpState state, HttpConnection connection) 
+  public int execute(HttpState state, HttpConnection connection)
       throws HttpException, IOException {
     throw new UnsupportedOperationException();
   }

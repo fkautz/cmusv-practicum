@@ -620,7 +620,7 @@ public class TestBaseArchivalUnit extends LockssTestCase {
     }
 
   }
-  
+
   static class MyMockBaseArchivalUnit extends BaseArchivalUnit {
     private String auId = null;
     private String m_name = "MockBaseArchivalUnit";

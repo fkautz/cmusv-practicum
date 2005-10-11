@@ -36,7 +36,7 @@ import java.util.*;
 import org.lockss.util.*;
 
 /**
- * Constants 
+ * Constants
  */
 public interface Constants extends org.lockss.util.Constants {
 

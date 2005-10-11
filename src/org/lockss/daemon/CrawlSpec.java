@@ -35,12 +35,12 @@ package org.lockss.daemon;
 import java.util.*;
 
 /**
- * This interface is implemented by BaseCrawlSpec. 
- * Specification for a crawl: 
- * a list of starting URLs or an OaiHandler Url (for Oai Crawl) and 
+ * This interface is implemented by BaseCrawlSpec.
+ * Specification for a crawl:
+ * a list of starting URLs or an OaiHandler Url (for Oai Crawl) and
  * a rule that determines whether a candidate URL should be included in the crawl.
  */
-public interface CrawlSpec { 
+public interface CrawlSpec {
 
   /**
    * Returns the CrawlWindow, or null.
@@ -75,7 +75,7 @@ public interface CrawlSpec {
    */
   public boolean isIncluded(String url);
 
-  /** 
+  /**
    * Checks the crawlWindow to see if it is a good time to crawl
    * @return true iff the crawl time falls into the crawl window
    */

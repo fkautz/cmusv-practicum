@@ -125,7 +125,7 @@ public class SmtpMailService
 	}
 	if (!queue.isEmpty()) {
 	  ensureThreadRunning();
-	} 
+	}
 	enabled = doEnable;
       }
     }
@@ -152,7 +152,7 @@ public class SmtpMailService
     queue.put(new Req(sender, recipient, msg));
     ensureThreadRunning();
     return true;
-  }    
+  }
 
   void processReq(Req req) {
     boolean ok = true;

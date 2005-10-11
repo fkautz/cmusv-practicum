@@ -90,7 +90,7 @@ public class TitleSetActiveAus extends BaseTitleSet {
 	}
       }
       tc.setParams(params);
-    }      
+    }
     return tc;
   }
 

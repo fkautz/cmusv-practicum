@@ -150,7 +150,7 @@ public class V3LcapMessageFactory {
     msg.setNominees(ud.getNominees());
     return msg;
   }
-  
+
   public static V3LcapMessage makeVoteMessage(VoterUserData ud) {
     V3LcapMessage msg =
       V3LcapMessage.makeRequestMsg(ud.getAuId(),

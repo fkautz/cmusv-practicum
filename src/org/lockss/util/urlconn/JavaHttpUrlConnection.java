@@ -59,7 +59,7 @@ public class JavaHttpUrlConnection extends JavaUrlConnection {
   public boolean isHttp() {
     return true;
   }
-  
+
   public void execute() throws IOException {
     assertNotExecuted();
     isExecuted = true;

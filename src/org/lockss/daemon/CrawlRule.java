@@ -46,7 +46,7 @@ public interface CrawlRule {
   public static final int EXCLUDE = 2;
   /** The URL does not match this rule */
   public static final int IGNORE = 0;
-  
+
   /**
    * Match a URL against the rule.
    * @param url String to check against this rule

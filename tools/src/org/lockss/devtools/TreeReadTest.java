@@ -95,7 +95,7 @@ public class TreeReadTest {
    * Results on "blackbox":
    * OpenBSD: 255137 ms vs. 1240 ms
    * Fedora Core 3: 191936 ms vs 347 ms
-   * Freesbie: 
+   * Freesbie:
    * Results on "narses2":
    * Fedora Core 2: 59152 ms vs 130 ms
    */

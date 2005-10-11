@@ -68,7 +68,7 @@ import java.text.*;
   public static String currentTime() {
     return Time.format(new Date());
   }
-  
+
   /**
    * Format a "short" date
    * @param date Date object
@@ -77,7 +77,7 @@ import java.text.*;
   public static String shortFormat(Date date) {
     return Short.format(date);
   }
-  
+
   /**
    * Format a "long" date
    * @param date Date object

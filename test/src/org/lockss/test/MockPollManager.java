@@ -99,7 +99,7 @@ public class MockPollManager extends PollManager {
       theLog.debug("MockPollManager: send V1 content poll request");
       thePolls.put(ps.getUrl(), CONTENT_REQUESTED);
     }
-    else if (opcode == Poll.V1_NAME_POLL) { 
+    else if (opcode == Poll.V1_NAME_POLL) {
       theLog.debug("MockPollManager: send V1 name poll request");
      thePolls.put(ps.getUrl(), NAME_REQUESTED);
     } else {

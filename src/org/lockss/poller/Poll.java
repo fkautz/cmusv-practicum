@@ -72,10 +72,10 @@ public interface Poll {
    * @return the PollSpec
    */
   public PollSpec getPollSpec();
-  
+
   /**
    * Return the CachedUrlSet for this poll.
-   * 
+   *
    * @return The CachedUrlSet.
    */
   public CachedUrlSet getCachedUrlSet();

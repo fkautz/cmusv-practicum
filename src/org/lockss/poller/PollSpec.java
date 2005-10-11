@@ -50,7 +50,7 @@ public class PollSpec {
   public static final int V1_PROTOCOL = 1;
   public static final int V2_PROTOCOL = 2;
   public static final int V3_PROTOCOL = 3;
-  public static final int MAX_POLL_PROTOCOL = 3;  
+  public static final int MAX_POLL_PROTOCOL = 3;
 
   /**
    * A lower bound value which indicates the poll should use a
@@ -59,7 +59,7 @@ public class PollSpec {
    */
   public static final String SINGLE_NODE_LWRBOUND = ".";
   public static final String DEFAULT_PLUGIN_VERSION = "1";
-  
+
   public static final String PARAM_USE_POLL_VERSION =
     Configuration.PREFIX + "protocol.usePollVersion";
   public static final int DEFAULT_USE_POLL_VERSION = V1_PROTOCOL;
@@ -123,7 +123,7 @@ public class PollSpec {
       commonSetup(cus, null, null, pollType);
     }
   }
-  
+
   /**
    * Construct a PollSpec from a CachedUrlSet, a poll type, and a poll
    * version.
@@ -208,7 +208,7 @@ public class PollSpec {
     this.pollVersion = ps.pollVersion;
     this.pollType = pollType;
   }
-    
+
   /** Setup common to most constructors */
   private void commonSetup(CachedUrlSet cus,
 			   String lwrBound,

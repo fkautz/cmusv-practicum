@@ -252,7 +252,7 @@ public class PollerStatus {
     public String getTitle(Properties props) {
       if (props.isEmpty()) {
 	return "All Recent Polls";
-      } 
+      }
       // generate string: {type}, {status} Polls {for AU}, {on URL}
       List prefix = new ArrayList();
       List suffix = new ArrayList();

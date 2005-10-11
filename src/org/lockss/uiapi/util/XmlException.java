@@ -36,7 +36,7 @@ import org.lockss.util.XmlDomBuilder;
 
 
 public class XmlException extends XmlDomBuilder.XmlDomException {
-      
+
   /**
    * Thrown to indicate an XML processing issue
    * @param text Explainatory text

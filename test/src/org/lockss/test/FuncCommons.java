@@ -69,7 +69,7 @@ public class FuncCommons extends LockssTestCase {
 	Integer key = new Integer(ii*loop+jj); // make a unique key
 	Integer val = new Integer(jj);
 	map.put(key, val);
-	
+
 	if (key.intValue() == 143) {	// hold on to key 143
 	  aKey = key;
 	}

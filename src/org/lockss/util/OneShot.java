@@ -35,7 +35,7 @@ import java.util.*;
  * it is called and false thereafter. */
 public class OneShot {
   private boolean state = true;
-    
+
   /** Return true the first time called, thereafter false.  Not
    * synchronized.  */
   public boolean once() {

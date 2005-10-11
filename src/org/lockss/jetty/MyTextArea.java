@@ -65,12 +65,12 @@ public class MyTextArea extends TextArea {
     // this loop is Composite.write(Writer)
     for (int i=0; i <elements.size() ; i++) {
       Object element = elements.get(i);
-          
+
       if (element instanceof Element)
 	((Element)element).write(out);
       else if (element==null)
 	out.write("null");
-      else 
+      else
 	out.write(element.toString());
     }
     out.write("</"+mytag+">");

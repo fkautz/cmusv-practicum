@@ -162,9 +162,9 @@ public class TitleParams {
       }
       Properties p = tc.toProperties(propId);
       p.store(pout, "Title: " + title + " (" + plugin.getPluginName() + ")");
-      
+
       cout.println();
-    }      
+    }
   }
 
   private static void doall(PrintStream pout, PrintStream cout,

@@ -291,11 +291,11 @@ public class PsmState {
   public String toString() {
     return "[State: " + getName() + "]";
   }
-  
+
   public boolean isRestorable() {
     return restorable;
   }
-  
+
   public PsmState setRestorable(boolean flag) {
     this.restorable = flag;
     return this;

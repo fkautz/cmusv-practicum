@@ -35,7 +35,7 @@ package org.lockss.daemon.status;
 /**
  * Objects wishing to provide references to tables should implement this
  *
- * Used by {@link StatusService} to generate {@link StatusTable.Reference}s.  
+ * Used by {@link StatusService} to generate {@link StatusTable.Reference}s.
  */
 
 public interface ObjectReferenceAccessor {

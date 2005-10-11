@@ -660,7 +660,7 @@ public class SimulatedContentGenerator {
     } else {
       fileName.append(FILE_PREFIX);
     }
-    
+
     switch (fileType) {
       case FILE_TYPE_TXT:
         fileName.append(".txt");

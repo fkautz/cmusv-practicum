@@ -204,7 +204,7 @@ public class TestPropUtil extends LockssTestCase {
     pt2.put("bar.foo.blah", "124");
     String expa[] = {"foo.bar.blecch", "foo.bar.", "foo.bar", "foo.", "foo",
 		    "foo.bar.gorp", "foo.bar.blah",
-		     "bar.foo.blah", "bar.foo.", "bar.foo", "bar.", "bar", 
+		     "bar.foo.blah", "bar.foo.", "bar.foo", "bar.", "bar",
 		     "x.y", "x.", "x"};
     Set exp = SetUtil.fromArray(expa);
     assertEquals(exp, PropUtil.differentKeysAndPrefixes(pt1, pt2));

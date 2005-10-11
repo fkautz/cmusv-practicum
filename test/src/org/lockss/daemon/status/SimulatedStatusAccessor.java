@@ -80,7 +80,7 @@ public class SimulatedStatusAccessor {
       List columns = new ArrayList(ncols);
       for (int ix = 1; ix <= ncols; ix++) {
 	columns.add(new ColumnDescriptor(coltag(ix),
-					 "Column " + ix, 
+					 "Column " + ix,
 					 coltype(ix-1),
 					 "Footnote for colemn " + ix));
       }
@@ -151,7 +151,7 @@ public class SimulatedStatusAccessor {
       table.setRows(rows);
     }
   }
-  
+
   private static class SimAccessor1 extends SimAccessor {
     SimAccessor1() {
       super("Table 1", 9, 2);

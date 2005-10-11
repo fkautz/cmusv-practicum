@@ -57,7 +57,7 @@ public class TestLockssDaemon extends LockssTestCase {
 		      "-g", "test3-group"};
     String[] test4 = {"-p", "foo1;bar1;baz1",
 		      "-p", "foo2;bar2;baz2"};
-		      
+
 
     // bad options (-p without argument, should be ignored)
     String[] test5 = {"-p", "foo",
@@ -285,7 +285,7 @@ public class TestLockssDaemon extends LockssTestCase {
     public void startService() {
       events.add(new Event(this, "startService"));
     }
-  
+
     public void stopService() {
       events.add(new Event(this, "stopService"));
     }

@@ -81,7 +81,7 @@ public class FuncSchedService extends LockssTestCase {
 	fail("Hasher timed out");
       }
     }
-  }    
+  }
 
   BackgroundTask btask(long start, long end, double loadFactor,
 		      TaskCallback cb) {

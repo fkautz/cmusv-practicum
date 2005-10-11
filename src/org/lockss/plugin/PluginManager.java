@@ -881,7 +881,7 @@ public class PluginManager
   }
 
   /**
-   * Return true if the specified Plugin is a Loadable plugin 
+   * Return true if the specified Plugin is a Loadable plugin
    */
   public boolean isLoadablePlugin(Plugin plugin) {
     PluginInfo info = (PluginInfo)pluginfoMap.get(getPluginKey(plugin));
@@ -1124,10 +1124,10 @@ public class PluginManager
     if (log.isDebug3()) log.debug3("ret cus: " + cus);
     return cus;
   }
-  
+
   /**
    * Find an AU's top level CachedUrlSet.
-   * 
+   *
    * @param auId
    * @return
    */

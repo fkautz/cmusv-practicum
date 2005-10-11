@@ -72,7 +72,7 @@ public class ConfigCache {
 	cf = new JarConfigFile(url);
       } else {
 	cf = new FileConfigFile(url);
-      } 
+      }
       m_configMap.put(url, cf);
     }
     return cf;
@@ -81,7 +81,7 @@ public class ConfigCache {
 //   public synchronized void remove(String url) {
 //     m_configMap.remove(url);
 //   }
-  
+
   int size() {
     return m_configMap.size();
   }

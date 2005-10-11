@@ -325,7 +325,7 @@ public abstract class LockssThread extends Thread implements LockssWatchdog {
 	log.warning(msg);
       } else {
 	log.debug2(msg);
-      }	
+      }
     } catch (Exception e) {
       log.warning("Thread threw", e);
     } catch (Throwable e) {

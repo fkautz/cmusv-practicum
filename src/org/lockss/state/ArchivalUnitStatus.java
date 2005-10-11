@@ -744,7 +744,7 @@ public class ArchivalUnitStatus
     private static final String FOOT_TITLE =
       "These caches have proven to us that they have (or had) a correct \n" +
       "copy of this AU.  We will fetch repairs from them if necessary, \n" +
-      "and they may fetch repairs from us."; 
+      "and they may fetch repairs from us.";
 
     protected void populateTable(StatusTable table, ArchivalUnit au)
         throws StatusService.NoSuchTableException {

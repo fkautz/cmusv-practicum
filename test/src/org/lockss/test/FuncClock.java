@@ -41,7 +41,7 @@ import org.lockss.util.*;
 
 public class FuncClock extends LockssTestCase {
   private static Logger log = Logger.getLogger("TestClock");
-  
+
   public void testClockResolution() throws Exception {
     long start = System.currentTimeMillis();
     long now = start;
@@ -95,7 +95,7 @@ public class FuncClock extends LockssTestCase {
 	if (slept < sleep) return;
       }
     }
-    
+
     fail("sleep() was not interrupted");
   }
 }

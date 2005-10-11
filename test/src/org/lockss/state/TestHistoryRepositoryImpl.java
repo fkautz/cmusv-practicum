@@ -83,7 +83,7 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
         WithXStream.class
     });
   }
-  
+
   private String tempDirPath;
   private HistoryRepositoryImpl repository;
   private MockLockssDaemon theDaemon;

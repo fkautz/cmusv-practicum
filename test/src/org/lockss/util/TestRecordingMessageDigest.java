@@ -59,7 +59,7 @@ public class TestRecordingMessageDigest extends LockssTestCase {
     dig.update(bytes);
     rmd.update(bytes);
     assertEquals(dig.digest(), rmd.digest());
-  }    
+  }
 
   public void testEquiv0() {
     assertSameDigest("");

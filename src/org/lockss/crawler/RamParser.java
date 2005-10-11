@@ -98,7 +98,7 @@ public class RamParser implements ContentParser {
       }
     }
   }
-  
+
   //presumes line starts with source (ignoring case)
   private static String translateString(String line, String source,
 					String dest) {

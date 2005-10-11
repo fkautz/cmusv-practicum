@@ -116,7 +116,7 @@ public class MockSocket extends Socket {
   public void shutdownInput() throws IOException {
     throw new UnsupportedOperationException("Not implemented");
   }
-    
+
   public void shutdownOutput() throws IOException {
     throw new UnsupportedOperationException("Not implemented");
   }

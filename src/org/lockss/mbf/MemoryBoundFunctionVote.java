@@ -107,7 +107,7 @@ public abstract class MemoryBoundFunctionVote {
    * @param hashVals the hashes of each block
    * @param pollID the byte array ID of the poll
    * @param voterID the PeerIdentity of the voter
-   * 
+   *
    */
   protected void setupVerification(MemoryBoundFunctionFactory fact,
 				   byte[] nVal,
@@ -155,7 +155,7 @@ public abstract class MemoryBoundFunctionVote {
    * Do "n" steps of the underlying hash or effort proof
    * @param n number of steps to perform
    * @return true if there is more work to do
-   * 
+   *
    */
   public abstract boolean computeSteps(int n)
     throws MemoryBoundFunctionException;

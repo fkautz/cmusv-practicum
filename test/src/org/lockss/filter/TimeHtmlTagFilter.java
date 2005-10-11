@@ -43,10 +43,10 @@ public class TimeHtmlTagFilter extends LockssTiming {
 
   static final int FILE_LINES = 10000;
 
-  String NOFILT =   "No filter  "; 
-  String NULLFILT = "Null filter"; 
-  String FILTTEXT = "Filter text"; 
-  String FILTHTML = "Filter html"; 
+  String NOFILT =   "No filter  ";
+  String NULLFILT = "Null filter";
+  String FILTTEXT = "Filter text";
+  String FILTHTML = "Filter html";
 
   static Class filterClass = null;
   HtmlTagFilter.TagPair tagpair = null;
@@ -67,7 +67,7 @@ public class TimeHtmlTagFilter extends LockssTiming {
     }
     ps.close();
   }
-    
+
   void writeHtmlFile(File file) throws Exception {
     OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
     PrintStream ps = new PrintStream(os);
@@ -77,7 +77,7 @@ public class TimeHtmlTagFilter extends LockssTiming {
     }
     ps.close();
   }
-    
+
   public void testNoFilter() throws Exception {
     writeTextFile(file);
     time(file, NOFILT,

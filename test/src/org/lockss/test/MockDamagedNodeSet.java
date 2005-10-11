@@ -114,7 +114,7 @@ public class MockDamagedNodeSet extends DamagedNodeSet {
     throw new UnsupportedOperationException("not implemented");
   }
 
-  public String toString() { 
+  public String toString() {
     throw new UnsupportedOperationException("not implemented");
 //     StringBuffer sb = new StringBuffer();
 //     sb.append("[MockDamagedNodeSet: ");

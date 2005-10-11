@@ -198,7 +198,7 @@ public class CrawlRules {
 
     Comparable minComp;
     Comparable maxComp;
-    
+
     /** Create an integer range matcher.
      * @param reString regular expression string
      * @param action one of the constants above.

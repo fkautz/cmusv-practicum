@@ -76,7 +76,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   public MockArchivalUnit(Plugin plugin) {
     this.plugin = plugin;
   }
-  
+
   public MockArchivalUnit(CrawlSpec spec) {
     this.spec = spec;
   }

@@ -164,7 +164,7 @@ public class TestFileUtil extends LockssTestCase {
     assertTrue(subDir.exists());
     assertTrue(subDir.isDirectory());
     FileUtil.delTree(parentDir);
-    
+
   }
 
   public void testDelTree() throws IOException {

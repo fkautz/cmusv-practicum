@@ -83,7 +83,7 @@ public abstract class GenericHasher implements CachedUrlSetHasher {
    * hash
    */
   protected abstract Iterator getIterator(CachedUrlSet cus);
-  
+
   /* Subclass should override this to hash the specified element
    */
   protected abstract int hashNodeUpToNumBytes(int numBytes)
@@ -120,7 +120,7 @@ public abstract class GenericHasher implements CachedUrlSetHasher {
    */
   public boolean finished() {
     return isFinished;
-  }  
+  }
 
   /**
    * @param numBytes maximum number of bytes to hash (counting delimiters)

@@ -105,7 +105,7 @@ public class MockMemoryBoundFunction extends MemoryBoundFunction {
    * Set finished if appropriate.
    * @param n number of steps to move.
    * @return true if there is still work to do
-   * 
+   *
    */
   public boolean computeSteps(int n) throws MemoryBoundFunctionException {
     stepsDone += n;
@@ -144,7 +144,7 @@ public class MockMemoryBoundFunction extends MemoryBoundFunction {
   public static void setProof(int[] p) {
     mockProof = p;
   }
-  
+
   /**
    * Set the nonce to be compared with nonce supplied
    * @param p an array of byte containing the nonce
@@ -152,5 +152,5 @@ public class MockMemoryBoundFunction extends MemoryBoundFunction {
   public static void setNonce(byte[] p) {
     mockNonce = p;
   }
-  
+
 }

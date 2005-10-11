@@ -238,11 +238,11 @@ public class Cron
 	return 0;
       }
       return l.longValue();
-    }      
+    }
 
     void setLastTime(String id, long time) {
       times.put(id, new Long(time));
-    }      
+    }
   }
 
   /** Cron.Task to periodically mail back file to cache admin.  Doesn't
@@ -304,7 +304,7 @@ public class Cron
       try {
 	rmtApi.sendMailBackup();
       } catch (IOException e) {
-	log.warning("Failed to mail backup file", e); 
+	log.warning("Failed to mail backup file", e);
       }
     }
   }

@@ -56,7 +56,7 @@ public abstract class BaseTitleSet implements TitleSet {
   public String getName() {
     return name;
   }
-  
+
   /** Return the titles in the set.
    * @return a collection of TitleConfig */
   public Collection getTitles() {

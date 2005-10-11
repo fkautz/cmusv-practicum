@@ -32,12 +32,12 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.util;
 
 public class HeaderUtil {
-  
+
   public static String getMimeTypeFromContentType(String contentType) {
     if (contentType == null) {
       return null;
     }
-    
+
     int idx = contentType.indexOf(";");
     if (idx < 0) {
       return contentType.trim();

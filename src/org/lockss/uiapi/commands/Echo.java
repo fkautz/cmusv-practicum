@@ -47,14 +47,14 @@ import org.lockss.uiapi.util.*;
  * Implements the "echo" command
  */
 public class Echo extends ApiActivityBase {
- 
+
   /**
    * Populate the response body (return the sender's comment text)
    * @return true
    */
   public boolean doCommand() {
 
-    XmlUtils xmlUtils = getXmlUtils();   
+    XmlUtils xmlUtils = getXmlUtils();
 
     /*
      * Get sender's comment
@@ -66,7 +66,7 @@ public class Echo extends ApiActivityBase {
      */
     element = xmlUtils.createElement(getResponseRoot(), AP_E_COMMENT);
     XmlUtils.addText(element, comment);
-  
+
     return true;
   }
 }

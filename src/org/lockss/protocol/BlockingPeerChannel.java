@@ -294,7 +294,7 @@ class BlockingPeerChannel implements PeerChannel {
 	sendQueue.put(msg);
 	return true;
       }
-    }    
+    }
   }
 
   /** Initialize streams, start reader and writer threads
@@ -335,7 +335,7 @@ class BlockingPeerChannel implements PeerChannel {
   }
 
   static int[] stopIgnStates = {STATE_INIT, STATE_CLOSED, STATE_CLOSING};
-  
+
   void stopChannel(boolean abort) {
     if (notStateTrans(stopIgnStates, STATE_CLOSING)) {
       if (abort && peer != null) log.warning("Aborting " + peer.getIdString());
@@ -409,7 +409,7 @@ class BlockingPeerChannel implements PeerChannel {
       throw new IllegalArgumentException("Unknown PeerAddress: " + pad);
     }
   }
-    
+
   /** Start the reader thread
    */
   void startReader() {

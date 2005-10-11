@@ -38,7 +38,7 @@ import java.util.*;
  * Constants of general use
  */
 public interface Constants {
-  
+
   /** The number of milliseconds in a second */
   public static final long SECOND = 1000;
   /** The number of milliseconds in a minute */
@@ -63,15 +63,15 @@ public interface Constants {
   public static String DEFAULT_ENCODING = "ISO-8859-1";
 
   /**
-   * <p>The US ASCII encoding.</p> 
+   * <p>The US ASCII encoding.</p>
    */
   public static final String US_ASCII_ENCODING = "US-ASCII";
-  
+
   /**
    * <p>The encoding of URLs.</p>
    */
   public static final String URL_ENCODING = US_ASCII_ENCODING;
-  
+
   /** LOCKSS home page */
   public static String LOCKSS_HOME_URL = "http://www.lockss.org/";
 

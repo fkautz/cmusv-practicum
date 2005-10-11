@@ -36,16 +36,16 @@ import java.io.*;
 import org.lockss.test.*;
 
 public class TestPermissionRecord extends LockssTestCase {
- 
+
   private String permissionUrl = "http://www.example.com/index.html";
   private PermissionRecord record;
 
   public void setUp() throws Exception {
     super.setUp();
-    record 
+    record
       = new PermissionRecord(permissionUrl, PermissionRecord.PERMISSION_OK);
   }
-  
+
   public void testPrThrowsForNullUrl() {
     try{
       record = new PermissionRecord(null, PermissionRecord.PERMISSION_OK);

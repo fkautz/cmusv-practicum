@@ -75,7 +75,7 @@ public class TestTitleConfig extends LockssTestCase {
     tc1.setAttributes(map);
     assertSame(map, tc1.getAttributes());
   }
-  
+
   public void testGetConfig() {
     ConfigParamDescr d1 = new ConfigParamDescr("key1");
     ConfigParamDescr d2 = new ConfigParamDescr("key2");

@@ -87,7 +87,7 @@ public class MDCredential extends Credential {
 
   private byte[] _digest;
   private String _type;
-        
+
   /** Create a credential from a ALG:DIGEST string */
   MDCredential(String digest) throws NoSuchAlgorithmException {
     this(null, digest);
@@ -113,17 +113,17 @@ public class MDCredential extends Credential {
     _digest=TypeUtil.parseBytes(digest,16);
     _type = type;
   }
-        
+
   /** Return the stored digest */
   public byte[] getDigest() {
     return _digest;
   }
-        
+
   /** Return the digest type (algorithm) */
   public String getType() {
     return _type;
   }
-        
+
   byte[] calculateDigest(String message) throws UnsupportedEncodingException {
     try {
       MessageDigest md = getMessageDigest(_type);

@@ -50,7 +50,7 @@ public class MockMulticastSocket
   }
 
   /**
-   * @param port this is ignored and only here to override the 
+   * @param port this is ignored and only here to override the
    * DatagramSocket contructor
    */
   public MockMulticastSocket(int port) throws IOException {

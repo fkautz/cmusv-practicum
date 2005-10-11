@@ -64,5 +64,5 @@ public class TestFileTarget extends LockssTestCase {
  	       " Should be <time>: <error-level>: <error message>",
 		isMatchRe(debugString, re));
   }
-  
+
 }

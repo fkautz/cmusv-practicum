@@ -120,7 +120,7 @@ public class CreativeCommonsPermissionChecker
     if (reader == null) {
       throw new NullPointerException("Called with null reader");
     } else if (permissionUrl == null) {
-      throw new NullPointerException("Called with null permissionUrl"); 
+      throw new NullPointerException("Called with null permissionUrl");
     }
 
     String rdfString;

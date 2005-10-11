@@ -105,6 +105,6 @@ public interface PollFactory {
   public long getMinPollDuration(int pollType);
 
   public long calcDuration(PollSpec ps, PollManager pm);
-  
+
   public boolean isDuplicateMessage(LcapMessage msg, PollManager pm);
 }

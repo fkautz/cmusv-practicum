@@ -81,7 +81,7 @@ public class ReaderInputStream extends InputStream {
 
   public void close() throws IOException {
     reader.close();
-  }  
+  }
 
   private byte charToByte(char kar) {
     return charToByte2(kar);

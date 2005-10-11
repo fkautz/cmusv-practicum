@@ -89,7 +89,7 @@ public class MockPoll implements Poll {
   public void setPollSpec(PollSpec pollspec) {
     m_pollspec = pollspec;
   }
-  
+
   /**
    * Return the cached url set.
    */

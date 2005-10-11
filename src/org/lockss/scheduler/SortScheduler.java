@@ -223,7 +223,7 @@ public class SortScheduler implements Scheduler {
 	  log.debug2("initIntrTskList: loadFactor < 0: " + intrvl);
 	return false;
       }
-      
+
       if (ubt.endingTasks != null) {
 	for (Iterator iter = ubt.endingTasks.iterator(); iter.hasNext(); ) {
 	  TaskData etd = (TaskData)iter.next();

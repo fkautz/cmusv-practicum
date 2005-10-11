@@ -55,7 +55,7 @@ public class AntTaskTarget implements LogTarget {
   //   protected AntHelper helper;
   protected Object helper;
   protected Method writeLogMethod;
-  
+
   /** Create a log target that outputs to an AntTargetHelper */
   AntTaskTarget() {
     try {
@@ -97,5 +97,5 @@ public class AntTaskTarget implements LogTarget {
       System.err.println(msg);
     }
   }
-    
+
 }

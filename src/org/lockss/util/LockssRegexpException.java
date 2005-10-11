@@ -36,11 +36,11 @@ package org.lockss.util;
  * compiler/matcher, so clients of those classes don't need to know which
  * regexp implementation they use. */
 public class LockssRegexpException extends Exception {
-  public LockssRegexpException() { 
-    super(); 
+  public LockssRegexpException() {
+    super();
   }
 
-  public LockssRegexpException(String msg) { 
-    super(msg); 
+  public LockssRegexpException(String msg) {
+    super(msg);
   }
 }

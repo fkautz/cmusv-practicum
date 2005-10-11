@@ -43,15 +43,15 @@ public interface StatusAccessor {
 
   /**
    * Fills in the {@link ColumnDescriptor}s and rows for the given table (and
-   * optionally the default {@link StatusTable.SortRule}s, 
+   * optionally the default {@link StatusTable.SortRule}s,
    * {@link StatusTable.SummaryInfo}, and Title.
    *
    * @param table @{link StatusTable} which specifies a name and optionally
-   * a key.  This table will be populatred with {@link ColumnDescriptor} and 
-   * rows, as well as optionally the default {@link StatusTable.SortRule}s, 
+   * a key.  This table will be populatred with {@link ColumnDescriptor} and
+   * rows, as well as optionally the default {@link StatusTable.SortRule}s,
    * {@link StatusTable.SummaryInfo}, and Title.
    */
-  public void populateTable(StatusTable table) 
+  public void populateTable(StatusTable table)
       throws StatusService.NoSuchTableException;
 
   /**

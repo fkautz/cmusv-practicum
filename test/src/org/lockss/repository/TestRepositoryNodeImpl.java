@@ -853,7 +853,7 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
     props.load(is);
     is.close();
     // make sure the 'was inactive' property hasn't been lost
-    assertEquals("true", 
+    assertEquals("true",
                  props.getProperty(RepositoryNodeImpl.NODE_WAS_INACTIVE_PROPERTY));
   }
 

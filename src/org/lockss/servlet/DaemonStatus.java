@@ -117,7 +117,7 @@ public class DaemonStatus extends LockssServlet {
       log.debug2("Debug user.  Setting OPTION_INCLUDE_INTERNAL_AUS");
       tableOptions.set(StatusTable.OPTION_INCLUDE_INTERNAL_AUS);
     }
-    
+
     for (Iterator iter = StringUtil.breakAt(optionsParam, ',').iterator();
 	 iter.hasNext(); ) {
       String s = (String)iter.next();
@@ -672,7 +672,7 @@ public class DaemonStatus extends LockssServlet {
       return getDisplayString1(val, type);
     }
   }
-  
+
   // turn References into html links
   private String getRefString(StatusTable.Reference ref, int type) {
     StringBuffer sb = new StringBuffer();

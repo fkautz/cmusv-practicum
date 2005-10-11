@@ -98,7 +98,7 @@ public class DNSSupportTest extends LockssTestCase {
       // No action intended
     }
   }
-  
+
   static final int RANDOM_CHOICE = 0;
   static final int GET_ALL_BY_NAME = 1;
   static final int GET_BY_NAME = 2;

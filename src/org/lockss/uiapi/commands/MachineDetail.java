@@ -54,16 +54,16 @@ import org.lockss.uiapi.util.*;
  */
 public class MachineDetail extends StatusActivityBase {
   private static Logger log = Logger.getLogger("MachineDetail");
-  
+
   /**
    * Populate response with Lockss build and version information
    * @return true
    */
   public boolean doCommand() throws XmlException {
     Element infoElement;
-    
+
     infoElement = getXmlUtils().createElement(getResponseRoot(), AP_E_INFO);
- 
+
     /*
      * Render daemon version, uptime, disk space, and build details
      */
@@ -72,7 +72,7 @@ public class MachineDetail extends StatusActivityBase {
     renderDiskXml(infoElement);
     renderBuildXml(infoElement);
     renderAuXml(infoElement);
-   
+
     return true;
   }
 }

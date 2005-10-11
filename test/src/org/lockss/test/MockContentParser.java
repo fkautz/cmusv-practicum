@@ -45,7 +45,7 @@ public class MockContentParser implements ContentParser {
 
   public MockContentParser() {
   }
-  
+
   public void parseForUrls(Reader reader, String srcUrl,
 			   ContentParser.FoundUrlCallback cb) {
     srcUrls.add(srcUrl);
@@ -60,7 +60,7 @@ public class MockContentParser implements ContentParser {
 	}
       }
     }
-    
+
   }
 
   public Set getSrcUrls() {
@@ -68,7 +68,7 @@ public class MockContentParser implements ContentParser {
   }
 
   /*
-  public void parseForUrls(CachedUrl cu, ContentParser.FoundUrlCallback cb) 
+  public void parseForUrls(CachedUrl cu, ContentParser.FoundUrlCallback cb)
       throws IOException {
     if (urlToReturn != null) {
       cb.foundUrl(urlToReturn);

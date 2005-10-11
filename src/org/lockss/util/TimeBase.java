@@ -33,7 +33,7 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.util;
 import java.util.*;
 
-/** 
+/**
  * TimeBase allows use of a simulated time base for testing.
 
  * Instead of calling <code>System.currentTimeMillis()</code> or <code>new

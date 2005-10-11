@@ -161,7 +161,7 @@ public class FuncLockssHttpClient extends LockssTestCase {
     "Connection: Keep-Alive\r\n" +
     "Content-Type: text/html\r\n";
 
-  static String RESP_304 = 
+  static String RESP_304 =
     "HTTP/1.1 304 Not Modified\r\n" +
     "Connection: Keep-Alive\r\n" +
     "Keep-Alive: timeout=15, max=98\r\n";

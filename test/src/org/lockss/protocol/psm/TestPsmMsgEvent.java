@@ -58,7 +58,7 @@ public class TestPsmMsgEvent extends LockssTestCase {
     assertNotSame(e, e2);
     assertEquals(null, e.getMessage());
   }
-  
+
   V3LcapMessage makeMsg(int opcode) {
     return new V3LcapMessage(opcode, "key", null, null, 0, 0, null, null);
   }

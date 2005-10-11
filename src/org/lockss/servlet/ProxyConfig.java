@@ -85,7 +85,7 @@ public class ProxyConfig extends LockssServlet {
       // remain compatible with previous PAC URL, which people may have
       // configured into browsers or stored elsewhere
       action = getParameter("format");
-    }      
+    }
     if (StringUtil.isNullString(action)) {
       try {
 	getMultiPartRequest(100000);
@@ -140,7 +140,7 @@ public class ProxyConfig extends LockssServlet {
   void generateProxyFile(String format) throws IOException {
     pi = new ProxyInfo(getMachineName());
     urlStems = pi.getUrlStemMap();
-    
+
     if (!pluginMgr.areAusStarted()) {
       resp.sendError(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
       return;
@@ -218,7 +218,7 @@ public class ProxyConfig extends LockssServlet {
 	}
       }
       wrtr = resp.getWriter();
-      
+
       // Serve as PAC mime type if requested
       String mime = getParameter("mime");
       if ("pac".equalsIgnoreCase(mime)) {

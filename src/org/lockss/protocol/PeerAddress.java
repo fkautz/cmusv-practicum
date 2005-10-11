@@ -53,7 +53,7 @@ public abstract class PeerAddress {
     this.key = key;
   }
 
-  protected static PeerAddress makePeerAddress(PeerIdentity pid) 
+  protected static PeerAddress makePeerAddress(PeerIdentity pid)
       throws IdentityManager.MalformedIdentityKeyException {
     return makePeerAddress(pid.getIdString());
   }

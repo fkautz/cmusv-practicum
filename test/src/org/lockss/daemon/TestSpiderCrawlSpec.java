@@ -44,7 +44,7 @@ import org.lockss.util.*;
 public class TestSpiderCrawlSpec extends LockssTestCase {
 
   private CrawlRule rule = new MockCrawlRule();
-  
+
   public TestSpiderCrawlSpec(String msg){
     super(msg);
   }

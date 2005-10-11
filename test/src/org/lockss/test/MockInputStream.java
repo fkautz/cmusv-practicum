@@ -57,7 +57,7 @@ public class MockInputStream extends InputStream {
   public void setZeroInterval(int zeroInterval) {
     this.zeroInterval = zeroInterval;
   }
-  
+
   public void setContent(String content) {
     this.content = content;
   }
@@ -83,7 +83,7 @@ public class MockInputStream extends InputStream {
       curInterval++;
     }
     return super.read(b, off, len);
-  }    
+  }
 
   public long skip(long n) throws IOException {
     throw new UnsupportedOperationException("Not Implemented");

@@ -41,7 +41,7 @@ public interface ContentParser {
   public void parseForUrls(Reader reader, String srcUrl,
 			   ContentParser.FoundUrlCallback cb)
       throws IOException;
-  
+
   /**
    * Callback for a ContentParser to call each time it finds a url
    */

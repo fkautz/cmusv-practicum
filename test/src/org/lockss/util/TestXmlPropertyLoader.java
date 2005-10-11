@@ -370,7 +370,7 @@ public class TestXmlPropertyLoader extends LockssTestCase {
 
   public void testNullGroup() throws Exception {
     setVersions(null, null, null, null);
-    parseXmlProperties();    
+    parseXmlProperties();
     assertNull(m_props.get("org.lockss.test.q"));
     assertNull(m_props.get("org.lockss.test.r"));
     assertNull(m_props.get("org.lockss.nulltest.c"));

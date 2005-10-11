@@ -278,7 +278,7 @@ public class TestLockssRunnable extends LockssTestCase {
     protected void exitDaemon(int exitCode, String msg) {
       daemonExitCode = exitCode;
     }
-      
+
     protected void threadHung() {
       threadHung = true;
       super.threadHung();

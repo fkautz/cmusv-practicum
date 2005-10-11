@@ -58,7 +58,7 @@ public class JavaUrlConnection extends BaseLockssUrlConnection {
   public boolean isHttp() {
     return false;
   }
-  
+
   public void execute() throws IOException {
     assertNotExecuted();
     isExecuted = true;

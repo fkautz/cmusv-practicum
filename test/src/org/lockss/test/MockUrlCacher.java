@@ -212,8 +212,8 @@ public class MockUrlCacher implements UrlCacher {
 //     if (!forceRefetch && cu.hasContent()) {
     if (cu.hasContent()) {
       return CACHE_RESULT_NOT_MODIFIED;
-    } 
-    
+    }
+
     //otherwise, mark that there is content and send a fetched response
 
     if (cu != null) {

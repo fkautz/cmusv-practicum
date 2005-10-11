@@ -59,7 +59,7 @@ public class OaiPlugin extends BasePlugin {
       throws ArchivalUnit.ConfigurationException {
     // create a new archival unit
     ArchivalUnit au = new OaiArchivalUnit(this);
-    
+
     //XXX add max crawl depth = 1 for testing in config
     //auConfig.put(FollowLinkCrawler.PARAM_MAX_CRAWL_DEPTH, ""+1);
 

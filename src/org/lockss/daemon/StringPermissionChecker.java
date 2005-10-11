@@ -83,7 +83,7 @@ public class StringPermissionChecker implements PermissionChecker {
     } catch (IOException ex) {
       m_logger.warning("Exception occured while checking for permission: "
                        + ex.toString());
-    } 
+    }
 
     return false;
   }

@@ -136,7 +136,7 @@ public class TestMimeMessage extends LockssTestCase {
     if (expTo != null) {
       assertHeaderLine(PAT_TO + expTo, hdr);
     }
-  }    
+  }
 
   /** assert that the array of lines is a MIME text-part with the expected
    * text */

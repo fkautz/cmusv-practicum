@@ -51,23 +51,23 @@ public abstract class BasePoll implements Poll {
 
   /**
    * Set the message that triggered this poll.
-   * 
+   *
    * @param msg
    */
   public abstract void setMessage(LcapMessage msg);
-  
+
   /**
    * Return the time that this poll was created.
    */
   abstract public long getCreateTime();
-  
+
   /**
    * Return the identity of the caller of this poll.
-   * 
+   *
    * @return
    */
   abstract public PeerIdentity getCallerID();
-  
+
   /**
    * Recieve and incoming message from the PollManager
    * @param msg the incoming msg containing a vote for this poll

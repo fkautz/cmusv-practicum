@@ -43,7 +43,7 @@ import org.lockss.test.*;
  * This is the test class for org.lockss.alert.AlertManager
  */
 public class TestAlertManagerImpl extends LockssTestCase {
-  
+
   static Logger log = Logger.getLogger("TestAlertManager");
 
   MockLockssDaemon daemon;
@@ -219,7 +219,7 @@ public class TestAlertManagerImpl extends LockssTestCase {
     List l1 = (List)o1;
     assertEquals(cnt+2, l1.size());
   }
-  
+
   class MyMockAlertPattern implements AlertPattern, LockssSerializable {
     boolean match;			// determines result
     Alert alert;		   // records the alert we were called with

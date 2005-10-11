@@ -153,7 +153,7 @@ public class TimerQueue {
       }
     }
     queue.remove(req);
-  }    
+  }
 
   public void stop() {
     if (timerThread != null) {
@@ -191,7 +191,7 @@ public class TimerQueue {
   private void resort() {
     needResort = false;
     queue.sort();
-  }      
+  }
 
   // Timer thread.
 
@@ -366,7 +366,7 @@ public class TimerQueue {
       getDaemon().getStatusService().
 	registerStatusAccessor("TimerQ", new Status(singleton));
     }
-    
+
     public void stopService() {
       getDaemon().getStatusService().unregisterStatusAccessor("TimerQ");
       super.stopService();

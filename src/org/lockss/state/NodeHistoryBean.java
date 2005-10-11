@@ -92,5 +92,5 @@ public class NodeHistoryBean implements LockssSerializable {
     }
     return pollHistories;
   }
-  
+
 }

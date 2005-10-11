@@ -1471,7 +1471,7 @@ public class RemoteApi
     try {
       bfile = createConfigBackupFile(machineName);
       MimeMessage msg = new MimeMessage();
-      
+
       PeerIdentity pid = idMgr.getLocalPeerIdentity(PollSpec.V1_PROTOCOL);
       String id = pid == null ? "unknown" : pid.getIdString();
       String text = sprintf(BACK_MAIL_TEXT,

@@ -185,7 +185,7 @@ public class DebugUtils {
 	throw new UnsupportedException("Can't open " + filename, e);
       } catch (IOException e) {
 	throw new UnsupportedException("Error reading " + filename, e);
-      }      
+      }
     }
 
     /** Get vector of stat vectors for all processes from /proc/<n>/stat .
@@ -267,7 +267,7 @@ public class DebugUtils {
 	throw new UnsupportedException("Can't open " + filename, e);
       } catch (IOException e) {
 	throw new UnsupportedException("Error reading " + filename, e);
-      }      
+      }
     }
   }
 

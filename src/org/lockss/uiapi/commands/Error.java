@@ -36,7 +36,7 @@ package org.lockss.uiapi.commands;
  *  A dummy responder used to present error text
  */
 public class Error extends ActivityBase {
-   
+
   public boolean doCommand() {
     return true;
   }

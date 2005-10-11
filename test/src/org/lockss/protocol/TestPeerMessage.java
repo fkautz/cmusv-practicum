@@ -207,7 +207,7 @@ public class TestPeerMessage extends LockssTestCase {
     } catch (IllegalStateException e) {
     }
   }
-      
+
 
   class MyPeerIdentity extends PeerIdentity {
     MyPeerIdentity() {

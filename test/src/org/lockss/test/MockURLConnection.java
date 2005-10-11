@@ -47,7 +47,7 @@ public class MockURLConnection extends URLConnection {
     super(url);
   }
 
-    
+
   public static synchronized FileNameMap getFileNameMap() {
     throw new UnsupportedOperationException("Not Implemented");
   }
@@ -185,7 +185,7 @@ public class MockURLConnection extends URLConnection {
   public boolean getUseCaches() {
     throw new UnsupportedOperationException("Not Implemented");
   }
-	
+
   public void setIfModifiedSince(long ifmodifiedsince) {
     throw new UnsupportedOperationException("Not Implemented");
   }
@@ -210,12 +210,12 @@ public class MockURLConnection extends URLConnection {
     throw new UnsupportedOperationException("Not Implemented");
   }
 
-  public static 
+  public static
     synchronized void setContentHandlerFactory(ContentHandlerFactory fac) {
       throw new UnsupportedOperationException("Not Implemented");
     }
 
-  static public String guessContentTypeFromStream(InputStream is) 
+  static public String guessContentTypeFromStream(InputStream is)
       throws IOException {
     throw new UnsupportedOperationException("Not Implemented");
   }

@@ -288,7 +288,7 @@ public class TestUrlUtil extends LockssTestCase {
     try {
       assertEquals(null, UrlUtil.minimallyEncodeUrl(null));
       fail("minimallyEncodeUrl(null) didn't throw");
-    } catch (NullPointerException e) {}    
+    } catch (NullPointerException e) {}
     assertEquals("", UrlUtil.minimallyEncodeUrl(""));
     assertEquals("foo", UrlUtil.minimallyEncodeUrl("foo"));
     assertEquals("foo%20", UrlUtil.minimallyEncodeUrl("foo "));

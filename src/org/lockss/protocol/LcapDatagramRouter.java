@@ -306,7 +306,7 @@ public class LcapDatagramRouter
       return false;
     } else {
       return false;
-    } 
+    }
   }
 
   // if a long time since any message received from id not on partner list,

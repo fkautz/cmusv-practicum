@@ -41,14 +41,14 @@ public interface ServletInterface {
    * @param target Destination URL
    */
   void redirect(String target) throws IOException;
-  
+
   /**
    * Set a session context name=value pair
    * @param name Attribute name
    * @param value Attribute value
    */
   void set(String name, Object value);
-  
+
   /**
    * Delete a session context name=value pair
    * @param name Attribute name
@@ -84,7 +84,7 @@ public interface ServletInterface {
    * @param type Content type text ("text/html", etc)
    */
   public void setContentType(String type);
- 
+
   /**
    * Get the request URL
    * @return URI Target (plus query text)

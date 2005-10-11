@@ -114,7 +114,7 @@ public class RaiseAlert extends LockssServlet {
       name = getParameter(KEY_NAME_TYPE);
     }
     text = getParameter(KEY_TEXT);
-    
+
     Alert alert;
     Alert proto = findProtoAlert(name);
     if (proto == null) {

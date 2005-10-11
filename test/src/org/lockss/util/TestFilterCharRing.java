@@ -124,7 +124,7 @@ public class TestFilterCharRing extends LockssTestCase {
     } catch (IllegalArgumentException e) {
     }
   }
-  
+
   public void testRefillEmptyBuffer() throws IOException {
     FilterCharRing ring = new FilterCharRing(10);
     assertFalse(ring.refillBuffer(new StringReader("1234567890")));

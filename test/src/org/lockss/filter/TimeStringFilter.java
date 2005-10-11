@@ -57,7 +57,7 @@ public class TimeStringFilter extends LockssTiming {
     }
     ps.close();
   }
-    
+
   public void testNoFilter() throws Exception {
     time(file, "Nofilter",
 	 new Computation() {

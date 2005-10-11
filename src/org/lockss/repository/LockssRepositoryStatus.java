@@ -250,10 +250,10 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
       if (size >= 0) {
 	row.put("diskusage", new Float((float)size / (1024 * 1024)));
       }
-    }    
+    }
 
     boolean isOrphaned(String auid, Properties auidProps) {
-      String pluginKey = 
+      String pluginKey =
 	PluginManager.pluginKeyFromId(PluginManager.pluginIdFromAuId(auid));
       Plugin plugin = pluginMgr.getPlugin(pluginKey);
       if (plugin == null) return true;

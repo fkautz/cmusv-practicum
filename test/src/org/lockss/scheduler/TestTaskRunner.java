@@ -418,7 +418,7 @@ public class TestTaskRunner extends LockssTestCase {
     assertEmpty(tr.getAcceptedTasks());
   }
 
-  // remove overrunnable task-ending chunk, before deadline, 
+  // remove overrunnable task-ending chunk, before deadline,
   public void testRemoveChunkTaskEndOver() {
     final List finished = new ArrayList();
     StepTask t1 = task(100, 200, 100, new TaskCallback() {

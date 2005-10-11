@@ -43,7 +43,7 @@ public class TcpTestUtil {
   static Logger log = Logger.getLogger("TcpTestUtil");
 
   static int nextPort = 2000;
-  
+
   public static int findUnboundTcpPort() {
     for (int p = nextPort; p < 65535; p++) {
       try {

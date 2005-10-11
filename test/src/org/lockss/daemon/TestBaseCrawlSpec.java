@@ -42,9 +42,9 @@ import org.lockss.util.*;
  */
 
 public class TestBaseCrawlSpec extends LockssTestCase {
-  
+
   private CrawlRule rule = new MockCrawlRule();
-  
+
   public TestBaseCrawlSpec(String msg){
     super(msg);
   }
@@ -56,12 +56,12 @@ public class TestBaseCrawlSpec extends LockssTestCase {
       fail("BaseCrawlSpec with null permission url should throw");
     } catch (NullPointerException e) { }
     try {
-      BaseCrawlSpec cs = new TestableBaseCrawlSpec(Collections.EMPTY_LIST, 
+      BaseCrawlSpec cs = new TestableBaseCrawlSpec(Collections.EMPTY_LIST,
 						   rule , null, null);
       fail("BaseCrawlSpec with null permission url should throw");
     } catch (IllegalArgumentException e) { }
   }
-  
+
   public void testGetPermissionPages() throws LockssRegexpException {
     String foo[] = {"foo"};
     BaseCrawlSpec cs1 =
@@ -106,7 +106,7 @@ public class TestBaseCrawlSpec extends LockssTestCase {
 		 l2, cs.getPermissionPages());
   }
 
-//   public void testNullCrawlRule() throws LockssRegexpException {    
+//   public void testNullCrawlRule() throws LockssRegexpException {
 //     try {
 //       BaseCrawlSpec cs = new TestableBaseCrawlSpec(ListUtil.list("foo"), null, null);
 //       fail("BaseCrawlSpec with null crawl rule should throw");
@@ -146,7 +146,7 @@ public class TestBaseCrawlSpec extends LockssTestCase {
   }
 
   private static class TestableBaseCrawlSpec extends BaseCrawlSpec {
-    protected TestableBaseCrawlSpec(List permissionUrls, CrawlRule rule, 
+    protected TestableBaseCrawlSpec(List permissionUrls, CrawlRule rule,
 				    List permissionCheckers,
 				    LoginPageChecker loginPageChecker)
 	throws ClassCastException {

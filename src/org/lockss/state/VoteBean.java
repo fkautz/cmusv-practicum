@@ -56,7 +56,7 @@ public class VoteBean extends Vote {
 
   /**
    * Constructor for converting from a Vote object.  Called by
-   * PollHistoryBean.convertVotesToVoteBeans().  
+   * PollHistoryBean.convertVotesToVoteBeans().
    * @param vote the Vote
    */
   VoteBean(Vote vote) {

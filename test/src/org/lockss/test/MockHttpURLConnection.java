@@ -74,7 +74,7 @@ public class MockHttpURLConnection extends HttpURLConnection{
     public String getRequestMethod() {
       throw new UnsupportedOperationException("Not Implemented");
     }
-    
+
     public int getResponseCode() throws IOException {
 	return this.responseCode;
     }

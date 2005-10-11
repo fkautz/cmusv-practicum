@@ -54,7 +54,7 @@ public class SingleCrawlStatus implements StatusAccessor {
   private static List colDescsFetched =
     ListUtil.list(new ColumnDescriptor(URL, "URL Fetched",
 				       ColumnDescriptor.TYPE_STRING));
-    
+
   private static List colDescsNotModified =
     ListUtil.list(new ColumnDescriptor(URL, "URL Not-Modified",
 				       ColumnDescriptor.TYPE_STRING));
@@ -92,7 +92,7 @@ public class SingleCrawlStatus implements StatusAccessor {
     } catch (Exception e) {
       throw new StatusService.NoSuchTableException("Malformed table key: " +
 						   key);
-    }      
+    }
     if (status == null) {
       throw new StatusService.NoSuchTableException("Status info from that crawl is no longer available");
     }
@@ -172,7 +172,7 @@ public class SingleCrawlStatus implements StatusAccessor {
     }
     return rows;
   }
-    
+
   private Map makeRow(String url, int ix) {
     Map row = new HashMap();
     row.put(URL, url);

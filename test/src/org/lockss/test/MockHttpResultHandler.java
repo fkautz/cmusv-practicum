@@ -43,11 +43,11 @@ import org.lockss.util.urlconn.*;
 public class MockHttpResultHandler implements CacheResultHandler {
   public MockHttpResultHandler() {
   }
-  
+
   public void init(CacheResultMap crmap) {
     ((HttpResultMap)crmap).storeMapEntry(200, this.getClass());
   }
-  
+
   public CacheException handleResult(int code,
 				     LockssUrlConnection connection) {
     return null;

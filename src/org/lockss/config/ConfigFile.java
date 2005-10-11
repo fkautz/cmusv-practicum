@@ -161,7 +161,7 @@ public abstract class ConfigFile {
 
   protected void setConfigFrom(InputStream in) throws IOException {
     ConfigurationPropTreeImpl newConfig = new ConfigurationPropTreeImpl();
-    
+
     try {
       // Load the configuration
       if (m_fileType == XML_FILE) {

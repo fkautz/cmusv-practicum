@@ -307,7 +307,7 @@ public abstract class Configuration {
    * Return a list of values for the specified key.
    */
   public abstract List getList(String key);
-  
+
   public List getList(String key, List dfault) {
     List retVal = getList(key);
     if (retVal == null) {
@@ -488,7 +488,7 @@ public abstract class Configuration {
     remove(rootKey);
   }
 
-  /** 
+  /**
    * Copy the contents of another configuration relative to the
    * specified "root" key.
    *

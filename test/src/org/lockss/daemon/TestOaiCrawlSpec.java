@@ -59,7 +59,7 @@ public class TestOaiCrawlSpec extends LockssTestCase {
       fail("OaiCrawlSpec with null oaiRequestData should throw");
     } catch (IllegalArgumentException e) { }
   }
-  
+
   public void testSimpleContruction() {
     boolean follow = true;
     OaiRequestData oaiData = new OaiRequestData("handler","ns","tag","setSpec","prefix");

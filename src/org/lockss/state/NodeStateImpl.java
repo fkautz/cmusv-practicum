@@ -262,7 +262,7 @@ public class NodeStateImpl
   protected List getPollHistoryList() {
     return (pollHistories == null) ? new ArrayList() : pollHistories;
   }
-  
+
   /**
    * Trims histories which exceed maximum count or age.
    * Sorts the list if not sorted.
@@ -329,7 +329,7 @@ public class NodeStateImpl
       }
     }
   }
-  
+
   public void setCachedUrlSet(CachedUrlSet cus) {
     this.cus = cus;
   }

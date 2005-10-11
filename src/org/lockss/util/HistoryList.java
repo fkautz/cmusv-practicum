@@ -42,8 +42,8 @@ public class HistoryList extends AbstractCollection {
   private int max;
   private List list;
 
-  /** 
-   * Create a new HistoryList with room for n elements. 
+  /**
+   * Create a new HistoryList with room for n elements.
    * @param max maximum number of elements to keep on the list.
    */
   public HistoryList(int max) {

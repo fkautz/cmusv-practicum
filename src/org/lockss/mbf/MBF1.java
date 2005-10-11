@@ -148,7 +148,7 @@ public class MBF1 extends MemoryBoundFunction {
    * finished.
    * @param n number of steps to move.
    * @return true if there is more work to do.
-   * 
+   *
    */
   public boolean computeSteps(int n) throws MemoryBoundFunctionException {
     // If no match has been found in 2**2e tries,  give up
@@ -253,7 +253,7 @@ public class MBF1 extends MemoryBoundFunction {
     case 1024*1024:
       aI = cyclicRightShift15(wordAt(A, i) + tC);
       break;
-    }      
+    }
     setWordAt(A, i, aI);
     // swap A[i] and A[j]
     int aJ = wordAt(A, j);

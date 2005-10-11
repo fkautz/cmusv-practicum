@@ -189,7 +189,7 @@ public class DamagedNodeSet implements LockssSerializable {
     repository.storeDamagedNodeSet(this);
   }
 
-  
+
 
   /**
    * Remove the url from the damage list.
@@ -273,7 +273,7 @@ public class DamagedNodeSet implements LockssSerializable {
     cusToRepair = mapBean.getMap();
   }
 
-  public String toString() { 
+  public String toString() {
     StringBuffer sb = new StringBuffer();
     sb.append("[DamagedNodeSet: ");
     sb.append("nodesWithDamage="+cusToRepair);

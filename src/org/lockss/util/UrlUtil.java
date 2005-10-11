@@ -162,7 +162,7 @@ public class UrlUtil {
 	  throw new PluginBehaviorException("siteNormalizeUrl(" + url +
 					    ") altered non-alterable component: " +
 					    site);
-	}      
+	}
       }
     }
     return normalizeUrl(site);
@@ -200,7 +200,7 @@ public class UrlUtil {
     }
     // quickly determine whether anything needs to be done
     if (! (path.endsWith("/.") || path.endsWith("/..") ||
-	   path.indexOf("/./") >= 0 || path.indexOf("/../") >= 0 || 
+	   path.indexOf("/./") >= 0 || path.indexOf("/../") >= 0 ||
 	   path.indexOf("//") >= 0)) {
       return path;
     }
@@ -414,7 +414,7 @@ public class UrlUtil {
     URL url = new URL(baseUrl, encodedUri);
     return url.toString();
   }
-  
+
   /**
    * Takes a javascript url of the following formats:
    * javascript:newWindow('http://www.example.com/link3.html')
@@ -429,7 +429,7 @@ public class UrlUtil {
   };
 
   public static String parseJavascriptUrl(String jsUrl) {
-    
+
     int jsIdx = StringUtil.indexOfIgnoreCase(jsUrl, "javascript:");
     if (jsIdx < 0) {
       log.debug("Doesn't appear to be a javascript URL: "+jsUrl);
@@ -446,7 +446,7 @@ public class UrlUtil {
 	funcEnd = protocolEnd + supportedJSFunctions[ix].length();
 	log.debug3("matched supported JS function "+supportedJSFunctions[ix]);
 	break;
-      } 
+      }
     }
 
     if (funcEnd == -1) {
@@ -461,7 +461,7 @@ public class UrlUtil {
     if (firstChar == '\'') {
       urlStart++;
     }
-    String url = jsUrl.substring(urlStart); 
+    String url = jsUrl.substring(urlStart);
     return StringUtil.truncateAtAny(url, ")'");
   }
 
@@ -569,7 +569,7 @@ public class UrlUtil {
 	  sb.append(uri.getHost());
 	  sb.append(uri.getPath());
 	  return sb.toString();
-	} 
+	}
       } catch (URIException e) {
 	throw new MalformedURLException(e.toString());
       }

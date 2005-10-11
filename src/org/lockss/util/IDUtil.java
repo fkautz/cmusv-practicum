@@ -39,7 +39,7 @@ public class IDUtil {
 	    ? addr
 	    : addr + IdentityManager.V3_ID_SEPARATOR + String.valueOf(port));
   }
-  
+
   public static String ipAddrToKey(IPAddr addr, int port) {
     return ipAddrToKey(addr.getHostAddress(), port);
   }

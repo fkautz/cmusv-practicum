@@ -70,7 +70,7 @@ public class TestRegexpUtil extends LockssTestCase {
 	  tmatch = RegexpUtil.getMatcher();
 	}};
     th.start();
-    th.join();    
+    th.join();
     assertTrue(tcomp instanceof Perl5Compiler);
     assertTrue(tmatch instanceof Perl5Matcher);
     assertNotSame(c1, tcomp);

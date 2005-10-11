@@ -65,8 +65,8 @@ public class ProxyAccessHandler extends IpAccessHandler {
   /**
    * Handles the incoming request
    *
-   * @param pathInContext	
-   * @param pathParams	
+   * @param pathInContext
+   * @param pathParams
    * @param request	The incoming HTTP-request
    * @param response	The outgoing HTTP-response
    */
@@ -105,7 +105,7 @@ public class ProxyAccessHandler extends IpAccessHandler {
 	  if (cu == null || !cu.hasContent()) {
 	    response.sendError(HttpResponse.__404_Not_Found);
 	    request.setHandled(true);
-	    return; 
+	    return;
 	  }
 	  ArchivalUnit au = cu.getArchivalUnit();
 	  String ip = request.getRemoteAddr();

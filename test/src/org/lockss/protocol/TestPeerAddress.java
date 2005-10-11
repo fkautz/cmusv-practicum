@@ -119,7 +119,7 @@ public class TestPeerAddress extends LockssTestCase {
       fail("Should be legal PeerAddress: " + key);
     }
   }
-  
+
   public void lll(String key) throws Exception {
     log.info(key + ": " + PeerAddress.makePeerAddress(key));
   }

@@ -89,8 +89,8 @@ public class IpAccessHandler extends AbstractHttpHandler {
   /**
    * Handles the incoming request
    *
-   * @param pathInContext	
-   * @param pathParams	
+   * @param pathInContext
+   * @param pathParams
    * @param request	The incoming HTTP-request
    * @param response	The outgoing HTTP-response
    */
@@ -103,7 +103,7 @@ public class IpAccessHandler extends AbstractHttpHandler {
     try	{
       String ip = request.getRemoteAddr();
       boolean authorized = isIpAuthorized(ip);
-		
+
       if (!authorized) {
 	// The IP is NOT allowed
 	if (logForbidden) {
@@ -111,7 +111,7 @@ public class IpAccessHandler extends AbstractHttpHandler {
 	}
 	response.sendError(HttpResponse.__403_Forbidden);
 	request.setHandled(true);
-	return; 
+	return;
       } else {
 	// The IP is allowed
 	return;

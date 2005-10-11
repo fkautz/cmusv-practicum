@@ -40,11 +40,11 @@ import org.lockss.daemon.status.*;
 public class TestMockStatusAccessor extends LockssTestCase {
 
   /**
-   * I don't normally like to write tests for test code, but this is a pretty 
+   * I don't normally like to write tests for test code, but this is a pretty
    * simple one that can help shake out potential testing problems
    */
   public void testMakeColumnDescriptorsFrom() {
-    List expectedColumns = 
+    List expectedColumns =
       ListUtil.list(new ColumnDescriptor("blah", "Blah", 0),
 		    new ColumnDescriptor("blah2", "Blah2", 0));
 

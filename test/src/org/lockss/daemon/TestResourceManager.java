@@ -120,7 +120,7 @@ public class TestResourceManager extends LockssTestCase {
     assertTrue(rmgr.releaseUdpPort(testPort, barToken));
     assertTrue(rmgr.releaseUdpPort(testPort, fooToken));
   }
-  
+
   public void testGetUsableTcpPorts() {
     String srvr = "server";
     assertNull(rmgr.getUsableTcpPorts(srvr));
@@ -138,7 +138,7 @@ public class TestResourceManager extends LockssTestCase {
     assertEquals(ListUtil.list("9900", "1234", "333-444"),
 		 rmgr.getUsableTcpPorts(srvr));
   }
-  
+
   public void testGetUsableUdpPorts() {
     String srvr = "server";
     assertNull(rmgr.getUsableUdpPorts(srvr));
@@ -156,5 +156,5 @@ public class TestResourceManager extends LockssTestCase {
     assertEquals(ListUtil.list("9900", "1234", "333-444"),
                  rmgr.getUsableUdpPorts(srvr));
   }
-  
+
 }

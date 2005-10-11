@@ -279,7 +279,7 @@ public class TestCrawlManagerStatus extends LockssTestCase {
     map = (Map)rows.get(1);
     assertEquals(REPAIR_TYPE, map.get(CRAWL_TYPE));
   }
-  
+
   public void testCrawlStatus() {
     StatusTable table = new StatusTable("test");
 

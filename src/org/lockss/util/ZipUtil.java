@@ -57,7 +57,7 @@ public class ZipUtil {
       return isZipFile(in);
     } finally {
       IOUtil.safeClose(in);
-    }      
+    }
   }
 
   /**
@@ -91,7 +91,7 @@ public class ZipUtil {
       unzip(in, toDir);
     } finally {
       IOUtil.safeClose(in);
-    }      
+    }
   }
 
   /**

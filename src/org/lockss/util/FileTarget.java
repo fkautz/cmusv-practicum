@@ -105,7 +105,7 @@ public class FileTarget extends PrintStreamTarget {
 	if (logfile.length() < maxSize) {
 	  maxSize = 0;
 	  emitTimestamp(log);
-	}	
+	}
       } catch (IOException e) {
 	log.error("Can't open " + filename);
         System.err.println("Can't open " + filename);

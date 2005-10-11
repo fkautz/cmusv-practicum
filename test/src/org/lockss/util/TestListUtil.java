@@ -48,7 +48,7 @@ public class TestListUtil extends LockssTestCase {
   public TestListUtil(String msg) {
     super(msg);
   }
-  
+
   public void testFromArray() {
     String arr[] = {"1", "2", "4"};
     assertIsomorphic(arr, ListUtil.fromArray(arr));

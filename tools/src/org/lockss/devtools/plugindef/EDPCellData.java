@@ -151,8 +151,8 @@ public class EDPCellData {
 
   public String toString() {
     if(m_displayString == null) {
-      if (m_data instanceof Collection || m_data instanceof Map || 
-	  m_data instanceof CrawlWindows.Interval || 
+      if (m_data instanceof Collection || m_data instanceof Map ||
+	  m_data instanceof CrawlWindows.Interval ||
 	  m_data instanceof CrawlWindows.Not) {
 	m_displayString = ELLIPSIS;
       }
@@ -235,8 +235,8 @@ public class EDPCellData {
     notifyListenersOfChange();
   }
 
-  public void updateOtherData(String data) { 
+  public void updateOtherData(String data) {
     notifyListenersOfChange();
   }
- 
+
 }

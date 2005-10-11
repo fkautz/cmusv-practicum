@@ -127,5 +127,5 @@ class FilePeerMessage extends PeerMessage {
 	outStream = null;
       }
     }
-  }    
+  }
 }

@@ -56,17 +56,17 @@ import org.lockss.uiapi.util.*;
 
 /**
  * Fetch Archival Unit detailed information.
- * 
+ *
  * We simply extend the generic status accessor <code>GetTable</code> class.
  */
 public class AuDetail extends GetTable {
- 
+
   private static String NAME  = "AuDetail";
   private static Logger log   = Logger.getLogger(NAME);
 
   public AuDetail() {
     super();
-  }  
+  }
 
   /**
    * Request AU details (summary information or file list)
@@ -80,7 +80,7 @@ public class AuDetail extends GetTable {
     if (!StringUtil.isNullString(skipCount)) {
       setRequestOption(AP_E_SKIPROWS, skipCount); // Where to start
       setRequestOption(AP_E_NUMROWS, "100");      // Files to display
-    }  
+    }
     return super.doCommand();
   }
 }

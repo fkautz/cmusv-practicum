@@ -62,7 +62,7 @@ public class TimeReaderStream extends LockssTiming {
     }
     ps.close();
   }
-    
+
   public void testStream() throws Exception {
     time(file, "InputStream",
 	 new Computation() {

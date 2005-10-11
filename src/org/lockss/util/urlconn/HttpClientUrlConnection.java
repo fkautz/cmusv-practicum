@@ -83,7 +83,7 @@ public class HttpClientUrlConnection extends BaseLockssUrlConnection {
 
   static void setDefaultCookiePolicy(HttpParams params, String policy) {
     params.setParameter(HttpMethodParams.COOKIE_POLICY, policy);
-  }    
+  }
 
 
   private HttpClient client;
@@ -115,7 +115,7 @@ public class HttpClientUrlConnection extends BaseLockssUrlConnection {
 	return newLockssGetMethodImpl(urlString);
       case LockssUrlConnection.METHOD_PROXY:
 	return new LockssProxyGetMethodImpl(urlString);
-      }      
+      }
       throw new RuntimeException("Unknown url method: " + methodCode);
     } catch (IllegalArgumentException e) {
       // HttpMethodBase throws IllegalArgumentException on illegal URLs
@@ -126,7 +126,7 @@ public class HttpClientUrlConnection extends BaseLockssUrlConnection {
       // Canonicalize that to Java's MalformedURLException
       throw new java.net.MalformedURLException(urlString);
     }
-  }  
+  }
 
   /** for testing */
   protected HttpClientUrlConnection(String urlString, HttpClient client,

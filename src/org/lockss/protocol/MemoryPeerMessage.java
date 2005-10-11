@@ -99,5 +99,5 @@ class MemoryPeerMessage extends PeerMessage {
 	isOutputOpen = false;
       }
     }
-  }    
+  }
 }

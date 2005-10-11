@@ -395,12 +395,12 @@ public class CacheException extends IOException {
     public UnexpectedNoRetryNoFailException(String message) {
       super(message);
     }
-    
+
     protected void setAtrributes() {
       attributeBits.clear(ATTRIBUTE_FAIL);
     }
   }
-  
+
   public static class NoRetryHostException
       extends UnretryableException {
     public NoRetryHostException() {

@@ -46,7 +46,7 @@ import org.lockss.util.urlconn.*;
  *  the crawl rules or validating the plugin.
  *
  *  PersistentPluginState is currently instantiated once as a member
- *  of an EditableDefinablePlugin object.  
+ *  of an EditableDefinablePlugin object.
  *
  *  Author:  Rebecca Illowsky
  *  Created: 8/31/05

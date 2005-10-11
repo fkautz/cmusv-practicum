@@ -97,7 +97,7 @@ class SmtpOutputStream extends FilterOutputStream {
 	}
       }
       prev = b;
-    }	
+    }
     if (end - seg > 0) {
       out.write(buf, seg, end - seg);
     }

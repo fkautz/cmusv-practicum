@@ -120,7 +120,7 @@ public abstract class PollTally implements Tallier {
     return Collections.unmodifiableList(pollVotes);
   }
 
-  
+
   public Iterator getCorrectEntries() {
     return votedEntries == null ? CollectionUtil.EMPTY_ITERATOR :
         votedEntries.iterator();

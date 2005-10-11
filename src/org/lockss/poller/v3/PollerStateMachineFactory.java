@@ -38,7 +38,7 @@ public class PollerStateMachineFactory {
 
   /**
    * Obtain a PsmMachine for the Poller state table.
-   * 
+   *
    * @return A PsmMachine representing the Poller state table.
    * @param actionClass A class containing static handler methods for the state
    *          machine to call.

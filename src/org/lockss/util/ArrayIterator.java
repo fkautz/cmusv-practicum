@@ -39,7 +39,7 @@ import java.util.*;
 public class ArrayIterator implements Iterator {
   final Object[] a;
   int i = 0;
- 
+
   /** Creates an <code>ArrayIterator</code> that iterates over the
    *  elements of the array <code>a</code>.
    */

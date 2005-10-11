@@ -114,9 +114,9 @@ public class FuncHashService extends LockssTestCase {
 	fail("Hasher timed out");
       }
     }
-  }    
+  }
 
-  
+
   HashService.Callback hashCB() {
     return new HashService.Callback() {
 	public void hashingFinished(CachedUrlSet urlset,

@@ -38,7 +38,7 @@ import java.util.*;
  * full, then returns.  Once full, it remains full. */
 public class OneShotSemaphore {
   private boolean state = false;
-    
+
   /** Wait until the semaphore is full or the timer expires.
    * If the semaphore is already full, return immediately.
    * Use {@link Deadline#expire()} to make this return early.

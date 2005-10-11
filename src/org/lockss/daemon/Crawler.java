@@ -250,7 +250,7 @@ public interface Crawler {
       sources.add(source);
     }
 
-    
+
     public Collection getStartUrls() {
       return startUrls;
     }

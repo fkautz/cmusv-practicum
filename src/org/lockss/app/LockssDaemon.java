@@ -384,7 +384,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
   public IcpManager getIcpManager() {
     return (IcpManager)getManager(ICP_MANAGER);
   }
-  
+
   /**
    * return the RemoteApi instance.
    * @return RemoteApi instance.

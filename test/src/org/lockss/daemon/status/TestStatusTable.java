@@ -109,16 +109,16 @@ public class TestStatusTable extends LockssTestCase {
     map.put(key, val);
     return map;
   }
-    
+
   Map testMap(Object k1, Object v1, Object k2, Object v2) {
     Map map = testMap(k1, v1);
     map.put(k2, v2);
     return map;
   }
-    
+
   public void testSortRule() throws Exception {
     MyComparator cmpr = new MyComparator();
-    List cols = 
+    List cols =
       ListUtil.list(new ColumnDescriptor("a", "Column 1 Title",
 					 ColumnDescriptor.TYPE_INT)
 		    .setComparator(cmpr),

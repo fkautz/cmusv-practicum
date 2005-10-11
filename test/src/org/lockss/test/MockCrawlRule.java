@@ -44,7 +44,7 @@ public class MockCrawlRule implements CrawlRule {
   public void addUrlToCrawl(String url) {
     urlsToCrawl.add(url);
   }
-  
+
   public int match(String url) {
     return urlsToCrawl.contains(url) ? CrawlRule.INCLUDE : CrawlRule.IGNORE;
   }

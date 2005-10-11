@@ -115,7 +115,7 @@ public class MockHistoryRepository implements HistoryRepository {
 
   public File getIdentityAgreementFile() {
     throw new UnsupportedOperationException();
-  }    
+  }
 
   public void storeIdentityAgreements(List list) {
     this.storedIdentityAgreement = list;

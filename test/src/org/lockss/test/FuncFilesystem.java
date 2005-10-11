@@ -66,12 +66,12 @@ public class FuncFilesystem extends LockssTestCase {
 	    assertMatchesRE("Too many open files", e.getMessage());
 	    closeStreams(lst);
 	    return;
-	  } 
+	  }
 	}
     }
     fail("opened " + (nfiles * nstreams) + " streams without error");
     closeStreams(lst);
-  }      
+  }
 
   void closeStreams(List lst) {
     for (Iterator iter = lst.iterator(); iter.hasNext(); ) {

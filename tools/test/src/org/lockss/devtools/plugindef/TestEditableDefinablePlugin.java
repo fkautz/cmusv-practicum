@@ -273,7 +273,7 @@ public class TestEditableDefinablePlugin
   }
 
   public void testSetAndRemoveAuCrawlWindow() {
-   
+
     CrawlWindow defWindow = null;
     CrawlWindow actWindow = null;
     Calendar start = Calendar.getInstance();

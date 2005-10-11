@@ -386,7 +386,7 @@ public class LockssTestCase extends TestCase {
     if (comp > 0 && revComp < 0) {
       return; //as asserted
     }
-    
+
     if (comp == 0 && revComp == 0) {
       if (msg == null) {
 	msg = c1 + " is equal to " + c2;
@@ -439,7 +439,7 @@ public class LockssTestCase extends TestCase {
       if (msg == null) {
 	msg = "First compparable ("+c1+")"
 	  +" is not equal to than second ("+c2+")";
-      } 
+      }
     }
     fail(msg);
   }

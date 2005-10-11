@@ -52,7 +52,7 @@ public class TestArrayIterator extends LockssTestCase {
   public void testNullIter() {
     try {
       Iterator iter = new ArrayIterator(null);
-      fail("Should raise NullPointerException"); 
+      fail("Should raise NullPointerException");
     } catch (NullPointerException e) {
     }
   }

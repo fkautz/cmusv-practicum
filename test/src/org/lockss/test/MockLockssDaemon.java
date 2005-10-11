@@ -384,7 +384,7 @@ public class MockLockssDaemon extends LockssDaemon {
     }
     return identityManager;
   }
-  
+
   public StatusService getStatusService() {
     if (statusService == null) {
       statusService = (StatusService)newManager(LockssDaemon.STATUS_SERVICE);
@@ -429,7 +429,7 @@ public class MockLockssDaemon extends LockssDaemon {
    */
   public void setDatagramRouterManager(LcapDatagramRouter datagramRouterMan) {
     datagramRouterManager = datagramRouterMan;
-    managerMap.put(LockssDaemon.DATAGRAM_ROUTER_MANAGER, 
+    managerMap.put(LockssDaemon.DATAGRAM_ROUTER_MANAGER,
 		   datagramRouterManager);
   }
 
