@@ -215,8 +215,8 @@ public class CXSerializer extends ObjectSerializer {
     // Peek at beginning of input
     char[] buffer = new char[recognizeCastor.length()];
     bufReader.mark(recognizeCastor.length() + 1);
-    if (bufReader.read(buffer, 0, buffer.length) != buffer.length) {
-      throw new IOException("Could not peek aty first "
+    if (StreamUtil.readChars(bufReader, buffer, buffer.length) != buffer.length) {
+      throw new SerializationException("Could not peek at first "
           + buffer.length + " bytes");
     }
     bufReader.reset();
@@ -322,8 +322,8 @@ public class CXSerializer extends ObjectSerializer {
    * deserialization performed on a {@link File} or {@link String}
    * (ie filename) also results in the corresponding file being
    * overwritten by one in XStream format if it is in Castor
-   * format. (Does not work for other
-   * {@link ObjectSerializer#deserialize} calls.)</p>
+   * format. (Does not work for other <code>deserialize</code>
+   * calls.)</p>
    * @see ObjectSerializer#deserialize(File)
    * @see ObjectSerializer#deserialize(String)
    */
