@@ -552,7 +552,7 @@ public class V3Poller extends BasePoll {
    *
    * @param block The hashblock being tallied.
    * @param blockIndex The index of the voter's vote block to examine.
-   * @return A tally for the block.
+   * @returns A tally for the block.
    */
   protected void tallyBlock(HashBlock block, int blockIndex) {
     tally.reset();

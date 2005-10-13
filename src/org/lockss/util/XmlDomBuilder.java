@@ -96,7 +96,6 @@ public class XmlDomBuilder {
    * @param document the Document
    * @param name the root name
    * @return root Element
-   * @throws XmlDomException
    */
   public Element createRoot(Document document, String name) {
     Element element;

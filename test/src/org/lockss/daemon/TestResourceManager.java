@@ -36,7 +36,7 @@ import org.lockss.util.*;
 import org.lockss.test.*;
 
 /**
- * <p>Test class for {@link ResourceManager).</p>
+ * <p>Test class for {@link ResourceManager}.</p>
  */
 public class TestResourceManager extends LockssTestCase {
   private ResourceManager rmgr;

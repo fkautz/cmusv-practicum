@@ -277,7 +277,6 @@ public class PropertyTree extends Properties
 
   /* ------------------------------------------------------------ */
   /** Enumerate non wild tree node names below given node.
-   * @param wild If false, only non-wild nodes are returned.
    * @return Enumeration of tree node names.
    */
   public Enumeration getRealNodes()
@@ -288,7 +287,6 @@ public class PropertyTree extends Properties
   /* ------------------------------------------------------------ */
   /** Enumerate non wild tree node names below given node.
    * @param key Key of the node.
-   * @param wild If false, only non-wild nodes are returned.
    * @return Enumeration of tree node names.
    */
   public Enumeration getRealNodes(String key)
