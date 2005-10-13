@@ -89,7 +89,8 @@ public abstract class CrawlerImpl implements Crawler, PermissionMapSource {
 
   public static final String PARAM_ABORT_WHILE_PERMISSION_OTHER_THAN_OK =
     Configuration.PREFIX + "CrawlerImpl.abortWhilePermissionOtherThanOk";
-  public static final boolean DEFAULT_ABORT_WHILE_PERMISSION_OTHER_THAN_OK = false;
+  public static final boolean DEFAULT_ABORT_WHILE_PERMISSION_OTHER_THAN_OK = 
+    false;
 
   // Max amount we'll buffer up to avoid refetching the permissions page
   static final int PERM_BUFFER_MAX = 16 * 1024;
