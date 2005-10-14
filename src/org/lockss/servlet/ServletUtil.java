@@ -45,12 +45,6 @@ import org.mortbay.html.*;
 
 public class ServletUtil {
 
-  private static final String EXPLANATION_CELL_ATTRIBUTES = "align=\"center\"";
-
-  private static final String EXPLANATION_ATTRIBUTES = "width=\"85%\"";
-
-  private static final int EXPLANATION_BORDER = 0;
-
   /** Format to display date/time in headers */
   public static final DateFormat headerDf =
     new SimpleDateFormat("HH:mm:ss MM/dd/yy");
@@ -70,7 +64,7 @@ public class ServletUtil {
   private static final int ALLOWDENY_BORDER = 1;
 
   private static final String ALLOWDENY_CELL_ATTRIBUTES =
-    EXPLANATION_CELL_ATTRIBUTES;
+    "align=\"center\"";
 
   private static final int ALLOWDENY_COLUMNS = 30;
 
@@ -93,6 +87,14 @@ public class ServletUtil {
 
   private static final String ALLOWDENYERRORS_BEFORE =
     "<font color=\"red\">";
+
+  private static final String EXPLANATION_ATTRIBUTES =
+    "width=\"85%\"";
+
+  private static final int EXPLANATION_BORDER = 0;
+
+  private static final String EXPLANATION_CELL_ATTRIBUTES =
+    "align=\"center\"";
 
   private static final String FOOTER_ATTRIBUTES =
     "cellspacing=\"0\" cellpadding=\"0\" align=\"center\"";
