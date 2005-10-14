@@ -278,8 +278,8 @@ public class HashCUS extends LockssServlet {
   private void displayPage() throws IOException {
     Page page = newPage();
     page.add(getErrBlock());
-    page.add(getExplanationBlock("Hash a CachedUrlSet" +
-				 addFootnote(FOOT_EXPLANATION)));
+    layoutExplanationBlock(page, "Hash a CachedUrlSet" +
+	addFootnote(FOOT_EXPLANATION));
     page.add(makeForm());
     page.add("<br>");
     if (showResult) {

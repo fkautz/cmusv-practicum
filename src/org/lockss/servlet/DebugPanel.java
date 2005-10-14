@@ -117,7 +117,7 @@ public class DebugPanel extends LockssServlet {
   private void displayPage() throws IOException {
     Page page = newPage();
     page.add(getErrBlock());
-    page.add(getExplanationBlock("Debug Actions"));
+    layoutExplanationBlock(page, "Debug Actions");
     page.add(makeForm());
     page.add("<br>");
     layoutFooter(page);

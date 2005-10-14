@@ -212,7 +212,7 @@ public class ProxyIpAccess extends IpAccessControl {
     "This is useful if you are integrating this cache into an existing " +
     "network structure with other proxies and caches that support ICP.";
 
-  protected Composite getAdditionalFormElement() {
+  protected void additionalFormLayout(Composite composite) {
     final int BORDER = 0;
     final String ATTRIBUTES = "align=\"center\" cellpadding=\"10\"";
 
@@ -223,7 +223,7 @@ public class ProxyIpAccess extends IpAccessControl {
     layoutEnablePortRow(tbl, ICP_ENABLE_NAME, getDefaultIcpEnable(), "ICP server",
         ICP_FOOT, FILTER_FOOT, ICP_PORT_NAME, getDefaultIcpPort(),
         resourceMgr.getUsableUdpPorts(AuditProxyManager.SERVER_NAME));
-    return tbl;
+    composite.add(tbl);
   }
 
   protected void addConfigProps(Properties props) {
