@@ -66,7 +66,7 @@ import org.lockss.state.*;
  * <br>
  * That will set the retry limit to 2.
  */
-public class RepairCrawler extends CrawlerImpl {
+public class RepairCrawler extends BaseCrawler {
 
   private static Logger logger = Logger.getLogger("RepairCrawler");
 
