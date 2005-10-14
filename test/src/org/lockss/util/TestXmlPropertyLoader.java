@@ -348,6 +348,14 @@ public class TestXmlPropertyLoader extends LockssTestCase {
     assertEquals("bar", m_props.get("org.lockss.not.g"));
   }
 
+  public void testNestedIfs() throws Exception {
+    assertEquals("foo", m_props.get("org.lockss.nestedIf.a"));
+    assertEquals("bar", m_props.get("org.lockss.nestedIf.b"));
+    assertEquals("baz", m_props.get("org.lockss.nestedIf.c"));
+    assertEquals("baz", m_props.get("org.lockss.nestedIf.d"));
+    assertEquals("quux", m_props.get("org.lockss.nestedIf.e"));
+  }
+
   public void testNestedBoolean() throws Exception {
     assertEquals("foo", m_props.get("org.lockss.nested.a"));
     assertEquals("bar", m_props.get("org.lockss.nested.b"));
