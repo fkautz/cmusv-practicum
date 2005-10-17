@@ -47,7 +47,11 @@ public class PsmEvents {
    * responses */
   public final static PsmEvent Else = Event;
 
+  /** Event received by start state when machine is started */
   public final static PsmEvent Start = new Start();
+
+  /** Event received by resumable state when machine is resumed */
+  public final static PsmEvent Resume = new Resume();
 
   /** Generic error */
   public final static PsmEvent Error = new Error();
@@ -60,6 +64,7 @@ public class PsmEvents {
   public final static PsmEvent MsgEvent = new PsmMsgEvent();
 
   private static class Start extends PsmEvent {}
+  private static class Resume extends PsmEvent {}
   private static class Error extends PsmEvent {}
   private static class Timeout extends Error {}
 

@@ -45,7 +45,7 @@ public class PsmState {
   private String name;
   private PsmAction entryAction;
   private PsmResponse[] responses;
-  private boolean restorable = false;
+  private boolean resumable = false;
   private int isSucceed = NEITHER;
   private static final int NEITHER = 0;
   private static final int SUCCEED = 1;
@@ -292,12 +292,12 @@ public class PsmState {
     return "[State: " + getName() + "]";
   }
 
-  public boolean isRestorable() {
-    return restorable;
+  public boolean isResumable() {
+    return resumable;
   }
 
-  public PsmState setRestorable(boolean flag) {
-    this.restorable = flag;
+  public PsmState setResumable(boolean flag) {
+    this.resumable = flag;
     return this;
   }
 
