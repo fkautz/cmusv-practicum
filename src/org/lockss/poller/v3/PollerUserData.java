@@ -32,6 +32,7 @@ package org.lockss.poller.v3;
 
 import org.lockss.plugin.CachedUrlSet;
 import org.lockss.protocol.*;
+import org.lockss.protocol.psm.*;
 import org.lockss.util.*;
 
 import java.io.*;
@@ -40,7 +41,8 @@ import java.util.*;
 /**
  * Persistent user data state object used by V3Poller state machine.
  */
-public class PollerUserData implements LockssSerializable {
+public class PollerUserData
+  implements PsmInterp.Checkpointer, LockssSerializable {
 
   private PeerIdentity voterId;
   private String hashAlgorithm;
@@ -277,6 +279,14 @@ public class PollerUserData implements LockssSerializable {
 
   void handleRepair() {
     // XXX: TBD
+  }
+
+  private PsmInterpStateBean interpStateBean;
+
+  /** State machine has entered resumable state; save state */
+  public void checkpoint(PsmInterpStateBean resumeStateBean) {
+    interpStateBean = resumeStateBean;
+    saveState();
   }
 
   /**
