@@ -287,7 +287,7 @@ public class PrintfEditor extends JDialog implements EDPEditor, ConfigParamListe
           Point pos = this.getLocationOnScreen();
           dialog.setLocation(pos.x, pos.y);
           dialog.pack();
-          dialog.show();
+          dialog.setVisible(true);
           StringBuffer fbuf = new StringBuffer("%");
           int width = dialog.getPaddingSize();
           boolean is_zero = dialog.useZero();

@@ -382,7 +382,7 @@ public class DNSSupportTest extends LockssTestCase {
     }
 
     for (int i = 0; i < thr.length; i++) {
-      thr[i].stop();
+      thr[i].interrupt();
       thr[i] = null;
     }
     try {

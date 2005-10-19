@@ -284,12 +284,12 @@ public class ConfigParamDescrPicker
       plugin.addConfigParamDescr(descr);
     }
     plugin.notifyParamsChanged();
-    hide();
+    setVisible(false);
   }
 
   void CancelButton_actionPerformed(ActionEvent e) {
     // we need to just leave the items unchanged
-    hide();
+    setVisible(false);
   }
 
   void CreateButton_actionPerformed(ActionEvent e) {
@@ -305,7 +305,7 @@ public class ConfigParamDescrPicker
     dlg.setLocation(dlgSize.width / 2 + loc.x, dlgSize.height / 2 + loc.y);
     dlg.setModal(true);
     dlg.pack();
-    dlg.show();
+    dlg.setVisible(true);
   }
 
   /**

@@ -34,12 +34,14 @@ package org.lockss.daemon;
 
 import java.util.*;
 
+import org.lockss.util.*;
+
 /**
  * Interface for crawl windows, used to determine whether a crawl should be
  * permitted.  Plugins may implement this or use one of the supplied
  * implementations in {@link CrawlWindows}.
  */
-public interface CrawlWindow {
+public interface CrawlWindow extends LockssSerializable {
   /**
    * Returns true if a crawl is permitted, using the current system time.
    * @return true iff permitted
