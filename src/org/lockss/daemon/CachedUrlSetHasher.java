@@ -81,9 +81,15 @@ public interface CachedUrlSetHasher {
    * @exception java.io.IOException on many kinds of I/O problem
    */
   public int hashStep(int numBytes) throws IOException;
+
   /**
    * True if there is nothing left to hash.
    * @return <code>true</code> if there is nothing left to hash.
    */
   public boolean finished();
+
+  /**
+   * Close files, etc.  Should be called if the hash will not be completed.
+   */
+  public void abortHash();
 }

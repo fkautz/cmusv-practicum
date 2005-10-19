@@ -114,10 +114,12 @@ class HashQueue {
     for (ListIterator iter = qlist.listIterator(); iter.hasNext();) {
       Request req = (Request)iter.next();
       if (req.e != null) {
+	req.urlsetHasher.abortHash();
 	removeAndNotify(req, iter, done, "Errored: ");
       } else if (req.urlsetHasher.finished()) {
 	removeAndNotify(req, iter, done, "Finished: ");
       } else if (req.deadline.expired()) {
+	req.urlsetHasher.abortHash();
 	req.e = new HashService.Timeout("hash not finished before deadline");
 	removeAndNotify(req, iter, done, "Expired: ");
       }

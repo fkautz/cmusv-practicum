@@ -77,6 +77,9 @@ public class MockCachedUrlSetHasher implements CachedUrlSetHasher {
     return bytes <= 0;
   }
 
+  public void abortHash() {
+  }
+
   public int hashStep(int numBytes) {
     if (toThrow != null) {
       throw toThrow;

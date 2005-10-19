@@ -276,6 +276,32 @@ public class TestGenericContentHasher extends LockssTestCase {
     assertTrue(is.isClosed());
   }
 
+  public void testInputStreamIsClosedAfterAbort() throws IOException {
+    String name = "http://www.example.com";
+    MockCachedUrl cu = new MockCachedUrl(name);
+    MockInputStream is = new MockInputStream();
+    // ensure content is logner than name
+    is.setContent("Content" + name + name + name + "EndContent");
+    cu.setInputStream(is);
+    cu.setExists(true);
+
+    Vector files = new Vector();
+    files.add(cu);
+    MockArchivalUnit mau = newMockArchivalUnit(TEST_URL_BASE);
+    MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
+    mau.addUrl(TEST_URL_BASE, true, true);
+    mau.addContent(TEST_URL_BASE,  TEST_FILE_CONTENT+" base");
+    cus.setHashIterator(files.iterator());
+
+    GenericContentHasher hasher = new GenericContentHasher(cus, dig);
+    // hash more bytes than the name, fewer than the entire node
+    hasher.hashStep(name.length() * 2);
+    assertFalse(hasher.finished());
+    assertFalse(is.isClosed());
+    hasher.abortHash();
+    assertTrue(is.isClosed());
+  }
+
   public void testISReturn0() throws IOException {
     String content = "blah;blah;blah";
     String url = "http://www.example.com";

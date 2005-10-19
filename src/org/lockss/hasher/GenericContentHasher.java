@@ -37,6 +37,7 @@ import java.util.*;
 import java.math.*;
 import java.security.*;
 
+import org.lockss.util.*;
 import org.lockss.plugin.*;
 /**
  * General class to handle content hashing
@@ -162,4 +163,9 @@ public class GenericContentHasher extends GenericHasher {
     return totalHashed;
   }
 
+  public void abortHash() {
+    IOUtil.safeClose(is);
+    is = null;
+    super.abortHash();
+  }
 }

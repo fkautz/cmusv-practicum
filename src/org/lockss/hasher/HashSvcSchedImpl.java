@@ -308,6 +308,9 @@ public class HashSvcSchedImpl
     private void doFinished() {
       finished = true;
       try {
+	if (!urlsetHasher.finished()) {
+	  urlsetHasher.abortHash();
+	}
 	urlsetHasher.storeActualHashDuration(getTimeUsed(), getExcption());
       } catch (Exception e) {
 	log.error("Hasher threw", e);

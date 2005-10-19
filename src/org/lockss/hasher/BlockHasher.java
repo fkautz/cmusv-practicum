@@ -133,6 +133,12 @@ public class BlockHasher extends GenericHasher {
     return bytesHashed;
   }
 
+  public void abortHash() {
+    IOUtil.safeClose(is);
+    is = null;
+    super.abortHash();
+  }
+
   private void updateDigests(byte[] content, int len) {
     for (int ix = 0; ix < digests.length; ix++) {
       if (isTrace) log.debug3("Updating digest " + ix + ", len = " + len);

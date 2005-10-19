@@ -448,6 +448,9 @@ public class NullPlugin {
       return false;
     }
 
+    public void abortHash() {
+    }
+
     public int hashStep(int numBytes) {
       return 0;
     }
