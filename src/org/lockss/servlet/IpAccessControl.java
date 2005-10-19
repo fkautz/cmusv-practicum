@@ -156,11 +156,11 @@ public abstract class IpAccessControl extends LockssServlet {
 
     // Create and layout form
     Form form = newForm();
-    if (errMsg != null) { layoutIpAllowDenyError(form, errMsg); }
+    layoutErrorBlock(form);
     layoutIpAllowDenyTable(form, incl, excl, footIP, inclErrs,
         exclErrs, ALLOW_IPS_NAME, DENY_IPS_NAME);
     additionalFormLayout(form);
-    layoutIpAllowDenySubmit(form);
+    layoutSubmitButton(form, "Update");
     page.add(form);
 
     // Finish laying out page

@@ -200,8 +200,8 @@ public class LocalServletManager extends BaseServletManager {
 		       "org.lockss.servlet.AdminIpAccess");
     handler.addServlet("ProxyIpAccess", "/ProxyIpAccess",
 		       "org.lockss.servlet.ProxyIpAccess");
-    handler.addServlet("AccessControl", "/AccessControl",
-                       "org.lockss.servlet.AccessControl");
+    handler.addServlet("ProxyAndContent", "/ProxyAndContent",
+                       "org.lockss.servlet.ProxyAndContent");
     handler.addServlet("Hash CUS", "/HashCUS",
 		       "org.lockss.servlet.HashCUS");
     handler.addServlet("Raise Alert", "/RaiseAlert",
