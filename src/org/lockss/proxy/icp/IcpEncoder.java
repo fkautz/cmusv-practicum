@@ -67,7 +67,6 @@ public interface IcpEncoder {
    * argument equal to {@link IcpMessage#ICP_PORT}.</p>
    * @param message
    * @param recipient
-   * @return
    */
   DatagramPacket encode(IcpMessage message,
                         IPAddr recipient);

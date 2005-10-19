@@ -64,7 +64,7 @@ public abstract class BasePoll implements Poll {
   /**
    * Return the identity of the caller of this poll.
    *
-   * @return
+   * @return PeerIdentity representing the identity of the caller of this poll
    */
   abstract public PeerIdentity getCallerID();
 

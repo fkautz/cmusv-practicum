@@ -80,7 +80,7 @@ public class ZipUtil {
    * Expand the zip file to the specified directory.  Does not allow any
    * files to be created outside of specified dir.
    * @param zip zip file
-   * @param dir dir under which to expand zip contents
+   * @param toDir dir under which to expand zip contents
    * @throws ZipException if the zip file is invalid
    * @throws IOException
    */
@@ -99,7 +99,7 @@ public class ZipUtil {
    * the specified directory.  Does not allow any files to be created
    * outside of specified dir.
    * @param in InputStream open on zip-like content
-   * @param dir dir under which to expand zip contents
+   * @param toDir dir under which to expand zip contents
    * @throws ZipException if the zip file is invalid
    * @throws IOException
    */

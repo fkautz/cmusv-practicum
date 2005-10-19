@@ -303,7 +303,7 @@ public class V3Poller extends BasePoll {
    * Add a voter to the inner circle of the poll.
    *
    * @param id
-   * @return
+   * @return PsmInterp
    */
   private PsmInterp addInnerCircleVoter(PeerIdentity id) {
     PsmInterp interp = makeInterp(id);
@@ -328,7 +328,7 @@ public class V3Poller extends BasePoll {
    * Create a PsmInterp for the specified peer.
    *
    * @param id
-   * @return
+   * @return PsmInterp
    */
   private PsmInterp makeInterp(PeerIdentity id) {
     return makeInterp(id, null);

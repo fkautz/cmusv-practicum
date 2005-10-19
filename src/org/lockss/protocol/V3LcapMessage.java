@@ -503,7 +503,6 @@ public class V3LcapMessage extends LcapMessage implements LockssSerializable {
    * @param deadline the deadline for this poll
    * @param origin the identity of the requestor
    * @return message the new V3LcapMessage
-   * @throws IOException if unable to create message
    */
   static public V3LcapMessage makeRequestMsg(PollSpec ps, String key,
                                              byte[] pollerNonce,

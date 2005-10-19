@@ -102,7 +102,7 @@ public class OaiCrawler extends FollowLinkCrawler {
   }
   /**
    * Here for the test code to override
-   * @return
+   * @return a new instance of OaiHandler
    */
   protected OaiHandler getOaiHandler() {
     return new OaiHandler();

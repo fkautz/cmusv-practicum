@@ -605,8 +605,6 @@ public class RemoteApi
   }
 
   /** Batch create AUs from AU config backup file.
-   * @param doCreate if false, AUs aren't actually configured, just checked
-   * for compatibility, etc.
    * @param configBackupStream InputStream open on backup file to be restored
    * @return BatchAuStatus object describing the results.  If doCreate was
    * false, the status reflects the possibility that the AUs could be

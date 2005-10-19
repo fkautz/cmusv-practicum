@@ -269,20 +269,6 @@ public class MockIdentityManager implements IdentityManager {
 //     throw new UnsupportedOperationException("not implemented");
   }
 
-   /**
-    * Change the the reputation of the peer
-    * @param peer the PeerIdentity
-    * @param reputation the new reputation
-    */
-//    public void setReputation(PeerIdentity peer, int reputation) {
-//      try {
-//        LcapIdentity lid = findLcapIdentity(peer, peer.getIdString());
-//        lid.changeReputation(reputation - lid.getReputation());
-//      } catch (IdentityManager.MalformedIdentityKeyException e) {
-//        throw new RuntimeException(e.toString());
-//      }
-//    }
-
    public void setAgeedForAu(ArchivalUnit au, Map map) {
      agreeMap.put(au, map);
    }

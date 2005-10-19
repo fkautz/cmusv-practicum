@@ -261,7 +261,6 @@ public abstract class IcpBuilderTester extends LockssTestCase {
 
   /**
    * <p>Tests {@link IcpBuilder#makeSourceEcho}.</p>
-   * @throws Exception if an error occurs.
    */
   public void testMakeSourceEcho() {
     // Unimplemented

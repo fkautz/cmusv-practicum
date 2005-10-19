@@ -737,7 +737,7 @@ public class IdentityManagerImpl extends BaseLockssDaemonManager
 
   /**
    * <p>Copies the identity database file to the stream.</p>
-   * @param An OutputStream instance.
+   * @param out OutputStream instance.
    */
   public void writeIdentityDbTo(OutputStream out) throws IOException {
     // XXX hokey way to have the acceess performed by the object that has the

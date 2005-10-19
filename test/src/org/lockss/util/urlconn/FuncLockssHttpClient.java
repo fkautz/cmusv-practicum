@@ -575,7 +575,7 @@ public class FuncLockssHttpClient extends LockssTestCase {
 
   /**
    * Abort the connection after a timeout
-   * @param ms interval to wait before aborting
+   * @param inMs interval to wait before aborting
    * @param conn the LockssUrlConnection to abort
    * @return a ConnAbort
    */

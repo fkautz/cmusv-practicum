@@ -82,8 +82,9 @@ public class PermutationIterator implements Iterator {
     return indices;
   }
 
-  /** Unsupported.
-   * @throws UnsupportedOperationException.
+  /**
+   * Unsupported.
+   * @throws UnsupportedOperationException
    */
   public void remove() {
     throw new UnsupportedOperationException();

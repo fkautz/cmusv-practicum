@@ -253,7 +253,7 @@ public class CastorSerializer extends ObjectSerializer {
   /**
    * <p>Convenience method to obtain a Mapping instance corresponding
    * to all the given file names.</p>
-   * @param filename An array of file names where mappings are stored.
+   * @param filenames An array of file names where mappings are stored.
    * @return A Mapping instance corresponding to all the file names.
    */
   public static Mapping getMapping(String[] filenames) {

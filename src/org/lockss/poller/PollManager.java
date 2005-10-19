@@ -358,7 +358,6 @@ public class PollManager
    * @return <code>Poll</code> which matches the message opcode, or a new
    * poll, or null if the new poll would conflict with a currently running poll.
    * @throws IOException if message opcode is unknown.
-   * @see <code>Poll.createPoll</code>
    */
   synchronized BasePoll findPoll(LcapMessage msg) throws IOException {
     String key = msg.getKey();

@@ -212,7 +212,7 @@ public class PropertyTree extends Properties
   /** Return a sub tree of the PropertyTree.
    * Changes made in the sub tree are reflected in the original tree,
    * unless the sub tree is cloned.
-   * @param name The name of the sub node
+   * @param key The name of the sub node
    * @return null if none.
    */
   public PropertyTree getTree(String key)

@@ -107,7 +107,7 @@ public class V1PollFactory extends BasePollFactory {
    * Call a poll.  Only used by the tree walk via the poll manager.
    * For V1 sends the poll request.
    * @param poll     the <code>Poll</code> to be called
-   * @param pm       the PollManager that called this method
+   * @param daemon   the <code>LockssDaemon</code>
    * @return true if the poll was successfuly called.
    */
   public boolean callPoll(Poll poll,
@@ -183,10 +183,8 @@ public class V1PollFactory extends BasePollFactory {
    * createPoll is invoked when an incoming message requires a new
    * Poll to be created.
    * @param pollspec the PollSpec for the poll.
-   * @param pm the PollManager that called this method
+   * @param daemon the LockssDaemon
    * @param orig the PeerIdentity that called the poll
-   * @param challenge the poll challenge
-   * @param verifier the poll verifier
    * @param duration the duration of the poll
    * @param hashAlg the hash algorithm in use
    * @return a Poll object describing the new poll.
