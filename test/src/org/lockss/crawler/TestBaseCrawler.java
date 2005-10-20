@@ -76,7 +76,7 @@ public class TestBaseCrawler extends LockssTestCase {
 
   private MockCachedUrlSet cus;
   private String permissionPage = "http://example.com/permission.html";
-  private String permissionPage2 = "http://example.com/permission.html";
+  private String permissionPage2 = "http://example.com/permission2.html";
 
   public static Class testedClasses[] = {
     org.lockss.crawler.BaseCrawler.class
@@ -98,6 +98,7 @@ public class TestBaseCrawler extends LockssTestCase {
 
     spec = new SpiderCrawlSpec(startUrls, ListUtil.list(permissionPage),
 			       crawlRule, 1);
+    mau.setCrawlSpec(spec);
 
     getMockLockssDaemon().getAlertManager();
     crawler = new TestableBaseCrawler(mau, spec, aus);

@@ -90,7 +90,7 @@ public class TestRepairCrawler extends LockssTestCase {
     spec = new SpiderCrawlSpec(startUrls, ListUtil.list(permissionPage),
 			       crawlRule, 1);
 
-
+    mau.setCrawlSpec(spec);
     mau.addUrl(url1);
     mau.addUrl(permissionPage);
 
