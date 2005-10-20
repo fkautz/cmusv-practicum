@@ -42,7 +42,8 @@ import org.lockss.util.*;
 public abstract class BaseCrawlSpec implements CrawlSpec {
 
   protected List permissionList;
-  protected List permissionCheckers = Collections.EMPTY_LIST;
+//  protected List permissionCheckers = Collections.EMPTY_LIST;
+  protected PermissionChecker permissionChecker;
   protected LoginPageChecker loginPageChecker = null;
   protected CrawlRule rule;
   protected CrawlWindow window;
@@ -58,7 +59,7 @@ public abstract class BaseCrawlSpec implements CrawlSpec {
    */
   protected BaseCrawlSpec(List permissionUrls,
 			  CrawlRule rule,
-			  List permissionCheckers,
+			  PermissionChecker permissionChecker,
 			  LoginPageChecker loginPageChecker)
       throws ClassCastException {
 
@@ -72,9 +73,8 @@ public abstract class BaseCrawlSpec implements CrawlSpec {
 //     }
     this.rule = rule;
     permissionList = ListUtil.immutableListOfType(permissionUrls, String.class);
-    //XXX empty permissionChecker list as it is plugin specific,
-    // so no isEmpty() check
-    this.permissionCheckers = permissionCheckers;
+
+    this.permissionChecker = permissionChecker;
 
     this.loginPageChecker = loginPageChecker;
   }
@@ -122,8 +122,8 @@ public abstract class BaseCrawlSpec implements CrawlSpec {
     return (window==null) ? true : window.canCrawl();
   }
 
-  public List getPermissionCheckers() {
-    return permissionCheckers;
+  public PermissionChecker getPermissionChecker() {
+    return permissionChecker;
   }
 
   public LoginPageChecker getLoginPageChecker() {

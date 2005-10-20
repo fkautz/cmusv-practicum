@@ -85,7 +85,7 @@ public interface CrawlSpec {
    * Gets the list of permission checkers
    * @return a list of permission checkers
    */
-  public List getPermissionCheckers();
+  public PermissionChecker getPermissionChecker();
 
   /**
    * @return the LoginPageChecker for this crawl, or null if there isn't one

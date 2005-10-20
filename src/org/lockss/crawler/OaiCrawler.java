@@ -92,7 +92,7 @@ public class OaiCrawler extends FollowLinkCrawler {
    * link mode".
    * @returns false if the crawl encountered fatal errors, false otherwise
    */
-  protected boolean doCrawl0(){
+  protected boolean doCrawl0(){ //this shouldn't be there at all, as it does nothing
     if (shouldFollowLink() ) {
       logger.info("crawling in follow link mode");
     } else {

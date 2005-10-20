@@ -44,8 +44,9 @@ import org.lockss.oai.*;
 
 public class TestOaiCrawlSpec extends LockssTestCase {
 
-  private List pList = ListUtil.list("pList");
-  private List cList = ListUtil.list("cList");
+  private List permissionUrls = ListUtil.list("pList");
+//  private List cList = ListUtil.list("cList");
+
   private CrawlRule rule = new MockCrawlRule();
 
   public TestOaiCrawlSpec(String msg){
@@ -55,7 +56,7 @@ public class TestOaiCrawlSpec extends LockssTestCase {
   public void testNullOaiHandlerUrl() throws LockssRegexpException {
     try {
       OaiCrawlSpec cs =
-	new OaiCrawlSpec(null, pList, cList, rule, false, null);
+	new OaiCrawlSpec(null, permissionUrls, null, rule, false, null);
       fail("OaiCrawlSpec with null oaiRequestData should throw");
     } catch (IllegalArgumentException e) { }
   }
@@ -64,7 +65,7 @@ public class TestOaiCrawlSpec extends LockssTestCase {
     boolean follow = true;
     OaiRequestData oaiData = new OaiRequestData("handler","ns","tag","setSpec","prefix");
     OaiCrawlSpec cs2 =
-      new OaiCrawlSpec(oaiData, pList, cList, rule, follow, null);
+      new OaiCrawlSpec(oaiData, permissionUrls, null, rule, follow, null);
     OaiRequestData myOaiData = cs2.getOaiRequestData();
     assertEquals("handler", myOaiData.getOaiRequestHandlerUrl());
     assertEquals("ns", myOaiData.getMetadataNamespaceUrl());

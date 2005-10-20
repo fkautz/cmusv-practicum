@@ -888,7 +888,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
     MyMockLoginPageChecker loginPageChecker = new MyMockLoginPageChecker(false);
     mau.setCrawlSpec(new SpiderCrawlSpec(ListUtil.list("http://example.com"),
                                          ListUtil.list("http://example.com"),
-                                         null, 99, new ArrayList(),
+                                         null, 99, null,
                                          loginPageChecker));
 
     cacher._input = new StringInputStream("test stream");
@@ -903,7 +903,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
     MyMockLoginPageChecker loginPageChecker = new MyMockLoginPageChecker(false);
     mau.setCrawlSpec(new SpiderCrawlSpec(ListUtil.list("http://example.com"),
                                          ListUtil.list("http://example.com"),
-                                         null, 99, new ArrayList(),
+                                         null, 99, null,
                                          loginPageChecker));
 
     cacher._input = new MyStringInputStream("test stream");
@@ -923,7 +923,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
     MyMockLoginPageChecker loginPageChecker = new MyMockLoginPageChecker(false);
     mau.setCrawlSpec(new SpiderCrawlSpec(ListUtil.list("http://example.com"),
                                          ListUtil.list("http://example.com"),
-                                         null, 99, new ArrayList(),
+                                         null, 99, null,
                                          loginPageChecker));
 
     MyStringInputStream strIs = new MyStringInputStream(
@@ -951,7 +951,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
     MyMockLoginPageChecker loginPageChecker = new MyMockLoginPageChecker(true);
     mau.setCrawlSpec(new SpiderCrawlSpec(ListUtil.list("http://example.com"),
                                          ListUtil.list("http://example.com"),
-                                         null, 99, new ArrayList(),
+                                         null, 99, null,
                                          loginPageChecker));
 
     cacher._input = new StringInputStream("test stream");
@@ -974,7 +974,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
     MyMockLoginPageChecker loginPageChecker = new MyMockLoginPageChecker(false);
     mau.setCrawlSpec(new SpiderCrawlSpec(ListUtil.list("http://example.com"),
                                          ListUtil.list("http://example.com"),
-                                         null, 99, new ArrayList(),
+                                         null, 99, null,
                                          loginPageChecker));
 
     cacher._input = new MyStringInputStreamMarkNotSupported("test stream");

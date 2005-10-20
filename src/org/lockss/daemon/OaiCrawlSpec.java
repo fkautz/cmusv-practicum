@@ -49,7 +49,7 @@ public class OaiCrawlSpec extends BaseCrawlSpec {
   public OaiCrawlSpec(String oaiRequestHandlerUrl, CrawlRule rule) {
     this(new OaiRequestData(oaiRequestHandlerUrl, "", new Oai_dcHandler()),
 	 ListUtil.list("http://171.66.236.27:8181/html/permission.html"),
-	 Collections.EMPTY_LIST,
+	 null,
  	 rule,
  	 false, null);
   }
@@ -73,7 +73,7 @@ public class OaiCrawlSpec extends BaseCrawlSpec {
 			    "",
 			    "oai_dc"),
 	 permissionList,
-	 Collections.EMPTY_LIST,
+	 null, //plugin permission checker
  	 rule,
  	 follow,
 	 null);
@@ -96,11 +96,11 @@ public class OaiCrawlSpec extends BaseCrawlSpec {
    */
   public OaiCrawlSpec(OaiRequestData oaiRequestData,
 		      List permissionUrls,
-		      List permissionCheckers,
+		      PermissionChecker permissionChecker,
 		      CrawlRule rule,
 		      boolean followLink,
 		      LoginPageChecker loginPageChecker) {
-    super(permissionUrls, rule, permissionCheckers, loginPageChecker);
+    super(permissionUrls, rule, permissionChecker, loginPageChecker);
     if (oaiRequestData == null){
       throw new IllegalArgumentException("Called with null oaiRequestData");
     }
