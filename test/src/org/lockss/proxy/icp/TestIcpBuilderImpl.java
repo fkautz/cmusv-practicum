@@ -35,7 +35,7 @@ package org.lockss.proxy.icp;
 import org.lockss.proxy.icp.IcpBuilder.Factory;
 
 /**
- * <p>Tests the {@link IcpFactoryImpl.IcpBuilderImpl} class.</p>
+ * <p>Test class for org.lockss.proxy.icp.IcpFactoryImpl#IcpBuilderImpl</p>
  * @author Thib Guicherd-Callin
  */
 public class TestIcpBuilderImpl extends IcpBuilderTester {

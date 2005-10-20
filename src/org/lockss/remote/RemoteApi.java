@@ -739,9 +739,6 @@ public class RemoteApi
   /** Restore AU config from an AU config backup file.
    * @param allAuConfig the Configuration to be restored
    * @return BatchAuStatus object describing the results.
-   * @throws RemoteApi.InvalidAuConfigBackupFile if the backup file is of
-   * an unknown format, unsupported version, or contains keys this
-   * operation isn't allowed to modify.
    */
   public BatchAuStatus batchAddAus(boolean isReactivate,
 				   Configuration allAuConfig,

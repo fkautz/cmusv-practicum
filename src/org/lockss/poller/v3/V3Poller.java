@@ -340,7 +340,8 @@ public class V3Poller extends BasePoll {
    *
    * @param id
    * @param psmState
-   * @return
+   * @return PsmInterp for the specified peer, using the supplied
+   * PsmInterpStateBean
    */
   private PsmInterp makeInterp(PeerIdentity id, PsmInterpStateBean psmState) {
     PollerUserData ud = new PollerUserData(id, this, serializer);
