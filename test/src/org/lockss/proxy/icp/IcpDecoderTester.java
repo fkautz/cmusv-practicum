@@ -88,7 +88,7 @@ public abstract class IcpDecoderTester extends LockssTestCase {
    * <p>Asserts that the argument message has desired properties with
    * respect to the expected message.</p>
    * @param expected An expected message.
-   * @param packet   An actual message.
+   * @param message   An actual message.
    */
   private static void expect(IcpMessage expected, IcpMessage message) {
     assertEquals(expected.getOpcode(), message.getOpcode());

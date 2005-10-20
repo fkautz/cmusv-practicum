@@ -913,7 +913,7 @@ public class HistoryRepositoryImpl
   /**
    * <p>Might unwrap an object returning from serialization so that
    * it comes back in a form that is expected by
-   * {@link #loadNodeState}.</p>
+   * {@link HistoryRepositoryImpl#loadNodeState(CachedUrlSet)}.</p>
    * @param obj  The object returning from serialized form.
    * @param cus  The CachedUrlSet instance sometimes needed to unwrap
    *             obj.

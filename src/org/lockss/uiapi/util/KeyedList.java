@@ -122,9 +122,9 @@ public class KeyedList {
   }
 
   /**
-   * Verify name and value are non-null
-   * @param Object name Name to verify
-   * @param Object value Value to verify
+   * Verify that name is non-null
+   * @param name Name to verify
+   * @throws IllegalArgumentException if name is null
    */
   private void verifyName(Object name) {
     if (name == null) {

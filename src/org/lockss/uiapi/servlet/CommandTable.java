@@ -321,7 +321,7 @@ public class CommandTable implements ApiParameters, ClusterControlParameters {
   /**
    * Create a populated <code>CommandTable</code> object
    * @param command Command name (eg the name supplied by the client)
-   * @param commandClassName The name of a class to carry out the remote
+   * @param localCommandClassName The name of a class to carry out the remote
    *              client command
    * @param htmlClassName HTML renderer for this command
    * @param flags Command characteristics

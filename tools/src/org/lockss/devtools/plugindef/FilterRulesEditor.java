@@ -256,8 +256,8 @@ public class FilterRulesEditor extends JDialog implements EDPEditor {
     /**
      * moveData
      *
-     * @param row int
-     * @param i int
+     * @param curRow Old row for the data
+     * @param newRow New row for the data
      */
     private void moveData(int curRow, int newRow) {
       int lastRow = rowData.size() -1;

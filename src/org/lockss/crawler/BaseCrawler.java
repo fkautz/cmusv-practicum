@@ -308,7 +308,6 @@ public abstract class BaseCrawler implements Crawler, PermissionMapSource {
    * objects.
    *
    * @param permissionPage String
-   * @param checker PermissionChecker
    * @return boolean iff permission was found for each object on the page.
    */
   private boolean checkPermission(String permissionPage) throws IOException {

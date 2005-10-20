@@ -83,7 +83,7 @@ public class V1TreeWalkImpl implements TreeWalker {
   /**
    * Determines the sleep duration from the desired interval and cpu load.
    * @param interval desired interval
-   * @param desired cpu load, as percentage
+   * @param load desired cpu load, as percentage
    * @return long proper sleep duration
    */
   private long calculateSleepDuration(long interval, double load) {

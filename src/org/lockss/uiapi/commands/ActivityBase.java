@@ -218,7 +218,8 @@ public abstract class ActivityBase implements ApiParameters,
 
   /**
    * Add a response specific status option
-   * @param text Response information
+   * @param name name of the status option to set
+   * @param value Response information
    */
   protected void addResponseStatusOption(String name, String value) {
     if (_responseStatusOptions == null) {

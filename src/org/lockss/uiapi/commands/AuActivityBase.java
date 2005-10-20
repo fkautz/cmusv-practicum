@@ -392,7 +392,7 @@ public class AuActivityBase extends StatusActivityBase {
    * @param root Root element - key data attached here
    * @param keyRootName Name for key data block (reflects defining or editable)
    * @param keys Collection of keys (defining or editable) to examine
-   * @param configuration Plugin configuration
+   * @param config Plugin configuration
    */
   protected void addKeys(Element root,
                          String keyRootName,
@@ -405,9 +405,9 @@ public class AuActivityBase extends StatusActivityBase {
    * Add key details to the response document
    * @param root Root element - key data attached here
    * @param keyRootName Name for key data block (reflects defining or editable)
-   * @param keys Collection of keys (defining or editable) to examine
-   * @param Collection of keys that should not be edited (null for none)
-   * @param configuration Plugin configuration
+   * @param keys {@link Collection} of keys (defining or editable) to examine
+   * @param noEditKeys {@link Collection} of keys that should not be edited (null for none)
+   * @param config Plugin configuration
    *
    * <code>
    * <key>

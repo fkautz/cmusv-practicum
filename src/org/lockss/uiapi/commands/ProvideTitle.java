@@ -232,7 +232,7 @@ public class ProvideTitle extends ApiActivityBase {
   /**
    * Render AUs and associated title configuration data
    * @param root All generated XML is appended here
-   * @param auTitle AU title
+   * @param journalTitle journal title
    * @param auList All available AUs
    */
   private void renderAuTitleXml(Element root,
