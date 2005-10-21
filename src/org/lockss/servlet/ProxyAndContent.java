@@ -186,8 +186,9 @@ public class ProxyAndContent extends LockssServlet {
       try {
         processUpdate_Main_SaveChanges();
       }
-      catch (Exception exc) {
-
+      catch (IOException ioe) {
+        logger.error("Could not save changes", ioe);
+        errMsg = "Error: Could not save changes.\n" + ioe.toString();
       }
     }
 
