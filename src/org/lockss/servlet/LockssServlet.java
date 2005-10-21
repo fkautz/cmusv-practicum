@@ -953,8 +953,8 @@ public abstract class LockssServlet extends HttpServlet
         deny, ipFootnote, allowErrs, denyErrs, allowName, denyName);
   }
 
-  protected void layoutMenu(Page page, Iterator descrIterator) {
-    ServletUtil.layoutMenu(this, page, descrIterator);
+  protected void layoutMenu(Page page, Iterator linkIterator) {
+    ServletUtil.layoutMenu(page, linkIterator);
   }
 
   /** Return the app instance.
