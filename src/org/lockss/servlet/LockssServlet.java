@@ -106,7 +106,7 @@ public abstract class LockssServlet extends HttpServlet
   private String myName = null;
 
   // number submit buttons sequentially so unit tests can find them
-  private int submitButtonNumber = 0;
+  protected int submitButtonNumber = 0;
 
   // Descriptors for all servlets.
   protected static final ServletDescr SERVLET_HOME =
