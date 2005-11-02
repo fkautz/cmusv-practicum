@@ -45,6 +45,7 @@ import org.apache.commons.collections.Predicate;
 import org.apache.commons.collections.iterators.FilterIterator;
 import org.apache.commons.collections.iterators.ObjectArrayIterator;
 import org.lockss.app.*;
+import org.lockss.servlet.BatchAuConfig.Verb;
 import org.lockss.util.*;
 import org.lockss.config.Configuration;
 
@@ -923,6 +924,12 @@ public abstract class LockssServlet extends HttpServlet
     return val;
   }
 
+  protected void layoutChooseSets(Page page, Composite chooseSets,
+      String hiddenActionName, String hiddenVerbName, Verb verb) {
+    ServletUtil.layoutChooseSets(this, page, chooseSets,
+        hiddenActionName, hiddenVerbName, verb);
+  }
+  
   protected void layoutEnablePortRow(Table table,
       String enableFieldName, boolean defaultEnable,
       String enableDescription, String enableFootnote,
