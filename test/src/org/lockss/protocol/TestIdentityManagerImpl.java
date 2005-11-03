@@ -369,6 +369,21 @@ public abstract class TestIdentityManagerImpl extends LockssTestCase {
     setupPeer123();
     idmgr.storeIdentities();
   }
+  
+  public void testLoadIdentities() throws Exception {
+    // Store
+    setupPeer123();
+    idmgr.storeIdentities();
+    
+    // Load
+    IdentityManagerImpl im = new IdentityManagerImpl();
+    im.setupLocalIdentities();
+    im.reloadIdentities();
+    im.findPeerIdentity("127.0.0.2");
+    assertTrue("The identity manager has maps of inconsistent sizes.",
+               im.areMapsEqualSize());
+    
+  }
 
   public void testSignalAgreedThrowsOnNullAu() throws Exception {
     peer1 = idmgr.stringToPeerIdentity("127.0.0.1");
