@@ -109,7 +109,7 @@ public class TestXStreamSerializer extends ObjectSerializerTester {
       explode1 = false; // defuse bomb
     }
 
-    protected Object postUnmarshalResolve() {
+    protected Object postUnmarshalResolve(LockssApp lockssContext) {
       super.postUnmarshalResolve();
       explode2 = false; // defuse bomb
       return this;
@@ -156,7 +156,7 @@ public class TestXStreamSerializer extends ObjectSerializerTester {
       this.invoked = false;
     }
 
-    protected Object postUnmarshalResolve() {
+    protected Object postUnmarshalResolve(LockssApp lockssContext) {
       singleton.invoked = true;
       return singleton;
     }

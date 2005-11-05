@@ -37,6 +37,7 @@ import org.lockss.app.*;
 import org.lockss.util.*;
 import org.lockss.config.*;
 import org.lockss.plugin.*;
+import org.lockss.protocol.IdentityManager.MalformedIdentityKeyException;
 
 /**
  * Mock override of IdentityManager.
@@ -295,6 +296,10 @@ public class MockIdentityManager implements IdentityManager {
   }
 
   public Collection getTcpPeerIdentities() {
+    throw new UnsupportedOperationException("not implemented");
+  }
+
+  public LcapIdentity findLcapIdentity(PeerIdentity pid, String key) {
     throw new UnsupportedOperationException("not implemented");
   }
 

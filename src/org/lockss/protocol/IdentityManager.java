@@ -167,14 +167,17 @@ public interface IdentityManager extends LockssManager {
    */
   public static final int INITIAL_REPUTATION = 500;
 
-
-
-
   /**
    * <p>Finds or creates unique instances of PeerIdentity.</p>
    */
   public PeerIdentity findPeerIdentity(String key);
 
+  /**
+   * <p>Finds or creates unique instances of LcapIdentity.</p>
+   */
+  public LcapIdentity findLcapIdentity(PeerIdentity pid, String key)
+      throws MalformedIdentityKeyException;
+  
   /**
    * <p>Returns the peer identity matching the IP address and port;
    * An instance is created if necesary.</p>

@@ -34,6 +34,7 @@ package org.lockss.poller.v3;
 
 import java.io.*;
 
+import org.lockss.app.*;
 import org.lockss.config.*;
 import org.lockss.util.*;
 
@@ -46,7 +47,7 @@ public abstract class V3Serializer {
   public static String DEFAULT_V3_STATE_LOCATION = "v3state";
 
   protected File pollDir;
-  protected ObjectSerializer xstr = new XStreamSerializer();
+  protected ObjectSerializer xstr;
 
   static final Logger log = Logger.getLogger("V3Serializer");
 
@@ -86,6 +87,8 @@ public abstract class V3Serializer {
 					   + "arguments must already exist");
       }
     }
+    
+    xstr = new XStreamSerializer();
   }
 
   /**
