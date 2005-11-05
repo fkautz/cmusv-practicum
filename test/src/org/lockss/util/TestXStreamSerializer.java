@@ -67,7 +67,7 @@ public class TestXStreamSerializer extends ObjectSerializerTester {
       explode1 = false; // defuse bomb
     }
 
-    protected Object postUnmarshalResolve() {
+    protected Object postUnmarshalResolve(LockssApp lockssContext) {
       explode2 = false; // defuse bomb
       return this;
     }
@@ -110,7 +110,7 @@ public class TestXStreamSerializer extends ObjectSerializerTester {
     }
 
     protected Object postUnmarshalResolve(LockssApp lockssContext) {
-      super.postUnmarshalResolve();
+      super.postUnmarshalResolve(lockssContext);
       explode2 = false; // defuse bomb
       return this;
     }
