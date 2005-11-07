@@ -202,7 +202,7 @@ public class IcpManager
       boolean enable = newConfig.getBoolean(PARAM_ICP_ENABLED,
                                             DEFAULT_ICP_ENABLED);
       stopSocket();
-      if (isDaemonInited() && enable) {
+      if (theDaemon.isDaemonInited() && enable) {
         startSocket();
       }
     }

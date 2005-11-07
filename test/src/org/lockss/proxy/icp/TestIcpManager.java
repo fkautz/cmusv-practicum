@@ -106,6 +106,7 @@ public class TestIcpManager extends LockssTestCase {
     testableIcpManager = new TestableIcpManager();
     mockLockssDaemon.setIcpManager(testableIcpManager);
     testableIcpManager.initService(mockLockssDaemon);
+    mockLockssDaemon.setDaemonInited(true);
     testableIcpManager.startService();
   }
 
