@@ -51,8 +51,8 @@ public abstract class V3Serializer {
 
   static final Logger log = Logger.getLogger("V3Serializer");
 
-  public V3Serializer() throws PollSerializerException {
-    this(null);
+  public V3Serializer(LockssDaemon daemon) throws PollSerializerException {
+    this(daemon, null);
   }
 
   /**
@@ -63,7 +63,7 @@ public abstract class V3Serializer {
    * @param dir Optionally, a pre-existing serialization directory to use.
    * @throws PollSerializerException
    */
-  public V3Serializer(String dir) throws PollSerializerException {
+  public V3Serializer(LockssDaemon daemon, String dir) throws PollSerializerException {
     Configuration config = Configuration.getCurrentConfig();
     String relStateDir = config.get(PARAM_V3_STATE_LOCATION,
                                     DEFAULT_V3_STATE_LOCATION);
@@ -88,7 +88,7 @@ public abstract class V3Serializer {
       }
     }
     
-    xstr = new XStreamSerializer();
+    xstr = new XStreamSerializer(daemon);
   }
 
   /**
