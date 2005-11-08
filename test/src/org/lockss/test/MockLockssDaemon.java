@@ -709,11 +709,21 @@ public class MockLockssDaemon extends LockssDaemon {
     return daemonInited;
   }
 
+  // need to override this one too, inherited from LockssApp
+  public boolean isAppInited() {
+    return isDaemonInited();
+  }
+
   /**
    * @return true iff all managers have been started
    */
   public boolean isDaemonRunning() {
     return daemonRunning;
+  }
+
+  // need to override this one too, inherited from LockssApp
+  public boolean isAppRunning() {
+    return isDaemonRunning();
   }
 
   /** set daemonInited
