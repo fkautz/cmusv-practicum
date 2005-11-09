@@ -64,7 +64,7 @@ public class TitleParams {
 
     PrintStream cout = System.err;
     Set uids = new HashSet();
-    MockLockssDaemon daemon = new MockLockssDaemon();
+    MockLockssDaemon daemon = new MyMockLockssDaemon();
     ConfigManager.makeConfigManager();
     PluginManager pluginMgr = daemon.getPluginManager();
     daemon.setDaemonInited(true);
@@ -193,5 +193,10 @@ public class TitleParams {
   static void usage() {
     System.err.println("Usage: TitleParams [-c config-file] [-o output-file]");
     System.exit(0);
+  }
+
+  /** Just here so we can create an instance of MockLockssDaemon, whose
+   * constructor is (deliberately) protected */
+  static class MyMockLockssDaemon extends MockLockssDaemon {
   }
 }

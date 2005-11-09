@@ -95,7 +95,7 @@ public class TestCrawlManagerStatus extends LockssTestCase {
     // checks if AUs are internal or not (using
     // PluginManager.isInternalAu(foo))
     super.setUp();
-    MockLockssDaemon theDaemon = new MockLockssDaemon();
+    MockLockssDaemon theDaemon = getMockLockssDaemon();
     theDaemon.setPluginManager(new PluginManager());
 
     statusSource = new MockCrawlManagerStatusSource(theDaemon);

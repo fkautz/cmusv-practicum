@@ -79,14 +79,20 @@ public class MockLockssDaemon extends LockssDaemon {
   RemoteApi remoteApi = null;
   IcpManager icpManager = null;
 
-  public MockLockssDaemon() {
+  /** Unit tests that need a MockLockssDaemon should use {@link
+   * LockssTestCase#getMockLockssDaemon()} rather than calling this
+   * directly.  Some utilities (not descended from LockssTestCase) also
+   * need one, so this constructor is protected to allow them to directly
+   * create an instance (of their own subclass). */
+  protected MockLockssDaemon() {
     this(null);
   }
 
-  public MockLockssDaemon(List urls) {
+  private MockLockssDaemon(List urls) {
     super(urls);
   }
 
+  /** Does nothing */
   public void startDaemon() throws Exception {
   }
 
