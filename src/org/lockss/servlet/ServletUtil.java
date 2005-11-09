@@ -447,7 +447,7 @@ public class ServletUtil {
 
   public static Composite makeChooseSets(LockssServlet servlet,
                                          RemoteApi remoteApi,
-                                         Iterator titleSetITerator,
+                                         Iterator titleSetIterator,
                                          Verb verb,
                                          String checkboxGroup,
                                          boolean doGray,
@@ -471,8 +471,8 @@ public class ServletUtil {
         submitText, submitAction));
 
     // Iterate over title sets
-    while (titleSetITerator.hasNext()) {
-      TitleSet set = (TitleSet)titleSetITerator.next();
+    while (titleSetIterator.hasNext()) {
+      TitleSet set = (TitleSet)titleSetIterator.next();
       if (verb.isTsAppropriateFor(set)) {
         BatchAuStatus bas = verb.findAusInSetForVerb(remoteApi, set);
         int numOk = 0;
