@@ -58,7 +58,7 @@ public class TestEditableDefinablePlugin
   protected void setUp() throws Exception {
     super.setUp();
     edPlugin = new EditableDefinablePlugin();
-    edPlugin.initPlugin(new MockLockssDaemon());
+    edPlugin.initPlugin(getMockLockssDaemon());
     tempDirPath = getTempDir().getAbsolutePath() + File.separator;
   }
 
