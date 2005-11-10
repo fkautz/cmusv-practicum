@@ -216,7 +216,7 @@ public class IcpManager
     boolean start = Configuration.getBooleanParam(PARAM_ICP_ENABLED,
                                                   DEFAULT_ICP_ENABLED);
     if (start) {
-      startSocket();
+      resetConfig();
     }
   }
 
