@@ -157,6 +157,10 @@ public class IcpManager
         try {
           icpSocket.send(response, message.getUdpAddress(), message.getUdpPort());
         }
+        catch (NoRouteToHostException nrthe) {
+          logger.warning("NoRouteToHostException while sending ICP response", nrthe);
+          logger.debug("A NoRouteToHostException may indicate a problem related to packet filtering on the underlying platform.");
+        }
         catch (IOException ioe) {
           logger.warning("IOException while sending ICP response", ioe);
         }
