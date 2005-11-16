@@ -32,6 +32,8 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.daemon;
 
+import java.io.*;
+import java.io.BufferedInputStream;
 import java.util.*;
 
 import org.apache.commons.collections.set.ListOrderedSet;
@@ -288,4 +290,28 @@ public interface Crawler {
       return au;
     }
   }
+
+  /**
+   * Encapsulation for the methods that the PermissionMap needs from a crawler
+   *
+   * @author troberts
+   *
+   */
+  public static interface PermissionHelper {
+    /**
+     * Generate a URL cacher  for the given URL
+     * @param url
+     * @return UrlCacher for the given URL
+     */
+    public UrlCacher makeUrlCacher(String url);
+
+    public BufferedInputStream resetInputStream(BufferedInputStream is, String url)
+           throws IOException;
+
+    public void refetchPermissionPage(String url) throws IOException;
+
+    public Crawler.Status getCrawlStatus();
+
+  }
+
 }
