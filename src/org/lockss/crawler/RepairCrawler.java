@@ -422,7 +422,7 @@ public class RepairCrawler extends BaseCrawler {
 
   protected void fetchFromPublisher(UrlCacher uc) throws IOException {
     if (repairNeedsPermission) {
-      if (!checkHostPermission(uc.getUrl(), true)) {
+      if (!permissionMap.checkHostPermission(uc.getUrl(), true, crawlStatus, this)) {
         if (crawlStatus.getCrawlError() == null) {
           crawlStatus.setCrawlError("No permission to collect " + uc.getUrl());
         }
