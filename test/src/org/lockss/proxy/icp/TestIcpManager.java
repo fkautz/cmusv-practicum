@@ -60,8 +60,8 @@ public class TestIcpManager extends LockssTestCase {
     }
 
     /* Inherit documentation */
-    protected void startSocket() {
-      super.startSocket();
+    protected void startSocket(Configuration theConfig) {
+      super.startSocket(theConfig);
       if (icpSocket != null) {
         logger.debug("startSocket in TestableIcpManager: waitRunning");
         icpSocket.waitRunning();
