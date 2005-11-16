@@ -80,7 +80,7 @@ public class MockNodeManager implements NodeManager {
   }
 
   public void startPoll(CachedUrlSet cus, Tallier state, boolean isReplay) {
-    logger.debug3("starting poll for cus: " + cus);
+    logger.debug3("starting V1 poll for cus: " + cus);
   }
 
   public boolean shouldStartPoll(CachedUrlSet cus, Tallier state) {

@@ -55,8 +55,8 @@ public class VoteBlockComparator implements Comparator {
 
     // Unfiltered lengths are equal, compare file names
 
-    String fn1 = ((VoteBlock)o1).getFileName();
-    String fn2 = ((VoteBlock)o2).getFileName();
+    String fn1 = ((VoteBlock)o1).getUrl();
+    String fn2 = ((VoteBlock)o2).getUrl();
 
     return fn1.compareTo(fn2);
   }

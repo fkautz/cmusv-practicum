@@ -54,6 +54,14 @@ public class MockPoll implements Poll {
 
   }
 
+  public void startPoll() {
+
+  }
+
+  public void stopPoll() {
+
+  }
+
   public boolean isSubpollRunning() {
     return false;
   }
@@ -174,6 +182,21 @@ public class MockPoll implements Poll {
    */
   public void setVoteTally(PollTally tally) {
     m_tally = tally;
+  }
+
+  /**
+   * get the type of the poll.
+   */
+  public int getType() {
+    return 0;
+  }
+
+  public ArchivalUnit getAu() {
+    throw new UnsupportedOperationException("Not implemented");
+  }
+
+  public String getStatusString() {
+    throw new UnsupportedOperationException("Not implemented");
   }
 
 }

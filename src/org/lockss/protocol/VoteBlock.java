@@ -67,7 +67,7 @@ public class VoteBlock implements LockssSerializable {
     this.pollType = pollType;
   }
 
-  public String getFileName() {
+  public String getUrl() {
     return fileName;
   }
 

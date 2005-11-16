@@ -35,6 +35,7 @@ package org.lockss.poller;
 import java.security.*;
 
 import org.lockss.hasher.*;
+import org.lockss.plugin.*;
 import org.lockss.protocol.*;
 import org.lockss.util.*;
 
@@ -116,6 +117,21 @@ public class V1ContentPoll extends V1Poll {
         stopVoteCheck();
       }
     }
+  }
+
+  public ArchivalUnit getAu() {
+    return m_tally.getArchivalUnit();
+  }
+
+  public String getStatusString() {
+    return m_tally.getStatusString();
+  }
+
+  /**
+   * Return the type of the poll, Poll.V1_CONTENT_POLL
+   */
+  public int getType() {
+    return Poll.V1_CONTENT_POLL;
   }
 
 }

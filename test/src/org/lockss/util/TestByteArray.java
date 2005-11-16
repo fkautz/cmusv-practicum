@@ -54,6 +54,13 @@ public class TestByteArray extends LockssTestCase {
     assertEquals(s1.concat(s2), new String(c));
   }
 
+  public void testToBase64() {
+    byte t1[] = {1, 0x42, 0x7e, (byte)0xff};
+    byte t2[] = {(byte)255, (byte)255, (byte)255, (byte)255};
+    assertEquals("AUJ+/w==", ByteArray.toBase64(t1));
+    assertEquals("/////w==", ByteArray.toBase64(t2));
+  }
+
   public void testToHexString() {
     byte t1[] = {1, 0x42, 0x7e, (byte)0xff};
     byte t2[] = {(byte)255, (byte)255, (byte)255, (byte)255};

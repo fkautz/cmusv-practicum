@@ -235,7 +235,7 @@ public abstract class BasePlugin
     }
     res.add(ConfigParamDescr.AU_CLOSED);
     res.add(ConfigParamDescr.PUB_DOWN);
-    res.add(ConfigParamDescr.POLL_VERSION);
+    res.add(ConfigParamDescr.PROTOCOL_VERSION);
     return res;
   }
 

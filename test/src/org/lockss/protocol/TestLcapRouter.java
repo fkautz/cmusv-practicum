@@ -92,7 +92,7 @@ public class TestLcapRouter extends LockssTestCase {
     assertEquals(a.getOpcode(), b.getOpcode());
     assertEquals(a.getTargetUrl(), b.getTargetUrl());
     assertEquals(a.getArchivalId(), b.getArchivalId());
-    assertEquals(a.getPollVersion(), b.getPollVersion());
+    assertEquals(a.getProtocolVersion(), b.getProtocolVersion());
     assertEquals(a.getPollerNonce(), b.getPollerNonce());
     assertEquals(a.getVoterNonce(), b.getVoterNonce());
     assertEquals(a.getPluginVersion(), b.getPluginVersion());

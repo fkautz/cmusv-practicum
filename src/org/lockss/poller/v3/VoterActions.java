@@ -60,6 +60,10 @@ public class VoterActions {
   }
 
   public static PsmEvent handleSendPollAck(PsmEvent evt, PsmInterp interp) {
+    // XXX: If we decide we don't want to participate in this poll,
+    // for whatever reason, we should send a PollAck with an empty
+    // pollAckEffortProof and voterNonce.  For now, we just agree to
+    // participate in every poll.
     VoterUserData ud = getUserData(interp);
     V3LcapMessage msg = V3LcapMessageFactory.makePollAckMsg(ud);
     msg.setEffortProof(ud.getPollAckEffortProof());

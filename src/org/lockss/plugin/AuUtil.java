@@ -133,9 +133,8 @@ public class AuUtil {
   }
 
   public static int getProtocolVersion(ArchivalUnit au) {
-    return getIntValue(getAuParamOrTitleDefault(au,
-                                                ConfigParamDescr.POLL_VERSION),
-                       PollSpec.V1_PROTOCOL);
+    return getIntValue(getAuParamOrTitleDefault(au, ConfigParamDescr.PROTOCOL_VERSION),
+                       Poll.V1_PROTOCOL);
   }
 
   public static boolean getBoolValue(Object value, boolean dfault) {

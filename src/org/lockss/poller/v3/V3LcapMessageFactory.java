@@ -40,7 +40,7 @@ import org.lockss.protocol.*;
  */
 public class V3LcapMessageFactory {
 
-  public static V3LcapMessage makePollMsg(PollerUserData ud) {
+  public static V3LcapMessage makePollMsg(ParticipantUserData ud) {
     V3LcapMessage msg =
       V3LcapMessage.makeRequestMsg(ud.getAuId(),
                                    ud.getKey(),
@@ -57,7 +57,7 @@ public class V3LcapMessageFactory {
     return msg;
   }
 
-  public static V3LcapMessage makePollProofMsg(PollerUserData ud) {
+  public static V3LcapMessage makePollProofMsg(ParticipantUserData ud) {
     V3LcapMessage msg =
       V3LcapMessage.makeRequestMsg(ud.getAuId(),
                                    ud.getKey(),
@@ -73,7 +73,7 @@ public class V3LcapMessageFactory {
     return msg;
   }
 
-  public static V3LcapMessage makeVoteRequestMsg(PollerUserData ud) {
+  public static V3LcapMessage makeVoteRequestMsg(ParticipantUserData ud) {
     return V3LcapMessage.makeRequestMsg(ud.getAuId(),
                                         ud.getKey(),
 					ud.getPollVersion(),
@@ -86,7 +86,7 @@ public class V3LcapMessageFactory {
 					ud.getPollerId());
   }
 
-  public static V3LcapMessage makeRepairRequestMsg(PollerUserData ud) {
+  public static V3LcapMessage makeRepairRequestMsg(ParticipantUserData ud) {
     V3LcapMessage msg =
       V3LcapMessage.makeRequestMsg(ud.getAuId(),
                                    ud.getKey(),
@@ -103,7 +103,7 @@ public class V3LcapMessageFactory {
     return msg;
   }
 
-  public static V3LcapMessage makeEvaluationReceiptMsg(PollerUserData ud) {
+  public static V3LcapMessage makeEvaluationReceiptMsg(ParticipantUserData ud) {
     V3LcapMessage msg =
       V3LcapMessage.makeRequestMsg(ud.getAuId(),
                                    ud.getKey(),

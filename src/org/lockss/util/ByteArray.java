@@ -35,6 +35,8 @@ package org.lockss.util;
 import java.io.*;
 import java.math.BigInteger;
 
+import org.mortbay.util.*;
+
 /**
  * Byte array utilities
  */
@@ -88,6 +90,11 @@ public class ByteArray {
     System.arraycopy(a, 0, res, 0, a.length);
     System.arraycopy(b, 0, res, a.length, b.length);
     return res;
+  }
+
+  /** Return a Base64 encoded representation of bytes in array */
+  public static String toBase64(byte[] b) {
+    return String.valueOf(B64Code.encode(b));
   }
 
   /** Return hex representation of bytes in array */

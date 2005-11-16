@@ -63,7 +63,9 @@ public abstract class V3Serializer {
    * @param dir Optionally, a pre-existing serialization directory to use.
    * @throws PollSerializerException
    */
-  public V3Serializer(LockssDaemon daemon, String dir) throws PollSerializerException {
+  public V3Serializer(LockssDaemon daemon, String dir)
+      throws PollSerializerException {
+    this.xstr = new XStreamSerializer(daemon);
     Configuration config = Configuration.getCurrentConfig();
     String relStateDir = config.get(PARAM_V3_STATE_LOCATION,
                                     DEFAULT_V3_STATE_LOCATION);
@@ -87,7 +89,7 @@ public abstract class V3Serializer {
 					   + "arguments must already exist");
       }
     }
-    
+
     xstr = new XStreamSerializer(daemon);
   }
 

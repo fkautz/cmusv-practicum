@@ -75,18 +75,9 @@ public abstract class BasePoll implements Poll {
   abstract protected void receiveMessage(LcapMessage msg);
 
   /**
-   * start the poll.
-   */
-  abstract protected void startPoll();
-
-  /**
-   * Stop the poll when our deadline expired or our poll has ended in error.
-   */
-  abstract protected void stopPoll();
-
-  /**
    * Is our poll currently in an error state
    * @return true if the poll state is an error value
    */
   abstract protected boolean isErrorState();
+
 }

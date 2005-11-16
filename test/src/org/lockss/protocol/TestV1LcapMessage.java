@@ -227,8 +227,8 @@ public class TestV1LcapMessage extends LockssTestCase {
 					   V1LcapMessage.CONTENT_POLL_REQ,
 					   100000,
 					   testID);
-    assertEquals(spec.getPollVersion(), 1);
-    assertEquals(1, req_msg.getPollVersion());
+    assertEquals(spec.getProtocolVersion(), 1);
+    assertEquals(1, req_msg.getProtocolVersion());
     assertEquals("Plug42", req_msg.getPluginVersion());
     assertTrue(testID == req_msg.m_originatorID);
     assertEquals(V1LcapMessage.CONTENT_POLL_REQ, req_msg.m_opcode);
