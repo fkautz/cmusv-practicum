@@ -213,7 +213,7 @@ public class StatusServiceImpl
       return ALL_TABLE_TITLE;
     }
 
-    private List getRows() {
+    private List getRows(boolean isDebugUser) {
       synchronized(statusAccessors) {
 	Set tables = statusAccessors.keySet();
 	Iterator it = tables.iterator();
@@ -223,7 +223,9 @@ public class StatusServiceImpl
 	  StatusAccessor statusAccessor =
 	    (StatusAccessor)statusAccessors.get(tableName);
 	  if (!ALL_TABLES_TABLE.equals(tableName) &&
-	      !statusAccessor.requiresKey()) {
+	      !statusAccessor.requiresKey() &&
+	      (isDebugUser ||
+	       !(statusAccessor instanceof StatusAccessor.DebugOnly))) {
 	    Map row = new HashMap(1); //will only have the one key-value pair
 	    String title = null;
  	    try {
@@ -261,7 +263,7 @@ public class StatusServiceImpl
     public void populateTable(StatusTable table) {
       table.setColumnDescriptors(columns);
       table.setDefaultSortRules(sortRules);
-      table.setRows(getRows());
+      table.setRows(getRows(table.getOptions().get(StatusTable.OPTION_DEBUG_USER)));
     }
 
   }

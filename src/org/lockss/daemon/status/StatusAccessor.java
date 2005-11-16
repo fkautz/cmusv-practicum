@@ -69,4 +69,11 @@ public interface StatusAccessor {
    * @return true if a key is required
    */
   public boolean requiresKey();
+
+  /**
+   * Marker interface for status accessors that should be included in the
+   * table of all tables only for the debug user
+   */
+  public interface DebugOnly extends StatusAccessor {
+  }
 }
