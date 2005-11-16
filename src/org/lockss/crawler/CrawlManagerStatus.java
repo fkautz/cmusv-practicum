@@ -210,7 +210,7 @@ public class CrawlManagerStatus implements StatusAccessor {
     String key = table.getKey();
     table.setColumnDescriptors(colDescs);
     boolean includeInternalAus =
-      table.getOptions().get(StatusTable.OPTION_INCLUDE_INTERNAL_AUS);
+      table.getOptions().get(StatusTable.OPTION_DEBUG_USER);
     table.setRows(getRows(key, includeInternalAus));
 
     table.setDefaultSortRules(makeSortRules());

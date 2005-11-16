@@ -112,7 +112,7 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
         throws StatusService.NoSuchTableException {
       table.setColumnDescriptors(columnDescriptors);
       table.setDefaultSortRules(sortRules);
-      table.setRows(getRows(table.getOptions().get(StatusTable.OPTION_INCLUDE_INTERNAL_AUS)));
+      table.setRows(getRows(table.getOptions().get(StatusTable.OPTION_DEBUG_USER)));
       table.setSummaryInfo(getSummaryInfo());
     }
 

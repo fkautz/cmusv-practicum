@@ -315,7 +315,7 @@ public class TimerQueue {
       for (Iterator iter = q.iterator(); iter.hasNext();) {
 	TimerQueue.Request req = (TimerQueue.Request)iter.next();
 	if (!req.cancelled ||
-	    table.getOptions().get(StatusTable.OPTION_INCLUDE_INTERNAL_AUS)) {
+	    table.getOptions().get(StatusTable.OPTION_DEBUG_USER)) {
 	  rows.add(makeRow(req));
 	}
       }

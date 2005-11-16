@@ -166,7 +166,7 @@ public class ArchivalUnitStatus
       PluginManager pluginMgr = theDaemon.getPluginManager();
 
       boolean includeInternalAus =
-	table.getOptions().get(StatusTable.OPTION_INCLUDE_INTERNAL_AUS);
+	table.getOptions().get(StatusTable.OPTION_DEBUG_USER);
       List rowL = new ArrayList();
       for (Iterator iter = pluginMgr.getAllAus().iterator();
 	   iter.hasNext(); ) {
@@ -261,7 +261,7 @@ public class ArchivalUnitStatus
       PluginManager pluginMgr = theDaemon.getPluginManager();
 
       boolean includeInternalAus =
-	table.getOptions().get(StatusTable.OPTION_INCLUDE_INTERNAL_AUS);
+	table.getOptions().get(StatusTable.OPTION_DEBUG_USER);
       List rowL = new ArrayList();
       for (Iterator iter = pluginMgr.getAllAus().iterator();
 	   iter.hasNext(); ) {

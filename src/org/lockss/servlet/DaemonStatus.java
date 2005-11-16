@@ -114,8 +114,8 @@ public class DaemonStatus extends LockssServlet {
     tableOptions = new BitSet();
 
     if (isDebugUser()) {
-      log.debug2("Debug user.  Setting OPTION_INCLUDE_INTERNAL_AUS");
-      tableOptions.set(StatusTable.OPTION_INCLUDE_INTERNAL_AUS);
+      log.debug2("Debug user.  Setting OPTION_DEBUG_USER");
+      tableOptions.set(StatusTable.OPTION_DEBUG_USER);
     }
 
     for (Iterator iter = StringUtil.breakAt(optionsParam, ',').iterator();

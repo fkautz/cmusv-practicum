@@ -126,7 +126,7 @@ class Plugins extends PluginStatus implements StatusAccessor {
   public void populateTable(StatusTable table) {
     table.setColumnDescriptors(colDescs);
     table.setDefaultSortRules(sortRules);
-    table.setRows(getRows(table.getOptions().get(StatusTable.OPTION_INCLUDE_INTERNAL_AUS)));
+    table.setRows(getRows(table.getOptions().get(StatusTable.OPTION_DEBUG_USER)));
   }
 
   public List getRows(boolean includeInternalAus) {

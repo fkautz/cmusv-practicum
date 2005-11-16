@@ -197,7 +197,7 @@ public class NodeManagerManager
         throws StatusService.NoSuchTableException {
       table.setColumnDescriptors(columnDescriptors);
       table.setDefaultSortRules(sortRules);
-      table.setRows(getRows(table.getOptions().get(StatusTable.OPTION_INCLUDE_INTERNAL_AUS)));
+      table.setRows(getRows(table.getOptions().get(StatusTable.OPTION_DEBUG_USER)));
     }
 
     public boolean requiresKey() {

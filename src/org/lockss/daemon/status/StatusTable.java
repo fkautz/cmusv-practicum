@@ -46,7 +46,7 @@ public class StatusTable {
   public static final Object ROW_SEPARATOR = new Object();
 
   public static final int OPTION_NO_ROWS = 1;
-  public static final int OPTION_INCLUDE_INTERNAL_AUS = 2;
+  public static final int OPTION_DEBUG_USER = 2;
 
   private String name;
   private String key;
