@@ -315,7 +315,7 @@ public class IcpSocketImpl extends LockssRunnable implements IcpSocket {
    * <p>The default ICP thread priority.</p>
    */
   private static final int DEFAULT_ICP_THREAD_PRIORITY =
-    Thread.NORM_PRIORITY + 1;
+    Thread.NORM_PRIORITY + 2;
 
   /**
    * <p>The default ICP watchdog interval.</p>

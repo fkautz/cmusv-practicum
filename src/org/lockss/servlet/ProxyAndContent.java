@@ -139,17 +139,13 @@ public class ProxyAndContent extends LockssServlet {
   }
 
   private boolean getDefaultIcpEnable() {
-    if (isForm) {
-      return formIcpEnable;
-    }
-    return Configuration.getBooleanParam(IcpManager.PARAM_ICP_ENABLED,
-                                         IcpManager.DEFAULT_ICP_ENABLED);
+    return isForm ? formIcpEnable : getLockssDaemon().getIcpManager().isIcpServerRunning();
   }
 
   private String getDefaultIcpPort() {
     String port = formIcpPort;
     if (StringUtil.isNullString(port)) {
-      port = Configuration.getParam(IcpManager.PARAM_ICP_PORT);
+      port = Integer.toString(getLockssDaemon().getIcpManager().getCurrentPort());
     }
     return port;
   }
