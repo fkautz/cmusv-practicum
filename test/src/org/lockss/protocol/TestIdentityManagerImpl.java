@@ -78,10 +78,7 @@ public abstract class TestIdentityManagerImpl extends LockssTestCase {
   }
 
   public static Test suite() {
-    return variantSuites(new Class[] {
-        WithCastor.class,
-        WithXStream.class
-    });
+    return variantSuites(TestIdentityManagerImpl.class, TestIdentityManagerImpl.class);
   }
 
   Object testIdKey;
