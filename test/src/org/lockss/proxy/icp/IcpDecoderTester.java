@@ -61,15 +61,22 @@ public abstract class IcpDecoderTester extends LockssTestCase {
    */
   public void testDecoding() throws Exception {
     IcpDecoder decoder = factory.makeIcpDecoder();
+    int failed = 0;
 
     for (int test = 0 ; test < MockIcpMessage.countTestPairs(); test++) {
-      logger.info("testDecoding: begin test #" + test);
-      DatagramPacket packet = MockIcpMessage.getTestPacket(test);
-      // ???
-      IcpMessage message = decoder.parseIcp(packet);
-      expect(MockIcpMessage.getTestMessage(test), message);
-      logger.info("testDecoding: end test #" + test);
+      try {
+        logger.info("testDecoding: begin test #" + test);
+        DatagramPacket packet = MockIcpMessage.getTestPacket(test);
+        IcpMessage message = decoder.parseIcp(packet);
+        expect(MockIcpMessage.getTestMessage(test), message);
+        logger.info("testDecoding: PASSED test #" + test);
+      } catch (IcpProtocolException ipe) {
+        logger.error("testDecoding: FAILED test #" + test);
+        ++failed;
+      }
     }
+
+    assertTrue("Number of failed tests: " + failed, failed == 0);
   }
 
   /**

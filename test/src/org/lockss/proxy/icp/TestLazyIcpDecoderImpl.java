@@ -32,46 +32,22 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.proxy.icp;
 
-import java.net.ProtocolException;
+import org.lockss.proxy.icp.IcpDecoder.Factory;
 
 /**
- * <p>An exception class for all errors related to the ICP
- * protocol.</p>
+ * <p>Test class for
+ * <code>org.lockss.proxy.icp.IcpFactoryImpl.LazyIcpDecoderImpl</code>.</p>
  * @author Thib Guicherd-Callin
  */
-public class IcpProtocolException extends ProtocolException {
+public class TestLazyIcpDecoderImpl extends IcpDecoderTester {
 
-  /**
-   * <p>Builds a new IcpProtocolException instance.</p>
-   */
-  public IcpProtocolException() {
-    super();
-  }
-
-  /**
-   * <p>Builds a new IcpProtocolException instance
-   * with the given message.</p>
-   */
-  public IcpProtocolException(String message) {
-    super(message);
-  }
-
-  /**
-   * <p>Builds a new IcpProtocolException instance
-   * with the given message and cause.</p>
-   */
-  public IcpProtocolException(String message, Throwable cause) {
-    super(message);
-    initCause(cause);
-  }
-
-  /**
-   * <p>Builds a new IcpProtocolException instance
-   * with the given cause.</p>
-   */
-  public IcpProtocolException(Throwable cause) {
-    super();
-    initCause(cause);
+  /* Inherit documentation */
+  protected Factory makeFactory() {
+    return new IcpDecoder.Factory() {
+      public IcpDecoder makeIcpDecoder() {
+        return IcpFactoryImpl.makeLazyIcpDecoder();
+      }
+    };
   }
 
 }
