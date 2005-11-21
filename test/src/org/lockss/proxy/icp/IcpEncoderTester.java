@@ -70,8 +70,7 @@ public abstract class IcpEncoderTester extends LockssTestCase {
                        MockIcpMessage.getStandardDestination(),
                        MockIcpMessage.getStandardUdpPort());
       expect(MockIcpMessage.getTestPacket(test), packet);
-      logger.info("testEncoding: end test #" + test);
-
+      logger.info("testEncoding: PASSED test #" + test);
     }
   }
 
