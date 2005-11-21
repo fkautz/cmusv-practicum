@@ -78,7 +78,7 @@ public abstract class TestIdentityManagerImpl extends LockssTestCase {
   }
 
   public static Test suite() {
-    return variantSuites(TestIdentityManagerImpl.class, TestIdentityManagerImpl.class);
+    return variantSuites(TestIdentityManagerImpl.class);
   }
 
   Object testIdKey;

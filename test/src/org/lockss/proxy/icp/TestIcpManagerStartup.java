@@ -245,7 +245,7 @@ public abstract class TestIcpManagerStartup extends LockssTestCase {
   protected abstract void setConfig();
 
   public static Test suite() {
-    return variantSuites(TestIcpManagerStartup.class, TestIcpManagerStartup.class);
+    return variantSuites(TestIcpManagerStartup.class);
   }
 
 }

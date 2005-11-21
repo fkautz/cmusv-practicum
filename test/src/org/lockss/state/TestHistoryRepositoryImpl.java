@@ -81,7 +81,7 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
   }
 
   public static Test suite() {
-    return variantSuites(TestHistoryRepositoryImpl.class, TestHistoryRepositoryImpl.class);
+    return variantSuites(TestHistoryRepositoryImpl.class);
   }
 
   private String tempDirPath;
