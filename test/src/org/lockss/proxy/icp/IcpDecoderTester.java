@@ -34,6 +34,8 @@ package org.lockss.proxy.icp;
 
 import java.net.DatagramPacket;
 
+import junit.framework.AssertionFailedError;
+
 import org.lockss.proxy.icp.IcpDecoder;
 import org.lockss.proxy.icp.IcpDecoder.Factory;
 import org.lockss.test.LockssTestCase;
@@ -70,8 +72,13 @@ public abstract class IcpDecoderTester extends LockssTestCase {
         IcpMessage message = decoder.parseIcp(packet);
         expect(MockIcpMessage.getTestMessage(test), message);
         logger.info("testDecoding: PASSED test #" + test);
-      } catch (IcpProtocolException ipe) {
-        logger.error("testDecoding: FAILED test #" + test);
+      }
+      catch (IcpProtocolException ipe) {
+        logger.error("testDecoding: FAILED test #" + test, ipe);
+        ++failed;
+      }
+      catch (AssertionFailedError afe) {
+        logger.error("testDecoding: FAILED test #" + test, afe);
         ++failed;
       }
     }
