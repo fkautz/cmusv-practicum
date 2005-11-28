@@ -32,7 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.proxy.icp;
 
-import org.lockss.proxy.icp.IcpEncoder.Factory;
+import org.lockss.proxy.icp.IcpEncoder;
 
 /**
  * <p>Test class for org.lockss.proxy.icp.IcpFactoryImpl.IcpEncoderImpl}</p>
@@ -41,8 +41,8 @@ import org.lockss.proxy.icp.IcpEncoder.Factory;
 public class TestIcpEncoderImpl extends IcpEncoderTester {
 
   /* Inherit documentation */
-  protected Factory makeFactory() {
-    return IcpFactoryImpl.makeEncoderFactory();
+  protected IcpEncoder.Factory makeFactory() {
+    return IcpFactoryImpl.getInstance();
   }
 
 }

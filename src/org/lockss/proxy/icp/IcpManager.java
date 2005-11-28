@@ -273,12 +273,11 @@ public class IcpManager
       }
 
       udpSocket = new DatagramSocket(port);
-      icpFactory = IcpFactoryImpl.makeIcpFactory();
+      icpFactory = IcpFactoryImpl.getInstance();
       icpBuilder = icpFactory.makeIcpBuilder();
       icpSocket = new IcpSocketImpl("IcpSocketImpl",
                                     udpSocket,
-                                    icpFactory.makeIcpEncoder(),
-                                    icpFactory.makeIcpDecoder(),
+                                    icpFactory,
                                     this);
       icpSocket.addIcpHandler(this);
       limiter = RateLimiter.getConfiguredRateLimiter(
