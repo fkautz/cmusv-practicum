@@ -87,7 +87,7 @@ public class IcpSocketImpl extends LockssRunnable implements IcpSocket {
    * @param name       A name for the {@link LockssRunnable} thread.
    * @param socket     A UDP socket ready for a call to
    *                   {@link DatagramSocket#receive(DatagramPacket)}.
-   * @param factory    An ICP encoder.
+   * @param factory    An ICP factory.
    * @param icpManager A back reference to the ICP manager.
    */
   public IcpSocketImpl(String name,
