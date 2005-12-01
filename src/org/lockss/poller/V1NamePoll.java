@@ -326,6 +326,14 @@ public class V1NamePoll extends V1Poll {
     return m_tally.getStatusString();
   }
 
+  public boolean isPollActive() {
+    return m_tally.stateIsActive();
+  }
+
+  public boolean isPollCompleted() {
+    return m_tally.stateIsFinished();
+  }
+
   static class NameVote extends Vote {
     private ArrayList knownEntries;
 

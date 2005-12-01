@@ -127,6 +127,14 @@ public class V1ContentPoll extends V1Poll {
     return m_tally.getStatusString();
   }
 
+  public boolean isPollActive() {
+    return m_tally.stateIsActive();
+  }
+
+  public boolean isPollCompleted() {
+    return m_tally.stateIsFinished();
+  }
+
   /**
    * Return the type of the poll, Poll.V1_CONTENT_POLL
    */

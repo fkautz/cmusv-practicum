@@ -74,6 +74,7 @@ public class SchedService extends BaseLockssManager {
     // TODO: checkpoint here.
     if (runner != null) {
       getApp().getStatusService().unregisterStatusAccessor("TaskRunner");
+      getApp().getStatusService().unregisterStatusAccessor("SchedQ");
       runner.stopService();
     }
     runner = null;

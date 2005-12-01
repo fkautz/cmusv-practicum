@@ -37,7 +37,7 @@ import org.lockss.protocol.psm.*;
 
 public class V3VoterSerializer extends V3Serializer {
 
-  private static final String VOTER_USER_DATA_FILE = "voter_user_data.xml";
+  public static final String VOTER_USER_DATA_FILE = "voter_user_data.xml";
 
   private File voterUserDataFile;
 
@@ -46,7 +46,7 @@ public class V3VoterSerializer extends V3Serializer {
     this(daemon, null);
   }
 
-  public V3VoterSerializer(LockssDaemon daemon, String dir)
+  public V3VoterSerializer(LockssDaemon daemon, File dir)
       throws PollSerializerException {
     super(daemon, dir);
     this.voterUserDataFile = new File(pollDir, VOTER_USER_DATA_FILE);

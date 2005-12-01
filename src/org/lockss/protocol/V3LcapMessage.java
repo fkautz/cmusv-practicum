@@ -507,7 +507,7 @@ public class V3LcapMessage extends LcapMessage implements LockssSerializable {
   static public V3LcapMessage makeRequestMsg(PollSpec ps, String key,
                                              byte[] pollerNonce,
                                              byte[] voterNonce, int opcode,
-                                             Deadline deadline,
+                                             long deadline,
                                              PeerIdentity origin) {
     return V3LcapMessage.makeRequestMsg(ps.getAuId(), key,
                                         ps.getProtocolVersion(),
@@ -521,10 +521,10 @@ public class V3LcapMessage extends LcapMessage implements LockssSerializable {
                                              String pluginVersion, String url,
                                              byte[] pollerNonce,
                                              byte[] voterNonce,
-                                             int opcode, Deadline deadline,
+                                             int opcode, long deadline,
                                              PeerIdentity origin) {
     long start = TimeBase.nowMs();
-    long stop = deadline.getExpirationTime();
+    long stop = deadline;
     V3LcapMessage msg = new V3LcapMessage(opcode, key, origin, url, start, stop,
                                           pollerNonce, voterNonce);
     msg.setKey(key);

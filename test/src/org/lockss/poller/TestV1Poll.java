@@ -61,6 +61,10 @@ public class TestV1Poll extends LockssTestCase {
 
   protected void setUp() throws Exception {
     super.setUp();
+    String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
+    Properties p = new Properties();
+    p.setProperty(ConfigManager.PARAM_PLATFORM_DISK_SPACE_LIST, tempDirPath);
+    ConfigurationUtil.setCurrentConfigFromProps(p);
     theDaemon = getMockLockssDaemon();
     pollmanager = theDaemon.getPollManager();
     idmgr = new MockIdentityManager();

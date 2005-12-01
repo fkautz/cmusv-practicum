@@ -243,6 +243,14 @@ class V1VerifyPoll extends V1Poll {
     return m_tally.getStatusString();
   }
 
+  public boolean isPollActive() {
+    return m_tally.stateIsActive();
+  }
+
+  public boolean isPollCompleted() {
+    return m_tally.stateIsFinished();
+  }
+
   class VerifyTimerCallback implements TimerQueue.Callback {
     /**
      * Called when the timer expires.

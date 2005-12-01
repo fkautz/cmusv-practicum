@@ -159,14 +159,13 @@ public class TestV3LcapMessage extends LockssTestCase {
     PollSpec spec =
       new MockPollSpec("ArchivalID_2", "http://foo.com/", null, null,
                        "Plug42", Poll.V3_POLL);
-    Deadline deadline = Deadline.in(10000);
     V3LcapMessage reqMsg =
       V3LcapMessage.makeRequestMsg(spec,
                                    "key",
 				   m_testBytes,
                                    m_testBytes,
 				   V3LcapMessage.MSG_REPAIR_REQ,
-				   deadline,
+				   10000,
 				   m_testID);
 
     for (Iterator ix = m_testVoteBlocks.iterator(); ix.hasNext(); ) {

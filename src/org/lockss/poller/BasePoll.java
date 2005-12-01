@@ -80,4 +80,18 @@ public abstract class BasePoll implements Poll {
    */
   abstract protected boolean isErrorState();
 
+  /**
+   * Is this poll currently active?
+   *
+   * @return True if the poll is active.
+   */
+  abstract protected boolean isPollActive();
+
+  /**
+   * Is this poll currently active?
+   *
+   * @return True if the poll is complete.
+   */
+  abstract protected boolean isPollCompleted();
+
 }

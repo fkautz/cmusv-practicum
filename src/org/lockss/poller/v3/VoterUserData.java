@@ -56,7 +56,7 @@ public class VoterUserData
   private int pollVersion;
   private String pluginVersion;
   private long duration;
-  private Deadline deadline;
+  private long deadline;
   private String hashAlgorithm;
   private VoteBlocks voteBlocks;
   private String url;
@@ -98,7 +98,7 @@ public class VoterUserData
     this.pollerId = pollerId;
     this.pollKey = pollKey;
     this.duration = duration;
-    this.deadline = Deadline.in(duration);
+    this.deadline = Deadline.in(duration).getExpirationTime();
     this.hashAlgorithm = hashAlgorithm;
     this.voterNonce = voterNonce;
     this.pollerNonce = pollerNonce;
@@ -152,11 +152,11 @@ public class VoterUserData
     this.duration = duration;
   }
 
-  public Deadline getDeadline() {
+  public long getDeadline() {
     return deadline;
   }
 
-  public void setDeadline(Deadline deadline) {
+  public void setDeadline(long deadline) {
     this.deadline = deadline;
   }
 
