@@ -37,7 +37,7 @@ import java.net.*;
 import java.io.*;
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
-import org.lockss.config.Configuration;
+import org.lockss.config.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.state.*;
@@ -441,8 +441,8 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
 	logger.debug("Exception when trying to cache "+uc, e);
 	if (--retriesLeft > 0) {
 	  long pauseTime =
-	    Configuration.getTimeIntervalParam(PARAM_RETRY_PAUSE,
-					       DEFAULT_RETRY_PAUSE);
+            CurrentConfig.getTimeIntervalParam(PARAM_RETRY_PAUSE,
+                                               DEFAULT_RETRY_PAUSE);
 	  Deadline pause = Deadline.in(pauseTime);
 	  logger.debug3("Sleeping for " +
 			StringUtil.timeIntervalToString(pauseTime));

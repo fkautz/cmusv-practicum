@@ -34,7 +34,7 @@ package org.lockss.poller.v3;
 
 import java.io.*;
 
-import org.lockss.app.*;
+import org.lockss.app.LockssDaemon;
 import org.lockss.config.*;
 import org.lockss.util.*;
 
@@ -66,7 +66,7 @@ public abstract class V3Serializer {
   public V3Serializer(LockssDaemon daemon, File dir)
       throws PollSerializerException {
     this.xstr = new XStreamSerializer(daemon);
-    Configuration config = Configuration.getCurrentConfig();
+    Configuration config = CurrentConfig.getCurrentConfig();
     String relStateDir = config.get(PARAM_V3_STATE_LOCATION,
                                     DEFAULT_V3_STATE_LOCATION);
     if (dir == null) {

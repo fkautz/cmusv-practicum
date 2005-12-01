@@ -34,7 +34,7 @@ package org.lockss.crawler;
 
 import java.util.*;
 import org.lockss.util.*;
-import org.lockss.config.Configuration;
+import org.lockss.config.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.state.*;
@@ -75,7 +75,7 @@ public class NewContentCrawler extends FollowLinkCrawler {
     int refetchDepth0 = spec.getRefetchDepth();
     String key = StringUtil.replaceString(PARAM_REFETCH_DEPTH,
 					  "<auid>", au.getAuId());
-    int refetchDepth = Configuration.getIntParam(key, refetchDepth0);
+    int refetchDepth = CurrentConfig.getIntParam(key, refetchDepth0);
     if (refetchDepth != refetchDepth0) {
       logger.info("Crawl spec refetch depth (" + refetchDepth0 +
 		  ") overridden by parameter (" + refetchDepth + ")");

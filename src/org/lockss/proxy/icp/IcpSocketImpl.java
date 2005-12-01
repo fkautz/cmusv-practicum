@@ -34,14 +34,11 @@ package org.lockss.proxy.icp;
 
 import java.io.IOException;
 import java.net.*;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
-import org.lockss.config.Configuration;
+import org.lockss.config.CurrentConfig;
 import org.lockss.daemon.LockssRunnable;
-import org.lockss.util.Constants;
-import org.lockss.util.IPAddr;
-import org.lockss.util.Logger;
+import org.lockss.util.*;
 
 /**
  * <p>An implementation of the {@link IcpSocket} interface, that is
@@ -181,15 +178,15 @@ public class IcpSocketImpl extends LockssRunnable implements IcpSocket {
     // Set up
     logger.debug2("lockssRun in IcpSocketImpl: begin");
     long interval =
-      Configuration.getLongParam(PARAM_ICP_WDOG_INTERVAL,
+      CurrentConfig.getLongParam(PARAM_ICP_WDOG_INTERVAL,
                                  DEFAULT_ICP_WDOG_INTERVAL);
     byte[] buffer = new byte[IcpMessage.MAX_LENGTH];
     goOn = true;
     DatagramPacket packet = null;
     IcpMessage message = null;
     setPriority("icp",
-        Configuration.getIntParam(PARAM_ICP_THREAD_PRIORITY,
-                                  DEFAULT_ICP_THREAD_PRIORITY));
+                CurrentConfig.getIntParam(PARAM_ICP_THREAD_PRIORITY,
+                                          DEFAULT_ICP_THREAD_PRIORITY));
     boolean somethingBadHappened = false;
 
     try {

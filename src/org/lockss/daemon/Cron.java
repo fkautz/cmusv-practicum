@@ -260,7 +260,7 @@ public class Cron
 
     public long nextTime(long lastTime) {
       String freq =
-	Configuration.getParam(RemoteApi.PARAM_BACKUP_EMAIL_FREQ,
+        CurrentConfig.getParam(RemoteApi.PARAM_BACKUP_EMAIL_FREQ,
 			       RemoteApi.DEFAULT_BACKUP_EMAIL_FREQ);
       if ("weekly".equalsIgnoreCase(freq)) {
 	return nextWeek(lastTime);

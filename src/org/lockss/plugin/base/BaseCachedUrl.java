@@ -35,10 +35,10 @@ package org.lockss.plugin.base;
 import java.io.*;
 import java.net.MalformedURLException;
 
-import org.lockss.util.*;
-import org.lockss.config.Configuration;
+import org.lockss.config.*;
 import org.lockss.plugin.*;
 import org.lockss.repository.*;
+import org.lockss.util.*;
 
 /** Base class for CachedUrls.  Expects the LockssRepository for storage.
  * Plugins may extend this to get some common CachedUrl functionality.
@@ -95,7 +95,7 @@ public class BaseCachedUrl implements CachedUrl {
    * @return an InputStream
    */
   public InputStream openForHashing() {
-    if (Configuration.getBooleanParam(PARAM_SHOULD_FILTER_HASH_STREAM,
+    if (CurrentConfig.getBooleanParam(PARAM_SHOULD_FILTER_HASH_STREAM,
 				      DEFAULT_SHOULD_FILTER_HASH_STREAM)) {
       logger.debug3("Filtering on, returning filtered stream");
       return getFilteredStream();

@@ -35,7 +35,7 @@ package org.lockss.util;
 import java.io.*;
 
 import org.lockss.app.LockssApp;
-import org.lockss.config.Configuration;
+import org.lockss.config.CurrentConfig;
 
 /**
  * <p>Specifies an interface for serializers that marshal Java objects
@@ -421,8 +421,8 @@ public abstract class ObjectSerializer {
   }
 
   void maybeDelTempFile(File file) {
-    if (!Configuration.getBooleanParam(PARAM_SAVE_FAILED_TEMPFILES,
-				       DEFAULT_SAVE_FAILED_TEMPFILES)) {
+    if (!CurrentConfig.getBooleanParam(PARAM_SAVE_FAILED_TEMPFILES,
+                                       DEFAULT_SAVE_FAILED_TEMPFILES)) {
       logger.warning("Deleting unsuccessful serial file " + file);
       file.delete();
     }

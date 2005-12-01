@@ -32,18 +32,19 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.servlet;
 
-import javax.servlet.*;
 import java.io.*;
-import java.util.*;
 import java.text.*;
-import org.mortbay.html.*;
-import org.lockss.util.*;
-import org.lockss.config.Configuration;
-import org.lockss.daemon.*;
-import org.lockss.daemon.status.*;
-import org.lockss.plugin.*;
+import java.util.*;
 
-import org.w3c.dom.*;
+import javax.servlet.*;
+
+import org.mortbay.html.*;
+import org.w3c.dom.Document;
+
+import org.lockss.config.CurrentConfig;
+import org.lockss.daemon.status.*;
+import org.lockss.plugin.PluginManager;
+import org.lockss.util.*;
 
 /**
  * DaemonStatus servlet
@@ -205,7 +206,7 @@ public class DaemonStatus extends LockssServlet {
     PrintWriter wrtr = resp.getWriter();
     resp.setContentType("text/plain");
 
-    String vPlatform = Configuration.getParam(PARAM_PLATFORM_VERSION);
+    String vPlatform = CurrentConfig.getParam(PARAM_PLATFORM_VERSION);
     if (vPlatform != null) {
       vPlatform = ", cd=" + vPlatform;
     } else {

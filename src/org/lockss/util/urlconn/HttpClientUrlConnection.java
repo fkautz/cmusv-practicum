@@ -31,15 +31,16 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.util.urlconn;
 
 import java.io.*;
-import java.util.*;
-import org.lockss.util.*;
-import org.lockss.config.Configuration;
-import org.lockss.daemon.*;
+import java.util.Properties;
+
 import org.apache.commons.httpclient.*;
-import org.apache.commons.httpclient.util.*;
-import org.apache.commons.httpclient.methods.*;
+import org.apache.commons.httpclient.cookie.CookiePolicy;
+import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.params.*;
-import org.apache.commons.httpclient.cookie.*;
+import org.apache.commons.httpclient.util.*;
+
+import org.lockss.config.*;
+import org.lockss.util.*;
 
 /** Encapsulates Jakarta HttpClient method as a LockssUrlConnection.
  * Mostly simple wrapper behavior, except cross-host redirects are handled
@@ -272,8 +273,8 @@ public class HttpClientUrlConnection extends BaseLockssUrlConnection {
       log.debug2("Returning null input stream");
       return null;
     }
-    if (Configuration.getBooleanParam(PARAM_USE_WRAPPER_STREAM,
-				      DEFAULT_USE_WRAPPER_STREAM)) {
+    if (CurrentConfig.getBooleanParam(PARAM_USE_WRAPPER_STREAM,
+                                      DEFAULT_USE_WRAPPER_STREAM)) {
       return new EofMonitoringInputStream(in);
     }
     return in;

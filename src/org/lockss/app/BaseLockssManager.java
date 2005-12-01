@@ -32,8 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.app;
 
-import org.lockss.config.ConfigManager;
-import org.lockss.config.Configuration;
+import org.lockss.config.*;
 import org.lockss.util.*;
 
 /**
@@ -124,7 +123,7 @@ public abstract class BaseLockssManager implements LockssManager {
   protected void resetConfig() {
     if (this instanceof ConfigurableManager) {
       ConfigurableManager cmgr = (ConfigurableManager)this;
-      Configuration cur = Configuration.getCurrentConfig();
+      Configuration cur = CurrentConfig.getCurrentConfig();
       cmgr.setConfig(cur, ConfigManager.EMPTY_CONFIGURATION,
 		     Configuration.DIFFERENCES_ALL);
     } else {

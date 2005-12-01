@@ -41,17 +41,18 @@ import java.io.*;
 import java.util.*;
 
 import org.apache.commons.logging.Log;
-import org.mortbay.log.LogFactory;
 import org.mortbay.http.*;
 import org.mortbay.http.handler.*;
+import org.mortbay.log.LogFactory;
 import org.mortbay.util.*;
-import org.lockss.app.*;
-import org.lockss.plugin.*;
-import org.lockss.proxy.ProxyManager;
-import org.lockss.config.*;
 
 import com.sun.jimi.core.*;
-import com.sun.jimi.core.raster.*;
+import com.sun.jimi.core.raster.JimiRasterImage;
+
+import org.lockss.app.LockssDaemon;
+import org.lockss.config.CurrentConfig;
+import org.lockss.plugin.CachedUrl;
+import org.lockss.proxy.ProxyManager;
 
 /** Extension of ResourceHandler that allows flexibility in finding the
  * Resource.  Mostly copied here because some things in ResourceHandler
@@ -740,8 +741,8 @@ public class LockssResourceHandler extends AbstractHttpHandler {
 	    InputStream in = data.getInputStream();
 	    OutputStream out = null;
 	    boolean enableRewrite =
-	      Configuration.getCurrentConfig().getBoolean(ProxyManager.PARAM_REWRITE_GIF_PNG,
-							  ProxyManager.DEFAULT_REWRITE_GIF_PNG);
+              CurrentConfig.getCurrentConfig().getBoolean(ProxyManager.PARAM_REWRITE_GIF_PNG,
+                                                          ProxyManager.DEFAULT_REWRITE_GIF_PNG);
 	    if (!proxyMgr.isRepairRequest(request) &&
 		enableRewrite &&
 		"image/gif".equals(response.getContentType()) &&

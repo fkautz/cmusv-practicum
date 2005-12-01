@@ -38,7 +38,7 @@ import java.io.*;
 import org.lockss.app.*;
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
-import org.lockss.config.Configuration;
+import org.lockss.config.*;
 import org.lockss.daemon.*;
 import org.lockss.protocol.*;
 import org.lockss.proxy.ProxyManager;
@@ -264,7 +264,7 @@ public class RepairCrawler extends BaseCrawler {
       } else if (fetchCache) { //(1) other caches only
 	try {
 	  logger.debug3("Trying to fetch from caches only");
-	  if (Configuration.getCurrentConfig().containsKey(PARAM_NUM_RETRIES_FROM_CACHES)){
+	  if (CurrentConfig.getCurrentConfig().containsKey(PARAM_NUM_RETRIES_FROM_CACHES)){
 	    // try only from some caches
 	    fetchFromSomeCache(uc, numCacheRetries);
 	  } else {
@@ -449,7 +449,7 @@ public class RepairCrawler extends BaseCrawler {
    * map, otherwise just return true
    */
   public boolean populatePermissionMap() {
-    if (Configuration.getBooleanParam(PARAM_REPAIR_NEEDS_PERMISSION,
+    if (CurrentConfig.getBooleanParam(PARAM_REPAIR_NEEDS_PERMISSION,
                                       DEFAULT_REPAIR_NEEDS_PERMISSION)) {
       return super.populatePermissionMap();
     }

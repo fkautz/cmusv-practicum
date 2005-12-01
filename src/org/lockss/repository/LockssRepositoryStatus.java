@@ -26,18 +26,16 @@
 
 package org.lockss.repository;
 
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-import org.lockss.config.ConfigManager;
-import org.lockss.config.Configuration;
-import org.lockss.daemon.*;
+import org.lockss.app.*;
+import org.lockss.config.*;
 import org.lockss.daemon.status.*;
 import org.lockss.plugin.*;
-import org.lockss.remote.*;
+import org.lockss.remote.RemoteApi;
+import org.lockss.state.ArchivalUnitStatus;
 import org.lockss.util.*;
-import org.lockss.app.*;
-import org.lockss.state.*;
 
 /**
  * Collect and report the status of the LockssRepository
@@ -141,7 +139,7 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
     }
 
     String getDefaultRepositoryLocation() {
-      return Configuration.getParam(LockssRepositoryImpl.PARAM_CACHE_LOCATION);
+      return CurrentConfig.getParam(LockssRepositoryImpl.PARAM_CACHE_LOCATION);
     }
 
     private void addRows(Collection rows, String root,
