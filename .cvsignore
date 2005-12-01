@@ -7,3 +7,4 @@ tempbuild
 .settings
 .classpath
 .project
+bin
