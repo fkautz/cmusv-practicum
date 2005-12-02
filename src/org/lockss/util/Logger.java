@@ -269,7 +269,7 @@ public class Logger {
     String levelName =
       CurrentConfig.getParam(StringUtil.replaceString(PARAM_LOG_LEVEL,
                                                       "<logname>", name),
-                                                      CurrentConfig.getParam(defaultParamName));
+                             CurrentConfig.getParam(defaultParamName));
     int level = defaultLevel;
     if (levelName != null) {
       try {
