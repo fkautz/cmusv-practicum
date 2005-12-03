@@ -41,6 +41,7 @@ import org.lockss.plugin.ArchivalUnit;
 import org.lockss.repository.LockssRepositoryImpl;
 import org.lockss.test.*;
 import org.lockss.util.*;
+import org.lockss.util.Queue;
 
 
 /**
