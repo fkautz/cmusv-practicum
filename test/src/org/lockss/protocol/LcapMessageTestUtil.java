@@ -78,7 +78,7 @@ public class LcapMessageTestUtil {
       byte[] hash = computeHash(fileName);
       VoteBlock vb =
 	new VoteBlock("/test-" + ix + ".html", 1024, 0,
-		      1024, 0, hash, VoteBlock.CONTENT_VOTE);
+		      1024, 0, hash, hash, VoteBlock.CONTENT_VOTE);
       if (log.isDebug2()) {
 	log.debug2("Creating voteblock: " + vb);
       }

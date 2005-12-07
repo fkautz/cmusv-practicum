@@ -258,7 +258,8 @@ public class TestV3LcapMessage extends LockssTestCase {
 				      int uLength, int uOffset,
 				      int fLength, int fOffset) {
     return new VoteBlock(fName, uLength, uOffset, fLength, fOffset,
-			 computeHash(fName), VoteBlock.CONTENT_VOTE);
+			 computeHash(fName), computeHash(fName),
+                         VoteBlock.CONTENT_VOTE);
   }
 
   private void assertEqualMessages(V3LcapMessage a, V3LcapMessage b) {
@@ -305,7 +306,7 @@ public class TestV3LcapMessage extends LockssTestCase {
       byte[] hash = computeHash(fileName);
       VoteBlock vb =
 	new VoteBlock("/test-" + ix + ".html", 1024, 0,
-		      1024, 0, hash, VoteBlock.CONTENT_VOTE);
+		      1024, 0, hash, hash, VoteBlock.CONTENT_VOTE);
       if (log.isDebug2()) {
 	log.debug2("Creating voteblock: " + vb);
       }

@@ -712,7 +712,7 @@ public class V3Poller extends BasePoll {
   private void compareBlocks(VoteBlock vb, HashBlock hb,
                              int digestIndex, PeerIdentity voter,
                              BlockTally tally) {
-    byte[] voterResults = vb.getHash();
+    byte[] voterResults = vb.getChallengeHash();
     byte[] hasherResults = hb.getDigests()[digestIndex].digest();
     if (log.isDebug3()) {
       log.debug3("Comparing hashes for participant " + voter

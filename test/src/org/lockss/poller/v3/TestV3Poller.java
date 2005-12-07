@@ -96,6 +96,7 @@ public class TestV3Poller extends LockssTestCase {
     for (int ix = 0; ix < urls.length; ix++) {
       VoteBlock vb = new VoteBlock(urls[ix], 1024, 0, 1024, 0,
                                    ByteArray.makeRandomBytes(20),
+                                   ByteArray.makeRandomBytes(20),
                                    VoteBlock.CONTENT_VOTE);
       voteBlocks.add(vb);
     }
