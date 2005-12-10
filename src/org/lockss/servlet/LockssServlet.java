@@ -47,6 +47,7 @@ import org.mortbay.servlet.MultiPartRequest;
 
 import org.lockss.app.*;
 import org.lockss.config.*;
+import org.lockss.remote.RemoteApi;
 import org.lockss.servlet.BatchAuConfig.Verb;
 import org.lockss.util.*;
 
@@ -923,6 +924,15 @@ public abstract class LockssServlet extends HttpServlet
       return null;
     }
     return val;
+  }
+
+  protected Composite makeChooseSets(RemoteApi remoteApi,
+      Iterator titleSetIterator, Verb verb, String checkboxGroup,
+      boolean doGray, MutableBoolean isAnySelectable, String submitText,
+      String submitAction, MutableInteger buttonNumber, int atLeast) {
+    return ServletUtil.makeChooseSets(this, remoteApi, titleSetIterator,
+        verb, checkboxGroup, doGray, isAnySelectable, submitText,
+        submitAction, buttonNumber, atLeast);
   }
 
   protected void layoutChooseSets(Page page, Composite chooseSets,
