@@ -411,7 +411,8 @@ public class IdentityManagerImpl extends BaseLockssDaemonManager
     synchronized (theIdentities) {
       LcapIdentity lid = (LcapIdentity)theIdentities.get(pid);
       if (lid == null) {
-        theIdentities.put(pid, new LcapIdentity(pid, key));
+        lid = new LcapIdentity(pid, key);
+        theIdentities.put(pid, lid);
       }
       return lid;
     }
@@ -426,7 +427,8 @@ public class IdentityManagerImpl extends BaseLockssDaemonManager
     synchronized (theIdentities) {
       LcapIdentity lid = (LcapIdentity)theIdentities.get(pid);
       if (lid == null) {
-        theIdentities.put(pid, new LcapIdentity(pid, addr, port));
+        lid = new LcapIdentity(pid, addr, port);
+        theIdentities.put(pid, lid);
       }
       return lid;
     }
