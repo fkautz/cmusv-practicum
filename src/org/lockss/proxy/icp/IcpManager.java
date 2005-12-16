@@ -354,12 +354,12 @@ public class IcpManager
    * <p>The default ICP rate-limiting string.</p>
    */
   private static final String DEFAULT_ICP_INCOMING_RATE =
-    "50/1s";
+    "500/1s";
 
   /**
    * <p>The ICP rate-limiting string parameter.</p>
    */
   private static final String PARAM_ICP_INCOMING_RATE =
-  "org.lockss.proxy.icp.incomingRequestsPerSecond";
+  "org.lockss.proxy.icp.incomingRate";
 
 }
