@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -35,7 +35,7 @@ package org.lockss.proxy.icp;
 import java.io.IOException;
 import java.net.DatagramSocket;
 
-import org.lockss.config.Configuration;
+import org.lockss.config.*;
 import org.lockss.config.Configuration.Differences;
 import org.lockss.test.*;
 
@@ -98,6 +98,11 @@ public class TestIcpManager extends LockssTestCase {
   /* Inherit documentation */
   public void setUp() throws Exception {
     super.setUp();
+    ConfigurationUtil.addFromArgs("org.lockss.log.IcpManager.level",
+                                  "debug3",
+                                  "org.lockss.log.IcpSocketImpl.level",
+                                  "debug3");
+
     setEnabled(false, BAD_PORT);
     setConfigCalled = false;
     mockLockssDaemon = getMockLockssDaemon();
@@ -169,7 +174,9 @@ public class TestIcpManager extends LockssTestCase {
         sock.close();
         nextPort = p + 1;
         return p;
-      } catch (IOException ioe) {
+      }
+      catch (IOException ioe) {
+        // nothing; iterate
       }
     }
     log.error("Couldn't find unused TCP port");

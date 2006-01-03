@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -37,6 +37,13 @@ import java.nio.ByteBuffer;
 
 import org.lockss.util.IPAddr;
 
+/**
+ * <p>A customized version of {@link IcpFactoryImpl}, that attempts
+ * to use fast mutable ICP messages (and uses the general-purpose
+ * facilities provided by {@link IcpFactoryImpl} when it is not
+ * possible to use fast mutable ICP messages).</p>
+ * @author Thib Guicherd-Callin
+ */
 public class LazyIcpFactoryImpl extends IcpFactoryImpl {
 
   /*
