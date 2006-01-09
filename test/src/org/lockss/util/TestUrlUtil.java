@@ -160,6 +160,18 @@ public class TestUrlUtil extends LockssTestCase {
     assertEquals("http://a.com/dd?foo=bar",
 		 UrlUtil.normalizeUrl("http://a.com/dd?foo=bar"));
 
+    // no path normalization of query string
+    assertEquals("http://a.b/foo/bar?foo//bar",
+		 UrlUtil.normalizeUrl("http://a.b/foo//bar?foo//bar"));
+    assertEquals("http://a.b/bar?foo/../bar",
+		 UrlUtil.normalizeUrl("http://a.b/foo/../bar?foo/../bar"));
+
+    // remove newlines and leading whitespace
+    assertEquals("http://a.b/foo/bar?foo//bar",
+		 UrlUtil.normalizeUrl("ht\ntp://a.b/foo//bar?foo//bar"));
+    assertEquals("http://a .b/bar?foo/../bar",
+		 UrlUtil.normalizeUrl("  ht\n   tp://a .b/foo/../bar?foo/../bar"));
+
     try {
       String s = "http://a.com/xy/ab/../../../";
       UrlUtil.normalizeUrl(s);
