@@ -46,7 +46,7 @@ import org.apache.oro.text.regex.*;
 
 public class StringUtil {
 
-  static Logger logger = Logger.getLogger("StringUtil");
+  static Logger log = Logger.getLogger("StringUtil");
 
 
   /**
@@ -784,6 +784,21 @@ public class StringUtil {
       buf.deleteCharAt(buf.length() - 1);
     }
     return buf.toString();
+  }
+
+  private static Pattern nlEol =
+    RegexpUtil.uncheckedCompile("([\n\r][\n\t ]*)",
+				Perl5Compiler.MULTILINE_MASK);
+
+
+  /** Trim EOLs and leading whitespace from a block of text */
+  public static String trimNewlinesAndLeadingWhitespace(String str) {
+    if (str.indexOf("\n") == -1) {
+      return str;
+    }
+    Substitution subst = new Perl5Substitution("");
+    return Util.substitute(RegexpUtil.getMatcher(), nlEol, subst, str,
+			   Util.SUBSTITUTE_ALL);
   }
 
 
