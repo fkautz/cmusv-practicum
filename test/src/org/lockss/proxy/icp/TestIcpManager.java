@@ -38,6 +38,7 @@ import java.net.DatagramSocket;
 import org.lockss.config.*;
 import org.lockss.config.Configuration.Differences;
 import org.lockss.test.*;
+import org.lockss.util.*;
 
 /**
  * <p>Tests the {@link IcpManager} class.</p>
@@ -64,7 +65,7 @@ public class TestIcpManager extends LockssTestCase {
       super.startSocket(theConfig);
       if (icpSocket != null) {
         logger.debug("startSocket in TestableIcpManager: waitRunning");
-        icpSocket.waitRunning();
+        icpSocket.waitRunning(Deadline.in(Constants.SECOND));
         logger.debug("startSocket in TestableIcpManager: waitRunning done");
       }
       else {
