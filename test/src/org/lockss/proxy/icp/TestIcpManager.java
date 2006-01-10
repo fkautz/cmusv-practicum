@@ -65,7 +65,7 @@ public class TestIcpManager extends LockssTestCase {
       super.startSocket(theConfig);
       if (icpSocket != null) {
         logger.debug("startSocket in TestableIcpManager: waitRunning");
-        icpSocket.waitRunning(Deadline.in(Constants.SECOND));
+        icpSocket.waitRunning(Deadline.in(TIMEOUT_SHOULDNT));
         logger.debug("startSocket in TestableIcpManager: waitRunning done");
       }
       else {
