@@ -256,11 +256,11 @@ public class VoterUserData
     this.pollKey = pollKey;
   }
 
-  public String getUrl() {
+  public String getRepairTarget() {
     return url;
   }
 
-  public void setUrl(String url) {
+  public void setRepairTarget(String url) {
     this.url = url;
   }
 

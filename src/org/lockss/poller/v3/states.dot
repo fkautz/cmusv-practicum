@@ -88,6 +88,7 @@ digraph StateMachine {
     WaitReceipt -> SendVote [label="msgVoteRequest",fontsize="10"];
     WaitReceipt -> SendRepair [label="msgRepairRequest",fontsize="10"];
     WaitReceipt -> ProcessReceipt [label="msgReceipt",fontsize="10"];
+    WaitReceipt -> WaitReceipt [label="evtNoSuchRepair",fontsize="10"];
     SendRepair -> WaitReceipt [label="evtOk",fontsize="10"];
     ProcessReceipt -> VoterFinalize [label="evtOk",fontsize="10"];
   }

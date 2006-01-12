@@ -74,6 +74,11 @@ public class MockPollSpec extends PollSpec {
 	  lwrBound, uprBound, pollType);
   }
 
+  public MockPollSpec(CachedUrlSet cus, String lwrBound,
+                      String uprBound, int pollType) {
+    super(cus, lwrBound, uprBound, pollType);
+  }
+
   public MockPollSpec(String auId, String url,
 		      String lwrBound, String uprBound, String pluginVersion,
 		      int pollType) {

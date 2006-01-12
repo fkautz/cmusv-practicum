@@ -115,7 +115,7 @@ public class V3TestUtil extends LockssTestCase {
     assertEquals(d1.getReceiptEffortProof(), d2.getReceiptEffortProof());
     assertEquals(d1.getRemainingEffortProof(), d2.getRemainingEffortProof());
     assertEquals(d1.getRepairEffortProof(), d2.getRepairEffortProof());
-    assertEquals(d1.getUrl(), d2.getUrl());
+    assertEquals(d1.getRepairTarget(), d2.getRepairTarget());
     assertEquals(d1.getVoterNonce(), d2.getVoterNonce());
     assertEquals(d1.getDeadline(), d2.getDeadline());
     assertEquals(d1.getNominees(), d2.getNominees());

@@ -225,6 +225,7 @@ public class V3Voter extends BasePoll {
     V3LcapMessage msg = (V3LcapMessage)message;
     PeerIdentity sender = msg.getOriginatorId();
     PsmMsgEvent evt = V3Events.fromMessage(msg);
+    log.debug3("Received message: " + message.getOpcodeString() + " " + message);
     try {
       stateMachine.handleEvent(evt);
     } catch (PsmException e) {

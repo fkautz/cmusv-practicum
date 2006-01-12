@@ -180,7 +180,6 @@ public abstract class BasePlugin
       for (Iterator iter = attrs.nodeIterator(); iter.hasNext(); ) {
 	String attr = (String)iter.next();
 	String val = attrs.get(attr);
-	log.info("attr: " +  attr + ", val: " + val);
 	attrMap.put(attr, val);
       }
       tc.setAttributes(attrMap);

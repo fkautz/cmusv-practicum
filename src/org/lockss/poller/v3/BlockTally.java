@@ -145,6 +145,7 @@ public class BlockTally {
 
   public void addExtraBlockVoter(PeerIdentity id) {
     extraBlockVoters.add(id);
+    disagreeVoters.add(id);
   }
 
   public List getExtraBlockVoters() {
@@ -153,6 +154,7 @@ public class BlockTally {
 
   public void addMissingBlockVoter(PeerIdentity id) {
     missingBlockVoters.add(id);
+    disagreeVoters.add(id);
   }
 
   public List getMissingBlockVoters() {

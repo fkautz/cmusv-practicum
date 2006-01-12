@@ -212,7 +212,7 @@ public class MockCachedUrlSet implements CachedUrlSet {
     return nameHasher;
   }
 
-  long hashEstimate = 0;
+  private long hashEstimate = 0;
 
   public long estimatedHashDuration() {
     return hashEstimate;
