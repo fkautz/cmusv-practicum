@@ -153,14 +153,29 @@ public interface IdentityManager extends LockssManager {
   public static final int VOTE_DISOWNED = 9;
 
   /**
-   * <p>The ID separator character in V3.</p>
+   * <p>Currently the only allowed V3 protocol.</p>
    */
-  public static final char V3_ID_SEPARATOR_CHAR = ';';
+  public static final String V3_ID_PROTOCOL_TCP = "TCP";
 
   /**
-   * <p>The ID separator string in V3.</p>
+   * <p>The V3 protocol separator.</p>
    */
-  public static final String V3_ID_SEPARATOR = ";";
+  public static final String V3_ID_PROTOCOL_SUFFIX = ":";
+
+  /**
+   * <p>The V3 TCP IP addr prefix.</p>
+   */
+  public static final String V3_ID_TCP_ADDR_PREFIX = "[";
+
+  /**
+   * <p>The V3 TCP IP addr suffix.</p>
+   */
+  public static final String V3_ID_TCP_ADDR_SUFFIX = "]";
+
+  /**
+   * <p>The V3 TCP IP / port separator.</p>
+   */
+  public static final String V3_ID_TCP_IP_PORT_SEPARATOR = ":";
 
   /**
    * <p>The initial reputation value.</p>

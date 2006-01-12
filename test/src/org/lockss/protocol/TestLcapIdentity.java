@@ -154,9 +154,9 @@ public class TestLcapIdentity extends LockssTestCase {
     File temp3 = File.createTempFile("tmp", ".xml");
     temp3.deleteOnExit();
     PeerIdentity pidv3 =
-      new PeerIdentity("87.65.43.21" + IdentityManager.V3_ID_SEPARATOR_CHAR + "999");
+      new PeerIdentity(IDUtil.ipAddrToKey("87.65.43.21", "999"));
     LcapIdentity lid3 =
-      new LcapIdentity(pidv3, "87.65.43.21" + IdentityManager.V3_ID_SEPARATOR_CHAR + "999");
+      new LcapIdentity(pidv3, IDUtil.ipAddrToKey("87.65.43.21", "999"));
     serializer.serialize(temp3, lid3);
     LcapIdentity back3 = (LcapIdentity)deserializer.deserialize(temp3);
     assertTrue(lid3.isEqual(back3));
