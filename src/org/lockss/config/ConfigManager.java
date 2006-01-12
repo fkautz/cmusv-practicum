@@ -96,6 +96,9 @@ public class ConfigManager implements LockssManager {
   public static final String PARAM_PLATFORM_IP_ADDRESS =
     PLATFORM + "localIPAddress";
 
+  /** V3 identity string */
+  public static final String PARAM_PLATFORM_LOCAL_V3_IDENTITY =
+    PLATFORM + "v3.identity";
 
   /** Local subnet set during config */
   public static final String PARAM_PLATFORM_ACCESS_SUBNET =
@@ -568,6 +571,8 @@ public class ConfigManager implements LockssManager {
 
     conditionalPlatformOverride(config, PARAM_PLATFORM_IP_ADDRESS,
 				IdentityManager.PARAM_LOCAL_IP);
+    conditionalPlatformOverride(config, PARAM_PLATFORM_LOCAL_V3_IDENTITY,
+				IdentityManager.PARAM_LOCAL_V3_IDENTITY);
 
     conditionalPlatformOverride(config, PARAM_PLATFORM_SMTP_PORT,
 				SmtpMailService.PARAM_SMTPPORT);
