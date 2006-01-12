@@ -310,11 +310,7 @@ public class LcapIdentity implements LockssSerializable {
       throws MalformedIdentityKeyException {
     IdentityManager idm =
       (IdentityManager)lockssContext.getManagerByKey(LockssDaemon.IDENTITY_MANAGER);
-    LcapIdentity ret = idm.findLcapIdentity(m_pid, m_idKey);
-    if (ret.m_address == null) {
-      m_address = ((PeerAddress.Ip)m_pid.getPeerAddress()).getIPAddr();
-    }
-    return ret;
+    return idm.findLcapIdentity(m_pid, m_idKey);
   }
   
 }
