@@ -51,7 +51,6 @@ import org.lockss.test.*;
  * @version 0.0
  */
 public class TestBaseCrawler extends LockssTestCase {
-  static final String PERMISSION_STRING = BaseCrawler.LOCKSS_PERMISSION_STRING;
 //   private PermissionChecker checker;
   private MockArchivalUnit mau = null;
   private List startUrls = null;

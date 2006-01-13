@@ -84,9 +84,6 @@ public abstract class BaseCrawler
     Configuration.PREFIX + "crawler.storePermissionsRefetch";
   public static final boolean DEFAULT_REFETCH_PERMISSIONS_PAGE = false;
 
-  public static final String LOCKSS_PERMISSION_STRING =
-  "LOCKSS system has permission to collect, preserve, and serve this Archival Unit";
-
   public static final String PARAM_ABORT_WHILE_PERMISSION_OTHER_THAN_OK =
     Configuration.PREFIX + "BaseCrawler.abortWhilePermissionOtherThanOk";
   public static final boolean DEFAULT_ABORT_WHILE_PERMISSION_OTHER_THAN_OK =

@@ -39,6 +39,7 @@ import org.lockss.util.*;
 import org.lockss.test.*;
 import org.lockss.plugin.base.*;
 import org.lockss.crawler.*;
+import org.lockss.daemon.*;
 
 /**
  * This is a convenience class which takes care of handling the content
@@ -355,7 +356,7 @@ public class SimulatedContentGenerator {
       generateFile(treeRoot, jj, 0, 0,
 		   (alterFile && (jj==getAbnormalFileNumber())));
     }
-    generateIndexFile(treeRoot, BaseCrawler.LOCKSS_PERMISSION_STRING);
+    generateIndexFile(treeRoot, LockssPermission.LOCKSS_PERMISSION_STRING);
     return treeRoot.toString();
   }
 
