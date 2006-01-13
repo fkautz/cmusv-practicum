@@ -42,7 +42,7 @@ import org.lockss.config.CurrentConfig;
  * to XML.</p>
  * <p>Unit tests for classes that extend this class must themselves
  * extend the abstract unit test for this class,
- * {@link ObjectSerializerTester}.</p>
+ * <code>org.lockss.util.ObjectSerializerTester</code>.</p>
  * @author Thib Guicherd-Callin
  */
 public abstract class ObjectSerializer {

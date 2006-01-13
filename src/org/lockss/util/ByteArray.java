@@ -137,7 +137,7 @@ public class ByteArray {
    * Return a pseudo-random array of bytes of length len.
    *
    * @param len The size of the array to return.
-   * @returns A pseudo-random array of bytes.
+   * @return A pseudo-random array of bytes.
    */
   public static byte[] makeRandomBytes(int len) {
     byte[] retVal = new byte[len];

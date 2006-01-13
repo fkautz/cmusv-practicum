@@ -114,7 +114,6 @@ public class StatusActivityBase extends ApiActivityBase
   /**
    * Get daemon uptime
    * @param rootElement Parent element for disk space detail
-   * @returns Formatted time since daemon start
    */
   protected void renderUptimeXml(Element rootElement) {
 
