@@ -304,7 +304,9 @@ public class IcpManager
         ? IcpFactoryImpl.getInstance()
         : LazyIcpFactoryImpl.getInstance();
 
+      logger.debug3("DatagramSocket with port: " + port);
       udpSocket = new DatagramSocket(port);
+      logger.debug3("DatagramSocket bound with port: " + port);
       icpBuilder = icpFactory.makeIcpBuilder();
       icpSocket = new IcpSocketImpl("IcpSocketImpl",
                                     udpSocket,
