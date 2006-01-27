@@ -647,7 +647,7 @@ public class ConfigManager implements LockssManager {
       return;
     }
     String includeIps = config.get(accessParam);
-    includeIps = IpFilter.addToFilterList(includeIps, platformAccess);
+    includeIps = IpFilter.unionFilters(platformAccess, includeIps);
     config.put(accessParam, includeIps);
   }
 

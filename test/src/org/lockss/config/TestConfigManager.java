@@ -267,6 +267,22 @@ public class TestConfigManager extends LockssTestCase {
 		 config.get("org.lockss.proxy.access.ip.include"));
   }
 
+  // platform access set, ui and proxy access set locally
+  public void testPlatformAccess5() throws Exception {
+    Properties props = new Properties();
+    props.put("org.lockss.platform.accesssubnet", "1.2.3.*;4.4.4.0/24");
+    props.put("org.lockss.ui.access.ip.include", "1.2.3.0/22;1.2.3.*");
+//     props.put("org.lockss.ui.access.ip.platformAccess", "1.2.3.*");
+    props.put("org.lockss.proxy.access.ip.include", "1.2.3.0/21;5.5.0.0/18");
+//     props.put("org.lockss.proxy.access.ip.platformAccess", "3.2.1.0/22");
+    ConfigurationUtil.setCurrentConfigFromProps(props);
+    Configuration config = ConfigManager.getCurrentConfig();
+    assertEquals("1.2.3.*;4.4.4.0/24;1.2.3.0/22",
+		 config.get("org.lockss.ui.access.ip.include"));
+    assertEquals("1.2.3.*;4.4.4.0/24;1.2.3.0/21;5.5.0.0/18",
+		 config.get("org.lockss.proxy.access.ip.include"));
+  }
+
   public void testPlatformSpace1() throws Exception {
     Properties props = new Properties();
     props.put("org.lockss.platform.diskSpacePaths", "/foo/bar");
