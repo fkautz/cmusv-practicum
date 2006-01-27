@@ -695,6 +695,8 @@ public class TestRemoteApi extends LockssTestCase {
       assertEquals("foo@bar", msg.getHeader("To"));
       assertEquals("Backup file for LOCKSS cache lockss42.example.com",
 		   msg.getHeader("Subject"));
+      assertMatchesRE("^\\w\\w\\w, ",
+		      msg.getHeader("Date"));
 
       javax.mail.internet.MimeBodyPart[] parts = msg.getParts();
       assertEquals(2, parts.length);

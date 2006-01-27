@@ -1451,7 +1451,7 @@ public class RemoteApi
 
 
 
-  DateFormat headerDf = new SimpleDateFormat("EEE dd MMM yyyy HH:mm:ss zzz"
+  DateFormat headerDf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz"
 					     /*, Locale.US */);
 //   headerDf.setTimeZone(TimeZone.getTimeZone("GMT"));
 
