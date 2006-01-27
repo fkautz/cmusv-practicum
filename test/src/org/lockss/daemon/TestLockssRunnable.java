@@ -162,7 +162,7 @@ public class TestLockssRunnable extends LockssTestCase {
       fail("Thread didn't stop");
     }
     assertTrue(threadHung);
-    assertEquals(1, daemonExitCode);
+    assertEquals(Constants.EXIT_CODE_THREAD_HUNG, daemonExitCode);
   }
 
   // Same, but should produce a thread dump.
@@ -185,7 +185,7 @@ public class TestLockssRunnable extends LockssTestCase {
       fail("Thread didn't stop");
     }
     assertTrue(threadHung);
-    assertEquals(1, daemonExitCode);
+    assertEquals(Constants.EXIT_CODE_THREAD_HUNG, daemonExitCode);
   }
 
   public void testTriggerOnExit() throws Exception {
@@ -204,7 +204,7 @@ public class TestLockssRunnable extends LockssTestCase {
     // wait until thread exits, make sure it triggered threadExited()
     thr.join(TIMEOUT_SHOULDNT);
     assertTrue(threadExited);
-    assertEquals(2, daemonExitCode);
+    assertEquals(Constants.EXIT_CODE_THREAD_EXIT, daemonExitCode);
   }
 
   public void testTriggerOnExitNoInterval() throws Exception {
@@ -223,7 +223,7 @@ public class TestLockssRunnable extends LockssTestCase {
     // wait until thread exits, make sure it triggered threadExited()
     thr.join(TIMEOUT_SHOULDNT);
     assertTrue(threadExited);
-    assertEquals(2, daemonExitCode);
+    assertEquals(Constants.EXIT_CODE_THREAD_EXIT, daemonExitCode);
   }
 
   SimpleBinarySemaphore startSem;

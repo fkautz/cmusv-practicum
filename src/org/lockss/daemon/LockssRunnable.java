@@ -42,9 +42,6 @@ import org.lockss.util.*;
  * notably watchdog timers.  This should replace LockssThread.
  */
 public abstract class LockssRunnable  implements LockssWatchdog, Runnable {
-  static final int EXIT_CODE_THREAD_HUNG = 1;
-  static final int EXIT_CODE_THREAD_EXIT = 2;
-
   static final String PREFIX = Configuration.PREFIX + "thread.";
 
   /** Set false to prevent the watchdog from calling exit().  Checked both
@@ -265,7 +262,7 @@ public abstract class LockssRunnable  implements LockssWatchdog, Runnable {
       } catch (InterruptedException ignore) {}
       PlatformInfo.getInstance().threadDump();
     }
-    exitDaemon(EXIT_CODE_THREAD_HUNG,
+    exitDaemon(Constants.EXIT_CODE_THREAD_HUNG,
 	       "Thread hung for " + StringUtil.timeIntervalToString(interval));
   }
 
@@ -273,7 +270,7 @@ public abstract class LockssRunnable  implements LockssWatchdog, Runnable {
    * daemon; can be overridden is thread is able to take some less drastic
    * corrective action. */
   protected void threadExited() {
-    exitDaemon(EXIT_CODE_THREAD_EXIT, "Thread exited");
+    exitDaemon(Constants.EXIT_CODE_THREAD_EXIT, "Thread exited");
   }
 
   protected void exitDaemon(int exitCode, String msg) {
