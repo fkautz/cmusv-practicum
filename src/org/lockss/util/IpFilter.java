@@ -64,19 +64,6 @@ public class IpFilter {
     return StringUtil.separatedString(lst1, Constants.LIST_DELIM);
   }
 
-  public static String addToFilterList(String filterList, String filter) {
-    filter = filter.trim();
-    List lst = StringUtil.breakAt(filterList, Constants.LIST_DELIM_CHAR, 0, true, true);
-    if (lst.isEmpty()) {
-      return filter;
-    }
-    if (lst.contains(filter)) {
-      return filterList;
-    }
-    return filter + Constants.LIST_DELIM + filterList;
-  }
-
-
   /** Set include and exclude access lists from LIST_DELIM-separated strings.
    */
   public void setFilters(String includeList, String excludeList)
