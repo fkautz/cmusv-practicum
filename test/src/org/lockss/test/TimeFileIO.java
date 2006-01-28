@@ -162,21 +162,25 @@ public class TimeFileIO extends LockssTiming {
   private void doTreeWalk(File rootFile)
       throws FileNotFoundException, IOException {
     reporter.filesProcessed++;
-    File children[] = rootFile.listFiles();
-    if (children == null) {
-      return;
-    }
-    for (int ix = 0; ix < children.length; ix++) {
-      if (children[ix].isFile()) {
-	reporter.filesProcessed++;
-	if (isOpen) {
-	  doOpen(children[ix]);
-	} else if (isRead) {
-	  doRead(children[ix]);
-	}
-      } else if (children[ix].isDirectory()) {
+    if (rootFile.isFile()) {
+      doLeaf(rootFile);
+    } else if (rootFile.isDirectory()) {
+      File children[] = rootFile.listFiles();
+      if (children == null) {
+	return;
+      }
+      for (int ix = 0; ix < children.length; ix++) {
 	doTreeWalk(children[ix]);
       }
+    }
+  }
+
+  /** Process a regular file */
+  private void doLeaf(File file) throws IOException {
+    if (isOpen) {
+      doOpen(file);
+    } else if (isRead) {
+      doRead(file);
     }
   }
 
