@@ -37,7 +37,7 @@ import java.net.DatagramPacket;
 import junit.framework.AssertionFailedError;
 
 import org.lockss.test.LockssTestCase;
-import org.lockss.util.Logger;
+import org.lockss.util.*;
 
 /**
  * <p>A tester base class for implementors of {@link IcpFactory}.</p>
@@ -111,7 +111,7 @@ public abstract class IcpFactoryTester extends LockssTestCase {
   protected abstract IcpFactory makeIcpFactory();
 
   /**
-   * <p>A helper method for {@link #testMakeQuery}</p>
+   * <p>A helper method for {@link #testMakeQuery()}.</p>
    * @param srcrtt Whether to request a source return trip time.
    * @param hitobj Whether to request a hit object.
    * @throws Exception if an unexpected error occurs.
