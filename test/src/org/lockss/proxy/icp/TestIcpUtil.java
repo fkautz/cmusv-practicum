@@ -371,15 +371,15 @@ public class TestIcpUtil extends LockssTestCase {
    * @throws Exception if something unexpected occurs.
    */
   protected void testGetSomethingFromBuffer(String testName,
-                                         GetSomethingTester tester)
+                                            GetSomethingTester tester)
       throws Exception {
-    final String testBegin = testName + ": begin test #";
-    final String testPassed = testName + ": PASSED test #";
-    final String testFailed = testName + ": FAILED test #";
+    String testBegin = testName + ": begin test #";
+    String testPassed = testName + ": PASSED test #";
+    String testFailed = testName + ": FAILED test #";
 
     int failed = 0;
 
-    for (int test = 0 ; test < MockIcpMessage.countTestPairs(); test++) {
+    for (int test = 0 ; test < MockIcpMessage.countTestPairs(); ++test) {
       try {
         logger.info(testBegin + test);
         ByteBuffer in =
