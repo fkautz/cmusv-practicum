@@ -70,7 +70,7 @@ public class TestIcpManager extends LockssTestCase {
   /**
    * <p>The next port number to try.</p>
    */
-  private int port = 2048;
+  private static int port = 2048;
 
   /**
    * <p>Flag to indicate {@link IcpManager#setConfig} has been
