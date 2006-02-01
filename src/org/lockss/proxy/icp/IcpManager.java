@@ -488,6 +488,7 @@ public class IcpManager extends BaseLockssDaemonManager implements ConfigurableM
       logger.debug("startSocket: waitRunning()");
       icpRunnable.waitRunning();
       logger.debug("startSocket: end");
+      success = true;
     }
     catch (SocketException se) {
       forget(); // revert instantions
