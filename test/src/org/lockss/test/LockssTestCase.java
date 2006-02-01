@@ -165,8 +165,7 @@ public class LockssTestCase extends TestCase {
     }
     super.tearDown();
     if (Boolean.getBoolean("org.lockss.test.threadDump")) {
-      DebugUtils.getInstance().threadDump();
-      TimerUtil.guaranteedSleep(1000);
+      DebugUtils.getInstance().threadDump(true);
     }
     // don't reenable the watchdog; some threads may not have exited yet
 //     enableThreadWatchdog();
@@ -1485,8 +1484,7 @@ public class LockssTestCase extends TestCase {
 	    did = true;
 	    if (threadDump) {
 	      try {
-		DebugUtils.getInstance().threadDump();
-		TimerUtil.guaranteedSleep(1000);
+		DebugUtils.getInstance().threadDump(true);
 	      } catch (Exception e) {
 	      }
 	    }

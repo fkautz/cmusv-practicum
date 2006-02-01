@@ -377,8 +377,7 @@ public class DNSSupportTest extends LockssTestCase {
       }
     }
     if (anyInCall) {
-      DebugUtils.getInstance().threadDump();
-      TimerUtil.guaranteedSleep(1000);
+      DebugUtils.getInstance().threadDump(true);
     }
 
     for (int i = 0; i < thr.length; i++) {

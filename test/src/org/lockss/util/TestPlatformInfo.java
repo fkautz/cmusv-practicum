@@ -129,7 +129,7 @@ public class TestPlatformInfo extends LockssTestCase {
   }
 
   public void xtestThreadDump() throws Exception {
-    info.threadDump();
+    info.threadDump(true);
   }
 
 }

@@ -49,7 +49,7 @@ public class ThreadDump extends LockssServlet {
 
   /** Handle a request */
   public void lockssHandleRequest() throws IOException {
-    platInfo.threadDump();
+    platInfo.threadDump(false);
     PrintWriter wrtr = resp.getWriter();
     resp.setContentType("text/plain");
 

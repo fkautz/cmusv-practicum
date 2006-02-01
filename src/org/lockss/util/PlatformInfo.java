@@ -116,8 +116,11 @@ public class PlatformInfo {
 
   /** Request a thread dump of this JVM.  Dump is output to JVM's stderr,
    * which may not be the same as System.err.  If unsupported on this
-   * platform, logs an info message. */
-  public void threadDump() {
+   * platform, logs an info message.
+   * @param wait if true will attempt to wait until dump is complete before
+   * returning
+   */
+  public void threadDump(boolean wait) {
     int pid;
     try {
       pid = getMainPid();
@@ -134,6 +137,11 @@ public class PlatformInfo {
 //     InputStream is = p.getInputStream();
 //     org.mortbay.util.IO.copy(is, System.out);
       p.waitFor();
+      if (wait) {
+	try {
+	  Thread.sleep(Constants.SECOND);
+	} catch (InterruptedException ignore) {}
+      }
     } catch (IOException e) {
       log.error("Couldn't exec '" + cmd + "'", e);
     } catch (InterruptedException e) {
