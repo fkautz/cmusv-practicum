@@ -323,7 +323,7 @@ public class HttpClientUrlConnection extends BaseLockssUrlConnection {
     if (!isHeaderSet(method.getRequestHeader("Accept"))) {
       setRequestProperty("Accept", ACCEPT_STRING);
     }
-    if (!isHeaderSet(method.getRequestHeader("Connetion"))) {
+    if (!isHeaderSet(method.getRequestHeader("Connection"))) {
       setRequestProperty("Connection", "keep-alive");
     }
   }
