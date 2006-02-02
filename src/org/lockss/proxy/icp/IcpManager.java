@@ -162,7 +162,7 @@ public class IcpManager extends BaseLockssDaemonManager implements ConfigurableM
         if (somethingBadHappened) {
           logger.debug("lockssRun: somethingBadHappened is true");
         }
-        logger.debug("lockssRun in IcpSocketImpl: end");
+        logger.debug("lockssRun: end");
       }
     }
 
