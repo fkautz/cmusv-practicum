@@ -230,7 +230,7 @@ public abstract class TestIcpManagerStartup extends LockssTestCase {
     return variantSuites(TestIcpManagerStartup.class);
   }
 
-  protected static synchronized int getNewPort() {
+  protected static int getNewPort() {
     return port++;
   }
 

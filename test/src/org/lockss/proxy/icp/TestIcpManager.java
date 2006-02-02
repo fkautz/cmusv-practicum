@@ -150,7 +150,7 @@ public class TestIcpManager extends LockssTestCase {
     assertNegative(testableIcpManager.getCurrentPort());
   }
 
-  private synchronized int getNewPort() {
+  private int getNewPort() {
     return port++;
   }
 
