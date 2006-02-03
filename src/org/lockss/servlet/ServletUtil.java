@@ -499,7 +499,7 @@ public class ServletUtil {
       tbl.add(SPACE);
       tbl.newCell();
       String name = stat.getName();
-      tbl.add(name != null ? name : stat.getAuId());
+      tbl.add(name != null ? encodeText(name) : stat.getAuId());
       if (stat.getExplanation() != null) {
         tbl.newCell();
         tbl.add(stat.getExplanation());
@@ -956,7 +956,7 @@ public class ServletUtil {
         }
 
         tbl.newCell();
-        tbl.add(rs.getName());
+        tbl.add(encodeText(rs.getName()));
         TitleConfig tc = rs.getTitleConfig();
         long est;
         if (isAdd && tc != null && (est = tc.getEstimatedSize()) != 0) {
@@ -1062,7 +1062,7 @@ public class ServletUtil {
         if (!rs.isOk()) {
           tbl.newRow();
           tbl.newCell();
-          tbl.add(rs.getName());
+          tbl.add(encodeText(rs.getName()));
           tbl.newCell();
           tbl.add(rs.getExplanation());
         }
