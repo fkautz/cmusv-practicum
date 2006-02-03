@@ -201,6 +201,11 @@ public class IcpManager extends BaseLockssDaemonManager implements ConfigurableM
   private IcpFactory icpFactory;
 
   /**
+   * <p>The current ICP thread.</p>
+   */
+  private IcpRunnable icpRunnable;
+
+  /**
    * <p>A flag indicating whether the ICP thread is running in its
    * main loop.</p>
    */
@@ -658,10 +663,5 @@ public class IcpManager extends BaseLockssDaemonManager implements ConfigurableM
    */
   private static final String PARAM_SLOW_ICP =
     "org.lockss.proxy.icp.slow";
-
-  /**
-   * <p>The current ICP thread.</p>
-   */
-  private IcpRunnable icpRunnable;
 
 }
