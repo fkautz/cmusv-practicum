@@ -32,10 +32,11 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.util;
 
-import java.io.StringReader;
-import java.io.StringWriter;
+import java.io.*;
+import java.nio.CharBuffer;
 
 import org.lockss.app.LockssApp;
+import org.lockss.util.ObjectSerializer.SerializationException;
 
 /**
  * <p>Tests the {@link org.lockss.util.XStreamSerializer} class.</p>
@@ -252,6 +253,40 @@ public class TestXStreamSerializer extends ObjectSerializerTester {
         PostUnmarshalResolveExtMapBean.singleton,
         clone
     );
+  }
+
+  public void testSupportsInstantiationError() throws Exception {
+    /*
+     * begin LOCAL CLASS
+     * =================
+     */
+    class InstantiationErrorReader extends Reader {
+      private void die() { throw new InstantiationError(); }
+      public void close() { die(); }
+      public void mark(int i) { die(); }
+      public boolean markSupported() { die(); return false; }
+      public int read() { die(); return 0; }
+      public int read(char[] c, int i, int j) { die(); return 0; }
+      public int read(char[] c) { die(); return 0; }
+      public int read(CharBuffer c) { die(); return 0; }
+      public boolean ready() { die(); return false; }
+      public void reset() { die(); }
+      public long skip(long n) { die(); return 0L; }
+    }
+    /*
+     * end LOCAL CLASS
+     * ===============
+     */
+
+    XStreamSerializer deserializer = new XStreamSerializer();
+    Reader bomb = new InstantiationErrorReader();
+    try {
+      deserializer.deserialize(bomb);
+      fail("Should have thrown a SerializationException");
+    }
+    catch (SerializationException seIgnore) {
+      // all is well
+    }
   }
 
   protected ObjectSerializer makeObjectSerializer_ExtMapBean() {
