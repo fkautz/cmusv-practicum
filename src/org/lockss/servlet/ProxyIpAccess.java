@@ -170,6 +170,15 @@ public class ProxyIpAccess extends IpAccessControl {
     if (StringUtil.isNullString(port)) {
       port = CurrentConfig.getParam(PARAM_AUDIT_PORT);
     }
+    if (!StringUtil.isNullString(port)) {
+      try {
+        int portNumber = Integer.parseInt(port);
+        if (!(portNumber > 0)) {
+          port = "";
+        }
+      }
+      catch (NumberFormatException nfeIgnore) {}
+    }
     return port;
   }
 
@@ -180,7 +189,8 @@ public class ProxyIpAccess extends IpAccessControl {
   private String getDefaultIcpPort() {
     String port = formIcpPort;
     if (StringUtil.isNullString(port)) {
-      port = Integer.toString(getLockssDaemon().getIcpManager().getCurrentPort());
+      int portNumber = getLockssDaemon().getIcpManager().getCurrentPort();
+      port = portNumber > 0 ? Integer.toString(portNumber) : "";
     }
     return port;
   }

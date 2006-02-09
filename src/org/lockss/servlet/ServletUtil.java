@@ -50,6 +50,10 @@ import org.mortbay.html.*;
 
 public class ServletUtil {
 
+  private static final String ENABLEPORT_TABLE_ATTRIBUTES = "align=\"center\" cellpadding=\"10\"";
+
+  private static final int ENABLEPORT_TABLE_BORDER = 0;
+
   /**
    * <p>Keeps a link and an accompanying explanation of its purpose
    * conveniently together, for use in menus.</p>
@@ -276,7 +280,7 @@ public class ServletUtil {
   private static final String PAGE_BGCOLOR =
     COLOR_WHITE;
 
-  private static final String PORT_ATTRIBUTES =
+  private static final String ENABLEPORT_CELL_ATTRIBUTES =
     ALIGN_CENTER;
 
   private static final String REPOCHOICE_CELL_ATTRIBUTES =
@@ -610,7 +614,7 @@ public class ServletUtil {
     table.newRow();
 
     // Start line
-    table.newCell(PORT_ATTRIBUTES);
+    table.newCell(ENABLEPORT_CELL_ATTRIBUTES);
 
     // "enable" element
     Input enaElem = new Input(Input.Checkbox, enableFieldName, "1");
@@ -1119,6 +1123,16 @@ public class ServletUtil {
     tbl.newCell("colspan=\"6\"");
     tbl.add(Break.rule);
     return tbl;
+  }
+
+  /**
+   * <p>Begins a new {@link Table} suited for multiple "enable port"
+   * rows.</p>
+   * @return A new {@link Table} instance.
+   * @see #layoutEnablePortRow
+   */
+  public static Table newEnablePortTable() {
+    return new Table(ENABLEPORT_TABLE_BORDER, ENABLEPORT_TABLE_ATTRIBUTES);
   }
 
   /**
