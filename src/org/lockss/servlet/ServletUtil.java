@@ -217,7 +217,7 @@ public class ServletUtil {
     "<center><font color=\"red\" size=\"+1\">";
 
   private static final String ERRORBLOCK_STATUS_AFTER =
-    "<center><font size=\"+1\">";
+    "</font></center><br>";
 
   private static final String ERRORBLOCK_STATUS_BEFORE =
     "<center><font color=\"red\" size=\"+1\">";
