@@ -98,22 +98,32 @@ public class ProxyAndContent extends LockssServlet {
   }
 
   private void displayMenu(String explanation,
-                           Iterator descriptorIter) throws IOException {
+                           Iterator descriptorIter,
+                           String backLink) throws IOException {
+    // Start page
     Page page = newPage();
     ServletUtil.layoutExplanationBlock(page, explanation);
     layoutErrorBlock(page);
+
+    // Menu
     ServletUtil.layoutMenu(page, descriptorIter);
+
+    // Finish up
+    if (!StringUtil.isNullString(backLink)) {
+      ServletUtil.layoutBackLink(page, backLink);
+    }
     layoutFooter(page);
     resp.setContentType("text/html");
     page.write(resp.getWriter());
   }
 
   private void displayMenu_Content() throws IOException {
-    displayMenu(CONTENT_EXPLANATION, getDescriptors_Content());
+    displayMenu(CONTENT_EXPLANATION, getDescriptors_Content(),
+        srvLink(myServletDescr(), "Back to Proxy Options and Content Access Control"));
   }
 
   private void displayMenu_Main() throws IOException {
-    displayMenu(MAIN_EXPLANATION, getDescriptors_Main());
+    displayMenu(MAIN_EXPLANATION, getDescriptors_Main(), null);
   }
 
   private void displayProxy() throws IOException {
@@ -157,6 +167,8 @@ public class ProxyAndContent extends LockssServlet {
     page.add(frm);
 
     // Finish up
+    ServletUtil.layoutBackLink(page,
+        srvLink(myServletDescr(), "Back to Proxy Options and Content Access Control"));
     layoutFooter(page);
     resp.setContentType("text/html");
     page.write(resp.getWriter());
@@ -349,7 +361,7 @@ public class ProxyAndContent extends LockssServlet {
 
   private static final String ACTION_PROXY = "Proxy";
 
-  private static final String ACTION_UPDATE_PROXY = "UpdateProxy";
+  private static final String ACTION_UPDATE_PROXY = "Update Proxy";
 
   private static final String AUDIT_ENABLE_NAME = "audit_ena";
 
@@ -358,7 +370,7 @@ public class ProxyAndContent extends LockssServlet {
 
   private static final String AUDIT_PORT_NAME = "audit_port";
 
-  private static final String BAD_ACTION = "foo";
+  private static final String BAD_ACTION = "Unknown_Action";
 
   private static final String COMMENT_PROXY_IP_ACCESS =
     "Proxy Options";
