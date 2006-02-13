@@ -220,7 +220,7 @@ public class ServletUtil {
     "</font></center><br>";
 
   private static final String ERRORBLOCK_STATUS_BEFORE =
-    "<center><font color=\"red\" size=\"+1\">";
+    "<center><font size=\"+1\">";
 
   private static final String EXPLANATION_CELL_ATTRIBUTES =
     ALIGN_CENTER;
