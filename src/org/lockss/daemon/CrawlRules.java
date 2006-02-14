@@ -121,6 +121,9 @@ public class CrawlRules {
      */
     public int match(String url) {
       boolean match = isMatch(url);
+      if (logger.isDebug3()) {
+	logger.debug3(this + ".match("+url+"): " + matchAction(match));
+      }
       return matchAction(match);
     }
 
@@ -145,7 +148,7 @@ public class CrawlRules {
     }
 
     public String toString() {
-      return "[CrawlRule.RE: '" + regexp + "', " + action + "]";
+      return "[CrawlRule.RE: '" + regexp.getPattern() + "', " + action + "]";
     }
   }
 
@@ -173,7 +176,9 @@ public class CrawlRules {
      * Apply the matcher then check the condition if the match succeeds
      */
     public int match(String url) {
-      logger.debug3("Match called with "+url);
+      if (logger.isDebug3()) {
+	logger.debug3("Match called with "+url);
+      }
       Perl5Matcher matcher = RegexpUtil.getMatcher();
       boolean match = isMatch(matcher, url);
       if (match) {
