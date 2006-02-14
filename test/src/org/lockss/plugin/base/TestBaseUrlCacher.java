@@ -1253,7 +1253,8 @@ public class TestBaseUrlCacher extends LockssTestCase {
 
   private static class MockPermissionMap extends PermissionMap {
     public MockPermissionMap() {
-      super(new MockArchivalUnit(), new MockPermissionHelper(), new ArrayList());
+      super(new MockArchivalUnit(), new MockPermissionHelper(),
+	    new ArrayList(), null);
     }
 
     protected void putStatus(String permissionUrl, int status)

@@ -222,7 +222,8 @@ public abstract class BaseCrawler
 
   protected boolean populatePermissionMap() {
       // get the permission list from crawl spec
-    permissionMap = new PermissionMap(au, this, daemonPermissionCheckers);
+    permissionMap = new PermissionMap(au, this, daemonPermissionCheckers,
+				      pluginPermissionChecker);
 //    List permissionList = spec.getPermissionPages();
 //    if (permissionList == null || permissionList.size() == 0) {
 //      logger.error("spec.getPermissionPages() return null list or nothing in the list!");
