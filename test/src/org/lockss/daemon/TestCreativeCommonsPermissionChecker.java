@@ -172,63 +172,63 @@ public class TestCreativeCommonsPermissionChecker extends LockssTestCase {
 
   public void testNullReader() {
     try {
-      cc.checkPermission(null, "http://www.example.com/");
-      fail("Calling checkPermission(null, url) should throw");
+      cc.checkPermission(null, null, "http://www.example.com/");
+      fail("Calling checkPermission(null, null, url) should throw");
     } catch (NullPointerException npe) {
     }
   }
 
   public void testCheckGrantedPermissionRDFOnly() throws Exception {
     reader = new StringReader(grantedRDF);
-    assertTrue(cc.checkPermission(reader, pageURI));
+    assertTrue(cc.checkPermission(null, reader, pageURI));
     reader.close();
   }
 
   public void testCheckGrantedPermissionRDFOnlyWithURI() throws Exception {
     reader = new StringReader(grantedRDFWithURI);
-    assertTrue(cc.checkPermission(reader, pageURI));
+    assertTrue(cc.checkPermission(null, reader, pageURI));
     reader.close();
   }
 
   public void testCheckDeniedPermissionRDFOnly() throws Exception {
     reader = new StringReader(deniedRDF);
-    assertFalse(cc.checkPermission(reader, pageURI));
+    assertFalse(cc.checkPermission(null, reader, pageURI));
     reader.close();
   }
 
   public void testCheckGrantedPermissionHTMLAndRDF() throws Exception {
     reader = new StringReader(htmlPlusGrantedRDF);
-    assertTrue(cc.checkPermission(reader, pageURI));
+    assertTrue(cc.checkPermission(null, reader, pageURI));
     reader.close();
   }
 
   public void testCheckDeniedPermissionHTMLAndRDF() throws Exception {
     reader = new StringReader(htmlPlusDeniedRDF);
-    assertFalse(cc.checkPermission(reader, pageURI));
+    assertFalse(cc.checkPermission(null, reader, pageURI));
     reader.close();
   }
 
   public void testCheckDeniedPermissionInvalidRDF() throws Exception {
     reader = new StringReader(malformedRDF);
-    assertFalse(cc.checkPermission(reader, pageURI));
+    assertFalse(cc.checkPermission(null, reader, pageURI));
     reader.close();
   }
 
   public void testCheckDeniedPermissionNoRDF() throws Exception {
     reader = new StringReader(noRDF);
-    assertFalse(cc.checkPermission(reader, pageURI));
+    assertFalse(cc.checkPermission(null, reader, pageURI));
     reader.close();
   }
 
   public void testCheckJMIR() throws Exception {
     reader = new StringReader(jmirRDF);
-    assertTrue(cc.checkPermission(reader, pageURI));
+    assertTrue(cc.checkPermission(null, reader, pageURI));
     reader.close();
   }
   
   public void testCheckBonefolder() throws Exception {
     reader = new StringReader(boneFolderRDF);
-    assertTrue(cc.checkPermission(reader, pageURI));
+    assertTrue(cc.checkPermission(null, reader, pageURI));
     reader.close();
   }
 

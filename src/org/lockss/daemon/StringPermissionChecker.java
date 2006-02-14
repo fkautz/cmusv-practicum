@@ -71,7 +71,8 @@ public class StringPermissionChecker implements PermissionChecker {
     m_encoding = encoding;
   }
 
-  public boolean checkPermission(Reader reader, String permissionUrl) {
+  public boolean checkPermission(Crawler.PermissionHelper pHelper,
+				 Reader reader, String permissionUrl) {
     if (m_filter != null) {
       reader = m_filter.createFilteredReader(reader);
       m_logger.debug3("Creating filtered reader to check permissions");

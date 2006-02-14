@@ -245,7 +245,8 @@ public class TestOaiCrawler extends LockssTestCase {
      * @param reader Reader
      * @return true numPermissionGranted times, then false
      */
-    public boolean checkPermission(Reader reader, String permissionUrl) {
+    public boolean checkPermission(Crawler.PermissionHelper pHelper,
+				   Reader reader, String permissionUrl) {
       if (numPermissionGranted-- > 0) {
         return true;
       } else {

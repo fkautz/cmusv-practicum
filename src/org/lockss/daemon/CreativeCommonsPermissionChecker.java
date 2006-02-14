@@ -114,7 +114,8 @@ public class CreativeCommonsPermissionChecker
    * Check for "Distribution" permission granted by a Creative Commons
    * License.
    */
-  public boolean checkPermission(Reader reader, String permissionUrl) {
+  public boolean checkPermission(Crawler.PermissionHelper pHelper,
+				 Reader reader, String permissionUrl) {
     if (reader == null) {
       throw new NullPointerException("Called with null reader");
     }

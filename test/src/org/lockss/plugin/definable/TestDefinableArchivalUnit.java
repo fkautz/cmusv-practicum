@@ -340,7 +340,8 @@ public class TestDefinableArchivalUnit extends LockssTestCase {
   }
 
   private static class MockPermissionChecker implements PermissionChecker {
-    public boolean checkPermission(Reader inputReader, String url) {
+    public boolean checkPermission(Crawler.PermissionHelper pHelper,
+				   Reader inputReader, String url) {
       throw new UnsupportedOperationException("not implemented");
     }
   }

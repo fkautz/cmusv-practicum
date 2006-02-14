@@ -954,7 +954,8 @@ public class TestFollowLinkCrawler extends LockssTestCase {
      * @param reader Reader
      * @return boolean
      */
-    public boolean checkPermission(Reader reader, String permissionUrl) {
+    public boolean checkPermission(Crawler.PermissionHelper pHelper,
+				   Reader reader, String permissionUrl) {
         if (numPermissionGranted-- > 0) {
           return true;
         } else {

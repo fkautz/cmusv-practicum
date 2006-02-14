@@ -41,5 +41,6 @@ public interface PermissionChecker {
    * @param url url of the permission page we're checking
    * @return boolean true iff the permission object is found.
    */
-  public boolean checkPermission(Reader inputReader, String url);
+  public boolean checkPermission(Crawler.PermissionHelper pHelper,
+				 Reader inputReader, String url);
 }
