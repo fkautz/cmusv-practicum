@@ -275,13 +275,17 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
     if (permissionCheckerFactoryClass == null) {
       return null;
     }
+    log.debug3("Found PermissionCheckerFactory class: " +
+	       permissionCheckerFactoryClass);
+
     PermissionCheckerFactory fact =
       (PermissionCheckerFactory) loadClass(permissionCheckerFactoryClass,
 					   PermissionCheckerFactory.class);
+    log.debug("Loaded PermissionCheckerFactory: " + fact);
     List permissionCheckers = fact.createPermissionCheckers(this);
       if (permissionCheckers.size() > 1) {
-        log.critical("Plugin specifies multiple permission checkers, but we " +
-                        "only support one: " + this);
+        log.error("Plugin specifies multiple permission checkers, but we " +
+		  "only support one: " + this);
 
       }
     return (PermissionChecker)permissionCheckers.get(0);
