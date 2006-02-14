@@ -529,10 +529,7 @@ public class GoslingHtmlParser implements ContentParser {
       if (token.equals(endStr)) {
 	break; //we've hit the end of the attribute value
       } else {
-	// browsers discard newlines in quoted urls
-	if (!isNewline(token)) {
-	  sb.append(token);
-	}
+	sb.append(token);
       }
     }
     return sb.toString();
