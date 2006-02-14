@@ -379,14 +379,13 @@ public class TestGoslingHtmlParser extends LockssTestCase {
     assertEquals(SetUtil.set(), parseSingleSource(source));
   }
 
-  //Parser should once again not return urls for unknown protocols.
-  //Crawler will ignore them anyway.
+  // Parser does not return urls for unknown protocols.
   public void testParseUnknownProtocol() throws IOException {
     String url = "badprotocol://www.example.com/link3.html";
     String source =
       "<html><head><title>Test</title></head><body>"+
       "<a href=\""+url+"\">link3</a>";
-    assertEquals(SetUtil.set(url), parseSingleSource(source));
+    assertEmpty(parseSingleSource(source));
   }
 
   public void testParsesFileWithQuotedUrls() throws IOException {
