@@ -790,7 +790,7 @@ public class StringUtil {
 
   /** Trim EOLs and leading whitespace from a block of text */
   public static String trimNewlinesAndLeadingWhitespace(String str) {
-    if (str.indexOf("\n") == -1) {
+    if (str.indexOf("\n") == -1 && str.indexOf("\r") == -1) {
       return str;
     }
     Substitution subst = new Perl5Substitution("");

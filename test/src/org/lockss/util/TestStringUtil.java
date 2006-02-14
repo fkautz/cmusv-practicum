@@ -420,8 +420,14 @@ public class TestStringUtil extends LockssTestCase {
 	       StringUtil.trimNewlinesAndLeadingWhitespace("foo"));
     assertEquals("foo",
 		 StringUtil.trimNewlinesAndLeadingWhitespace("f\noo"));
+    assertEquals("foo",
+		 StringUtil.trimNewlinesAndLeadingWhitespace("f\roo"));
+    assertEquals("foo",
+		 StringUtil.trimNewlinesAndLeadingWhitespace("f\r\noo"));
     assertEquals("foo", 
 		 StringUtil.trimNewlinesAndLeadingWhitespace("f\n oo"));
+    assertEquals("foo", 
+		 StringUtil.trimNewlinesAndLeadingWhitespace("f\n\r oo"));
     assertEquals("foo",
 		 StringUtil.trimNewlinesAndLeadingWhitespace("f\n   oo"));
     assertEquals("foo",
@@ -430,6 +436,8 @@ public class TestStringUtil extends LockssTestCase {
 		 StringUtil.trimNewlinesAndLeadingWhitespace("f\n\t \too"));
     assertEquals("foo",
 		 StringUtil.trimNewlinesAndLeadingWhitespace("f\n \t \t oo"));
+    assertEquals("foo",
+		 StringUtil.trimNewlinesAndLeadingWhitespace("f\n\n\t\too"));
   }
 
   public void testTrimHostName() {
