@@ -286,18 +286,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   }
 
   TitleConfig findTitleConfig(Configuration config) {
-    if(plugin.getSupportedTitles() == null)  {
-      return null;
-    }
-    for (Iterator iter = plugin.getSupportedTitles().iterator();
-	 iter.hasNext(); ) {
-      String title = (String)iter.next();
-      TitleConfig tc = plugin.getTitleConfig(title);
-      if (tc != null && tc.matchesConfig(config) && tc.isSingleAu(plugin)) {
-	return tc;
-      }
-    }
-    return null;
+    return AuUtil.findTitleConfig(config, plugin);
   }
 
   /** Set up titledb-related data */
