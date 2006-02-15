@@ -71,6 +71,11 @@ public abstract class LockssServlet extends HttpServlet
     Configuration.PREFIX + "ui.sessionTimeout";
   static final long DEFAULT_UI_SESSION_TIMEOUT = Constants.HOUR;
 
+  /** Maximum size of uploaded file accepted */
+  static final String PARAM_MAX_UPLOAD_FILE_SIZE =
+    Configuration.PREFIX + "ui.maxUploadFileSize";
+  static final int DEFAULT_MAX_UPLOAD_FILE_SIZE = 500000;
+
   // Name given to form element whose value is the action that should be
   // performed when the form is submitted.  (Not always the submit button.)
   public static final String ACTION_TAG = "lockssAction";
@@ -874,6 +879,13 @@ public abstract class LockssServlet extends HttpServlet
     page.add(warning);
     layoutFooter(page);
     page.write(resp.getWriter());
+  }
+
+  public MultiPartRequest getMultiPartRequest()
+      throws FormDataTooLongException, IOException {
+    int maxUpload = CurrentConfig.getIntParam(PARAM_MAX_UPLOAD_FILE_SIZE,
+					      DEFAULT_MAX_UPLOAD_FILE_SIZE);
+    return getMultiPartRequest(maxUpload);
   }
 
   public MultiPartRequest getMultiPartRequest(int maxLen)

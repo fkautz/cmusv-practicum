@@ -120,7 +120,7 @@ public class AuConfig extends LockssServlet {
     action = req.getParameter(ACTION_TAG);
     if (StringUtil.isNullString(action)) {
       try {
-	getMultiPartRequest(100000);
+	getMultiPartRequest();
 	if (multiReq != null) {
 	  action = multiReq.getString(ACTION_TAG);
 	  log.debug(ACTION_TAG + " = " + action);

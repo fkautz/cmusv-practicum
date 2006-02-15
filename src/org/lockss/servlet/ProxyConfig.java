@@ -88,7 +88,7 @@ public class ProxyConfig extends LockssServlet {
     }
     if (StringUtil.isNullString(action)) {
       try {
-	getMultiPartRequest(100000);
+	getMultiPartRequest();
 	action = getParameter("action");
       } catch (FormDataTooLongException e) {
 	displayForm("Uploaded file too large: " + e.getMessage());
