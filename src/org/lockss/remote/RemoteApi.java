@@ -99,11 +99,11 @@ public class RemoteApi
   static final String AU_BACK_PROP_REPODIR = "repodir";
 
   /** "Add new" opcode for batchAddAus(), batchProcessAus() */
-  public static int BATCH_ADD_ADD = 1;
+  public static final int BATCH_ADD_ADD = 1;
   /** "Reactivate" opcode for batchAddAus(), batchProcessAus() */
-  public static int BATCH_ADD_REACTIVATE = 2;
+  public static final int BATCH_ADD_REACTIVATE = 2;
   /** "Restore from backup" opcode for batchAddAus(), batchProcessAus() */
-  public static int BATCH_ADD_RESTORE = 3;
+  public static final int BATCH_ADD_RESTORE = 3;
 
   private PluginManager pluginMgr;
   private ConfigManager configMgr;
