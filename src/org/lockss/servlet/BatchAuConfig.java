@@ -176,9 +176,12 @@ public class BatchAuConfig extends LockssServlet {
     else if (action.equals(ACTION_RESTORE)) displayRestore();
     else if (action.equals(ACTION_SELECT_AUS)) chooseAus();
     else if (action.equals(ACTION_SELECT_RESTORE_TITLES)) selectRestoreTitles();
-    else if (action.equals(ACTION_ADD_AUS)) doAddAus(false);
-    else if (action.equals(ACTION_REACT_AUS)) doAddAus(true);
-    else if (action.equals(ACTION_RESTORE_AUS)) doAddAus(false);
+    else if (action.equals(ACTION_ADD_AUS))
+      doAddAus(RemoteApi.BATCH_ADD_ADD);
+    else if (action.equals(ACTION_REACT_AUS))
+      doAddAus(RemoteApi.BATCH_ADD_REACTIVATE);
+    else if (action.equals(ACTION_RESTORE_AUS))
+      doAddAus(RemoteApi.BATCH_ADD_RESTORE);
     else if (action.equals(ACTION_REMOVE_AUS)) doRemoveAus(false);
     else if (action.equals(ACTION_DEACT_AUS)) doRemoveAus(true);
     else {
@@ -452,7 +455,7 @@ public class BatchAuConfig extends LockssServlet {
     return res;
   }
 
-  private void doAddAus(boolean isReactivate) throws IOException {
+  private void doAddAus(int addOp) throws IOException {
     // Check cookies
     HttpSession session = req.getSession(false);
     if (session == null) {
@@ -513,7 +516,7 @@ public class BatchAuConfig extends LockssServlet {
     if (log.isDebug2()) log.debug2("createConfig: " + createConfig);
 
     BatchAuStatus bas =
-      remoteApi.batchAddAus(isReactivate, createConfig, bi);
+      remoteApi.batchAddAus(addOp, createConfig, bi);
     displayBatchAuStatus(bas);
   }
 

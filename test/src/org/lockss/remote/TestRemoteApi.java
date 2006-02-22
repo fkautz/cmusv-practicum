@@ -511,7 +511,8 @@ public class TestRemoteApi extends LockssTestCase {
       }
 
       idMgr.resetAgreeMap();
-      RemoteApi.BatchAuStatus addedbas = rapi.batchAddAus(false, addConfig, bi);
+      RemoteApi.BatchAuStatus addedbas =
+	rapi.batchAddAus(RemoteApi.BATCH_ADD_ADD, addConfig, bi);
       ArchivalUnit au1 = mpm.getAuFromId(auid1);
       assertNotNull(au1);
       assertEquals("zippity agree map 1", idMgr.getAgreeMap(au1));
