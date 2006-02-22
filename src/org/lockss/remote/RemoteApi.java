@@ -1041,8 +1041,8 @@ public class RemoteApi
 	  stat.setTitleConfig(tc);
 	  if ("Unknown".equalsIgnoreCase(stat.getName())) {
 	    stat.setName(tc.getDisplayName());
-	    bas.add(stat);
 	  }
+          bas.add(stat); // moved from inside the above if
 	} catch (RuntimeException e) {
 	  log.warning("Can't generate auid for: " + tc, e);
 	}
