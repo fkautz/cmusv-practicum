@@ -324,7 +324,7 @@ public class FuncV3Voter extends LockssTestCase {
     assertEquals(p1V3.getStatusString(), p2V3.getStatusString());
     V3TestUtil.assertEqualVoterUserData(p1V3.getVoterUserData(),
                                         p2V3.getVoterUserData());
-    pollmanager.cancelAuPolls(testau);
+    theDaemon.getPluginManager().stopAu(testau);
   }
 
   class MyMockLcapRouter extends LcapRouter {
