@@ -221,7 +221,7 @@ public class TestCron extends LockssTestCase {
   static class MyRemoteApi extends RemoteApi {
     boolean sent = false;
 
-    public void sendMailBackup() throws IOException {
+    public void sendMailBackup(boolean evenIfEmpty) throws IOException {
       sent = true;
     }
   }

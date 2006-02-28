@@ -302,7 +302,7 @@ public class Cron
     public void execute() {
       RemoteApi rmtApi = daemon.getRemoteApi();
       try {
-	rmtApi.sendMailBackup();
+	rmtApi.sendMailBackup(false);
       } catch (IOException e) {
 	log.warning("Failed to mail backup file", e);
       }
