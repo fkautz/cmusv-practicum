@@ -787,6 +787,11 @@ public class DaemonStatus extends LockssServlet {
     }
   }
 
+  private static BitSet debugOptions = new BitSet();
+  static {
+    debugOptions.set(StatusTable.OPTION_DEBUG_USER);
+  }
+
   /**
    * Build a form with a select box that fetches a named table
    * @return the Composite object
@@ -794,7 +799,8 @@ public class DaemonStatus extends LockssServlet {
   private Composite getSelectTableForm() {
     try {
       StatusTable statTable =
-        statSvc.getTable(StatusService.ALL_TABLES_TABLE, null);
+        statSvc.getTable(StatusService.ALL_TABLES_TABLE, null,
+			 isDebugUser() ? debugOptions : null);
       java.util.List colList = statTable.getColumnDescriptors();
       java.util.List rowList = statTable.getSortedRows();
       ColumnDescriptor cd = (ColumnDescriptor)colList.get(0);
