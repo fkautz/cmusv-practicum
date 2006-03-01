@@ -91,7 +91,7 @@ public class HashBlock implements LockssSerializable {
   public void setDigests(MessageDigest[] digests) {
     int len = digests.length;
     hashes = new byte[len][];
-    for (int i = 0; i < digests.length; i++) {
+    for (int i = 0; i < len; i++) {
       hashes[i] = digests[i].digest();
     }
   }
