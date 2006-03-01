@@ -425,15 +425,7 @@ public class TestBlockHasher extends LockssTestCase {
     List events = new ArrayList();
 
     public void blockDone(HashBlock hblock) {
-      MessageDigest[] digs = hblock.getDigests();
-      byte[][] hashedByteArrays = new byte[digs.length][];
-      // must extract info from MessageDigests here as they are reset between
-      // blocks
-      for (int ix = 0; ix < digs.length; ix++) {
-	MockMessageDigest dig = (MockMessageDigest)digs[ix];
-	hashedByteArrays[ix] = dig.getUpdatedBytes();
-      }
-      events.add(new Event(hblock, hashedByteArrays));
+      events.add(new Event(hblock, hblock.getHashes()));
     }
 
     public void reset() {

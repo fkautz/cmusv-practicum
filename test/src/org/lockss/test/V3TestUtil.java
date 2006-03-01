@@ -60,7 +60,6 @@ public class V3TestUtil extends LockssTestCase {
       assertEquals(a.getVoteBlocks().size(), b.getVoteBlocks().size());
     }
     assertEquals(a.isOuterCircle(), b.isOuterCircle());
-    assertEquals(a.getRepairTarget(), b.getRepairTarget());
     assertEquals(a.isVoteComplete(), b.isVoteComplete());
     if (a.getPsmInterpState() == null) {
       assertNull(b.getPsmInterpState());
@@ -94,7 +93,6 @@ public class V3TestUtil extends LockssTestCase {
     assertEquals(b1.getDeadline(), b2.getDeadline());
     assertEquals(b1.getPollerId().getIdString(),
                  b2.getPollerId().getIdString());
-    assertEquals(b1.allVotersReadyToTally(), b2.allVotersReadyToTally());
   }
 
   /**

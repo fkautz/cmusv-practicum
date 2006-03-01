@@ -50,6 +50,21 @@ public class EncodedProperty extends Properties {
 
   private static final Logger log = Logger.getLogger("EncodedProperty");
 
+
+  /**
+   * Construct a new property map from an existing Properties object.
+   *
+   * @param  props  The properties object to clone.
+   */
+  public static EncodedProperty fromProps(Properties props) {
+    EncodedProperty res = new EncodedProperty();
+    for (Iterator iter = props.keySet().iterator(); iter.hasNext(); ) {
+      String key = (String)iter.next();
+      res.setProperty(key, props.getProperty(key));
+    }
+    return res;
+  }
+
   /**
    * Constructs a new, empty property map.
    *

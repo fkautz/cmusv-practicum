@@ -111,7 +111,7 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
    * @return null, since we don't filter by default
    */
   protected FilterRule constructFilterRule(String mimeType) {
-    log.info("constructFilterRule("+mimeType+")");
+    log.debug3("constructFilterRule("+mimeType+")");
     if (doFilter) {
       return new SimulatedFilterRule();
     }

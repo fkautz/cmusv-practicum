@@ -116,6 +116,13 @@ public interface NodeManager extends LockssAuManager {
   public DamagedNodeSet getDamagedNodes();
 
   /**
+   * Mark the given CachedUrlSet deleted.
+   * 
+   * @param cus The CUS to delete.
+   */
+  public void deleteNode(CachedUrlSet cus) throws IOException;
+  
+  /**
    * Looks at the state of the node, and indicates if a poll needs to be called.
    * It does not schedule polls, which should be done via
    * 'callNecessaryPolls()'.  Called from the treewalk

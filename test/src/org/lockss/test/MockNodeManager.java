@@ -32,6 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.test;
 
+import java.io.IOException;
 import java.util.*;
 
 import org.lockss.config.Configuration;
@@ -86,6 +87,10 @@ public class MockNodeManager implements NodeManager {
   public boolean shouldStartPoll(CachedUrlSet cus, Tallier state) {
     logger.debug3("ok to start poll");
     return true;
+  }
+
+  public void deleteNode(CachedUrlSet cus) throws IOException {
+    throw new UnsupportedOperationException("Not implemented");
   }
 
   public void updatePollResults(CachedUrlSet cus, Tallier results) {

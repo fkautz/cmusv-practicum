@@ -93,7 +93,7 @@ public class V3PollerSerializer extends V3Serializer {
     try {
       xstr.serialize(pollerStateBeanFile, state);
     } catch (Exception ex) {
-      throw new PollSerializerException("Unable to save state for poll");
+      throw new PollSerializerException("Unable to save state for poll", ex);
     }
   }
 

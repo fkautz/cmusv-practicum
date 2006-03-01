@@ -100,5 +100,4 @@ public class TestPeerIdentity extends LockssTestCase {
     assertEquals(pidv3.getIdString(), back3.getIdString());
     assertEquals(pidv3.getPeerAddress(), back3.getPeerAddress());
   }
-
 }
