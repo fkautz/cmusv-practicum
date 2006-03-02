@@ -65,7 +65,7 @@ public abstract class IpAccessControl extends LockssServlet {
 
   static Logger log = Logger.getLogger("IpAccessServlet");
 
-  private ConfigManager configMgr;
+  protected ConfigManager configMgr;
 
   // Values read from form
   private Vector formIncl;
