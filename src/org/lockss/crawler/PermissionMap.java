@@ -329,6 +329,10 @@ public class PermissionMap {
         pHelper.refetchPermissionPage(permissionPage);
       } else {
         uc.storeContent(is, uc.getUncachedProperties());
+	CachedUrl cu = uc.getCachedUrl();
+	if (cu != null && cu.hasContent()) {
+	  crawlStatus.addContentBytesFetched(cu.getContentSize());
+	}
       }
     } finally {
       IOUtil.safeClose(is);

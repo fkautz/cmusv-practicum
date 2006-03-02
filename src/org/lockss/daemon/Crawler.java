@@ -117,6 +117,7 @@ public interface Crawler {
     protected Collection startUrls = null;
     protected ArchivalUnit au = null;
     protected String type;
+    private long contentBytesFetched = 0;
 
     protected Map urlsWithErrors = new LinkedMap();
     protected Set urlsFetched = new ListOrderedSet();
@@ -186,6 +187,14 @@ public interface Crawler {
 
     public synchronized void signalUrlNotModified(String url) {
       urlsNotModified.add(url);
+    }
+
+    public synchronized void addContentBytesFetched(long size) {
+      contentBytesFetched += size;
+    }
+
+    public long getContentBytesFetched() {
+      return contentBytesFetched;
     }
 
     /**

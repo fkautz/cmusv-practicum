@@ -264,6 +264,10 @@ public abstract class BaseCrawler
     switch (cacheResult) {
     case UrlCacher.CACHE_RESULT_FETCHED:
       crawlStatus.signalUrlFetched(uc.getUrl());
+      CachedUrl cu = uc.getCachedUrl();
+      if (cu != null && cu.hasContent()) {
+	crawlStatus.addContentBytesFetched(cu.getContentSize());
+      }
       break;
     case UrlCacher.CACHE_RESULT_NOT_MODIFIED:
       crawlStatus.signalUrlNotModified(uc.getUrl());
