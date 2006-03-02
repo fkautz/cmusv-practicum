@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -445,6 +445,8 @@ public class LcapDatagramComm
       } catch (IOException e) {
 	log.error("Can't create unicast socket", e);
 	noCommAlert("Can't create unicast socket: " + e.getMessage());
+	throw
+	  new ResourceUnavailableException("Can't bind unicast socket", e);
       }
     } else {
       log.error("Unicast port not configured, not starting unicast receive");
