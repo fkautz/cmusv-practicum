@@ -999,6 +999,8 @@ public class V3Poller extends BasePoll {
       log.error("No voter user data for peer.  May have " +
                 "been removed from poll: " + msg.getOriginatorId());
     }
+    // Finally, clean up after the V3LcapMessage
+    msg.delete();
   }
 
   public PollerStateBean getPollerStateBean() {

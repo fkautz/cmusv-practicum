@@ -232,6 +232,8 @@ public class V3Voter extends BasePoll {
       log.warning("State machine error", e);
       abortPoll();
     }
+    // Finally, clean up after the V3LcapMessage
+    msg.delete();    
   }
 
   /**

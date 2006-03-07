@@ -189,7 +189,9 @@ public class V3LcapMessageFactory {
                                    ud.getPollerId());
     ArchivalUnit au = ud.getCachedUrlSet().getArchivalUnit();
     CachedUrl cu = au.makeCachedUrl(ud.getRepairTarget());
-    msg.setRepairDataFrom(cu);
+    msg.setRepairDataLength(cu.getContentSize());
+    msg.setRepairProps(cu.getProperties());
+    msg.setInputStream(cu.getUnfilteredInputStream());
     return msg;
   }
 }
