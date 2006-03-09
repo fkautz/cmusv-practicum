@@ -171,11 +171,9 @@ public class BlockTally {
   public Collection getExtraBlockVoters() {
     return extraBlockVoters;
   }
-  
+
   /**
    * Return the name of the missing block, if any.
-   * 
-   * @return
    */
   public String getMissingBlockUrl() {
     return missingBlockUrl;
@@ -199,7 +197,7 @@ public class BlockTally {
     }
     return voters;
   }
-  
+
   /**
    * Return a set of all peers that claim to have the specified URL.
    * @param url
@@ -208,12 +206,12 @@ public class BlockTally {
   public Collection getMissingBlockVoters(String url) {
     return (Set)missingBlockVoters.get(url);
   }
-  
+
   public void addVoteForBlock(PeerIdentity id, VoteBlock vb) {
     votes.put(id, vb);
   }
-  
+
   public LinkedHashMap getVotesForBlock() {
-    return votes; 
+    return votes;
   }
 }
