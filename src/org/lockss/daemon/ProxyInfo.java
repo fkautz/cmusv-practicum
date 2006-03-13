@@ -277,10 +277,10 @@ public class ProxyInfo {
   }
 
   public String generateSquidFile(Map urlStems) {
+    SortedSet stems = new TreeSet(urlStems.keySet());
     StringBuffer sb = new StringBuffer();
-    for (Iterator iter = urlStems.entrySet().iterator(); iter.hasNext(); ) {
-      Map.Entry entry = (Map.Entry)iter.next();
-      String stem = (String)entry.getKey();
+    for (Iterator iter = stems.iterator(); iter.hasNext(); ) {
+      String stem = (String)iter.next();
       generateSquidEntry(sb, stem);
     }
     sb.append('\n');
