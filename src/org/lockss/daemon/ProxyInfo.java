@@ -307,12 +307,8 @@ public class ProxyInfo {
 
   String generateSquidEntry(String stem) {
     final String PROTOCOL_SUBSTRING = "://";
-    final String WWW_DOT = "www.";
-    int begin = stem.indexOf(PROTOCOL_SUBSTRING) + PROTOCOL_SUBSTRING.length();
-    if (stem.substring(begin).startsWith(WWW_DOT)) {
-      begin += WWW_DOT.length();
-    }
-    return "." + stem.substring(begin);
+    return "." + stem.substring(
+        stem.indexOf(PROTOCOL_SUBSTRING) + PROTOCOL_SUBSTRING.length());
   }
 
 }
