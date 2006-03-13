@@ -524,6 +524,11 @@ The target you have selected requires compiling under JDK 1.4.  Use the rant -1.
     </available>
   </target>
 
+  <target name="require.java.home" >
+    <fail unless="env.JAVA_HOME"
+          message="JAVA_HOME environment var must be set for this target"/>
+  </target>
+
   <!-- ==================================================================== -->
   <!--  Public tasks -->
   <!-- ==================================================================== -->
@@ -1048,7 +1053,8 @@ JAVA_COMMAND_ARGS="-server -Xmx250m -Dsun.net.inetaddr.ttl=3600 -Dorg.lockss.syn
   </target>
 
   <!-- ==================================================================== -->
-  <target name="package-plugintool" depends="jar-tools,check.contrib"
+  <target name="package-plugintool"
+   depends="require.java.home,jar-tools,check.contrib"
    description="Package up all files needed to run the plugin tool" >
     <mkdir dir="${temp.build}" />
     <tempfile property="temp.pkg.dir" destdir="${temp.build}" prefix="tool"/>
