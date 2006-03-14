@@ -515,7 +515,7 @@ public class AuConfig extends LockssServlet {
 
     ServletUtil.layoutAuPropsTable(this,
                                    frm,
-                                   getAuConfigParams().iterator(),
+                                   getAuConfigParams(),
                                    getDefKeys(),
                                    initVals,
                                    noEditKeys,

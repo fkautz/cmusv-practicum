@@ -447,7 +447,7 @@ public class ServletUtil {
 
   public static void layoutAuPropsTable(LockssServlet servlet,
                                         Composite comp,
-                                        Iterator configParamDescrIter,
+                                        Collection configParamDescrs,
                                         Collection defKeys,
                                         Configuration initVals,
                                         Collection noEditKeys,
@@ -462,7 +462,7 @@ public class ServletUtil {
     tbl.add("Archival Unit Definition");
     layoutAuPropRows(servlet,
                     tbl,
-                    configParamDescrIter,
+                    configParamDescrs.iterator(),
                     defKeys,
                     initVals,
                     isNew ? CollectionUtils.subtract(defKeys, noEditKeys) : null);
@@ -479,7 +479,7 @@ public class ServletUtil {
       tbl.add("Other Parameters");
       layoutAuPropRows(servlet,
                        tbl,
-                       configParamDescrIter,
+                       configParamDescrs.iterator(),
                        editKeys,
                        initVals,
                        editable ? editKeys : null);
