@@ -118,7 +118,7 @@ public class DebugPanel extends LockssServlet {
     page.add(makeForm());
     page.add("<br>");
     layoutFooter(page);
-    page.write(resp.getWriter());
+    ServletUtil.writePage(resp, page);
   }
 
   private Element makeForm() {

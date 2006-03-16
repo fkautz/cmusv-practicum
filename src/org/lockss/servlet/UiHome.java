@@ -55,11 +55,10 @@ public class UiHome extends LockssServlet {
   /** Handle a request */
   public void lockssHandleRequest() throws IOException {
     Page page = newPage();
-    resp.setContentType("text/html");
     page.add(getHomeHeader());
     ServletUtil.layoutMenu(page, getDescriptors());
     layoutFooter(page);
-    page.write(resp.getWriter());
+    ServletUtil.writePage(resp, page);
   }
 
   protected Table getHomeHeader() {

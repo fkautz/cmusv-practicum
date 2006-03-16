@@ -445,6 +445,7 @@ public abstract class LockssServlet extends HttpServlet
 
   // Called when a servlet doesn't get the parameters it expects/needs
   protected void paramError() throws IOException {
+    // FIXME: As of 2006-03-15 this method and its only caller checkParam() are not called from anywhere
     PrintWriter wrtr = resp.getWriter();
     Page page = new Page();
     // add referer, params, msg to contact lockss unless from old bookmark

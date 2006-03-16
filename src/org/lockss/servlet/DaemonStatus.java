@@ -171,7 +171,6 @@ public class DaemonStatus extends LockssServlet {
 
   private Page newTablePage() throws IOException {
     Page page = newPage();
-    resp.setContentType("text/html");
 
     if (!pluginMgr.areAusStarted()) {
       displayNotStarted(page);
@@ -200,7 +199,7 @@ public class DaemonStatus extends LockssServlet {
   private void doHtmlStatusTable() throws IOException {
     Page page = doHtmlStatusTable0();
     layoutFooter(page);
-    page.write(resp.getWriter());
+    ServletUtil.writePage(resp, page);
   }
 
   private void doTextStatusTable() throws IOException {

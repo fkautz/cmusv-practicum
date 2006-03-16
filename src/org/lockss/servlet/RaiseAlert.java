@@ -135,7 +135,7 @@ public class RaiseAlert extends LockssServlet {
     page.add(makeForm());
     page.add("<br>");
     layoutFooter(page);
-    page.write(resp.getWriter());
+    ServletUtil.writePage(resp, page);
   }
 
   void addResultRow(Table tbl, String head, Object value) {

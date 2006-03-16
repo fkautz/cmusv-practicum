@@ -802,7 +802,7 @@ public class AuConfig extends LockssServlet {
       page.add("</center>");
     }
     layoutFooter(page);
-    page.write(resp.getWriter());
+    ServletUtil.writePage(resp, page);
   }
 
   /** Return AU name, encoded for html text */

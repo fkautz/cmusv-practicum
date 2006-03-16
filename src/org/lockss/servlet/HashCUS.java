@@ -281,7 +281,7 @@ public class HashCUS extends LockssServlet {
       page.add(makeResult());
     }
     layoutFooter(page);
-    page.write(resp.getWriter());
+    ServletUtil.writePage(resp, page);
   }
 
   private static final NumberFormat fmt_2dec = new DecimalFormat("0.00");

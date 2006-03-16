@@ -118,8 +118,7 @@ public class ProxyAndContent extends LockssServlet {
       ServletUtil.layoutBackLink(page, backLink);
     }
     layoutFooter(page);
-    resp.setContentType("text/html");
-    page.write(resp.getWriter());
+    ServletUtil.writePage(resp, page);
   }
 
   private void displayMenu_Content() throws IOException {
@@ -186,8 +185,7 @@ public class ProxyAndContent extends LockssServlet {
     ServletUtil.layoutBackLink(page,
         srvLink(myServletDescr(), "Back to Proxy Options and Content Access Control"));
     layoutFooter(page);
-    resp.setContentType("text/html");
-    page.write(resp.getWriter());
+    ServletUtil.writePage(resp, page);
   }
 
   private boolean getDefaultAuditEnable() {

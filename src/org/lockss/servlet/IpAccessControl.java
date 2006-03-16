@@ -166,7 +166,7 @@ public abstract class IpAccessControl extends LockssServlet {
 
     // Finish laying out page
     layoutFooter(page);
-    page.write(resp.getWriter());
+    ServletUtil.writePage(resp, page);
   }
 
   protected void additionalFormLayout(Composite composite) {

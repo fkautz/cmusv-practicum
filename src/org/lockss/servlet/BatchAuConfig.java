@@ -334,7 +334,7 @@ public class BatchAuConfig extends LockssServlet {
           srvLink(myServletDescr(), "Back to Journal Configuration"));
     }
     layoutFooter(page);
-    page.write(resp.getWriter());
+    ServletUtil.writePage(resp, page);
   }
 
   private void chooseAus() throws IOException {
@@ -642,7 +642,7 @@ public class BatchAuConfig extends LockssServlet {
           srvLink(myServletDescr(), "Back to Journal Configuration"));
     }
     layoutFooter(page);
-    page.write(resp.getWriter());
+    ServletUtil.writePage(resp, page);
   }
 
   // make me a link in nav table if not on initial journal config page
