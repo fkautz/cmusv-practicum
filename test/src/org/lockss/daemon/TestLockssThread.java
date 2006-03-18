@@ -88,6 +88,7 @@ public class TestLockssThread extends LockssTestCase {
     int toolow = Thread.MIN_PRIORITY - 10;
     int toohigh = Thread.MAX_PRIORITY + 10;
     int justright = Thread.MIN_PRIORITY + 1;
+    int dontchange = -1;
     TestThread thr = new TestThread("Test");
 
     ConfigurationUtil.setFromArgs("org.lockss.thread.foo.priority",
@@ -102,8 +103,18 @@ public class TestLockssThread extends LockssTestCase {
 				  Integer.toString(justright));
     assertEquals(justright, thr.getPriorityFromParam("foo", 9999));
 
+    ConfigurationUtil.setFromArgs("org.lockss.thread.foo.priority",
+				  Integer.toString(dontchange));
+    assertEquals(dontchange, thr.getPriorityFromParam("foo", 9999));
+
     // not in config, use default
     assertEquals(justright, thr.getPriorityFromParam("foobar", justright));
+    assertEquals(Thread.MIN_PRIORITY,
+		 thr.getPriorityFromParam("foobar", toolow));
+    assertEquals(Thread.MAX_PRIORITY,
+		 thr.getPriorityFromParam("foobar", toohigh));
+    assertEquals(dontchange,
+		 thr.getPriorityFromParam("foobar", dontchange));
   }
 
   // ensure LockssThread gets started correctly
