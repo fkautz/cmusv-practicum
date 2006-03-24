@@ -235,9 +235,9 @@ public class TestProxyInfo extends LockssTestCase {
     assertEquals("foo.com", FragmentBuilder.removeProtocol(url2));
     assertNegative(builder.compare(url1, null, url2, null));
     assertPositive(builder.compare(url2, null, url1, null));
-    assertZero(builder.compare(url1, null, url1, null));
-    assertZero(builder.compare(url1, null, url1.replaceAll("http", "ftp"), null));
-    assertZero(builder.compare(url1, null, url1.toUpperCase(), null));
+    assertEquals(0, builder.compare(url1, null, url1, null));
+    assertEquals(0, builder.compare(url1, null, url1.replaceAll("http", "ftp"), null));
+    assertEquals(0, builder.compare(url1, null, url1.toUpperCase(), null));
 
     StringBuffer buffer;
 

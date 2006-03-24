@@ -372,28 +372,4 @@ public class TestLockssTestCase extends LockssTestCase {
     }
   }
 
-  public void testAssertZero() {
-    final String failed = "Asserted that this value was zero: ";
-
-    assertZero(0);
-
-    for (int val = Integer.MAX_VALUE ; val > 0 ; val >>= 1) {
-      try {
-        assertZero(val);
-        fail(failed + val);
-      } catch (AssertionFailedError afe) {
-        // All is well
-      }
-    }
-
-    for (int val = Integer.MIN_VALUE ; val != -1 ; val >>= 1) {
-      try {
-        assertZero(val);
-        fail(failed + val);
-      } catch (AssertionFailedError afe) {
-        // All is well
-      }
-    }
-  }
-
 }

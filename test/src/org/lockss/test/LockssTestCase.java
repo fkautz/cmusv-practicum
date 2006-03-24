@@ -418,30 +418,6 @@ public class LockssTestCase extends TestCase {
   }
 
   /**
-   * <p>Asserts that an integer value is zero.</p>
-   * @param value The value to check against zero.
-   */
-  public static void assertZero(int value) {
-    assertZero(null, value);
-  }
-
-  /**
-   * <p>Asserts that an integer value is zero.</p>
-   * @param message A message used when the assertion fails.
-   * @param value   The value to check against zero.
-   */
-  public static void assertZero(String message, int value) {
-    StringBuffer sb = new StringBuffer();
-    if (message != null) {
-      sb.append(message);
-      sb.append(" ");
-    }
-    sb.append("Expected a zero value but got ");
-    sb.append(value);
-    assertTrue(sb.toString(), value == 0);
-  }
-
-  /**
    * Asserts that c1.compareTo(c2) > 0 and c2.compareTo(c1) < 0
    */
   static public void assertCompareIsGreaterThan(Comparable c1, Comparable c2) {
