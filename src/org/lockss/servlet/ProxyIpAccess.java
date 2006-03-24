@@ -81,6 +81,4 @@ public class ProxyIpAccess extends IpAccessControl {
     super.saveChanges();
   }
 
-
-
 }
