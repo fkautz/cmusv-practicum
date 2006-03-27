@@ -116,7 +116,6 @@ public class ZipUtil {
       zip = new ZipInputStream(in);
       ZipEntry entry;
 
-//       byte data[] = new byte[BUFFER];
       while ((entry = zip.getNextEntry()) != null) {
 	if (entry.isDirectory()) {
 	  continue;
@@ -138,7 +137,7 @@ public class ZipUtil {
         OutputStream out = new FileOutputStream(file);
 	long n = StreamUtil.copy(zip, out);
 	IOUtil.safeClose(out);
-	log.debug("Write " + n + " bytes to " + file);
+	if (log.isDebug3()) log.debug3("Write " + n + " bytes to " + file);
       }
     } finally {
       IOUtil.safeClose(zip);
