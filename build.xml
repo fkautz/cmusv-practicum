@@ -274,7 +274,7 @@ Args:
     <pathelement path="${oro.jar}" />
     <pathelement path="${htmlparser.jar}" />
     <pathelement path="${rdf.jar}" />
-  	<pathelement path="${xstream.jar}" />
+    <pathelement path="${xstream.jar}" />
     <!-- jars needed to run the OAI harvester -->
     <pathelement path="${oai-harvester.jar}" />
     <pathelement path="${xalan.jar}" />
@@ -370,7 +370,6 @@ Args:
     <path refid="test.run.classpath" />
     <pathelement path="${jcoverage.jar}" />
     <pathelement path="${bcel.jar}" />
-    <pathelement path="${oro.jar}" />
     <pathelement path="${getopt.jar}" />
   </path>
 
@@ -928,7 +927,7 @@ The target you have selected requires compiling under JDK 1.4.  Use the rant -1.
     </pathconvert>
     <echo message="${tmp.run.clspth}" file="${production.classpath.file}"/>
     <!-- Write run-props -->
-    <echo file="${run.props}">ULIMIT_DATA=512000
+    <echo file="${run.props}">ULIMIT_DATA=unlimited
 ULIMIT_MEMORY=unlimited
 ULIMIT_STACK=14000
 ULIMIT_FILES=512
@@ -1562,6 +1561,7 @@ Test results in ${test.results}
       </dojunit>
      </else>
     </if>
+    <fail if="failed" message="Test(s) failed" />
   </target>
 
   <!-- ==================================================================== -->
