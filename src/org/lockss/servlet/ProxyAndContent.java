@@ -358,20 +358,20 @@ public class ProxyAndContent extends LockssServlet {
     Configuration config;
 
     // Save audit proxy config
-    config = CurrentConfig.getCurrentConfig().getConfigTree(AuditProxyManager.PREFIX);
+    config = ConfigManager.newConfiguration();
     config.put(PARAM_AUDIT_ENABLE, auditEnable ? TRUE : FALSE);
     config.put(PARAM_AUDIT_PORT, Integer.toString(auditPort));
-    configMgr.writeCacheConfigFile(config,
-                                   ConfigManager.CONFIG_FILE_AUDIT_PROXY,
-                                   CONFIG_FILE_COMMENT);
+    configMgr.modifyCacheConfigFile(config,
+                                    ConfigManager.CONFIG_FILE_AUDIT_PROXY,
+                                    CONFIG_FILE_COMMENT);
 
     // Save ICP server config
-    config = CurrentConfig.getCurrentConfig().getConfigTree(IcpManager.PREFIX_ICP);
+    config = ConfigManager.newConfiguration();
     config.put(IcpManager.PARAM_ICP_ENABLED, icpEnable ? TRUE : FALSE);
     config.put(IcpManager.PARAM_ICP_PORT, Integer.toString(icpPort));
-    configMgr.writeCacheConfigFile(config,
-                                   ConfigManager.CONFIG_FILE_ICP_SERVER,
-                                   CONFIG_FILE_COMMENT);
+    configMgr.modifyCacheConfigFile(config,
+                                    ConfigManager.CONFIG_FILE_ICP_SERVER,
+                                    CONFIG_FILE_COMMENT);
   }
 
   private void processUpdateProxy_SaveChanges() throws IOException {
