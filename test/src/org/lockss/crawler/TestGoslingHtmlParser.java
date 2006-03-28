@@ -567,6 +567,18 @@ public class TestGoslingHtmlParser extends LockssTestCase {
     assertEquals(SetUtil.set(url), parseSingleSource(source));
   }
 
+  public void testSkipsMalformedComments() throws IOException {
+    String url= "http://www.example.com/link3.html";
+
+    String source =
+      "<html><head><title>Test</title></head><body>"+
+      "<!--<a href=http://www.example.com/link1.html>link1</a>"+
+      "Filler, with <b>bold</b> tags and<i>others</i>"+
+      "<a href=http://www.example.com/link2.html>link2</a>--!>"+
+      "<a href=http://www.example.com/link3.html>link3</a>";
+    assertEquals(SetUtil.set(url), parseSingleSource(source));
+  }
+
   public void testKeepsSpaceInUrl() throws IOException {
     String url= "http://www.example.com/link%20with%20space.html";
 
