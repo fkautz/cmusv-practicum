@@ -81,7 +81,7 @@ public abstract class IpAccessControl extends LockssServlet {
     configMgr = getLockssApp().getConfigManager();
   }
 
-  public void lockssHandleRequest() throws IOException {
+  protected void lockssHandleRequest() throws IOException {
     String action = req.getParameter("action");
     isForm = !StringUtil.isNullString(action);
 
