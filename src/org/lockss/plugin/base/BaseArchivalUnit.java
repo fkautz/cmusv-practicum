@@ -135,10 +135,6 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   protected GoslingHtmlParser goslingHtmlParser = null;
   protected HashMap filterMap = new HashMap(4);
 
-  // crawl spec support
-  protected LRUMap crawlSpecCache = new LRUMap(1000);
-  protected int hits = 0;
-  protected int misses = 0;
   protected TypedEntryMap paramMap;
 
   protected BaseArchivalUnit(Plugin myPlugin) {
@@ -367,23 +363,8 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
    * @return true if it is included
    */
   public boolean shouldBeCached(String url) {
-    Boolean cachedVal = (Boolean)crawlSpecCache.get(url);
-    if (cachedVal != null) {
-      hits++;
-      return cachedVal.booleanValue();
-    }
-    misses++;
     boolean val = getCrawlSpec().isIncluded(url);
-    crawlSpecCache.put(url, val ? Boolean.TRUE : Boolean.FALSE);
     return val;
-  }
-
-  public int getCrawlSpecCacheHits() {
-    return hits;
-  }
-
-  public int getCrawlSpecCacheMisses() {
-    return misses;
   }
 
   public String siteNormalizeUrl(String url) {

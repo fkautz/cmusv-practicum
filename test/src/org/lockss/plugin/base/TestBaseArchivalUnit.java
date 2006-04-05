@@ -45,12 +45,6 @@ import java.net.*;
 import org.lockss.plugin.ArchivalUnit.ConfigurationException;
 import org.lockss.plugin.base.BaseArchivalUnit.*;
 
-/**
- * This is the test class for org.lockss.plugin.simulated.GenericFileUrlCacher
- *
- * @author  Emil Aalto
- * @version 0.0
- */
 public class TestBaseArchivalUnit extends LockssTestCase {
   private MyMockBaseArchivalUnit mbau;
   private MyMockPlugin mplug;
