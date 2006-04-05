@@ -241,7 +241,6 @@ public class RepairCrawler extends BaseCrawler {
     } else {
       logger.info("Finished crawl of "+au);
     }
-    logCrawlSpecCacheRate();
     return (crawlStatus.getCrawlError() == null);
   }
 

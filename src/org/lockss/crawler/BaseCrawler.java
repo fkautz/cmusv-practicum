@@ -275,21 +275,6 @@ public abstract class BaseCrawler
     }
   }
 
-  protected void logCrawlSpecCacheRate() {
-    if (au instanceof BaseArchivalUnit) {
-      BaseArchivalUnit bau = (BaseArchivalUnit)au;
-      long cacheHits = bau.getCrawlSpecCacheHits();
-      long cacheMisses = bau.getCrawlSpecCacheMisses();
-      if (cacheHits == 0) {
-	logger.info(cacheHits + "/" + cacheMisses + " cache hits");
-      } else {
-	float per = (float)cacheHits / (float)(cacheHits + cacheMisses);
-	logger.info(cacheHits + "/" + cacheMisses + " cache hits (" +
-		    Integer.toString(Math.round(per * 100)) + "%)");
-      }
-    }
-  }
-
   /** All UrlCachers should be made via this method, so they get their
    * connection pool set. */
   public UrlCacher makeUrlCacher(String url) {
