@@ -146,6 +146,27 @@ public class TitleConfig {
     return pluginVersion;
   }
 
+  private String auid = null;
+
+  public String getAuId(PluginManager pluginMgr) {
+    if (auid != null) {
+      return auid;
+    }
+    Plugin plugin =
+      pluginMgr.getPlugin(pluginMgr.pluginKeyFromId(getPluginName()));
+    return getAuId(pluginMgr, plugin);
+  }
+
+  public String getAuId(PluginManager pluginMgr, Plugin plugin) {
+    if (auid == null) {
+      if (plugin == null) {
+	throw new RuntimeException("No such plugin " + getPluginName());
+      }
+      auid = pluginMgr.generateAuId(plugin, getConfig());
+    }
+    return auid;
+  }
+
   /**
    * Set the estimated size
    * @param size estimated size in bytes
