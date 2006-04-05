@@ -64,7 +64,9 @@ public class BinarySemaphore {
 	while (!timer.expired()) {
 	  long sleep = timer.getSleepTime();
 	  synchronized (this) {
-	    this.wait(sleep);
+	    if (!state) {
+	      this.wait(sleep);
+	    }
 	    if (state) {
 	      state = false;
 	      return true;
