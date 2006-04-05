@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -83,8 +83,17 @@ public interface LockssRepository extends LockssAuManager {
    * Typically this is a file system error.
    */
   public class RepositoryStateException extends RuntimeException {
+    public RepositoryStateException() {
+      super();
+    }
     public RepositoryStateException(String msg) {
       super(msg);
+    }
+    public RepositoryStateException(Throwable cause) {
+      super(cause);
+    }
+    public RepositoryStateException(String msg, Throwable cause) {
+      super(msg, cause);
     }
   }
 
