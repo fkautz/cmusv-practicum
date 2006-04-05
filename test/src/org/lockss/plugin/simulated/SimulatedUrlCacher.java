@@ -37,6 +37,7 @@ import java.util.*;
 import java.text.*;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
+import org.lockss.util.urlconn.*;
 import org.lockss.plugin.*;
 import org.lockss.plugin.base.*;
 import org.lockss.test.StringInputStream;
@@ -73,6 +74,9 @@ public class SimulatedUrlCacher extends BaseUrlCacher {
   // overrides base behavior to get local file
   public InputStream getUncachedInputStream(String lastModified)
       throws IOException {
+    if (getUrl().indexOf("xxxfail") > 0) {
+      throw new CacheException.NoRetryDeadLinkException("Simulated failed fetch");
+    }
     long lastCached = 0;
     if (lastModified != null) {
       try {
