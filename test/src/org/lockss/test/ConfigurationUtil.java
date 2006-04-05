@@ -91,7 +91,7 @@ public class ConfigurationUtil {
 
   /** Create a Configuration from the contents of the URLs in the list
    */
-  public static Configuration fromUrlList(List l) {
+  public static Configuration fromUrlList(List l) throws IOException {
     return mgr().readConfig(l);
   }
 
@@ -155,7 +155,8 @@ public class ConfigurationUtil {
   /** Create a Configuration from the contents of the URLs in the list and
    * install it as the current configuration.
    */
-  public static boolean setCurrentConfigFromUrlList(List l) {
+  public static boolean setCurrentConfigFromUrlList(List l)
+      throws IOException {
     return installConfig(fromUrlList(l));
   }
 
@@ -229,13 +230,16 @@ public class ConfigurationUtil {
   /** Install the supplied Configuration as the current configuration.
    */
   public static boolean installConfig(Configuration config) {
+    MemoryConfigFile cf = new MemoryConfigFile("foo", config, 1);
     try {
-      PrivilegedAccessor.invokeMethod(mgr(), "installConfig", config);
+      PrivilegedAccessor.invokeMethod(mgr(), "updateConfig",
+				      ListUtil.list(cf));
     } catch (Exception e) {
       //      throw new RuntimeException(e.toString());
       throw new RuntimeException(StringUtil.stackTraceString(e));
     }
     return true;
   }
+
 
 }
