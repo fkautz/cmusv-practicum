@@ -169,7 +169,7 @@ public class RaiseAlert extends LockssServlet {
     autbl.add(sel);
 
     Table alrtbl = new Table(0, "cellpadding=0");
-      alrtbl.newRow();
+    alrtbl.newRow();
     alrtbl.addHeading("Select Alert Name");
     Select sel2 = new Select(KEY_NAME_SEL, false);
     sel2.add("", auid == null, "");
