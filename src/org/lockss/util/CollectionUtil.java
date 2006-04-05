@@ -115,15 +115,22 @@ public class CollectionUtil {
    * Removes and returns an arbitrary element from the collection
    */
   public static Object removeElement(Collection coll) {
+    Object ele = getAnElement(coll);
+    coll.remove(ele);
+    return ele;
+  }
+
+  /**
+   * Returns an arbitrary element from the collection
+   */
+  public static Object getAnElement(Collection coll) {
     if (coll == null) {
       throw new IllegalArgumentException("Called with null collection");
     } else if (coll.size() == 0) {
       return null;
     }
     Iterator it = coll.iterator();
-    Object next = it.next();
-    coll.remove(next);
-    return next;
+    return it.next();
   }
 
   private static LockssRandom random = new LockssRandom();
