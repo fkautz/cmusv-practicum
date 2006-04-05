@@ -43,7 +43,7 @@ import org.lockss.util.urlconn.*;
  * A ConfigFile loaded from a URL.
  *
  */
-public class HTTPConfigFile extends ConfigFile {
+public class HTTPConfigFile extends BaseConfigFile {
 
   public static final String PREFIX = Configuration.PREFIX + "config.";
 

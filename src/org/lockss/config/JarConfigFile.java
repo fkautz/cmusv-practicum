@@ -42,7 +42,7 @@ import java.util.jar.*;
  * JAR Urls should look something like:
  *    jar:file:///path/to/jar!/some/resource
  */
-public class JarConfigFile extends ConfigFile {
+public class JarConfigFile extends BaseConfigFile {
   private File m_jarFile;
 //   private String m_entryTime;
 
