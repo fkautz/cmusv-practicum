@@ -265,6 +265,19 @@ public class TestLockssTestCase extends LockssTestCase {
     }
   }
 
+  public void testAssertNoDuplicates() {
+    try {
+      assertNoDuplicates(ListUtil.list("a", "b", "c"));
+    } catch (AssertionFailedError afe) {
+      fail("assertNoDuplicates([\"a\", \"b\", \"c\"]) failed");
+    }
+    try {
+      assertNoDuplicates(ListUtil.list("a", "b", "a"));
+      fail("assertNoDuplicates([\"a\", \"b\", \"a\"]) should have failed");
+    } catch (AssertionFailedError afe) {
+    }
+  }
+
   int rpt;
   protected void successRateSetUp() {
     super.successRateSetUp();

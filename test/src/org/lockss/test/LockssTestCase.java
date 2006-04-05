@@ -1174,6 +1174,22 @@ public class LockssTestCase extends TestCase {
   }
 
   /**
+   * Asserts that the collection contains no duplicate elements
+   */
+  public static void assertNoDuplicates(Collection c) {
+    assertNoDuplicates("Duplicates found", c);
+  }
+
+  /**
+   * Asserts that the collection contains no duplicate elements
+   */
+  public static void assertNoDuplicates(String message, Collection c) {
+    if (c.size() != SetUtil.theSet(c).size()) {
+      fail(message + ": "  + c);
+    }
+  }
+
+  /**
    * Asserts that a string matches the content of a reader
    */
   public static void assertReaderMatchesString(String expected, Reader reader)
