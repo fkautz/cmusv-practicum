@@ -166,7 +166,7 @@ public abstract class LockssApp {
    * True if running in debug mode (org.lockss.app.debug=true).
    * @return true iff in debug mode */
   public static boolean isDebug() {
-    return ConfigManager.getBooleanParam(PARAM_DEBUG, DEFAULT_DEBUG);
+    return CurrentConfig.getBooleanParam(PARAM_DEBUG, DEFAULT_DEBUG);
   }
 
   /** Return the time the app started running.
@@ -437,7 +437,7 @@ public abstract class LockssApp {
     prevExitOnce = CurrentConfig.getBooleanParam(PARAM_APP_EXIT_ONCE,
 						 DEFAULT_APP_EXIT_ONCE);
 
-    Configuration.registerConfigurationCallback(new Configuration.Callback() {
+    configMgr.registerConfigurationCallback(new Configuration.Callback() {
 	public void configurationChanged(Configuration newConfig,
 					 Configuration prevConfig,
 					 Configuration.Differences changedKeys) {

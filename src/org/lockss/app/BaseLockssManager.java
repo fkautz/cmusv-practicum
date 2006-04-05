@@ -101,19 +101,20 @@ public abstract class BaseLockssManager implements LockssManager {
 				       + callback);
     }
     configCallback = callback;
-    Configuration.registerConfigurationCallback(configCallback);
+
+    theApp.getConfigManager().registerConfigurationCallback(configCallback);
   }
 
   private void registerDefaultConfigCallback() {
     if (this instanceof ConfigurableManager) {
       configCallback = new DefaultConfigCallback((ConfigurableManager)this);
-      Configuration.registerConfigurationCallback(configCallback);
+      theApp.getConfigManager().registerConfigurationCallback(configCallback);
     }
   }
 
   private void unregisterConfig() {
     if(configCallback != null) {
-      Configuration.unregisterConfigurationCallback(configCallback);
+      theApp.getConfigManager().unregisterConfigurationCallback(configCallback);
       configCallback = null;
     }
   }

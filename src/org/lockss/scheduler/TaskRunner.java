@@ -41,6 +41,7 @@ package org.lockss.scheduler;
 import java.io.*;
 import java.util.*;
 import org.lockss.config.Configuration;
+import org.lockss.app.*;
 import org.lockss.daemon.*;
 import org.lockss.daemon.status.*;
 import org.lockss.util.*;
@@ -86,6 +87,7 @@ class TaskRunner {
 
   protected static Logger log = Logger.getLogger("TaskRunner");
 
+  private LockssDaemon daemon;
   private final SchedulerFactory schedulerFactory;
 
   // config params
@@ -132,6 +134,12 @@ class TaskRunner {
     this.schedulerFactory = schedFactory;
   }
 
+  // This isn't a LockssManager; these are called from SchedService
+
+  void initService(LockssDaemon daemon) {
+    this.daemon = daemon;
+  }
+
   void startService() {
     registerConfigCallback();
   }
@@ -141,7 +149,7 @@ class TaskRunner {
   }
 
   private void registerConfigCallback() {
-    Configuration.registerConfigurationCallback(new Configuration.Callback() {
+    daemon.getConfigManager().registerConfigurationCallback(new Configuration.Callback() {
 	public void configurationChanged(Configuration newConfig,
 					 Configuration oldConfig,
 					 Configuration.Differences changedKeys) {

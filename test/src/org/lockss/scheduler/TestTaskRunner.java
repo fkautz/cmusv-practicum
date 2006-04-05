@@ -61,6 +61,7 @@ public class TestTaskRunner extends LockssTestCase {
     removedTasks = new ArrayList();
     fact = new SchedFact(null);
     tr = new MyMockTaskRunner(fact);
+    tr.initService(getMockLockssDaemon());
     tr.startService();
   }
 
@@ -602,6 +603,7 @@ public class TestTaskRunner extends LockssTestCase {
       tr.stopService();
     }
     tr = newTr;
+    tr.initService(getMockLockssDaemon());
     tr.startService();
   }
 

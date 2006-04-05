@@ -41,7 +41,7 @@ import java.text.*;
 import java.math.*;
 import java.security.MessageDigest;
 
-import org.lockss.config.Configuration;
+import org.lockss.config.*;
 import org.lockss.daemon.*;
 import org.lockss.daemon.status.*;
 import org.lockss.util.*;
@@ -289,7 +289,7 @@ class HashQueue {
 
   // Register config callback
   private void registerConfigCallback() {
-    Configuration.registerConfigurationCallback(new Configuration.Callback() {
+    ConfigManager.getConfigManager().registerConfigurationCallback(new Configuration.Callback() {
 	public void configurationChanged(Configuration newConfig,
 					 Configuration oldConfig,
 					 Configuration.Differences changedKeys) {

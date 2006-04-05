@@ -211,7 +211,7 @@ class PluginDetail extends PluginStatus implements StatusAccessor {
     if (plug instanceof DefinablePlugin) {
       DefinablePlugin dplug = (DefinablePlugin)plug;
       plugDef = dplug.getDefinitionMap();
-      if (ConfigManager.getBooleanParam(PARAM_PLUGIN_SHOWDEF,
+      if (CurrentConfig.getBooleanParam(PARAM_PLUGIN_SHOWDEF,
 					DEFAULT_PLUGIN_DHOWDEF)) {
 	table.setColumnDescriptors(colDescs);
 	table.setRows(getRows(dplug, plugDef));

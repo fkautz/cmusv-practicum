@@ -303,7 +303,7 @@ public class BatchAuConfig extends LockssServlet {
     layoutErrorBlock(page);
 
     // Prepare sets
-    String grayAction = ConfigManager.getParam(PARAM_GREY_TITLESET_ACTION,
+    String grayAction = CurrentConfig.getParam(PARAM_GREY_TITLESET_ACTION,
                                                DEFAULT_GREY_TITLESET_ACTION);
     boolean doGray = "All".equalsIgnoreCase(grayAction) ||
       (verb == VERB_ADD && "Add".equalsIgnoreCase(grayAction));

@@ -37,7 +37,7 @@ import java.io.*;
 import java.security.MessageDigest;
 import junit.framework.*;
 
-import org.lockss.config.ConfigManager;
+import org.lockss.config.*;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.test.*;
@@ -163,7 +163,7 @@ public class FuncHashService extends LockssTestCase {
   }
 
   int stepBytes() {
-    return ConfigManager.getIntParam(HashService.PARAM_STEP_BYTES,
+    return CurrentConfig.getIntParam(HashService.PARAM_STEP_BYTES,
 				     HashService.DEFAULT_STEP_BYTES);
   }
 
