@@ -875,6 +875,25 @@ public class TestPluginManager extends LockssTestCase {
     return ks;
   }
 
+  public void testEmptyRegistryCallback() throws Exception {
+    BinarySemaphore bs = new BinarySemaphore();
+    PluginManager.RegistryCallback cb =
+      new PluginManager.RegistryCallback(Collections.EMPTY_LIST, bs);
+    assertTrue(bs.take(Deadline.in(0)));
+  }
+
+  public void testRegistryCallback() throws Exception {
+    BinarySemaphore bs = new BinarySemaphore();
+    PluginManager.RegistryCallback cb =
+      new PluginManager.RegistryCallback(ListUtil.list("foo", "bar"), bs);
+    assertFalse(bs.take(Deadline.in(0)));
+    cb.crawlCompleted("foo");
+    cb.crawlCompleted("bletch");
+    assertFalse(bs.take(Deadline.in(0)));
+    cb.crawlCompleted("bar");
+    assertTrue(bs.take(Deadline.in(0)));
+  }
+
   private void prepareLoadablePluginTests(Properties p) throws Exception {
     pluginJar = "org/lockss/test/good-plugin.jar";
     if (p == null) {
