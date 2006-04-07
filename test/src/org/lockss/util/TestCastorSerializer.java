@@ -39,4 +39,18 @@ public class TestCastorSerializer extends ObjectSerializerTester {
         null, ExternalizableMap.MAPPING_FILE_NAME, ExtMapBean.class);
   }
 
+  public void testInterruptedIOExceptionThrown() throws Exception {
+    /*
+     * Castor hides the InterruptedIOException (it is not in the
+     * chain of Throwable causes). This test will never work for
+     * Castor.
+     *
+     * The way the test code is written in the parent method makes it
+     * possible for the test to succeed in CXSerializer. This is
+     * because the artificially thrown InterruptedIOException is
+     * caught before the delegated call to CastorSerializer, so the
+     * intended behavior is produced.
+     */
+  }
+
 }

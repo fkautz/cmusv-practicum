@@ -532,7 +532,9 @@ public class XStreamSerializer extends ObjectSerializer {
       return xs.fromXML(reader);
     }
     catch (StreamException se) {
-      throw new IOException(se.getMessage());
+      logger.debug2("Deserialization failed; StreamException thrown", se);
+      throwIfInterrupted(se);
+      throw new IOException(se.toString());
     }
     catch (CannotResolveClassException crce) {
       throw failDeserialize(crce);
@@ -541,7 +543,7 @@ public class XStreamSerializer extends ObjectSerializer {
       throw failDeserialize(be);
     }
     catch (InstantiationError ie) {
-      throw failDeserialize(ie);
+      throw failDeserialize(new Exception(ie));
     }
   }
 
