@@ -240,9 +240,9 @@ public abstract class ObjectSerializerTester extends XMLTestCase {
           throw new InterruptedIOException();
         }
       });
-      fail("Should have thrown a RuntimeException");
+      fail("Should have thrown an InterruptedIOException");
     }
-    catch (RuntimeException reIgnore) {
+    catch (InterruptedIOException reIgnore) {
       // All is well
     }
   }
