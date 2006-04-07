@@ -604,7 +604,7 @@ public abstract class Configuration {
      * @param oldConfig  the previous <code>Configuration</code>, or null
      *                   if there was no previous config.
      * @param changes  the set of keys whose value has changed.
-     * @see Configuration#registerConfigurationCallback */
+     */
     public void configurationChanged(Configuration newConfig,
 				     Configuration oldConfig,
 				     Configuration.Differences changes);

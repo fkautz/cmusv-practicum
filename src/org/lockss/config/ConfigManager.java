@@ -593,7 +593,7 @@ public class ConfigManager implements LockssManager {
     // do this even if no local.txt, to ensure platform-like params (e.g.,
     // group) in initial config get into platformConfig even during testing.
     platConfig.seal();
-    this.platformConfig = platConfig;
+    platformConfig = platConfig;
   }
 
 

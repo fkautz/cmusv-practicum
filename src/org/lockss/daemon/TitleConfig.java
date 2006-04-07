@@ -153,7 +153,7 @@ public class TitleConfig {
       return auid;
     }
     Plugin plugin =
-      pluginMgr.getPlugin(pluginMgr.pluginKeyFromId(getPluginName()));
+      pluginMgr.getPlugin(PluginManager.pluginKeyFromId(getPluginName()));
     return getAuId(pluginMgr, plugin);
   }
 
@@ -162,7 +162,7 @@ public class TitleConfig {
       if (plugin == null) {
 	throw new RuntimeException("No such plugin " + getPluginName());
       }
-      auid = pluginMgr.generateAuId(plugin, getConfig());
+      auid = PluginManager.generateAuId(plugin, getConfig());
     }
     return auid;
   }
