@@ -41,6 +41,8 @@ import org.mortbay.util.*;
  * Byte array utilities
  */
 public class ByteArray {
+  public static final byte[] EMPTY_BYTE_ARRAY = new byte[]{};
+
   private static final char[] HEX_CHARS = {
     '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'
   };

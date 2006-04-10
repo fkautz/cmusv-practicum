@@ -48,16 +48,19 @@ public class LcapMessageTestUtil {
     11, 12, 13, 14, 15, 16, 17, 18, 19, 20
   };
 
-  public static V3LcapMessage makeTestVoteMessage(PeerIdentity peer) {
-    return makeTestVoteMessage(peer, null);
+  public static V3LcapMessage makeTestVoteMessage(PeerIdentity peer,
+                                                  File tempDir) {
+    return makeTestVoteMessage(peer, null, tempDir);
   }
 
   public static V3LcapMessage makeTestVoteMessage(PeerIdentity peer,
-						  Collection voteBlocks) {
-    V3LcapMessage msg = new V3LcapMessage(V3LcapMessage.MSG_VOTE, "key",
-                                          peer, m_url,
-					  123456789, 987654321,
-                                          m_testBytes, m_testBytes);
+						  Collection voteBlocks,
+                                                  File tempDir) {
+    V3LcapMessage msg = new V3LcapMessage("ArchivalID_2", "key", "Plug42",
+                                          ByteArray.makeRandomBytes(20),
+                                          ByteArray.makeRandomBytes(20),
+                                          V3LcapMessage.MSG_REPAIR_REQ,
+                                          987654321, peer, tempDir);
 
     // Set msg vote blocks.
     if (voteBlocks != null) {
@@ -65,6 +68,7 @@ public class LcapMessageTestUtil {
 	msg.addVoteBlock((VoteBlock)ix.next());
       }
     }
+    
     msg.setHashAlgorithm(LcapMessage.getDefaultHashAlgorithm());
     msg.setArchivalId(m_archivalID);
     msg.setPluginVersion("PlugVer42");

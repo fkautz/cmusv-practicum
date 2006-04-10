@@ -69,6 +69,30 @@ public class StreamUtil {
   }
 
   /**
+   * This function copies up to len bytes from the contents of in InputStream
+   * to an Outputstream. It is <b>not</b> buffered, and closes neither stream.
+   * @param is input
+   * @param os output
+   * @param len The number of bytes to copy
+   * @return number of bytes copied
+   * @throws IOException
+   */
+  public static long copy(InputStream is, OutputStream os, long len)
+      throws IOException {
+    if (is == null || os == null || len == 0) {
+      return 0;
+    }
+    long totalByteCount = 0;
+    int in = 0;
+    while (totalByteCount < len && (in = is.read()) > -1 ) {
+      os.write(in);
+      totalByteCount++;
+    }
+    os.flush();
+    return totalByteCount;
+  }
+
+  /**
    * This function copies the contents of a Reader to a Writer
    * It buffers the copying, and closes neither.
    * @param reader reader

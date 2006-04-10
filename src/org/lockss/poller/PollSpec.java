@@ -122,7 +122,11 @@ public class PollSpec {
   public PollSpec(V3LcapMessage msg) {
     auId = msg.getArchivalId();
     pluginVersion = msg.getPluginVersion();
-    url = msg.getTargetUrl();
+    if (msg.getTargetUrl() == null) {
+      url = "lockssau:";
+    } else {
+      url = msg.getTargetUrl();
+    }
     protocolVersion = msg.getProtocolVersion();
     pollType = Poll.V3_POLL;
     cus = getPluginManager().findCachedUrlSet(this);

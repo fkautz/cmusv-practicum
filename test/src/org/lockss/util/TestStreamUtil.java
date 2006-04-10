@@ -77,6 +77,38 @@ public class TestStreamUtil extends LockssTestCase {
     baos.close();
   }
 
+  public void testCopyInputStreamLength() throws IOException {
+    InputStream is = new StringInputStream("012345678901234567890");
+    OutputStream baos = new ByteArrayOutputStream(20);
+    assertEquals(5, StreamUtil.copy(is, baos, 5));
+    String resultStr1 = baos.toString();
+    assertEquals(5, StreamUtil.copy(is, baos, 5));
+    String resultStr2 = baos.toString();
+    assertEquals(5, StreamUtil.copy(is, baos, 5));
+    String resultStr3 = baos.toString();
+    StreamUtil.copy(is, baos, 5);
+    String resultStr4 = baos.toString();
+    assertEquals("01234", resultStr1);
+    assertEquals("0123456789", resultStr2);
+    assertEquals("012345678901234", resultStr3);
+    assertEquals("01234567890123456789", resultStr4);
+    is.close();
+    baos.close();
+
+    is = new StringInputStream("012345678901234567890");
+    baos = new ByteArrayOutputStream(2);
+    assertEquals(2, StreamUtil.copy(is, baos, 2));
+    assertEquals("01", baos.toString());
+    baos = new ByteArrayOutputStream(5);
+    assertEquals(5, StreamUtil.copy(is, baos, 5));
+    assertEquals("23456", baos.toString());
+    baos = new ByteArrayOutputStream(7);
+    assertEquals(7, StreamUtil.copy(is, baos, 7));
+    assertEquals("7890123", baos.toString());
+    is.close();
+    baos.close();
+  }
+
   public void testCopyNullReader() throws IOException {
     Writer writer = new CharArrayWriter(11);
     assertEquals(0, StreamUtil.copy(null, writer));
