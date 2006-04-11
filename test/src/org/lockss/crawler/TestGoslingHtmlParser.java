@@ -400,8 +400,6 @@ public class TestGoslingHtmlParser extends LockssTestCase {
   }
 
   public void testDontParseJSByDefault() throws IOException {
-    String url= "http://www.example.com/link3.html";
-    String url2 = "http://www.example.com/link2.html";
     String url3 = "http://www.example.com/link1.html";
 
     String source =
@@ -428,6 +426,13 @@ public class TestGoslingHtmlParser extends LockssTestCase {
     + "<a href = javascript:popup('http://www.example.com/link2.html')</a>"
     + "<img src = javascript:popup('" + url3 + "') </img>";
     assertEquals(SetUtil.set(url, url2, url3), parseSingleSource(source));
+  }
+
+  public void testDontParseMailto() throws IOException {
+    String source =
+      "<html><head><title>Test</title></head><body>"+
+      "<a href = mailto:user@example.com</a>";
+    assertEquals(SetUtil.set(), parseSingleSource(source));
   }
 
   /**
