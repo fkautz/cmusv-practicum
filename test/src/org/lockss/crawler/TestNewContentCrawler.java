@@ -532,7 +532,13 @@ public class TestNewContentCrawler extends LockssTestCase {
     assertEquals(4, crawlStatus.getNumParsed());
   }
 
+  public void testGetStatusNotStarted() {
+    assertEquals(Crawler.STATUS_QUEUED,
+		 crawler.getStatus().getCrawlStatus());
+  }
+
   public void testGetStatusIncomplete() {
+    crawler.getStatus().signalCrawlStarted();
     assertEquals(Crawler.STATUS_INCOMPLETE,
 		 crawler.getStatus().getCrawlStatus());
   }

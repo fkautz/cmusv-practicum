@@ -31,57 +31,29 @@ in this Software without prior written authorization from Stanford University.
 */
 
 package org.lockss.test;
-// import java.lang.*;
 import java.util.*;
+import org.lockss.daemon.status.*;
+import org.lockss.test.*;
+import org.lockss.daemon.*;
+import org.lockss.crawler.*;
 import org.lockss.app.*;
 import org.lockss.plugin.*;
-import org.lockss.crawler.*;
+import org.lockss.plugin.base.*;
+import org.lockss.util.*;
 
-public class MockCrawlManagerStatusSource
-    implements CrawlManager.StatusSource {
-  private List crawlStatusList;
-  private LockssDaemon daemon;
+public class MockCrawlManagerStatusAccessor extends
+					      CrawlManagerStatusAccessor {
+  Map statusMap = new HashMap();
 
-  public MockCrawlManagerStatusSource(LockssDaemon daemon) {
-    this.daemon = daemon;
+  public MockCrawlManagerStatusAccessor() {
   }
 
-//   public Collection getActiveAus() {
-//     return activeAus;
-//   }
-
-//   public void setActiveAus(Collection activeAus) {
-//     this.activeAus = activeAus;
-//   }
-
-//   public Collection getCrawlStatus(String auid) {
-//     return (Collection) map.get(auid);
-//   }
-
-//   public void setCrawlStatus(Collection crawlStatus, String auid) {
-//     map.put(auid, crawlStatus);
-//   }
-
-  public CrawlManagerStatus getStatus() {
-    return new MyCrawlManagerStatus(crawlStatusList);
+  public Crawler.Status getStatusObject(String key) {
+    return (Crawler.Status)statusMap.get(key);
   }
 
-  public void setCrawlStatusList(List crawlStatusList) {
-    this.crawlStatusList = crawlStatusList;
+  public void addStatusObject(Crawler.Status status) {
+    statusMap.put(status.getKey(), status);
   }
 
-  public LockssDaemon getDaemon() {
-    return daemon;
-  }
-
-  static class MyCrawlManagerStatus extends CrawlManagerStatus {
-    List clist;
-    MyCrawlManagerStatus(List clist) {
-      super(2);
-      this.clist = clist;
-    }
-    public List getCrawlStatusList() {
-      return clist;
-    }
-  }
 }

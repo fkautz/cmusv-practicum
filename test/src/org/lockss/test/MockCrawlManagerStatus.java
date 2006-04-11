@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -45,6 +45,7 @@ public class MockCrawlManagerStatus extends CrawlManagerStatus {
   Map statusMap = new HashMap();
 
   public MockCrawlManagerStatus() {
+    super(2);
   }
 
   public Crawler.Status getStatusObject(String key) {
