@@ -260,7 +260,8 @@ public class TestLogger extends LockssTestCase {
       System.err.println((String)iter.next());
     }
     assertIsomorphic(ListUtil.list("Warning: 1-test-log1: msg2 warning",
-				   "Error: 1-test-log1: msg3 error"),
+				   "Error: 1-test-log1: msg3 error",
+				   "Info: 1-Config: Config updated, 3 keys from foo"),
 		     target.getMessages());
   }
 
