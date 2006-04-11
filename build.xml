@@ -81,6 +81,9 @@ Args:
                               generate-unsupported-mock
 </description>
 
+   <!-- User defaults -->
+  <property file="${user.home}/lockss.properties"/>
+
   <!-- Defaults -->
   <property name="loglevel" value="" />
   <property name="showoutput" value="no" />
@@ -1706,6 +1709,7 @@ Test results in ${test.results}
 	   inheritAll="false">
        <property name="ant-contrib.loaded" value="${ant-contrib.loaded}" />
        <property name="halt" value="${halt}" />
+       <property name="build.compiler" value="${build.compiler}" />
      </ant>
      <echo>Build was successful, deleting "${temp.build.dir}"</echo>
      <delete dir="${temp.build.dir}" quiet="true"/>
