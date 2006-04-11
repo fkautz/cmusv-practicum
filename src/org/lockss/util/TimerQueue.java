@@ -137,6 +137,10 @@ public class TimerQueue {
 	  }};
     }
 
+    public Deadline getDeadline() {
+      return deadline;
+    }
+
     public int compareTo(Object o) {
       return deadline.compareTo(((Request)o).deadline);
     }
