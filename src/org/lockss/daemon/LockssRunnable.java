@@ -363,11 +363,27 @@ public abstract class LockssRunnable  implements LockssWatchdog, Runnable {
     }
   }
 
+  /** Interrupt the thread this runnable is running in, if any */
+  public void interruptThread() {
+    Thread th = thread;
+    if (th != null) {
+      th.interrupt();
+    }
+  }
+
   /** Invoke the subclass's lockssRun() method, then cancel any outstanding
    * thread watchdog */
   public final void run() {
     try {
       thread = Thread.currentThread();
+      if (name != null) {
+	String oldName = thread.getName();
+	if (!oldName.equals(name)) {
+	  thread.setName(name);
+	  log.threadNameChanged();
+	}
+      }
+
       lockssRun();
       String msg = getName() + " lockssRun() returned";
       if (triggerOnExit) {
