@@ -559,6 +559,7 @@ public class XStreamSerializer extends ObjectSerializer {
       throw new NotSerializableException(lnse.getMessage());
     }
     catch (StreamException se) {
+      logger.debug("StreamException", se);
       throw new IOException(se.getMessage());
     }
     catch (CannotResolveClassException crce) {

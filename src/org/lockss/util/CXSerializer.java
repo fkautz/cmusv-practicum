@@ -219,12 +219,12 @@ public class CXSerializer extends ObjectSerializer {
       bufReader.mark(recognizeCastor.length() + 1);
       if (StreamUtil.readChars(bufReader, buffer, buffer.length) != buffer.length) {
         throw new SerializationException("Could not peek at first "
-            + buffer.length + " bytes");
+                                         + buffer.length + " bytes");
       }
       bufReader.reset();
     }
-    catch (Exception exc) {
-      throwIfInterrupted(exc); // otherwise keep going
+    catch (IOException exc) {
+      failDeserialize(exc);
     }
 
     // Guess format and deserialize
@@ -269,6 +269,7 @@ public class CXSerializer extends ObjectSerializer {
     }
   }
 
+  /* Inherit documentation */
   protected void serialize(Writer writer, Object obj)
       throws IOException, SerializationException {
     throwIfNull(obj);
