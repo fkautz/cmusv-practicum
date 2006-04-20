@@ -316,7 +316,7 @@ public class PollerStateBean implements LockssSerializable {
   /**
    * Simple object to hold tally status.
    */
-  public static class TallyStatus {
+  public static class TallyStatus implements LockssSerializable {
     public Set agreedUrls;
     public Set disagreedUrls;
     public Set tooCloseUrls;

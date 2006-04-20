@@ -352,7 +352,7 @@ public class IdentityManagerImpl extends BaseLockssDaemonManager
     PeerIdentity pid;
     synchronized (thePeerIdentities) {
       pid = (PeerIdentity)thePeerIdentities.get(key);
-      if (pid == null) {
+      if (pid == null || !pid.isLocalIdentity()) {
         pid = new PeerIdentity.LocalIdentity(key);
         thePeerIdentities.put(key, pid);
       }

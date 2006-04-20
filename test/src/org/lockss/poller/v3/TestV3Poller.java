@@ -231,6 +231,16 @@ public class TestV3Poller extends LockssTestCase {
     super.tearDown();
   }
 
+  /* Test for a specific bug fix. */
+  public void testNullNomineesShouldntThrow() throws Exception {
+    V3Poller v3Poller = makeInittedV3Poller("foo");
+    try {
+      v3Poller.nominatePeers(voters[2], null);
+    } catch (NullPointerException ex) {
+      fail("Should not have caused NullPointerException");
+    }
+  }
+
   public void testInitHasherByteArrays() throws Exception {
     V3Poller v3Poller = makeInittedV3Poller("foo");
     Map innerCircle =

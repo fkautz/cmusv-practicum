@@ -520,7 +520,9 @@ public class V3Poller extends BasePoll {
       return;
     }
     // Peers should never be allowed to nominate themsevles.
-    nominatedPeers.remove(id);
+    if (nominatedPeers != null) {
+      nominatedPeers.remove(id);
+    }
     log.debug2("Received nominations from inner circle voter: " + id +
                "; Nominations = " + nominatedPeers);
     // If the peer has sent us no nominations, decide whether to drop him.
