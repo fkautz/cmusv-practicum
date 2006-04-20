@@ -441,6 +441,7 @@ public class TestUrlUtil extends LockssTestCase {
     assertEquals("foo%20", UrlUtil.minimallyEncodeUrl("foo "));
     assertEquals("f%22oo%20", UrlUtil.minimallyEncodeUrl("f\"oo "));
     assertEquals("%20foo%7c", UrlUtil.minimallyEncodeUrl(" foo|"));
+    assertEquals("%5bfoo%5d", UrlUtil.minimallyEncodeUrl("[foo]"));
   }
 
   boolean uri=false;

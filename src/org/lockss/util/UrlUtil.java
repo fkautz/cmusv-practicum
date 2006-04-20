@@ -429,6 +429,8 @@ public class UrlUtil {
     url = StringUtil.replaceString(url, " ", "%20");
     url = StringUtil.replaceString(url, "\"", "%22");
     url = StringUtil.replaceString(url, "|", "%7c");
+    url = StringUtil.replaceString(url, "[", "%5b");
+    url = StringUtil.replaceString(url, "]", "%5d");
     return url;
   }
 
