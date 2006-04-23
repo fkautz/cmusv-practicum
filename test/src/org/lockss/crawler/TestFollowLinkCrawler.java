@@ -902,9 +902,9 @@ public class TestFollowLinkCrawler extends LockssTestCase {
       super(url, au);
     }
 
-    public InputStream getUncachedInputStream() {
+    public InputStream getUncachedInputStream() throws IOException {
       checkAbort();
-      return new StringInputStream("");
+      return super.getUncachedInputStream();
     }
     public int cache() throws IOException {
       checkAbort();
