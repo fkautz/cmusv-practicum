@@ -82,8 +82,7 @@ public class StringPermissionChecker implements PermissionChecker {
       return StringUtil.containsString(reader, m_matchString,
 				       m_flags.get(IGNORE_CASE));
     } catch (IOException ex) {
-      m_logger.warning("Exception occured while checking for permission: "
-                       + ex.toString());
+      m_logger.warning("Error checking permission at " + permissionUrl, ex);
     }
 
     return false;
