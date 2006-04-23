@@ -150,7 +150,8 @@ public interface UrlCacher {
   public int cache() throws IOException;
 
   /**
-   * Gets an InputStream for this URL.
+   * Gets an InputStream for this URL, issuing a request if not already
+   * done.  This may only be called once!
    * @return the InputStream
    * @throws IOException
    */
