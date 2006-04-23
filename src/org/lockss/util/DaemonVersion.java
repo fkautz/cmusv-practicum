@@ -108,4 +108,8 @@ public class DaemonVersion implements Version {
     }
     return Integer.parseInt(intPart, 10);
   }
+
+  public String toString() {
+    return "[DaemonVersion " + toLong() + "]";
+  }
 }
