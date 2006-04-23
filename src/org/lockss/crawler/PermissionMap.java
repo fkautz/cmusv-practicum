@@ -313,14 +313,15 @@ public class PermissionMap {
 
       is.mark(BaseCrawler.PERM_BUFFER_MAX);
       Reader reader = new InputStreamReader(is, Constants.DEFAULT_ENCODING);
-      if (pluginPermissionChecker != null
-          && !pluginPermissionChecker.checkPermission(pHelper, reader,
-						      permissionPage)) {
-        logger.error("No plugin crawl permission on " + permissionPage);
-        is.close();
-        return false;
-      } else {
-        is = pHelper.resetInputStream(is, permissionPage);
+      if (pluginPermissionChecker != null) {
+	if (!pluginPermissionChecker.checkPermission(pHelper, reader,
+						     permissionPage)) {
+	  logger.error("No plugin crawl permission on " + permissionPage);
+	  is.close();
+	  return false;
+	} else {
+	  is = pHelper.resetInputStream(is, permissionPage);
+	}
       }
 
       if (CurrentConfig.getBooleanParam(BaseCrawler.PARAM_REFETCH_PERMISSIONS_PAGE,
