@@ -150,14 +150,16 @@ public abstract class BaseConfigFile implements ConfigFile {
 	}
       }
     } catch (FileNotFoundException ex) {
-      log.debug("File not found: " + m_fileUrl);
+      log.debug2("File not found: " + m_fileUrl);
       m_IOException = ex;
       m_loadError = ex.toString();
       throw ex;
     } catch (IOException ex) {
       log.warning("Unexpected exception loading " + m_fileUrl + ": " + ex);
       m_IOException = ex;
-      m_loadError = ex.toString();
+      if (m_loadError == null || !ex.getMessage().equals(m_loadError)) {
+	m_loadError = ex.toString();
+      }
       throw ex;
     }
   }
