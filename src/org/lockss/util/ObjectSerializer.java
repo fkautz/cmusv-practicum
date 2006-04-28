@@ -265,7 +265,7 @@ public abstract class ObjectSerializer {
    *                                  occurs.
    * @see #serialize(OutputStream, Object)
    */
-  public void serialize(OutputStream outputStream, LockssSerializable obj)
+  protected void serialize(OutputStream outputStream, LockssSerializable obj)
       throws IOException, SerializationException {
     serialize(outputStream, (Object)obj);
   }
@@ -287,7 +287,7 @@ public abstract class ObjectSerializer {
    *                                  occurs.
    * @see #serialize(OutputStream, Object)
    */
-  public void serialize(OutputStream outputStream, Serializable obj)
+  protected void serialize(OutputStream outputStream, Serializable obj)
       throws IOException, SerializationException {
     serialize(outputStream, (Object)obj);
   }
@@ -352,7 +352,7 @@ public abstract class ObjectSerializer {
    *                                  occurs.
    * @see #serialize(Writer, Object)
    */
-  public void serialize(Writer writer, LockssSerializable obj)
+  protected void serialize(Writer writer, LockssSerializable obj)
       throws IOException, SerializationException {
     serialize(writer, (Object)obj);
   }
@@ -371,7 +371,7 @@ public abstract class ObjectSerializer {
    *                                  occurs.
    * @see #serialize(Writer, Object)
    */
-  public void serialize(Writer writer, Serializable obj)
+  protected void serialize(Writer writer, Serializable obj)
       throws IOException, SerializationException {
     serialize(writer, (Object)obj);
   }
