@@ -188,7 +188,7 @@ public class TestV3Poller extends LockssTestCase {
     return msgs;
   }
 
-  private V3LcapMessage[] makeVoteMessages() {
+  private V3LcapMessage[] makeVoteMessages() throws IOException {
     V3LcapMessage[] msgs = new V3LcapMessage[voters.length];
     for (int i = 0; i < voters.length; i++) {
       V3LcapMessage msg = new V3LcapMessage("auid", "key", "1",

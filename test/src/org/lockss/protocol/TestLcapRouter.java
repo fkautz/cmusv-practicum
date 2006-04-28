@@ -90,7 +90,8 @@ public class TestLcapRouter extends LockssTestCase {
     assertEqualMessages(lmsg, msg2);
   }
 
-  private void assertEqualMessages(V3LcapMessage a, V3LcapMessage b) {
+  private void assertEqualMessages(V3LcapMessage a, V3LcapMessage b)
+      throws Exception {
     assertTrue(a.getOriginatorId() == b.getOriginatorId());
     assertEquals(a.getOpcode(), b.getOpcode());
     assertEquals(a.getTargetUrl(), b.getTargetUrl());
@@ -100,8 +101,14 @@ public class TestLcapRouter extends LockssTestCase {
     assertEquals(a.getVoterNonce(), b.getVoterNonce());
     assertEquals(a.getPluginVersion(), b.getPluginVersion());
     assertEquals(a.getHashAlgorithm(), b.getHashAlgorithm());
-    List aVoteBlocks = ListUtil.fromIterator(a.getVoteBlockIterator());
-    List bVoteBlocks = ListUtil.fromIterator(b.getVoteBlockIterator());
+    List aVoteBlocks = new ArrayList();
+    for (VoteBlocksIterator iter = a.getVoteBlockIterator(); iter.hasNext(); ) {
+      aVoteBlocks.add(iter.next());
+    }
+    List bVoteBlocks = new ArrayList();
+    for (VoteBlocksIterator iter = b.getVoteBlockIterator(); iter.hasNext(); ) {
+      bVoteBlocks.add(iter.next());
+    }
     assertTrue(aVoteBlocks.equals(bVoteBlocks));
 
     // TODO: Figure out how to test time.

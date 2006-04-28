@@ -217,7 +217,7 @@ public class ParticipantUserData implements LockssSerializable {
   }
 
   // Convenience method.
-  public VoteBlock getVoteBlock(int index) {
+  public VoteBlock getVoteBlock(int index) throws IOException {
     return voteBlocks.getVoteBlock(index);
   }
 
@@ -225,8 +225,8 @@ public class ParticipantUserData implements LockssSerializable {
    * Return the vote block iterator for this peer.
    * @return the vote block iterator for this peer.
    */
-  public ListIterator getVoteBlockIterator() {
-    return voteBlocks.listIterator();
+  public VoteBlocksIterator getVoteBlockIterator() {
+    return voteBlocks.iterator();
   }
 
   public void setErrorMessage(String s) {

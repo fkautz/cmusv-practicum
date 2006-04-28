@@ -49,13 +49,15 @@ public class LcapMessageTestUtil {
   };
 
   public static V3LcapMessage makeTestVoteMessage(PeerIdentity peer,
-                                                  File tempDir) {
+                                                  File tempDir) 
+      throws IOException {
     return makeTestVoteMessage(peer, null, tempDir);
   }
 
   public static V3LcapMessage makeTestVoteMessage(PeerIdentity peer,
 						  Collection voteBlocks,
-                                                  File tempDir) {
+                                                  File tempDir)
+      throws IOException {
     V3LcapMessage msg = new V3LcapMessage("ArchivalID_2", "key", "Plug42",
                                           ByteArray.makeRandomBytes(20),
                                           ByteArray.makeRandomBytes(20),
