@@ -583,8 +583,7 @@ public class TestNewContentCrawler extends LockssTestCase {
     crawler.doCrawl();
     Crawler.Status crawlStatus = crawler.getStatus();
 
-    assertEquals("Cannot fetch permission page on the second attempt :"
-		 +permissionPage,
+    assertEquals("Cannot fetch permission page.", 
 		 crawlStatus.getCrawlStatus());
     Map expectedErrors = MapUtil.map(permissionPage,
 				     "Cannot fetch permission page on the second attempt");
