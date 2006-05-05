@@ -489,7 +489,7 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
 		     PARAM_MAX_NEW_CONTENT_RATE,
 		     DEFAULT_MAX_NEW_CONTENT_RATE);
     if (!limiter.isEventOk()) {
-      logger.debug("New content aborted due to rate limiter.");
+      logger.debug("New content aborted due to rate limiter: "+au);
       callCallback(cb, cookie, false, null);
       return;
     }
@@ -501,7 +501,7 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
     }
     if (lock == null) {
       logger.debug("Couldn't schedule new content crawl due "+
-		   "to activity lock.");
+		   "to activity lock: "+au);
       callCallback(cb, cookie, false, null);
       return;
     }
