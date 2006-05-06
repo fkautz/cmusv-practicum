@@ -50,7 +50,7 @@ public class Deadline implements Comparable, LockssSerializable {
   private static LockssRandom random = null;
   protected Date expiration;
   protected long duration;		// only for testing
-  private List subscribers;		// those who wish to be notified
+  private transient List subscribers;	// those who wish to be notified
 					// if/when this Deadline's duration
 					// changes
 
