@@ -104,6 +104,41 @@ public class TestRateLimiter extends LockssTestCase {
     assertEquals(5, lim.timeUntilEventOk());
   }
 
+  public void testWait() throws InterruptedException {
+    TimeBase.setSimulated(1000);
+    RateLimiter lim = new RateLimiter(2, 10);
+    assertTrue(lim.isEventOk());
+    assertTrue(lim.waitUntilEventOk());
+    lim.event();
+    assertTrue(lim.isEventOk());
+    TimeBase.step(5);
+    assertTrue(lim.isEventOk());
+    assertTrue(lim.waitUntilEventOk());
+    lim.event();
+    assertFalse(lim.isEventOk());
+    assertEquals(5, lim.timeUntilEventOk());
+    DoLater doer = null;
+      doer = new DoLater(100) {
+	  protected void doit() {
+	    TimeBase.step(5);
+	  }
+	};
+      doer.start();
+      assertTrue(lim.waitUntilEventOk());
+      doer.cancel();
+  }
+
+  public void testUnlimited() throws InterruptedException {
+    RateLimiter lim = RateLimiter.UNLIMITED;
+    assertTrue(lim.isEventOk());
+    assertEquals(0, lim.timeUntilEventOk());
+    assertTrue(lim.waitUntilEventOk());
+    lim.event();
+    assertTrue(lim.isEventOk());
+    lim.event();
+    assertTrue(lim.isEventOk());
+  }
+
   public void testGetFromConfig1() {
     RateLimiter lim;
     Configuration config;
@@ -164,4 +199,10 @@ public class TestRateLimiter extends LockssTestCase {
     assertEquals(200, lim.getInterval());
   }
 
+  public void testGetFromConfigUnlimited() {
+    Configuration config = ConfigurationUtil.fromArgs("rate1", "Unlimited");
+    RateLimiter lim = RateLimiter.getConfiguredRateLimiter(config, null,
+					       "rate1", "3/200");
+    assertSame(RateLimiter.UNLIMITED, lim);
+  }
 }
