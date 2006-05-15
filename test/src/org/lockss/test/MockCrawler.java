@@ -122,9 +122,9 @@ public class MockCrawler extends NullCrawler {
     return urls;
   }
 
-//   public void setStartTime(long time) {
-//     startTime = time;
-//   }
+  public void setStartTime(long time) {
+    startTime = time;
+  }
 
 //   public void setEndTime(long time) {
 //     endTime = time;
@@ -138,9 +138,9 @@ public class MockCrawler extends NullCrawler {
 //     numParsed = num;
 //   }
 
-//   public long getStartTime() {
-//     return startTime;
-//   }
+  public long getStartTime() {
+    return startTime;
+  }
 
 //   public long getEndTime() {
 //     return endTime;
