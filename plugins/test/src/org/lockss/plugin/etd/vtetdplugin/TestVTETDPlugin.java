@@ -55,6 +55,13 @@ public class TestVTETDPlugin extends LockssPluginTestCase {
 
   private DefinablePlugin plugin;
 
+  public void setUp() throws Exception {
+    super.setUp();
+    String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
+    ConfigurationUtil.setFromArgs(LockssRepositoryImpl.PARAM_CACHE_LOCATION,
+				  tempDirPath);
+  }
+
   private Properties makeProps(String url, int year, String oaiProvider) {
     Properties props = new Properties();
     props.setProperty(YEAR_KEY, Integer.toString(year));
