@@ -364,9 +364,7 @@ public class IcpManager
   protected synchronized void forget() {
     icpFactory = null;
     icpRunnable = null;
-    pluginManager = null;
     port = BAD_PORT;
-    proxyManager = null;
     rateLimiter = null;
     udpSocket = null;
   }
@@ -454,10 +452,6 @@ public class IcpManager
         }
         udpSocket.send(response.toDatagramPacket(message.getUdpAddress(),
                                                  message.getUdpPort()));
-      }
-      catch (NoRouteToHostException nrthe) {
-        logger.debug("NoRouteToHostException while sending ICP response", nrthe);
-        logger.debug("A NoRouteToHostException may indicate a problem related to packet filtering on the underlying platform.");
       }
       catch (IOException ioe) {
         logger.debug("processMessage: IOException", ioe);
