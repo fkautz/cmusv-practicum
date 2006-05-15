@@ -558,6 +558,21 @@ public class TestPluginManager extends LockssTestCase {
     assertEquals(ListUtil.list(mau1, mau2, mau3, mau4, mau5), mgr.getAllAus());
   }
 
+  public void testgetRandomizedAus() throws Exception {
+    MockArchivalUnit mau1 = new MockArchivalUnit();
+    MockArchivalUnit mau2 = new MockArchivalUnit();
+    MockArchivalUnit mau3 = new MockArchivalUnit();
+    MockArchivalUnit mau4 = new MockArchivalUnit();
+    MockArchivalUnit mau5 = new MockArchivalUnit();
+    mgr.putAuInMap(mau5);
+    mgr.putAuInMap(mau4);
+    mgr.putAuInMap(mau2);
+    mgr.putAuInMap(mau3);
+    mgr.putAuInMap(mau1);
+    Set aus = SetUtil.theSet(mgr.getRandomizedAus());
+    assertEquals(SetUtil.set(mau1, mau2, mau3, mau4, mau5), aus);
+  }
+
   public void testTitleSets() throws Exception {
     String ts1p = PluginManager.PARAM_TITLE_SETS + ".s1.";
     String ts2p = PluginManager.PARAM_TITLE_SETS + ".s2.";
