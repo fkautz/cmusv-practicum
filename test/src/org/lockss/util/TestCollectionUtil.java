@@ -251,7 +251,9 @@ public class TestCollectionUtil extends LockssTestCase {
     Set set = new HashSet();
     int rpt = 0;
     while (++rpt < 100000) {
-      set.add(CollectionUtil.randomPermutation(coll));
+      List lst = CollectionUtil.randomPermutation(coll);
+      assertEquals(5, lst.size());
+      set.add(lst);
       if (set.size() == 120) {
 	log.debug(""+rpt);
 	return;
