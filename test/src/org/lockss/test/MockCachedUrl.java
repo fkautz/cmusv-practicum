@@ -55,6 +55,7 @@ public class MockCachedUrl implements CachedUrl {
 
   private boolean doesExist = false;
   private String content = null;
+  private long contentSize = -1;
   private Reader reader = null;
   private String cachedFile = null;
   private boolean isResource;
@@ -147,6 +148,9 @@ public class MockCachedUrl implements CachedUrl {
   }
 
   public long getContentSize() {
+    if (contentSize != -1) {
+      return contentSize;
+    }
     return content == null ? 0 : content.length();
   }
 
@@ -170,6 +174,10 @@ public class MockCachedUrl implements CachedUrl {
 
   public void setContent(String content) {
     this.content = content;
+  }
+
+  public void setContentSize(long size) {
+    this.contentSize = size;
   }
 
   public void setReader(Reader reader) {
