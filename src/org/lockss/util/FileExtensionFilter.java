@@ -39,7 +39,6 @@ import java.io.*;
  */
 
 public class FileExtensionFilter implements FilenameFilter {
-  static Logger log = Logger.getLogger("FileExtensionFilter");
 
   private String ext;
 
@@ -48,7 +47,6 @@ public class FileExtensionFilter implements FilenameFilter {
   }
 
   public boolean accept(File dir, String name) {
-    log.debug(name + ": " + name.endsWith(ext));
     return name.endsWith(ext);
   }
 
