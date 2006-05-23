@@ -57,7 +57,8 @@ public class TestAuConfig extends LockssServletTestCase {
     super.setUp();
     pluginMgr = new PluginManager();
     theDaemon.setPluginManager(pluginMgr);
-    getMockLockssDaemon().setIdentityManager(new org.lockss.protocol.MockIdentityManager());
+    theDaemon.setIdentityManager(new org.lockss.protocol.MockIdentityManager());
+    theDaemon.getServletManager();
     theDaemon.setDaemonInited(true);
     theDaemon.getRemoteApi().startService();
     pluginMgr.initService(theDaemon);
