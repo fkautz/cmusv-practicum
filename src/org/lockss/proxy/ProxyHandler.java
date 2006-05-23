@@ -437,6 +437,14 @@ public class ProxyHandler extends AbstractHttpHandler {
 
     LockssUrlConnection conn = null;
     try {
+      // If we recently served this url from the cache, don't check with
+      // publisher for newer content.
+      // XXX This needs to forward the request to the publisher (but not
+      // wait for the result) so the publisher can count the access.
+      if (isInCache && proxyMgr.isRecentlyAccessedUrl(urlString)) {
+	serveFromCache(pathInContext, pathParams, request, response, cu);
+	return;
+      }      
       boolean useQuick =
 	(isInCache ||
 	 (proxyMgr.isHostDown(request.getURI().getHost()) &&
@@ -563,6 +571,7 @@ public class ProxyHandler extends AbstractHttpHandler {
       }
       // We got a response, should we prefer it to what's in the cache?
       if (isInCache && preferCacheOverPubResponse(cu, conn)) {
+	proxyMgr.setRecentlyAccessedUrl(urlString);
 	serveFromCache(pathInContext, pathParams, request,
 		       response, cu);
 	return;
