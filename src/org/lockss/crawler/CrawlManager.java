@@ -72,8 +72,8 @@ public interface CrawlManager {
                                    Object cookie, ActivityRegulator.Lock lock);
 
 
-  /** Enable the periodic crawl starter */
-  public void enableCrawlStarter();
+  /** Return true if the periodic crawl starter is running */
+  public boolean isCrawlStarterEnabled();
 
   public interface Callback {
     /**
