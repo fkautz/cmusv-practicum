@@ -547,8 +547,28 @@ public class PollerStatus {
       String auid = au.getAuId();
       String keys =
 	PropUtil.propsToCanonicalEncodedString(PropUtil.fromArgs("AU", auid));
-      return new StatusTable.Reference(howManyPollsRunning(au) + " polls",
+      return new StatusTable.Reference(new PollsRef(howManyPollsRunning(au)),
                                        tableName, keys);
+    }
+  }
+
+  /** Object whose toString() returns "<i>number</i> polls", but which
+   * sorts numerically  */
+  static class PollsRef implements Comparable {
+    private int num;
+    private String label;
+    PollsRef(int n) {
+      num = n;
+      label = n + " polls";
+    }
+    public String toString() {
+      return label;
+    }
+    public int getNum() {
+      return num;
+    }
+    public int compareTo(Object o) {
+      return num - ((PollsRef)o).getNum();
     }
   }
 }
