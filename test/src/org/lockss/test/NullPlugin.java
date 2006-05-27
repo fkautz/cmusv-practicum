@@ -147,6 +147,22 @@ public class NullPlugin {
       return CachedUrlSetNode.TYPE_CACHED_URL;
     }
 
+    public CachedUrl getCuVersion(int version) {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
+    public CachedUrl[] getCuVersions() {
+      return new CachedUrl[0];
+    }
+
+    public CachedUrl[] getCuVersions(int maxVersions) {
+      return new CachedUrl[0];
+    }
+
+    public int getVersion() {
+      return 1;
+    }
+
     public InputStream getUnfilteredInputStream() {
       return new StringInputStream("");
     }

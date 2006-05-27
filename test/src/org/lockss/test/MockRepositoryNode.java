@@ -114,6 +114,10 @@ public class MockRepositoryNode implements RepositoryNode {
     return children.iterator();
   }
 
+  public int getVersion() {
+    return getCurrentVersion();
+  }
+
   public int getCurrentVersion() {
     return currentVersion;
   }
@@ -154,6 +158,18 @@ public class MockRepositoryNode implements RepositoryNode {
   }
 
   public synchronized void restoreLastVersion() {
+    throw new UnsupportedOperationException("Not supported.");
+  }
+
+  public RepositoryNodeVersion[] getNodeVersions() {
+    throw new UnsupportedOperationException("Not supported.");
+  }
+
+  public RepositoryNodeVersion[] getNodeVersions(int maxVersions) {
+    throw new UnsupportedOperationException("Not supported.");
+  }
+
+  public RepositoryNodeVersion getNodeVersion(int version) {
     throw new UnsupportedOperationException("Not supported.");
   }
 

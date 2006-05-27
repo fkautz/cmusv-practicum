@@ -87,6 +87,22 @@ public class PTestPlugin {
       return CachedUrlSetNode.TYPE_CACHED_URL;
     }
 
+    public CachedUrl getCuVersion(int version) {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
+    public CachedUrl[] getCuVersions() {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
+    public CachedUrl[] getCuVersions(int maxVersions) {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
+    public int getVersion() {
+      return 1;
+    }
+
     public InputStream getUnfilteredInputStream() {
       return new StringInputStream(contents);
     }

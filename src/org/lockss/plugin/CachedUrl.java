@@ -88,6 +88,41 @@ public interface CachedUrl extends CachedUrlSetNode {
   public static final String PROPERTY_LAST_MODIFIED = "last-modified";
 
   /**
+   * Return a version-specific CachedUrl for the specified content version
+   * @throws UnsupportedOperationException if node has no versions
+   * @return a {@link CachedUrl} bound to the specified version
+   */
+  public CachedUrl getCuVersion(int version);
+
+  /**
+   * Return an array of version-specific CachedUrls for all versions of
+   * content/props at this URL.  The result is sorted from most to least
+   * recent; the CachedUrl for current version is the first element in the
+   * array.
+   * @throws UnsupportedOperationException if node has no versions
+   * @return array of {@link CachedUrl}
+   */
+  public CachedUrl[] getCuVersions();
+
+  /**
+   * Return an array of version-specific CachedUrls for the most recent
+   * <code>maxVersions</code> versions of content/props at this URL.  The
+   * result is sorted from most to least recent; the CachedUrl for current
+   * version is the first element in the array.
+   * @throws UnsupportedOperationException if node has no versions
+   * @return array of {@link CachedUrl}
+   */
+  public CachedUrl[] getCuVersions(int maxVersions);
+
+  /**
+   * Return the version number.  This is the current version if the
+   * CachedUrl isn't bound to a particular version
+   * @throws UnsupportedOperationException if node has no versions
+   * @return version number
+   */
+  public int getVersion();
+
+  /**
   * Get an object from which the content of the url can be read
   * from the cache.
   * @return a {@link InputStream} object from which the
