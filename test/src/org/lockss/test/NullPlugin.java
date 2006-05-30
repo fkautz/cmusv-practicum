@@ -147,16 +147,16 @@ public class NullPlugin {
       return CachedUrlSetNode.TYPE_CACHED_URL;
     }
 
-    public CachedUrl getCuVersion(int version) {
+    public org.lockss.plugin.CachedUrl getCuVersion(int version) {
       throw new UnsupportedOperationException("Not implemented");
     }
 
-    public CachedUrl[] getCuVersions() {
-      return new CachedUrl[0];
+    public org.lockss.plugin.CachedUrl[] getCuVersions() {
+      return new org.lockss.plugin.CachedUrl[0];
     }
 
-    public CachedUrl[] getCuVersions(int maxVersions) {
-      return new CachedUrl[0];
+    public org.lockss.plugin.CachedUrl[] getCuVersions(int maxVersions) {
+      return new org.lockss.plugin.CachedUrl[0];
     }
 
     public int getVersion() {
