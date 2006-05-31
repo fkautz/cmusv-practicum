@@ -235,7 +235,7 @@ public class ExternalizableMap extends TypedEntryMap {
    * @return A mode constant from {@link CXSerializer}.
    */
   private static int getSerializationMode() {
-    return CXSerializer.getModeFromConfiguration();
+    return CXSerializer.getCompatibilityModeFromConfiguration();
   }
 
   /**
@@ -248,7 +248,7 @@ public class ExternalizableMap extends TypedEntryMap {
     // CASTOR: Change to returning an XStreamSerializer
     CXSerializer serializer =
       new CXSerializer(MAPPING_FILE_NAME, ExtMapBean.class);
-    serializer.setCurrentMode(getSerializationMode());
+    serializer.setCompatibilityMode(getSerializationMode());
     return serializer;
   }
 

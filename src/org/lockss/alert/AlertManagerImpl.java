@@ -38,7 +38,6 @@ import org.lockss.app.ConfigurableManager;
 import org.lockss.config.ConfigManager;
 import org.lockss.config.Configuration;
 import org.lockss.util.*;
-import org.lockss.util.ObjectSerializer.SerializationException;
 
 /**
  * <p>Matches alerts against configured filters and invokes the
