@@ -106,6 +106,10 @@ public class XStreamSerializer extends ObjectSerializer {
                                                                                                  4,
                                                                                                  20);
 
+    protected static final ThreadSafeSimpleDateFormat oldFormatter = new ThreadSafeSimpleDateFormat("yyyy-MM-dd HH:mm:ss.S z",
+                                                                                                    4,
+                                                                                                    20);
+
     public boolean canConvert(Class type) {
       return type.equals(Date.class);
     }
@@ -123,7 +127,14 @@ public class XStreamSerializer extends ObjectSerializer {
         return formatter.parse(value);
       }
       catch (ParseException pe) {
-        throw new ConversionException("Cannot parse date: " + value);
+        try {
+          // Maybe an old (daemon 1.16 and earlier) serialized form
+          return oldFormatter.parse(value);
+        }
+        catch (ParseException pe2) {
+          // Cannot parse date
+          throw new ConversionException("Cannot parse date: " + value);
+        }
       }
     }
 
