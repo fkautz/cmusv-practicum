@@ -34,6 +34,9 @@ package org.lockss.filter;
 
 import java.io.*;
 import java.util.*;
+
+import org.lockss.config.Configuration;
+import org.lockss.filter.HtmlTagFilter.TrailingTagException;
 import org.lockss.test.*;
 import org.lockss.util.*;
 
@@ -50,8 +53,11 @@ public class TestHtmlTagFilter extends LockssTestCase {
   private static final HtmlTagFilter.TagPair tagPair2 =
     new HtmlTagFilter.TagPair(startTag2, endTag2);
 
+  private static final String PARAM_THROW_ON_TRAILING_TAG =
+    Configuration.PREFIX + "HtmlTagFilter.throwOnTrailingTag";
 
 
+  
   /** Check that the filtered string matches expected.  Test with varying
    * buffer lengths and offsets */
   private void assertFilterString(String expected, String input,
@@ -222,10 +228,36 @@ public class TestHtmlTagFilter extends LockssTestCase {
     assertFilterString(expectedContent, content, tagPair1);
   }
 
-  public void testFiltersTrailingTag() throws IOException {
+  public void testFiltersTrailingTagDefault() throws IOException {
     String content = "This "+startTag1+"is test content";
     String expectedContent = "This ";
     assertFilterString(expectedContent, content, tagPair1);
+  }
+
+  
+  public void testFiltersTrailingTagParamFalse() throws IOException {
+    Properties p = new Properties();
+    p.setProperty(PARAM_THROW_ON_TRAILING_TAG, "false");
+    ConfigurationUtil.setCurrentConfigFromProps(p);
+
+    String content = "This "+startTag1+"is test content";
+    String expectedContent = "This ";
+    assertFilterString(expectedContent, content, tagPair1);
+  }
+
+  public void testFiltersTrailingTagParamTrue() throws IOException {
+    Properties p = new Properties();
+    p.setProperty(PARAM_THROW_ON_TRAILING_TAG, "true");
+    ConfigurationUtil.setCurrentConfigFromProps(p);
+
+    String content = "This "+startTag1+"is test content";
+    String expectedContent = "This ";
+    try {
+      assertFilterString(expectedContent, content, tagPair1);
+      fail("Trying to filter content without a trailing tag should throw");
+    } catch (HtmlTagFilter.TrailingTagException ex) {
+      //expected
+    }
   }
 
   public void testFiltersSingleTagsNestingVariant1() throws IOException {
