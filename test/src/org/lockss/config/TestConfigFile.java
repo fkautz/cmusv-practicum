@@ -393,6 +393,22 @@ public abstract class TestConfigFile extends LockssTestCase {
       assertTrue(hcf.isLoaded());
     }
 
+    // Ensure null message in exception doesn't cause problems
+    // Not specific to HTTPConfigFile, but handy to test here because we can
+    // make the subclass throw
+    public void testNullExceptionMessage() throws IOException {
+      MyHttpConfigFile hcf =
+	new MyHttpConfigFile("http://foo.bar/lockss.xml", "");
+      hcf.setExecuteException(new IOException(null));
+      try {
+	Configuration config = hcf.getConfiguration();
+	fail("Should throw");
+      } catch (NullPointerException e) {
+	fail("Null exception message caused", e);
+      } catch (IOException e) {
+      }
+    }
+
   }
 
   /** HTTPConfigFile that uses a programmable MockLockssUrlConnection */

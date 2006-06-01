@@ -157,7 +157,10 @@ public abstract class BaseConfigFile implements ConfigFile {
     } catch (IOException ex) {
       log.warning("Unexpected exception loading " + m_fileUrl + ": " + ex);
       m_IOException = ex;
-      if (m_loadError == null || !ex.getMessage().equals(m_loadError)) {
+      if (m_loadError == null ||
+	  !StringUtil.equalStrings(ex.getMessage(), m_loadError)) {
+	// Some subs set m_loadError to exception message.  Don't overwrite
+	// those with message that includes java exception class
 	m_loadError = ex.toString();
       }
       throw ex;
