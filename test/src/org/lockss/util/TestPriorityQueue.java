@@ -251,6 +251,19 @@ public class TestPriorityQueue extends LockssTestCase {
     }
   }
 
+  public void testThrowsInterruptedException() {
+    PriorityQueue q = new PriorityQueue();
+    try {
+      interruptMeIn(100);
+      Date start = new Date();
+      Object obj = q.get(timer(TIMEOUT_SHOULDNT));
+      long delay = TimerUtil.timeSince(start);
+      fail("get(" + TIMEOUT_SHOULDNT +
+	   ") of empty interrupted queue returned "+ obj + " in " + delay);
+    } catch (InterruptedException e) {
+    }
+  }
+
   private Deadline timer(int msec) {
     return Deadline.in(msec);
   }

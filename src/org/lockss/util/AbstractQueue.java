@@ -75,17 +75,14 @@ public abstract class AbstractQueue implements Queue {
    */
   public synchronized Object peekWait(Deadline timer)
       throws InterruptedException {
-    final Thread thread = Thread.currentThread();
-    Deadline.Callback cb = new Deadline.Callback() {
-	public void changed(Deadline deadline) {
-	  thread.interrupt();
-	}};
+    Deadline.InterruptCallback cb = new Deadline.InterruptCallback();
     try {
       timer.registerCallback(cb);
       while (queue.isEmpty() && !timer.expired()) {
 	this.wait(timer.getSleepTime());
       }
     } finally {
+      cb.disable();
       timer.unregisterCallback(cb);
     }
     if (!queue.isEmpty()) {

@@ -54,11 +54,7 @@ public class BinarySemaphore {
       // Don't call any methods on the timer while holding the semaphore's
       // lock, or we create a potential deadlock.
 
-      final Thread thread = Thread.currentThread();
-      Deadline.Callback cb = new Deadline.Callback() {
-	  public void changed(Deadline deadline) {
-	    thread.interrupt();
-	  }};
+      Deadline.InterruptCallback cb = new Deadline.InterruptCallback();
       try {
 	timer.registerCallback(cb);
 	while (!timer.expired()) {
@@ -74,6 +70,7 @@ public class BinarySemaphore {
 	  }
 	}
       } finally {
+	cb.disable();
 	timer.unregisterCallback(cb);
       }
     }

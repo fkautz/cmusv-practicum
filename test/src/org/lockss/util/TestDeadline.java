@@ -347,6 +347,26 @@ public class TestDeadline extends LockssTestCase {
     assertSame(d1, called);
   }
 
+  public void testInterruptedCallback() {
+    Deadline.InterruptCallback cb = new Deadline.InterruptCallback();
+    Expirer expr = null;
+    Deadline d = Deadline.in(100);
+    try {
+      d.registerCallback(cb);
+      Date start = new Date();
+      // expire the deadline at about the same time it's supposed to go
+      // off.  If there's a race condition in the interrupt handling,
+      // hopefully this will occasionally trigger it
+      expr = expireIn(99, d);
+      d.sleep();
+    } catch (InterruptedException e) {
+    } finally {
+      cb.disable();
+      d.unregisterCallback(cb);
+    }
+    assertFalse(Thread.currentThread().isInterrupted());
+  }
+
 
   /** Expirer expires a timer in a while */
   class Expirer extends DoLater {

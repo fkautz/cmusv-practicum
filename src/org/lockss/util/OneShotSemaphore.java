@@ -51,17 +51,14 @@ public class OneShotSemaphore {
   synchronized public boolean waitFull(Deadline timer)
       throws InterruptedException {
     if (timer != null) {
-      final Thread thread = Thread.currentThread();
-      Deadline.Callback cb = new Deadline.Callback() {
-	  public void changed(Deadline deadline) {
-	    thread.interrupt();
-	  }};
+      Deadline.InterruptCallback cb = new Deadline.InterruptCallback();
       try {
 	timer.registerCallback(cb);
 	while (!state && !timer.expired()) {
 	  this.wait(timer.getSleepTime());
 	}
       } finally {
+	cb.disable();
 	timer.unregisterCallback(cb);
       }
     }
