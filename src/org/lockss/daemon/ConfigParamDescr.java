@@ -558,12 +558,15 @@ public class ConfigParamDescr implements Comparable, LockssSerializable {
         uniqueInstances.put(DEFAULT_DESCR_ARRAY[ix], DEFAULT_DESCR_ARRAY[ix]);
       }
     }
-    // Possibly add new canonical representation
-    if (!uniqueInstances.containsKey(descr)) {
+
+    Object ret = uniqueInstances.get(descr);
+    if (ret == null) {
       uniqueInstances.put(descr, descr);
+      return descr;
     }
-    // Return canonical representation
-    return uniqueInstances.get(descr);
+    else {
+      return ret;
+    }
   }
 
   public static class InvalidFormatException extends Exception {
