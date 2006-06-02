@@ -57,6 +57,7 @@ public class VoterUserData
   private String pluginVersion;
   private long duration;
   private long deadline;
+  private long voteDeadline;
   private String hashAlgorithm;
   private VoteBlocks voteBlocks;
   private String url;
@@ -160,6 +161,14 @@ public class VoterUserData
 
   public void setDeadline(long deadline) {
     this.deadline = deadline;
+  }
+  
+  public long getVoteDeadline() {
+    return deadline;
+  }
+  
+  public void setVoteDeadline(long voteDeadline) {
+    this.voteDeadline = deadline;
   }
 
   public String getHashAlgorithm() {

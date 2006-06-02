@@ -46,6 +46,9 @@ public class VoterActions {
   // Start participating in a V3 poll when a POLL message is received
   public static PsmEvent handleReceivePoll(PsmMsgEvent evt,
                                            PsmInterp interp) {
+    V3LcapMessage msg = (V3LcapMessage)evt.getMessage();
+    VoterUserData ud = getUserData(interp);
+    ud.setVoteDeadline(msg.getVoteDeadline());
     return V3Events.evtOk;
   }
 

@@ -43,7 +43,8 @@ public class V3VoterSerializer extends V3Serializer {
 
   public V3VoterSerializer(LockssDaemon daemon)
       throws PollSerializerException {
-    this(daemon, null);
+    super(daemon);
+    this.voterUserDataFile = new File(pollDir, VOTER_USER_DATA_FILE);
   }
 
   public V3VoterSerializer(LockssDaemon daemon, File dir)

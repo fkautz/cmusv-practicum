@@ -77,22 +77,6 @@ public class LcapMessageTestUtil {
     return msg;
   }
 
-  public static List makeVoteBlockList(int size) {
-    ArrayList vbList = new ArrayList();
-    for (int ix = 0; ix < size; ix++) {
-      String fileName = "/test-" + ix + ".html";
-      byte[] hash = computeHash(fileName);
-      VoteBlock vb =
-	new VoteBlock("/test-" + ix + ".html", 1024, 0,
-		      1024, 0, hash, hash, VoteBlock.CONTENT_VOTE);
-      if (log.isDebug2()) {
-	log.debug2("Creating voteblock: " + vb);
-      }
-      vbList.add(vb);
-    }
-    return vbList;
-  }
-
   public static byte[] computeHash(String s) {
     try {
       MessageDigest digest = MessageDigest.getInstance("SHA");

@@ -75,7 +75,6 @@ public class TestPoll extends LockssTestCase {
     initRequiredServices();
 
     testau.setPlugin(new MockPlugin());
-    log.debug("*** testAu CUS: " + testau.getAuCachedUrlSet());
 
     initTestPeerIDs();
     initTestMsg();

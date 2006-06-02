@@ -90,7 +90,7 @@ public class V3TestUtil extends LockssTestCase {
     assertEquals(b1.getLastHashedBlock(), b2.getLastHashedBlock());
     assertEquals(b1.getPluginVersion(), b2.getPluginVersion());
     assertEquals(b1.getUrl(), b2.getUrl());
-    assertEquals(b1.getDeadline(), b2.getDeadline());
+    assertEquals(b1.getPollDeadline(), b2.getPollDeadline());
     assertEquals(b1.getPollerId().getIdString(),
                  b2.getPollerId().getIdString());
   }

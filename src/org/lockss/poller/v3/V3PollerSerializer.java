@@ -50,7 +50,7 @@ public class V3PollerSerializer extends V3Serializer {
   private HashMap peerMapping;
 
   public V3PollerSerializer(LockssDaemon daemon) throws PollSerializerException {
-    super(daemon, null);
+    super(daemon);
     this.pollerStateBeanFile = new File(pollDir, POLLER_STATE_BEAN);
     this.peerMapping = new HashMap();
   }
