@@ -414,7 +414,7 @@ public class Deadline implements Comparable, LockssSerializable {
     subscribers.remove(callback);
   }
 
-  /** Call deadlineChanged() method of all sunbscribers.  NB: This must not
+  /** Call deadlineChanged() method of all subscribers.  NB: This must not
    * be synchronized, nor called from a synchronized method  */
   protected void changed() {
     // Make copy so can iterate unsynchronized
