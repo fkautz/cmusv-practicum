@@ -211,9 +211,9 @@ public class NodeStateImpl
   }
 
   public boolean hasDamage() {
-    NodeManagerImpl nodeMan =
-        (NodeManagerImpl)LockssDaemon.getAuManager(LockssDaemon.NODE_MANAGER,
-                                                   cus.getArchivalUnit());
+    NodeManagerImpl nodeMan = (NodeManagerImpl)
+      LockssDaemon.getStaticAuManager(LockssDaemon.NODE_MANAGER,
+				      cus.getArchivalUnit());
     return nodeMan.hasDamage(cus);
   }
 
