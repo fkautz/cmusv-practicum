@@ -73,6 +73,10 @@ public class MockArchivalUnit implements ArchivalUnit {
   public MockArchivalUnit(){
   }
 
+  public MockArchivalUnit(String auId) {
+    this.auId = auId;
+  }
+
   public MockArchivalUnit(Plugin plugin) {
     this.plugin = plugin;
   }
