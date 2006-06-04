@@ -337,6 +337,9 @@ class HashQueue {
       this.deadline = deadline;
       this.callback = callback;
       this.cookie = cookie;
+      if (urlsetHasher == null) {
+	throw new NullPointerException("CachedUrlSetHasher is null");
+      }
       this.urlsetHasher = urlsetHasher;
       this.origEst = estimatedDuration;
       this.typeString = urlsetHasher.typeString();
