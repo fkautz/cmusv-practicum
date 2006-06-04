@@ -57,7 +57,7 @@ import org.lockss.plugin.*;
 public class CrawlManagerImpl extends BaseLockssDaemonManager
     implements CrawlManager, CrawlManager.StatusSource, ConfigurableManager {
 
-  private static Logger logger = Logger.getLogger("CrawlManager");
+  static Logger logger = Logger.getLogger("CrawlManager");
 
   public static final String PREFIX = Configuration.PREFIX + "crawler.";
 
@@ -239,6 +239,7 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
    * @see org.lockss.app.LockssManager#stopService()
    */
   public void stopService() {
+    disableCrawlStarter();
     if (pool != null) {
       pool.shutdownNow();
     }
@@ -736,6 +737,7 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
     if (crawlStarter != null) {
       logger.info("Stopping crawl starter");
       crawlStarter.stopCrawlStarter();
+      crawlStarter.waitExited(Deadline.in(Constants.SECOND));
       crawlStarter = null;
     }
     isCrawlStarterEnabled = false;
@@ -755,7 +757,7 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
   }
 
   private class CrawlStarter extends LockssRunnable {
-    private boolean goOn = false;
+    private volatile boolean goOn = true;
 
     private CrawlStarter() {
       super("CrawlStarter");
@@ -763,7 +765,6 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
 
     public void lockssRun() {
       setPriority(PRIORITY_PARAM_CRAWLER, PRIORITY_DEFAULT_CRAWLER);
-      goOn = true;
       // Crawl start interval is configurable, so watchdog timeout would
       // have to be also.  Crawl starter is so simple; not sure it really
       // needs a watchdog.

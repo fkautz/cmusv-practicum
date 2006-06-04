@@ -371,7 +371,7 @@ public class MockLcapDatagramComm extends LcapDatagramComm {
 
   // Receive thread
   private class ReceiveThread extends Thread {
-    private boolean goOn = true;
+    private volatile boolean goOn = true;
     private long sleep = Constants.MINUTE;
     private Deadline timeout = Deadline.in(sleep);
 

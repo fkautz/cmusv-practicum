@@ -488,7 +488,7 @@ public class LcapDatagramRouter
 
   // Beacon thread
   private class BeaconThread extends LockssThread {
-    private boolean goOn = false;
+    private volatile boolean goOn = true;
 
     private BeaconThread(String name) {
       super(name);
@@ -496,7 +496,6 @@ public class LcapDatagramRouter
 
     public void lockssRun() {
       setPriority(PRIORITY_PARAM_BEACON, PRIORITY_DEFAULT_BEACON);
-      goOn = true;
       nowRunning();
 
       while (goOn) {

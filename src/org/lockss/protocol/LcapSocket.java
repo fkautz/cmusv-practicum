@@ -132,7 +132,7 @@ public class LcapSocket {
 
     // Receive thread
     private class ReceiveThread extends LockssThread {
-      private boolean goOn = false;
+      private volatile boolean goOn = true;
 
       private ReceiveThread(String name) {
 	super(name);
@@ -141,7 +141,6 @@ public class LcapSocket {
       public void lockssRun() {
 	triggerWDogOnExit(true);
 	setPriority(PRIORITY_PARAM_SOCKET, PRIORITY_DEFAULT_SOCKET);
-	goOn = true;
 	nowRunning();
 
 	try {

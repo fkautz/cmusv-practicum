@@ -211,7 +211,7 @@ public class TimerQueue {
   // on the TimerQueue not being hung.)
 
   private class TimerThread extends LockssThread {
-    private boolean goOn = false;
+    private volatile boolean goOn = true;
 
     private TimerThread(String name) {
       super(name);
@@ -220,7 +220,6 @@ public class TimerQueue {
     public void lockssRun() {
       triggerWDogOnExit(true);
       setPriority(PRIORITY_PARAM_TIMERQUEUE, PRIORITY_DEFAULT_TIMERQUEUE);
-      goOn = true;
       nowRunning();
 
       while (goOn) {

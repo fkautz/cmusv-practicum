@@ -1319,7 +1319,7 @@ public class ConfigManager implements LockssManager {
 
   private class HandlerThread extends LockssThread {
     private long lastReload = 0;
-    private boolean goOn = false;
+    private volatile boolean goOn = true;
     private Deadline nextReload;
 
     private HandlerThread(String name) {
@@ -1328,7 +1328,6 @@ public class ConfigManager implements LockssManager {
 
     public void lockssRun() {
       Thread.currentThread().setPriority(Thread.NORM_PRIORITY + 1);
-      goOn = true;
       startWDog(WDOG_PARAM_CONFIG, WDOG_DEFAULT_CONFIG);
       triggerWDogOnExit(true);
 

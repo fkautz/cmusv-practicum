@@ -824,7 +824,7 @@ class BlockingPeerChannel implements PeerChannel {
   abstract class ChannelRunner extends LockssRunnable {
     volatile Thread thread;
     TimerQueue.Request timerReq;
-    boolean goOn = true;
+    private volatile boolean goOn = true;
 
     public ChannelRunner() {
       super("Runner");

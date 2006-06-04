@@ -247,7 +247,7 @@ public class SmtpMailService
   }
 
   private class MailThread extends LockssThread {
-    private boolean goOn = false;
+    private volatile boolean goOn = true;
 
     private MailThread(String name) {
       super(name);
@@ -256,7 +256,6 @@ public class SmtpMailService
     public void lockssRun() {
       triggerWDogOnExit(true);
       setPriority(PRIORITY_PARAM_MAILQ, PRIORITY_DEFAULT_MAILQ);
-      goOn = true;
       nowRunning();
 
       while (goOn) {
