@@ -163,10 +163,7 @@ public class BlockHasher extends GenericHasher {
       startNode(curCu.getCuVersions(getMaxVersions()));
     }
     CachedUrl[] cuVersions = curCu.getCuVersions(getMaxVersions());
-    
-    if (contentBytes == null) {
-      contentBytes = new byte[cuVersions.length][];
-    }
+    contentBytes = new byte[cuVersions.length][];
 
     outer:
     for (int ix = 0; ix < cuVersions.length; ix++) {
