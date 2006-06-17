@@ -1079,7 +1079,7 @@ public class V3Poller extends BasePoll {
                        + " the Vote Complete event.");
           }
         }
-        setStatus(POLLER_STATUS_COMPLETE);
+        stopPoll(POLLER_STATUS_COMPLETE);
       }
     });
   }
