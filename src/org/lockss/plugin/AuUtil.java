@@ -50,6 +50,14 @@ import org.lockss.repository.*;
  */
 public class AuUtil {
   private static Logger log = Logger.getLogger("AuUtil");
+  
+  /** The default poll protocol to use, unless otherwise overridden by the
+   * Archival Unit's poll_protocol config param.=
+   */
+  private static final String PARAM_POLL_PROTOCOL_VERSION =
+    Configuration.PREFIX + "poll.defaultPollProtocol";
+  private static final int DEFAULT_POLL_PROTOCOL_VERSION =
+    Poll.V1_PROTOCOL;
 
   public static LockssDaemon getDaemon(ArchivalUnit au) {
     return au.getPlugin().getDaemon();
@@ -157,7 +165,8 @@ public class AuUtil {
 
   public static int getProtocolVersion(ArchivalUnit au) {
     return getIntValue(getAuParamOrTitleDefault(au, ConfigParamDescr.PROTOCOL_VERSION),
-                       Poll.V1_PROTOCOL);
+                       CurrentConfig.getIntParam(PARAM_POLL_PROTOCOL_VERSION,
+                                                 DEFAULT_POLL_PROTOCOL_VERSION));
   }
 
   public static boolean getBoolValue(Object value, boolean dfault) {

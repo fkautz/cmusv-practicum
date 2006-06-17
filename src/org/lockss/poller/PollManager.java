@@ -279,6 +279,19 @@ public class PollManager
     }
     return false;
   }
+  
+  public boolean isV3PollerRunning(PollSpec spec) {
+    synchronized (pollMapLock) {
+      for (Iterator it = thePolls.values().iterator(); it.hasNext(); ) {
+        PollManagerEntry pme = (PollManagerEntry)it.next();
+        if (pme.getPoll() instanceof V3Poller &&
+            pme.getPollSpec().getAuId().equals(spec.getAuId())) {
+          return !pme.isPollCompleted();
+        }
+      }
+    }
+    return false;
+  }
 
   /** Return the PollManagerEntry for the poll with the specified key. */
   public PollManagerEntry getPollManagerEntry(String key) {
