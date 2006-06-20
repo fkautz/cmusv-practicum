@@ -219,26 +219,14 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
     assertTrue(au.getFilterRule("text/html") instanceof HighWireFilterRule);
   }
 
+  /**
+   * Real tests in TestHighwireArchivalUnit
+   */
   public void testCrawlWindow() throws Exception {
     DefinableArchivalUnit au =
       makeAu(new URL("http://shadow1.stanford.edu/"), 42);
     CrawlWindow window = au.getCrawlSpec().getCrawlWindow();
     assertNotNull(window);
-    Calendar cal = Calendar.getInstance();
-    cal.set(Calendar.HOUR_OF_DAY, 5);
-    cal.set(Calendar.MINUTE, 0);
-    assertTrue(window.canCrawl(cal.getTime()));
-
-    cal.set(Calendar.HOUR_OF_DAY, 6);
-    assertFalse(window.canCrawl(cal.getTime()));
-
-    cal.set(Calendar.HOUR_OF_DAY, 8);
-    cal.set(Calendar.MINUTE, 59);
-    assertFalse(window.canCrawl(cal.getTime()));
-
-    cal.set(Calendar.HOUR_OF_DAY, 9);
-    cal.set(Calendar.MINUTE, 0);
-    assertTrue(window.canCrawl(cal.getTime()));
   }
 
   public static void main(String[] argv) {
