@@ -399,9 +399,6 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
   }
 
   public void testStoreNodeState() throws Exception {
-    // XXX workaround for timezone bug (issue 1798).  Remove when
-    // serializer changed to force GMT.
-    TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
     TimeBase.setSimulated(100);
     CachedUrlSet mcus = new MockCachedUrlSet(mau, new RangeCachedUrlSetSpec(
         "http://www.example.com"));
