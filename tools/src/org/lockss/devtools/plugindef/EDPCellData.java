@@ -86,6 +86,9 @@ public class EDPCellData {
     else if(key.equals(EditableDefinablePlugin.AU_CRAWL_WINDOW)) {
       m_data = edp.getAuCrawlWindow();
     }
+    else if(key.equals(EditableDefinablePlugin.AU_CRAWL_WINDOW_SPEC)) {
+      m_data = edp.getAuCrawlWindowSpec();
+    }
     else if(key.equals(EditableDefinablePlugin.AU_FILTER_SUFFIX)) {
       m_data = edp.getAuFilters();
     }
@@ -206,13 +209,14 @@ public class EDPCellData {
       m_data = new Integer(data);
       m_plugin.setAuCrawlDepth(((Integer)m_data).intValue());
     }
-    //RI
-    /*
-    else if(m_key.equals(m_plugin.AU_CRAWL_WINDOW)) {
+    else if(m_key.equals(EditableDefinablePlugin.AU_CRAWL_WINDOW)) {
       m_data = data;
       m_plugin.setAuCrawlWindow((String)m_data);
     }
-    */
+//    else if(m_key.equals(EditableDefinablePlugin.AU_CRAWL_WINDOW_SPEC)) {
+//      m_data = data;
+//      m_plugin.setAuCrawlWindowSpec((CrawlWindow)m_data);
+//    }
     else if(m_key.equals(EditableDefinablePlugin.AU_PAUSE_TIME)) {
       m_data = new Long(data);
       m_plugin.setAuPauseTime(((Long)m_data).longValue());
