@@ -423,7 +423,7 @@ public class TestFollowLinkCrawler extends LockssTestCase {
     String url3 = "http://www.example.com/link3.html";
 
     //CrawlSpec spec = new SpiderCrawlSpec(startUrl, crawlRule);
-    spec.setCrawlWindow(new MyMockCrawlWindow(2));
+    spec.setCrawlWindow(new MyMockCrawlWindow(3));
     mau.setCrawlSpec(spec);
     crawler = new TestableFollowLinkCrawler(mau, spec, aus);
 
@@ -578,7 +578,7 @@ public class TestFollowLinkCrawler extends LockssTestCase {
     String url2= "http://www.example.com/link2.html";
     String url3= "http://www.example.com/link3.html";
 
-    spec.setCrawlWindow(new MyMockCrawlWindow(2)); //permission page & first URL
+    spec.setCrawlWindow(new MyMockCrawlWindow(3)); //permission page & first URL
     ((TestableFollowLinkCrawler)crawler).setUrlsToFollow(SetUtil.set(url1, url2,
                                                                      url3));
     crawlUrls(SetUtil.set(url1, url2, url3));
@@ -591,7 +591,7 @@ public class TestFollowLinkCrawler extends LockssTestCase {
     String url2= "http://www.example.com/link2.html";
     String url3= "http://www.example.com/link3.html";
 
-    spec.setCrawlWindow(new MyMockCrawlWindow(2));
+    spec.setCrawlWindow(new MyMockCrawlWindow(3));
     ((TestableFollowLinkCrawler)crawler).setUrlsToFollow(SetUtil.set(url1, url2,
                                                                      url3));
     crawlUrls(SetUtil.set(url1, url2, url3));

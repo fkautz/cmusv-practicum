@@ -753,7 +753,7 @@ public class TestNewContentCrawler extends LockssTestCase {
     String url2 = "http://www.example.com/link2.html";
     String url3 = "http://www.example.com/link3.html";
 
-    spec.setCrawlWindow(new MyMockCrawlWindow(3));
+    spec.setCrawlWindow(new MyMockCrawlWindow(4));
     mau.setCrawlSpec(spec);
 
     MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
