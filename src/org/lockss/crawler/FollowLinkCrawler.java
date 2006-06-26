@@ -176,6 +176,13 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
     cus = au.getAuCachedUrlSet();
     parsedPages = new HashSet();
 
+    //XXX short term hack to work around populatePermissionMap not 
+    //indicating when a crawl window is the problem
+    if (!withinCrawlWindow()) {
+      crawlStatus.setCrawlError(Crawler.STATUS_WINDOW_CLOSED);
+      abortCrawl();
+    } 
+
     if (!populatePermissionMap()) {
       return aborted();
     }
