@@ -76,9 +76,9 @@ public class V3PollStatus {
 
     static final String TABLE_TITLE = "V3 Polls (Mine)";
 
+    // Sort by deadline, descending
     private final List sortRules =
-      ListUtil.list(new StatusTable.SortRule("pollId",
-                                             CatalogueOrderComparator.SINGLETON));
+      ListUtil.list(new StatusTable.SortRule("deadline", false));
     private final List colDescs =
       ListUtil.list(new ColumnDescriptor("auId", "Volume",
                                          ColumnDescriptor.TYPE_STRING),
@@ -170,9 +170,9 @@ public class V3PollStatus {
 
     static final String TABLE_TITLE = "V3 Polls (Others)";
 
+    // Sort by deadline, descending
     private final List sortRules =
-      ListUtil.list(new StatusTable.SortRule("pollId",
-                                             CatalogueOrderComparator.SINGLETON));
+      ListUtil.list(new StatusTable.SortRule("deadline", false));
     private final List colDescs =
       ListUtil.list(new ColumnDescriptor("auId", "Volume",
                                          ColumnDescriptor.TYPE_STRING),

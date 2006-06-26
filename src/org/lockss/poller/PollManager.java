@@ -190,6 +190,11 @@ public class PollManager
     // unregister our router
     theRouter.unregisterMessageHandler(m_msgHandler);
 
+    // Stop the poll runner.
+    if (theTaskRunner != null) {
+      theTaskRunner.stop();
+    }
+
     // null anything which might cause problems
     theTaskRunner = null;
     theIDManager = null;

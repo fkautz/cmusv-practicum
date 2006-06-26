@@ -224,6 +224,7 @@ public class TestV3Poller extends LockssTestCase {
     theDaemon.getDatagramRouterManager().stopService();
     theDaemon.getRouterManager().stopService();
     theDaemon.getSystemMetrics().stopService();
+    theDaemon.getPollManager().stopService();
     TimeBase.setReal();
     super.tearDown();
   }
