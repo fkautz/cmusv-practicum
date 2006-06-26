@@ -37,6 +37,7 @@ import java.net.*;
 import java.util.*;
 
 import org.lockss.config.Configuration;
+import org.lockss.crawler.*;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.state.*;
@@ -79,7 +80,7 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
     if (url != null) {
       props.setProperty(BASE_URL_KEY, url.toString());
     }
-    props.setProperty(BaseArchivalUnit.USE_CRAWL_WINDOW, ""+true);
+//    props.setProperty(BaseArchivalUnit.USE_CRAWL_WINDOW, ""+true);
 //     props.setProperty(ConfigParamDescr.YEAR.getKey(), String.valueOf(year));
     Configuration config = ConfigurationUtil.fromProps(props);
     DefinablePlugin ap = new DefinablePlugin();
@@ -222,7 +223,22 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
   /**
    * Real tests in TestHighwireArchivalUnit
    */
+  public void testCrawlWindowNone() throws Exception {
+    Properties props = new Properties();
+    props.put(BaseArchivalUnit.PARAM_USE_CRAWL_WINDOW_BY_DEFAULT, "false");
+    ConfigurationUtil.setCurrentConfigFromProps(props);
+
+    DefinableArchivalUnit au =
+      makeAu(new URL("http://shadow1.stanford.edu/"), 42);
+    CrawlWindow window = au.getCrawlSpec().getCrawlWindow();
+    assertNull(window);
+  }
+
   public void testCrawlWindow() throws Exception {
+    Properties props = new Properties();
+    props.put(BaseArchivalUnit.PARAM_USE_CRAWL_WINDOW_BY_DEFAULT, "true");
+    ConfigurationUtil.setCurrentConfigFromProps(props);
+
     DefinableArchivalUnit au =
       makeAu(new URL("http://shadow1.stanford.edu/"), 42);
     CrawlWindow window = au.getCrawlSpec().getCrawlWindow();
