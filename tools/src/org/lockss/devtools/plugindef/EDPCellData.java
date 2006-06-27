@@ -213,10 +213,6 @@ public class EDPCellData {
       m_data = data;
       m_plugin.setAuCrawlWindow((String)m_data);
     }
-//    else if(m_key.equals(EditableDefinablePlugin.AU_CRAWL_WINDOW_SPEC)) {
-//      m_data = data;
-//      m_plugin.setAuCrawlWindowSpec((CrawlWindow)m_data);
-//    }
     else if(m_key.equals(EditableDefinablePlugin.AU_PAUSE_TIME)) {
       m_data = new Long(data);
       m_plugin.setAuPauseTime(((Long)m_data).longValue());
