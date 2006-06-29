@@ -785,6 +785,14 @@ public class TestStringUtil extends LockssTestCase {
                                          stringToFind));
   }
 
+  public void testFindStringMatchInMiddle() throws IOException {
+    String stringToFind = "abcdef";
+    String readerStr = "pwpwpwallplplplplp";
+    assertFalse("Found string when it shouldn't",
+                StringUtil.containsString(new StringReader(readerStr),
+                                          stringToFind, 7));
+  }
+
 
   //network streams can underfill buffers; this test make sure we
   //handle a situation when the reader will return a series of small chars
