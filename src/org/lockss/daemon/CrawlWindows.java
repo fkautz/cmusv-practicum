@@ -240,8 +240,8 @@ public class CrawlWindows {
     }
 
     public String toString() {
-      return "[CrawlWindows.Interval: field: " + fieldMask +
-          ", "+start+", "+end+"]";
+      return "[CrawlWindows.Interval: field: " + fieldMask
+             + ", start: " + start + ", end: " + end + "]";
     }
   }
 

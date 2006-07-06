@@ -179,7 +179,7 @@ public class ConfigManager implements LockssManager {
   }
 
   public ConfigManager(List urls) {
-    this(null, null);
+    this(urls, null);
   }
 
   public ConfigManager(List urls, String groupName) {
@@ -498,7 +498,7 @@ public class ConfigManager implements LockssManager {
       }
       if (gen != null) {
 	res.add(gen);
-      }      
+      }
     }
     return res;
   }

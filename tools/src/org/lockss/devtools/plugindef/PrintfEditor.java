@@ -310,6 +310,7 @@ public class PrintfEditor extends JDialog implements EDPEditor, ConfigParamListe
           }
           break;
         case ConfigParamDescr.TYPE_RANGE:
+        case ConfigParamDescr.TYPE_NUM_RANGE:
         case ConfigParamDescr.TYPE_SET:
           format = "%s";
           break;
