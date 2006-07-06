@@ -94,7 +94,7 @@ public class PluginDefinerApp {
     ClassLoader classLoader = PluginDefinerApp.class.getClassLoader();
     URL propsFile = classLoader.getResource("props.xml");
     if (propsFile != null) {
-      List propsUrls = ListUtil.list(propsFile.toString());
+      List propsUrls = ListUtil.list(propsFile.toString(), "props.opt");
       ConfigManager configMgr = ConfigManager.makeConfigManager(propsUrls);
       configMgr.initService(null);
       configMgr.startService();
