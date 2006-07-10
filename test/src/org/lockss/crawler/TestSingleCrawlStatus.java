@@ -63,6 +63,10 @@ public class TestSingleCrawlStatus extends LockssTestCase {
 		  new ColumnDescriptor(CRAWL_ERROR, "Error",
 				       ColumnDescriptor.TYPE_STRING));
 
+  private static List expectedColDescsExcluded =
+    ListUtil.list(new ColumnDescriptor(URL, "URL Excluded",
+				       ColumnDescriptor.TYPE_STRING));
+
 
   public void setUp() throws Exception {
     super.setUp();
@@ -183,6 +187,27 @@ public class TestSingleCrawlStatus extends LockssTestCase {
     assertEquals(0, table.getSortedRows().size());
   }
 
+  public void testExcludedNoUrls() throws Exception {
+    MockCrawlManagerStatusAccessor cmStatusAcc = new MockCrawlManagerStatusAccessor();
+    MockCrawlStatus status = new MockCrawlStatus();
+    status.setStartTime(1);
+    status.setEndTime(2);
+    status.setNumNotModified(3);
+    status.setNumParsed(4);
+    status.setUrlsExcluded(new HashSet());
+    status.setAu(new MockArchivalUnit());
+
+    cmStatusAcc.addStatusObject(status);
+
+    SingleCrawlStatus cStatus = new SingleCrawlStatus(cmStatusAcc);
+    StatusTable table = new StatusTable("test", "excluded."+status.getKey());
+
+    cStatus.populateTable(table);
+    assertEquals(expectedColDescsExcluded, table.getColumnDescriptors());
+
+    assertEquals(0, table.getSortedRows().size());
+  }
+
   public void testCrawlStatusFetchedUrls() throws Exception {
     MockCrawlManagerStatusAccessor cmStatusAcc = new MockCrawlManagerStatusAccessor();
 
@@ -222,6 +247,39 @@ public class TestSingleCrawlStatus extends LockssTestCase {
       res.add(map.get(URL));
     }
     return res;
+  }
+
+  public void testCrawlStatusExcluded() throws Exception {
+    MockCrawlManagerStatusAccessor cmStatusAcc = 
+      new MockCrawlManagerStatusAccessor();
+
+    MockCrawlStatus status = new MockCrawlStatus();
+    MockArchivalUnit au = new MockArchivalUnit();
+    au.setName("Mock name");
+
+    status.setStartTime(1);
+    status.setEndTime(2);
+    status.setUrlsExcluded(ListUtil.list("http://www.example.com",
+					"http://www.example.com/blah.html"));
+    status.setNumParsed(4);
+    status.setAu(au);
+
+    cmStatusAcc.addStatusObject(status);
+
+    SingleCrawlStatus cStatus = new SingleCrawlStatus(cmStatusAcc);
+    StatusTable table = new StatusTable("test", "excluded."+status.getKey());
+
+    cStatus.populateTable(table);
+    assertEquals(expectedColDescsExcluded, table.getColumnDescriptors());
+    assertEquals("URLs excluded during crawl of Mock name",
+		 table.getTitle());
+
+    List rows = table.getSortedRows();
+    assertEquals(2, rows.size());
+
+    assertEquals(ListUtil.list("http://www.example.com",
+			       "http://www.example.com/blah.html"),
+		 rowUrls(rows));
   }
 
   public void testCrawlStatusParsedUrls() throws Exception {
