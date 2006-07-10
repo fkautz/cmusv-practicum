@@ -538,6 +538,7 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
 	    if (logger.isDebug2()) {
 	      logger.debug2("Excluded url: "+normUrl);
 	    }
+	    crawlStatus.signalUrlExcluded(normUrl);
 	    excludedUrlCache.put(normUrl, "");
 	  }
 	} else if (logger.isDebug3()) {
