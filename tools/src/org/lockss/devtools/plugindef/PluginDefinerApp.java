@@ -90,11 +90,11 @@ public class PluginDefinerApp {
     Logger lll = Logger.getLoggerWithInitialLevel("PluginTool", Logger.LEVEL_INFO);
     lll.info("Plugin Tool starting up");
 
-    // Get resources from JAR "props.xml"
+    // Get resources from JAR "plugin-tool-props.xml"
     ClassLoader classLoader = PluginDefinerApp.class.getClassLoader();
-    URL propsFile = classLoader.getResource("props.xml");
+    URL propsFile = classLoader.getResource("plugin-tool-props.xml");
     if (propsFile != null) {
-      List propsUrls = ListUtil.list(propsFile.toString(), "props.opt");
+      List propsUrls = ListUtil.list(propsFile.toString(), "plugin-tool-props.opt");
       ConfigManager configMgr = ConfigManager.makeConfigManager(propsUrls);
       configMgr.initService(null);
       configMgr.startService();
