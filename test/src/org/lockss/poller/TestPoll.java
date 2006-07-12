@@ -377,7 +377,7 @@ public class TestPoll extends LockssTestCase {
     np.m_tally.tallyVotes();
     return np;
   }
-
+                                               
   public static V1Poll createCompletedPoll(LockssDaemon daemon,
 					   ArchivalUnit au,
 					   V1LcapMessage testmsg,
