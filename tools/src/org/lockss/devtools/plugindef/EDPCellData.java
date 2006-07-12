@@ -86,8 +86,8 @@ public class EDPCellData {
     else if(key.equals(EditableDefinablePlugin.AU_CRAWL_WINDOW)) {
       m_data = edp.getAuCrawlWindow();
     }
-    else if(key.equals(EditableDefinablePlugin.AU_CRAWL_WINDOW_SPEC)) {
-      m_data = edp.getAuCrawlWindowSpec();
+    else if(key.equals(EditableDefinablePlugin.AU_CRAWL_WINDOW_SER)) {
+      m_data = edp.getAuCrawlWindowSer();
     }
     else if(key.equals(EditableDefinablePlugin.AU_FILTER_SUFFIX)) {
       m_data = edp.getAuFilters();

@@ -53,8 +53,8 @@ public class Configurator_AboutBox extends JDialog implements ActionListener {
   BorderLayout borderLayout2 = new BorderLayout();
   FlowLayout flowLayout1 = new FlowLayout();
   GridLayout gridLayout1 = new GridLayout();
-  String product = "LOCKSS-Definable Plugin Application";
-  String version = "Version 0.8";
+  String product = "LOCKSS Plugin Tool";
+  String version = "Version 0.8.6";
   String copyright = "Copyright (c) 2000-2006" +
       " Board of Trustees of Leland Stanford Jr. University," +
       " all rights reserved.";
