@@ -82,7 +82,7 @@ public class EDPInspectorTableModel extends AbstractTableModel
     new InspectorEntry(EditableDefinablePlugin.AU_CRAWL_WINDOW,
 		       "Configurable Crawl Window Class", null),
     new InspectorEntry(EditableDefinablePlugin.AU_CRAWL_WINDOW_SER,
-                       "Crawl Window Spec", inspectorCellEditor),
+                       "Crawl Window", inspectorCellEditor),
     new InspectorEntry(EditableDefinablePlugin.AU_PAUSE_TIME,
 		       "Pause Time Between Fetches", inspectorCellEditor),
     new InspectorEntry( EditableDefinablePlugin.AU_NEWCONTENT_CRAWL,
