@@ -34,6 +34,7 @@ package org.lockss.crawler;
 
 import java.util.*;
 import org.apache.commons.collections.*;
+import org.apache.commons.collections.map.*;
 import EDU.oswego.cs.dl.util.concurrent.*;
 import org.lockss.config.*;
 import org.lockss.daemon.*;
@@ -167,7 +168,7 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
   //Tracking crawls for the status info
   private CrawlManagerStatus cmStatus =
     new CrawlManagerStatus(DEFAULT_HISTORY_MAX);
-  private MultiMap runningCrawls = new MultiHashMap();
+  private MultiMap runningCrawls = new MultiValueMap();
 
   private long contentCrawlExpiration;
   private long repairCrawlExpiration;
