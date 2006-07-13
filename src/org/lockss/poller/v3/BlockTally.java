@@ -71,10 +71,10 @@ public class BlockTally {
   // Name of the missing block, if any.
   private String missingBlockUrl;
 
-  private int result;
-  private int quorum;
-  private double trustedWeight;
-  private double voteMargin;
+  int result = RESULT_HASHING; // Always hashing when BlockTally is created.
+  int quorum;
+  double trustedWeight;
+  double voteMargin;
 
   private static final Logger log = Logger.getLogger("BlockTally");
 
@@ -123,6 +123,8 @@ public class BlockTally {
 
     if (agree + disagree < quorum) {
       result = RESULT_NOQUORUM;
+    } else if (!isWithinMargin()) { 
+      result = RESULT_TOO_CLOSE;
     } else if (extraBlocks > quorum) {
       result = RESULT_LOST_EXTRA_BLOCK;
     } else if (missingBlocks > quorum) {
@@ -216,10 +218,10 @@ public class BlockTally {
 
     if (numAgree > numDisagree) {
       act_margin = (double) numAgree / num_votes;
-    }
-    else {
+    } else {
       act_margin = (double) numDisagree / num_votes;
     }
+
     if (act_margin < req_margin) {
       return false;
     }
