@@ -131,6 +131,8 @@ public class TestStringUtil extends LockssTestCase {
 						     ",", "[", "]"));
     String a[] = {"a", "b", "c"};
     assertEquals("a,b,c", StringUtil.separatedString(a, ","));
+    assertEquals("2,6,3", StringUtil.separatedString(new int[]{2,6,3}, ","));
+    assertEquals("2,6,3", StringUtil.separatedString(new long[]{2,6,3}, ","));
   }
 
   public void testEscapeNonAlphaNum() {

@@ -139,6 +139,21 @@ public class StringUtil {
   }
 
   /**
+   * Concatenate elements of long array into string, with separators
+   * @param arr - Array of int elements
+   * @param separator - String to put between elements
+   * @return Concatenated string
+   */
+  public static String separatedString(long[] arr, String separator) {
+    ArrayList col = new ArrayList(arr.length);
+    for (int ii = 0 ; ii < arr.length ; ++ii) {
+      col.add(Long.toString(arr[ii]));
+    }
+    return separatedString(col, "", separator, "",
+                           new StringBuffer()).toString();
+  }
+
+  /**
    * Concatenate elements of collection into string, with separators
    * @param c - Collection of object (on which toString() will be called)
    * @param separator - String to put between elements
