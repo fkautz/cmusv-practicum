@@ -184,7 +184,7 @@ public class TestEmlsArchivalUnit extends LockssTestCase {
 
   public void testDefPauseTime() throws Exception {
     DefinableArchivalUnit au = makeAu(new URL(ROOT_URL), 3);
-    assertEquals("1/10000", au.findFetchRateLimiter().toString());
+    assertEquals("1/10s", au.findFetchRateLimiter().getRate());
   }
 
   public static void main(String[] argv) {

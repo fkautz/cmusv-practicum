@@ -177,7 +177,7 @@ public class TestAbsintheArchivalUnit extends LockssTestCase {
   private void shouldCacheTest(String url, boolean shouldCache,
                                ArchivalUnit au, CachedUrlSet cus) {
     UrlCacher uc = au.makeUrlCacher(url);
-    assertTrue(uc.shouldBeCached()==shouldCache);
+    assertEquals(shouldCache, uc.shouldBeCached());
   }
 
   public void testStartUrlConstruction() throws Exception {

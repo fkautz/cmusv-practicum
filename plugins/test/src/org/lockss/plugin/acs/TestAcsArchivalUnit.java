@@ -291,7 +291,7 @@ public class TestAcsArchivalUnit
     URL a_url = new URL(ARTICLE_ROOT);
     URL base = new URL(ROOT_URL);
     DefinableArchivalUnit au = makeAu(base, a_url, JOURNAL_KEY, VOL_ID, VOL_YEAR);
-    assertEquals("1/10000", au.findFetchRateLimiter().toString());
+    assertEquals("1/10s", au.findFetchRateLimiter().getRate());
   }
 
   public static void main(String[] argv) {
