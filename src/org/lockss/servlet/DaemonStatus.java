@@ -586,20 +586,26 @@ public class DaemonStatus extends LockssServlet {
 	StatusTable.SummaryInfo sInfo =
 	  (StatusTable.SummaryInfo)iter.next();
 	table.newRow();
-	StringBuffer sb = new StringBuffer();
-	sb.append("<b>");
-	sb.append(sInfo.getTitle());
-	if (sInfo.getFootnote() != null) {
-	  sb.append(addFootnote(sInfo.getFootnote()));
+	StringBuffer sb = null;
+	String stitle = sInfo.getTitle();
+	if (!StringUtil.isNullString(stitle)) {
+	  sb = new StringBuffer();
+	  sb.append("<b>");
+	  sb.append(stitle);
+	  if (sInfo.getFootnote() != null) {
+	    sb.append(addFootnote(sInfo.getFootnote()));
+	  }
+	  sb.append("</b>:&nbsp;");
 	}
-	sb.append("</b>:&nbsp;");
 	table.newCell("COLSPAN=" + (cols * 2 - 1));
 	// make a 2 cell table for each row, so multiline values will be
 	// aligned
  	Table itemtab = new Table(0, "align=left cellspacing=0 cellpadding=0");
 	itemtab.newRow();
-	itemtab.newCell("valign=top");
-	itemtab.add(sb.toString());
+	if (sb != null) {
+	  itemtab.newCell("valign=top");
+	  itemtab.add(sb.toString());
+	}
 	itemtab.newCell();
 	itemtab.add(getDisplayString(sInfo.getValue(), sInfo.getType()));
 	table.add(itemtab);
