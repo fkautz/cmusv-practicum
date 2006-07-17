@@ -401,8 +401,8 @@ public class NullPlugin {
     public void pauseBeforeFetch() {
     }
 
-    public long getFetchDelay() {
-      return 0;
+    public RateLimiter findFetchRateLimiter() {
+      return RateLimiter.UNLIMITED;
     }
 
     public int hashCode() {

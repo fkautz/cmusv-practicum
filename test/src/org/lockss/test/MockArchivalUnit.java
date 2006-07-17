@@ -364,8 +364,8 @@ public class MockArchivalUnit implements ArchivalUnit {
     }
   }
 
-  public long getFetchDelay() {
-    return 0;
+  public RateLimiter findFetchRateLimiter() {
+    return RateLimiter.UNLIMITED;
   }
 
   public void setPauseCallback(MockObjectCallback callback) {

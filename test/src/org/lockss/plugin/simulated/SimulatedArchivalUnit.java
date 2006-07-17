@@ -334,7 +334,6 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
       throw new ConfigurationException("Bad URL for " + SIMULATED_URL_START,
 				       murle);
     }
-    paramMap.putLong(AU_FETCH_DELAY, 0);
     newContentCrawlIntv = config.getTimeInterval(NEW_CONTENT_CRAWL_KEY,
                                                  defaultContentCrawlIntv);
     paramMap.putLong(AU_NEW_CRAWL_INTERVAL, newContentCrawlIntv);
@@ -358,6 +357,11 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
 
     titleDbChanged();
   }
+
+  public RateLimiter findFetchRateLimiter() {
+    return RateLimiter.UNLIMITED;
+  }
+
 
   boolean isUrlToBeDamaged(String url) {
     String file = StringUtil.replaceString(url,SIMULATED_URL_ROOT,"");

@@ -62,6 +62,7 @@ public class OaiArchivalUnit extends BaseArchivalUnit {
 
   public void loadAuConfigDescrs(Configuration config)
       throws ConfigurationException {
+    super.loadAuConfigDescrs(config);
     this.m_oaiHandlerUrl = config.get(ConfigParamDescr.BASE_URL.getKey());
   }
 
