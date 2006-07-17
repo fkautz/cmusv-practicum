@@ -115,6 +115,25 @@ public class TestAuUtil extends LockssTestCase {
 						 "http://foo.bar/")));
   }
 
+  public void testGetTitleAttribute() {
+    LocalMockArchivalUnit mau = new LocalMockArchivalUnit();
+    TitleConfig tc = makeTitleConfig(ConfigParamDescr.PUB_DOWN, "false");
+    mau.setTitleConfig(tc);
+    assertNull(AuUtil.getTitleAttribute(mau, null));
+    assertNull(AuUtil.getTitleAttribute(mau, "foo"));
+    assertEquals("7", AuUtil.getTitleAttribute(mau, null, "7"));
+    assertEquals("7", AuUtil.getTitleAttribute(mau, "foo", "7"));
+    Map attrs = new HashMap();
+    tc.setAttributes(attrs);
+    assertNull(AuUtil.getTitleAttribute(mau, null));
+    assertNull(AuUtil.getTitleAttribute(mau, "foo"));
+    assertEquals("7", AuUtil.getTitleAttribute(mau, null, "7"));
+    assertEquals("7", AuUtil.getTitleAttribute(mau, "foo", "7"));
+    attrs.put("foo", "bar");
+    assertEquals("bar", AuUtil.getTitleAttribute(mau, "foo"));
+    assertEquals("bar", AuUtil.getTitleAttribute(mau, "foo", "7"));
+  }
+
   public void testIsConfigCompatibleWithPlugin() {
     String plugName = "org.lockss.plugin.base.TestAuUtil$MyMockBasePlugin";
     mbp.setConfigDescrs(ListUtil.list(PD_VOL, PD_YEAR, PD_OPT));

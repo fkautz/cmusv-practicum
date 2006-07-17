@@ -169,6 +169,25 @@ public class AuUtil {
                                                  DEFAULT_POLL_PROTOCOL_VERSION));
   }
 
+  /** Return an attribute value from the AU's title DB entry, if any */
+  public static String getTitleAttribute(ArchivalUnit au, String key) {
+    TitleConfig tc = au.getTitleConfig();
+    if (tc != null) {
+      Map attrs = tc.getAttributes();
+      if (attrs != null) {
+	return (String)attrs.get(key);
+      }
+    }
+    return null;
+  }
+
+  /** Return an attribute value from the AU's title DB entry, if any */
+  public static String getTitleAttribute(ArchivalUnit au, String key,
+					 String dfault) {
+    String res = getTitleAttribute(au, key);
+    return (res != null) ? res : dfault;
+  }
+
   public static boolean getBoolValue(Object value, boolean dfault) {
     if (value instanceof Boolean) {
       return ((Boolean)value).booleanValue();
