@@ -185,8 +185,8 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     checkLegalConfigChange(config);
     auConfig = config;
     loadAuConfigDescrs(config);
-    setBaseAuParams(config);
     addImpliedConfigParams();
+    setBaseAuParams(config);
     fetchRateLimiter = recomputeFetchRateLimiter(fetchRateLimiter);
   }
 
