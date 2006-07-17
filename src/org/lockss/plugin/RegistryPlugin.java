@@ -38,7 +38,7 @@ import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
 import org.lockss.plugin.base.BasePlugin;
 import org.lockss.plugin.ArchivalUnit;
-import org.lockss.util.ListUtil;
+import org.lockss.util.*;
 
 /**
  * <p>RegistryPlugin: A plugin that archives other plugins.</p>
@@ -46,8 +46,12 @@ import org.lockss.util.ListUtil;
  */
 
 public class RegistryPlugin extends BasePlugin {
+  protected static final Logger log = Logger.getLogger("RegistryPlugin");
+
   private static String PLUGIN_NAME = "Registry";
   private static String CURRENT_VERSION = "1";
+
+  public static String PREFIX = Configuration.PREFIX + "plugin.registries.";
 
   // List of defining properties (only base_url for Registry plugins)
   private static final List m_auConfigDescrs =
@@ -59,22 +63,36 @@ public class RegistryPlugin extends BasePlugin {
   public ArchivalUnit createAu(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
     // create a new archival unit
-    ArchivalUnit au = new RegistryArchivalUnit(this);
+    ArchivalUnit au = newRegistryArchivalUnit();
 
     // Now configure it.
     au.setConfiguration(auConfig);
 
+    aus.add(au);
     return au;
   }
 
+  protected RegistryArchivalUnit newRegistryArchivalUnit() {
+    return new RegistryArchivalUnit(this);
+  }
+
   /**
-   * RegistryPlugin does not have a configuration.  This is overridden
-   * to force no implementation.
+   * The global config has changed
    */
   protected void setConfig(Configuration newConfig,
 			   Configuration prevConfig,
 			   Configuration.Differences changedKeys) {
-    // No implementation.
+    if (changedKeys.contains(PREFIX)) {
+      for (Iterator iter = getAllAus().iterator(); iter.hasNext(); ) {
+	//  They should all be RegistryArchivalUnits, but just in case...
+	try {
+	  RegistryArchivalUnit au = (RegistryArchivalUnit)iter.next();
+	  au.setConfig(newConfig, prevConfig, changedKeys);
+	} catch (Exception e) {
+	  log.warning("setConfig: " + this, e);
+	}
+      }
+    }
   }
 
   /**

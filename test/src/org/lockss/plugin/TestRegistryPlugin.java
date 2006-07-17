@@ -98,9 +98,4 @@ public class TestRegistryPlugin extends LockssTestCase {
   public void testSetTitleConfigFromConfig() throws Exception {
     m_plugin.setTitleConfigFromConfig(null);
   }
-
-  public void testSetConfig() throws Exception {
-    m_plugin.setConfig(null, null, null);
-  }
-
 }
