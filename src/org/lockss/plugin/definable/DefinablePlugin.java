@@ -126,7 +126,7 @@ public class DefinablePlugin extends BasePlugin {
     return auConfigDescrs;
   }
 
-  public ArchivalUnit createAu(Configuration auConfig)
+  protected ArchivalUnit createAu0(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
     DefinableArchivalUnit au =
       new DefinableArchivalUnit(this, definitionMap, classLoader);

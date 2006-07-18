@@ -282,10 +282,22 @@ public abstract class BasePlugin
     }
     else {
       au = createAu(config);
-      aus.add(au);
     }
     return au;
   }
+
+  /** Create an AU and add it to our list.  Subclasses should implement
+   * {@link #createAu0(Configuration) to create the actual AU */
+  public final ArchivalUnit createAu(Configuration auConfig)
+      throws ArchivalUnit.ConfigurationException {
+    ArchivalUnit au = createAu0(auConfig);
+    aus.add(au);
+    return au;
+  }
+    
+  /** Create an AU.  Subclasses should implement this */
+  protected abstract ArchivalUnit createAu0(Configuration auConfig)
+      throws ArchivalUnit.ConfigurationException;
 
   /**
    * Return the LockssDaemon instance

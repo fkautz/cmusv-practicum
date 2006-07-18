@@ -55,7 +55,7 @@ public class OaiPlugin extends BasePlugin {
   public OaiPlugin() {
   }
 
-  public ArchivalUnit createAu(Configuration auConfig)
+  protected ArchivalUnit createAu0(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
     // create a new archival unit
     ArchivalUnit au = new OaiArchivalUnit(this);

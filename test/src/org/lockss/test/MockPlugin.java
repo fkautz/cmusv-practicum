@@ -131,7 +131,7 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
    * @return the ArchivalUnit
    * @throws ArchivalUnit.ConfigurationException
    */
-  public ArchivalUnit createAu(Configuration auConfig)
+  protected ArchivalUnit createAu0(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
     log.debug("createAu(" + auConfig + ")");
     MockArchivalUnit au = newMockArchivalUnit();

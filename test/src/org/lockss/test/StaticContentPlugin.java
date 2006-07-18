@@ -75,7 +75,7 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
     //    throw new UnsupportedOperationException("Not implemented");
   }
 
-  public ArchivalUnit createAu(Configuration auConfig)
+  protected ArchivalUnit createAu0(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
     return new SAU(this);
   }

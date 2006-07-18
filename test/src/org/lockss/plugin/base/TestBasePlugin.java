@@ -137,7 +137,7 @@ public class TestBasePlugin extends LockssTestCase {
     }
 
 
-    public ArchivalUnit createAu(Configuration auConfig) throws
+    protected ArchivalUnit createAu0(Configuration auConfig) throws
         ConfigurationException {
       TestBaseArchivalUnit.MyMockBaseArchivalUnit mau =
           new TestBaseArchivalUnit.MyMockBaseArchivalUnit(this);

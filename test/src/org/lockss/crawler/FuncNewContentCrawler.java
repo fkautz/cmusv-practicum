@@ -197,7 +197,7 @@ public class FuncNewContentCrawler extends LockssTestCase {
   }
 
   public static class MySimulatedPlugin extends SimulatedPlugin {
-    public ArchivalUnit createAu(Configuration auConfig)
+    public ArchivalUnit createAu0(Configuration auConfig)
 	throws ArchivalUnit.ConfigurationException {
       ArchivalUnit au = new MySimulatedArchivalUnit(this);
       au.setConfiguration(auConfig);

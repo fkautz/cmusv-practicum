@@ -67,7 +67,7 @@ public class SamplePlugin extends DefinablePlugin {
     super.initPlugin(daemon);
   }
 
-  public ArchivalUnit createAu(Configuration auConfig)
+  public ArchivalUnit createAu0(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
     // create a new archival unit
     ArchivalUnit au = new SampleArchivalUnit(this, definitionMap);

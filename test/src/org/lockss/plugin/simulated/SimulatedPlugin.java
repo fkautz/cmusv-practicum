@@ -285,7 +285,7 @@ public class SimulatedPlugin extends BasePlugin implements PluginTestable {
    * @throws ArchivalUnit.ConfigurationException if the configuration is
    * illegal in any way.
    */
-  public ArchivalUnit createAu(Configuration auConfig)
+  protected ArchivalUnit createAu0(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
     log.debug("createAU(" + auConfig + ")");
     ArchivalUnit au = new SimulatedArchivalUnit(this);

@@ -193,7 +193,7 @@ public class TestAuUtil extends LockssTestCase {
       this.configDescrs = configDescrs;
     }
 
-    public ArchivalUnit createAu(Configuration auConfig) throws
+    protected ArchivalUnit createAu0(Configuration auConfig) throws
         ConfigurationException {
       MockArchivalUnit mau = new MockArchivalUnit();
       mau.setConfiguration(auConfig);
