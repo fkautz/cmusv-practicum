@@ -4,7 +4,7 @@
 
 /*
 
- Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+ Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
  all rights reserved.
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -245,9 +245,11 @@ public class PermissionMap {
           crawlStatus.setCrawlError("Cannot fetch permission page.");
           //abort crawl or skip all the url with this host?
           //currently we just ignore urls with this host.
-          crawlStatus.signalErrorForUrl(urlPermissionUrl,
-                                        "Cannot fetch permission page " +
-					"on the second attempt");
+ 	  if (crawlStatus.getErrorForUrl(urlPermissionUrl) == null) {
+	    crawlStatus.signalErrorForUrl(urlPermissionUrl,
+					  "Cannot fetch permission page " +
+					  "on the second attempt");
+	  }
           return false;
         }
       case PermissionRecord.REPOSITORY_ERROR:
@@ -388,8 +390,13 @@ public class PermissionMap {
       // XXX should be an alert here
       crawl_ok = PermissionRecord.REPOSITORY_ERROR;
       err = Crawler.STATUS_REPO_ERR;
+    } catch (CacheException ex) {
+      logger.error("CacheException reading permission page", ex);
+      crawlStatus.signalErrorForUrl(permissionPage, ex.getMessage());
+      crawl_ok = PermissionRecord.FETCH_PERMISSION_FAILED;
     } catch (Exception ex) {
       logger.error("Exception reading permission page", ex);
+      crawlStatus.signalErrorForUrl(permissionPage, ex.toString());
       raiseAlert(Alert.auAlert(Alert.PERMISSION_PAGE_FETCH_ERROR, au).
 		 setAttribute(Alert.ATTR_TEXT,
 			      "The LOCKSS permission page at " +

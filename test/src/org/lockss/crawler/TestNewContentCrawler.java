@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -574,7 +574,7 @@ public class TestNewContentCrawler extends LockssTestCase {
 
   public void testGetStatusIncomplete() {
     crawler.getStatus().signalCrawlStarted();
-    assertEquals(Crawler.STATUS_INCOMPLETE,
+    assertEquals(Crawler.STATUS_ACTIVE,
 		 crawler.getStatus().getCrawlStatus());
   }
 
@@ -620,8 +620,7 @@ public class TestNewContentCrawler extends LockssTestCase {
 
     assertEquals("Cannot fetch permission page.", 
 		 crawlStatus.getCrawlStatus());
-    Map expectedErrors = MapUtil.map(permissionPage,
-				     "Cannot fetch permission page on the second attempt");
+    Map expectedErrors = MapUtil.map(permissionPage, "Test exception");
     assertEquals(expectedErrors, crawlStatus.getUrlsWithErrors());
     assertEquals(1, crawlStatus.getNumUrlsWithErrors());
   }
