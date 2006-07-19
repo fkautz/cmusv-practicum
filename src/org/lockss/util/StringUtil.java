@@ -1090,5 +1090,17 @@ public class StringUtil {
     }
     return true;
   }
+  /** Return a string like "0 units", "1 unit", "n units"
+   * @param number the number of whatever units
+   * @param unit Single form of unit
+   * @param pluralUnit plural form of unit
+   */
+  public static String numberOfUnits(int number, String unit,
+				     String pluralUnit) {
+    if (number == 1) {
+      return number + " " + unit;
+    } else {
+      return number + " " + pluralUnit;
+    }
+  }
 }
-
