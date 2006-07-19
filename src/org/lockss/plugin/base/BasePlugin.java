@@ -287,7 +287,7 @@ public abstract class BasePlugin
   }
 
   /** Create an AU and add it to our list.  Subclasses should implement
-   * {@link #createAu0(Configuration) to create the actual AU */
+   * {@link #createAu0(Configuration)} to create the actual AU */
   public final ArchivalUnit createAu(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
     ArchivalUnit au = createAu0(auConfig);

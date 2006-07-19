@@ -104,7 +104,7 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
   static final int DEFAULT_CRAWLER_THREAD_POOL_MAX_QUEUE_SIZE = 200;
 
   /** Max number of queued crawls; can be changed on the fly up to the max
-   * set by {@link PARAM_CRAWLER_THREAD_POOL_MAX_QUEUE_SIZE} */
+   * set by {@link #PARAM_CRAWLER_THREAD_POOL_MAX_QUEUE_SIZE} */
   public static final String PARAM_CRAWLER_THREAD_POOL_QUEUE_SIZE =
     PREFIX + "threadPool.queueSize";
   static final int DEFAULT_CRAWLER_THREAD_POOL_QUEUE_SIZE = 100;

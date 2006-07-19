@@ -52,7 +52,6 @@ import org.lockss.crawler.*;
  * extend this to achieve, <i>eg</i>, specialized host connection or
  * authentication.  The redirection semantics offered here must be
  * preserved.
- * @todo remove use of CachedUrlSet and replace with ArchivalUnit
  */
 public class BaseUrlCacher implements UrlCacher {
   protected static Logger logger = Logger.getLogger("UrlCacher");

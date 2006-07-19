@@ -60,10 +60,10 @@ public interface RepositoryNodeVersion {
 
   /**
    * Return a <code>RepositoryNodeContents</code> object which accesses the
-   * content in the cache and its properties.  Throws if called on a content-less
-   * or inactive node.
-   * @return an {@link RepositoryNodeContents} object from which the contents of
-   *         the cache can be read.
+   * content in the cache and its properties.  Throws if called on a
+   * content-less or inactive node.
+   * @return an {@link RepositoryNode.RepositoryNodeContents} object from
+   * which the contents of the cache can be read.
    * @throws LockssRepository.RepositoryStateException
    */
   public RepositoryNode.RepositoryNodeContents getNodeContents();

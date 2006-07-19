@@ -332,8 +332,8 @@ public class FilteredDirFileResource extends URLResource
     
     /* ------------------------------------------------------------ */
     /** 
-     * @param o
-     * @return 
+     * @param o Object to test for equality
+     * @return true if the object is equal to this
      */
     public boolean equals( Object o)
     {

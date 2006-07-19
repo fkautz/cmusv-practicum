@@ -38,7 +38,7 @@ import java.io.*;
  * <p>Denotes marshalling/unmarshalling error conditions.</p>
  * <p>By convention, {@link ObjectSerializer} throws either
  * {@link SerializationException}, or one of a possible set of
- * distinguished exceptions (see {@ObjectSerializer}'s documentation
+ * distinguished exceptions (see {@link ObjectSerializer}'s documentation
  * for details).</p>
  * @author Thib Guicherd-Callin
  * @see ObjectSerializer
