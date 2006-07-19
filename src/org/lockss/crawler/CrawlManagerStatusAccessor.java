@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -240,6 +240,19 @@ public class CrawlManagerStatusAccessor implements StatusAccessor {
     addIfNonZero(res, "Pending Crawls", ct.waiting);
     addIfNonZero(res, "Successful Crawls", cms.getSuccessCount());
     addIfNonZero(res, "Failed Crawls", cms.getFailedCount());
+    Deadline nextStarter = cms.getNextCrawlStarter();
+    if (nextStarter != null) {
+      String instr;
+      long in = TimeBase.msUntil(nextStarter.getExpirationTime());
+      if (in > 0) {
+	instr = StringUtil.timeIntervalToString(in);
+      } else {
+	instr = "running";
+      }
+      res.add(new StatusTable.SummaryInfo("Crawl Starter",
+					  ColumnDescriptor.TYPE_STRING,
+					  instr));
+    }
     return res;
   }
 

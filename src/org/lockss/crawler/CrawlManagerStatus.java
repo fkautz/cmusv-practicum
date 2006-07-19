@@ -45,6 +45,7 @@ public class CrawlManagerStatus {
   private HistoryList crawlList;
   private int successful = 0;
   private int failed = 0;
+  private Deadline nextCrawlStarter;
 
   public CrawlManagerStatus(int histSize) {
     this.crawlList = new HistoryList(histSize);
@@ -54,6 +55,14 @@ public class CrawlManagerStatus {
     synchronized (crawlList) {
       crawlList.setMax(histMax);
     }
+  }
+
+  public void setNextCrawlStarter(Deadline nextCrawlStarter) {
+    this.nextCrawlStarter = nextCrawlStarter;
+  }
+
+  public Deadline getNextCrawlStarter() {
+    return nextCrawlStarter;
   }
 
   public List getCrawlStatusList() {
