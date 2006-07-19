@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -196,12 +196,14 @@ public abstract class BaseCrawler
    */
   public boolean doCrawl() {
     setCrawlConfig(ConfigManager.getCurrentConfig());
-    if (crawlAborted) {
-      //don't start an aborted crawl
-      return false;
-    } else try {
+    // do this even if already aborted, so status doesn't get confused
+    crawlStatus.signalCrawlStarted();
+    try {
+      if (crawlAborted) {
+	//don't start an aborted crawl
+	return aborted();
+      }
       logger.info("Beginning crawl of "+au);
-      crawlStatus.signalCrawlStarted();
       boolean res = doCrawl0();
       if (res == false || crawlStatus.getCrawlError() != null) {
 	alertMgr.raiseAlert(Alert.auAlert(Alert.CRAWL_FAILED, au),
@@ -330,7 +332,7 @@ public abstract class BaseCrawler
   protected boolean aborted() {
     logger.info("Crawl aborted: "+au);
     if (crawlStatus.getCrawlError() == null) {
-      crawlStatus.setCrawlError(Crawler.STATUS_INCOMPLETE);
+      crawlStatus.setCrawlError(Crawler.STATUS_ABORTED);
     }
     return false;
   }

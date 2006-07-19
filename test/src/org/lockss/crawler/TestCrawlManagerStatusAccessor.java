@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -312,7 +312,7 @@ public class TestCrawlManagerStatusAccessor extends LockssTestCase {
     StatusTable table = new StatusTable("test");
 
     MockCrawlStatus status = makeStatus(NC_TYPE,
-					Crawler.STATUS_INCOMPLETE);
+					Crawler.STATUS_ACTIVE);
 
     MockCrawlStatus status2 = makeStatus(REPAIR_TYPE,
 					Crawler.STATUS_SUCCESSFUL);
