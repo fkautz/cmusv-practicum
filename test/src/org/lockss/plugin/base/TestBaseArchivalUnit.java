@@ -313,6 +313,32 @@ public class TestBaseArchivalUnit extends LockssTestCase {
     assertNotSame(limit, limit3);
   }
 
+  public void testFindFetchRateLimiterDefaultPlugin() throws Exception {
+    ConfigurationUtil.setFromArgs(BaseArchivalUnit.PARAM_DEFAULT_FETCH_RATE_LIMITER_SOURCE,
+				  "plugin");
+    MyMockBaseArchivalUnit mbau2 = new MyMockBaseArchivalUnit(mplug);
+    MyMockBaseArchivalUnit mbau3 =
+      new MyMockBaseArchivalUnit(new MyMockPlugin());
+
+    RateLimiter limit = mbau.findFetchRateLimiter();
+    RateLimiter limit2 = mbau2.findFetchRateLimiter();
+    RateLimiter limit3 = mbau3.findFetchRateLimiter();
+    assertEquals("1/6000ms", limit.getRate());
+    assertSame(limit, limit2);
+    assertNotSame(limit, limit3);
+  }
+
+  public void testFindFetchRateLimiterDefaultIllegal() throws Exception {
+    ConfigurationUtil.setFromArgs(BaseArchivalUnit.PARAM_DEFAULT_FETCH_RATE_LIMITER_SOURCE,
+				  "Thurgood Marshall");
+    MyMockBaseArchivalUnit mbau2 = new MyMockBaseArchivalUnit(mplug);
+
+    RateLimiter limit = mbau.findFetchRateLimiter();
+    RateLimiter limit2 = mbau2.findFetchRateLimiter();
+    assertEquals("1/6000ms", limit.getRate());
+    assertNotSame(limit, limit2);
+  }
+
   public void testFindFetchRateLimiterHost() throws Exception {
     MyMockBaseArchivalUnit mbau2 = new MyMockBaseArchivalUnit(mplug);
     MyMockBaseArchivalUnit mbau3 =
