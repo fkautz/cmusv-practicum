@@ -170,35 +170,35 @@ public class TestRateLimiter extends LockssTestCase {
   public void testResizeEventArray() {
     RateLimiter lim = new RateLimiter(1, 1);
     assertEquals(new long[]{2},
-		 lim.resizeEventArray(new long[]{2}, 0, 1));
+                 RateLimiter.resizeEventArray(new long[]{2}, 0, 1));
     assertEquals(new long[]{2, 3},
-		 lim.resizeEventArray(new long[]{2, 3}, 0, 2));
+                 RateLimiter.resizeEventArray(new long[]{2, 3}, 0, 2));
     assertEquals(new long[]{3, 2},
-		 lim.resizeEventArray(new long[]{2, 3}, 1, 2));
+                 RateLimiter.resizeEventArray(new long[]{2, 3}, 1, 2));
     assertEquals(new long[]{0, 2},
-		 lim.resizeEventArray(new long[]{2}, 0, 2));
+                 RateLimiter.resizeEventArray(new long[]{2}, 0, 2));
     assertEquals(new long[]{0, 2, 3},
-		 lim.resizeEventArray(new long[]{2, 3}, 0, 3));
+                 RateLimiter.resizeEventArray(new long[]{2, 3}, 0, 3));
     assertEquals(new long[]{0, 3, 2},
-		 lim.resizeEventArray(new long[]{2, 3}, 1, 3));
+                 RateLimiter.resizeEventArray(new long[]{2, 3}, 1, 3));
     assertEquals(new long[]{0, 0, 2, 3},
-		 lim.resizeEventArray(new long[]{2, 3}, 0, 4));
+                 RateLimiter.resizeEventArray(new long[]{2, 3}, 0, 4));
     assertEquals(new long[]{0, 0, 3, 2},
-		 lim.resizeEventArray(new long[]{2, 3}, 1, 4));
+                 RateLimiter.resizeEventArray(new long[]{2, 3}, 1, 4));
     assertEquals(new long[]{3, 4, 5},
-		 lim.resizeEventArray(new long[]{2, 3, 4, 5, 6}, 4, 3));
+                 RateLimiter.resizeEventArray(new long[]{2, 3, 4, 5, 6}, 4, 3));
     assertEquals(new long[]{2, 3, 4},
-		 lim.resizeEventArray(new long[]{2, 3, 4, 5, 6}, 3, 3));
+                 RateLimiter.resizeEventArray(new long[]{2, 3, 4, 5, 6}, 3, 3));
     assertEquals(new long[]{6, 2, 3},
-		 lim.resizeEventArray(new long[]{2, 3, 4, 5, 6}, 2, 3));
+                 RateLimiter.resizeEventArray(new long[]{2, 3, 4, 5, 6}, 2, 3));
     assertEquals(new long[]{5, 6, 2},
-		 lim.resizeEventArray(new long[]{2, 3, 4, 5, 6}, 1, 3));
+                 RateLimiter.resizeEventArray(new long[]{2, 3, 4, 5, 6}, 1, 3));
     assertEquals(new long[]{4, 5, 6},
-		 lim.resizeEventArray(new long[]{2, 3, 4, 5, 6}, 0, 3));
+                 RateLimiter.resizeEventArray(new long[]{2, 3, 4, 5, 6}, 0, 3));
     assertEquals(new long[]{3},
-		 lim.resizeEventArray(new long[]{2, 3}, 0, 1));
+                 RateLimiter.resizeEventArray(new long[]{2, 3}, 0, 1));
     assertEquals(new long[]{2},
-		 lim.resizeEventArray(new long[]{2, 3}, 1, 1));
+                 RateLimiter.resizeEventArray(new long[]{2, 3}, 1, 1));
   }
 
   public void testSetRate1() {

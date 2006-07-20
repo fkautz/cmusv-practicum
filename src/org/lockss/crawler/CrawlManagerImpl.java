@@ -340,7 +340,6 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
   /**
    * Execute the runnable in a pool thread
    * @param run the Runnable to be run
-   * @throws InterruptedException
    * @throws RuntimeException if no pool thread or queue space is available
    */
   protected void execute(Runnable run) {

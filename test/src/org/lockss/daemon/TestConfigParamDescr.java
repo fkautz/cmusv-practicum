@@ -34,6 +34,8 @@ package org.lockss.daemon;
 
 import java.io.*;
 import java.util.*;
+
+import org.lockss.app.LockssApp;
 import org.lockss.test.*;
 import org.lockss.util.*;
 
