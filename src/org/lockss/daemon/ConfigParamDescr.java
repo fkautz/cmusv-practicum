@@ -75,6 +75,13 @@ public class ConfigParamDescr implements Comparable, LockssSerializable {
     .setType(TYPE_POS_INT)
     .setSize(8);
 
+  public static final ConfigParamDescr VOLUME_NAME =
+    new ConfigParamDescr()
+    .setKey("volume_name")
+    .setDisplayName("Volume Name")
+    .setType(TYPE_STRING)
+    .setSize(20);
+
   public static final ConfigParamDescr ISSUE_RANGE =
     new ConfigParamDescr()
     .setKey("issue_range")
@@ -193,7 +200,7 @@ public class ConfigParamDescr implements Comparable, LockssSerializable {
                     + "for V1 polling, or '3' for V3 polling)");
 
   public static final ConfigParamDescr[] DEFAULT_DESCR_ARRAY = {
-      BASE_URL, VOLUME_NUMBER, YEAR, JOURNAL_ID,
+      BASE_URL, VOLUME_NUMBER, VOLUME_NAME, YEAR, JOURNAL_ID,
       PUBLISHER_NAME, ISSUE_RANGE, NUM_ISSUE_RANGE, ISSUE_SET, OAI_REQUEST_URL,
       OAI_SPEC
   };

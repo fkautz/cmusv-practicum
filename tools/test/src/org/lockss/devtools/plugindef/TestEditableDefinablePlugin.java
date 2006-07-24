@@ -194,6 +194,7 @@ public class TestEditableDefinablePlugin
   public void testGetKnownConfigParamDescrs() {
     Collection set = new HashSet();
     set.add(ConfigParamDescr.VOLUME_NUMBER);
+    set.add(ConfigParamDescr.VOLUME_NAME);
     set.add(ConfigParamDescr.YEAR);
     set.add(ConfigParamDescr.BASE_URL);
     set.add(ConfigParamDescr.JOURNAL_ID);
