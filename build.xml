@@ -281,6 +281,7 @@ Args:
     <pathelement path="${htmlparser.jar}" />
     <pathelement path="${rdf.jar}" />
     <pathelement path="${xstream.jar}" />
+    <pathelement path="${pdfbox.jar}" />
     <!-- jars needed to run the OAI harvester -->
     <pathelement path="${oai-harvester.jar}" />
     <pathelement path="${xalan.jar}" />
