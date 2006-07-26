@@ -30,31 +30,27 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.filter;
+package org.lockss.plugin.highwire;
 
-import java.io.IOException;
+import java.io.Reader;
 
-import org.lockss.util.*;
-import org.pdfbox.pdfparser.PDFParser;
+import org.lockss.filter.*;
+import org.lockss.plugin.FilterRule;
 
-/**
- * <p>Specifies classes that are able to transform a PDF object graph
- * via a {@link PDFParser}.</p>
- * @author Thib Guicherd-Callin
- * @see PDFParser
- */
-public interface PdfTransform {
+public class HighWirePdfFilterRule implements FilterRule {
 
-  /**
-   * <p>Processes a PDF document.</p>
-   * @param pdfDocument A PDF parser from which the PDF document can
-   *                  be obtained in several forms.
-   * @param logger    A logger into which messages can be logged
-   *                  (can be null).
-   * @throws IOException if any processing error occurs.
-   */
-  void transform(PdfDocument pdfDocument,
-                 Logger logger)
-      throws IOException;
+  public Reader createFilteredReader(Reader reader) {
+    return new PdfFilterReader(reader, getTransform());
+  }
+
+  private static PdfMultiTransform multiTransform;
+
+  public static synchronized PdfTransform getTransform() {
+    if (multiTransform == null) {
+      multiTransform = new PdfMultiTransform();
+      multiTransform.addPdfTransform(PhysiologicalGenomicsPdfTransform.getInstance());
+    }
+    return multiTransform;
+  }
 
 }
