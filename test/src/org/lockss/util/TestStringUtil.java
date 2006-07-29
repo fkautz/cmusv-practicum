@@ -695,12 +695,21 @@ public class TestStringUtil extends LockssTestCase {
 					 stringToFind));
   }
 
-  public void testFindStringEnd() throws IOException {
+  public void testFindStringEndShort() throws IOException {
     String stringToFind = "special string";
     String readerStr = "Blah blah blah "+stringToFind;
     assertTrue("Didn't find string when it should",
 	       StringUtil.containsString(new StringReader(readerStr),
 					 stringToFind));
+  }
+
+  public void testFindStringEndLong() throws IOException {
+    String padding = org.apache.commons.lang.StringUtils.repeat("X ", 80);
+    String stringToFind = "This permision string is longer than 20 characters";
+    String readerStr = padding + stringToFind;
+    assertTrue("Didn't find string when it should",
+	       StringUtil.containsString(new StringReader(readerStr),
+					 stringToFind, false, 100));
   }
 
   //To make sure searching for an empty string throws
