@@ -657,6 +657,10 @@ public class Logger {
     return threadIds.size();
   }
 
+  public String toString() {
+    return "[Logger " + name + "]";
+  }
+
   // Invoke all the targets to write a message.
   // Maintain a thread-local stack of targets, to avoid invoking any
   // target recursively.
