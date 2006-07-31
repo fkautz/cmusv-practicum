@@ -69,7 +69,6 @@ public class TestHtmlNodeFilterTransform extends LockssTestCase {
   }
 
   public void testSimple() throws IOException {
-//     RegexFilter f0 = new RegexFilter(".*");
     assertFiltersOut("<html>foo</html>",
 		       "<html>foo</html>",
 		       new FalseFilter());
