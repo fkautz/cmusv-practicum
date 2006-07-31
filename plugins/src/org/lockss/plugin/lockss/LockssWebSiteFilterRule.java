@@ -30,12 +30,13 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.plugin;
+package org.lockss.plugin.lockss;
 
 import java.io.Reader;
 import java.util.List;
 
 import org.lockss.filter.*;
+import org.lockss.plugin.FilterRule;
 import org.lockss.util.ListUtil;
 
 public class LockssWebSiteFilterRule implements FilterRule {
