@@ -32,6 +32,7 @@ package org.lockss.util.urlconn;
 
 import java.util.*;
 import java.io.*;
+import org.lockss.util.*;
 import org.lockss.config.Configuration;
 
 /** Encapsulates and abstracts a URL connection, using either Sun's
@@ -87,6 +88,9 @@ public interface LockssUrlConnection {
    * @throws UnsupportedOperationException if canProxy() returns false
    */
   public void setProxy(String host, int port) throws CantProxyException ;
+
+  /** Set the local address to be used when creating connections. */
+  public void setLocalAddress(IPAddr localAddress);
 
   /** Set the user-agent request header */
   public void setUserAgent(String value);

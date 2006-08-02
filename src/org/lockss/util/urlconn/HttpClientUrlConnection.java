@@ -158,9 +158,12 @@ public class HttpClientUrlConnection extends BaseLockssUrlConnection {
     if (methodCode != LockssUrlConnection.METHOD_PROXY) {
       mimicSunRequestHeaders();
     }
+    HostConfiguration hostConfig = client.getHostConfiguration();
     if (proxyHost != null) {
-      HostConfiguration hostConfig = client.getHostConfiguration();
       hostConfig.setProxy(proxyHost, proxyPort);
+    }
+    if (localAddress != null) {
+      hostConfig.setLocalAddress(localAddress.getInetAddr());
     }
     isExecuted = true;
     responseCode = executeOnce(method);

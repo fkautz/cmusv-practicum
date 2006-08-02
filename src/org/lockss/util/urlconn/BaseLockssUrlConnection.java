@@ -46,6 +46,7 @@ public abstract class BaseLockssUrlConnection implements LockssUrlConnection {
   protected boolean isExecuted = false;
   protected String proxyHost = null;
   protected int proxyPort;
+  protected IPAddr localAddress = null;
 
   /** Return the URL
    * @return the URL
@@ -79,6 +80,11 @@ public abstract class BaseLockssUrlConnection implements LockssUrlConnection {
     assertNotExecuted();
     proxyHost = host;
     proxyPort = port;
+  }
+
+  public void setLocalAddress(IPAddr localAddress) {
+    assertNotExecuted();
+    this.localAddress = localAddress;
   }
 
   public void setFollowRedirects(boolean followRedirects) {
