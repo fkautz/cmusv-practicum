@@ -171,8 +171,6 @@ public class TestBlackwellArchivalUnit extends LockssPluginTestCase {
     DefinableArchivalUnit bwAu = makeAu(ROOT_URL, "pace", 2);
     assertEquals(expectedStr,
 		 ((SpiderCrawlSpec)bwAu.getCrawlSpec()).getStartingUrls().get(0));
-//                  bwAu.getProperties().getString(ArchivalUnit.AU_START_URL, null));
-    //au.getCrawlSpec().getStartingUrls()
   }
 
   public void testGetUrlStems() throws Exception {
