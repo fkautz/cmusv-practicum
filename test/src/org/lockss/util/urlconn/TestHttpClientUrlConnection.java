@@ -221,8 +221,9 @@ public class TestHttpClientUrlConnection extends LockssTestCase {
     hdr = method.getRequestHeader("accept");
     assertEquals(HttpClientUrlConnection.ACCEPT_STRING, hdr.getValue());
     HostConfiguration hc = client.getHostConfiguration();
-    assertEquals(null, hc.getLocalAddress());
+    assertEquals("phost", hc.getProxyHost());
     assertEquals(9009, hc.getProxyPort());
+    assertEquals(null, hc.getLocalAddress());
   }
 
   public void testResponse() throws Exception {
