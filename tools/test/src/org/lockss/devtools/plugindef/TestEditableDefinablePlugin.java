@@ -198,6 +198,7 @@ public class TestEditableDefinablePlugin
     set.add(ConfigParamDescr.YEAR);
     set.add(ConfigParamDescr.BASE_URL);
     set.add(ConfigParamDescr.JOURNAL_ID);
+    set.add(ConfigParamDescr.JOURNAL_ISSN);
     set.add(ConfigParamDescr.PUBLISHER_NAME);
     set.add(ConfigParamDescr.ISSUE_RANGE);
     set.add(ConfigParamDescr.NUM_ISSUE_RANGE);
