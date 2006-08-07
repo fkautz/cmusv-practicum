@@ -32,6 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.filter;
 
+import java.util.*;
 import org.htmlparser.tags.*;
 
 /** Collection of additional simple HtmlParser tags */
@@ -60,5 +61,19 @@ public class HtmlTags {
     public String[] getIds() {
       return mIds;
     }
+    /** Avoid deprecation warning
+     * @deprecated Use getAttributesEx() instead.
+     */
+    public Hashtable getAttributes () {
+      return super.getAttributes();
+    }
+
+    /** Avoid deprecation warning
+     * @deprecated Use getAttributesEx() instead.
+     */
+    public void setAttributes (Hashtable attributes) {
+      super.setAttributes(attributes);
+    }
+
   }
 }
