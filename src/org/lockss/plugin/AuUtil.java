@@ -39,6 +39,7 @@ import org.lockss.app.*;
 import org.lockss.config.*;
 import org.lockss.util.*;
 import org.lockss.daemon.*;
+import org.lockss.state.*;
 import org.lockss.poller.*;
 import org.lockss.repository.*;
 
@@ -61,6 +62,16 @@ public class AuUtil {
 
   public static LockssDaemon getDaemon(ArchivalUnit au) {
     return au.getPlugin().getDaemon();
+  }
+
+  /**
+   * Return the AuState object for the AU
+   * @param au the AU
+   * @return the AuState
+   */
+  public static AuState getAuState(ArchivalUnit au) {
+    NodeManager nodeManager = getDaemon(au).getNodeManager(au);
+    return nodeManager.getAuState();
   }
 
   /**
