@@ -203,7 +203,7 @@ public class NullPlugin {
       return null;
     }
 
-    public ArchivalUnit getArchivalUnit() {
+    public org.lockss.plugin.ArchivalUnit getArchivalUnit() {
       return null;
     }
     /** @deprecated */
