@@ -134,7 +134,7 @@ public class HtmlFilterReader extends Reader {
     return parser;
   }
 
-  String nodeString(NodeList nl) {
+  public static String nodeString(NodeList nl) {
     return StringUtil.separatedString(nl.toNodeArray(), "\n----------\n");
   }
 
