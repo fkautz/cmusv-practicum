@@ -43,6 +43,7 @@ import org.lockss.plugin.*;
 import org.lockss.state.*;
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
+import org.lockss.clockss.*;
 import org.lockss.test.*;
 
 /**

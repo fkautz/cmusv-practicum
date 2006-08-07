@@ -33,6 +33,7 @@ package org.lockss.daemon;
 import java.io.*;
 import java.util.*;
 
+import org.lockss.clockss.*;
 import org.lockss.test.*;
 
 public class TestLockssPermission extends LockssTestCase {

@@ -44,6 +44,7 @@ import org.lockss.plugin.base.BaseArchivalUnit;
 import org.lockss.state.AuState;
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
+import org.lockss.clockss.*;
 
 /**
  * The crawler.
