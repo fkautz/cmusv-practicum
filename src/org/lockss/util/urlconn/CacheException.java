@@ -344,7 +344,7 @@ public class CacheException extends IOException {
     }
   }
 
-  /** Unretryable errors that are expectd to happen in normal operation and
+  /** Unretryable errors that are expected to happen in normal operation and
    * don't necessarily indicate anything is wrong. */
   public static class ExpectedNoRetryException
       extends UnretryableException {
