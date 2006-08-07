@@ -147,6 +147,30 @@ public class AuState implements LockssSerializable {
     }
   }
 
+  // CLOCKSS status
+
+  protected int clockssSubscriptionStatus = CLOCKSS_SUB_UNKNOWN;
+
+  public static final int CLOCKSS_SUB_UNKNOWN = 0;
+  public static final int CLOCKSS_SUB_YES = 1;
+  public static final int CLOCKSS_SUB_NO = 2;
+  public static final int CLOCKSS_SUB_INACCESSIBLE = 3;
+
+  /**
+   * Return the CLOCKSS subscription status: CLOCKSS_SUB_UNKNOWN,
+   * CLOCKSS_SUB_YES, CLOCKSS_SUB_NO
+   */
+  public int getClockssSubscriptionStatus() {
+    return clockssSubscriptionStatus;
+  }
+
+  public void setClockssSubscriptionStatus(int val) {
+    if (clockssSubscriptionStatus != val) {
+      clockssSubscriptionStatus = val;
+      historyRepo.storeAuState(this);
+    }
+  }
+
   public String toString() {
     StringBuffer sb = new StringBuffer();
     sb.append("[AuState: ");
