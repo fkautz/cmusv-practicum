@@ -171,6 +171,12 @@ public class LockssTestCase extends TestCase {
 //     enableThreadWatchdog();
   }
 
+  public void setUpDiskPaths() throws IOException {
+    String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
+    ConfigurationUtil.setFromArgs(ConfigManager.PARAM_PLATFORM_DISK_SPACE_LIST,
+				  tempDirPath);
+  }
+
   public static boolean isKeepTempFiles() {
     return Boolean.getBoolean("org.lockss.keepTempFiles");
   }
