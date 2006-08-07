@@ -55,6 +55,7 @@ import org.lockss.scheduler.SchedService;
 import org.lockss.servlet.*;
 import org.lockss.state.*;
 import org.lockss.util.*;
+import org.lockss.clockss.*;
 
 public class MockLockssDaemon extends LockssDaemon {
   private static Logger log = Logger.getLogger("MockLockssDaemon");
@@ -82,6 +83,7 @@ public class MockLockssDaemon extends LockssDaemon {
   StatusService statusService = null;
   RemoteApi remoteApi = null;
   IcpManager icpManager = null;
+  ClockssParams clockssParams = null;
 
   /** Unit tests that need a MockLockssDaemon should use {@link
    * LockssTestCase#getMockLockssDaemon()} rather than calling this
@@ -425,6 +427,18 @@ public class MockLockssDaemon extends LockssDaemon {
       managerMap.put(LockssDaemon.REMOTE_API, remoteApi);
     }
     return remoteApi;
+  }
+
+  /**
+   * return the ClockssParams instance
+   * @return the ClockssParams
+   */
+  public ClockssParams getClockssParams() {
+    if (clockssParams == null) {
+      clockssParams = (ClockssParams)newManager(LockssDaemon.CLOCKSS_PARAMS);
+      managerMap.put(LockssDaemon.CLOCKSS_PARAMS, clockssParams);
+    }
+    return clockssParams;
   }
 
   /**

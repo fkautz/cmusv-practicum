@@ -106,8 +106,14 @@ public abstract class LockssApp {
     public String getKey() {
       return key;
     }
+
     public String getDefaultClass() {
       return defaultClass;
+    }
+
+    // Override for conditional start
+    public boolean shouldStart() {
+      return true;
     }
   }
 
@@ -346,11 +352,13 @@ public abstract class LockssApp {
 
     for(int i=0; i< managerDescs.length; i++) {
       ManagerDesc desc = managerDescs[i];
-      if (managerMap.get(desc.key) != null) {
-	throw new RuntimeException("Duplicate manager key: " + desc.key);
+      if (desc.shouldStart()) {
+	if (managerMap.get(desc.key) != null) {
+	  throw new RuntimeException("Duplicate manager key: " + desc.key);
+	}
+	LockssManager mgr = initManager(desc);
+	managerMap.put(desc.key, mgr);
       }
-      LockssManager mgr = initManager(desc);
-      managerMap.put(desc.key, mgr);
     }
     appInited = true;
     // now start the managers in the same order in which they were created
