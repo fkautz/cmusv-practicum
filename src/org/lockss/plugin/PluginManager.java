@@ -47,7 +47,6 @@ import org.lockss.crawler.CrawlManager;
 import org.lockss.daemon.*;
 import org.lockss.plugin.definable.DefinablePlugin;
 import org.lockss.poller.PollSpec;
-import org.lockss.state.NodeManager;
 import org.lockss.util.*;
 
 /**
@@ -1502,8 +1501,7 @@ public class PluginManager
   protected void possiblyStartRegistryAuCrawl(ArchivalUnit registryAu,
 					      String url,
 					      InitialRegistryCallback cb) {
-    NodeManager nodeMgr = theDaemon.getNodeManager(registryAu);
-    if (registryAu.shouldCrawlForNewContent(nodeMgr.getAuState())) {
+    if (registryAu.shouldCrawlForNewContent(AuUtil.getAuState(registryAu))) {
       if (log.isDebug2()) log.debug2("Starting new crawl:: " + registryAu);
       theDaemon.getCrawlManager().startNewContentCrawl(registryAu, cb,
 						       url, null);
