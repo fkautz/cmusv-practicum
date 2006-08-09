@@ -243,7 +243,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
    * True if running as a CLOCKSS daemon
    */
   public boolean isClockss() {
-    return isClockss();
+    return isClockss;
   }
 
   /** Stop the daemon.  Currently only used in testing. */
@@ -758,12 +758,6 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
     super.stop();
   }
 
-  protected void initProperties() {
-    super.initProperties();
-    String proj = ConfigManager.getPlatformProject();
-    isClockss = "clockss".equalsIgnoreCase(proj);
-  }
-
   /** Wait until the initial set of AUs have been started.  This must be
    * called only from your own thread (<i>eg</i>, not the startup
    * thread.) */
@@ -783,6 +777,10 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
 			       DEFAULT_DAEMON_DEADLINE_REASONABLE_FUTURE);
       Deadline.setReasonableDeadlineRange(maxInPast, maxInFuture);
     }
+    String proj = ConfigManager.getPlatformProject();
+    System.err.println("proj: " + proj);
+    isClockss = "clockss".equalsIgnoreCase(proj);
+
     super.setConfig(config, prevConfig, changedKeys);
   }
 

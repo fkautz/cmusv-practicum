@@ -96,7 +96,21 @@ public class MockLockssDaemon extends LockssDaemon {
 
   private MockLockssDaemon(List urls) {
     super(urls);
+    ConfigManager mgr = ConfigManager.getConfigManager();
+    mgr.registerConfigurationCallback(new Configuration.Callback() {
+	public void configurationChanged(Configuration newConfig,
+					 Configuration prevConfig,
+					 Configuration.Differences changedKeys) {
+	  setConfig(newConfig, prevConfig, changedKeys);
+	}
+      });
   }
+
+  protected void setConfig(Configuration config, Configuration prevConfig,
+			   Configuration.Differences changedKeys) {
+    super.setConfig(config, prevConfig, changedKeys);
+  }
+
 
   /** Does nothing */
   public void startDaemon() throws Exception {
