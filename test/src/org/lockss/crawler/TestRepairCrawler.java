@@ -94,7 +94,7 @@ public class TestRepairCrawler extends LockssTestCase {
     mau.addUrl(url1);
     mau.addUrl(permissionPage, "noperm");
 
-    mau.setPlugin(new MockPlugin());
+    mau.setPlugin(new MockPlugin(getMockLockssDaemon()));
 
     List repairUrls = ListUtil.list(url1);
     crawler = new RepairCrawler(mau, spec, aus, repairUrls, 0);

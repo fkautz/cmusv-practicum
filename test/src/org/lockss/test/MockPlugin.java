@@ -63,6 +63,11 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
     super();
   }
 
+  public MockPlugin(LockssDaemon daemon){
+    super();
+    initPlugin(daemon);
+  }
+
   /**
    * Called after plugin is loaded to give the plugin time to perform any
    * needed initializations.

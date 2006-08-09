@@ -76,7 +76,7 @@ public class TestNewContentCrawler extends LockssTestCase {
     getMockLockssDaemon().getAlertManager();
 
     mau = new MyMockArchivalUnit();
-    mau.setPlugin(new MockPlugin());
+    mau.setPlugin(new MockPlugin(getMockLockssDaemon()));
     mau.setAuId("MyMockTestAu");
     startUrls = ListUtil.list(startUrl);
     mcus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
@@ -274,7 +274,7 @@ public class TestNewContentCrawler extends LockssTestCase {
 
   public void testRecrawlNotRefetchPages() {
     SpecialParserArchivalUnit mau = new SpecialParserArchivalUnit(3);
-    mau.setPlugin(new MockPlugin());
+    mau.setPlugin(new MockPlugin(getMockLockssDaemon()));
     mau.setAuId("MyMockTestAu");
     mau.addUrl(permissionPage);
     mau.setParser(parser);
@@ -603,7 +603,7 @@ public class TestNewContentCrawler extends LockssTestCase {
 
   public void testGetStatusErrorStartUrl() {
     mau = new MyMockArchivalUnit();
-    mau.setPlugin(new MockPlugin());
+    mau.setPlugin(new MockPlugin(getMockLockssDaemon()));
     mau.setAuId("MyMockTestAu");
     mcus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
     spec = new SpiderCrawlSpec(ListUtil.list(permissionPage),
@@ -627,7 +627,7 @@ public class TestNewContentCrawler extends LockssTestCase {
 
   public void testGetStatusRepoErrorStartUrl() {
     mau = new MyMockArchivalUnit();
-    mau.setPlugin(new MockPlugin());
+    mau.setPlugin(new MockPlugin(getMockLockssDaemon()));
     mau.setAuId("MyMockTestAu");
     mcus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
     spec = new SpiderCrawlSpec(ListUtil.list(permissionPage),

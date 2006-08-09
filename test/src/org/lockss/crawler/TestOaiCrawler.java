@@ -63,7 +63,7 @@ public class TestOaiCrawler extends LockssTestCase {
     getMockLockssDaemon().getAlertManager();
 
     mau = new MockArchivalUnit();
-    mau.setPlugin(new MockPlugin());
+    mau.setPlugin(new MockPlugin(getMockLockssDaemon()));
     mau.setAuId("MyMockTestAu");
 //  mcus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
 

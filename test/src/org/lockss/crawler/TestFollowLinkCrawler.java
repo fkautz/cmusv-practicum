@@ -66,7 +66,7 @@ public class TestFollowLinkCrawler extends LockssTestCase {
     getMockLockssDaemon().getAlertManager();
 
     mau = new MyMockArchivalUnit();
-    mau.setPlugin(new MockPlugin());
+    mau.setPlugin(new MockPlugin(getMockLockssDaemon()));
     mau.setAuId("MyMockTestAu");
     startUrls = ListUtil.list(startUrl);
     mcus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
@@ -687,7 +687,7 @@ public class TestFollowLinkCrawler extends LockssTestCase {
                                                    List urlsToCrawl,
                                                    MockArchivalUnit mmau) {
    //set plugin
-    mmau.setPlugin(new MockPlugin());
+    mmau.setPlugin(new MockPlugin(getMockLockssDaemon()));
     mmau.setAuId("permissionPage au");
     MockCachedUrlSet mcus = (MockCachedUrlSet)mmau.getAuCachedUrlSet();
     crawlRule = new MockCrawlRule();

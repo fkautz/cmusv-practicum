@@ -68,7 +68,7 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     // to run.
     cprops.put(CrawlManagerImpl.PARAM_START_CRAWLS_INTERVAL, "0");
 
-    plugin = new MockPlugin();
+    plugin = new MockPlugin(getMockLockssDaemon());
     crawlSpec = new SpiderCrawlSpec("blah", new MockCrawlRule());
 
     crawlManager = new TestableCrawlManagerImpl();
