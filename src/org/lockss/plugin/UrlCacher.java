@@ -168,13 +168,22 @@ public interface UrlCacher {
   public InputStream getUncachedInputStream() throws IOException;
 
   /**
-   * Gets the Properties for this URL, if any.
+   * Gets the header properties in the server response.  Must be called
+   * only after getUncachedInputStream() has succeeded.
    * @return the {@link CIProperties}
-   * @throws IOException
+   * @throws UnsupportedOperationException if called before
+   * getUncachedInputStream() or cache()
    */
-  public CIProperties getUncachedProperties() throws IOException;
+  public CIProperties getUncachedProperties();
 
-
+  /**
+   * Stores the content and headers into the repository.
+   * @param input the InputStream from which the content will be read
+   * @param headers the server's response headers, augmented with
+   * LOCKSS-specific properties
+   * @throws IOException if can't open connection, get error reponse or can't
+   * store in repository.  See {@link CacheException}
+   */
   public void storeContent(InputStream input, CIProperties headers)
       throws IOException;
 
