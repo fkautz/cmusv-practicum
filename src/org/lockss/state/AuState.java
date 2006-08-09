@@ -54,6 +54,10 @@ public class AuState implements LockssSerializable {
   /** The number of updates between writing to file */
   static final int URL_UPDATE_LIMIT = 1;
 
+  public AuState(ArchivalUnit au, HistoryRepository historyRepo) {
+    this(au, -1, -1, -1, null, historyRepo);
+  }
+
   protected AuState(ArchivalUnit au, long lastCrawlTime, long lastTopLevelPoll,
                     long lastTreeWalk, HashSet crawlUrls,
                     HistoryRepository historyRepo) {
