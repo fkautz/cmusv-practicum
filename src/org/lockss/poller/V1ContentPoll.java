@@ -92,8 +92,15 @@ public class V1ContentPoll extends V1Poll {
   boolean scheduleHash(MessageDigest digest, Deadline timer, Object key,
 		       HashService.Callback callback) {
     HashService hs = m_pollmanager.getHashService();
-    return hs.scheduleHash(m_cus.getContentHasher(digest),
-			   timer, callback, key);
+    try {
+      return hs.scheduleHash(m_cus.getContentHasher(digest),
+			     timer, callback, key);
+    } catch (IllegalArgumentException e) {
+      if (timer.expired()) {
+	return false;
+      }
+      throw e;
+    }
   }
 
 
