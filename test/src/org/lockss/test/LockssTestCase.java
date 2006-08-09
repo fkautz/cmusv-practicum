@@ -116,11 +116,11 @@ public class LockssTestCase extends TestCase {
 
   /** Create a fresh config manager, MockLockssDaemon */
   protected void setUp() throws Exception {
+    ConfigManager.makeConfigManager();
     Logger.resetLogs();
     mockDaemon = new MockLockssDaemon();
     super.setUp();
     disableThreadWatchdog();
-    ConfigManager.makeConfigManager();
   }
 
   /**
