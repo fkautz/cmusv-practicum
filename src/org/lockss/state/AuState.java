@@ -168,6 +168,17 @@ public class AuState implements LockssSerializable {
     return clockssSubscriptionStatus;
   }
 
+  public String getClockssSubscriptionStatusString() {
+    int status = getClockssSubscriptionStatus();
+    switch (status) {
+    case CLOCKSS_SUB_UNKNOWN: return "Unknown";
+    case CLOCKSS_SUB_YES: return "Yes";
+    case CLOCKSS_SUB_NO: return "No";
+    case CLOCKSS_SUB_INACCESSIBLE: return "Inaccessible";
+    default: return "Unknown status " + status;
+    }
+  }
+
   public void setClockssSubscriptionStatus(int val) {
     if (clockssSubscriptionStatus != val) {
       clockssSubscriptionStatus = val;

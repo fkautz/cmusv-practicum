@@ -570,8 +570,9 @@ public class ArchivalUnitStatus
 
     private List getSummaryInfo(ArchivalUnit au, AuState state,
                                 NodeState topNode) {
+      int clockssPos = 1;
       List summaryList =  ListUtil.list(
-            new StatusTable.SummaryInfo("Volume" , ColumnDescriptor.TYPE_STRING,
+            new StatusTable.SummaryInfo("Volume", ColumnDescriptor.TYPE_STRING,
                                         au.getName()),
 //             new StatusTable.SummaryInfo("Nodes", ColumnDescriptor.TYPE_INT,
 //                                         new Integer(-1)),
@@ -609,7 +610,15 @@ public class ArchivalUnitStatus
                                         ColumnDescriptor.TYPE_STRING,
                                         "-")
             );
-        return summaryList;
+      if (theDaemon.isClockss()) {
+	String subStatus =
+	  AuUtil.getAuState(au).getClockssSubscriptionStatusString();
+	summaryList.add(clockssPos,
+			new StatusTable.SummaryInfo("Subscribed",
+						    ColumnDescriptor.TYPE_STRING,
+						    subStatus));
+      }
+      return summaryList;
     }
 
     // utility method for making a Reference

@@ -138,6 +138,29 @@ public class TestAuState extends LockssTestCase {
     }
   }
 
+  public void testClockssSubscriptionStatus() {
+    AuState aus = new AuState(mau, historyRepo);
+    assertEquals(AuState.CLOCKSS_SUB_UNKNOWN,
+		 aus.getClockssSubscriptionStatus());
+    assertEquals("Unknown", aus.getClockssSubscriptionStatusString());
+
+    aus.setClockssSubscriptionStatus(AuState.CLOCKSS_SUB_YES);
+    assertEquals(AuState.CLOCKSS_SUB_YES,
+		 aus.getClockssSubscriptionStatus());
+    assertEquals("Yes", aus.getClockssSubscriptionStatusString());
+
+    aus.setClockssSubscriptionStatus(AuState.CLOCKSS_SUB_NO);
+    assertEquals(AuState.CLOCKSS_SUB_NO,
+		 aus.getClockssSubscriptionStatus());
+    assertEquals("No", aus.getClockssSubscriptionStatusString());
+
+    aus.setClockssSubscriptionStatus(AuState.CLOCKSS_SUB_INACCESSIBLE);
+    assertEquals(AuState.CLOCKSS_SUB_INACCESSIBLE,
+		 aus.getClockssSubscriptionStatus());
+    assertEquals("Inaccessible", aus.getClockssSubscriptionStatusString());
+  }    
+
+
   public static void main(String[] argv) {
     String[] testCaseList = { TestAuState.class.getName()};
     junit.swingui.TestRunner.main(testCaseList);
