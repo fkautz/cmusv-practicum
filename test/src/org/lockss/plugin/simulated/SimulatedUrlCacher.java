@@ -112,7 +112,7 @@ public class SimulatedUrlCacher extends BaseUrlCacher {
   }
 
   // overrides base behavior
-  public CIProperties getUncachedProperties() throws IOException {
+  public CIProperties getUncachedProperties() {
     if (props!=null) {
       return props;
     }

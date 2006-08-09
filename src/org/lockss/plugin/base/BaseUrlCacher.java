@@ -447,7 +447,8 @@ public class BaseUrlCacher implements UrlCacher {
     return input;
   }
 
-  public CIProperties getUncachedProperties() throws IOException {
+  public CIProperties getUncachedProperties()
+      throws UnsupportedOperationException {
     if (conn == null) {
       throw new UnsupportedOperationException("Called getUncachedProperties before calling getUncachedInputStream.");
     }
