@@ -725,6 +725,9 @@ class BlockingPeerChannel implements PeerChannel {
 	      log.debug("shutdownOutput", e);
 	      abortChannel();
 	      break;
+	    } catch (UnsupportedOperationException e) {
+	      log.debug("shutdownOutput() not implemented for SSL");
+	      abortChannel();
 	    }
 	  }
 	}
