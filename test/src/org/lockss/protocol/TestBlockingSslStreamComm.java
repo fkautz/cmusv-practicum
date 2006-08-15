@@ -77,6 +77,58 @@ public class TestBlockingSslStreamComm extends TestBlockingStreamComm {
     super(name);
   }
 
+  void setupCommArrayEntry(int ix) {
+    comms[ix] = new MyBlockingSslStreamComm(pids[ix]);
+  }
+
+  class MyBlockingSslStreamComm extends MyBlockingStreamComm {
+    SocketFactory mySockFact;
+    MyBlockingSslStreamComm(PeerIdentity localId) {
+      super(localId);
+    }
+
+    SocketFactory getSocketFactory() {
+      super.getSocketFactory();
+      if (mySockFact == null) {
+          mySockFact = new MySslSocketFactory(super.superSockFact);
+      }
+      return mySockFact;
+    }
+  }
+
+  /** Socket factory creates either real or internal sockets, and
+   * MyBlockingPeerChannels.
+   */
+  class MySslSocketFactory extends MySocketFactory {
+    BlockingStreamComm.SocketFactory mySockFact;
+    MySslSocketFactory(BlockingStreamComm.SocketFactory s) {
+      super(s);
+      mySockFact = s;
+    }
+
+    public ServerSocket newServerSocket(int port, int backlog)
+          throws IOException {
+        if (useInternalSockets) {
+          return new InternalServerSocket(port, backlog);
+        } else {
+        ServerSocket ss = mySockFact.newServerSocket(port, backlog);
+        assertTrue(ss instanceof SSLServerSocket);
+        return ss;
+        }
+    }
+
+    public Socket newSocket(IPAddr addr, int port) throws IOException {
+        if (useInternalSockets) {
+          return new InternalSocket(addr.getInetAddr(), port);
+        } else {
+        Socket s = mySockFact.newSocket(addr, port);
+        assertTrue(s instanceof SSLSocket);
+        return s;
+        }
+    }
+  }
+
+
   /** SSL */
   public static class SslStreams extends TestBlockingSslStreamComm {
     private static String PREFIX = "javax.net.ssl.keyStore";
