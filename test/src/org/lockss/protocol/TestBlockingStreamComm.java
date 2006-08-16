@@ -1000,7 +1000,7 @@ public class TestBlockingStreamComm extends LockssTestCase {
     for (int comm = 0; comm < MAX_COMMS; comm++) {
       Set peers = allPeers();
       while (!peers.isEmpty()) {
-	PeerMessage msgIn = (PeerMessage)rcvdMsgss[comm].get(TIMEOUT_SHOULDNT);
+	PeerMessage msgIn = (PeerMessage)rcvdMsgss[comm].get(TIMEOUT_SHOULDNT*4);
 	assertNotNull("Comm" + comm + " didn't receive messages from " + peers,
 		      msgIn);
 	peers.remove(msgIn.getSender());
