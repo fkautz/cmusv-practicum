@@ -111,7 +111,8 @@ public class PdfTransformUtil {
       Iterator iter = pdfDocument.getPageIterator();
       iter.next(); // skip first page
       while (iter.hasNext()) {
-        pdfPageTransform.transform(pdfDocument, (PDPage)iter.next());
+        pdfPageTransform.transform(pdfDocument,
+                                   (PDPage)iter.next());
       }
     }
 
@@ -141,7 +142,8 @@ public class PdfTransformUtil {
     /* Inherit documentation */
     public void transform(PdfDocument pdfDocument) throws IOException {
       for (Iterator iter = pdfDocument.getPageIterator() ; iter.hasNext() ; ) {
-        pdfPageTransform.transform(pdfDocument, (PDPage)iter.next());
+        pdfPageTransform.transform(pdfDocument,
+                                   (PDPage)iter.next());
       }
     }
 
