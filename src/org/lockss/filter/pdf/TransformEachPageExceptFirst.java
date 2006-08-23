@@ -30,33 +30,36 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.plugin.highwire;
+package org.lockss.filter.pdf;
 
-import java.io.*;
+import java.io.IOException;
+import java.util.Iterator;
 
-import org.lockss.filter.*;
 import org.lockss.filter.pdf.*;
-import org.lockss.plugin.FilterRule;
+import org.lockss.util.PdfDocument;
+import org.pdfbox.pdmodel.PDPage;
 
-public class HighWirePdfFilterRule implements FilterRule {
+/**
+ * <p>A PDF transform that applies a PDF page transform to each page
+ * of the PDF document except the first page.</p>
+ * @author Thib Guicherd-Callin
+ */
+public class TransformEachPageExceptFirst extends TransformSelectedPages {
 
-  /*
-   * Do not use this class for now.
+  /**
+   * <p>Builds a new PDF transform with the given PDF page
+   * transform.</p>
+   * @param pdfPageTransform A PDF page transform.
    */
-
-  public Reader createFilteredReader(Reader reader) {
-    return null; //return new PdfFilterReader(reader, getInstance());
+  public TransformEachPageExceptFirst(PdfPageTransform pdfPageTransform) {
+    super(pdfPageTransform);
   }
 
-  private static CompoundPdfTransform compoundTransform;
-
-  public static synchronized PdfTransform getInstance() throws IOException {
-    // This is a stub
-    if (compoundTransform == null) {
-      compoundTransform = new CompoundPdfTransform();
-      compoundTransform.addPdfTransform(AmericanPhysiologicalSocietyPdfTransform.makeTransform());
-    }
-    return compoundTransform;
+  /* Inherit documentation */
+  protected Iterator getSelectedPages(PdfDocument pdfDocument) throws IOException {
+    Iterator iter = pdfDocument.getPageIterator();
+    iter.next(); // skip first page
+    return iter;
   }
 
 }

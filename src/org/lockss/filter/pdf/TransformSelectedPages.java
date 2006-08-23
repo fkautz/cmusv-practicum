@@ -30,33 +30,50 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.plugin.highwire;
+package org.lockss.filter.pdf;
 
-import java.io.*;
+import java.io.IOException;
+import java.util.Iterator;
 
-import org.lockss.filter.*;
-import org.lockss.filter.pdf.*;
-import org.lockss.plugin.FilterRule;
+import org.lockss.util.PdfDocument;
+import org.pdfbox.pdmodel.PDPage;
 
-public class HighWirePdfFilterRule implements FilterRule {
+/**
+ * <p>A PDF transform that applies a PDF page transform to selected
+ * pages of the PDF document.</p>
+ * @author Thib Guicherd-Callin
+ * @see #getSelectedPages
+ */
+public abstract class TransformSelectedPages implements PdfTransform {
 
-  /*
-   * Do not use this class for now.
+  /**
+   * <p>A PDF page transform.</p>
    */
+  protected PdfPageTransform pdfPageTransform;
 
-  public Reader createFilteredReader(Reader reader) {
-    return null; //return new PdfFilterReader(reader, getInstance());
+  /**
+   * <p>Builds a new PDF transform with the given PDF page
+   * transform.</p>
+   * @param pdfPageTransform A PDF page transform.
+   */
+  protected TransformSelectedPages(PdfPageTransform pdfPageTransform) {
+    this.pdfPageTransform = pdfPageTransform;
   }
 
-  private static CompoundPdfTransform compoundTransform;
-
-  public static synchronized PdfTransform getInstance() throws IOException {
-    // This is a stub
-    if (compoundTransform == null) {
-      compoundTransform = new CompoundPdfTransform();
-      compoundTransform.addPdfTransform(AmericanPhysiologicalSocietyPdfTransform.makeTransform());
+  /* Inherit documentation */
+  public void transform(PdfDocument pdfDocument) throws IOException {
+    for (Iterator iter = getSelectedPages(pdfDocument) ; iter.hasNext() ; ) {
+      pdfPageTransform.transform(pdfDocument, (PDPage)iter.next());
     }
-    return compoundTransform;
   }
+
+  /**
+   * <p>Gets an iterator of the pages selected for transformation by
+   * this transform.</p>
+   * @param pdfDocument A PDF document.
+   * @return An iterator of PDF pages ({@link PDPage}).
+   * @throws IOException if any processing error occurs.
+   */
+  protected abstract Iterator getSelectedPages(PdfDocument pdfDocument) throws IOException;
 
 }

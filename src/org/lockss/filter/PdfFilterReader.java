@@ -34,6 +34,7 @@ package org.lockss.filter;
 
 import java.io.*;
 
+import org.lockss.filter.pdf.PdfTransform;
 import org.lockss.util.*;
 
 /**
