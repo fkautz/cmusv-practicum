@@ -86,7 +86,7 @@ public class PdfFilterReader extends FilterReader {
     /* Assumes synchronized */
     InputStream pdfInputStream = new ReaderInputStream(in);
     ByteArrayOutputStream pdfOutputStream = new ByteArrayOutputStream();
-    PdfTransformUtil.parse(pdfInputStream, pdfOutputStream, pdfTransform, logger);
+    PdfUtil.applyPdfTransform(pdfTransform, pdfInputStream, pdfOutputStream);
     in = new InputStreamReader(new ByteArrayInputStream(pdfOutputStream.toByteArray()));
   }
 
