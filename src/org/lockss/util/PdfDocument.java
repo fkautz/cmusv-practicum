@@ -35,7 +35,7 @@ package org.lockss.util;
 import java.io.*;
 import java.util.*;
 
-import org.pdfbox.cos.COSDocument;
+import org.pdfbox.cos.*;
 import org.pdfbox.exceptions.COSVisitorException;
 import org.pdfbox.pdfparser.PDFParser;
 import org.pdfbox.pdmodel.*;
@@ -172,6 +172,10 @@ public class PdfDocument {
 
   protected void setMetadata(PDMetadata metadata) throws IOException {
     getDocumentCatalog().setMetadata(metadata);
+  }
+
+  public COSDictionary getTrailer() throws IOException {
+    return getCOSDocument().getTrailer();
   }
 
 }
