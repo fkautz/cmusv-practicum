@@ -115,8 +115,8 @@ public class PdfTools {
   protected static final String USAGE =
     "Usage:\n" +
     "\n" +
-    "-h -help --help  Displays this message\n" +
-    "-usage --usage   Displays this message\n" +
+    "-h -help --help     Displays this message\n" +
+    "-usage --usage      Displays this message\n" +
     "\n" +
 //    "-dumpannotations Dumps the annotations on each page\n" +
     "-dumppagedictionary Dumps the dictionary of each page\n" +
