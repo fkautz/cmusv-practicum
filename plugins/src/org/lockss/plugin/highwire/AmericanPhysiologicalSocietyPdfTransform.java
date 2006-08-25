@@ -35,8 +35,6 @@ package org.lockss.plugin.highwire;
 import java.io.IOException;
 import java.util.*;
 
-import javax.swing.JOptionPane;
-
 import org.apache.commons.lang.StringUtils;
 import org.lockss.filter.pdf.*;
 import org.lockss.util.*;
