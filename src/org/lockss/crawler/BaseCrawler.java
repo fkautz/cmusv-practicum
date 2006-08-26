@@ -41,8 +41,7 @@ import org.lockss.alert.*;
 import org.lockss.config.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
-import org.lockss.plugin.base.BaseArchivalUnit;
-import org.lockss.state.AuState;
+import org.lockss.state.*;
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
 import org.lockss.clockss.*;
@@ -224,6 +223,11 @@ public abstract class BaseCrawler
 	alertMgr.raiseAlert(Alert.auAlert(Alert.CRAWL_FAILED, au),
 			    getTypeString() + " Crawl failed: " +
 			    crawlStatus.getCrawlError());
+      }
+      if (res && isWholeAU()) {
+	logger.info("updating last crawl");
+	NodeManager nodeManager = getDaemon().getNodeManager(au);
+	nodeManager.newContentCrawlFinished();
       }
       return res;
     } catch (RuntimeException e) {

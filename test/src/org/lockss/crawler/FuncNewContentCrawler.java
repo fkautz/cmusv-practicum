@@ -109,6 +109,7 @@ public class FuncNewContentCrawler extends LockssTestCase {
     sau =
         (SimulatedArchivalUnit)theDaemon.getPluginManager().getAllAus().get(0);
     theDaemon.getLockssRepository(sau);
+    theDaemon.setNodeManager(new MockNodeManager(), sau);
   }
 
   public void tearDown() throws Exception {

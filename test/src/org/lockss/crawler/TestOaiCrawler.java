@@ -38,7 +38,7 @@ import java.util.*;
 import org.lockss.daemon.*;
 import org.lockss.oai.OaiHandler;
 import org.lockss.plugin.ArchivalUnit;
-import org.lockss.state.AuState;
+import org.lockss.state.*;
 import org.lockss.test.*;
 import org.lockss.util.*;
 
@@ -62,7 +62,7 @@ public class TestOaiCrawler extends LockssTestCase {
 
     getMockLockssDaemon().getAlertManager();
 
-    mau = new MockArchivalUnit();
+    mau = newMockArchivalUnit();
     mau.setPlugin(new MockPlugin(getMockLockssDaemon()));
     mau.setAuId("MyMockTestAu");
 //  mcus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
@@ -79,6 +79,13 @@ public class TestOaiCrawler extends LockssTestCase {
     crawler = new OaiCrawler(mau, spec, aus);
     ((BaseCrawler)crawler).daemonPermissionCheckers =
       ListUtil.list(new MyMockPermissionChecker(1));
+  }
+
+  MockArchivalUnit newMockArchivalUnit() {
+    NodeManager nodeManager = new MockNodeManager();
+    MockArchivalUnit mau = new MockArchivalUnit();
+    getMockLockssDaemon().setNodeManager(nodeManager, mau);
+    return mau;
   }
 
   public void testMocThrowsForNullAu() {

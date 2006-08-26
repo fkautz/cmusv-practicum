@@ -705,14 +705,6 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
 	    }
 	  }
 	  crawlSuccessful = crawler.doCrawl();
-
-	  if (crawler.isWholeAU()) {
-	    if (crawlSuccessful) {
-	      NodeManager nodeManager =
-		theDaemon.getNodeManager(crawler.getAu());
-	      nodeManager.newContentCrawlFinished();
-	    }
-	  }
 	}
       } catch (InterruptedException ignore) {
 	// no action

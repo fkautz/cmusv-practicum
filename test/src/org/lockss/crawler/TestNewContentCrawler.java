@@ -75,7 +75,7 @@ public class TestNewContentCrawler extends LockssTestCase {
 
     getMockLockssDaemon().getAlertManager();
 
-    mau = new MyMockArchivalUnit();
+    mau = newMyMockArchivalUnit();
     mau.setPlugin(new MockPlugin(getMockLockssDaemon()));
     mau.setAuId("MyMockTestAu");
     startUrls = ListUtil.list(startUrl);
@@ -95,6 +95,13 @@ public class TestNewContentCrawler extends LockssTestCase {
     Properties p = new Properties();
     p.setProperty(NewContentCrawler.PARAM_RETRY_PAUSE, "0");
     ConfigurationUtil.setCurrentConfigFromProps(p);
+  }
+
+  MyMockArchivalUnit newMyMockArchivalUnit() {
+    NodeManager nodeManager = new MockNodeManager();
+    MyMockArchivalUnit mau = new MyMockArchivalUnit();
+    getMockLockssDaemon().setNodeManager(nodeManager, mau);
+    return mau;
   }
 
   public void testMnccThrowsForNullAu() {
@@ -602,7 +609,7 @@ public class TestNewContentCrawler extends LockssTestCase {
   }
 
   public void testGetStatusErrorStartUrl() {
-    mau = new MyMockArchivalUnit();
+    mau = newMyMockArchivalUnit();
     mau.setPlugin(new MockPlugin(getMockLockssDaemon()));
     mau.setAuId("MyMockTestAu");
     mcus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
@@ -626,7 +633,7 @@ public class TestNewContentCrawler extends LockssTestCase {
   }
 
   public void testGetStatusRepoErrorStartUrl() {
-    mau = new MyMockArchivalUnit();
+    mau = newMyMockArchivalUnit();
     mau.setPlugin(new MockPlugin(getMockLockssDaemon()));
     mau.setAuId("MyMockTestAu");
     mcus = (MockCachedUrlSet)mau.getAuCachedUrlSet();

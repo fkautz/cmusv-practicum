@@ -586,41 +586,6 @@ public class TestCrawlManagerImpl extends LockssTestCase {
       assertEquals(cookie, cb.getCookie());
     }
 
-    public void testCompletedCrawlUpdatesLastCrawlTime() {
-      long lastCrawlTime = maus.getLastCrawlTime();
-
-      SimpleBinarySemaphore sem = new SimpleBinarySemaphore();
-      TestCrawlCB cb = new TestCrawlCB(sem);
-      crawlManager.startNewContentCrawl(mau, cb, null, null);
-
-      waitForCrawlToFinish(sem);
-      assertNotEquals(lastCrawlTime, maus.getLastCrawlTime());
-    }
-
-    public void testUnsuccessfulCrawlDoesntUpdateLastCrawlTime() {
-      long lastCrawlTime = maus.getLastCrawlTime();
-
-      crawler.setCrawlSuccessful(false);
-
-      SimpleBinarySemaphore sem = new SimpleBinarySemaphore();
-      TestCrawlCB cb = new TestCrawlCB(sem);
-      crawlManager.startNewContentCrawl(mau, cb, null, null);
-
-      waitForCrawlToFinish(sem);
-      assertEquals(lastCrawlTime, maus.getLastCrawlTime());
-    }
-
-    public void testCompletedCrawlUpdatesLastCrawlTimeIfFNFExceptionThrown() {
-      long lastCrawlTime = maus.getLastCrawlTime();
-
-      SimpleBinarySemaphore sem = new SimpleBinarySemaphore();
-      TestCrawlCB cb = new TestCrawlCB(sem);
-      crawlManager.startNewContentCrawl(mau, cb, null, null);
-
-      waitForCrawlToFinish(sem);
-      assertNotEquals(lastCrawlTime, maus.getLastCrawlTime());
-    }
-
     //StatusSource tests
 
     public void testGetCrawlStatusListReturnsEmptyListIfNoCrawls() {
