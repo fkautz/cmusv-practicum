@@ -225,7 +225,6 @@ public abstract class BaseCrawler
 			    crawlStatus.getCrawlError());
       }
       if (res && isWholeAU()) {
-	logger.info("updating last crawl");
 	NodeManager nodeManager = getDaemon().getNodeManager(au);
 	nodeManager.newContentCrawlFinished();
       }
