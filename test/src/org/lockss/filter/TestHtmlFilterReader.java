@@ -58,7 +58,7 @@ public class TestHtmlFilterReader extends LockssTestCase {
 
   public void testIll() {
     try {
-      new HtmlFilterReader(null, new NullXform ());
+      new HtmlFilterReader(null, new IdentityXform ());
       fail("null reader should throw");
     } catch(IllegalArgumentException iae) {
     }
@@ -69,14 +69,14 @@ public class TestHtmlFilterReader extends LockssTestCase {
     }
   }
 
-  public void testNullXform() throws IOException {
+  public void testIdentityXform() throws IOException {
     assertFilterString("<html>foo</html>",
 		       "<html>foo</html>",
-		       new NullXform());
+		       new IdentityXform());
   }
 
   public void testEmpty() throws IOException {
-    assertFilterString("", "", new NullXform());
+    assertFilterString("", "", new IdentityXform());
 
     MockHtmlTransform xform =
       new MockHtmlTransform(ListUtil.list(new NodeList()));
@@ -96,9 +96,12 @@ public class TestHtmlFilterReader extends LockssTestCase {
     assertFilterString("<i>it</i>", in, xform);
     NodeList nl = xform.getArg(0);
     assertEquals(3, nl.size());
+    assertEquals("<b>", nl.elementAt(0).toHtml());
+    assertEquals("bold", nl.elementAt(1).toHtml());
+    assertEquals("</b>", nl.elementAt(2).toHtml());
   }
 
-  class NullXform implements HtmlTransform {
+  class IdentityXform implements HtmlTransform {
     public NodeList transform(NodeList nl) {
       return nl;
     }

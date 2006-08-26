@@ -47,16 +47,14 @@ public class TestHtmlNodeFilters extends LockssTestCase {
   public void testAssumptions() throws Exception {
     NodeList nl = parse("<option value=\"val1\">blue 13</option>");
     Node node = nl.elementAt(0);
-    log.info("class: " + node.getClass());
-    log.info("text: " + node.getText());
     assertTrue(node instanceof CompositeTag);
     assertEquals("blue 13", ((CompositeTag)node).getStringText());
+    assertEquals("option value=\"val1\"", node.getText());
 
     nl = parse("some text");
     node = nl.elementAt(0);
-    log.info("class: " + node.getClass());
-    log.info("text: " + node.getText());
     assertFalse(node instanceof CompositeTag);
+    assertEquals("some text", node.getText());
   }
 
   public void testIll() {

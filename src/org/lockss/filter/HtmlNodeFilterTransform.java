@@ -64,8 +64,8 @@ public class HtmlNodeFilterTransform implements HtmlTransform {
   }
 
   /**
-   * Create a HtmlNodeFilterTransform that includes all nodes that match
-   * the NodeFilter
+   * Create a HtmlNodeFilterTransform that includes only those nodes that
+   * match the NodeFilter
    * @param filter nodes matching the filter will be returned in a new
    * NodeList
    */

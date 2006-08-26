@@ -99,6 +99,8 @@ public class HtmlFilterReader extends Reader {
     this.xform = xform;
   }
 
+  /** Parse the input, apply the transform, generate output string and
+   * Reader */
   void parse() throws IOException {
     try {
       Parser parser = makeParser();

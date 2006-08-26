@@ -100,7 +100,7 @@ public class TestHtmlNodeSequenceTransform extends LockssTestCase {
     String str =
       "<html>bo<!-- start ad 15 --><img>ad text<!-- end ad 15 -->dy" +
       "<table>" +
-      "<tr><td>da<!-- start ad -->foo<!-- end ad -->ta</td></tr>" +
+      "<tr><td>da<!-- start ad -->foo<script>bar</script><!-- end ad -->ta</td></tr>" +
       "</table></html>";
     NodeFilter sf = HtmlNodeFilters.commentWithString("start ad");
     NodeFilter ef = HtmlNodeFilters.commentWithString("end ad");

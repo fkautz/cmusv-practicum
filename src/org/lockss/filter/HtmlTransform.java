@@ -43,9 +43,9 @@ public interface HtmlTransform {
 
   /**
    * Apply a transformation to a {@link NodeList}
-   * @param the nodeList
-   * @return the transformed Nodelist (possibly the modified input
-   * NodeList)
+   * @param nodeList the nodeList
+   * @return the transformed Nodelist (either the input NodeList, modified,
+   * or a new NodeList)
    * @throws IOException if any processing error occurs.
    * @see org.htmlparser.filters
    */
