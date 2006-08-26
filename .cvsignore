@@ -1,10 +1,13 @@
+.classpath
 .depend
+.project
+.settings
+bin
 classes
 instrumented
 javadoc
 jcoverage.ser
+rpt-test-err
+rpt-test-out
 tempbuild
-.settings
-.classpath
-.project
-bin
+tmplib
