@@ -778,7 +778,6 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
       Deadline.setReasonableDeadlineRange(maxInPast, maxInFuture);
     }
     String proj = ConfigManager.getPlatformProject();
-    System.err.println("proj: " + proj);
     isClockss = "clockss".equalsIgnoreCase(proj);
 
     super.setConfig(config, prevConfig, changedKeys);
