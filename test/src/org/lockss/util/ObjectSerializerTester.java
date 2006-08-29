@@ -719,7 +719,9 @@ public abstract class ObjectSerializerTester extends XMLTestCase {
         this.action = action;
       }
       public File createTempFile(String prefix, String suffix, File directory) throws IOException {
-        action.file = new File(File.createTempFile(prefix, suffix, directory).toString()) {
+        File tmp = File.createTempFile(prefix, suffix, directory);
+        tmp.deleteOnExit();
+        action.file = new File(tmp.toString()) {
           public boolean renameTo(File dest) {
             return false; // fail
           }
