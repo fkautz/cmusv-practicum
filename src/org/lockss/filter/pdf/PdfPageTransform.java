@@ -34,12 +34,11 @@ package org.lockss.filter.pdf;
 
 import java.io.IOException;
 
-import org.lockss.util.PdfDocument;
-import org.pdfbox.pdmodel.PDPage;
+import org.lockss.util.*;
 
 /**
  * <p>Specifies classes that are able to transform a PDF page
- * via a {@link PDPage}.</p>
+ * via a {@link PdfPage}.</p>
  * @author Thib Guicherd-Callin
  * @see PdfDocument
  */
@@ -51,6 +50,8 @@ public interface PdfPageTransform {
    * @param pdfPage     A PDF page (belonging to the PDF document).
    * @throws IOException if any processing error occurs.
    */
-  void transform(PdfDocument pdfDocument, PDPage pdfPage) throws IOException;
+  void transform(PdfDocument pdfDocument,
+                 PdfPage pdfPage)
+      throws IOException;
 
 }

@@ -33,11 +33,9 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.filter.pdf;
 
 import java.io.IOException;
-import java.util.Iterator;
+import java.util.*;
 
-import org.lockss.filter.pdf.*;
 import org.lockss.util.PdfDocument;
-import org.pdfbox.pdmodel.PDPage;
 
 /**
  * <p>A PDF transform that applies a PDF page transform to each page
@@ -56,8 +54,9 @@ public class TransformEachPageExceptFirst extends TransformSelectedPages {
   }
 
   /* Inherit documentation */
-  protected Iterator getSelectedPages(PdfDocument pdfDocument) throws IOException {
-    Iterator iter = pdfDocument.getPageIterator();
+  protected ListIterator /* of PdfPage */ getSelectedPages(PdfDocument pdfDocument)
+      throws IOException {
+    ListIterator iter = pdfDocument.getPageIterator();
     iter.next(); // skip first page
     return iter;
   }

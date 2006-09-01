@@ -36,8 +36,6 @@ import java.io.IOException;
 import java.util.*;
 
 import org.lockss.util.*;
-import org.lockss.util.PdfDocument;
-import org.pdfbox.pdmodel.PDPage;
 
 public class CompoundPdfPageTransform implements PdfPageTransform {
 
@@ -102,7 +100,7 @@ public class CompoundPdfPageTransform implements PdfPageTransform {
 
   /* Inherit documentation */
   public synchronized void transform(PdfDocument pdfDocument,
-                                     PDPage pdfPage)
+                                     PdfPage pdfPage)
       throws IOException {
     for (Iterator iter = pdfPageTransforms.iterator() ; iter.hasNext() ; ) {
       PdfPageTransform pdfPageTransform = (PdfPageTransform)iter.next();

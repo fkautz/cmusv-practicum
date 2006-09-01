@@ -34,7 +34,7 @@ package org.lockss.util;
 
 import java.io.*;
 
-import org.lockss.filter.pdf.PdfTransform;
+import org.lockss.filter.pdf.*;
 import org.pdfbox.cos.*;
 import org.pdfbox.util.PDFOperator;
 
@@ -45,16 +45,62 @@ import org.pdfbox.util.PDFOperator;
 public class PdfUtil {
 
   /**
+   * <p>A PDF page transform that remembers how many times it has been
+   * called.</p>
+   * @author Thib Guicherd-Callin
+   */
+  public static class CountCallsPageTransform extends IdentityPdfPageTransform {
+
+    protected int callCount = 0;
+
+    public int getCallCount() {
+      return callCount;
+    }
+
+    public void transform(PdfDocument pdfDocument, PdfPage pdfPage) throws IOException {
+      ++callCount;
+    }
+
+  }
+
+  /**
+   * <p>A PDF transform that remembers how many times it has been
+   * called.</p>
+   * @author Thib Guicherd-Callin
+   */
+  public static class CountCallsTransform extends IdentityPdfTransform {
+
+    protected int callCount = 0;
+
+    public int getCallCount() {
+      return callCount;
+    }
+
+    public void transform(PdfDocument pdfDocument) {
+      ++callCount;
+    }
+
+  }
+
+  /**
+   * <p>A PDF page transform that does nothing, for testing.</p>
+   * @author Thib Guicherd-Callin
+   */
+  public static class IdentityPdfPageTransform implements PdfPageTransform {
+
+    /* Inherit documentation */
+    public void transform(PdfDocument pdfDocument, PdfPage pdfPage) throws IOException {}
+
+  }
+
+  /**
    * <p>A PDF transform that does nothing, for testing.</p>
    * @author Thib Guicherd-Callin
    */
-  public static class PdfIdentityTransform implements PdfTransform {
+  public static class IdentityPdfTransform implements PdfTransform {
 
     /* Inherit documentation */
-    public void transform(PdfDocument pdfDocument)
-        throws IOException {
-      logger.debug("Identity PDF transform");
-    }
+    public void transform(PdfDocument pdfDocument) throws IOException {}
 
   }
 
