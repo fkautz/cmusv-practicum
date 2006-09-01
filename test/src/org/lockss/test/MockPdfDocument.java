@@ -187,10 +187,6 @@ public class MockPdfDocument extends PdfDocument {
     throw new UnsupportedOperationException();
   }
 
-  protected List getAllPages() throws IOException {
-    throw new UnsupportedOperationException();
-  }
-
   protected PDDocumentCatalog getDocumentCatalog() throws IOException {
     throw new UnsupportedOperationException();
   }
@@ -200,6 +196,10 @@ public class MockPdfDocument extends PdfDocument {
   }
 
   protected PDMetadata getMetadata() throws IOException {
+    throw new UnsupportedOperationException();
+  }
+
+  protected List getPdPages() throws IOException {
     throw new UnsupportedOperationException();
   }
 
