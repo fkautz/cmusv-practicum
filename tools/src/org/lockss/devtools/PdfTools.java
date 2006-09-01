@@ -204,7 +204,6 @@ public class PdfTools {
       }
       else if (args[arg].equals("-rewrite")) {
         ignoreResult = false;
-        pdfPageTransform.add(new ReiteratePageStream());
       }
       else if (args[arg].equals("-trailer")) {
         pdfTransform.add(new DumpTrailer());
@@ -215,6 +214,9 @@ public class PdfTools {
     }
 
     pdfTransform.add(new TransformEachPage(pdfPageTransform));
+    if (!ignoreResult) {
+      pdfTransform.add(new TransformEachPage(new ReiteratePageStream()));
+    }
 
     try {
       JFileChooser chooser = new JFileChooser();
