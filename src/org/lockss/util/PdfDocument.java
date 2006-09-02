@@ -248,7 +248,7 @@ public class PdfDocument {
   /**
    * <p>Instantiates a new {@link PDStream} instance based on this PDF
    * document.</p>
-   * @return A newly instantiated {@PDStream} instance.
+   * @return A newly instantiated {@link PDStream} instance.
    * @throws IOException if any processing error occurs.
    * @see PDStream#PDStream(PDDocument)
    */
