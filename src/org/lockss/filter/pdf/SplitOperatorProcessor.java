@@ -53,6 +53,11 @@ import org.pdfbox.util.PDFOperator;
  * "begin text object", and the operator processor for "end text
  * object" could merge with or without replacement based on a
  * condition derived from the contents of the output sublist.</p>
+ * <p>{@link SplitOperatorProcessor} instances, like
+ * {@link SimpleOperatorProcessor} instances, <em>must</em> have a
+ * no-argument constructor, and are instantiated once per key
+ * associated with their class name during a given
+ * {@link PdfPageStreamTransform} instantiation.</p>
  * @author Thib Guicherd-Callin
  * @see PdfPageStreamTransform#splitOutputList
  * @see PdfPageStreamTransform#mergeOutputList()

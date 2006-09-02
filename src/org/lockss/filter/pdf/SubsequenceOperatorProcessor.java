@@ -44,9 +44,10 @@ import org.pdfbox.util.operator.OperatorProcessor;
  * operator to the output list unconditionally, then conditionally
  * replaces the end subsequence of the output list with another.</p>
  * <p>{@link SubsequenceOperatorProcessor} instances, like
- * {@link OperatorProcessor} instances, are only instantiated once
- * per instantiation of a {@link PdfPageStreamTransform}, and should
- * have a no-argument constructor.</p>
+ * {@link SimpleOperatorProcessor} instances, <em>must</em> have a
+ * no-argument constructor, and are instantiated once per key
+ * associated with their class name during a given
+ * {@link PdfPageStreamTransform} instantiation.</p>
  * @author Thib Guicherd-Callin
  */
 public abstract class SubsequenceOperatorProcessor extends SimpleOperatorProcessor {
