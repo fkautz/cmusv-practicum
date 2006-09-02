@@ -77,10 +77,10 @@ public abstract class ShowTextProcessor extends SimpleOperatorProcessor {
 
   /* Inherit documentation */
   public void process(PDFOperator operator,
-                      List arguments,
+                      List operands,
                       PdfPageStreamTransform pdfPageStreamTransform)
       throws IOException {
-    String candidate = PdfUtil.getPdfString(arguments.get(0));
+    String candidate = PdfUtil.getPdfString(operands.get(0));
     if (candidateMatches(candidate)) {
       // String matches: replace it
       pdfPageStreamTransform.signalChange();
@@ -90,7 +90,7 @@ public abstract class ShowTextProcessor extends SimpleOperatorProcessor {
     }
     else {
       // String does not match: pass it through
-      super.process(operator, arguments, pdfPageStreamTransform);
+      super.process(operator, operands, pdfPageStreamTransform);
     }
   }
 

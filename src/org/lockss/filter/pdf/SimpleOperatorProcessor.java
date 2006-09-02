@@ -52,10 +52,10 @@ public class SimpleOperatorProcessor extends PdfOperatorProcessor {
 
   /* Inherit documentation */
   public void process(PDFOperator operator,
-                      List arguments,
+                      List operands,
                       PdfPageStreamTransform pdfPageStreamTransform)
       throws IOException {
-    pdfPageStreamTransform.getOutputList().addAll(arguments);
+    pdfPageStreamTransform.getOutputList().addAll(operands);
     pdfPageStreamTransform.getOutputList().add(operator);
   }
 

@@ -97,10 +97,10 @@ public abstract class SubsequenceOperatorProcessor extends SimpleOperatorProcess
 
   /* Inherit documentation */
   public void process(PDFOperator operator,
-                      List arguments,
+                      List operands,
                       PdfPageStreamTransform pdfPageStreamTransform)
       throws IOException {
-    super.process(operator, arguments, pdfPageStreamTransform);
+    super.process(operator, operands, pdfPageStreamTransform);
     int subsequenceLength = subsequenceLength();
     List outputList = pdfPageStreamTransform.getOutputList();
     int outputListSize = outputList.size();

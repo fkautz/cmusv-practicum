@@ -62,11 +62,11 @@ public class SplitOperatorProcessor extends SimpleOperatorProcessor {
 
   /* Inherit documentation */
   public void process(PDFOperator operator,
-                      List arguments,
+                      List operands,
                       PdfPageStreamTransform pdfPageStreamTransform)
       throws IOException {
     pdfPageStreamTransform.splitOutputList();
-    super.process(operator, arguments, pdfPageStreamTransform);
+    super.process(operator, operands, pdfPageStreamTransform);
   }
 
 }
