@@ -655,9 +655,4 @@ public class FuncLockssHttpClient extends LockssTestCase {
       conn.abort();
     }
   }
-
-  public static void main(String[] argv) {
-    String[] testCaseList = {FuncLockssHttpClient.class.getName()};
-    junit.swingui.TestRunner.main(testCaseList);
-  }
 }
