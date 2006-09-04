@@ -1094,7 +1094,30 @@ JAVA_COMMAND_ARGS="-server -Xmx500m -Dsun.net.inetaddr.ttl=3600 -Dorg.lockss.syn
      <map from="${lib}" to="." />
     </pathconvert>
     <echo file="${temp.pkg.dir}/runtool">#!/bin/sh
-java -classpath &quot;${tmp.ptool.clspth.unix}&quot; org.lockss.devtools.plugindef.PluginDefinerApp
+TOOL_CLASSPATH="${tmp.ptool.clspth.unix}"
+JVM_ARGS=""
+if [ -z "$CLASSPATH" ] ; then
+ CLASSPATH="$TOOL_CLASSPATH"
+else
+ CLASSPATH="$TOOL_CLASSPATH":"$CLASSPATH"
+fi
+while true ; do
+ case "$1" in
+  -classpath )
+   CLASSPATH="$2":"$CLASSPATH"
+   shift; shift; continue;;
+  -D*=* )
+   JVM_ARGS="$JVM_ARGS $1"
+   shift; continue;;
+ esac
+ break
+done
+export CLASSPATH
+echo "CLASSPATH=$CLASSPATH"
+if [ -n "$JVM_ARGS" ] ; then
+ echo "JVM_ARGS=$JVM_ARGS"
+fi
+java -classpath $CLASSPATH $JVM_ARGS org.lockss.devtools.plugindef.PluginDefinerApp
 </echo>
     <echo file="${temp.pkg.dir}/runtool.bat">java -classpath &quot;${tmp.ptool.clspth.dos}&quot; org.lockss.devtools.plugindef.PluginDefinerApp
 </echo>
