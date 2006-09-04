@@ -36,9 +36,9 @@ import java.io.IOException;
 
 /**
  * <p>A properly-nestable {@link IOException} for exceptions raised
- * by PDF page transforms.</p>
+ * by PDF transforms.</p>
  * @author Thib Guicherd-Callin
- * @see PdfPageTransform#transform
+ * @see PdfTransform#transform
  */
 public class PdfTransformException extends IOException {
 

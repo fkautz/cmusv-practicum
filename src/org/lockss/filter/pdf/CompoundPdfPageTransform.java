@@ -37,6 +37,11 @@ import java.util.*;
 
 import org.lockss.util.*;
 
+/**
+ * <p>A PDF page transform made of many other PDF page transforms,
+ * applied sequentially.
+ * @author Thib Guicherd-Callin
+ */
 public class CompoundPdfPageTransform implements PdfPageTransform {
 
   /**

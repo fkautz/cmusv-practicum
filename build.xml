@@ -1180,6 +1180,7 @@ java -classpath $CLASSPATH $JVM_ARGS org.lockss.devtools.plugindef.PluginDefiner
        <link href="${ext.javadoc}/commons-lang-2.1/docs/api" />
        <link href="${ext.javadoc}/commons-logging-1.1/docs/apidocs" />
        <link href="${ext.javadoc}/htmlparser-1.6/docs/javadoc" />
+       <link href="${ext.javadoc}/pdfbox-0.7.2/javadoc" />
        <link href="${ext.javadoc}/xstream-1.1.3/javadoc" />
     </javadoc>
   </target>
