@@ -621,4 +621,22 @@ public class ConfigParamDescr implements Comparable, LockssSerializable {
     }
   }
 
+  public String toDetailedString() {
+    StringBuffer buffer = new StringBuffer(100);
+    buffer.append("[");
+    buffer.append(getClass().getName());
+    buffer.append(";key=");
+    buffer.append(getKey());
+    buffer.append(";type=");
+    buffer.append(getType());
+    buffer.append(";size=");
+    buffer.append(getSize());
+    buffer.append(";isDefinitional=");
+    buffer.append(isDefinitional());
+    buffer.append(";displayName=");
+    buffer.append(getDisplayName());
+    buffer.append("]");
+    return buffer.toString();
+  }
+
 }

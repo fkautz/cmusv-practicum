@@ -33,9 +33,12 @@ package org.lockss.devtools.plugindef;
 
 import java.awt.*;
 import javax.swing.*;
+
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.table.*;
+
+import org.lockss.util.Logger;
 
 /**
  * <p>Title: </p>
@@ -60,14 +63,21 @@ public class ExceptionsMapEditor extends JDialog implements EDPEditor {
   ExceptionsTableModel m_model = new ExceptionsTableModel();
   JScrollPane jScrollPane1 = new JScrollPane();
 
+  protected static Logger logger = Logger.getLogger("ExceptionsMapEditor");
+
   public ExceptionsMapEditor(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
     try {
       jbInit();
       pack();
     }
-    catch(Exception ex) {
-      ex.printStackTrace();
+    catch (Exception exc) {
+      String logMessage = "Could not set up the exceptions map editor";
+      logger.critical(logMessage, exc);
+      JOptionPane.showMessageDialog(frame,
+                                    logMessage,
+                                    "Exceptions Map Editor",
+                                    JOptionPane.ERROR_MESSAGE);
     }
   }
 

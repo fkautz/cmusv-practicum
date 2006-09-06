@@ -39,6 +39,8 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.*;
 
+import org.lockss.util.Logger;
+
 /**
  * <p>Title: </p>
  * <p>@author Claire Griffin</p>
@@ -66,14 +68,21 @@ public class CrawlRuleEditor extends JDialog implements EDPEditor{
   private Frame m_frame;
   JScrollPane rulesScrollPane = new JScrollPane();
 
+  protected static Logger logger = Logger.getLogger("CrawlRuleEditor");
+
   public CrawlRuleEditor(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
     try {
       jbInit();
       pack();
     }
-    catch(Exception ex) {
-      ex.printStackTrace();
+    catch(Exception exc) {
+      String logMessage = "Could not set up the crawl rule editor";
+      logger.critical(logMessage, exc);
+      JOptionPane.showMessageDialog(frame,
+                                    logMessage,
+                                    "Crawl Rule Editor",
+                                    JOptionPane.ERROR_MESSAGE);
     }
   }
 

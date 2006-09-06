@@ -38,9 +38,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
-import org.lockss.plugin.definable.*;
 import org.lockss.plugin.definable.DefinablePlugin.*;
-import org.lockss.devtools.plugindef.FilterRulesEditor.*;
+import org.lockss.util.Logger;
 
 /**
  * <p>Title: </p>
@@ -67,14 +66,21 @@ public class FilterRulesEditor extends JDialog implements EDPEditor {
   JButton dnButton = new JButton();
   JScrollPane jScrollPane1 = new JScrollPane();
 
+  protected static Logger logger = Logger.getLogger("FilterRulesEditor");
+
   public FilterRulesEditor(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
     try {
       jbInit();
       pack();
     }
-    catch(Exception ex) {
-      ex.printStackTrace();
+    catch (Exception exc) {
+      String logMessage = "Could not set up the filter rules editor";
+      logger.critical(logMessage, exc);
+      JOptionPane.showMessageDialog(frame,
+                                    logMessage,
+                                    "Filter Rules Editor",
+                                    JOptionPane.ERROR_MESSAGE);
     }
   }
 

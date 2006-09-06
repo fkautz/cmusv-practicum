@@ -33,9 +33,11 @@ package org.lockss.devtools.plugindef;
 
 import java.awt.*;
 import javax.swing.*;
+
 import java.awt.event.*;
-import javax.swing.event.*;
 import javax.swing.border.*;
+
+import org.lockss.util.Logger;
 
 /**
  * <p>Title: </p>
@@ -63,14 +65,21 @@ public class NumericPaddingDialog extends JDialog {
   TitledBorder titledBorder1;
   TitledBorder titledBorder2;
 
+  protected static Logger logger = Logger.getLogger("NumericPaddingDialog");
+
   public NumericPaddingDialog(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
     try {
       jbInit();
       pack();
     }
-    catch(Exception ex) {
-      ex.printStackTrace();
+    catch (Exception exc) {
+      String logMessage = "Could not set up the numeric padding dialog";
+      logger.critical(logMessage, exc);
+      JOptionPane.showMessageDialog(frame,
+                                    logMessage,
+                                    "Numeric Padding Dialog",
+                                    JOptionPane.ERROR_MESSAGE);
     }
   }
 

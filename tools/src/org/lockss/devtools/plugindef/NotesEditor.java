@@ -31,30 +31,30 @@ in this Software without prior written authorization from Stanford University.
 */
 package org.lockss.devtools.plugindef;
 
-import java.util.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
 
-import org.lockss.daemon.*;
-import javax.swing.text.*;
-import org.lockss.util.*;
-import org.lockss.plugin.definable.*;
-
+import org.lockss.util.Logger;
 
 public class NotesEditor extends JDialog
   implements EDPEditor {
+
+  protected static Logger logger = Logger.getLogger("NotesEditor");
+
   public NotesEditor(Frame owner, String title) {
     super(owner, title, false);
     try {
       jbInit();
       pack();
     }
-    catch(Exception ex) {
-      ex.printStackTrace();
+    catch (Exception exc) {
+      String logMessage = "Could not set up the notes editor";
+      logger.critical(logMessage, exc);
+      JOptionPane.showMessageDialog(owner,
+                                    logMessage,
+                                    "Notes Editor",
+                                    JOptionPane.ERROR_MESSAGE);
     }
   }
 

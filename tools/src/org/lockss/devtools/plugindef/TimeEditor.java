@@ -72,14 +72,21 @@ public class TimeEditor extends JDialog implements EDPEditor {
   TitledBorder titledBorder1;
   GridBagLayout gridBagLayout1 = new GridBagLayout();
 
+  protected static Logger logger = Logger.getLogger("TimeEditor");
+
   public TimeEditor(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
     try {
       jbInit();
       pack();
     }
-    catch(Exception ex) {
-      ex.printStackTrace();
+    catch (Exception exc) {
+      String logMessage = "Could not set up the time editor";
+      logger.critical(logMessage, exc);
+      JOptionPane.showMessageDialog(frame,
+                                    logMessage,
+                                    "Time Editor",
+                                    JOptionPane.ERROR_MESSAGE);
     }
   }
 

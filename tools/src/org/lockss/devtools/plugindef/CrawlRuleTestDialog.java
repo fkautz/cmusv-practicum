@@ -66,14 +66,21 @@ public class CrawlRuleTestDialog extends JDialog {
   TitledBorder infoBorder;
   GridBagLayout gridBagLayout2 = new GridBagLayout();
 
+  protected static Logger logger = Logger.getLogger("CrawlRuleTestDialog");
+
   public CrawlRuleTestDialog(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
     try {
       jbInit();
       pack();
     }
-    catch(Exception ex) {
-      ex.printStackTrace();
+    catch(Exception exc) {
+      String logMessage = "Could not set up the crawl rule test dialog";
+      logger.critical(logMessage, exc);
+      JOptionPane.showMessageDialog(frame,
+                                    logMessage,
+                                    "Crawl Rule Test Dialog",
+                                    JOptionPane.ERROR_MESSAGE);
     }
   }
 

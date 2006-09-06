@@ -35,6 +35,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import org.lockss.util.Logger;
+
 /**
  * <p>Title: </p>
  * <p>@author Claire Griffin</p>
@@ -87,14 +89,21 @@ public class FilterRuleDefiner extends JDialog
   GridLayout gridLayout1 = new GridLayout();
   private EDPCellData m_data;
 
+  protected static Logger logger = Logger.getLogger("FilterRuleDefiner");
+
   public FilterRuleDefiner(Frame frame, String title, boolean modal) {
     super(frame, title, modal);
     try {
       jbInit();
       pack();
     }
-    catch(Exception ex) {
-      ex.printStackTrace();
+    catch (Exception exc) {
+      String logMessage = "Could not set up the filter rule definer";
+      logger.critical(logMessage, exc);
+      JOptionPane.showMessageDialog(frame,
+                                    logMessage,
+                                    "Filter Rule Definer",
+                                    JOptionPane.ERROR_MESSAGE);
     }
   }
 
