@@ -229,13 +229,13 @@ public class PrintfEditor extends JDialog implements EDPEditor, ConfigParamListe
    */
   public void setCellData(EDPCellData data) {
     m_data = data;
-    paramKeys = data.getPlugin().getPrintfDescrs();
+    paramKeys = data.getPlugin().getPrintfDescrs(!m_isCrawlRuleEditor);
     data.getPlugin().addParamListener(this);
     setTemplate( (PrintfTemplate) data.getData());
     m_isCrawlRuleEditor = data.getKey().equals(EditableDefinablePlugin.AU_RULES);
     // initialize the combobox
     updateParams(data);
-    if(m_isCrawlRuleEditor) {
+    if (m_isCrawlRuleEditor) {
       matchPanel.setVisible(true);
     }
     else {
@@ -510,12 +510,12 @@ public class PrintfEditor extends JDialog implements EDPEditor, ConfigParamListe
 
   private void updateParams(EDPCellData data) {
     paramComboBox.removeAllItems();
-    paramKeys = data.getPlugin().getPrintfDescrs();
-    if(!m_isCrawlRuleEditor) {
+    paramKeys = data.getPlugin().getPrintfDescrs(!m_isCrawlRuleEditor);
+    if (!m_isCrawlRuleEditor) {
       paramComboBox.addItem(STRING_LITERAL);
     }
 
-    for (Iterator it = paramKeys.values().iterator(); it.hasNext(); ) {
+    for (Iterator it = paramKeys.values().iterator() ; it.hasNext() ; ) {
       ConfigParamDescr descr = (ConfigParamDescr)it.next();
       int type = descr.getType();
       if(!m_isCrawlRuleEditor && (type == ConfigParamDescr.TYPE_SET
