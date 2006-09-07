@@ -1095,7 +1095,7 @@ JAVA_COMMAND_ARGS="-server -Xmx500m -Dsun.net.inetaddr.ttl=3600 -Dorg.lockss.syn
     </pathconvert>
     <echo file="${temp.pkg.dir}/runtool">#!/bin/sh
 
-CLASSPATH="$TOOL_CLASSPATH"
+CLASSPATH="${tmp.ptool.clspth.unix}"
 while true ; do
  case "$1" in
   -classpath )
