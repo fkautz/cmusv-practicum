@@ -61,7 +61,7 @@ public class NotesEditor extends JDialog
   private EDPCellData m_data;
   JPanel buttonPanel = new JPanel();
   JPanel textPanel = new JPanel();
-  JTextArea notesField = new JTextArea();
+  JTextArea notesField = new JTextArea(6, 50);
   GridLayout gridLayout1 = new GridLayout();
   JButton okButton = new JButton();
   JButton cancelButton = new JButton();
@@ -78,9 +78,9 @@ public class NotesEditor extends JDialog
     notesField.setText("");
     notesField.setLineWrap(true);
     notesField.setWrapStyleWord(true);
-    notesField.setMinimumSize(new Dimension(300,200));
-    notesField.setPreferredSize(new Dimension(300,200));
-    textPanel.setLayout(gridLayout1);
+    //notesField.setMinimumSize(new Dimension(300,200));
+    //notesField.setPreferredSize(new Dimension(300,200));
+    //textPanel.setLayout(gridLayout1);
     textPanel.setInputVerifier(null);
     okButton.setText("OK");
     okButton.addActionListener(new NotesEditor_okButton_actionAdapter(this));
@@ -92,7 +92,7 @@ public class NotesEditor extends JDialog
     buttonPanel.add(okButton);
     buttonPanel.add(cancelButton);
     this.getContentPane().add(textPanel, java.awt.BorderLayout.CENTER);
-    textPanel.add(notesField);
+    textPanel.add(new JScrollPane(notesField));
   }
 
   public void cancelButton_actionPerformed(ActionEvent e) {
