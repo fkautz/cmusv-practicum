@@ -35,16 +35,12 @@ package org.lockss.test;
 import java.io.IOException;
 import java.util.*;
 
-import org.lockss.util.PdfPage;
+import org.lockss.util.*;
 import org.pdfbox.cos.*;
 import org.pdfbox.pdmodel.*;
 import org.pdfbox.pdmodel.common.*;
 
 public class MockPdfPage extends PdfPage {
-
-  public MockPdfPage() {
-    super();
-  }
 
   public PDRectangle findCropBox() {
     throw new UnsupportedOperationException();
@@ -79,6 +75,10 @@ public class MockPdfPage extends PdfPage {
   }
 
   public PDRectangle getMediaBox() {
+    throw new UnsupportedOperationException();
+  }
+
+  public PdfDocument getPdfDocument() {
     throw new UnsupportedOperationException();
   }
 

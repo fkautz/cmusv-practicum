@@ -32,23 +32,27 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.filter.pdf;
 
-import java.io.IOException;
 import java.util.ListIterator;
 
-import org.lockss.test.MockPdfDocument;
+import org.apache.commons.collections.iterators.*;
+import org.lockss.test.*;
 import org.lockss.util.PdfPage;
+import org.lockss.util.PdfUtil.IdentityPageTransform;
 
-public class TestTransformFirstPage extends TransformSelectedPagesTester {
+public class TestTransformFirstPage extends LockssTestCase {
 
-  protected TransformSelectedPages makeInstance(PdfPageTransform pdfPageTransform) {
-    return new TransformFirstPage(pdfPageTransform);
-  }
+  public void testGetSelectedPages() throws Exception {
+    final PdfPage[] pages = new PdfPage[] {
+        new MockPdfPage(), new MockPdfPage(), new MockPdfPage(),
+    };
+    MockPdfDocument mockPdfDocument = new MockPdfDocument() {
+      public PdfPage getPage(int index) { return pages[index]; }
+      public ListIterator getPageIterator() { return new ObjectArrayListIterator(pages); }
+    };
 
-  protected void assertSuccess(MockPdfDocument mockPdfDocument,
-                               ListIterator selectedPages)
-      throws IOException {
-    assertSame(mockPdfDocument.getPage(0), (PdfPage)selectedPages.next());
-    assertFalse(selectedPages.hasNext());
+    TransformSelectedPages documentTransform = new TransformFirstPage(new IdentityPageTransform());
+    assertIsomorphic(new SingletonIterator(pages[0]),
+                     documentTransform.getSelectedPages(mockPdfDocument));
   }
 
 }

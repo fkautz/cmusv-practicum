@@ -33,30 +33,31 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.filter.pdf;
 
 import java.io.IOException;
-import java.util.List;
 
-import org.pdfbox.util.PDFOperator;
+import org.lockss.util.*;
 
 /**
- * <p>A PDF operator processor that simply passes its operands and
- * operator through to the PDF page stream transform's output list
- * unconditionally.</p>
- * <p>{@link SimpleOperatorProcessor} instances, like
- * {@link PdfOperatorProcessor} instances, <em>must</em> have a
- * no-argument constructor, and are instantiated once per key
- * associated with their class name during a given
- * {@link PageStreamTransform} instantiation.</p>
+ * <p>A PDF transform decorator that applies a given PDF transform
+ * only if the PDF document to be transformed is recognized by the
+ * {@link #identify} method.</p>
  * @author Thib Guicherd-Callin
  */
-public class SimpleOperatorProcessor extends PdfOperatorProcessor {
+public class ConditionalDocumentTransform implements DocumentTransform {
 
-  /* Inherit documentation */
-  public void process(PageStreamTransform pageStreamTransform,
-                      PDFOperator operator,
-                      List operands)
-      throws IOException {
-    pageStreamTransform.getOutputList().addAll(operands);
-    pageStreamTransform.getOutputList().add(operator);
+  /**
+   *
+   */
+  protected AggregateDocumentTransform documentTransform;
+
+  public ConditionalDocumentTransform(DocumentTransform conditionTransform,
+                                      DocumentTransform documentTransform) {
+    this.documentTransform = new AggregateDocumentTransform(PdfUtil.AND);
+    this.documentTransform.add(conditionTransform);
+    this.documentTransform.add(documentTransform);
+  }
+
+  public boolean transform(PdfDocument pdfDocument) throws IOException {
+    return documentTransform.transform(pdfDocument);
   }
 
 }

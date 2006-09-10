@@ -34,21 +34,46 @@ package org.lockss.filter.pdf;
 
 import java.io.IOException;
 
-import org.lockss.util.PdfDocument;
-
 /**
- * <p>Specifies classes that are able to transform a PDF object graph
- * via a {@link PdfDocument}.</p>
+ * <p>A properly-nestable {@link IOException} for exceptions raised
+ * by PDF transforms.</p>
  * @author Thib Guicherd-Callin
- * @see PdfDocument
+ * @see DocumentTransform#transform
  */
-public interface PdfTransform {
+public class DocumentTransformException extends IOException {
 
   /**
-   * <p>Applies a transform to a PDF document.</p>
-   * @param pdfDocument A PDF document.
-   * @throws IOException if any processing error occurs.
+   * <p>Builds a new exception.</p>
    */
-  void transform(PdfDocument pdfDocument) throws IOException;
+  public DocumentTransformException() {
+    super();
+  }
+
+  /**
+   * <p>Builds a new exception using the given message.</p>
+   * @param message A detail message.
+   */
+  public DocumentTransformException(String message) {
+    super(message);
+  }
+
+  /**
+   * <p>Builds a new exception using the given message and cause.</p>
+   * @param message A detail message.
+   * @param cause   A {@link Throwable} cause.
+   */
+  public DocumentTransformException(String message, Throwable cause) {
+    super(message);
+    initCause(cause);
+  }
+
+  /**
+   * <p>Builds a new exception using the given cause.</p>
+   * @param cause A {@link Throwable} cause.
+   */
+  public DocumentTransformException(Throwable cause) {
+    super();
+    initCause(cause);
+  }
 
 }

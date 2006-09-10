@@ -33,30 +33,23 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.filter.pdf;
 
 import java.io.IOException;
-import java.util.List;
 
-import org.pdfbox.util.PDFOperator;
+import org.lockss.util.PdfDocument;
 
 /**
- * <p>A PDF operator processor that simply passes its operands and
- * operator through to the PDF page stream transform's output list
- * unconditionally.</p>
- * <p>{@link SimpleOperatorProcessor} instances, like
- * {@link PdfOperatorProcessor} instances, <em>must</em> have a
- * no-argument constructor, and are instantiated once per key
- * associated with their class name during a given
- * {@link PageStreamTransform} instantiation.</p>
+ * <p>Specifies classes that are able to transform a PDF object graph
+ * via a {@link PdfDocument}.</p>
  * @author Thib Guicherd-Callin
+ * @see PdfDocument
  */
-public class SimpleOperatorProcessor extends PdfOperatorProcessor {
+public interface DocumentTransform {
 
-  /* Inherit documentation */
-  public void process(PageStreamTransform pageStreamTransform,
-                      PDFOperator operator,
-                      List operands)
-      throws IOException {
-    pageStreamTransform.getOutputList().addAll(operands);
-    pageStreamTransform.getOutputList().add(operator);
-  }
+  /**
+   * <p>Applies a transform to a PDF document.</p>
+   * @param pdfDocument A PDF document.
+   * @return True if any changes were 
+   * @throws IOException if any processing error occurs.
+   */
+  boolean transform(PdfDocument pdfDocument) throws IOException;
 
 }

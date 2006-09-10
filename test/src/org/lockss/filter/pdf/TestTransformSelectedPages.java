@@ -33,37 +33,39 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.filter.pdf;
 
 import java.io.IOException;
+import java.util.*;
 
+import org.apache.commons.collections.iterators.*;
+import org.lockss.filter.pdf.MockTransforms.RememberPagePageTransform;
 import org.lockss.test.*;
-import org.lockss.util.PdfDocument;
-import org.lockss.util.PdfUtil.CountCallsTransform;
+import org.lockss.util.*;
 
-public class TestConditionalPdfTransform extends LockssTestCase {
+public class TestTransformSelectedPages extends LockssTestCase {
 
-  public void testDoesNotRunWhenIdentifyFalse() throws Exception {
-    PdfTransform transform = new PdfTransform() {
-      public void transform(PdfDocument pdfDocument) throws IOException {
-        fail("Transform was called but identify() had returned false");
+  public void testTransform() throws Exception {
+    final MockPdfPage[] pages = new MockPdfPage[] {
+        new MockPdfPage(), new MockPdfPage(), new MockPdfPage(),
+        new MockPdfPage(), new MockPdfPage(), new MockPdfPage(),
+    };
+    final MockPdfPage[] selectedPages = new MockPdfPage[] {
+        pages[1], pages[3], pages[4],
+    };
+    MockPdfDocument mockPdfDocument = new MockPdfDocument() {
+      public PdfPage getPage(int index) { return pages[index]; }
+      public ListIterator getPageIterator() { return new ObjectArrayListIterator(pages); }
+    };
+
+    ArrayList rememberPages = new ArrayList();
+    RememberPagePageTransform pageTransform = new RememberPagePageTransform(rememberPages);
+    TransformSelectedPages documentTransform = new TransformSelectedPages(pageTransform) {
+      protected ListIterator getSelectedPages(PdfDocument pdfDocument) throws IOException {
+        return new ArrayListIterator(selectedPages);
       }
     };
-    ConditionalPdfTransform conditional = new ConditionalPdfTransform(transform) {
-      public boolean identify(PdfDocument pdfDocument) throws IOException {
-        return false;
-      }
-    };
-    conditional.transform(new MockPdfDocument());
-    // Did not throw: all is well
-  }
 
-  public void testRunsWhenIdentifyTrue() throws Exception {
-    CountCallsTransform transform = new CountCallsTransform();
-    ConditionalPdfTransform conditional = new ConditionalPdfTransform(transform) {
-      public boolean identify(PdfDocument pdfDocument) throws IOException {
-        return true;
-      }
-    };
-    conditional.transform(new MockPdfDocument());
-    assertEquals(1, transform.getCallCount());
+    assertTrue("Transform returned false", documentTransform.transform(mockPdfDocument));
+    assertEquals(3, pageTransform.getCallCount());
+    assertIsomorphic(selectedPages, rememberPages);
   }
 
 }

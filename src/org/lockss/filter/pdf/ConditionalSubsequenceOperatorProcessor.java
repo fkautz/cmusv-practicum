@@ -32,31 +32,30 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.filter.pdf;
 
-import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
-import org.pdfbox.util.PDFOperator;
+public abstract class ConditionalSubsequenceOperatorProcessor extends ConditionalOperatorProcessor {
 
-/**
- * <p>A PDF operator processor that simply passes its operands and
- * operator through to the PDF page stream transform's output list
- * unconditionally.</p>
- * <p>{@link SimpleOperatorProcessor} instances, like
- * {@link PdfOperatorProcessor} instances, <em>must</em> have a
- * no-argument constructor, and are instantiated once per key
- * associated with their class name during a given
- * {@link PageStreamTransform} instantiation.</p>
- * @author Thib Guicherd-Callin
- */
-public class SimpleOperatorProcessor extends PdfOperatorProcessor {
+  public abstract List getReplacement(List tokens);
 
-  /* Inherit documentation */
-  public void process(PageStreamTransform pageStreamTransform,
-                      PDFOperator operator,
-                      List operands)
-      throws IOException {
-    pageStreamTransform.getOutputList().addAll(operands);
-    pageStreamTransform.getOutputList().add(operator);
+  public abstract int getSubsequenceLength();
+
+  protected List getSequence(PageStreamTransform pdfPageStreamTransform) {
+    int subsequenceLength = getSubsequenceLength();
+    List outputList = pdfPageStreamTransform.getOutputList();
+    int outputListSize = outputList.size();
+    return Collections.unmodifiableList(new ArrayList(outputListSize >= subsequenceLength
+                                                      ? outputList.subList(outputListSize - subsequenceLength, outputListSize)
+                                                      : outputList));
+  }
+
+  protected void processIdentified(PageStreamTransform pdfPageStreamTransform,
+                                   List tokens) {
+    int subsequenceLength = getSubsequenceLength();
+    List outputList = pdfPageStreamTransform.getOutputList();
+    int outputListSize = outputList.size();
+    outputList.subList(outputListSize - subsequenceLength, outputListSize).clear();
+    outputList.addAll(getReplacement(tokens));
   }
 
 }

@@ -168,14 +168,14 @@ public class PdfDocument {
   }
 
   public PdfPage getPage(int index) throws IOException {
-    return new PdfPage(getPdPage(index));
+    return new PdfPage(this, getPdPage(index));
   }
 
   public ListIterator /* of PdfPage */ getPageIterator() throws IOException {
     List pdfPages = ListUtils.transformedList(new ArrayList(),
                                               new Transformer() {
                                                 public Object transform(Object obj) {
-                                                  return new PdfPage((PDPage)obj);
+                                                  return new PdfPage(PdfDocument.this, (PDPage)obj);
                                                 }
                                               });
     pdfPages.addAll(getPdPages());

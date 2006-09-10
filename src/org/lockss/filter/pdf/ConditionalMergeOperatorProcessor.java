@@ -32,26 +32,24 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.filter.pdf;
 
-import java.io.IOException;
+import java.util.*;
 
-import org.lockss.util.*;
+public abstract class ConditionalMergeOperatorProcessor extends ConditionalOperatorProcessor {
 
-/**
- * <p>Specifies classes that are able to transform a PDF page
- * via a {@link PdfPage}.</p>
- * @author Thib Guicherd-Callin
- * @see PdfDocument
- */
-public interface PdfPageTransform {
+  protected void processIdentified(PageStreamTransform pdfPageStreamTransform,
+                                   List tokens) {
+    pdfPageStreamTransform.mergeOutputList(getReplacement(tokens));
+  }
 
-  /**
-   * <p>Applies a transform to a PDF page.</p>
-   * @param pdfDocument A parent PDF document.
-   * @param pdfPage     A PDF page (belonging to the PDF document).
-   * @throws IOException if any processing error occurs.
-   */
-  void transform(PdfDocument pdfDocument,
-                 PdfPage pdfPage)
-      throws IOException;
+  public abstract List getReplacement(List tokens);
+
+  protected void processNotIdentified(PageStreamTransform pdfPageStreamTransform,
+                                      List tokens) {
+    pdfPageStreamTransform.mergeOutputList();
+  }
+
+  protected List getSequence(PageStreamTransform pdfPageStreamTransform) {
+    return Collections.unmodifiableList(pdfPageStreamTransform.getOutputList());
+  }
 
 }

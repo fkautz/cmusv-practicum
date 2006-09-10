@@ -37,47 +37,21 @@ import java.io.IOException;
 import org.lockss.util.*;
 
 /**
- * <p>A PDF page transform decorator that applies a given PDF page
- * transform only if the PDF page to be transformed is recognized by
- * the {@link #identify} method.</p>
+ * <p>Specifies classes that are able to transform a PDF page
+ * via a {@link PdfPage}.</p>
  * @author Thib Guicherd-Callin
+ * @see PdfDocument
  */
-public abstract class ConditionalPdfPageTransform implements PdfPageTransform {
+public interface PageTransform {
 
   /**
-   * <p>The PDF page transform to be applied conditionally.</p>
-   */
-  protected PdfPageTransform pdfPageTransform;
-
-  /**
-   * <p>Decorates the given PDF page transform.</p>
-   * @param pdfPageTransform A PDF page transform to be applied
-   *                         conditionally.
-   */
-  public ConditionalPdfPageTransform(PdfPageTransform pdfPageTransform) {
-    this.pdfPageTransform = pdfPageTransform;
-  }
-
-  /**
-   * <p>Determines if the argument page should be transformed by this
-   * page transform.</p>
-   * @param pdfDocument A PDF document (from {@link #transform}).
-   * @param pdfPage     A PDF page (from {@link #transform}).
-   * @return True if the underlying PDF page transform should be
-   *         applied, false otherwise.
+   * <p>Applies a transform to a PDF page.</p>
+   * @param pdfPage     A PDF page (belonging to the PDF document).
+   * @return True if any changes were applied to the page, false
+   *         otherwise.
    * @throws IOException if any processing error occurs.
    */
-  public abstract boolean identify(PdfDocument pdfDocument,
-                                   PdfPage pdfPage)
+  boolean transform(PdfPage pdfPage)
       throws IOException;
-
-  /* Inherit documentation */
-  public void transform(PdfDocument pdfDocument,
-                        PdfPage pdfPage)
-      throws IOException {
-    if (identify(pdfDocument, pdfPage)) {
-      pdfPageTransform.transform(pdfDocument, pdfPage);
-    }
-  }
 
 }
