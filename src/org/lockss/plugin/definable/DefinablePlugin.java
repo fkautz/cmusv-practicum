@@ -206,19 +206,17 @@ public class DefinablePlugin extends BasePlugin {
 
 
   public static class InvalidDefinitionException extends RuntimeException {
-    private Throwable nestedException;
-
-    public InvalidDefinitionException(String msg) {
-      super(msg);
+    public InvalidDefinitionException() {
+      super();
     }
-
-    public InvalidDefinitionException(String msg, Throwable e) {
-      super(msg + (e.getMessage() == null ? "" : (": " + e.getMessage())));
-      this.nestedException = e;
+    public InvalidDefinitionException(String message) {
+      super(message);
     }
-
-    public Throwable getNestedException() {
-      return nestedException;
+    public InvalidDefinitionException(String message, Throwable cause) {
+      super(message, cause);
+    }
+    public InvalidDefinitionException(Throwable cause) {
+      super(cause);
     }
   }
 
