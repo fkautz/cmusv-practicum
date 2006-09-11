@@ -34,6 +34,7 @@ package org.lockss.plugin.highwire;
 
 import java.util.*;
 
+import org.lockss.util.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.definable.*;
 
@@ -49,11 +50,25 @@ public class HighwireCrawlWindow
     Calendar end = Calendar.getInstance();
     end.set(Calendar.HOUR_OF_DAY, 11);
     end.set(Calendar.MINUTE, 0);
-    CrawlWindow interval =
+    CrawlWindow timeInterval =
       new CrawlWindows.Interval(start, end, CrawlWindows.TIME,
 				TimeZone.getTimeZone("America/Los_Angeles"));
     // disallow using 'NOT'
-    return new CrawlWindows.Not(interval);
+    timeInterval = new CrawlWindows.Not(timeInterval);
+
+    // Make an interval from sat - sun
+    Calendar sday = Calendar.getInstance();
+    sday.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+    Calendar eday = Calendar.getInstance();
+    eday.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+
+    CrawlWindow dayInterval =
+      new CrawlWindows.Interval(sday, eday,
+				CrawlWindows.DAY_OF_WEEK,
+				TimeZone.getTimeZone("America/Los_Angeles"));
+    // Assemble OR(sat-sun, 12pm - 12am)
+    return new CrawlWindows.Or(SetUtil.set(timeInterval, dayInterval));
+
   }
 
 }

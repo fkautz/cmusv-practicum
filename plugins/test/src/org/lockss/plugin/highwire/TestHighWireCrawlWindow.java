@@ -65,6 +65,10 @@ public class TestHighWireCrawlWindow extends LockssTestCase {
     assertTrue(window.canCrawl(sdf.parse("2006-12-19 11:00:00.0")));
     assertTrue(window.canCrawl(sdf.parse("2006-06-19 11:01:00.0")));
     assertTrue(window.canCrawl(sdf.parse("2006-12-19 11:01:00.0")));
+
+    //can crawl on weekends
+    assertTrue(window.canCrawl(sdf.parse("2006-09-09 08:00:00.0"))); 
+    assertTrue(window.canCrawl(sdf.parse("2006-09-10 08:00:00.0"))); 
   }
 
   public void testCrawlWindowNY() throws ParseException {
@@ -112,6 +116,4 @@ public class TestHighWireCrawlWindow extends LockssTestCase {
     assertTrue(window.canCrawl(sdf.parse("2006-06-19 11:01:00.0 PDT")));
     assertTrue(window.canCrawl(sdf.parse("2006-12-19 11:01:00.0 PST")));
   }
-
-
 }
