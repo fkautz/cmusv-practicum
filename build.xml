@@ -862,7 +862,7 @@ The target you have selected requires compiling under JDK 1.5.  Use the rant -1.
       <fileset dir="${plugins.classes}">
 	<include name="titledb.xml" if="titledb"/>
 	<include name="${plugin-path}/*.class" />
-	<include name="${plugin-path}/*.xml" />
+	<include name="${plugin-path}/${plugin-file}" />
       </fileset>
       <manifest>
 	<section name="${plugin-path}/${plugin-file}">
