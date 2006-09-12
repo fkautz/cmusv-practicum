@@ -149,7 +149,11 @@ public class FilterRulesEditor extends JDialog implements EDPEditor {
         edp.setAuFilter(mime_type, filter, true);
       }
       catch (DynamicallyLoadedComponentException dlce) {
+        String logMessage = "Failed to set the filter for MIME type " +
+                        mime_type + " to " + filter;
+        logger.error(logMessage, dlce);
         if (EDPInspectorTableModel.handleDynamicallyLoadedComponentException(this, dlce)) {
+          logger.debug(logMessage + ": overruled by user");
           edp.setAuFilter(mime_type, filter, false);
         }
       }

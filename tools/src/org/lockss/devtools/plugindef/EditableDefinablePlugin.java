@@ -101,6 +101,7 @@ public class EditableDefinablePlugin
 
   public EditableDefinablePlugin() {
       pluginState = new PersistentPluginState();
+      super.classLoader = getClass().getClassLoader();
   }
 
   // for reading map files
