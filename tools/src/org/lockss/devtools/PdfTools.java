@@ -183,8 +183,8 @@ public class PdfTools {
       return; // exit
     }
 
-    AggregateDocumentTransform documentTransform = new AggregateDocumentTransform(PdfUtil.EXHAUSTIVE_AND);
-    AggregatePageTransform pageTransform = new AggregatePageTransform(PdfUtil.EXHAUSTIVE_AND);
+    AggregateDocumentTransform documentTransform = new AggregateDocumentTransform(PdfUtil.AND_ALL);
+    AggregatePageTransform pageTransform = new AggregatePageTransform(PdfUtil.AND_ALL);
     boolean ignoreResult = true;
 
     for (int arg = 0 ; arg < args.length ; ++arg) {
