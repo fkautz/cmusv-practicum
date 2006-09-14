@@ -37,7 +37,6 @@ import java.util.ListIterator;
 import org.apache.commons.collections.iterators.*;
 import org.lockss.test.*;
 import org.lockss.util.PdfPage;
-import org.lockss.util.PdfUtil.IdentityPageTransform;
 
 public class TestTransformFirstPage extends LockssTestCase {
 
@@ -50,7 +49,7 @@ public class TestTransformFirstPage extends LockssTestCase {
       public ListIterator getPageIterator() { return new ObjectArrayListIterator(pages); }
     };
 
-    TransformSelectedPages documentTransform = new TransformFirstPage(new IdentityPageTransform());
+    TransformSelectedPages documentTransform = new TransformFirstPage(new PageTransformUtil.IdentityPageTransform());
     assertIsomorphic(new SingletonIterator(pages[0]),
                      documentTransform.getSelectedPages(mockPdfDocument));
   }

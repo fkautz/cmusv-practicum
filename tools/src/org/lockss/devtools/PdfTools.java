@@ -39,8 +39,9 @@ import javax.swing.JFileChooser;
 
 import org.apache.commons.io.output.NullOutputStream;
 import org.lockss.filter.pdf.*;
+import org.lockss.filter.pdf.DocumentTransformUtil.IdentityDocumentTransform;
+import org.lockss.filter.pdf.PageTransformUtil.IdentityPageTransform;
 import org.lockss.util.*;
-import org.lockss.util.PdfUtil.*;
 import org.pdfbox.cos.*;
 import org.pdfbox.pdfwriter.ContentStreamWriter;
 import org.pdfbox.pdmodel.common.*;

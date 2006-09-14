@@ -32,13 +32,11 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.filter.pdf;
 
-import java.io.IOException;
 import java.util.*;
 
 import org.apache.commons.collections.iterators.*;
 import org.lockss.test.*;
 import org.lockss.util.PdfPage;
-import org.lockss.util.PdfUtil.IdentityPageTransform;
 
 public class TestTransformEachPageExceptFirst extends LockssTestCase {
 
@@ -51,7 +49,7 @@ public class TestTransformEachPageExceptFirst extends LockssTestCase {
       public ListIterator getPageIterator() { return new ObjectArrayListIterator(pages); }
     };
 
-    TransformSelectedPages documentTransform = new TransformEachPageExceptFirst(new IdentityPageTransform());
+    TransformSelectedPages documentTransform = new TransformEachPageExceptFirst(new PageTransformUtil.IdentityPageTransform());
     assertIsomorphic(new ObjectArrayListIterator(pages, 1),
                      documentTransform.getSelectedPages(mockPdfDocument));
   }

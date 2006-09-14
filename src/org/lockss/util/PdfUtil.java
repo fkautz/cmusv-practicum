@@ -47,54 +47,6 @@ import org.pdfbox.util.PDFOperator;
 public class PdfUtil {
 
   /**
-   * <p>A PDF transform that does nothing, for testing.</p>
-   * @author Thib Guicherd-Callin
-   */
-  public static class IdentityDocumentTransform implements DocumentTransform {
-
-    protected boolean returnValue;
-
-    public IdentityDocumentTransform() {
-      this(true);
-    }
-
-    public IdentityDocumentTransform(boolean returnValue) {
-      this.returnValue = returnValue;
-    }
-
-    /* Inherit documentation */
-    public boolean transform(PdfDocument pdfDocument) throws IOException {
-      logger.debug3("Indentity document transform: " + returnValue);
-      return returnValue;
-    }
-
-  }
-
-  /**
-   * <p>A PDF page transform that does nothing, for testing.</p>
-   * @author Thib Guicherd-Callin
-   */
-  public static class IdentityPageTransform implements PageTransform {
-
-    protected boolean returnValue;
-
-    public IdentityPageTransform() {
-      this(true);
-    }
-
-    public IdentityPageTransform(boolean returnValue) {
-      this.returnValue = returnValue;
-    }
-
-    /* Inherit documentation */
-    public boolean transform(PdfPage pdfPage) throws IOException {
-      logger.debug3("Indentity page transform: " + returnValue);
-      return returnValue;
-    }
-
-  }
-
-  /**
    * <p>An interface for looping policies.</p>
    * <p>This interface is intended for the following types of loops:</p>
 <pre>

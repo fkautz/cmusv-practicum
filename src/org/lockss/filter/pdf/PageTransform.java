@@ -46,9 +46,8 @@ public interface PageTransform {
 
   /**
    * <p>Applies a transform to a PDF page.</p>
-   * @param pdfPage     A PDF page (belonging to the PDF document).
-   * @return True if any changes were applied to the page, false
-   *         otherwise.
+   * @param pdfPage A PDF page.
+   * @return True if the transform has succeeded, false otherwise.
    * @throws IOException if any processing error occurs.
    */
   boolean transform(PdfPage pdfPage)

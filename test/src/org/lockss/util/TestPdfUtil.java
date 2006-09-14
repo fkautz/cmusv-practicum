@@ -32,8 +32,9 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.util;
 
+import org.lockss.filter.pdf.DocumentTransformUtil.IdentityDocumentTransform;
+import org.lockss.filter.pdf.PageTransformUtil.IdentityPageTransform;
 import org.lockss.test.*;
-import org.lockss.util.PdfUtil.*;
 import org.pdfbox.cos.*;
 
 public class TestPdfUtil extends LockssTestCase {

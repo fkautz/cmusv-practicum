@@ -35,8 +35,9 @@ package org.lockss.filter.pdf;
 import java.io.IOException;
 import java.util.List;
 
+import org.lockss.filter.pdf.DocumentTransformUtil.IdentityDocumentTransform;
+import org.lockss.filter.pdf.PageTransformUtil.IdentityPageTransform;
 import org.lockss.util.*;
-import org.lockss.util.PdfUtil.*;
 
 public class MockTransforms {
 
