@@ -60,12 +60,12 @@ public class TestMemoryBoundFunctionVote extends LockssTestCase {
   private static String[] MBFnames = {
     "MOCK",  // NB - must be first
     // "MBF1",
-    "MBF2",
+    // "MBF2",
   };
   private static MemoryBoundFunctionFactory[] MBFfactory = null;
   private static String[] MBFVnames = {
     "MOCK",  // NB - must be first
-    "MBFV2",
+    // "MBFV2",
   };
   private static MemoryBoundFunctionVoteFactory[] MBFVfactory = null;
   private static final int numSteps = 16;

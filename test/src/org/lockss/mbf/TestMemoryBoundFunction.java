@@ -53,7 +53,7 @@ public class TestMemoryBoundFunction extends LockssTestCase {
   private static String[] names = {
     "MOCK",
     // "MBF1",
-    "MBF2",
+    // "MBF2",
   };
   private static MemoryBoundFunctionFactory[] factory = null;
 
