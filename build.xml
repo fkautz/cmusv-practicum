@@ -212,7 +212,7 @@ Args:
   <property name="jcoverage.jar"  value="${test.lib}/jcoverage.jar"/>
   <property name="bcel.jar"  value="${test.lib}/bcel.jar"/>
   <property name="oro.jar"  value="${test.lib}/jakarta-oro-2.0.8.jar"/>
-  <property name="getopt.jar"  value="${test.lib}/java-getopt-1.0.9.jar"/>
+  <property name="getopt.jar"  value="${test.lib}/gnu-getopt-1.0.13.jar"/>
   <property name="ant-contrib.jar"      value="${lib}/ant-contrib-0.6.jar"/>
   <property name="pdfbox.jar" value="${lib}/PDFBox-0.7.2.jar" />
 
