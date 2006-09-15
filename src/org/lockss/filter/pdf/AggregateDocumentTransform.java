@@ -226,7 +226,7 @@ public class AggregateDocumentTransform implements DocumentTransform {
 
   /* Inherit documentation */
   public synchronized boolean transform(PdfDocument pdfDocument) throws IOException {
-    boolean success = resultPolicy.resetResult();
+    boolean success = resultPolicy.initialValue();
     for (Iterator iter = documentTransforms.iterator() ; iter.hasNext() ; ) {
       DocumentTransform documentTransform = (DocumentTransform)iter.next();
       success = resultPolicy.updateResult(success, documentTransform.transform(pdfDocument));

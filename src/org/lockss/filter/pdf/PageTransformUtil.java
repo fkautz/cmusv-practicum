@@ -98,7 +98,7 @@ public class PageTransformUtil {
 
     /* Inherit documentation */
     public boolean transform(PdfPage pdfPage) throws IOException {
-      return !super.transform(pdfPage);
+      return !pageTransform.transform(pdfPage);
     }
 
   }
@@ -127,11 +127,6 @@ public class PageTransformUtil {
       this.pageTransform = pageTransform;
     }
 
-    /* Inherit documentation */
-    public boolean transform(PdfPage pdfPage) throws IOException {
-      return pageTransform.transform(pdfPage);
-    }
-
   }
 
   /**
@@ -153,7 +148,7 @@ public class PageTransformUtil {
 
     /* Inherit documentation */
     public boolean transform(PdfPage pdfPage) throws IOException {
-      if (super.transform(pdfPage)) {
+      if (pageTransform.transform(pdfPage)) {
         return true;
       }
       else {

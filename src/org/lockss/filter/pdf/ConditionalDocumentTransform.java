@@ -32,7 +32,10 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.filter.pdf;
 
+import java.io.IOException;
+
 import org.lockss.filter.pdf.DocumentTransformUtil.*;
+import org.lockss.util.PdfDocument;
 import org.lockss.util.PdfUtil.ResultPolicy;
 
 /**
@@ -176,6 +179,11 @@ public class ConditionalDocumentTransform extends DocumentTransformDecorator {
          thenResultPolicy,
          thenTransform1,
          thenTransform2);
+  }
+
+  /* Inherit documentation */
+  public boolean transform(PdfDocument pdfDocument) throws IOException {
+    return documentTransform.transform(pdfDocument);
   }
 
   /**

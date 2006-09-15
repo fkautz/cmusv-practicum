@@ -66,11 +66,6 @@ public class DocumentTransformUtil {
       this.documentTransform = documentTransform;
     }
 
-    /* Inherit documentation */
-    public boolean transform(PdfDocument pdfDocument) throws IOException {
-      return documentTransform.transform(pdfDocument);
-    }
-
   }
 
   /**
@@ -129,7 +124,7 @@ public class DocumentTransformUtil {
 
     /* Inherit documentation */
     public boolean transform(PdfDocument pdfDocument) throws IOException {
-      return !super.transform(pdfDocument);
+      return !documentTransform.transform(pdfDocument);
     }
 
   }
@@ -176,7 +171,7 @@ public class DocumentTransformUtil {
 
     /* Inherit documentation */
     public boolean transform(PdfDocument pdfDocument) throws IOException {
-      if (super.transform(pdfDocument)) {
+      if (documentTransform.transform(pdfDocument)) {
         return true;
       }
       else {

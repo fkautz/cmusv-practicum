@@ -203,7 +203,7 @@ public abstract class TransformSelectedPages extends PageTransformWrapper {
 
   /* Inherit documentation */
   public boolean transform(PdfDocument pdfDocument) throws IOException {
-    boolean success = resultPolicy.resetResult();
+    boolean success = resultPolicy.initialValue();
     for (Iterator iter = getSelectedPages(pdfDocument) ; iter.hasNext() ; ) {
       PdfPage pdfPage = (PdfPage)iter.next();
       success = resultPolicy.updateResult(success, pageTransform.transform(pdfPage));

@@ -187,7 +187,7 @@ public class AggregatePageTransform implements PageTransform {
 
   /* Inherit documentation */
   public boolean transform(PdfPage pdfPage) throws IOException {
-    boolean success = resultPolicy.resetResult();
+    boolean success = resultPolicy.initialValue();
     for (Iterator iter = pageTransforms.iterator() ; iter.hasNext() ; ) {
       PageTransform pageTransform = (PageTransform)iter.next();
       success = resultPolicy.updateResult(success, pageTransform.transform(pdfPage));
