@@ -50,6 +50,12 @@ public class TestReaderInputStream extends LockssTestCase {
     assertEquals(-1, is.read());
   }
 
+  public void testGetReader() throws IOException {
+    Reader reader = new StringReader("");
+    ReaderInputStream is = new ReaderInputStream(reader);
+    assertSame(reader, is.getReader());
+  }
+
   public void testBytifiedString() throws IOException {
     String testStr = "Test string";
     byte bytes[] = testStr.getBytes();

@@ -58,6 +58,11 @@ public class ReaderInputStream extends InputStream {
     charBuffer = new char[bufsize];
   }
 
+  /** Return the underlying Reader */
+  public Reader getReader() {
+    return reader;
+  }
+
   public int read() throws IOException {
     int kar = reader.read();
     if (kar == -1) {
