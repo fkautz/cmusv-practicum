@@ -480,13 +480,10 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
 
   public void pauseBeforeFetch() {
     RateLimiter limit = findFetchRateLimiter();;
-    synchronized (limit) {
-      try {
-	limit.waitUntilEventOk();
-      } catch (InterruptedException ignore) {
-	// no action
-      }
-      limit.event();
+    try {
+      limit.fifoWaitAndSignalEvent();
+    } catch (InterruptedException ignore) {
+      // no action
     }
   }
 

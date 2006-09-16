@@ -167,6 +167,10 @@ public class TestRateLimiter extends LockssTestCase {
       doer.cancel();
   }
 
+  public void xxxtestFifoWaitAndSignalEvent() throws InterruptedException {
+    // XXX difficult because order is not totally predicatable
+  }
+
   public void testResizeEventArray() {
     RateLimiter lim = new RateLimiter(1, 1);
     assertEquals(new long[]{2},
