@@ -82,7 +82,7 @@ public class SchedulableTask {
     return window;
   }
 
-  public Deadline getEarlistStart() {
+  public Deadline getEarliestStart() {
     return earliestStart;
   }
 

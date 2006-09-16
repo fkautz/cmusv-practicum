@@ -79,7 +79,7 @@ public class TestSchedulableTask extends LockssTestCase {
   public void testAccessors() {
     SchedulableTask t1 = taskBetween(100, 200, 50);
     assertIntervalEquals(100, 200, t1.getWindow());
-    assertEquals(100, t1.getEarlistStart().getExpirationTime());
+    assertEquals(100, t1.getEarliestStart().getExpirationTime());
     assertEquals(200, t1.getLatestFinish().getExpirationTime());
   }
 

@@ -95,7 +95,7 @@ public class TestTaskRunner extends LockssTestCase {
 
   // make a Chunk for the task
   Schedule.Chunk chunk(StepTask task) {
-    return new Schedule.Chunk(task, task.getEarlistStart(),
+    return new Schedule.Chunk(task, task.getEarliestStart(),
 			      task.getLatestFinish(),
 			      task.curEst());
   }

@@ -108,7 +108,7 @@ public class SortScheduler implements Scheduler {
 
       // make a TaskData whose start time is no earlier than now
       TaskData td;
-      if (rawTask.getEarlistStart().before(now)) {
+      if (rawTask.getEarliestStart().before(now)) {
 	td = new TaskData(rawTask, now);
       } else {
 	td = new TaskData(rawTask);

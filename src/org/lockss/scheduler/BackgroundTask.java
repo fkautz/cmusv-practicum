@@ -62,7 +62,7 @@ public class BackgroundTask extends SchedulableTask {
   }
 
   public Deadline getStart() {
-    return getEarlistStart();
+    return getEarliestStart();
   }
 
   public Deadline getFinish() {
