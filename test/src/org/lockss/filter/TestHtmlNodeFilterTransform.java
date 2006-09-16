@@ -47,8 +47,9 @@ public class TestHtmlNodeFilterTransform extends LockssTestCase {
 				NodeFilter filter)
       throws IOException {
     HtmlTransform xform = HtmlNodeFilterTransform.exclude(filter);
-    Reader reader = new HtmlFilterReader(new StringReader(input), xform);
-    assertReaderMatchesString(expected, reader);
+    InputStream in =
+      new HtmlFilterInputStream(new StringInputStream(input), xform);
+    assertInputStreamMatchesString(expected, in);
   }
 
   /** Check that only nodes that match the filter are included. */
@@ -56,8 +57,9 @@ public class TestHtmlNodeFilterTransform extends LockssTestCase {
 				  NodeFilter filter)
       throws IOException {
     HtmlTransform xform = HtmlNodeFilterTransform.include(filter);
-    Reader reader = new HtmlFilterReader(new StringReader(input), xform);
-    assertReaderMatchesString(expected, reader);
+    InputStream in =
+      new HtmlFilterInputStream(new StringInputStream(input), xform);
+    assertInputStreamMatchesString(expected, in);
   }
 
   public void testIll() {

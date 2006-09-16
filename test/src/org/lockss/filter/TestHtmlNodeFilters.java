@@ -210,7 +210,7 @@ public class TestHtmlNodeFilters extends LockssTestCase {
     Parser p = ParserUtils.createParserParsingAnInputString(in);
     NodeList nl = p.parse(null);
     if (log.isDebug3()) log.debug3("parsed (" + nl.size() + "):\n" +
-				   HtmlFilterReader.nodeString(nl));
+				   HtmlFilterInputStream.nodeString(nl));
     return nl;
   }
 
