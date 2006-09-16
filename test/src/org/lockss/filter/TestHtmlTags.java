@@ -50,8 +50,9 @@ public class TestHtmlTags extends LockssTestCase {
     String in = "<iframe src=\"http://foo.bar\"><i>iii</i></iframe>";
     MockHtmlTransform xform =
       new MockHtmlTransform(ListUtil.list(new NodeList()));
-    Reader reader = new HtmlFilterReader(new StringReader(in), xform);
-    assertReaderMatchesString("", reader);
+    InputStream ins =
+      new HtmlFilterInputStream(new StringInputStream(in), xform);
+    assertInputStreamMatchesString("", ins);
     NodeList nl = xform.getArg(0);
     Node node = nl.elementAt(0);
     assertTrue(node instanceof HtmlTags.Iframe);
