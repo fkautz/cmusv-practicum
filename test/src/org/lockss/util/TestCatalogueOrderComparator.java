@@ -158,6 +158,27 @@ public class TestCatalogueOrderComparator extends LockssTestCase {
     assertIsomorphic(titles, sort(tl));
   }
 
+  public void testOrderWithNull() {
+    // titles in sorted order
+    String[] titles = {
+      null,
+      "The Aardvark of the Baskervilles",
+      "An Apple and its Eve",
+      "a boy and his bog",
+      "A Boy and his Dog",
+      "IBM Tech Journak",
+      "I.B.M. Tech. Journal",
+      "IBM Tech Journam",
+      "Journal of I B M 2004"
+    };
+    List tl = ListUtil.fromArray(titles);
+    Collections.reverse(tl);
+    assertFalse(CollectionUtil.isIsomorphic(titles, tl));
+    assertIsomorphic(titles, sort(tl));
+    Collections.shuffle(tl);
+    assertIsomorphic(titles, sort(tl));
+  }
+
   public void testIllType() {
     try {
       sort(ListUtil.list("foo", new Integer(1)));
