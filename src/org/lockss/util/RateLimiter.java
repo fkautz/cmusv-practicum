@@ -344,6 +344,10 @@ public class RateLimiter {
   private EDU.oswego.cs.dl.util.concurrent.FIFOSemaphore waitQueue =
     new EDU.oswego.cs.dl.util.concurrent.FIFOSemaphore(1);
 
+  /** Wait until event is allowed, signal an event and return.  This
+   * version guarantees that threads will wake up in the order they entered
+   * (<i>ie<i>, no thread will wait inordinately long).  Calls to this
+   * should <b>not</b> synchronize on the RateLimiter. */
   public boolean fifoWaitAndSignalEvent() throws InterruptedException {
     waitQueue.acquire();
     synchronized (this) {
