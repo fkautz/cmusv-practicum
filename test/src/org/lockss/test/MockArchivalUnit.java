@@ -67,6 +67,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   private Hashtable cuHash = new Hashtable();
 
   private FilterRule filterRule = null;
+  private FilterFactory filterFactory = null;
   private ContentParser parser = null;
   private TypedEntryMap propertyMap = new TypedEntryMap();
   private static final Logger logger = Logger.getLogger("MockArchivalUnit");
@@ -394,6 +395,14 @@ public class MockArchivalUnit implements ArchivalUnit {
 
   public void setFilterRule(FilterRule filterRule) {
     this.filterRule = filterRule;
+  }
+
+  public FilterFactory getFilterFactory(String contentType) {
+    return filterFactory;
+  }
+
+  public void setFilterFactory(FilterFactory filterFactory) {
+    this.filterFactory = filterFactory;
   }
 
   public ContentParser getContentParser(String mimeType) {

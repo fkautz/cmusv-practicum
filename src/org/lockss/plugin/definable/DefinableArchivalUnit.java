@@ -64,6 +64,10 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
   static final public String AU_MANIFEST_KEY = "au_manifest";
   static final public String AU_URL_NORMALIZER_KEY = "au_url_normalizer";
 
+  public static String AU_PARSER_SUFFIX = "_parser";
+  public static String AU_FILTER_SUFFIX = "_filter";
+  public static String AU_FILTER_FACTORY_SUFFIX = "_filter_factory";
+
   static final public String AU_PERMISSION_CHECKER_FACTORY =
     "au_permission_checker_factory";
 
@@ -306,6 +310,18 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
     return super.constructFilterRule(mimeType);
   }
 
+  protected FilterFactory constructFilterFactory(String contentType) {
+    String mimeType = HeaderUtil.getMimeTypeFromContentType(contentType);
+
+    Object filter_el =
+      definitionMap.getMapElement(mimeType + AU_FILTER_FACTORY_SUFFIX);
+
+    if (filter_el instanceof String) {
+      log.debug("Loading filter "+filter_el);
+      return (FilterFactory)loadClass((String)filter_el, FilterFactory.class);
+    }
+    return super.constructFilterFactory(mimeType);
+  }
 
   /**
    * Currently the only ContentParser we have is GoslingHtmlParser, so this
