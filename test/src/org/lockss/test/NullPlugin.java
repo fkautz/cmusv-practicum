@@ -77,6 +77,10 @@ public class NullPlugin {
       return "NullVersion";
     }
 
+    public String getRequiredDaemonVersion() {
+      return "0.0.0";
+    }
+
     public String getPluginName() {
       return "Null Plugin";
     }
@@ -438,6 +442,11 @@ public class NullPlugin {
     public FilterRule getFilterRule(String mimeType) {
       throw new UnsupportedOperationException("Not implemented");
     }
+
+    public FilterFactory getFilterFactory(String mimeType) {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
     public TypedEntryMap getProperties() {
       return null;
     }

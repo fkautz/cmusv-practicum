@@ -56,6 +56,7 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
   private int stopCtr = 0;
   private Configuration auConfig;
   private String pluginVer = "MockVersion";
+  private String requiredDaemonVersion = "0.0.0";
   private List auConfigDescrs = ListUtil.list(ConfigParamDescr.BASE_URL,
 					      ConfigParamDescr.VOLUME_NUMBER);
 
@@ -98,8 +99,16 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
     return pluginVer;
   }
 
+  public String getRequiredDaemonVersion() {
+    return requiredDaemonVersion;
+  }
+
   public void setVersion(String ver) {
     pluginVer = ver;
+  }
+
+  public void setRequiredDaemonVersion(String ver) {
+    requiredDaemonVersion = ver;
   }
 
   public String getPluginName() {

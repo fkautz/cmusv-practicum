@@ -297,7 +297,7 @@ public class ConfigManager implements LockssManager {
   /**
    * Convenience methods for getting useful platform settings.
    */
-  public static Version getDaemonVersion() {
+  public static DaemonVersion getDaemonVersion() {
     DaemonVersion daemon = null;
 
     String ver = BuildInfo.getBuildProperty(BuildInfo.BUILD_RELEASENAME);
