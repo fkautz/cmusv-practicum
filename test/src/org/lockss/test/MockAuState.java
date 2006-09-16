@@ -63,7 +63,7 @@ public class MockAuState extends AuState {
                      long lastTreeWalk, HashSet crawlUrls,
                      HistoryRepository historyRepo) {
     super(au, lastCrawlTime, lastPollTime, lastTreeWalk,
-	  crawlUrls, historyRepo);
+	  crawlUrls, 0, historyRepo);
   }
 
   public void setLastCrawlTime(long newCrawlTime) {

@@ -162,6 +162,7 @@ public class HistoryRepositoryImpl
                          auState.getLastTopLevelPollTime(),
                          -1,
                          auState.getCrawlUrls(),
+                         auState.getClockssSubscriptionStatus(),
                          this);
     }
     catch (SerializationException.FileNotFound fnf) {
@@ -178,7 +179,7 @@ public class HistoryRepositoryImpl
     }
 
     // Default: return default
-    return new AuState(storedAu, -1, -1, -1, null, this);
+    return new AuState(storedAu, this);
   }
 
   /**
