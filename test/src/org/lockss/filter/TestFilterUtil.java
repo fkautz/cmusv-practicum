@@ -60,4 +60,12 @@ public class TestFilterUtil extends LockssTestCase {
     rdr = (InputStreamReader)FilterUtil.getReader(in, "NoSuchCharset");
     assertTrue(def.aliases().contains(rdr.getEncoding()));
   }
+
+  public void testGetReaderShortcut() throws Exception {
+    StringReader rdr = new StringReader("foo");
+    ReaderInputStream in = new ReaderInputStream(rdr);
+    Reader r2 = FilterUtil.getReader(in, null);
+    assertSame(rdr, r2);
+    assertReaderMatchesString("foo", r2);
+  }
 }
