@@ -822,7 +822,7 @@ public class ServletUtil {
 
         tbl.newRow();
         tbl.newCell(ALIGN_LEFT); // "Repository"
-        tbl.add(radioButton(servlet, repo, repoTag, first));
+        tbl.add(radioButton(servlet, repoTag, repo, first));
         if (df != null) {
           tbl.newCell(ALIGN_RIGHT); // "Size"
           tbl.add(SPACE);
