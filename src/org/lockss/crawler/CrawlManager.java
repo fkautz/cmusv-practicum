@@ -97,5 +97,8 @@ public interface CrawlManager {
 
     /** Return the dameon instance */
     public LockssDaemon getDaemon();
+
+    /** Return true if the crawler is enabled */
+    public boolean isCrawlerEnabled();
   }
 }

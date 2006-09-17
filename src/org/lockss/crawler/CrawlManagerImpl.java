@@ -337,6 +337,10 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
     }
   }
 
+  public boolean isCrawlerEnabled() {
+    return crawlerEnabled;
+  }
+
   /**
    * Execute the runnable in a pool thread
    * @param run the Runnable to be run
@@ -530,15 +534,18 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
       callCallback(cb, cookie, false, null);
       return;
     }
-    RateLimiter limiter =
-      getRateLimiter(au, newContentRateLimiters,
-		     PARAM_MAX_NEW_CONTENT_RATE,
-		     DEFAULT_MAX_NEW_CONTENT_RATE);
-    if (!limiter.isEventOk()) {
-      logger.debug("Not starting new content crawl due to rate limiter: "
-		   + au);
-      callCallback(cb, cookie, false, null);
-      return;
+    RateLimiter limiter = null;
+    if (!pluginMgr.isInternalAu(au)) {
+      // Don't apply per-au rate limiter to plugin registries
+      limiter = getRateLimiter(au, newContentRateLimiters,
+			       PARAM_MAX_NEW_CONTENT_RATE,
+			       DEFAULT_MAX_NEW_CONTENT_RATE);
+      if (!limiter.isEventOk()) {
+	logger.debug("Not starting new content crawl due to rate limiter: "
+		     + au);
+	callCallback(cb, cookie, false, null);
+	return;
+      }
     }
     if ((lock==null) || (lock.isExpired())) {
       lock = getNewContentLock(au);
@@ -705,6 +712,14 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
 	    }
 	  }
 	  crawlSuccessful = crawler.doCrawl();
+
+	  // If aborted due to crawl window, undo the charge against its
+	  // rate limiter so it can start again when window opens
+	  if (!crawlSuccessful && spec != null && !spec.inCrawlWindow()) {
+	    if (auRateLimiter != null) {
+	      auRateLimiter.unevent();
+	    }
+	  }
 	}
       } catch (InterruptedException ignore) {
 	// no action
@@ -814,6 +829,7 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
 	  }
 	}
       }
+      cmStatus.setNextCrawlStarter(null);
       if (!goOn) {
 	triggerWDogOnExit(false);
       }

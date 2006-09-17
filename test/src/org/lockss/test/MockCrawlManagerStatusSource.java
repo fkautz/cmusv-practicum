@@ -74,6 +74,10 @@ public class MockCrawlManagerStatusSource
     return daemon;
   }
 
+  public boolean isCrawlerEnabled() {
+    return true;
+  }
+
   static class MyCrawlManagerStatus extends CrawlManagerStatus {
     List clist;
     MyCrawlManagerStatus(List clist) {

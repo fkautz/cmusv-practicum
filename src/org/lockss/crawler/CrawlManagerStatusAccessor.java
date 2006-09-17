@@ -241,7 +241,11 @@ public class CrawlManagerStatusAccessor implements StatusAccessor {
     addIfNonZero(res, "Successful Crawls", cms.getSuccessCount());
     addIfNonZero(res, "Failed Crawls", cms.getFailedCount());
     Deadline nextStarter = cms.getNextCrawlStarter();
-    if (nextStarter != null) {
+    if (!statusSource.isCrawlerEnabled()) {
+      res.add(new StatusTable.SummaryInfo("Crawler is disabled",
+					  ColumnDescriptor.TYPE_STRING,
+					  null));
+    } else if (nextStarter != null) {
       String instr;
       long in = TimeBase.msUntil(nextStarter.getExpirationTime());
       if (in > 0) {
