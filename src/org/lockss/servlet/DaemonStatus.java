@@ -606,8 +606,11 @@ public class DaemonStatus extends LockssServlet {
 	  itemtab.newCell("valign=top");
 	  itemtab.add(sb.toString());
 	}
-	itemtab.newCell();
-	itemtab.add(getDisplayString(sInfo.getValue(), sInfo.getType()));
+	Object sval = sInfo.getValue();
+	if (sval != null) {
+	  itemtab.newCell();
+	  itemtab.add(getDisplayString(sval, sInfo.getType()));
+	}
 	table.add(itemtab);
       }
       table.newRow();
