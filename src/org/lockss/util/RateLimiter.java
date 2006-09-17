@@ -314,6 +314,15 @@ public class RateLimiter {
     }
   }
 
+  /** Cancel the occurrence of an event.  This is sometimes necessary if an
+   * event is aborted and should be allowed again soon. */
+  public synchronized void unevent() {
+    if (!isUnlimited()) {
+      count = (count == 0) ? events - 1 : count - 1;
+      time[count] = 0;
+    }
+  }
+
   /** Return true if an event could occur now without exceeding the limit */
   public synchronized boolean isEventOk() {
     if (isUnlimited()) {

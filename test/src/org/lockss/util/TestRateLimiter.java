@@ -119,6 +119,31 @@ public class TestRateLimiter extends LockssTestCase {
     assertTrue(lim.isEventOk());
     lim.event();
     assertTrue(lim.isEventOk());
+    lim.unevent();
+    assertTrue(lim.isEventOk());
+  }
+
+  public void testSimple() {
+    TimeBase.setSimulated(1000);
+    RateLimiter lim = new RateLimiter(1, 10);
+    assertTrue(lim.isEventOk());
+    assertEquals(0, lim.timeUntilEventOk());
+    lim.event();
+    assertFalse(lim.isEventOk());
+    assertEquals(10, lim.timeUntilEventOk());
+    TimeBase.step(10);
+    assertTrue(lim.isEventOk());
+    assertEquals(0, lim.timeUntilEventOk());
+    lim.event();
+    assertFalse(lim.isEventOk());
+    assertEquals(10, lim.timeUntilEventOk());
+
+    lim.unevent();
+    assertTrue(lim.isEventOk());
+    assertEquals(0, lim.timeUntilEventOk());
+    lim.event();
+    assertFalse(lim.isEventOk());
+    assertEquals(10, lim.timeUntilEventOk());
   }
 
   public void testLimit() {
@@ -138,6 +163,13 @@ public class TestRateLimiter extends LockssTestCase {
     assertEquals(1, lim.timeUntilEventOk());
     TimeBase.step(1);
     assertTrue(lim.isEventOk());
+    lim.event();
+    assertFalse(lim.isEventOk());
+    assertEquals(5, lim.timeUntilEventOk());
+
+    lim.unevent();
+    assertTrue(lim.isEventOk());
+    assertEquals(0, lim.timeUntilEventOk());
     lim.event();
     assertFalse(lim.isEventOk());
     assertEquals(5, lim.timeUntilEventOk());
