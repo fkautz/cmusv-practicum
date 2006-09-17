@@ -154,7 +154,14 @@ public class ArchivalUnitStatus
 
     public void populateTable(StatusTable table)
         throws StatusService.NoSuchTableException {
-      table.setColumnDescriptors(columnDescriptors);
+      List cols = columnDescriptors;
+      if (theDaemon.isClockss()) {
+	cols = new ArrayList(cols);
+	cols.remove(cols.size() - 1);
+	cols.add(new ColumnDescriptor("Subscribed", "Subscribed",
+				      ColumnDescriptor.TYPE_STRING));
+      }
+      table.setColumnDescriptors(cols);
       table.setDefaultSortRules(sortRules);
       Stats stats = new Stats();
       table.setRows(getRows(table, stats));
@@ -256,6 +263,12 @@ public class ArchivalUnitStatus
       }
 
       rowMap.put("Damaged", stat);
+
+      if (theDaemon.isClockss()) {
+	rowMap.put("Subscribed",
+		   AuUtil.getAuState(au).getClockssSubscriptionStatusString());
+      }
+
       return rowMap;
     }
 
