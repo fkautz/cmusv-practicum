@@ -55,6 +55,7 @@ import org.lockss.app.LockssDaemon;
 import org.lockss.config.*;
 import org.lockss.daemon.CuUrl;
 import org.lockss.plugin.*;
+import org.lockss.state.AuState;
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
 import org.lockss.servlet.ServletUtil;
@@ -76,6 +77,9 @@ public class ProxyHandler extends AbstractHttpHandler {
 
   static final String LOCKSS_VIA_VERSION = "1.1";
   static final String LOCKSS_VIA_COMMENT = "(LOCKSS/jetty)";
+  /** a GET of this path results in an index page of all AU manifest
+   * pages */
+  public static String MANIFEST_INDEX_URL_PATH = "/";
 
   /** Force the proxy to serve only locally cached content.  Mainly useful
    * in testing. */
@@ -229,11 +233,26 @@ public class ProxyHandler extends AbstractHttpHandler {
     }
 
     String urlString = uri.toString();
-    if ("/".equals(urlString)) {
+    if (MANIFEST_INDEX_URL_PATH.equals(urlString)) {
       sendIndexPage(request, response);
       return;
     }
     CachedUrl cu = pluginMgr.findOneCachedUrl(urlString);
+
+    // Don't allow CLOCKSS to serve local content for unsubscribed AUs
+    if (theDaemon.isClockss()) {
+      ArchivalUnit au = cu.getArchivalUnit();
+      switch (AuUtil.getAuState(au).getClockssSubscriptionStatus()) {
+      case AuState.CLOCKSS_SUB_UNKNOWN:
+      case AuState.CLOCKSS_SUB_NO:
+      case AuState.CLOCKSS_SUB_INACCESSIBLE:
+	cu = null;
+	break;
+      case AuState.CLOCKSS_SUB_YES:
+	break;
+      }
+    }
+
     try {
       boolean isRepairRequest = proxyMgr.isRepairRequest(request);
       boolean isInCache = cu != null && cu.hasContent();
