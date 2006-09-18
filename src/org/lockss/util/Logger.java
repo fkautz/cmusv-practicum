@@ -783,10 +783,6 @@ public class Logger {
     log(LEVEL_DEBUG3, msg, e);
   }
 
-  public String toString() {
-    return "[Logger: " + name + "]";
-  }
-
   // log level descriptor class
   private static class LevelDescr {
     int level;
