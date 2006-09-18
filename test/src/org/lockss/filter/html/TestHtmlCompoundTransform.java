@@ -30,32 +30,39 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.filter;
+package org.lockss.filter.html;
 
 import java.io.*;
 import java.util.*;
 import org.lockss.util.*;
+import org.lockss.filter.html.*;
 import org.lockss.test.*;
 import org.htmlparser.*;
 import org.htmlparser.util.*;
-import org.htmlparser.tags.*;
 import org.htmlparser.filters.*;
 
-public class TestHtmlTags extends LockssTestCase {
-  static Logger log = Logger.getLogger("TestHtmlTags");
+public class TestHtmlCompoundTransform extends LockssTestCase {
+  static Logger log = Logger.getLogger("TestHtmlCompoundTransform");
 
-  // Ensure <iframe>...</iframe> gets parse as an HtmlTags.Iframe composite
-  // tag, not as the default sequence of TagNodes
-  public void testIframeTag() throws IOException {
-    String in = "<iframe src=\"http://foo.bar\"><i>iii</i></iframe>";
-    MockHtmlTransform xform =
-      new MockHtmlTransform(ListUtil.list(new NodeList()));
-    InputStream ins =
-      new HtmlFilterInputStream(new StringInputStream(in), xform);
-    assertInputStreamMatchesString("", ins);
-    NodeList nl = xform.getArg(0);
-    Node node = nl.elementAt(0);
-    assertTrue(node instanceof HtmlTags.Iframe);
-    assertEquals(1, nl.size());
+  public void testIll() {
+    try {
+      HtmlNodeFilterTransform.include(null);
+      fail("null filter should throw");
+    } catch(IllegalArgumentException iae) {
+    }
+  }
+
+  public void testCompound() throws IOException {
+    NodeList in1 = new NodeList();
+    NodeList out1 = new NodeList();
+    NodeList out2 = new NodeList();
+    MockHtmlTransform m1 = new MockHtmlTransform(ListUtil.list(out1));
+    MockHtmlTransform m2 = new MockHtmlTransform(ListUtil.list(out2));
+
+    HtmlCompoundTransform xform = new HtmlCompoundTransform(m1, m2);
+    NodeList out = xform.transform(in1);
+    assertSame(in1, m1.getArg(0));
+    assertSame(out1, m2.getArg(0));
+    assertSame(out2, out);
   }
 }

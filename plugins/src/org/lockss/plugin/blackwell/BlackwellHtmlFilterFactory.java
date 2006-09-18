@@ -39,6 +39,7 @@ import org.htmlparser.filters.*;
 
 import org.lockss.util.*;
 import org.lockss.filter.*;
+import org.lockss.filter.html.*;
 import org.lockss.plugin.*;
 
 public class BlackwellHtmlFilterFactory implements FilterFactory {

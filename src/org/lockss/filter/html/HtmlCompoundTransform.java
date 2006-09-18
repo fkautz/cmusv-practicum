@@ -30,7 +30,7 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.filter;
+package org.lockss.filter.html;
 
 import java.io.*;
 import java.util.List;
@@ -44,48 +44,25 @@ import org.lockss.config.*;
 import org.lockss.util.*;
 
 /**
- * An HtmlTransform that applies a NodeFilter to each node in the parse
- * tree, either removing matching nodes or collecting only matching nodes
- * (into a NodeList) */
+ * An HtmlTransform that applies a series of HtmlTransforms */
 
-public class HtmlNodeFilterTransform implements HtmlTransform {
-  private static Logger log = Logger.getLogger("HtmlNodeFilterTransform");
+public class HtmlCompoundTransform implements HtmlTransform {
+  private static Logger log = Logger.getLogger("HtmlCompoundTransform");
 
-  private NodeFilter filter;
-  private boolean exclude = false;
+  private HtmlTransform[] transforms;
 
-  /**
-   * Create a HtmlNodeFilterTransform that excludes all nodes that match
-   * the NodeFilter
-   * @param filter nodes matching the filter will be removed
-   */
-  public static HtmlNodeFilterTransform exclude(NodeFilter filter) {
-    return new HtmlNodeFilterTransform(new NotFilter(filter), true);
+  public HtmlCompoundTransform(HtmlTransform t1, HtmlTransform t2) {
+    transforms = new HtmlTransform[] {t1, t2};
   }
 
-  /**
-   * Create a HtmlNodeFilterTransform that includes only those nodes that
-   * match the NodeFilter
-   * @param filter nodes matching the filter will be returned in a new
-   * NodeList
-   */
-  public static HtmlNodeFilterTransform include(NodeFilter filter) {
-    return new HtmlNodeFilterTransform(filter, false);
-  }
-
-  private HtmlNodeFilterTransform(NodeFilter filter, boolean exclude) {
-    if (filter == null) {
-      throw new IllegalArgumentException("Called with null filter");
-    }
-    this.filter = filter;
-    this.exclude = exclude;
+  public HtmlCompoundTransform(HtmlTransform t1, HtmlTransform t2,
+			       HtmlTransform t3) {
+    transforms = new HtmlTransform[] {t1, t2, t3};
   }
 
   public NodeList transform(NodeList nodeList) throws IOException {
-    if (exclude) {
-      nodeList.keepAllNodesThatMatch(filter, true);
-    } else {
-      nodeList = nodeList.extractAllNodesThatMatch(filter, true);
+    for (int ix = 0; ix < transforms.length; ix++) {
+      nodeList = transforms[ix].transform(nodeList);
     }
     return nodeList;
   }

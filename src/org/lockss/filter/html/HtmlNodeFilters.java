@@ -30,7 +30,7 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.filter;
+package org.lockss.filter.html;
 
 import org.apache.oro.text.regex.*;
 import org.htmlparser.*;

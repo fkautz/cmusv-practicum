@@ -30,24 +30,35 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.filter;
+package org.lockss.filter.html;
 
-import java.io.IOException;
+import java.io.*;
+import java.util.*;
+import org.lockss.util.*;
+import org.lockss.filter.html.HtmlTransform;
+import org.lockss.test.*;
+import org.htmlparser.*;
 import org.htmlparser.util.*;
+import org.htmlparser.filters.*;
 
-/**
- * Interface for HTML parse tree transformers.  Operates on a {@link
- * NodeList} produced by HTMLParser.
- */
-public interface HtmlTransform {
+public class MockHtmlTransform implements HtmlTransform {
+  List args = new ArrayList();
+  List responses;
 
-  /**
-   * Apply a transformation to a {@link NodeList}
-   * @param nodeList the nodeList
-   * @return the transformed Nodelist (either the input NodeList, modified,
-   * or a new NodeList)
-   * @throws IOException if any processing error occurs.
-   * @see org.htmlparser.filters
-   */
-  public NodeList transform(NodeList nodeList) throws IOException;
+  public MockHtmlTransform(List responses) {
+    this.responses = responses;
+  }
+
+  public NodeList transform(NodeList nl) {
+    args.add(nl);
+    return (NodeList)responses.remove(0);
+  }
+
+  public List getArgs() {
+    return args;
+  }
+
+  public NodeList getArg(int n) {
+    return (NodeList)args.get(n);
+  }
 }

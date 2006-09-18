@@ -30,50 +30,24 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.filter;
+package org.lockss.filter.html;
 
-import java.util.*;
-import org.htmlparser.tags.*;
+import java.io.IOException;
+import org.htmlparser.util.*;
 
-/** Collection of additional simple HtmlParser tags */
-public class HtmlTags {
+/**
+ * Interface for HTML parse tree transformers.  Operates on a {@link
+ * NodeList} produced by HTMLParser.
+ */
+public interface HtmlTransform {
 
   /**
-   * An IFRAME tag.  Registered with PrototypicalNodeFactory to cause iframe
-   * to be a CompositeTag.  See code samples in org.htmlparser.tags.
+   * Apply a transformation to a {@link NodeList}
+   * @param nodeList the nodeList
+   * @return the transformed Nodelist (either the input NodeList, modified,
+   * or a new NodeList)
+   * @throws IOException if any processing error occurs.
+   * @see org.htmlparser.filters
    */
-  public static class Iframe extends CompositeTag {
-    /**
-     * The set of names handled by this tag.
-     */
-    private static final String[] mIds = new String[] {"IFRAME"};
-
-    /**
-     * Create a new iframe tag.
-     */
-    public Iframe() {
-    }
-
-    /**
-     * Return the set of names handled by this tag.
-     * @return The names to be matched that create tags of this type.
-     */
-    public String[] getIds() {
-      return mIds;
-    }
-    /** Avoid deprecation warning
-     * @deprecated Use getAttributesEx() instead.
-     */
-    public Hashtable getAttributes () {
-      return super.getAttributes();
-    }
-
-    /** Avoid deprecation warning
-     * @deprecated Use getAttributesEx() instead.
-     */
-    public void setAttributes (Hashtable attributes) {
-      super.setAttributes(attributes);
-    }
-
-  }
+  public NodeList transform(NodeList nodeList) throws IOException;
 }
