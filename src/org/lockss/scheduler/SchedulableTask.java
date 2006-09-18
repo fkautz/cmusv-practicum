@@ -138,7 +138,7 @@ public class SchedulableTask {
     return finishDate != null;
   }
 
-  void setFinished() {
+  protected void setFinished() {
     finishDate = TimeBase.nowDate();
   }
 

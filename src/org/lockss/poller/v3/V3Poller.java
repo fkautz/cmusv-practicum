@@ -333,7 +333,8 @@ public class V3Poller extends BasePoll {
                              estimatedHashDuration,
                              tc, this) {
       public int step(int n) {
-        // do nothing... yet!
+	// finish immediately, in case we start running
+	setFinished();
         return n;
       }
     };
