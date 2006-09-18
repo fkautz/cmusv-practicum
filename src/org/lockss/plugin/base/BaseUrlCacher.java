@@ -185,6 +185,7 @@ public class BaseUrlCacher implements UrlCacher {
   }
 
   public void setRedirectScheme(RedirectScheme scheme) {
+    if (logger.isDebug3()) logger.debug3("setRedirectScheme: " + scheme);
     this.redirectOptions = scheme.getOptions();
   }
 
@@ -345,6 +346,11 @@ public class BaseUrlCacher implements UrlCacher {
       throws IOException {
     if (logger.isDebug2()) logger.debug2("Storing url '"+ origUrl +"'");
     storeContentIn(origUrl, input, headers);
+    if (logger.isDebug3()) {
+      logger.debug3("otherNames: " + otherNames);
+      logger.debug3("isStoreAll: " +
+		    isRedirectOption(REDIRECT_OPTION_STORE_ALL));
+    }
     if (otherNames != null &&
 	isRedirectOption(REDIRECT_OPTION_STORE_ALL)) {
       CachedUrl cu = getCachedUrl();
@@ -353,7 +359,7 @@ public class BaseUrlCacher implements UrlCacher {
       for (int ix = 0; ix <= last; ix++) {
 	String name = (String)otherNames.get(ix);
 	if (logger.isDebug2())
-	  logger.debug2("Storing in redirected-to url '"+ name +"'");
+	  logger.debug2("Storing in redirected-to url: " + name);
 	InputStream is = cu.getUnfilteredInputStream();
 	if (ix < last) {
 	  // this one was redirected, set its redirected-to prop to the

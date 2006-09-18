@@ -203,5 +203,8 @@ public interface UrlCacher {
     public int getOptions() {
       return options;
     }
+    public String toString() {
+      return Integer.toString(options);
+    }
   }
 }
