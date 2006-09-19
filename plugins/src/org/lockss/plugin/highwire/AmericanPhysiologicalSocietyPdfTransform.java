@@ -53,7 +53,7 @@ public class AmericanPhysiologicalSocietyPdfTransform extends ConditionalDocumen
 
   public static class EraseDateString extends PageStreamTransform {
 
-    public static class ProcessDateString extends ProcessShowText {
+    public static class ProcessDateString extends ReplaceString {
       public String getReplacement(String match) {
         return " ";
       }

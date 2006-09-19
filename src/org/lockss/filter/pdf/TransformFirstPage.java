@@ -89,6 +89,17 @@ public class TransformFirstPage extends TransformSelectedPages {
 
   /**
    * <p>Builds a new document transform based on the aggregation of
+   * the given page transforms (using the default aggregation result
+   * policy).</p>
+   * @param pageTransforms An array of page transforms.
+   * @see TransformSelectedPages#TransformSelectedPages(PageTransform[])
+   */
+  public TransformFirstPage(PageTransform[] pageTransforms) {
+    super(pageTransforms);
+  }
+
+  /**
+   * <p>Builds a new document transform based on the aggregation of
    * the given page transforms (using the given aggregation result
    * policy).</p>
    * @param pageTransformResultPolicy A result policy (for the result
@@ -128,6 +139,23 @@ public class TransformFirstPage extends TransformSelectedPages {
           pageTransform1,
           pageTransform2,
           pageTransform3);
+  }
+
+  /**
+   * <p>Builds a new document transform based on the aggregation of
+   * the given page transforms (using the given aggregation result
+   * policy).</p>
+   * @param pageTransformResultPolicy A result policy (for the result
+   *                                  of the aggregate page transform).
+   * @param pageTransforms            An array of page transforms.
+   * @see TransformSelectedPages#TransformSelectedPages(ResultPolicy, ResultPolicy, PageTransform[])
+   * @see TransformSelectedPages#POLICY_DEFAULT
+   */
+  public TransformFirstPage(ResultPolicy pageTransformResultPolicy,
+                            PageTransform[] pageTransforms) {
+    super(POLICY_DEFAULT,
+          pageTransformResultPolicy,
+          pageTransforms);
   }
 
   /* Inherit documentation */
