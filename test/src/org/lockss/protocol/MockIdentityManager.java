@@ -159,6 +159,15 @@ public class MockIdentityManager implements IdentityManager {
   public void signalDisagreed(PeerIdentity pid, ArchivalUnit au) {
     throw new UnsupportedOperationException("not implemented");
   }
+  
+  public void signalPartialAgreement(PeerIdentity pid, ArchivalUnit au,
+                                     float percentAgreement) {
+    throw new UnsupportedOperationException("not implemented");
+  }
+  
+  public float getPercentAgreement(PeerIdentity pid, ArchivalUnit au) {
+    throw new UnsupportedOperationException("not implemented");
+  }
 
   public void setConfig(Configuration config, Configuration oldConfig,
 			Configuration.Differences changedKeys) {

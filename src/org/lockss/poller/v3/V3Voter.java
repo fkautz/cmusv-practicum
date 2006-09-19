@@ -342,9 +342,19 @@ public class V3Voter extends BasePoll {
                                                 initHasherByteArrays(),
                                                 new BlockEventHandler());
     HashService hashService = theDaemon.getHashService();
-    return hashService.scheduleHash(hasher,
-                                    Deadline.at(voterUserData.getDeadline()),
-                                    new HashingCompleteCallback(), null);
+    
+    boolean scheduled =
+      hashService.scheduleHash(hasher,
+                               Deadline.at(voterUserData.getDeadline()),
+                               new HashingCompleteCallback(), null);
+    if (scheduled) {
+      log.debug("Successfully scheduled time for vote in poll " +
+                getKey());
+    } else {
+      log.debug("Unable to schedule time for vote.  Dropping " +
+                "out of poll " + getKey());
+    }
+    return scheduled;
   }
 
   /**
