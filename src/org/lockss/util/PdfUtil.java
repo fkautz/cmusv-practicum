@@ -685,9 +685,9 @@ return success;
    *                        transformed PDF document.
    * @throws IOException if any processing error occurs.
    */
-  public static void applyPdfTransform(DocumentTransform pdfTransform,
-                                       InputStream pdfInputStream,
-                                       OutputStream pdfOutputStream)
+  public static boolean applyPdfTransform(DocumentTransform pdfTransform,
+                                          InputStream pdfInputStream,
+                                          OutputStream pdfOutputStream)
       throws IOException {
     boolean mustReleaseResources = false;
     PdfDocument pdfDocument = null;
@@ -697,10 +697,11 @@ return success;
       mustReleaseResources = true;
 
       // Transform
-      pdfTransform.transform(pdfDocument);
+      boolean ret = pdfTransform.transform(pdfDocument);
 
       // Save
       pdfDocument.save(pdfOutputStream);
+      return ret;
     }
     finally {
       if (mustReleaseResources) {
