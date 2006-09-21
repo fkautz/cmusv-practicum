@@ -1109,12 +1109,23 @@ public class PluginManager
   }
 
   boolean isCompatible(Plugin plug) {
-    DaemonVersion dver = ConfigManager.getDaemonVersion();
+    boolean res;
+    DaemonVersion dver = getDaemonVersion();
     if (dver == null) {
-      return true;		       // don't break things during testing
+      res = true; // don't break things during testing
+    } else {
+      DaemonVersion preq = new DaemonVersion(plug.getRequiredDaemonVersion());
+      res = dver.compareTo(preq) >= 0;
     }
-    DaemonVersion preq = new DaemonVersion(plug.getRequiredDaemonVersion());
-    return dver.compareTo(preq) >= 0;
+    if (log.isDebug3())
+      log.debug3("Plugin is " + (res ? "" : "not ") +
+		 "compatible with daemon " + dver);
+    return res;
+  }
+
+  // overridable for testing
+  protected DaemonVersion getDaemonVersion() {
+    return ConfigManager.getDaemonVersion();
   }
 
   /**
