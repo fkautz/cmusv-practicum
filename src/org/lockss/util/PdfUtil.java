@@ -1270,6 +1270,13 @@ return success;
     && matchPdfString(tokens, index - 1, str);
   }
 
+  public static boolean matchShowTextStartsWith(List tokens,
+                                                int index,
+                                                String str) {
+    return isShowText(tokens, index)
+    && matchPdfStringStartsWith(tokens, index - 1, str);
+  }
+
   public static boolean matchTextObject(List tokens,
                                         int begin,
                                         int end) {

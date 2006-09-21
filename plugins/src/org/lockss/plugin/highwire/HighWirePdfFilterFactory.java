@@ -34,29 +34,36 @@ package org.lockss.plugin.highwire;
 
 import java.io.*;
 
-import org.lockss.filter.*;
-import org.lockss.filter.pdf.*;
-import org.lockss.plugin.FilterRule;
+import org.lockss.filter.pdf.DocumentTransform;
+import org.lockss.plugin.*;
+import org.lockss.util.PdfDocument;
+import org.pdfbox.cos.*;
 
-public class HighWirePdfFilterRule implements FilterRule {
+public class HighWirePdfFilterFactory implements FilterFactory {
 
-  /*
-   * Do not use this class for now.
-   */
-
-  public Reader createFilteredReader(Reader reader) {
-    return null; //return new PdfFilterReader(reader, getInstance());
+  public static class SanitizeMetadata implements DocumentTransform {
+    public boolean transform(PdfDocument pdfDocument) throws IOException {
+      // Get rid of the modification date
+      pdfDocument.removeModificationDate();
+      // Get rid of the metadata
+      pdfDocument.setMetadata(" ");
+      // Replace instance ID by document ID in trailer
+      COSBase idObj = pdfDocument.getTrailer().getItem(COSName.getPDFName("ID"));
+      if (idObj != null && idObj instanceof COSArray) {
+        COSArray idArray = (COSArray)idObj;
+        idArray.set(1, idArray.get(0));
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
   }
 
-  private static AggregateDocumentTransform compoundTransform;
-
-  public static synchronized DocumentTransform getInstance() throws IOException {
-    // This is a stub
-    if (compoundTransform == null) {
-      //compoundTransform = new AggregateDocumentTransform();
-      //compoundTransform.add(AmericanPhysiologicalSocietyPdfTransform.makeTransform());
-    }
-    return compoundTransform;
+  public InputStream createFilteredInputStream(ArchivalUnit au,
+                                               InputStream in,
+                                               String encoding) {
+    throw new UnsupportedOperationException("Unimplemented");
   }
 
 }
