@@ -126,8 +126,8 @@ public class NewContentCrawler extends FollowLinkCrawler {
 	    }
 	  }
 	} else if (ix == 0) {
-	  logger.warning("Called with a starting url we aren't suppose to "+
-			 "cache: "+url);
+	  logger.warning("Starting url not in crawl spec: " + url);
+	  crawlStatus.setCrawlError(Crawler.STATUS_PLUGIN_ERROR);
 	}
       } // end while loop
       lvlCnt++;
