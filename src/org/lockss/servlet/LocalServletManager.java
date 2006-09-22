@@ -79,7 +79,6 @@ public class LocalServletManager extends BaseServletManager {
   private String redirectRootTo = DEFAULT_REDIRECT_ROOT;
   protected String isodir;
   private LockssResourceHandler rootResourceHandler;
-  private MDHashUserRealm realm;
   private List inFrameContentTypes;
   private boolean hasIsoFiles = false;
 
@@ -136,25 +135,7 @@ public class LocalServletManager extends BaseServletManager {
       // Create a port listener
       server.addListener(new org.mortbay.util.InetAddrPort(port));
 
-      // create auth realm
-      if (doAuth) {
-	try {
-	  URL propsUrl = this.getClass().getResource(PASSWORD_PROPERTY_FILE);
-	  if (propsUrl != null) {
-	    log.debug("passwd props file: " + propsUrl);
-	    realm = new MDHashUserRealm(UI_REALM, propsUrl.toString());
-	  }
-	} catch (IOException e) {
-	  log.warning("Error loading admin.props", e);
-	}
-	if (realm == null) {
-	  realm = new MDHashUserRealm(UI_REALM);
-	}
-	setConfiguredPasswords(realm);
-	if (realm.isEmpty()) {
-	  log.warning("No users created, UI is effectively disabled.");
-	}
-      }
+      setupAuthRealm();
 
       configureAdminContexts(server);
 
