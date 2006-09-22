@@ -326,8 +326,7 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
 	} else {
 
 	  // checking the crawl permission of the url's host
-	  if (!permissionMap.checkHostPermission(uc.getUrl(), true,
-						 crawlStatus)){
+	  if (!permissionMap.hasPermission(uc.getUrl())) {
 	    if (crawlStatus.getCrawlError() == null) {
 	      crawlStatus.setCrawlError("No permission to collect " + url);
 	    }
@@ -340,7 +339,8 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
 	// Failed.  Don't try this one again during this crawl.
 	failedUrls.add(uc.getUrl());
 	logger.error("Repository error with "+uc, ex);
-	crawlStatus.signalErrorForUrl(uc.getUrl(), "Repository error");
+	crawlStatus.signalErrorForUrl(uc.getUrl(),
+				      "Can't store page: " + ex.getMessage());
  	error = Crawler.STATUS_REPO_ERR;
       } catch (CacheException ex) {
 	// Failed.  Don't try this one again during this crawl.
@@ -421,7 +421,7 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
 //       } else {
 
 // 	// checking the crawl permission of the url's host
-// 	if (!checkHostPermission(uc.getUrl(),true)){
+// 	if (!hasPermission(uc.getUrl())){
 // 	  if (crawlStatus.getCrawlError() == null) {
 // 	    crawlStatus.setCrawlError("No permission to collect " + uc.getUrl());
 // 	  }

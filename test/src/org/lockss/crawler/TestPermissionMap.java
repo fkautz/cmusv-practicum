@@ -53,8 +53,15 @@ public class TestPermissionMap extends LockssTestCase {
     pMap = new PermissionMap(new MockArchivalUnit(),
                              new MockPermissionHelper(),
 			     new ArrayList(), null);
-    pMap.putStatus(permissionUrl1, PermissionRecord.PERMISSION_OK);
+    putStatus(pMap, permissionUrl1, PermissionRecord.PERMISSION_OK);
   }
+
+  void putStatus(PermissionMap map, String permissionUrl, int status)
+        throws java.net.MalformedURLException {
+    PermissionRecord rec = map.createRecord(permissionUrl);
+    rec.setStatus(status);
+  }
+
 
   public void testConstructorNullAu() {
     try {
@@ -107,8 +114,14 @@ public class TestPermissionMap extends LockssTestCase {
 
   }
 
+  String getPermissionUrl(PermissionMap map, String url)
+      throws java.net.MalformedURLException {
+    PermissionRecord rec = map.get(url);
+    return rec.getUrl();
+  }
+
   public void testGetPermissionUrl() throws Exception {
-    assertEquals(permissionUrl1, pMap.getPermissionUrl(url1));
+    assertEquals(permissionUrl1, getPermissionUrl(pMap, url1));
   }
 
   public void testGetStatus()throws Exception {
@@ -119,16 +132,12 @@ public class TestPermissionMap extends LockssTestCase {
     String permissionUrl2 = "http://www.foo.com/index.html";
     String url2 = "http://www.foo.com/link2.html";
 
-    pMap.putStatus(permissionUrl2, PermissionRecord.PERMISSION_NOT_OK);
-    assertEquals(permissionUrl2, pMap.getPermissionUrl(url2));
+    putStatus(pMap, permissionUrl2, PermissionRecord.PERMISSION_NOT_OK);
+    assertEquals(permissionUrl2, getPermissionUrl(pMap, url2));
     assertEquals(PermissionRecord.PERMISSION_NOT_OK, pMap.getStatus(url2));
 
-    assertEquals(permissionUrl1, pMap.getPermissionUrl(url1));
+    assertEquals(permissionUrl1, getPermissionUrl(pMap, url1));
     assertEquals(PermissionRecord.PERMISSION_OK, pMap.getStatus(url1));
   }
 
-  public void testPutStatusOverwrite() throws Exception {
-    pMap.putStatus(permissionUrl1, PermissionRecord.FETCH_PERMISSION_FAILED);
-    assertEquals(PermissionRecord.FETCH_PERMISSION_FAILED, pMap.getStatus(url1));
-  }
 }

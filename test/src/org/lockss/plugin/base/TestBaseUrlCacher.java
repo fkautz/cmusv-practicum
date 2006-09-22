@@ -1288,7 +1288,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
 
     protected void putStatus(String permissionUrl, int status)
             throws MalformedURLException {
-      super.putStatus(permissionUrl, status);
+      super.createRecord(permissionUrl).setStatus(status);
     }
 
   }
