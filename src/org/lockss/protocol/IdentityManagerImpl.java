@@ -684,6 +684,9 @@ public class IdentityManagerImpl extends BaseLockssDaemonManager
           theIdentities.putAll(map);
         }
       }
+      catch (SerializationException.FileNotFound e) {
+        log.warning("No identity database");
+      }
       catch (Exception e) {
         log.warning("Could not load identity database", e);
       }
