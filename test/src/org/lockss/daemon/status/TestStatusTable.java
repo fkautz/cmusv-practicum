@@ -187,7 +187,8 @@ public class TestStatusTable extends LockssTestCase {
     Map r1 = testMap("a", "a1", "b", IPAddr.getByName("2.2.2.2"));
     Map r2 = testMap("a", "a2", "b", IPAddr.getByName("1.1.1.1"));
     Map r3 = testMap("a", "a2", "b", IPAddr.getByName("1.1.1.1"));
-    Map r4 = testMap("a", "a2", "b", IPAddr.getByName("2.2.2.2"));
+    Map r4 = testMap("a", ListUtil.list("a2", "b"),
+		     "b", IPAddr.getByName("2.2.2.2"));
     List rules1 = ListUtil.list(new StatusTable.SortRule("a", true));
     List rules2 = ListUtil.list(new StatusTable.SortRule("a", true),
 				new StatusTable.SortRule("b", true));

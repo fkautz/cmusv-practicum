@@ -125,7 +125,7 @@ public class ArchivalUnitStatus
 			   ColumnDescriptor.TYPE_FLOAT),
       new ColumnDescriptor("Peers", "Peers", ColumnDescriptor.TYPE_INT),
       new ColumnDescriptor("AuPolls", "Polls",
-                           ColumnDescriptor.TYPE_STRING),
+                           ColumnDescriptor.TYPE_INT),
       new ColumnDescriptor("Damaged", "Status",
                            ColumnDescriptor.TYPE_STRING,
 			   FOOT_STATUS),

@@ -547,8 +547,8 @@ public class PollerStatus {
       String auid = au.getAuId();
       String keys =
 	PropUtil.propsToCanonicalEncodedString(PropUtil.fromArgs("AU", auid));
-      return new StatusTable.Reference(new PollsRef(howManyPollsRunning(au)),
-                                       tableName, keys);
+      return new StatusTable.Reference(new Integer(howManyPollsRunning(au)),
+				       tableName, keys);
     }
   }
 
