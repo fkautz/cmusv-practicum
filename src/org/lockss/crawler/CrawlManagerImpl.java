@@ -517,6 +517,11 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
     if (au == null) {
       throw new IllegalArgumentException("Called with null AU");
     }
+    if (!crawlerEnabled) {
+      logger.warning("Crawler disabled, not crawling: " + au);
+      callCallback(cb, cookie, false, null);
+      return;
+    }
     // check crawl window and rate limiter before obtaining lock
     CrawlSpec spec;
     try {
@@ -680,11 +685,9 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
       if (logger.isDebug3()) logger.debug3("Runner started");
       try {
 	if (!crawlerEnabled) {
+	  crawler.getStatus().setCrawlError(Crawler.STATUS_ABORTED);
 	  nowRunning();
-	  try {
-	    Deadline.in(Constants.HOUR).sleep();
-	  } catch (InterruptedException e) {
-	  }
+	  // exit immediately
 	} else {
 	  setPriority(PRIORITY_PARAM_CRAWLER, PRIORITY_DEFAULT_CRAWLER);
 	  crawler.setWatchdog(this);
@@ -854,7 +857,7 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
   private Iterator crawlStartIter = null;
 
   void startSomeCrawls() {
-    if (poolQueue != null) {
+    if (crawlerEnabled && poolQueue != null) {
       if (poolQueue.size() < paramPoolQueueSize) {
 	logger.debug("Checking for AUs that need crawls");
 	// get a new iterator if don't have one or if have exhausted
