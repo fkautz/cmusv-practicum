@@ -47,6 +47,7 @@ public class MiscConfig {
 					 Configuration.Differences diffs) {
 	  HttpClientUrlConnection.setConfig(config, oldConfig, diffs);
 	  UrlUtil.setConfig(config, oldConfig, diffs);
+	  PluginUtil.setConfig(config, oldConfig, diffs);
 	}
       };
   }

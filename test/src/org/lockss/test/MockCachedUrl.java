@@ -239,6 +239,11 @@ public class MockCachedUrl implements CachedUrl {
     cachedProp = prop;
   }
 
+  public void setProperty(String key, String val) {
+    if (cachedProp == null) cachedProp = new CIProperties();
+    cachedProp.put(key, val);
+  }
+
   public void release() {
   }
 
