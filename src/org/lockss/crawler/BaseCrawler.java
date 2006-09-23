@@ -262,7 +262,7 @@ public abstract class BaseCrawler
     try {
       is.reset();
     } catch (IOException e) {
-      logger.debug("Couldn't reset input stream, so getting new one", e);
+      logger.debug("Couldn't reset input stream, so getting new one: " + e);
       is.close();
       UrlCacher uc = makeUrlCacher(url);
       uc.setRedirectScheme(UrlCacher.REDIRECT_SCHEME_FOLLOW_ON_HOST);
