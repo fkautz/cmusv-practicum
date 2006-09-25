@@ -36,7 +36,7 @@ import java.io.*;
 
 import org.lockss.filter.pdf.DocumentTransform;
 import org.lockss.plugin.*;
-import org.lockss.util.PdfDocument;
+import org.lockss.util.*;
 import org.pdfbox.cos.*;
 
 public class HighWirePdfFilterFactory implements FilterFactory {
@@ -65,5 +65,7 @@ public class HighWirePdfFilterFactory implements FilterFactory {
                                                String encoding) {
     throw new UnsupportedOperationException("Unimplemented");
   }
+
+  private static Logger logger = Logger.getLogger("HighWirePdfFilterFactory");
 
 }
