@@ -79,11 +79,10 @@ public interface CrawlManager {
     /**
      * Called when the crawl is completed
      * @param success whether the crawl was successful or not
-     * @param urlsFetched URLs sucessfully fetched
      * @param cookie object used by callback to designate which crawl
      * attempt this is
      */
-    public void signalCrawlAttemptCompleted(boolean success, Set urlsFetched,
+    public void signalCrawlAttemptCompleted(boolean success,
 					    Object cookie,
 					    Crawler.Status status);
   }

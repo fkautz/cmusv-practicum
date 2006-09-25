@@ -1997,7 +1997,7 @@ public class PluginManager
       }
     }
 
-    public void signalCrawlAttemptCompleted(boolean success, Set urlsFetched,
+    public void signalCrawlAttemptCompleted(boolean success,
 					    Object cookie,
 					    Crawler.Status status) {
       String url = (String)cookie;
@@ -2042,7 +2042,7 @@ public class PluginManager
       this.registryAu = au;
     }
 
-    public void signalCrawlAttemptCompleted(boolean success, Set urlsFetched,
+    public void signalCrawlAttemptCompleted(boolean success,
 					    Object cookie,
 					    Crawler.Status status) {
       if (success) {

@@ -151,6 +151,14 @@ public class PollManager
                                       new V3PollStatus.V3ActiveRepairs(this));
     statusServ.registerStatusAccessor(V3PollStatus.COMPLETED_REPAIRS_TABLE_NAME,
                                       new V3PollStatus.V3CompletedRepairs(this));
+    statusServ.registerStatusAccessor(V3PollStatus.NO_QUORUM_TABLE_NAME,
+                                      new V3PollStatus.V3NoQuorumURLs(this));
+    statusServ.registerStatusAccessor(V3PollStatus.TOO_CLOSE_TABLE_NAME,
+                                      new V3PollStatus.V3TooCloseURLs(this));
+    statusServ.registerStatusAccessor(V3PollStatus.AGREE_TABLE_NAME,
+                                      new V3PollStatus.V3AgreeURLs(this));
+    statusServ.registerStatusAccessor(V3PollStatus.DISAGREE_TABLE_NAME,
+                                      new V3PollStatus.V3DisagreeURLs(this));
 
     // register our AU event handler
     auEventHandler = new AuEventHandler.Base() {
@@ -189,6 +197,10 @@ public class PollManager
     statusServ.unregisterStatusAccessor(V3PollStatus.VOTER_DETAIL_TABLE_NAME);
     statusServ.unregisterStatusAccessor(V3PollStatus.ACTIVE_REPAIRS_TABLE_NAME);
     statusServ.unregisterStatusAccessor(V3PollStatus.COMPLETED_REPAIRS_TABLE_NAME);
+    statusServ.unregisterStatusAccessor(V3PollStatus.NO_QUORUM_TABLE_NAME);
+    statusServ.unregisterStatusAccessor(V3PollStatus.TOO_CLOSE_TABLE_NAME);
+    statusServ.unregisterStatusAccessor(V3PollStatus.AGREE_TABLE_NAME);
+    statusServ.unregisterStatusAccessor(V3PollStatus.DISAGREE_TABLE_NAME);
     statusServ.unregisterObjectReferenceAccessor(PollerStatus.MANAGER_STATUS_TABLE_NAME,
                                                  ArchivalUnit.class);
 

@@ -1885,7 +1885,7 @@ public class NodeManagerImpl
      * @param cookie object used by callback to designate which repair
      * attempt this is
      */
-    public void signalCrawlAttemptCompleted(boolean success, Set urlsFetched,
+    public void signalCrawlAttemptCompleted(boolean success,
 					    Object cookie,
 					    Crawler.Status status) {
       PollCookie pollCookie = (PollCookie)cookie;

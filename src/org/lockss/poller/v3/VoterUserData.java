@@ -73,6 +73,8 @@ public class VoterUserData
   private boolean voteRequested = false;
   private long createTime;
   private PsmInterpStateBean psmState;
+  private int status;
+  /** @deprecated */
   private String statusString;
 
   /** Transient non-serialized fields */
@@ -162,13 +164,13 @@ public class VoterUserData
   public void setDeadline(long deadline) {
     this.deadline = deadline;
   }
-  
+
   public long getVoteDeadline() {
-    return deadline;
+    return voteDeadline;
   }
   
   public void setVoteDeadline(long voteDeadline) {
-    this.voteDeadline = deadline;
+    this.voteDeadline = voteDeadline;
   }
 
   public String getHashAlgorithm() {
@@ -339,11 +341,23 @@ public class VoterUserData
   }
 
   public String getStatusString() {
-    return statusString;
+    return V3Voter.STATUS_STRINGS[getStatus()];
   }
 
+  public int getStatus() {
+    return status;
+  }
+
+  public void setStatus(int status) {
+    this.status = status;
+  }
+
+  /**
+   * @deprecated  Use {@link setStatus()} instead.
+   * @return
+   */
   public void setStatusString(String s) {
-    this.statusString = s;
+    // do nothing
   }
   
   /*
