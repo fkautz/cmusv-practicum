@@ -47,7 +47,7 @@ public class MockPdfDocument extends PdfDocument {
     super();
   }
 
-  public void close() {
+  public boolean close() {
     throw new UnsupportedOperationException();
   }
 
