@@ -44,7 +44,7 @@ import org.pdfbox.util.PDFOperator;
  * operator (<code>Tj</code>), replacing the operand string by
  * another conditionally.</p>
  * <p>{@link ReplaceString} instances, like
- * {@link SimpleOperatorProcessor} instances, <em>must</em> have a
+ * {@link PdfOperatorProcessor} instances, <em>must</em> have a
  * no-argument constructor, and are instantiated once per key
  * associated with their class name during a given
  * {@link PageStreamTransform} instantiation.</p>
