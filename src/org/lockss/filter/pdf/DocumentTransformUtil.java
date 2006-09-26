@@ -34,6 +34,7 @@ package org.lockss.filter.pdf;
 
 import java.io.*;
 
+import org.lockss.filter.pdf.PageTransformUtil.ExtractStringsToOutputStream;
 import org.lockss.util.*;
 
 /**
@@ -255,6 +256,17 @@ public class DocumentTransformUtil {
         logger.debug2("Strict document transform result: throw");
         throw new DocumentTransformException("Strict document transform did not succeed");
       }
+    }
+
+  }
+
+  public static abstract class TextScrapingDocumentTransform extends OutputStreamDocumentTransform {
+
+    public abstract DocumentTransform makePreliminaryTransform() throws IOException;
+
+    public DocumentTransform makeTransform() throws IOException {
+      return new ConditionalDocumentTransform(makePreliminaryTransform(),
+                                              new TransformEachPage(new ExtractStringsToOutputStream(outputStream)));
     }
 
   }
