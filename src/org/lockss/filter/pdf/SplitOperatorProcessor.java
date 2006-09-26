@@ -35,6 +35,7 @@ package org.lockss.filter.pdf;
 import java.io.IOException;
 import java.util.List;
 
+import org.lockss.util.Logger;
 import org.pdfbox.util.PDFOperator;
 
 /**
@@ -70,9 +71,12 @@ public class SplitOperatorProcessor extends PdfOperatorProcessor {
                       PDFOperator operator,
                       List operands)
       throws IOException {
+    logger.debug3("Processing " + operator.getOperation());
     pageStreamTransform.splitOutputList();
     pageStreamTransform.getOutputList().addAll(operands);
     pageStreamTransform.getOutputList().add(operator);
   }
+
+  private static Logger logger = Logger.getLogger("SplitOperatorProcessor");
 
 }

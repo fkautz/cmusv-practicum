@@ -35,6 +35,7 @@ package org.lockss.filter.pdf;
 import java.io.IOException;
 import java.util.List;
 
+import org.lockss.util.Logger;
 import org.pdfbox.util.PDFOperator;
 
 public abstract class ConditionalOperatorProcessor extends PdfOperatorProcessor {
@@ -45,14 +46,17 @@ public abstract class ConditionalOperatorProcessor extends PdfOperatorProcessor 
                       PDFOperator operator,
                       List operands)
       throws IOException {
+    logger.debug3("Processing " + operator.getOperation());
     pageStreamTransform.getOutputList().addAll(operands);
     pageStreamTransform.getOutputList().add(operator);
     List tokens = getSequence(pageStreamTransform);
     if (identify(tokens)) {
+      logger.debug3("The tokens were identified");
       pageStreamTransform.signalChange();
       processIdentified(pageStreamTransform, tokens);
     }
     else {
+      logger.debug3("The tokens were not identified");
       processNotIdentified(pageStreamTransform, tokens);
     }
   }
@@ -70,5 +74,7 @@ public abstract class ConditionalOperatorProcessor extends PdfOperatorProcessor 
                                       List tokens) {
     // do nothing
   }
+
+  private static Logger logger = Logger.getLogger("ConditionalOperatorProcessor");
 
 }

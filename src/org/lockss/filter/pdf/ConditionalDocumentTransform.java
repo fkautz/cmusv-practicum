@@ -157,7 +157,7 @@ public class ConditionalDocumentTransform extends DocumentTransformDecorator {
          new AggregateDocumentTransform(thenResultPolicy,
                                         thenTransform1,
                                         thenTransform2));
-    logger.debug2("Implicitly aggregated three \"then\" transforms");
+    logger.debug2("Implicitly aggregated two \"then\" transforms");
   }
 
   /**
@@ -289,7 +289,7 @@ public class ConditionalDocumentTransform extends DocumentTransformDecorator {
   public boolean transform(PdfDocument pdfDocument) throws IOException {
     logger.debug2("Begin conditional document transform");
     boolean ret = documentTransform.transform(pdfDocument);
-    logger.debug2("Conditional document transform result: " + ret);
+    logger.debug("Conditional document transform result: " + ret);
     return ret;
   }
 
