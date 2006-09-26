@@ -144,6 +144,11 @@ public class PageStreamTransform extends PDFStreamEngine implements PageTransfor
             pdfOperatorString4, pdfOperatorProcessor4);
     }
 
+    protected synchronized void writeResult(PdfPage pdfPage) throws IOException {
+      logger.debug2("Null page stream transform; skipping writing the result");
+    }
+
+
   }
 
   public static class RecognizePageStream extends NullPageStreamTransform {
