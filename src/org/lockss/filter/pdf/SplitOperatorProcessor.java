@@ -48,12 +48,14 @@ import org.pdfbox.util.PDFOperator;
  * (<code>BT</code>), that start sublists and accumulate content up
  * until some end condition, typically an end marker such as "end
  * text object" (<code>ET</code>). The matching end condition will
- * then need to merge the output sublist, or split/merge mismatches will
- * occur.</p>
+ * then need to merge the output sublist, or split/merge mismatches
+ * will occur.</p>
  * <p>For example, this operator processor could be associated with
  * "begin text object", and the operator processor for "end text
  * object" could merge with or without replacement based on a
- * condition derived from the contents of the output sublist.</p>
+ * condition derived from the contents of the output sublist. See
+ * {@link ConditionalMergeOperatorProcessor} and
+ * {@link ConditionalSubsequenceOperatorProcessor}.</p>
  * <p>{@link SplitOperatorProcessor} instances, like
  * {@link PdfOperatorProcessor} instances, <em>must</em> have a
  * no-argument constructor, and are instantiated once per key

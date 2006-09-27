@@ -47,7 +47,7 @@ public interface DocumentTransform {
   /**
    * <p>Applies a transform to a PDF document.</p>
    * @param pdfDocument A PDF document.
-   * @return True if the transform has succeeded, false otherwise.
+   * @return True if the transform succeeded, false otherwise.
    * @throws IOException if any processing error occurs.
    */
   boolean transform(PdfDocument pdfDocument) throws IOException;

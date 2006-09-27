@@ -36,8 +36,23 @@ import java.io.OutputStream;
 
 import org.lockss.util.PdfDocument;
 
+/**
+ * <p>Specifies document transforms that are able to produce output
+ * into an output stream.</p>
+ * <p>The output produced into the output stream can be arbitrary, it
+ * need not be valid PDF.</p>
+ * @author Thib Guicherd-Callin
+ */
 public interface OutputDocumentTransform extends DocumentTransform {
 
+  /**
+   * <p>Applies a transform to the given PDF document and writes any
+   * resulting output into the given output stream.</p>
+   * @param pdfDocument  A PDF document.
+   * @param outputStream An output stream.
+   * @return True if the transform and generation of output succeeded,
+   *         false otherwise.
+   */
   boolean transform(PdfDocument pdfDocument,
                     OutputStream outputStream);
 

@@ -72,10 +72,10 @@ public abstract class PdfOperatorProcessor extends OperatorProcessor {
    * <p>Processes the operation (operator and operands) in the context
    * of the given PDF page stream transform.</p>
    * @param pageStreamTransform The PDF page stream transform being
-   *                               applied.
-   * @param operator               A PDF operator being processed.
-   * @param operands               The operands that the operator
-   *                               applies to.
+   *                            applied.
+   * @param operator            A PDF operator being processed.
+   * @param operands            The operands that the operator
+   *                            applies to.
    * @throws IOException if any processing error occurs.
    * @see #process(PDFOperator, List)
    */

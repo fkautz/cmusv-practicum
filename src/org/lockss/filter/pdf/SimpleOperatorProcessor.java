@@ -61,6 +61,9 @@ public class SimpleOperatorProcessor extends PdfOperatorProcessor {
     pageStreamTransform.getOutputList().add(operator);
   }
 
+  /**
+   * <p>A logger for use by this class.</p>
+   */
   private static Logger logger = Logger.getLogger("SimpleOperatorProcessor");
 
 }

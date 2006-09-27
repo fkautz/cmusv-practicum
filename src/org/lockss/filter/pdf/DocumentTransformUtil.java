@@ -111,8 +111,8 @@ public class DocumentTransformUtil {
   }
 
   /**
-   * <p>A document transform decorator that returns the opposite
-   * boolean value of its underlying document transform's
+   * <p>A document transform decorator whose {@link #transform} method
+   * returns the opposite of its underlying document transform's
    * {@link DocumentTransform#transform} method.</p>
    * @author Thib Guicherd-Callin
    */

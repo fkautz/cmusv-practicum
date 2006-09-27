@@ -40,14 +40,14 @@ import org.lockss.util.*;
  * <p>Specifies classes that are able to transform a PDF page
  * via a {@link PdfPage}.</p>
  * @author Thib Guicherd-Callin
- * @see PdfDocument
+ * @see PdfPage
  */
 public interface PageTransform {
 
   /**
    * <p>Applies a transform to a PDF page.</p>
    * @param pdfPage A PDF page.
-   * @return True if the transform has succeeded, false otherwise.
+   * @return True if the transform succeeded, false otherwise.
    * @throws IOException if any processing error occurs.
    */
   boolean transform(PdfPage pdfPage)
