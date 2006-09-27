@@ -1118,6 +1118,9 @@ public class BlockingStreamComm
   static class SslSocketFactory implements SocketFactory {
     public ServerSocket newServerSocket(int port, int backlog)
       throws IOException {
+      if (sslServerSocketFactory == null) {
+	throw new IOException("no SSL server socket factory");
+      }
       SSLServerSocket s = (SSLServerSocket)
 	sslServerSocketFactory.createServerSocket(port, backlog);
       s.setNeedClientAuth(paramSslClientAuth);
@@ -1144,6 +1147,9 @@ public class BlockingStreamComm
     }
 
     public Socket newSocket(IPAddr addr, int port) throws IOException {
+      if (sslSocketFactory == null) {
+	throw new IOException("no SSL client socket factory");
+      }
       SSLSocket s = (SSLSocket)
 	  sslSocketFactory.createSocket(addr.getInetAddr(), port);
       log.debug("New SSL client socket: " + port + "@" + addr.toString());
