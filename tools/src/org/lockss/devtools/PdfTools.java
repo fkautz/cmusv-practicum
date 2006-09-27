@@ -349,9 +349,7 @@ public class PdfTools {
       return false;
     }
     finally {
-      if (pdfDocument != null) {
-        pdfDocument.close();
-      }
+      PdfDocument.close(pdfDocument);
     }
   }
 
