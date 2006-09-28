@@ -224,8 +224,4 @@ public class MockFile extends File {
   public String toString() {
     return "[MockFile: path="+path+"]";
   }
-
-  public int compareTo(Object o) {
-    return super.compareTo((File)o);
-  }
 }
