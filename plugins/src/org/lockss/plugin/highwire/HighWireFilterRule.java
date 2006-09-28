@@ -57,7 +57,7 @@ public class HighWireFilterRule implements FilterRule {
     List tagList = ListUtil.list(
 //        new HtmlTagFilter.TagPair("<!--", "-->", true),
         new HtmlTagFilter.TagPair("<STRONG>Institution:",
-				  "</A></NOBR>", true),
+				  "</A>", true),
         new HtmlTagFilter.TagPair("<script", "</script>", true),
         new HtmlTagFilter.TagPair("<table", "</table>", true),
         new HtmlTagFilter.TagPair("<", ">")
