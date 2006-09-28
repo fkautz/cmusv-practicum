@@ -722,16 +722,17 @@ return success;
       ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
       if (documentTransform.transform(pdfDocument, outputStream)) {
         logger.debug("Transform from input stream succeeded");
-        return new ByteArrayInputStream(outputStream.toByteArray()); // FIXME
       }
       else {
-        logger.error("Transform from input stream failed");
-        return null; // FIXME
+        logger.error("Transform from input stream failed; using PDF document as is");
+        outputStream = new ByteArrayOutputStream();
+        pdfDocument.save(outputStream);
       }
+      return new ByteArrayInputStream(outputStream.toByteArray());
     }
     catch (IOException ioe) {
-      logger.error("Error while creating a PDF document", ioe);
-      return null; // FIXME
+      logger.error("Error during transformation from input stream", ioe);
+      return null;
     }
     finally {
       PdfDocument.close(pdfDocument);
