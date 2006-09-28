@@ -48,4 +48,8 @@ public class ConstantDate extends Date {
   public void setTime(long time) {
     throw new UnsupportedOperationException("Can't change constant date");
   }
+
+  public int compareTo(Object o) {
+    return super.compareTo((Date)o);
+  }
 }

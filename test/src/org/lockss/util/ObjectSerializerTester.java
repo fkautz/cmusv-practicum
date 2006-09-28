@@ -725,6 +725,9 @@ public abstract class ObjectSerializerTester extends XMLTestCase {
           public boolean renameTo(File dest) {
             return false; // fail
           }
+	  public int compareTo(Object o) {
+	    return super.compareTo((File)o);
+	  }
         };
         return action.file;
       }
