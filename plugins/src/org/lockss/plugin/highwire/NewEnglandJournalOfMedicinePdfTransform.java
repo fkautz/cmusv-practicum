@@ -36,7 +36,6 @@ import java.io.*;
 import java.util.List;
 
 import org.lockss.filter.pdf.*;
-import org.lockss.filter.pdf.DocumentTransformUtil.*;
 import org.lockss.plugin.highwire.HighWirePdfFilterFactory.SanitizeMetadata;
 import org.lockss.util.*;
 
