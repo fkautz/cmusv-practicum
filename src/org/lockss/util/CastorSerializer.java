@@ -305,17 +305,17 @@ public class CastorSerializer extends ObjectSerializer {
     catch (IOException ioe) {
       throw failSerialize(errorString,
                          ioe,
-                         new SerializationException(errorString));
+                         new SerializationException(errorString, ioe));
     }
     catch (MappingException mappingEx) {
       throw failSerialize(errorString,
                           mappingEx,
-                          new SerializationException(errorString));
+                          new SerializationException(errorString, mappingEx));
     }
     catch (CastorException ce) {
       throw failSerialize(errorString,
                           ce,
-                          new SerializationException(errorString));
+                          new SerializationException(errorString, ce));
     }
     catch (RuntimeException re) {
       /*

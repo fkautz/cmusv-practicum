@@ -148,6 +148,31 @@ public class SerializationException extends Exception {
 
   /**
    * <p>A {@link SerializationException} for the specific case when
+   * presumably malformed XML has been written out to a file.</p>
+   * @author Thib Guicherd-Callin
+   */
+  public static class ReadBackFailed extends SerializationException {
+
+    public ReadBackFailed() {
+      super();
+    }
+
+    public ReadBackFailed(String message) {
+      super(message);
+    }
+
+    public ReadBackFailed(String message, Throwable cause) {
+      super(message, cause);
+    }
+
+    public ReadBackFailed(Throwable cause) {
+      super(cause);
+    }
+
+  }
+
+  /**
+   * <p>A {@link SerializationException} for the specific case when
    * a call to {@link File#renameTo} fails.</p>
    * @author Thib Guicherd-Callin
    */

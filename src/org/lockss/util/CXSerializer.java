@@ -423,6 +423,12 @@ public class CXSerializer extends ObjectSerializer {
   public static final int CASTOR_MODE = 1;
 
   /**
+   * <p>The default value of {@link #PARAM_FAILED_OVERWRITE_THROWS}
+   * (currently true).</p>
+   */
+  public static final boolean DEFAULT_FAILED_OVERWRITE_THROWS = true;
+
+  /**
    * <p>A configuration parameter that governs the mode of operation
    * of instances of this class. Must be one of:</p>
    * <table>
@@ -487,10 +493,9 @@ public class CXSerializer extends ObjectSerializer {
   private static final int DEFAULT_COMPATIBILITY_MODE = XSTREAM_MODE;
 
   /**
-   * <p>The default value of {@link #PARAM_FAILED_OVERWRITE_THROWS}
-   * (currently true).</p>
+   * <p>A logger for use by this serializer.</p>
    */
-  public static final boolean DEFAULT_FAILED_OVERWRITE_THROWS = true;
+  private static Logger logger = Logger.getLogger("CXSerializer");
 
   /**
    * <p>Returns the mode for this class from the configuration.</p>
@@ -501,5 +506,6 @@ public class CXSerializer extends ObjectSerializer {
     return CurrentConfig.getIntParam(PARAM_COMPATIBILITY_MODE,
                                      DEFAULT_COMPATIBILITY_MODE);
   }
+
 
 }
