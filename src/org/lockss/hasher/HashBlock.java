@@ -44,6 +44,7 @@ import org.lockss.util.LockssSerializable;
 public class HashBlock implements LockssSerializable {
   String url;
   TreeSet versions;
+  long totalFilteredBytes = 0;
 
   public HashBlock(CachedUrl cu) {
     this.versions = new TreeSet();
@@ -67,10 +68,15 @@ public class HashBlock implements LockssSerializable {
     versions.add(new HashBlock.Version(unfilteredOffset, unfilteredLength,
                                        filteredOffset, filteredLength,
                                        digests, repositoryVersion));
+    totalFilteredBytes += filteredLength; 
   }
   
   public int size() {
     return versions.size();
+  }
+  
+  public long getTotalFilteredBytes() {
+    return totalFilteredBytes;
   }
   
   public Iterator versionIterator() {
