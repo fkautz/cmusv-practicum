@@ -704,6 +704,7 @@ return success;
                                      OutputStream outputStream) {
     try {
       boolean ret = documentTransform.transform(pdfDocument);
+      logger.debug("Document transform result: " + ret);
       pdfDocument.save(outputStream);
       return ret;
     }
@@ -719,8 +720,14 @@ return success;
     try {
       pdfDocument = new PdfDocument(inputStream);
       ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-      documentTransform.transform(pdfDocument, outputStream);
-      return new ByteArrayInputStream(outputStream.toByteArray()); // FIXME
+      if (documentTransform.transform(pdfDocument, outputStream)) {
+        logger.debug("Transform from input stream succeeded");
+        return new ByteArrayInputStream(outputStream.toByteArray()); // FIXME
+      }
+      else {
+        logger.error("Transform from input stream failed");
+        return null; // FIXME
+      }
     }
     catch (IOException ioe) {
       logger.error("Error while creating a PDF document", ioe);
