@@ -42,6 +42,8 @@ public class NatureFilterRule implements FilterRule {
   public Reader createFilteredReader(Reader reader) {
 
     List tagList = ListUtil.list(
+                    new HtmlTagFilter.TagPair("<!-- end content -->", 
+					      "</html>", true),
                     new HtmlTagFilter.TagPair("<!--", "-->", true),
 		    new HtmlTagFilter.TagPair("<script", "</script>", true),
 		    new HtmlTagFilter.TagPair("<", ">")
