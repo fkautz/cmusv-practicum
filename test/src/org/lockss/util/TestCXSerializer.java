@@ -34,10 +34,6 @@ package org.lockss.util;
 
 import java.io.*;
 
-import junit.framework.Test;
-
-import org.lockss.test.LockssTestCase;
-
 /**
  * <p>Tests the Castor/XStream hybrid serializer.</p>
  * @author Thib Guicherd-Callin

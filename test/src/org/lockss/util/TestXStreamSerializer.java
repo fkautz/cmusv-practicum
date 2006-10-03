@@ -33,11 +33,9 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.util;
 
 import java.io.*;
-import java.nio.CharBuffer;
 
 import org.lockss.app.LockssApp;
 import org.lockss.test.StringInputStream;
-import org.lockss.util.ObjectSerializerTester.DoRoundTrip;
 
 /**
  * <p>Tests the {@link org.lockss.util.XStreamSerializer} class.</p>
