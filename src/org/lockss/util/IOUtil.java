@@ -105,7 +105,13 @@ public class IOUtil {
       s.close();
     } catch (Exception e) {}
   }
-
+  
+  /** Call close() on the RandomAccessFile, ignoring any errors */
+  public static void safeClose(RandomAccessFile f) {
+    try {
+      f.close();
+    } catch (Exception e) {}
+  }
   /** Call release() on the LockssUrlConnection, ignoring any errors */
   public static void safeRelease(LockssUrlConnection conn) {
     try {
