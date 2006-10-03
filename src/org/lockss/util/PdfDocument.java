@@ -63,7 +63,7 @@ public class PdfDocument {
 
   /**
    * <p>Builds a new PDF document (actually a new PDF parser).</p>
-   * <p><em>You must call {@link #close} to release the expensive
+   * <p><em>You must call {@link #close()} to release the expensive
    * resources associated with this object, when it is no longer
    * needed but before it is finalized by the runtime system.</em></p>
    * @param inputStream The input stream that contains the PDF document.

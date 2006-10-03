@@ -168,7 +168,7 @@ public class VoterUserData
   public long getVoteDeadline() {
     return voteDeadline;
   }
-  
+
   public void setVoteDeadline(long voteDeadline) {
     this.voteDeadline = voteDeadline;
   }
@@ -353,13 +353,12 @@ public class VoterUserData
   }
 
   /**
-   * @deprecated  Use {@link setStatus()} instead.
-   * @return
+   * @deprecated  Use {@link #setStatus(int)} instead.
    */
   public void setStatusString(String s) {
     // do nothing
   }
-  
+
   /*
    * Implementation of V3LcapMessage.Factory
    */
@@ -368,7 +367,7 @@ public class VoterUserData
                              getPollerNonce(), getVoterNonce(), opcode,
                              getDeadline(), getPollerId(), messageDir);
   }
-  
+
   public V3LcapMessage makeMessage(int opcode, long sizeEst) {
     return makeMessage(opcode);
   }
