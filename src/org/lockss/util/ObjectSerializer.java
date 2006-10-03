@@ -259,6 +259,13 @@ public abstract class ObjectSerializer {
                                                  consequence);
     }
 
+    protected void maybeDelTempFile(File file) {
+      if (!getFailedSerializationMode()) {
+        logger.warning("Deleting unsuccessful serialization file " + file);
+        file.delete();
+      }
+    }
+
   }
 
   protected interface TempFileFactory {
@@ -758,13 +765,6 @@ public abstract class ObjectSerializer {
    */
   protected LockssApp getLockssContext() {
     return lockssContext;
-  }
-
-  protected void maybeDelTempFile(File file) {
-    if (!getFailedSerializationMode()) {
-      logger.warning("Deleting unsuccessful serialization file " + file);
-      file.delete();
-    }
   }
 
   /**
