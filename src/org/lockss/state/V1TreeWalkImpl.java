@@ -38,6 +38,7 @@ import org.lockss.plugin.*;
 import org.lockss.daemon.*;
 import org.lockss.crawler.CrawlManager;
 import org.lockss.app.LockssDaemon;
+import org.lockss.poller.Poll;
 
 /**
  * The V1 treewalk algorithm, Performs a single treealk, independent of any
@@ -137,16 +138,29 @@ public class V1TreeWalkImpl implements TreeWalker {
 	  }
 	  crawlMgr.startNewContentCrawl(theAu, rc, null, activityLock);
 	}
-      } else if (nodeMgr.repairsNeeded()) {
-	// schedule repairs if needed
-	treeWalkAborted = true;
-	log.debug("Requesting node nodeMgr repairs.  Ending treewalk.");
-	nodeMgr.scheduleRepairs(activityLock);
       } else {
-	// do the actual treewalk
-	log.debug("Tree walk started: " + theAu.getName());
-	nodeTreeWalk();
-	didFullTreewalk = !treeWalkAborted;
+	boolean doFull = true;
+	switch (AuUtil.getProtocolVersion(theAu)) {
+	case Poll.V1_PROTOCOL:
+	  doFull =  "full".equalsIgnoreCase(twm.paramV1Mode);
+	  break;
+	case Poll.V3_PROTOCOL:
+	  doFull =  "full".equalsIgnoreCase(twm.paramV3Mode);
+	  break;
+	}
+	if (doFull) {
+	  if (nodeMgr.repairsNeeded()) {
+	    // schedule repairs if needed
+	    treeWalkAborted = true;
+	    log.debug("Requesting node nodeMgr repairs.  Ending treewalk.");
+	    nodeMgr.scheduleRepairs(activityLock);
+	  } else {
+	    // do the actual treewalk
+	    log.debug("Tree walk started: " + theAu.getName());
+	    nodeTreeWalk();
+	    didFullTreewalk = !treeWalkAborted;
+	  }
+	}
       }
     } catch (Exception e) {
       log.error("Exception in treewalk", e);

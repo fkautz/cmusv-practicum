@@ -55,7 +55,7 @@ public class AuUtil {
   /** The default poll protocol to use, unless otherwise overridden by the
    * Archival Unit's poll_protocol config param.=
    */
-  private static final String PARAM_POLL_PROTOCOL_VERSION =
+  public static final String PARAM_POLL_PROTOCOL_VERSION =
     Configuration.PREFIX + "poll.defaultPollProtocol";
   private static final int DEFAULT_POLL_PROTOCOL_VERSION =
     Poll.V1_PROTOCOL;
