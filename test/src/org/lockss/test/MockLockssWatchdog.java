@@ -47,6 +47,10 @@ public class MockLockssWatchdog implements LockssWatchdog {
     throw new UnsupportedOperationException("not implemented");
   }
 
+  public long getWDogInterval() {
+    throw new UnsupportedOperationException("not implemented");
+  }
+
   public void pokeWDog() {
     numTimesPoked++;
   }

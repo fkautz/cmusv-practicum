@@ -208,6 +208,10 @@ public abstract class LockssThread extends Thread implements LockssWatchdog {
     }
   }
 
+  public long getWDogInterval() {
+    return interval;
+  }
+
   /** Refresh the watchdog for another interval milliseconds. */
   public void pokeWDog() {
     if (timerDead != null && interval != 0) {

@@ -36,6 +36,7 @@ package org.lockss.daemon;
  * it's running, and esp. in test code it's awkward to have to pass in the
  * thread.
  * @see LockssThread
+ * @see LockssRunnable
  */
 public interface LockssWatchdog {
   /** Start a watchdog timer that will expire if not poked for interval
@@ -49,4 +50,8 @@ public interface LockssWatchdog {
 
   /** Refresh the watchdog for another interval milliseconds. */
   void pokeWDog();
+
+  /** Return the length of the interval after which the watchdog will trip
+   * if it hadn't been poked.  -1 means the watchdog is inactive. */
+  long getWDogInterval();
 }
