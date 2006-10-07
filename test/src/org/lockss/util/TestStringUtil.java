@@ -486,6 +486,8 @@ public class TestStringUtil extends LockssTestCase {
 		 StringUtil.parseTimeInterval("3d"));
     assertEquals(StringUtil.parseTimeInterval("14d"),
 		 StringUtil.parseTimeInterval("2w"));
+    assertEquals(StringUtil.parseTimeInterval((365 * 3) + "d"),
+		 StringUtil.parseTimeInterval("3y"));
     try {
       StringUtil.parseTimeInterval("2x");
       fail("should have thrown NumberFormatException");

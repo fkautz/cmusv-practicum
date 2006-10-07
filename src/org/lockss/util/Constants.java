@@ -49,6 +49,8 @@ public interface Constants {
   public static final long DAY = 24 * HOUR;
   /** The number of milliseconds in a week */
   public static final long WEEK = 7 * DAY;
+  /** The number of milliseconds in a (non-leap) year */
+  public static final long YEAR = 365 * DAY;
 
   /** List delimiter in strings */
   public static String LIST_DELIM = ";";

@@ -735,6 +735,7 @@ public class StringUtil {
         case 'H': mult = Constants.HOUR; break;
         case 'D': mult = Constants.DAY; break;
         case 'W': mult = Constants.WEEK; break;
+        case 'Y': mult = Constants.YEAR; break;
         default:
           throw new NumberFormatException("Illegal time interval suffix");
         }
