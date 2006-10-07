@@ -101,6 +101,10 @@ public class ClockssUrlCacher implements UrlCacher {
     uc.setRedirectScheme(scheme);
   }
 
+  public void setWatchdog(LockssWatchdog wdog) {
+    uc.setWatchdog(wdog);
+  }
+
   public void storeContent(InputStream input, CIProperties headers)
       throws IOException {
     uc.storeContent(input, headers);

@@ -123,6 +123,9 @@ public class MockUrlCacher implements UrlCacher {
   public void setRedirectScheme(RedirectScheme scheme) {
   }
 
+  public void setWatchdog(LockssWatchdog wdog) {
+  }
+
   public void setupCachedUrl(String contents) {
     MockCachedUrl cu = new MockCachedUrl(url);
     cu.setProperties(getUncachedProperties());

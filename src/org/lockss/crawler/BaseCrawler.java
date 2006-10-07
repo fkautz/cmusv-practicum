@@ -304,6 +304,7 @@ public abstract class BaseCrawler
     }
     uc.setConnectionPool(connectionPool);
     uc.setPermissionMapSource(this);
+    uc.setWatchdog(wdog);
     return uc;
   }
 

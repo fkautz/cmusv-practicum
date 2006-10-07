@@ -236,6 +236,9 @@ public class NullPlugin {
     public void setRedirectScheme(RedirectScheme scheme) {
     }
 
+    public void setWatchdog(LockssWatchdog wdog) {
+    }
+
     public int cache() throws IOException {
       return CACHE_RESULT_NOT_MODIFIED;
     }

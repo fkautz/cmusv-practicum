@@ -149,6 +149,12 @@ public interface UrlCacher {
   /** Determines the behavior if a redirect response is received. */
   public void setRedirectScheme(RedirectScheme scheme);
 
+  /** Set a LockssWatchdog that should be poked periodically while copying
+   * the content from the network input stream to the repository.
+   * @see StreamUtil#copy(InputStream, OutputStream, long, LockssWatchdog)
+   */
+  public void setWatchdog(LockssWatchdog wdog);
+
   /**
    * Copies the content and properties from the source into the cache.
    * Fetches content with if-modified-since unless REFETCH_FLAG is set.
