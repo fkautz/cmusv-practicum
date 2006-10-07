@@ -74,6 +74,7 @@ public class VoterUserData
   private long createTime;
   private PsmInterpStateBean psmState;
   private int status;
+  private String errorDetail;
   /** @deprecated */
   private String statusString;
 
@@ -357,6 +358,14 @@ public class VoterUserData
    */
   public void setStatusString(String s) {
     // do nothing
+  }
+
+  public void setErrorDetail(String err) {
+    this.errorDetail = err;
+  }
+  
+  public String getErrorDetail() {
+    return errorDetail;
   }
 
   /*

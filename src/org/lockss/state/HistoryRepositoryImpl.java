@@ -163,6 +163,7 @@ public class HistoryRepositoryImpl
                          -1,
                          auState.getCrawlUrls(),
                          auState.getClockssSubscriptionStatus(),
+                         auState.getV3Agreement(),
                          this);
     }
     catch (SerializationException.FileNotFound fnf) {

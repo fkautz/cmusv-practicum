@@ -294,7 +294,7 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
     HashSet strCol = new HashSet();
     strCol.add("test");
     AuState auState = new AuState(mau, 123000, 321000, 456000,
-				  strCol, 2, repository);
+				  strCol, 2, 1.0, repository);
     repository.storeAuState(auState);
     String filePath = LockssRepositoryImpl.mapAuToFileLocation(tempDirPath +
         HistoryRepositoryImpl.HISTORY_ROOT_NAME, mau);
@@ -372,7 +372,7 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
   }
 
   public void testStoreOverwrite() throws Exception {
-    AuState auState = new AuState(mau, 123, 321, -1, null, 1, repository);
+    AuState auState = new AuState(mau, 123, 321, -1, null, 1, 1.0, repository);
     repository.storeAuState(auState);
     String filePath = LockssRepositoryImpl.mapAuToFileLocation(tempDirPath +
         HistoryRepositoryImpl.HISTORY_ROOT_NAME, mau);
@@ -383,7 +383,7 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
     StreamUtil.copy(fis, baos);
     String expectedStr = baos.toString();
 
-    auState = new AuState(mau, 1234, 4321, -1, null, 1, repository);
+    auState = new AuState(mau, 1234, 4321, -1, null, 1, 1.0, repository);
     repository.storeAuState(auState);
 
     auState = null;
@@ -392,7 +392,7 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
     assertEquals(4321, auState.getLastTopLevelPollTime());
     assertEquals(mau.getAuId(), auState.getArchivalUnit().getAuId());
 
-    auState = new AuState(mau, 123, 321, -1, null, 1, repository);
+    auState = new AuState(mau, 123, 321, -1, null, 1, 1.0, repository);
     repository.storeAuState(auState);
     fis = new FileInputStream(xmlFile);
     baos = new ByteArrayOutputStream(expectedStr.length());
