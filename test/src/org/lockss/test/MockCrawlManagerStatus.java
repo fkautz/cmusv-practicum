@@ -48,10 +48,6 @@ public class MockCrawlManagerStatus extends CrawlManagerStatus {
     super(2);
   }
 
-  public Crawler.Status getStatusObject(String key) {
-    return (Crawler.Status)statusMap.get(key);
-  }
-
   public void addStatusObject(Crawler.Status status) {
     statusMap.put(status.getKey(), status);
   }
