@@ -84,4 +84,17 @@ public class TestZeroInputStream extends LockssTestCase {
 					new ZeroInputStream(100000), 127);
   }
 
+  public void testAvailable() throws IOException {
+    ZeroInputStream zis = new ZeroInputStream(3);
+    assertEquals(3, zis.available());
+    assertEquals(0, zis.read());
+    assertEquals(2, zis.available());
+    assertEquals(0, zis.read());
+    assertEquals(1, zis.available());
+    assertEquals(0, zis.read());
+    assertEquals(0, zis.available());
+    assertEquals(-1, zis.read());
+    assertEquals(Integer.MAX_VALUE,
+		 new ZeroInputStream(Integer.MAX_VALUE * 1000L).available());
+  }
 }
