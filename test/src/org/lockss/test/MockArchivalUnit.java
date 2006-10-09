@@ -249,7 +249,17 @@ public class MockArchivalUnit implements ArchivalUnit {
     return addUrl(url, exists, shouldCache, props);
   }
 
-
+  /* allow setting the  content-type /Mime type to any strin-value while adding URL */
+  public MockCachedUrl addUrlContype(String url, boolean exists, 
+                                     boolean shouldCache, String contentType) {
+    MockCachedUrl cu = addUrl(url, true, true);
+    CIProperties props = new CIProperties();
+    props.setProperty(CachedUrl.PROPERTY_CONTENT_TYPE, contentType);
+    cu.setProperties(props);
+    return cu;
+  }
+  
+  
   private MockCachedUrl addUrl(String url,
 			       boolean exists, boolean shouldCache,
 			       CIProperties props,
@@ -277,7 +287,7 @@ public class MockArchivalUnit implements ArchivalUnit {
     ucHash.put(url, uc);
     return cu;
   }
-
+ 
   public void addUrlToBeCached(String url) {
     urlsToCache.add(url);
   }

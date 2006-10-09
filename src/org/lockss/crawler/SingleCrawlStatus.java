@@ -50,7 +50,9 @@ public class SingleCrawlStatus implements StatusAccessor {
   private static final String NOT_MODIFIED_TABLE_NAME = "not-modified";
   private static final String PARSED_TABLE_NAME = "parsed";
   private static final String EXCLUDED_TABLE_NAME = "excluded";
-
+  // **** add support
+  //private static final String CONTENT_TYPE_URLS_TABLE_NAME = "content_type_urls ";
+  
   private static List colDescsFetched =
     ListUtil.list(new ColumnDescriptor(URL, "URL Fetched",
 				       ColumnDescriptor.TYPE_STRING));
