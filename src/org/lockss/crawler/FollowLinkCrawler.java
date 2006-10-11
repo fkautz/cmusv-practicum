@@ -386,10 +386,11 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
       if (!parsedPages.contains(uc.getUrl())) {
 	logger.debug3("Parsing "+uc);
 	CachedUrl cu = uc.getCachedUrl();
-        updateStatusMimeType(cu);             // call for methaod - to check and update crawler status on found conetnt-type:urls
 	//XXX quick fix; if-statement should be removed when we rework
 	//handling of error condition
 	if (cu.hasContent()) {
+	  updateStatusMimeType(cu);            
+	  // call for methaod - to check and update crawler status on found conetnt-type:urls
 	  ContentParser parser = getContentParser(cu);
 	  if (parser != null) {
 	    //IOException if the CU can't be read
