@@ -95,7 +95,7 @@ public class TestCrawlManagerStatusAccessor extends LockssTestCase {
 			   ColumnDescriptor.TYPE_INT),
       new ColumnDescriptor(NUM_URLS_WITH_ERRORS, "Errors",
 			   ColumnDescriptor.TYPE_INT),
-      new ColumnDescriptor(NUM_OF_MIME_TYPES, "Content Types",
+      new ColumnDescriptor(NUM_OF_MIME_TYPES, "Mime Types",
                            ColumnDescriptor.TYPE_INT,
                            "Number of different Content Types"),                                                             
       new ColumnDescriptor(START_URLS, "Starting Url(s)",

@@ -162,6 +162,8 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
   private static final String CRAWL_STATUS_TABLE_NAME = "crawl_status_table";
   private static final String SINGLE_CRAWL_STATUS_TABLE_NAME =
     "single_crawl_status";
+  private static final String MIME_TYPE_CRAWL_STATUS_TABLE_NAME =
+    "mime_type_crawl_status";                   //mmmt 0.1 rep name
 
   private PluginManager pluginMgr;
 
@@ -208,6 +210,8 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
 				      new CrawlManagerStatusAccessor(this));
     statusServ.registerStatusAccessor(SINGLE_CRAWL_STATUS_TABLE_NAME,
 				      new SingleCrawlStatus(this));
+    statusServ.registerStatusAccessor(MIME_TYPE_CRAWL_STATUS_TABLE_NAME,
+                                      new MimeTypeStatusCrawler(this));     
     // register our AU event handler
     auEventHandler = new AuEventHandler.Base() {
 	public void auDeleted(ArchivalUnit au) {
