@@ -134,7 +134,7 @@ public interface Crawler {
     /**  mimeTypeUrls  will map a mimeType to an object of RecordMimeType 
      *  to keep record of urls for the given type of mime-type 
      */    
-    protected Map mimeTypeUrls = new HashMap(); 
+    public Map mimeTypeUrls = new HashMap(); 
     
     public Status(ArchivalUnit au, Collection startUrls, String type) {
       this.au = au;

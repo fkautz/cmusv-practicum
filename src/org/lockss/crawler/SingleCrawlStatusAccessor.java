@@ -118,7 +118,8 @@ public class SingleCrawlStatusAccessor implements StatusAccessor {
       row.put(MIME_TYPE_NUM_URLS,
               new Long(numOfUrls) );
     }else{     // put a row with a refrence to list of urls
-       String urlsRef =  mimeType +":"+ MIMETYPES_URLS_KEY +"."+key ;
+       //was: String urlsRef =  mimeType +":"+ MIMETYPES_URLS_KEY +"."+key ;
+       String urlsRef =  key + "." + MIMETYPES_URLS_KEY +":"+mimeType ; 
        row.put(MIME_TYPE_NUM_URLS,
                  makeRef(numOfUrls,"single_crawl_status", urlsRef));
    }
