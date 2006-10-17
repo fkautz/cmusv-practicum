@@ -90,7 +90,6 @@ public class TestCrawlManagerStatusAccessor extends LockssTestCase {
 			   ColumnDescriptor.TYPE_INT),
       new ColumnDescriptor(NUM_URLS_PARSED, "Pages Parsed",
 			   ColumnDescriptor.TYPE_INT),
-      // column for pending urls                
       new ColumnDescriptor(NUM_URLS_PENDING, "Pages Pending",
                            ColumnDescriptor.TYPE_INT),                           
       new ColumnDescriptor(NUM_URLS_EXCLUDED, "Pages Excluded",
@@ -101,7 +100,7 @@ public class TestCrawlManagerStatusAccessor extends LockssTestCase {
 			   ColumnDescriptor.TYPE_INT),
       new ColumnDescriptor(NUM_OF_MIME_TYPES, "Mime Types",
                            ColumnDescriptor.TYPE_INT,
-                           "Number of different Content Types"),                                                             
+                           "Number of different content types"),                                                             
       new ColumnDescriptor(START_URLS, "Starting Url(s)",
 			   ColumnDescriptor.TYPE_STRING),
       new ColumnDescriptor(SOURCES, "Source(s)",
