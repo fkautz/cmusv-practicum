@@ -545,7 +545,7 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
 	      logger.debug2("Included url: "+normUrl);
 	    }
 	    extractedUrls.add(normUrl);
-            crawlStatus.saddUrlPending(normUrl);// add url to pendingUrls in status object
+            crawlStatus.addUrlPending(normUrl);// add url to pendingUrls in status object
 	  } else {
 	    if (logger.isDebug2()) {
 	      logger.debug2("Excluded url: "+normUrl);
