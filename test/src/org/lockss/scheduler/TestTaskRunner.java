@@ -34,6 +34,8 @@ package org.lockss.scheduler;
 
 import java.io.*;
 import java.util.*;
+
+import org.apache.commons.lang.mutable.MutableBoolean;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.test.*;

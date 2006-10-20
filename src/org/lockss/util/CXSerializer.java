@@ -34,6 +34,7 @@ package org.lockss.util;
 
 import java.io.*;
 
+import org.apache.commons.lang.mutable.MutableBoolean;
 import org.exolab.castor.mapping.Mapping;
 
 import org.lockss.app.LockssApp;

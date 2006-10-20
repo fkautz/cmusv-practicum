@@ -180,7 +180,7 @@ Args:
 <!--    <property name="xml.jar"  value="${lib}/org.apache.crimson.jar"/> -->
   <property name="log4j.jar" value="${lib}/log4j-1.2.13.jar"/>
   <property name="commons.lang.jar"
-  				  value="${lib}/commons-lang-2.1.jar"/>
+  				  value="${lib}/commons-lang-2.2.jar"/>
   <property name="commons.collections.jar"
   				  value="${lib}/commons-collections-3.2.jar"/>
   <property name="commons.logging.jar"

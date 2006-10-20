@@ -33,6 +33,8 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.poller;
 
 import java.util.*;
+
+import org.apache.commons.lang.mutable.MutableInt;
 import org.lockss.daemon.status.*;
 import org.lockss.util.*;
 import org.lockss.app.*;
@@ -321,30 +323,30 @@ public class PollerStatus {
     private Map auCnts = new HashMap();
 
     void incrStatusCnt(String status) {
-      MutableInteger n = (MutableInteger)statusCnts.get(status);
+      MutableInt n = (MutableInt)statusCnts.get(status);
       if (n == null) {
-	n = new MutableInteger();
+	n = new MutableInt();
 	statusCnts.put(status, n);
       }
       n.add(1);
     }
 
     void incrAuIdCnt(String auid) {
-      MutableInteger n = (MutableInteger)auCnts.get(auid);
+      MutableInt n = (MutableInt)auCnts.get(auid);
       if (n == null) {
-	n = new MutableInteger();
+	n = new MutableInt();
 	auCnts.put(auid, n);
       }
       n.add(1);
     }
 
     int getStatusCnt(String status) {
-      MutableInteger n = (MutableInteger)statusCnts.get(status);
+      MutableInt n = (MutableInt)statusCnts.get(status);
 	return n == null ? 0 : n.intValue();
     }
 
     int getAuCnt(String auid) {
-      MutableInteger n = (MutableInteger)auCnts.get(auid);
+      MutableInt n = (MutableInt)auCnts.get(auid);
 	return n == null ? 0 : n.intValue();
     }
 
