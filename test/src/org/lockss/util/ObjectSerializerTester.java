@@ -395,7 +395,7 @@ public abstract class ObjectSerializerTester extends XMLTestCase {
     // Define a rogue file factory
     final ObjectSerializer.TempFileFactory createTempFileFails = new ObjectSerializer.TempFileFactory() {
       public File createTempFile(String prefix, String suffix, File directory) throws IOException {
-        throw new IOException("This is a fake IOException"); // fail
+        throw new IOException("This fake IOException can safely be ignored"); // fail
       }
     };
 
