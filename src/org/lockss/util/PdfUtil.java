@@ -724,14 +724,14 @@ return success;
         logger.debug("Transform from input stream succeeded");
       }
       else {
-        logger.error("Transform from input stream failed; using PDF document as is");
+        logger.debug("Transform from input stream did not succeed; using PDF document as is");
         outputStream = new ByteArrayOutputStream();
         pdfDocument.save(outputStream);
       }
       return new ByteArrayInputStream(outputStream.toByteArray());
     }
     catch (IOException ioe) {
-      logger.error("Error during transformation from input stream", ioe);
+      logger.error("Transform from input stream failed", ioe);
       return null;
     }
     finally {
