@@ -68,6 +68,7 @@ public class ProbePermissionChecker implements PermissionChecker {
 
   public boolean checkPermission(Crawler.PermissionHelper pHelper,
 				 Reader inputReader, String permissionUrl) {
+    probeUrl = null;
     CustomHtmlParser parser = new CustomHtmlParser();
     logger.debug3("Checking permission on "+permissionUrl);
     try {
@@ -136,7 +137,8 @@ public class ProbePermissionChecker implements PermissionChecker {
 
     public void foundUrl(String url) {
       if (probeUrl != null) {
-	logger.warning("Old probe url ("+probeUrl+") overwritten by"+url);
+	logger.warning("Multiple probe URLs found on manifest page.  " +
+			"Old: "+probeUrl+" New: "+url);
       }
       probeUrl = url;
     }
