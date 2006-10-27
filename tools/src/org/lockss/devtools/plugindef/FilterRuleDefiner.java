@@ -43,9 +43,8 @@ import org.lockss.util.Logger;
  * <p>@version 1.0</p>
  * <p> </p>
  *  not attributable
- *
+ * @deprecated See {@link FilterRulesEditor}.
  */
-
 public class FilterRuleDefiner extends JDialog
     implements ItemListener, EDPEditor {
   ImageIcon upIcon = new ImageIcon(PluginDefiner.class.getResource("images/Up24.gif"));
