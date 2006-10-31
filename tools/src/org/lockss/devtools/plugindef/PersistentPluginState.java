@@ -33,12 +33,6 @@ package org.lockss.devtools.plugindef;
 
 import java.util.*;
 
-import org.lockss.daemon.*;
-import org.lockss.plugin.*;
-import org.lockss.plugin.definable.*;
-import org.lockss.util.*;
-import org.lockss.util.urlconn.*;
-
 /**********************************************************************
  *  class PersistentPluginState holds user input that should persist
  *  throughout the session with the Plugin Tool.  Examples include

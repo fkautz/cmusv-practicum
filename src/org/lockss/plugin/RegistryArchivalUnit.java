@@ -109,13 +109,13 @@ public class RegistryArchivalUnit extends BaseArchivalUnit {
 		     CurrentConfig
 		     .getTimeIntervalParam(PARAM_REGISTRY_TREEWALK_START,
 					   DEFAULT_REGISTRY_TREEWALK_START));
-    paramMap.putLong(AU_NEW_CRAWL_INTERVAL,
+    paramMap.putLong(KEY_AU_NEW_CONTENT_CRAWL_INTERVAL,
 		     CurrentConfig
 		     .getTimeIntervalParam(PARAM_REGISTRY_CRAWL_INTERVAL,
 					   DEFAULT_REGISTRY_CRAWL_INTERVAL));
     if (log.isDebug2()) {
       log.debug2("Setting Registry AU recrawl interval to " +
-		 StringUtil.timeIntervalToString(paramMap.getLong(AU_NEW_CRAWL_INTERVAL)));
+		 StringUtil.timeIntervalToString(paramMap.getLong(KEY_AU_NEW_CONTENT_CRAWL_INTERVAL)));
     }
   }
 

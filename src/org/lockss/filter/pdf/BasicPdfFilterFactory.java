@@ -45,9 +45,9 @@ import org.lockss.util.*;
  * following key:
  * <code>PdfUtil.PDF_FILTER_FACTORY_HINT_PREFIX + PdfUtil.PDF_MIME_TYPE + DefinableArchivalUnit.AU_FILTER_FACTORY_SUFFIX</code></p>
  * @author Thib Guicherd-Callin
- * @see PdfUtil#PDF_FILTER_FACTORY_HINT_PREFIX
+ * @see PdfUtil#PREFIX_PDF_FILTER_FACTORY_HINT
  * @see PdfUtil#PDF_MIME_TYPE
- * @see DefinableArchivalUnit#AU_FILTER_FACTORY_SUFFIX
+ * @see DefinableArchivalUnit#SUFFIX_FILTER_FACTORY
  */
 public class BasicPdfFilterFactory implements FilterFactory {
 

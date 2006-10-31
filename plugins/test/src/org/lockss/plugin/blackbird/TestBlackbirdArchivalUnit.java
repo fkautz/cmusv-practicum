@@ -176,7 +176,7 @@ public class TestBlackbirdArchivalUnit extends LockssPluginTestCase {
     String expectedStr = ROOT_URL+"lockss/lockss-volume2.htm";
     DefinableArchivalUnit bbAu = makeAu(url, 2);
     assertEquals(expectedStr,
-                 bbAu.getProperties().getString(ArchivalUnit.AU_START_URL, null));
+                 bbAu.getProperties().getString(ArchivalUnit.KEY_AU_START_URL, null));
   }
 
   public void testGetUrlStems() throws Exception {

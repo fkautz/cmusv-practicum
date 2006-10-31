@@ -234,7 +234,7 @@ public class PrintfEditor extends JDialog implements EDPEditor, ConfigParamListe
     paramKeys = data.getPlugin().getPrintfDescrs(!m_isCrawlRuleEditor);
     data.getPlugin().addParamListener(this);
     setTemplate( (PrintfTemplate) data.getData());
-    m_isCrawlRuleEditor = data.getKey().equals(DefinableArchivalUnit.AU_RULES_KEY);
+    m_isCrawlRuleEditor = data.getKey().equals(DefinableArchivalUnit.KEY_AU_CRAWL_RULES);
     // initialize the combobox
     updateParams(data);
     if (m_isCrawlRuleEditor) {
@@ -311,7 +311,7 @@ public class PrintfEditor extends JDialog implements EDPEditor, ConfigParamListe
           format = fbuf.toString();
           break;
         case ConfigParamDescr.TYPE_YEAR:
-          if(key.startsWith(DefinableArchivalUnit.AU_SHORT_YEAR_PREFIX)) {
+          if(key.startsWith(DefinableArchivalUnit.PREFIX_AU_SHORT_YEAR)) {
             format = "%02d";
           }
           else {

@@ -257,7 +257,7 @@ class PluginDetail extends PluginStatus implements StatusAccessor {
 					plug.getVersion()));
 
     if (plugDef != null) {
-      String notes = plugDef.getString(DefinablePlugin.CM_NOTES_KEY, null);
+      String notes = plugDef.getString(DefinablePlugin.KEY_PLUGIN_NOTES, null);
       if (notes != null) {
 	res.add(new StatusTable.SummaryInfo("Notes",
 					    ColumnDescriptor.TYPE_STRING,

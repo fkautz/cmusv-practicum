@@ -202,7 +202,7 @@ public class ValidatePluginResultsDialog extends JDialog {
       }
 
       //Checks if the base url is included in the starting url
-      if(startingUrl.indexOf(m_au.getProperties().getUrl(ArchivalUnit.AU_BASE_URL,null).toString()) == -1){
+      if(startingUrl.indexOf(m_au.getProperties().getUrl(ArchivalUnit.KEY_AU_BASE_URL,null).toString()) == -1){
 	  output+= "  Validation Warning:  Base Url is not included in Starting Url\n";
       }
 
