@@ -328,6 +328,12 @@ public class V3Voter extends BasePoll {
     }
     voterUserData.setStatus(status);
     activePoll = false;
+    // Reset the duration and deadline to reflect reality
+    long oldDeadline = voterUserData.getDeadline();
+    long now = TimeBase.nowMs();
+    voterUserData.setDeadline(now);
+    voterUserData.setDuration(now - voterUserData.getCreateTime());
+    // Clean up after the serializer
     pollSerializer.closePoll();
     pollManager.closeThePoll(voterUserData.getPollKey());
     log.debug2("Closed poll " + voterUserData.getPollKey() + " with status " +

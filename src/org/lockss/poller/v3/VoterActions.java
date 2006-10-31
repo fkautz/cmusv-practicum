@@ -211,7 +211,9 @@ public class VoterActions {
   }
 
   public static PsmEvent handleProcessReceipt(PsmEvent evt, PsmInterp interp) {
-    // XXX: Implement.
+    VoterUserData ud = getUserData(interp);
+    // XXX: Once the receipt is a bit more interesting, use it here.
+    ud.getVoter().stopPoll(V3Voter.STATUS_COMPLETE);
     return V3Events.evtOk;
   }
 
