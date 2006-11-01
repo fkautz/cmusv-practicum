@@ -36,7 +36,7 @@ import java.io.IOException;
 
 /**
  * <p>A properly-nestable {@link IOException} for exceptions raised
- * by PDF transforms.</p>
+ * by document transforms.</p>
  * @author Thib Guicherd-Callin
  * @see DocumentTransform#transform
  */

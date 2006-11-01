@@ -42,14 +42,14 @@ import org.lockss.filter.pdf.PageTransformUtil.ExtractStringsToOutputStream;
  * then collects all string constants in the resulting PDF document
  * into the output stream.</p>
  * @author Thib Guicherd-Callin.
- * @see ExtractStringsToOutputStream
+ * @see PageTransformUtil.ExtractStringsToOutputStream
  */
 public abstract class TextScrapingDocumentTransform extends OutputStreamDocumentTransform {
 
   /**
    * <p>Makes a new document transform which will be applied before
    * scraping all string constants from the document with
-   * {@link ExtractStringsToOutputStream}.</p>
+   * {@link PageTransformUtil.ExtractStringsToOutputStream}.</p>
    * @return A preliminary document transform.
    * @throws IOException if any processing error occurs.
    */
