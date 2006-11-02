@@ -333,7 +333,8 @@ public class AmericanPhysiologicalSocietyPdfTransform extends SimpleOutputDocume
 
     public static class SimplifiedEraseVerticalBanner extends PageStreamTransform {
 
-      public static class SimplifiedProcessEndTextObject extends ProcessEndTextObject {
+      public static class SimplifiedProcessEndTextObject
+	extends EraseVerticalBanner.ProcessEndTextObject {
 
         /*
          * Note that identify(List) is inherited from ProcessEndTextObject
@@ -362,7 +363,8 @@ public class AmericanPhysiologicalSocietyPdfTransform extends SimpleOutputDocume
 
     public static class SimplifiedEraseVerticalBanner2 extends PageStreamTransform {
 
-      public static class SimplifiedProcessEndTextObject2 extends ProcessEndTextObject2 {
+      public static class SimplifiedProcessEndTextObject2
+	extends EraseVerticalBanner2.ProcessEndTextObject2 {
 
         /*
          * Note that identify(List) and getSubsequenceLength() are
