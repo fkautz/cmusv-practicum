@@ -165,7 +165,7 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
     //indicating when a crawl window is the problem
     if (!withinCrawlWindow()) {
       crawlStatus.setCrawlError(Crawler.STATUS_WINDOW_CLOSED);
-      abortCrawl();
+      return aborted();
     }
 
     if (!populatePermissionMap()) {
