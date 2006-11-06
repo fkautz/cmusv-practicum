@@ -304,6 +304,9 @@ public class V3PollStatus {
       summary.add(new SummaryInfo("Start Time",
                                   ColumnDescriptor.TYPE_DATE,
                                   new Long(poll.getCreateTime())));
+      summary.add(new SummaryInfo("Vote Deadline",
+                                  ColumnDescriptor.TYPE_DATE,
+                                  new Long(poll.getVoteDeadline())));
       summary.add(new SummaryInfo("Duration",
                                   ColumnDescriptor.TYPE_TIME_INTERVAL,
                                   new Long(poll.getDuration())));
