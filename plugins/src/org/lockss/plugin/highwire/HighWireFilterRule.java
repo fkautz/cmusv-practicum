@@ -58,11 +58,11 @@ public class HighWireFilterRule implements FilterRule {
 //        new HtmlTagFilter.TagPair("<!--", "-->", true),
         new HtmlTagFilter.TagPair("<STRONG>Institution:",
 				  "</A>", true),
-        new HtmlTagFilter.TagPair("<!-- begin ad tag -->", 
+        new HtmlTagFilter.TagPair("<!-- begin ad tag -->",
 				  "<!-- End ad tag -->", true),
         new HtmlTagFilter.TagPair("<script", "</script>", true),
         new HtmlTagFilter.TagPair("<table", "</table>", true),
-        new HtmlTagFilter.TagPair("<", ">")
+        new HtmlTagFilter.TagPair("<", ">", false, false)
         );
     Reader tagFilter = HtmlTagFilter.makeNestedFilter(reader, tagList);
     Reader medFilter = new StringFilter(tagFilter, MEDLINE_STRING);
