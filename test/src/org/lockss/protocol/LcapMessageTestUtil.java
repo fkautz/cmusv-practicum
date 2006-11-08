@@ -33,6 +33,7 @@ package org.lockss.protocol;
 import java.security.*;
 import java.io.*;
 import java.util.*;
+import org.lockss.app.*;
 import org.lockss.util.*;
 
 /** Utilities for making test messages.
@@ -49,20 +50,22 @@ public class LcapMessageTestUtil {
   };
 
   public static V3LcapMessage makeTestVoteMessage(PeerIdentity peer,
-                                                  File tempDir) 
+                                                  File tempDir,
+                                                  LockssApp daemon) 
       throws IOException {
-    return makeTestVoteMessage(peer, null, tempDir);
+    return makeTestVoteMessage(peer, null, tempDir, daemon);
   }
 
   public static V3LcapMessage makeTestVoteMessage(PeerIdentity peer,
 						  Collection voteBlocks,
-                                                  File tempDir)
+                                                  File tempDir,
+                                                  LockssApp daemon)
       throws IOException {
     V3LcapMessage msg = new V3LcapMessage("ArchivalID_2", "key", "Plug42",
                                           ByteArray.makeRandomBytes(20),
                                           ByteArray.makeRandomBytes(20),
                                           V3LcapMessage.MSG_REPAIR_REQ,
-                                          987654321, peer, tempDir);
+                                          987654321, peer, tempDir, daemon);
 
     // Set msg vote blocks.
     if (voteBlocks != null) {

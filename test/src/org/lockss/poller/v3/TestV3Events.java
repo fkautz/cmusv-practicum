@@ -42,7 +42,7 @@ public class TestV3Events extends LockssTestCase {
 
   V3LcapMessage makeMsg(int opcode) {
     return new V3LcapMessage("auid", "key", "1", null, null, opcode,
-                             987654321, null, null);
+                             987654321, null, null, null);
   }
 
   void assertMsgClass(int opcode, PsmMsgEvent prototypeEvent) {

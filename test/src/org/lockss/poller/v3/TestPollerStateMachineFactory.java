@@ -81,30 +81,30 @@ public class TestPollerStateMachineFactory extends LockssTestCase {
                                              ByteArray.makeRandomBytes(20),
                                              V3LcapMessage.MSG_POLL_ACK,
 					     987654321,
-                                             this.id, tempDir));
+                                             this.id, tempDir, theDaemon));
     this.msgNominate =
       V3Events.fromMessage(new V3LcapMessage("auid", "key", "1",
                                              ByteArray.makeRandomBytes(20),
                                              ByteArray.makeRandomBytes(20),
                                              V3LcapMessage.MSG_NOMINATE,
                                              987654321,
-                                             this.id, tempDir));
+                                             this.id, tempDir, theDaemon));
     this.msgVote =
       V3Events.fromMessage(new V3LcapMessage("auid", "key", "1",
                                              ByteArray.makeRandomBytes(20),
                                              ByteArray.makeRandomBytes(20),
                                              V3LcapMessage.MSG_VOTE,
                                              987654321,
-                                             this.id, tempDir));
+                                             this.id, tempDir, theDaemon));
     this.msgRepair =
       V3Events.fromMessage(new V3LcapMessage("auid", "key", "1",
                                              ByteArray.makeRandomBytes(20),
                                              ByteArray.makeRandomBytes(20),
                                              V3LcapMessage.MSG_REPAIR_REP,
                                              987654321,
-                                             this.id, tempDir));
+                                             this.id, tempDir, theDaemon));
     this.msgNoOp =
-      new PsmMsgEvent(V3LcapMessage.makeNoOpMsg(this.id));
+      new PsmMsgEvent(V3LcapMessage.makeNoOpMsg(this.id, theDaemon));
   }
 
   /**

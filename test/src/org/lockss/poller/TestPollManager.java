@@ -708,7 +708,7 @@ public class TestPollManager extends LockssTestCase {
                                      ByteArray.makeRandomBytes(20),
                                      ByteArray.makeRandomBytes(20),
                                      V3LcapMessage.MSG_POLL,
-                                     12345678, testID, tempDir);
+                                     12345678, testID, tempDir, theDaemon);
     v3Testmsg[0].setArchivalId(testau.getAuId());
   }
 

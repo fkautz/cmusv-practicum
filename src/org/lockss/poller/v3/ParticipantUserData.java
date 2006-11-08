@@ -376,7 +376,8 @@ public class ParticipantUserData implements LockssSerializable {
   public V3LcapMessage makeMessage(int opcode) {
     return new V3LcapMessage(getAuId(), getKey(), getPluginVersion(),
                              getPollerNonce(), getVoterNonce(), opcode,
-                             getDeadline(), getPollerId(), messageDir);
+                             getDeadline(), getPollerId(), messageDir,
+                             poller.getLockssDaemon());
   }
 
   public V3LcapMessage makeMessage(int opcode, long sizeEst) {

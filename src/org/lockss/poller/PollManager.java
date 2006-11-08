@@ -657,6 +657,23 @@ public class PollManager
     theRouter.sendTo(msg, id);
   }
 
+  /**
+   * @return the state directory for the given V3 poll.
+   */
+  public File getStateDir(String pollKey) {
+    if (pollKey == null) return null;
+
+    Poll p = this.getPoll(pollKey);
+    if (p != null) {
+      if (p instanceof V3Voter) {
+        return ((V3Voter)p).getStateDir();
+      } else if (p instanceof V3Poller) {
+        return ((V3Poller)p).getStateDir();
+      }
+    }
+    return null;
+  }
+  
   IdentityManager getIdentityManager() {
     return theIDManager;
   }

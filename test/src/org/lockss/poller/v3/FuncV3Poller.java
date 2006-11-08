@@ -215,7 +215,7 @@ public class FuncV3Poller extends LockssTestCase {
     for (int i = 0; i < voters.length; i++) {
       msgs[i] = new V3LcapMessage("auid", "key", "3", pollerNonces[i],
                                   voterNonces[i], V3LcapMessage.MSG_POLL_ACK,
-                                  123456789, voters[i], tempDir);
+                                  123456789, voters[i], tempDir, theDaemon);
     }
     return msgs;
   }
@@ -226,7 +226,8 @@ public class FuncV3Poller extends LockssTestCase {
       V3LcapMessage msg = new V3LcapMessage("auid", "key", "3",
                                             pollerNonces[i], voterNonces[i],
                                             V3LcapMessage.MSG_NOMINATE,
-                                            123456789, voters[i], tempDir);
+                                            123456789, voters[i], tempDir,
+                                            theDaemon);
       msg.setNominees(ListUtil.list("10.0." + i + ".1",
 				    "10.0." + i + ".2",
 				    "10.0." + i + ".3",
@@ -242,7 +243,7 @@ public class FuncV3Poller extends LockssTestCase {
       V3LcapMessage msg = new V3LcapMessage("auid", "key", "3",
                                             pollerNonces[i], voterNonces[i],
                                             V3LcapMessage.MSG_VOTE, 123456789,
-                                            voters[i], tempDir);
+                                            voters[i], tempDir, theDaemon);
       for (Iterator it = voteBlocks.iterator(); it.hasNext(); ) {
 	msg.addVoteBlock((VoteBlock)it.next());
       }

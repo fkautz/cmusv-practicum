@@ -48,7 +48,6 @@ import org.lockss.util.*;
 public class VoterUserData
   implements LockssSerializable {
 
-  // XXX: LcapMessage may not be serializable after repair is implemented!
   private LcapMessage pollMessage;
   private PeerIdentity pollerId;
   private String auId;
@@ -91,7 +90,7 @@ public class VoterUserData
   public VoterUserData(PollSpec spec, V3Voter voter, PeerIdentity pollerId,
                        String pollKey, long duration, String hashAlgorithm,
                        byte[] pollerNonce, byte[] voterNonce,
-                       byte[] introEffortProof, File messageDir) {
+                       byte[] introEffortProof, File messageDir) throws IOException {
     log.debug3("Creating V3 Voter User Data for poll " + pollKey);
     this.spec = spec;
     this.auId = spec.getAuId();
@@ -108,10 +107,10 @@ public class VoterUserData
     this.voterNonce = voterNonce;
     this.pollerNonce = pollerNonce;
     this.introEffortProof = introEffortProof;
-    this.voteBlocks = new MemoryVoteBlocks();
     this.createTime = TimeBase.nowMs();
     this.statusString = "Active";
     this.messageDir = messageDir;
+    this.voteBlocks = new DiskVoteBlocks(voter.getStateDir());
   }
 
   public void setPollMessage(LcapMessage msg) {
@@ -374,7 +373,8 @@ public class VoterUserData
   public V3LcapMessage makeMessage(int opcode) {
     return new V3LcapMessage(getAuId(), getPollKey(), getPluginVersion(),
                              getPollerNonce(), getVoterNonce(), opcode,
-                             getDeadline(), getPollerId(), messageDir);
+                             getDeadline(), getPollerId(), messageDir,
+                             voter.getLockssDaemon());
   }
 
   public V3LcapMessage makeMessage(int opcode, long sizeEst) {

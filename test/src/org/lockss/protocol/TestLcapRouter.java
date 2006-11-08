@@ -82,7 +82,8 @@ public class TestLcapRouter extends LockssTestCase {
 
   public void testMakePeerMessage() throws Exception {
     V3LcapMessage lmsg =
-      LcapMessageTestUtil.makeTestVoteMessage(pid1, tempDir);
+      LcapMessageTestUtil.makeTestVoteMessage(pid1, tempDir,
+                                              getMockLockssDaemon());
     PeerMessage pmsg = rtr.makePeerMessage(lmsg);
     assertNull(pmsg.getSender());
     pmsg.setSender(pid1);
