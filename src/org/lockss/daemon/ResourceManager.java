@@ -239,7 +239,7 @@ public class ResourceManager extends BaseLockssManager  {
   /** Return list of unfiltered tcp ports not already assigned to another
    * server */
   public List getUsableTcpPorts(Object serverToken) {
-    List unfilteredPorts = PlatformInfo.getInstance().getUnfilteredTcpPorts();
+    List unfilteredPorts = PlatformUtil.getInstance().getUnfilteredTcpPorts();
     PortAvailable udpAvailable = new PortAvailable() {
       public boolean isAvailable(int port, Object token) {
         return isTcpPortAvailable(port, token);
@@ -249,7 +249,7 @@ public class ResourceManager extends BaseLockssManager  {
   }
 
   public List getUsableUdpPorts(Object serverToken) {
-    List unfilteredPorts = PlatformInfo.getInstance().getUnfilteredUdpPorts();
+    List unfilteredPorts = PlatformUtil.getInstance().getUnfilteredUdpPorts();
     PortAvailable udpAvailable = new PortAvailable() {
       public boolean isAvailable(int port, Object token) {
         return isUdpPortAvailable(port, token);

@@ -284,7 +284,7 @@ public class BlockingStreamComm
 
       if (changedKeys.contains(PARAM_DATA_DIR)) {
 	String paramDataDir = config.get(PARAM_DATA_DIR,
-					 PlatformInfo.getSystemTempDir());
+					 PlatformUtil.getSystemTempDir());
 	File dir = new File(paramDataDir);
 	if (dir.exists() || dir.mkdirs()) {
 	  dataDir = dir;

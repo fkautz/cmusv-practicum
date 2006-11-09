@@ -359,7 +359,7 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
       for (Iterator iter = repos.iterator(); iter.hasNext(); ) {
 	Map row = new HashMap();
 	String repo = (String)iter.next();
-	PlatformInfo.DF df = remoteApi.getRepositoryDF(repo);
+	PlatformUtil.DF df = remoteApi.getRepositoryDF(repo);
 	row.put("repo", repo);
 	if (df != null) {
 	  row.put("size", orderedKBObj(df.getSize()));

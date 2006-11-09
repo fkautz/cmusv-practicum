@@ -38,7 +38,7 @@ import java.util.*;
 
 import org.lockss.config.*;
 import org.lockss.daemon.CachedUrlSetSpec;
-import org.lockss.util.PlatformInfo;
+import org.lockss.util.PlatformUtil;
 
 /**
  * AuNode is used to represent the top-level contents of an ArchivalUnit.
@@ -155,7 +155,7 @@ public class AuNodeImpl extends RepositoryNodeImpl {
 	return du;
       }
     }
-    PlatformInfo platInfo = PlatformInfo.getInstance();
+    PlatformUtil platInfo = PlatformUtil.getInstance();
     long du = platInfo.getDiskUsage(nodeLocation);
     if (du > 0) {
       nodeProps.setProperty(DU_SIZE_PROPERTY, Long.toString(du));

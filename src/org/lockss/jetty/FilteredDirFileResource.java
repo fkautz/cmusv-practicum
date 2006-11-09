@@ -38,6 +38,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.jetty;
 
+import org.lockss.util.PlatformUtil;
 import org.mortbay.util.*;
 import java.io.*;
 import java.net.*;
@@ -296,7 +297,8 @@ public class FilteredDirFileResource extends URLResource
         throws SecurityException
     {
         if( dest instanceof FilteredDirFileResource)
-            return _file.renameTo( ((FilteredDirFileResource)dest)._file);
+            return PlatformUtil.updateAtomically(_file,
+                                                 ((FilteredDirFileResource)dest)._file);
         else
             return false;
     }

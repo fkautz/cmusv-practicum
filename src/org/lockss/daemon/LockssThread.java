@@ -253,11 +253,11 @@ public abstract class LockssThread extends Thread implements LockssWatchdog {
                                       DEFAULT_THREAD_WDOG_HUNG_DUMP)) {
       log.error("Thread hung for " +
 		StringUtil.timeIntervalToString(interval) + ": " + getName());
-      PlatformInfo.getInstance().threadDump(false);
+      PlatformUtil.getInstance().threadDump(false);
       try {
 	Thread.sleep(30 * Constants.SECOND);
       } catch (InterruptedException ignore) {}
-      PlatformInfo.getInstance().threadDump(true);
+      PlatformUtil.getInstance().threadDump(true);
     }
     if (isWDogExpired()) {
       exitDaemon(Constants.EXIT_CODE_THREAD_HUNG,

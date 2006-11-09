@@ -1097,7 +1097,7 @@ public class ConfigManager implements LockssManager {
     tmpConfig.seal();
     tmpConfig.store(os, header);
     os.close();
-    if (!tempfile.renameTo(cfile)) {
+    if (!PlatformUtil.updateAtomically(tempfile, cfile)) {
       throw new RuntimeException("Couldn't rename temp file: " +
 				 tempfile + " to: " + cfile);
     }

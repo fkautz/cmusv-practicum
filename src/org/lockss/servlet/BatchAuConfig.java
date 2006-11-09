@@ -413,7 +413,7 @@ public class BatchAuConfig extends LockssServlet {
       OrderedMap repoChoices = new LinkedMap();
       for (Iterator iter = repos.iterator(); iter.hasNext(); ) {
         String repo = (String)iter.next();
-        PlatformInfo.DF df = remoteApi.getRepositoryDF(repo);
+        PlatformUtil.DF df = remoteApi.getRepositoryDF(repo);
         repoChoices.put(repo, df);
       }
       frm.add(ServletUtil.makeRepoTable(

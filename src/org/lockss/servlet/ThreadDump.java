@@ -40,11 +40,11 @@ import org.lockss.util.*;
  */
 public class ThreadDump extends LockssServlet {
 
-  private PlatformInfo platInfo;
+  private PlatformUtil platInfo;
 
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
-    platInfo = PlatformInfo.getInstance();
+    platInfo = PlatformUtil.getInstance();
   }
 
   /** Handle a request */

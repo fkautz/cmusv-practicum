@@ -221,7 +221,7 @@ public class FileUtil {
   public static File createTempFile(String prefix, String suffix, File dir)
       throws IOException {
     if (dir == null) {
-      dir = new File(PlatformInfo.getSystemTempDir());
+      dir = new File(PlatformUtil.getSystemTempDir());
     }
     return File.createTempFile(prefix, suffix, dir);
   }
@@ -246,7 +246,7 @@ public class FileUtil {
       throw new IllegalArgumentException("Prefix string too short");
     String s = (suffix == null) ? ".tmp" : suffix;
     if (directory == null) {
-      directory = new File(PlatformInfo.getSystemTempDir());
+      directory = new File(PlatformUtil.getSystemTempDir());
     }
     synchronized (tmpFileLock) {
       File f = null;

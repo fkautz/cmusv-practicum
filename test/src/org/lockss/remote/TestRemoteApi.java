@@ -218,7 +218,7 @@ public class TestRemoteApi extends LockssTestCase {
   }
 
   public void testGetRepositoryDF () throws Exception {
-    PlatformInfo.DF df = rapi.getRepositoryDF("local:.");
+    PlatformUtil.DF df = rapi.getRepositoryDF("local:.");
     assertNotNull(df);
   }
 

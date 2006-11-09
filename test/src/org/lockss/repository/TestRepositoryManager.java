@@ -96,7 +96,7 @@ public class TestRepositoryManager extends LockssTestCase {
   }
 
   public void testGetRepositoryDF () throws Exception {
-    PlatformInfo.DF df = mgr.getRepositoryDF("local:.");
+    PlatformUtil.DF df = mgr.getRepositoryDF("local:.");
     assertNotNull(df);
   }
 

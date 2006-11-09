@@ -401,7 +401,7 @@ public class RemoteApi
     return repoMgr.findExistingRepositoriesFor(auid);
   }
 
-  public PlatformInfo.DF getRepositoryDF(String repoName) {
+  public PlatformUtil.DF getRepositoryDF(String repoName) {
     return repoMgr.getRepositoryDF(repoName);
   }
 
