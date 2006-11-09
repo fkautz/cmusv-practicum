@@ -298,8 +298,6 @@ public class V3LcapMessage extends LcapMessage implements LockssSerializable {
         // Find the directory associated with this poll's state.
         File stateDir =
           ((LockssDaemon)m_daemon).getPollManager().getStateDir(m_key);
-        log.debug("*** Setting state directory for DiskVoteBlocks to: " +
-                  stateDir);
         this.m_voteBlocks = new DiskVoteBlocks(voteBlockCount, dis,
                                                stateDir);
       } else {
