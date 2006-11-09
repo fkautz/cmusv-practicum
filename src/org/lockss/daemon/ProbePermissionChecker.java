@@ -69,7 +69,7 @@ public class ProbePermissionChecker implements PermissionChecker {
   public boolean checkPermission(Crawler.PermissionHelper pHelper,
 				 Reader inputReader, String permissionUrl) {
     probeUrl = null;
-    CustomHtmlParser parser = new CustomHtmlParser();
+    CustomHtmlParser parser = new CustomHtmlParser(au);
     logger.debug3("Checking permission on "+permissionUrl);
     try {
       parser.parseForUrls(inputReader, permissionUrl,
@@ -108,6 +108,10 @@ public class ProbePermissionChecker implements PermissionChecker {
 
   private static class CustomHtmlParser extends GoslingHtmlParser {
     private static final String LOCKSSPROBE = "lockss-probe";
+
+    public CustomHtmlParser(ArchivalUnit au) {
+      super(au);
+    }
 
     protected String extractLinkFromTag(StringBuffer link) {
       String returnStr = null;
