@@ -41,7 +41,7 @@ import org.lockss.test.*;
 /**
  * test class for org.lockss.util.PlatformInfo
  */
-public class TestPlatformInfo extends LockssTestCase {
+public class TestPlatformUtil extends LockssTestCase {
   PlatformUtil info;
 
   public void setUp() throws Exception {
