@@ -34,12 +34,15 @@ package org.lockss.crawler;
 
 import java.io.*;
 
+import org.lockss.plugin.ArchivalUnit;
+
 public interface ContentParser {
   /**
    * Parse reader for urls and call cb.foundUrl on each found one
+   * @param au TODO
    */
   public void parseForUrls(Reader reader, String srcUrl,
-			   ContentParser.FoundUrlCallback cb)
+			   ArchivalUnit au, ContentParser.FoundUrlCallback cb)
       throws IOException;
 
   /**
