@@ -185,7 +185,8 @@ public class AuConfig extends LockssServlet {
   /** Display "Add Archival Unit" button and list of configured AUs with Edit
    * buttons */
   private void displayAuSummary() throws IOException {
-    // If the AUs are not started, don't display any AU summary or any form inputs.
+    // If the AUs are not started, don't display any AU summary or any form
+    // inputs.
     if (!pluginMgr.areAusStarted()) {
       displayNotStarted();
       return;
