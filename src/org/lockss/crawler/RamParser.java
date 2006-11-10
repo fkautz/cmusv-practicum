@@ -69,11 +69,11 @@ public class RamParser implements ContentParser {
       throw new IllegalArgumentException("Called with null callback");
     }
     reader = new BufferedReader(cu.openForReading());
-    parseForUrls(reader, null, cb);
+    parseForUrls(reader, null, null, cb);
   }
 
   public void parseForUrls(Reader reader, String srcUrl,
-			   ContentParser.FoundUrlCallback cb)
+			   ArchivalUnit au, ContentParser.FoundUrlCallback cb)
       throws IOException {
 
 //     if (cu == null) {

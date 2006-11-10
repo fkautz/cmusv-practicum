@@ -47,7 +47,7 @@ public class MockContentParser implements ContentParser {
   }
 
   public void parseForUrls(Reader reader, String srcUrl,
-			   ContentParser.FoundUrlCallback cb) {
+			   ArchivalUnit au, ContentParser.FoundUrlCallback cb) {
     srcUrls.add(srcUrl);
     if (urlToReturn != null) {
       cb.foundUrl(urlToReturn);

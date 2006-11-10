@@ -383,7 +383,7 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
 	    //IOException if the CU can't be read
 	    parser.parseForUrls(cu.openForReading(),
 				PluginUtil.getBaseUrl(cu),
-				new MyFoundUrlCallback(parsedPages,
+				au, new MyFoundUrlCallback(parsedPages,
 						       extractedUrls, au));
 	    if (extractedUrls.remove(url)){
 	      crawlStatus.removePendingUrl(url);

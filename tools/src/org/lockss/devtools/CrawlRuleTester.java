@@ -41,7 +41,6 @@ import org.lockss.crawler.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.plugin.base.*;
-import org.lockss.test.MockArchivalUnit;
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
 import org.lockss.config.*;
@@ -306,9 +305,9 @@ public class CrawlRuleTester extends Thread {
 	InputStream istr = conn.getResponseInputStream();
 	InputStreamReader reader = new InputStreamReader(istr);
 	//       MyMockCachedUrl mcu = new MyMockCachedUrl(srcUrl.toString(), reader);
-	GoslingHtmlParser parser = new GoslingHtmlParser(new MockArchivalUnit());
+	GoslingHtmlParser parser = new GoslingHtmlParser();
 	parser.parseForUrls(reader, srcUrl.toString() ,
-			    new MyFoundUrlCallback());
+			    null, new MyFoundUrlCallback());
 	istr.close();
 	depth_parsed[m_curDepth - 1]++;
       } finally {
