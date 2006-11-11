@@ -195,9 +195,11 @@ public class RepositoryNodeImpl implements RepositoryNode {
       String treeSize = nodeProps.getProperty(TREE_SIZE_PROPERTY);
       if (isPropValid(treeSize)) {
         // return if found
+	logger.debug2("Found cached size at " + nodeLocation);
         return Long.parseLong(treeSize);
       }
     }
+    logger.debug2("No cached size at " + nodeLocation);
 
     long totalSize = 0;
     if (hasContent()) {
@@ -461,9 +463,10 @@ public class RepositoryNodeImpl implements RepositoryNode {
     if (currentVersion == 0) {
       if (!contentDir.exists()) {
         if (!contentDir.mkdirs()) {
-          logger.error("Couldn't create cache directory for '"+
-                       contentDir.getAbsolutePath()+"'");
-          throw new LockssRepository.RepositoryStateException("Couldn't create cache directory.");
+          logger.error("Couldn't create cache directory: " +contentDir);
+          throw new LockssRepository.RepositoryStateException("mkdirs(" +
+							      contentDir +
+							      ") failed.");
         }
       }
     }
