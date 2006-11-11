@@ -336,7 +336,7 @@ public class IcpManager
     if (   changedKeys.contains(PREFIX_ICP)
         || changedKeys.contains(PREFIX_PLATFORM)) {
       stopSocket();
-      if (theDaemon.isDaemonInited() && shouldIcpServerStart(newConfig)) {
+      if (getDaemon().isDaemonInited() && shouldIcpServerStart(newConfig)) {
         startSocket(newConfig);
       }
     }

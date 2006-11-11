@@ -61,6 +61,7 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
 
   public void startService() {
     super.startService();
+    LockssDaemon theDaemon = getDaemon();
     StatusService statusServ = theDaemon.getStatusService();
     statusServ.registerStatusAccessor(SERVICE_STATUS_TABLE_NAME,
 				      new RepoStatusAccessor(theDaemon));
@@ -69,7 +70,7 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
   }
 
   public void stopService() {
-    StatusService statusServ = theDaemon.getStatusService();
+    StatusService statusServ = getDaemon().getStatusService();
     statusServ.unregisterStatusAccessor(SERVICE_STATUS_TABLE_NAME);
     statusServ.unregisterStatusAccessor(SPACE_TABLE_NAME);
     super.stopService();

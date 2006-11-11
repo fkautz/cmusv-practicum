@@ -99,8 +99,8 @@ public class SystemMetrics
 
   public void startService() {
     super.startService();
-    hashService = theDaemon.getHashService();
-    pluginMgr = theDaemon.getPluginManager();
+    hashService = getDaemon().getHashService();
+    pluginMgr = getDaemon().getPluginManager();
     resetConfig();
   }
 

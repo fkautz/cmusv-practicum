@@ -38,8 +38,6 @@ package org.lockss.app;
 
 public abstract class BaseLockssDaemonManager extends BaseLockssManager {
 
-  protected LockssDaemon theDaemon = null;
-
   /**
    * Calls {@link #initService(LockssDaemon)}, so that daemon-specific
    * managers don't have to cast their <code>app</code> arg.  Such managers
@@ -56,13 +54,12 @@ public abstract class BaseLockssDaemonManager extends BaseLockssManager {
   }
 
   public void initService(LockssDaemon daemon) throws LockssAppException {
-    theDaemon = daemon;
     super.initService(daemon);
   }
 
   /** Return the daemon instance in which this manager is running */
   public LockssDaemon getDaemon() {
-    return theDaemon;
+    return (LockssDaemon)theApp;
   }
 
   /**

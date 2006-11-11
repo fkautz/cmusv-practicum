@@ -266,7 +266,7 @@ public class LcapDatagramComm
 
   void noCommAlert(String text) {
     try {
-      AlertManager alertMgr = theDaemon.getAlertManager();
+      AlertManager alertMgr = getDaemon().getAlertManager();
       alertMgr.raiseAlert(Alert.cacheAlert(Alert.CONFIGURATION_ERROR),
 			  "V1 LCAP comm not started.  " + text);
     } catch (Exception e) {
