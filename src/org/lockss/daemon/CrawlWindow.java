@@ -39,7 +39,8 @@ import org.lockss.util.LockssSerializable;
 /**
  * Interface for crawl windows, used to determine whether a crawl should be
  * permitted.  Plugins may implement this or use one of the supplied
- * implementations in {@link CrawlWindows}.
+ * implementations in {@link CrawlWindows}.  CrawlWindow implementations
+ * must be thread-safe (and stateless).
  */
 public interface CrawlWindow extends LockssSerializable {
 
