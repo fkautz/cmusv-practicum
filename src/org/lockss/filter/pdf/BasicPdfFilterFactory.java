@@ -57,11 +57,11 @@ public class BasicPdfFilterFactory implements FilterFactory {
                                                String encoding) {
     OutputDocumentTransform documentTransform = PdfUtil.getOutputDocumentTransform(au);
     if (documentTransform == null) {
-      logger.debug("Unfiltered");
+      logger.debug2("Unfiltered");
       return in;
     }
     else {
-      logger.debug("Filtered with " + documentTransform.getClass().getName());
+      logger.debug2("Filtered with " + documentTransform.getClass().getName());
       return PdfUtil.applyFromInputStream(documentTransform, in);
     }
   }
@@ -69,6 +69,6 @@ public class BasicPdfFilterFactory implements FilterFactory {
   /**
    * <p>A logger for use by this class.</p>
    */
-  private static Logger logger = Logger.getLogger("HighWirePdfFilterFactory");
+  private static Logger logger = Logger.getLogger("BasicPdfFilterFactory");
 
 }

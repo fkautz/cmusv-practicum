@@ -704,7 +704,7 @@ return success;
                                      OutputStream outputStream) {
     try {
       boolean ret = documentTransform.transform(pdfDocument);
-      logger.debug("Document transform result: " + ret);
+      logger.debug2("Document transform result: " + ret);
       pdfDocument.save(outputStream);
       return ret;
     }
@@ -721,10 +721,10 @@ return success;
       pdfDocument = new PdfDocument(inputStream);
       ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
       if (documentTransform.transform(pdfDocument, outputStream)) {
-        logger.debug("Transform from input stream succeeded");
+        logger.debug2("Transform from input stream succeeded");
       }
       else {
-        logger.debug("Transform from input stream did not succeed; using PDF document as is");
+        logger.debug2("Transform from input stream did not succeed; using PDF document as is");
         outputStream = new ByteArrayOutputStream();
         pdfDocument.save(outputStream);
       }
