@@ -185,7 +185,7 @@ public class PdfDocument {
 
   public ListIterator /* of PdfPage */ getPageIterator() throws IOException {
     List pdfPages = new ArrayList();
-    for (Iterator iter = getPdPages().iterator() ; iter.hasNext() ; ) {
+    for (Iterator iter = getPdPageIterator() ; iter.hasNext() ; ) {
       pdfPages.add(new PdfPage(this, (PDPage)iter.next()));
     }
     return pdfPages.listIterator();
