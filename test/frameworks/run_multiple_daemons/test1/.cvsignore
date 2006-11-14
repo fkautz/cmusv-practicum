@@ -5,6 +5,7 @@ config
 dpid
 history
 iddb
+jvm_args
 local.opt
 localA
 localB
