@@ -654,6 +654,7 @@ public class TestGoslingHtmlParser extends LockssTestCase {
     assertEquals(SetUtil.set(url), parseSingleSource(source));
   }
 
+
   public void testSkipsScriptTagsIgnoreCase() throws IOException {
     String url= "http://www.example.com/link3.html";
 
@@ -664,6 +665,23 @@ public class TestGoslingHtmlParser extends LockssTestCase {
       "Filler, with <b>bold</b> tags and<i>others</i>"+
       "<a href=http://www.example.com/link2.html>link2</a>" +
       "</sCripT>"+
+      "<a href=http://www.example.com/link3.html>link3</a>";
+    assertEquals(SetUtil.set(url), parseSingleSource(source));
+  }
+
+  public void testSkipsScriptTagsSpansRing() throws IOException {
+    Properties p = new Properties();
+    p.setProperty(GoslingHtmlParser.PARAM_BUFFER_CAPACITY, "90");
+    ConfigurationUtil.setCurrentConfigFromProps(p);
+    parser = new GoslingHtmlParser();
+
+    String url= "http://www.example.com/link3.html";
+
+    String source =
+      "<html><head><title>Test</title></head><body><script>" +
+      "<a href=http://www.example.com/link1.html>link1</a>" +
+      "Filler, with <b>bold</b> tags and<i>others</i>" +
+      "<a href=http://www.example.com/link2.html>link2</a></script>" +
       "<a href=http://www.example.com/link3.html>link3</a>";
     assertEquals(SetUtil.set(url), parseSingleSource(source));
   }
