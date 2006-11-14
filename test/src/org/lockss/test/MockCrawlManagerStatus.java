@@ -48,7 +48,7 @@ public class MockCrawlManagerStatus extends CrawlManagerStatus {
     super(2);
   }
 
-  public void addStatusObject(Crawler.Status status) {
+  public void addStatusObject(CrawlerStatus status) {
     statusMap.put(status.getKey(), status);
   }
 

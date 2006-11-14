@@ -371,7 +371,7 @@ public class TestOaiCrawler extends LockssTestCase {
     }
   }
 
-  static class MyCrawlerStatus extends Crawler.Status {
+  static class MyCrawlerStatus extends CrawlerStatus {
     List pendingEvents = new ArrayList();
 
     public MyCrawlerStatus(ArchivalUnit au, Collection startUrls,

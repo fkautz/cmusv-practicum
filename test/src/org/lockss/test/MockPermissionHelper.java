@@ -36,6 +36,7 @@ import java.io.BufferedInputStream;
 
 import org.lockss.daemon.Crawler;
 import org.lockss.daemon.Crawler.PermissionHelper;
+import org.lockss.crawler.*;
 import org.lockss.plugin.*;
 
 public class MockPermissionHelper implements PermissionHelper {
@@ -52,8 +53,8 @@ public class MockPermissionHelper implements PermissionHelper {
     throw new UnsupportedOperationException("not implemented");
   }
 
-  public Crawler.Status getCrawlStatus() {
-    return new Crawler.Status(null, null, null);
+  public CrawlerStatus getCrawlStatus() {
+    return new CrawlerStatus(null, null, null);
   }
 
 }

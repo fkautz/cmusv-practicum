@@ -474,7 +474,7 @@ public class TestBaseCrawler extends LockssTestCase {
 
 
   public void testGetStatusCrawlNotStarted() {
-    Crawler.Status crawlStatus = crawler.getStatus();
+    CrawlerStatus crawlStatus = crawler.getStatus();
     assertEquals(-1, crawlStatus.getStartTime());
     assertEquals(-1, crawlStatus.getEndTime());
     assertEquals(0, crawlStatus.getNumFetched());
@@ -499,7 +499,7 @@ public class TestBaseCrawler extends LockssTestCase {
     long expectedStart = TimeBase.nowMs();
     crawler.doCrawl();
     long expectedEnd = TimeBase.nowMs();
-    Crawler.Status crawlStatus = crawler.getStatus();
+    CrawlerStatus crawlStatus = crawler.getStatus();
     assertEquals(expectedStart, crawlStatus.getStartTime());
     assertEquals(expectedEnd, crawlStatus.getEndTime());
 //     assertEquals(5, crawlStatus.getNumFetched());

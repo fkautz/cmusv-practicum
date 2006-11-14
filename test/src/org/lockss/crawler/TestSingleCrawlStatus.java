@@ -106,7 +106,7 @@ public class TestSingleCrawlStatus extends LockssTestCase {
     }
   }
 
-  private void addCrawlStatus(Crawler.Status status) {
+  private void addCrawlStatus(CrawlerStatus status) {
     statusSource.getStatus().addCrawlStatus(status);
   }
 

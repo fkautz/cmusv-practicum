@@ -108,8 +108,8 @@ public class TestPermissionMap extends LockssTestCase {
       throw new UnsupportedOperationException("not implemented");
     }
 
-    public Crawler.Status getCrawlStatus() {
-      return new Crawler.Status(null, null, null);
+    public CrawlerStatus getCrawlStatus() {
+      return new CrawlerStatus(null, null, null);
     }
 
   }

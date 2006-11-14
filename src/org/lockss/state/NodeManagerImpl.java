@@ -39,7 +39,7 @@ import org.lockss.protocol.*;
 import org.lockss.repository.*;
 import org.lockss.config.Configuration;
 import org.lockss.config.CurrentConfig;
-import org.lockss.crawler.CrawlManager;
+import org.lockss.crawler.*;
 import org.lockss.alert.*;
 import java.util.ArrayList;
 
@@ -1903,7 +1903,7 @@ public class NodeManagerImpl
      */
     public void signalCrawlAttemptCompleted(boolean success,
 					    Object cookie,
-					    Crawler.Status status) {
+					    CrawlerStatus status) {
       PollCookie pollCookie = (PollCookie)cookie;
       CachedUrlSet cus = pollCookie.cus;
 

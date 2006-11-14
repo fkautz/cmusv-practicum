@@ -35,7 +35,7 @@ package org.lockss.test;
 import java.util.Collection;
 import org.lockss.util.Deadline;
 import org.lockss.plugin.ArchivalUnit;
-import org.lockss.daemon.Crawler;
+import org.lockss.crawler.*;
 
 public class MockCrawler extends NullCrawler {
   ArchivalUnit au;
@@ -52,7 +52,7 @@ public class MockCrawler extends NullCrawler {
   long numParsed = -1;
 
 
-  Crawler.Status status = null;
+  CrawlerStatus status = null;
 
   boolean wasAborted = false;
 
@@ -154,11 +154,11 @@ public class MockCrawler extends NullCrawler {
 //     return numParsed;
 //   }
 
-  public void setStatus(Crawler.Status status) {
+  public void setStatus(CrawlerStatus status) {
     this.status = status;
   }
 
-  public Crawler.Status getStatus() {
+  public CrawlerStatus getStatus() {
     if (status == null) {
       status = new MockCrawlStatus();
     }

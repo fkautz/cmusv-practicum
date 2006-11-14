@@ -84,7 +84,7 @@ public interface CrawlManager {
      */
     public void signalCrawlAttemptCompleted(boolean success,
 					    Object cookie,
-					    Crawler.Status status);
+					    CrawlerStatus status);
   }
 
   public interface StatusSource {
