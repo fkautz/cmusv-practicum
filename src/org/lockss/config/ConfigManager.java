@@ -464,7 +464,7 @@ public class ConfigManager implements LockssManager {
       String url = cf.getFileUrl();
       if (e instanceof FileNotFoundException &&
 	  StringUtil.endsWithIgnoreCase(url, ".opt")) {
-	log.info("Not loading props from nonexistent optional file: " + url);
+	log.debug2("Not loading props from nonexistent optional file: " + url);
 	return null;
       } else if (required) {
 	// This load failed.  Fail the whole thing.
