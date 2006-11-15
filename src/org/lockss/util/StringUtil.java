@@ -1077,7 +1077,7 @@ public class StringUtil {
   }
 
   /**
-   * 
+   *
    * @return true if the first str.length() chars in buffer match str
    */
   private static boolean startsWith(char[]buffer, String str,
@@ -1105,4 +1105,10 @@ public class StringUtil {
       return number + " " + pluralUnit;
     }
   }
+
+  public static boolean equalsIgnoreCase(char kar1, char kar2) {
+    return (Character.toLowerCase(kar1) == Character.toLowerCase(kar2));
+  }
+
+
 }
