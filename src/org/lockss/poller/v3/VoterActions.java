@@ -158,7 +158,6 @@ public class VoterActions {
       log.error("Unable to send message: ", ex);
       return V3Events.evtError;
     }
-    ud.hashingDone(false);
     return V3Events.evtOk;
   }
 

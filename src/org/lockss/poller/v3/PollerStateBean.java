@@ -616,4 +616,14 @@ public class PollerStateBean implements LockssSerializable {
     }
   }
 
+  /**
+   * Release resources used by this object that are no longer required after
+   * the end of a poll.
+   */
+  public void release() {
+    hashAlgorithm = null;
+    hashedBlocks = null;
+    spec = null;
+    votedPeers = null;
+  }
 }

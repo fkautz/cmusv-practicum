@@ -383,5 +383,25 @@ public class ParticipantUserData implements LockssSerializable {
   public V3LcapMessage makeMessage(int opcode, long sizeEst) {
     return makeMessage(opcode);
   }
+  
+  /**
+   * Release unneeded resources used by this object at the end of a poll.
+   */
+  public void release() {
+    introEffortProof = null;
+    pollAckEffortProof = null;
+    receiptEffortProof = null;
+    remainingEffortProof = null;
+    receiptEffortProof = null;
+    
+    hashAlgorithm = null;
+    messageDir = null;
+    nominees = null;
+    voteBlocks = null;
+    voteBlockIterator = null;
+
+    psmInterp = null;
+    psmState = null;
+  }
 
 }
