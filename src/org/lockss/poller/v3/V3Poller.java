@@ -286,6 +286,7 @@ public class V3Poller extends BasePoll {
     serializer = new V3PollerSerializer(theDaemon, pollDir);
     pollerState = serializer.loadPollerState();
     repositoryManager = daemon.getRepositoryManager();
+    int oldState = pollerState.getStatus();
     setStatus(POLLER_STATUS_RESUMING);
     // If the hash algorithm used when the poll was first created is
     // no longer available, fail the poll immediately.
@@ -316,6 +317,7 @@ public class V3Poller extends BasePoll {
     }
 
     resumedPoll = true;
+    setStatus(oldState);
     log.debug2("Restored serialized poll " + pollerState.getPollKey());
   }
 

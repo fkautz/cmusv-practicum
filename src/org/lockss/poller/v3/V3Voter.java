@@ -350,12 +350,16 @@ public class V3Voter extends BasePoll {
   }
 
   public void stopPoll(final int status) {
+    if (activePoll) {
+      activePoll = false;
+    } else {
+      return;
+    }
     if (task != null && !task.isExpired()) {
       log.debug2("Cancelling poll time reservation task");
       task.cancel();
     }
     voterUserData.setStatus(status);
-    activePoll = false;
     // Reset the duration and deadline to reflect reality
     long oldDeadline = voterUserData.getDeadline();
     long now = TimeBase.nowMs();
@@ -706,7 +710,7 @@ public class V3Voter extends BasePoll {
   /**
    * Checkpoint the current state of the voter.
    */
-  private void checkpointPoll() {
+  void checkpointPoll() {
     try {
       pollSerializer.saveVoterUserData(voterUserData);
     } catch (PollSerializerException ex) {
