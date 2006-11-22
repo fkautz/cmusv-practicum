@@ -36,6 +36,7 @@ import java.io.*;
 import java.util.*;
 import java.lang.reflect.*;
 import org.lockss.util.*;
+import org.lockss.config.*;
 import org.lockss.test.*;
 
 /**
@@ -53,7 +54,7 @@ public class TestPlatformUtil extends LockssTestCase {
     String javatmp = System.getProperty("java.io.tmpdir");
     assertEquals(javatmp, PlatformUtil.getSystemTempDir());
     String parmtmp = "/another/tmp/dir";
-    ConfigurationUtil.setFromArgs(PlatformUtil.PARAM_TMPDIR, parmtmp);
+    ConfigurationUtil.setFromArgs(ConfigManager.PARAM_TMPDIR, parmtmp);
     assertEquals(parmtmp, PlatformUtil.getSystemTempDir());
   }
 
