@@ -9,6 +9,7 @@ lockss-test.jar
 lockss-tools-test.jar
 lockss-tools.jar
 lockss.jar
+maxheap
 packing-list
 run-classpath
 run-props
