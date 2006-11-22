@@ -381,6 +381,11 @@ public class TestConfigManager extends LockssTestCase {
     Configuration config = CurrentConfig.getCurrentConfig();
   }
 
+  public void testMiscTmpdir() throws Exception {
+    ConfigurationUtil.setFromArgs(ConfigManager.PARAM_TMPDIR, "/tmp/unlikely");
+    assertEquals("/tmp/unlikely", System.getProperty("java.io.tmpdir"));
+  }
+
   public void testConfigVersionProp() {
     assertEquals("org.lockss.config.fileVersion.foo",
 		 ConfigManager.configVersionProp("foo"));
