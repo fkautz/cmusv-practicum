@@ -519,8 +519,8 @@ public class TestPollManager extends LockssTestCase {
                                      Poll.V3_POLL);
     V3Poller poll = new V3Poller(spec, theDaemon, testID, "akeyforthispoll",
                                  1234567, "SHA-1");
-    poll.stopPoll();
     pollmanager.addPoll(poll);
+    poll.stopPoll();
     PollManager.V3PollStatusAccessor v3status =
       pollmanager.getV3Status();
     v3status.incrementNumPolls(testau.getAuId());
