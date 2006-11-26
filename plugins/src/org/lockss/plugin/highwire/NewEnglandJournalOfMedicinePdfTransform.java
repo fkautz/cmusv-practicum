@@ -240,7 +240,7 @@ public class NewEnglandJournalOfMedicinePdfTransform extends SimpleOutputDocumen
         boolean ret = PdfUtil.matchTextObject(tokens, 0, last)
         // Token [last-1] is "Tj" and its operand starts with "Downloaded from "
         && PdfUtil.matchShowTextStartsWith(tokens, last - 1, "Downloaded from ");
-        logger.debug3("ProcessEndTextObject candidate match: " + ret);
+        logger.debug3("NewEnglandJournalOfMedicinePdfTransform.EraseVariableFooter.ProcessEndTextObject candidate match: " + ret);
         return ret;
       }
 
