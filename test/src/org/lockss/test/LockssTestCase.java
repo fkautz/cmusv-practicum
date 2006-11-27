@@ -1688,6 +1688,9 @@ public class LockssTestCase extends TestCase {
 
   private boolean errorIfTimerThrows = true;
 
+  /** If flg is true, exceptions thrown from TimerQueue callbacks will
+   * cause test failures, <i>iff they occur while the test is still
+   * running</i>. */
   public void setErrorIfTimerThrows(boolean flg) {
     errorIfTimerThrows = flg;
   }
