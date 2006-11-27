@@ -1698,11 +1698,9 @@ public class LockssTestCase extends TestCase {
   class ErrorRecordingTimerQueue extends TimerQueue {
     protected void doNotify0(Request req) {
       try {
-	log.info("doNotify0()");
 	super.doNotify0(req);
       } catch (Exception e) {
 	if (errorIfTimerThrows) {
-	  log.info("addError(" + LockssTestCase.this + ", " + e + ")");
 	  result.addError(LockssTestCase.this, e);
 	}
       }
