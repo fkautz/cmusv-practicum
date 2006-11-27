@@ -136,7 +136,7 @@ public class CrawlerStatus {
   public void sealCounters() {
     String keepUrls = CurrentConfig.getParam(PARAM_KEEP_URLS,
 					     DEFAULT_KEEP_URLS);
-    log.info("sealCounters(" + keepUrls + ")");
+    log.debug2("sealCounters(" + keepUrls + ")");
     fetched = fetched.seal(isType("fetched", keepUrls));
     excluded = excluded.seal(isType("excluded", keepUrls));
     notModified = notModified.seal(isType("notModified", keepUrls));
