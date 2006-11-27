@@ -364,10 +364,10 @@ public abstract class LockssServlet extends HttpServlet
   }
 
   protected void setSessionTimeout(HttpSession session) {
-    Configuration config = CurrentConfig.getCurrentConfig();
-     long time = config.getTimeInterval(PARAM_UI_SESSION_TIMEOUT,
-					DEFAULT_UI_SESSION_TIMEOUT);
      if (session.isNew()) {
+       Configuration config = CurrentConfig.getCurrentConfig();
+       long time = config.getTimeInterval(PARAM_UI_SESSION_TIMEOUT,
+					  DEFAULT_UI_SESSION_TIMEOUT);
        session.setMaxInactiveInterval((int)(time  / Constants.SECOND));
      }
   }
