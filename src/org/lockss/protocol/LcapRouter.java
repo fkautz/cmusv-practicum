@@ -56,7 +56,7 @@ public class LcapRouter
   private static final String PARAM_V3_LCAP_MESSAGE_DATA_DIR =
     PREFIX + "v3LcapMessageDataDir";
   private static final String DEFAULT_V3_LCAP_MESSAGE_DATA_DIR =
-    System.getProperty("java.io.tmpdir");
+    "System tmpdir";
   
   static Logger log = Logger.getLogger("Router");
 
@@ -111,7 +111,7 @@ public class LcapRouter
 			Configuration.Differences changedKeys) {
     if (changedKeys.contains(PARAM_V3_LCAP_MESSAGE_DATA_DIR)) {
         String paramDataDir = config.get(PARAM_V3_LCAP_MESSAGE_DATA_DIR,
-                                         DEFAULT_V3_LCAP_MESSAGE_DATA_DIR);
+                                         PlatformUtil.getSystemTempDir());
         File dir = new File(paramDataDir);
         if (dir.exists() || dir.mkdirs()) {
           dataDir = dir;
