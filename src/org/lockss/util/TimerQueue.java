@@ -81,6 +81,12 @@ public class TimerQueue {
     singleton.queue = new PriorityQueue();
   }
 
+  /** For testing only; do no use */
+  // XXX - Find a better way to allow LockssTestCase to install a subclass
+  public static synchronized void setSingleton(TimerQueue tq) {
+    singleton = tq;
+  }
+
   private Request add(Deadline deadline, Callback callback, Object cookie) {
     Request req = new Request(deadline, callback, cookie);
     req.deadline.registerCallback(req.deadlineCb);
@@ -151,12 +157,17 @@ public class TimerQueue {
       // tk - run these in a separate thread
       req.deadline.unregisterCallback(req.deadlineCb);
       try {
-	req.callback.timerExpired(req.cookie);
+	doNotify0(req);
       } catch (Exception e) {
 	log.error("Timer callback threw", e);
       }
     }
     queue.remove(req);
+  }
+
+  // Allow to be overridden for testing.
+  protected void doNotify0(Request req) {
+    req.callback.timerExpired(req.cookie);
   }
 
   public void stop() {
