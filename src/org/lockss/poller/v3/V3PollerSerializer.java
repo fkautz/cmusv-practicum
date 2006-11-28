@@ -78,8 +78,8 @@ public class V3PollerSerializer extends V3Serializer {
   private static final class PollerUserDataFileFilter implements FileFilter {
 
     public boolean accept(File pathname) {
-      return StringUtil.startsWithIgnoreCase(pathname.getName(),
-                                             POLLER_USER_DATA_PREFIX);
+      return (pathname.getName().startsWith(POLLER_USER_DATA_PREFIX)
+              && pathname.getName().endsWith(POLLER_USER_DATA_SUFFIX));
     }
 
   }
