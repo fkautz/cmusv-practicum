@@ -287,9 +287,12 @@ public class HashSvcSchedImpl
 	bytesHashed += res;
 	unaccountedBytesHashed += res;
 	return res;
+      } catch (RuntimeException e) {
+	log.error("hashStep threw", e);
+	throw e;
       } catch (Exception e) {
 	log.error("hashStep threw", e);
-	throw new RuntimeException(e.toString());
+	throw new RuntimeException(e.toString(), e);
       }
     }
 
