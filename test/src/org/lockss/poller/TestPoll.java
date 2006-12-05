@@ -456,7 +456,9 @@ public class TestPoll extends LockssTestCase {
 
   private void initRequiredServices() {
     theDaemon = getMockLockssDaemon();
-    pollmanager = theDaemon.getPollManager();
+    pollmanager = new LocalPollManager();
+    pollmanager.initService(theDaemon);
+    theDaemon.setPollManager(pollmanager);
 
     theDaemon.getPluginManager();
     testau = PollTestPlugin.PTArchivalUnit.createFromListOfRootUrls(rootV1urls);
@@ -578,6 +580,12 @@ public class TestPoll extends LockssTestCase {
     }
   }
 
+  static class LocalPollManager extends PollManager {
+    // ignore message sends
+    public void sendMessage(V1LcapMessage msg, ArchivalUnit au)
+        throws IOException {
+    }
+  }
 
   /** Executes the test case
    * @param argv array of Strings containing command line arguments
