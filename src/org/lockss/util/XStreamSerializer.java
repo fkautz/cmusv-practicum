@@ -551,11 +551,6 @@ public class XStreamSerializer extends ObjectSerializer {
   private boolean initialized;
 
   /**
-   * <p>A saved reference to the serialization context object.</p>
-   */
-  private LockssApp lockssContext;
-
-  /**
    * <p>An instance of the {@link com.thoughtworks.xstream.XStream}
    * facade class.</p>
    */
@@ -600,7 +595,6 @@ public class XStreamSerializer extends ObjectSerializer {
   public XStreamSerializer(LockssApp lockssContext) {
     super(lockssContext);
     this.initialized = false; // lazy instantiation, see init()
-    this.lockssContext = lockssContext;
   }
 
   /**
@@ -621,7 +615,6 @@ public class XStreamSerializer extends ObjectSerializer {
           saveTempFiles,
           failedDeserializationMode);
     this.initialized = false; // lazy instantiation, see init()
-    this.lockssContext = lockssContext;
   }
 
   /* Inherit documentation */
