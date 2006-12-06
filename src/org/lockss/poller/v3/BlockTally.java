@@ -73,16 +73,12 @@ public class BlockTally {
 
   int result = RESULT_HASHING; // Always hashing when BlockTally is created.
   int quorum;
-  double trustedWeight;
   double voteMargin;
 
   private static final Logger log = Logger.getLogger("BlockTally");
 
   public BlockTally(int quorum) {
     this.quorum = quorum;
-    this.trustedWeight =
-      (double)CurrentConfig.getIntParam(V3Poller.PARAM_V3_TRUSTED_WEIGHT,
-                                        V3Poller.DEFAULT_V3_TRUSTED_WEIGHT);
     this.voteMargin =
       ((double)CurrentConfig.getIntParam(V3Poller.PARAM_V3_VOTE_MARGIN,
                                          V3Poller.DEFAULT_V3_VOTE_MARGIN)) / 100;

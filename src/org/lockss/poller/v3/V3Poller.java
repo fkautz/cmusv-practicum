@@ -211,7 +211,6 @@ public class V3Poller extends BasePoll {
     Collections.synchronizedMap(new LinkedHashMap());
   private LockssDaemon theDaemon;
   private PollManager pollManager;
-  private RepositoryManager repositoryManager;
   private IdentityManager idManager;
   private V3PollerSerializer serializer;
   private boolean resumedPoll;
@@ -256,7 +255,6 @@ public class V3Poller extends BasePoll {
     this.theDaemon = daemon;
     this.pollManager = daemon.getPollManager();
     this.idManager = daemon.getIdentityManager();
-    this.repositoryManager = daemon.getRepositoryManager();
     if (hashAlg == null) hashAlg = LcapMessage.DEFAULT_HASH_ALGORITHM;
     // If the hash algorithm is not available, fail the poll immediately.
     try {
@@ -295,7 +293,6 @@ public class V3Poller extends BasePoll {
     theDaemon = daemon;
     serializer = new V3PollerSerializer(theDaemon, pollDir);
     pollerState = serializer.loadPollerState();
-    repositoryManager = daemon.getRepositoryManager();
     int oldState = pollerState.getStatus();
     setStatus(POLLER_STATUS_RESUMING);
     // If the hash algorithm used when the poll was first created is
@@ -1852,7 +1849,6 @@ public class V3Poller extends BasePoll {
     voteCompleteRequest = null;
     task = null;
     serializer = null;
-    repositoryManager = null;
     pollManager = null;
     idManager = null;
   }

@@ -74,7 +74,8 @@ public class VoterUserData
   private PsmInterpStateBean psmState;
   private int status;
   private String errorDetail;
-  /** @deprecated */
+  /** @deprecated 
+   * Left here only for deserialization compatibility */
   private String statusString;
 
   /** Transient non-serialized fields */
@@ -108,7 +109,6 @@ public class VoterUserData
     this.pollerNonce = pollerNonce;
     this.introEffortProof = introEffortProof;
     this.createTime = TimeBase.nowMs();
-    this.statusString = "Active";
     this.messageDir = messageDir;
     this.voteBlocks = new DiskVoteBlocks(voter.getStateDir());
   }

@@ -660,10 +660,6 @@ public class V3PollStatus {
       extends V3PollStatus implements StatusAccessor {
     static final String TABLE_TITLE = "V3 Vote Status";
 
-    private final List sortRules =
-      ListUtil.list(new StatusTable.SortRule("identity",
-                                             CatalogueOrderComparator.SINGLETON));
-
     public V3VoterStatusDetail(PollManager manager) {
       super(manager);
     }
