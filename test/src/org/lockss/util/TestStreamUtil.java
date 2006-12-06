@@ -36,6 +36,7 @@ import java.util.*;
 import java.io.*;
 import junit.framework.TestCase;
 import org.apache.commons.io.input.*;
+import org.apache.commons.io.output.NullOutputStream;
 
 import org.lockss.test.*;
 import org.lockss.daemon.LockssWatchdog;
