@@ -107,7 +107,7 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
     } else {
       return super.getPermissionPages();
     }
-    List permission_list = new ArrayList();
+    List permission_list = new ArrayList(templateList.size());
     for(Iterator it = templateList.iterator(); it.hasNext();) {
       String permissionPage = convertVariableString((String)it.next());
       log.debug3("Adding permission page: "+permissionPage);
