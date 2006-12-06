@@ -49,8 +49,6 @@ public class OaiArchivalUnit extends BaseArchivalUnit {
   private String m_oaiHandlerUrl = null;
   //private int m_maxRefetchDepth = NewContentCrawler.DEFAULT_MAX_CRAWL_DEPTH;
 
-  private List m_permissionCheckers;
-
   protected Logger logger = Logger.getLogger("OaiArchivalUnit");
 
   public OaiArchivalUnit(OaiPlugin plugin) {

@@ -197,7 +197,7 @@ public class RateLimiter {
   }
 
   /** Return the limit as a rate string n/interval */
-  public String getRate() {
+  public synchronized String getRate() {
     if (rate == null) {
       rate = rateString();
     }

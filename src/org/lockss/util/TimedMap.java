@@ -89,6 +89,7 @@ public abstract class TimedMap implements Map {
   /** Return true if the argument if a TimeMap of the same type with the
    * same contents, ignoring expiration times */
   public boolean equals(Object o) {
+    if (o == null) return false;
     return (getClass() == o.getClass()) &&
       entries.equals(((TimedMap)o).getEntries());
   }

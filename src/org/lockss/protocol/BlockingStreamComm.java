@@ -428,9 +428,10 @@ public class BlockingStreamComm
     // We now have a password to decrypt the private key in the
     // SSL keystore.  Next create the keystore from the file.
     KeyStore keyStore = null;
+    InputStream fis = null;
     try {
       keyStore = KeyStore.getInstance("JCEKS");
-      FileInputStream fis = new FileInputStream(paramSslKeyStore);
+      fis = new FileInputStream(paramSslKeyStore);
       keyStore.load(fis, paramSslKeyStorePassword.toCharArray());
     } catch (KeyStoreException ex) {
       log.error("loading SSL key store threw " + ex);
@@ -444,6 +445,8 @@ public class BlockingStreamComm
     } catch (CertificateException ex) {
       log.error("loading SSL key store threw " + ex);
       return;
+    } finally {
+      IOUtil.safeClose(fis);
     }
     {
       String temp = new String(sslPrivateKeyPassword);
@@ -1052,7 +1055,7 @@ public class BlockingStreamComm
 	log.debug3("accept()");
 	try {
 	  Socket sock = listenSock.accept();
-	  if (sock instanceof SSLSocket & paramSslClientAuth) {
+	  if (sock instanceof SSLSocket && paramSslClientAuth) {
 	    // Ensure handshake is complete before doing anything else
 	    handShake((SSLSocket)sock);
 	  }

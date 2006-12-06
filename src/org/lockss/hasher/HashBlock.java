@@ -111,7 +111,7 @@ public class HashBlock implements LockssSerializable {
    * order is by repository version.
    *
    */
-  public class Version implements Comparable {
+  public static class Version implements Comparable {
     long filteredOffset;
     long filteredLength;
     long unfilteredOffset;

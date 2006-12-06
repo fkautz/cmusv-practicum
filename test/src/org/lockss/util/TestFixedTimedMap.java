@@ -135,6 +135,9 @@ public class TestFixedTimedMap extends LockssTestCase {
     FixedTimedMap map2 = new FixedTimedMap(timeout);
     map2.putAll(map);
     assertEquals(map, map2);
+    map.put(new Object(), "foo");
+    assertNotEquals(map, map2);
+    assertFalse(map.equals(null));
   }
 
   public void testSizeRemove() {

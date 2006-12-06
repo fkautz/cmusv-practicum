@@ -544,7 +544,6 @@ public class HashCUS extends LockssServlet {
       
     public void blockDone(HashBlock block) {
       HashBlock.Version ver = block.currentVersion();
-      String url = block.getUrl();
       outs.println(byteString(ver.getHashes()[0]) + "   " + block.getUrl());
     }
   }

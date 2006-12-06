@@ -83,7 +83,6 @@ public class HtmlFilterInputStream extends InputStream {
   private FeedbackLogger fl = new FeedbackLogger();
 
   private InputStream in;
-  private Reader outr = null;
   private InputStream out = null;
   private HtmlTransform xform;
 
@@ -189,7 +188,7 @@ public class HtmlFilterInputStream extends InputStream {
     in = null;
   }
 
-  class FeedbackLogger implements ParserFeedback{
+  static class FeedbackLogger implements ParserFeedback{
     public FeedbackLogger() {
     }
     public void warning(String message) {

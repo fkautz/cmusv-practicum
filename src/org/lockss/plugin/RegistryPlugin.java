@@ -51,7 +51,8 @@ public class RegistryPlugin extends BasePlugin {
   private static String PLUGIN_NAME = "Registry";
   private static String CURRENT_VERSION = "1";
 
-  public static String PREFIX = Configuration.PREFIX + "plugin.registries.";
+  public static final String PREFIX =
+    Configuration.PREFIX + "plugin.registries.";
 
   // List of defining properties (only base_url for Registry plugins)
   private static final List m_auConfigDescrs =
