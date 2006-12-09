@@ -309,7 +309,7 @@ Args:
   	<pathelement path="${bouncycastle.mail.jar}" />
   	<pathelement path="${flute.jar}" />
   	<!-- Needed by Flute: -->
-  	<pathelement path="${sac.jar}}" />
+  	<pathelement path="${sac.jar}" />
     <!-- jars needed to run the OAI harvester -->
     <pathelement path="${oai-harvester.jar}" />
     <pathelement path="${xalan.jar}" />
