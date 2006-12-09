@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,26 +30,39 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.crawler;
-
+package org.lockss.plugin.wrapper;
 import java.io.*;
-
 import org.lockss.daemon.*;
-import org.lockss.plugin.ArchivalUnit;
+import org.lockss.plugin.*;
 
-public interface ContentParser {
-  /**
-   * Parse reader for urls and call cb.foundUrl on each found one
-   * @param au TODO
-   */
-  public void parseForUrls(Reader reader, String srcUrl,
-			   ArchivalUnit au, ContentParser.FoundUrlCallback cb)
-      throws IOException, PluginException;
+/** Error catching wrapper for FilterFactory */
+public class FilterFactoryWrapper
+  implements FilterFactory, PluginCodeWrapper {
 
-  /**
-   * Callback for a ContentParser to call each time it finds a url
-   */
-  public static interface FoundUrlCallback {
-    public void foundUrl(String url);
+  FilterFactory inst;
+
+  public FilterFactoryWrapper(FilterFactory inst) {
+    this.inst = inst;
+  }
+
+  public Object getWrappedObj() {
+    return inst;
+  }
+
+  public InputStream createFilteredInputStream(ArchivalUnit au,
+					       InputStream in,
+					       String encoding)
+      throws PluginException {
+    try {
+      return inst.createFilteredInputStream(au, in, encoding);
+    } catch (LinkageError e) {
+      throw new PluginException.LinkageError(e);
+    }
+  }
+
+  static class Factory implements WrapperFactory {
+    public Object wrap(Object obj) {
+      return new FilterFactoryWrapper((FilterFactory)obj);
+    }
   }
 }

@@ -40,6 +40,6 @@ public interface PermissionCheckerFactory {
    * @param au ArchivalUnit that these permission checkers will be used on
    * @return a list of permission checkers, which may be empty
    */
-  public List createPermissionCheckers(ArchivalUnit au);
-
+  public List createPermissionCheckers(ArchivalUnit au)
+      throws PluginException;
 }

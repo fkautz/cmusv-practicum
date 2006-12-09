@@ -30,9 +30,10 @@ in this Software without prior written authorization from Stanford University.
 
 */
 package org.lockss.plugin;
+import org.lockss.daemon.*;
 
 public interface UrlNormalizer {
 
-  public String normalizeUrl(String url, ArchivalUnit au);
-
+  public String normalizeUrl(String url, ArchivalUnit au)
+      throws PluginException;
 }

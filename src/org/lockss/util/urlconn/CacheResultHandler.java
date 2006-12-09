@@ -30,9 +30,11 @@ in this Software without prior written authorization from Stanford University.
 
 */
 package org.lockss.util.urlconn;
+import org.lockss.daemon.*;
 
 public interface CacheResultHandler {
-  public void init(CacheResultMap map);
+  public void init(CacheResultMap map) throws PluginException;
   public CacheException handleResult(int code,
-				     LockssUrlConnection connection);
+				     LockssUrlConnection connection)
+      throws PluginException;
 }

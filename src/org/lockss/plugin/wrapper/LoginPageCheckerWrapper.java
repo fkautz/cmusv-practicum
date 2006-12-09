@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,26 +30,38 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.crawler;
-
+package org.lockss.plugin.wrapper;
 import java.io.*;
-
+import java.util.*;
 import org.lockss.daemon.*;
-import org.lockss.plugin.ArchivalUnit;
+import org.lockss.plugin.*;
 
-public interface ContentParser {
-  /**
-   * Parse reader for urls and call cb.foundUrl on each found one
-   * @param au TODO
-   */
-  public void parseForUrls(Reader reader, String srcUrl,
-			   ArchivalUnit au, ContentParser.FoundUrlCallback cb)
-      throws IOException, PluginException;
+/** Error catching wrapper for LoginPageChecker */
+public class LoginPageCheckerWrapper
+  implements LoginPageChecker, PluginCodeWrapper {
 
-  /**
-   * Callback for a ContentParser to call each time it finds a url
-   */
-  public static interface FoundUrlCallback {
-    public void foundUrl(String url);
+  LoginPageChecker inst;
+
+  public LoginPageCheckerWrapper(LoginPageChecker inst) {
+    this.inst = inst;
+  }
+
+  public Object getWrappedObj() {
+    return inst;
+  }
+
+  public boolean isLoginPage(Properties props, Reader reader)
+      throws IOException, PluginException {
+    try {
+      return inst.isLoginPage(props, reader);
+    } catch (LinkageError e) {
+      throw new PluginException.LinkageError(e);
+    }
+  }
+
+  static class Factory implements WrapperFactory {
+    public Object wrap(Object obj) {
+      return new LoginPageCheckerWrapper((LoginPageChecker)obj);
+    }
   }
 }

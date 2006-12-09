@@ -32,6 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.plugin;
 import java.io.*;
+import org.lockss.daemon.*;
 
 /** Factory that creates a filtered InputStream from a source
  * InputStream. */
@@ -44,5 +45,6 @@ public interface FilterFactory {
    */
   public InputStream createFilteredInputStream(ArchivalUnit au,
 					       InputStream in,
-					       String encoding);
+					       String encoding)
+      throws PluginException;
 }

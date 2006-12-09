@@ -1052,6 +1052,8 @@ public class PluginManager
       }
     } catch (ClassNotFoundException ex) {
       log.debug3(pluginName + ": Class not found on classpath.");
+    } catch (LinkageError e) {
+      log.warning("Can't load plugin", e);
     }
 
     // 2. Look for a loadable plugin definition.

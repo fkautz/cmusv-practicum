@@ -34,7 +34,9 @@ package org.lockss.daemon;
 
 import java.util.Properties;
 import java.io.*;
+import org.lockss.daemon.*;
 
 public interface LoginPageChecker {
-  boolean isLoginPage(Properties props, Reader reader) throws IOException;
+  boolean isLoginPage(Properties props, Reader reader)
+      throws IOException, PluginException;
 }

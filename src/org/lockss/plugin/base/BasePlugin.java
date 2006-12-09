@@ -333,7 +333,11 @@ public abstract class BasePlugin
   }
 
   String siteNormalizeUrl(String url, ArchivalUnit au) {
-    return getUrlNormalizer().normalizeUrl(url, au);
+    try {
+      return getUrlNormalizer().normalizeUrl(url, au);
+    } catch (PluginException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   UrlNormalizer getUrlNormalizer() {

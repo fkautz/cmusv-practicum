@@ -34,6 +34,7 @@ package org.lockss.devtools;
 
 import java.io.*;
 
+import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.util.*;
 
@@ -93,8 +94,11 @@ public class FilterRunner {
     Reader reader = new FileReader(src);
     dest.createNewFile();
     Writer writer = new FileWriter(dest);
-    StreamUtil.copy(filter.createFilteredReader(reader), writer);
-
+    try {
+      StreamUtil.copy(filter.createFilteredReader(reader), writer);
+    } catch (PluginException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   public static FilterRule filterRuleFromString(String filterStr)
@@ -158,9 +162,13 @@ public class FilterRunner {
     InputStream in = new BufferedInputStream(new FileInputStream(src));
     dest.createNewFile();
     OutputStream out = new FileOutputStream(dest);
-    StreamUtil.copy(filter.createFilteredInputStream(null, in,
-						     Constants.DEFAULT_ENCODING),
-		    out);
+    try {
+      StreamUtil.copy(filter.createFilteredInputStream(null, in,
+						       Constants.DEFAULT_ENCODING),
+		      out);
+    } catch (PluginException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   public static FilterFactory filterFactoryFromString(String filterStr)

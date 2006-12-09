@@ -29,8 +29,7 @@ be used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from Stanford University.
 
 */
-
-package org.lockss.plugin.blackwell;
+package org.lockss.plugin.wrapper;
 
 import java.io.*;
 import java.util.*;
@@ -40,27 +39,52 @@ import org.lockss.plugin.*;
 import org.lockss.test.*;
 import org.lockss.util.*;
 
-/**
- * Test class for org.lockss.plugin.blackwell.BlackwellUrlNormalizer
- */
-public class TestBlackwellUrlNormalizer extends LockssTestCase {
+public class TestFilterRuleWrapper extends LockssTestCase {
 
-  UrlNormalizer norm;
-  ArchivalUnit mau;
+  public void testWrap() throws PluginException {
+    FilterRule obj = new MockFilterRule();
+    FilterRule wrapper =
+      (FilterRule)WrapperUtil.wrap(obj, FilterRule.class);
+    assertTrue(wrapper instanceof FilterRuleWrapper);
+    assertTrue(WrapperUtil.unwrap(wrapper) instanceof MockFilterRule);
 
-  public void setUp() {
-    norm = new BlackwellUrlNormalizer();
-    mau = new MockArchivalUnit();
+    Reader in = new StringReader("foo");
+    assertEquals(in, wrapper.createFilteredReader(in));
+    MockFilterRule mn = (MockFilterRule)obj;
+    assertEquals(ListUtil.list(in), mn.args);
   }
 
-  void assertNorm(String exp, String url) throws PluginException {
-    assertEquals(exp, norm.normalizeUrl(url, mau));
+  public void testLinkageError() {
+    FilterRule obj = new MockFilterRule();
+    FilterRule wrapper =
+      (FilterRule)WrapperUtil.wrap(obj, FilterRule.class);
+    assertTrue(wrapper instanceof FilterRuleWrapper);
+    assertTrue(WrapperUtil.unwrap(wrapper) instanceof MockFilterRule);
+    Error err = new LinkageError("bar");
+    MockFilterRule a = (MockFilterRule)obj;
+    a.setError(err);
+    try {
+      wrapper.createFilteredReader(new StringReader("foo"));
+      fail("Should have thrown PluginException");
+    } catch (PluginException e) {
+      assertTrue(e instanceof PluginException.LinkageError);
+    }
   }
 
-  public void testUrl() throws PluginException {
-    assertNorm("http://foo.bar/a.h", "http://foo.bar/a.h");
-    assertNorm("http://foo.bar/a.h", "http://foo.bar/a.h?cookieSet=1");
-    assertNorm("http://foo.bar/a.h?b=d", "http://foo.bar/a.h?b=d&cookieSet=1");
-    assertNorm("http://foo.bar/a.h?b=d", "http://foo.bar/a.h?cookieSet=1&b=d");
+  public static class MockFilterRule implements FilterRule {
+    List args;
+    Error error;
+
+    void setError(Error error) {
+      this.error = error;
+    }
+
+    public Reader createFilteredReader(Reader in) {
+      args = ListUtil.list(in);
+      if (error != null) {
+	throw error;
+      }
+      return in;
+    }
   }
 }

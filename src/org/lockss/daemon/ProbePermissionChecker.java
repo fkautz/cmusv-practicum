@@ -98,7 +98,10 @@ public class ProbePermissionChecker implements PermissionChecker {
       } catch (IOException ex) {
 	logger.error("Exception trying to check for login page "+probeUrl, ex);
 	return false;
-      }
+      } catch (PluginException e) {
+	logger.error("PluginException checking for login page "+probeUrl, e);
+	return false;
+      }	
     } else {
       logger.warning("Didn't find a probe URL on "+permissionUrl);
     }

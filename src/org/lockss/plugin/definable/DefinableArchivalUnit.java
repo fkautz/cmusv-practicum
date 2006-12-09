@@ -254,13 +254,17 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
       (PermissionCheckerFactory) loadClass(permissionCheckerFactoryClass,
 					   PermissionCheckerFactory.class);
     log.debug("Loaded PermissionCheckerFactory: " + fact);
-    List permissionCheckers = fact.createPermissionCheckers(this);
+    try {
+      List permissionCheckers = fact.createPermissionCheckers(this);
       if (permissionCheckers.size() > 1) {
         log.error("Plugin specifies multiple permission checkers, but we " +
 		  "only support one: " + this);
 
       }
-    return (PermissionChecker)permissionCheckers.get(0);
+      return (PermissionChecker)permissionCheckers.get(0);
+    } catch (PluginException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   protected CrawlWindow makeCrawlWindow() {
@@ -394,7 +398,8 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
   }
 
   public interface ConfigurableCrawlWindow {
-    public CrawlWindow makeCrawlWindow();
+    public CrawlWindow makeCrawlWindow()
+	throws PluginException;
   }
 
 }

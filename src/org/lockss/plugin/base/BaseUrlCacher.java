@@ -307,11 +307,15 @@ public class BaseUrlCacher implements UrlCacher {
       }
       input.mark(LOGIN_BUFFER_MAX);
       Reader reader = new InputStreamReader(input, Constants.DEFAULT_ENCODING);
-      if (checker.isLoginPage(headers, reader)) {
-	throw new CacheException.PermissionException("Found a login page");
-      } else {
-	input = resetInputStream(input, fetchUrl);
-      }
+      try {
+	if (checker.isLoginPage(headers, reader)) {
+	  throw new CacheException.PermissionException("Found a login page");
+	} else {
+	  input = resetInputStream(input, fetchUrl);
+	}
+      } catch (PluginException e) {
+        throw new RuntimeException(e);
+      }	
     } else {
       logger.debug3("Didn't find a login page checker");
     }
