@@ -50,8 +50,7 @@ public class CacheResultHandlerWrapper
     return inst;
   }
 
-  public void init(CacheResultMap map)
-      throws PluginException.LinkageError {
+  public void init(CacheResultMap map) throws PluginException {
     try {
       inst.init(map);
     } catch (LinkageError e) {
