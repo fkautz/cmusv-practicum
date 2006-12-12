@@ -669,30 +669,42 @@ public class TestBaseArchivalUnit extends LockssTestCase {
     assertFalse(mbau.shouldCrawlForNewContent(state));
   }
 
-  public void testGetContentParserReturnsNullForNullMimeTupe() {
+  public void testGetContentParserNullMimeType() {
     assertNull(mbau.getContentParser(null));
   }
 
-  public void testGetContentParserReturnsNullForMissingMimeType() {
+  public void testGetContentParserMissingMimeType() {
     assertNull(mbau.getContentParser(""));
   }
 
-  public void testGetContentParserReturnsGoslingHtmlParser() {
-    assertTrue(mbau.getContentParser("text/html")
-	       instanceof org.lockss.crawler.GoslingHtmlParser);
+  public void testGetContentParserCapitalization() {
+    assertTrue(mbau.getContentParser("text/html") 
+	       instanceof GoslingHtmlParser);
 
     assertTrue(mbau.getContentParser("Text/Html")
-	       instanceof org.lockss.crawler.GoslingHtmlParser);
+	       instanceof GoslingHtmlParser);
   }
 
-  public void testGetContentParserReturnsGoslingHtmlParserSpaces() {
+  public void testGetContentParserSpaces() {
     assertTrue(mbau.getContentParser(" text/html ")
-	       instanceof org.lockss.crawler.GoslingHtmlParser);
+	       instanceof GoslingHtmlParser);
   }
 
-  public void testReturnsGHPWithJunkAfterContentType() {
+  public void testGetContentParserJunkAfterContentType() {
     assertTrue(mbau.getContentParser("text/html ; random content")
-	       instanceof org.lockss.crawler.GoslingHtmlParser);
+	       instanceof GoslingHtmlParser);
+  }
+
+  public void testGetContentParser_text_html() {
+    assertTrue(mbau.getContentParser("text/html") instanceof GoslingHtmlParser);
+  }
+
+  public void testGetContentParser_text_css() {
+    assertTrue(mbau.getContentParser("text/css") instanceof CssParser);
+  }
+
+  public void testGetContentParser_application_pdf() {
+    assertNull(mbau.getContentParser("application/pdf"));
   }
 
   TitleConfig makeTitleConfig() {

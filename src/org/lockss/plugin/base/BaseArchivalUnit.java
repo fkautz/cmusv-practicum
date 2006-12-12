@@ -685,6 +685,9 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     if ("text/html".equalsIgnoreCase(mimeType)) {
       return new GoslingHtmlParser();
     }
+    else if ("text/css".equalsIgnoreCase(mimeType)) {
+      return new CssParser();
+    }
     return null;
   }
 
