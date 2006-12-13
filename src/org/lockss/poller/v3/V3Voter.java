@@ -650,6 +650,10 @@ public class V3Voter extends BasePoll {
   public Deadline getDeadline() {
     return Deadline.restoreDeadlineAt(voterUserData.getDeadline());
   }
+  
+  public Deadline getVoteDeadline() {
+    return Deadline.restoreDeadlineAt(voterUserData.getVoteDeadline());
+  }
 
   public long getDuration() {
     return voterUserData.getDuration();
