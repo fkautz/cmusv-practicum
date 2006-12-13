@@ -516,8 +516,6 @@ public class PollerStateBean implements LockssSerializable {
     /**
      * Return a list of all pending repairs that should be fetched from
      * the publisher.
-     * 
-     * @return
      */
     public synchronized List getPendingPublisherRepairs() {
       List publisherRepairs = new ArrayList();
@@ -550,8 +548,6 @@ public class PollerStateBean implements LockssSerializable {
     /**
      * Return a list of all pending repairs that should be fetched from
      * other V3 peers.
-     * 
-     * @return
      */
     public synchronized List getPendingPeerRepairs() {
       List peerRepairs = new ArrayList();

@@ -717,8 +717,6 @@ public class V3Voter extends BasePoll {
   /**
    * Returns true if we will serve a repair to the given peer for the
    * given AU and URL.
-   * 
-   * @return
    */
   boolean serveRepairs(PeerIdentity pid, ArchivalUnit au, String url) {
     return(idManager.hasAgreed(pid, au) && allowRepairs);
