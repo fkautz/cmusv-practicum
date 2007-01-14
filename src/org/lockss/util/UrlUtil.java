@@ -2,7 +2,7 @@
  * $Id$
  *
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -356,10 +356,21 @@ public class UrlUtil {
    */
   public static String getUrlPrefix(String urlStr)
       throws MalformedURLException{
-    URL url = new URL(urlStr);
-    URL url2 = new URL(url.getProtocol(), url.getHost(), url.getPort(), "/");
-    String ret = url2.toString();
+    String ret = getUrlPrefix(new URL(urlStr));
     return ret.equals(urlStr) ? urlStr : ret;
+  }
+
+  /**
+   * @param urlStr string representation of a url
+   * @return Prefix of url including protocol and host (and port).  Ends
+   * with "/", because it's not completely well-formed without it.  Returns
+   * the original string if it's already the prefix
+   * @throws MalformedURLException if urlStr is not a well formed URL
+   */
+  public static String getUrlPrefix(URL url)
+      throws MalformedURLException {
+    URL url2 = new URL(url.getProtocol(), url.getHost(), url.getPort(), "/");
+    return url2.toString();
   }
 
   /**
