@@ -104,8 +104,8 @@ public class TestHighWirePlugin extends LockssTestCase {
       fail ("Didn't throw InstantiationException when given a bad url");
     } catch (ArchivalUnit.ConfigurationException auie) {
       ConfigParamDescr.InvalidFormatException murle =
-        (ConfigParamDescr.InvalidFormatException)auie.getNestedException();
-      assertNotNull(auie.getNestedException());
+        (ConfigParamDescr.InvalidFormatException)auie.getCause();
+      assertNotNull(auie.getCause());
     }
   }
 

@@ -247,19 +247,13 @@ public interface ArchivalUnit {
   public TitleConfig getTitleConfig();
 
   public class ConfigurationException extends Exception {
-    private Throwable nestedException;
 
     public ConfigurationException(String msg) {
       super(msg);
     }
 
-    public ConfigurationException(String msg, Throwable e) {
-      super(msg + (e.getMessage() == null ? "" : (": " + e.getMessage())));
-      this.nestedException = e;
-    }
-
-    public Throwable getNestedException() {
-      return nestedException;
+    public ConfigurationException(String msg, Throwable cause) {
+      super(msg, cause);
     }
   }
 }
