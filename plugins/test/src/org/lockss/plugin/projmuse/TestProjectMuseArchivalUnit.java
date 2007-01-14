@@ -202,11 +202,11 @@ public class TestProjectMuseArchivalUnit extends LockssTestCase {
   }
 
   public void testGetUrlStems() throws Exception {
-    String stem1 = "http://muse.jhu.edu";
-    DefinableArchivalUnit pmAu1 = makeAu(new URL(stem1 + "/"), 60, DIR);
+    String stem1 = "http://muse.jhu.edu/";
+    DefinableArchivalUnit pmAu1 = makeAu(new URL(stem1 + "foo/"), 60, DIR);
     assertEquals(ListUtil.list(stem1), pmAu1.getUrlStems());
-    String stem2 = "http://muse.jhu.edu:8080";
-    DefinableArchivalUnit pmAu2 = makeAu(new URL(stem2 + "/"), 60, DIR);
+    String stem2 = "http://muse.jhu.edu:8080/";
+    DefinableArchivalUnit pmAu2 = makeAu(new URL(stem2), 60, DIR);
     assertEquals(ListUtil.list(stem2), pmAu2.getUrlStems());
   }
 

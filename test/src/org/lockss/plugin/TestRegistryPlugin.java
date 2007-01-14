@@ -88,7 +88,7 @@ public class TestRegistryPlugin extends LockssTestCase {
     assertTrue(au instanceof RegistryArchivalUnit);
     List urlStems = new ArrayList(au.getUrlStems());
     assertEquals(1, urlStems.size());
-    assertEquals("http://foo.com", (urlStems.get(0).toString()));
+    assertEquals("http://foo.com/", (urlStems.get(0).toString()));
   }
 
   // Both of these methods are currently empty implementations on

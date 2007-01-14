@@ -698,7 +698,7 @@ public class ProxyInfo {
 	for (Iterator urlIter = au.getUrlStems().iterator();
 	     urlIter.hasNext(); ) {
 	  String urlStem = (String)urlIter.next();
-	  map.put(urlStem, au);
+	  map.put(StringUtil.removeTrailing(urlStem, "/"), au);
 	}
       }
     }

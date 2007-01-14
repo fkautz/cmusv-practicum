@@ -183,7 +183,7 @@ public class TestIeeeArchivalUnit
 
   public void testGetUrlStems() throws Exception {
     URL base = new URL(ROOT_URL);
-    String stem = "http://ieeexplore.ieee.org";
+    String stem = "http://ieeexplore.ieee.org/";
     DefinableArchivalUnit ieeeAu = makeAu(base, PUB_NUMBER, VOL_YEAR);
     assertEquals(ListUtil.list(stem), ieeeAu.getUrlStems());
 

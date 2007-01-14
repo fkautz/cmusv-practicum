@@ -221,11 +221,11 @@ public class TestBlackwellArchivalUnit extends LockssPluginTestCase {
   }
 
   public void testGetUrlStems() throws Exception {
-    String stem1 = "http://www.blackwell.com";
-    DefinableArchivalUnit au1 = makeAu(stem1 + "/", JOURNAL_ID, ISSN, YEAR, "2");
+    String stem1 = "http://www.blackwell.com/";
+    DefinableArchivalUnit au1 = makeAu(stem1 + "foo/", JOURNAL_ID, ISSN, YEAR, "2");
     assertEquals(ListUtil.list(stem1), au1.getUrlStems());
-    String stem2 = "http://www.blackwell.com:8080";
-    DefinableArchivalUnit au2 = makeAu(stem2 + "/", JOURNAL_ID, ISSN, YEAR, "2");
+    String stem2 = "http://www.blackwell.com:8080/";
+    DefinableArchivalUnit au2 = makeAu(stem2, JOURNAL_ID, ISSN, YEAR, "2");
     assertEquals(ListUtil.list(stem2), au2.getUrlStems());
   }
 

@@ -151,11 +151,11 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
   }
 
   public void testGetUrlStems() throws Exception {
-    String stem1 = "http://www.example.com";
-    DefinableArchivalUnit hwau1 = makeAu(new URL(stem1 + "/"), 10);
+    String stem1 = "http://www.example.com/";
+    DefinableArchivalUnit hwau1 = makeAu(new URL(stem1 + "foo/"), 10);
     assertEquals(ListUtil.list(stem1), hwau1.getUrlStems());
-    String stem2 = "http://www.example.com:8080";
-    DefinableArchivalUnit hwau2 = makeAu(new URL(stem2 + "/"), 10);
+    String stem2 = "http://www.example.com:8080/";
+    DefinableArchivalUnit hwau2 = makeAu(new URL(stem2), 10);
     assertEquals(ListUtil.list(stem2), hwau2.getUrlStems());
   }
 

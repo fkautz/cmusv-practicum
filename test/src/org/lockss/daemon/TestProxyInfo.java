@@ -95,9 +95,9 @@ public class TestProxyInfo extends LockssTestCase {
   }
 
   public void testGetUrlStemMap() throws Exception {
-    String stem1 = "http://foo1/";
-    String stem2 = "http://foo2/";
-    String stem3 = "http://foo3/";
+    String stem1 = "http://foo1";
+    String stem2 = "http://foo2";
+    String stem3 = "http://foo3";
     getMockLockssDaemon().getPluginManager();
     MyMockArchivalUnit au1 = new MyMockArchivalUnit();
     au1.setUrlStems(ListUtil.list(stem1, stem2));

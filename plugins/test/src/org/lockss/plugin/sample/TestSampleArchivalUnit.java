@@ -140,8 +140,8 @@ public class TestSampleArchivalUnit extends LockssTestCase {
   }
 
   public void testGetUrlStems() throws Exception {
-    String stem1 = "http://www.example.org";
-    SampleArchivalUnit sAu1 = makeAu(new URL(stem1 + "/"), 108);
+    String stem1 = "http://www.example.org/";
+    SampleArchivalUnit sAu1 = makeAu(new URL(stem1), 108);
     assertEquals(ListUtil.list(stem1), sAu1.getUrlStems());
   }
 
