@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -121,14 +121,10 @@ public class SmtpClient extends TransferProtocolClient  {
   }
 
   private String makeHeloName() {
-    String host = Configuration.getPlatformHostname();
+    String host = PlatformUtil.getLocalHostname();
     if (host == null) {
-      try {
-	host = IPAddr.getLocalHost().getHostName();
-      } catch (UnknownHostException ex) {
-	log.warning("Couldn't determine HELO name, using \"LOCKSS cache\"");
-	return null;
-      }
+      log.warning("Couldn't determine HELO name, using \"LOCKSS cache\"");
+      host = "LOCKSS cache";
     }
     return host;
   }
