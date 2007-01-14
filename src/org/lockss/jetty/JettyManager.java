@@ -103,6 +103,8 @@ public abstract class JettyManager
       System.setProperty("org.mortbay.http.HttpRequest.maxFormContentSize",
 			 CurrentConfig.getParam(PARAM_MAX_FORM_SIZE,
 						DEFAULT_MAX_FORM_SIZE));
+      HttpResponse.__statusMsg.put(new Integer(HttpResponse.__502_Bad_Gateway),
+				   "Upstream Error");
       isJettyInited = true;
     }
   }
