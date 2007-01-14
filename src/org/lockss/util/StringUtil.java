@@ -491,6 +491,14 @@ public class StringUtil {
     return str.substring(0, pos);
   }
 
+  /** Iff the string ends with <code>end</code>, remove it. */
+  public static String removeTrailing(String str, String end) {
+    if (str.endsWith(end)) {
+      return str.substring(0, str.length() - end.length());
+    }
+    return str;
+  }
+
   /* Return the substring following the final dot */
   public static String shortName(Object object) {
     if (object == null) {

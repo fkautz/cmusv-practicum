@@ -640,6 +640,16 @@ public class TestStringUtil extends LockssTestCase {
     assertEquals("", StringUtil.upToFinal(".foo", "."));
   }
 
+  public void testRemoveTrailing() {
+    assertEquals("", StringUtil.removeTrailing("", "/"));
+    assertEquals("foo", StringUtil.removeTrailing("foo", "."));
+    assertEquals("foo", StringUtil.removeTrailing("foo/", "/"));
+    assertEquals("foo", StringUtil.removeTrailing("foobar", "bar"));
+    assertEquals("fo/o", StringUtil.removeTrailing("fo/o/", "/"));
+    assertEquals("/o", StringUtil.removeTrailing("/o/", "/"));
+    assertEquals("", StringUtil.removeTrailing("/", "/"));
+  }
+
   public void testNthIndexOf() {
     assertEquals(-1, StringUtil.nthIndexOf(1, "xyz", "q"));
     assertEquals(-1, StringUtil.nthIndexOf(11, "xxxyzx", "x"));
