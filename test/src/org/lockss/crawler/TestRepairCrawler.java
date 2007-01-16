@@ -170,7 +170,7 @@ public class TestRepairCrawler extends LockssTestCase {
 
   public void testRepairCrawlIgnoreCrawlWindow() {
     Properties p = new Properties();
-    p.setProperty(RepairCrawler.PARAM_NUM_CAN_REPAIR_OUTSIDE_WINDOW, "5");
+    p.setProperty(RepairCrawler.PARAM_MAX_REPAIRS_OUTSIDE_WINDOW, "5");
     ConfigurationUtil.setCurrentConfigFromProps(p);
 
     String repairUrl1 = "http://example.com/url1.html";
@@ -197,7 +197,7 @@ public class TestRepairCrawler extends LockssTestCase {
 
   public void testRepairCrawlIgnoreCrawlWindowLimitSize() {
     Properties p = new Properties();
-    p.setProperty(RepairCrawler.PARAM_NUM_CAN_REPAIR_OUTSIDE_WINDOW, "3");
+    p.setProperty(RepairCrawler.PARAM_MAX_REPAIRS_OUTSIDE_WINDOW, "3");
     ConfigurationUtil.setCurrentConfigFromProps(p);
 
     String repairUrl1 = "http://example.com/url1.html";
