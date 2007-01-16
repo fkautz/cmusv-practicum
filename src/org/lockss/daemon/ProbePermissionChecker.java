@@ -112,7 +112,7 @@ public class ProbePermissionChecker implements PermissionChecker {
   private static class CustomHtmlParser extends GoslingHtmlParser {
     private static final String LOCKSSPROBE = "lockss-probe";
 
-    protected String extractLinkFromTag(StringBuffer link, ArchivalUnit au) {
+    protected String extractLinkFromTag(StringBuffer link, ArchivalUnit au, ContentParser.FoundUrlCallback cb) {
       String returnStr = null;
 
       switch (link.charAt(0)) {
