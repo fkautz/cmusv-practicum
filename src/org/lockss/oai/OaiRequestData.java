@@ -44,7 +44,6 @@ public class OaiRequestData {
   private String auSetSpec;
   private String metadataPrefix;
 
-  private OaiMetadataHandler metadataHandler= null;
 
   /**
    * Constructor
@@ -77,10 +76,6 @@ public class OaiRequestData {
     this.urlContainerTagName = tagName;
     this.auSetSpec = setSpec;
     this.metadataPrefix = prefix;
-
-    //XXX added
-    this.metadataHandler = new Oai_dcHandler();
-
   }
 
   /**
@@ -102,14 +97,9 @@ public class OaiRequestData {
     }
     this.oaiRequestHandlerUrl = oaiRequestHandlerUrl;
     this.auSetSpec = setSpec;
-    this.metadataHandler = metadataHandler;
     this.metadataPrefix = metadataHandler.getMetadataPrefix();
     this.metadataNamespaceUrl = metadataHandler.getMetadataNamespaceUrl();
     this.urlContainerTagName = metadataHandler.getUrlContainerTagName();
-  }
-
-  public OaiMetadataHandler getMetadataHandler(){
-    return metadataHandler;
   }
 
   /**
