@@ -128,6 +128,14 @@ public class TestCollectionUtil extends LockssTestCase {
     s2.add("2");
     s2.add("1");
     assertTrue(CollectionUtil.isIsomorphic(s1, s2));
+
+    Set s = new TreeSet();
+    s.add("2");
+    s.add("1");
+    assertTrue(CollectionUtil.isIsomorphic(ListUtil.list("1", "2"), s));
+    assertTrue(CollectionUtil.isIsomorphic(ListUtil.list("1", "2"),
+					   (Collection)s));
+    assertTrue(CollectionUtil.isIsomorphic(s, ListUtil.list("1", "2")));
   }
 
   public void testRemoveElementThrowsIfNullCollection() {
