@@ -218,7 +218,11 @@ public class IpFilter {
       if (n != 4) {
 	throw new MalformedException("Must have 4 bytes", s);
       }
-      mask = (cidr == 32) ? -1 : -(1 << (32 - cidr));
+      switch (cidr) {
+      case 0: mask = 0; break;
+      case 32: mask = -1; break;
+      default: mask = -(1 << (32 - cidr)); break;
+      }
       if (mask != -1 && !maskOk) {
 	throw new MalformedException("Mask not allowed", s);
       }
