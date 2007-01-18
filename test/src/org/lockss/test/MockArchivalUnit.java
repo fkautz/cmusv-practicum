@@ -70,7 +70,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   private FilterFactory filterFactory = null;
   private ContentParser parser = null;
   private TypedEntryMap propertyMap = new TypedEntryMap();
-  private List urlStems;
+  private List urlStems = Collections.EMPTY_LIST;
 
   private static final Logger logger = Logger.getLogger("MockArchivalUnit");
 

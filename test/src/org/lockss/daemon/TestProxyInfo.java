@@ -111,13 +111,6 @@ public class TestProxyInfo extends LockssTestCase {
   }
 
   class MyMockArchivalUnit extends MockArchivalUnit {
-    private Collection urlStems;
-    public Collection getUrlStems() {
-      return urlStems;
-    }
-    void setUrlStems(Collection urlStems) {
-      this.urlStems = urlStems;
-    }
   }
 
   class MyRegistryArchivalUnit extends RegistryArchivalUnit {
