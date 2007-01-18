@@ -96,7 +96,6 @@ public class LockssErrorHandler extends AbstractHttpHandler {
     writer.write("</h2>\n");
     if (message != null) {
       writer.write("<pre>");
-      System.err.println("Message: " + message);
       writer.write(HtmlUtil.encode(message, HtmlUtil.ENCODE_TEXT));
       writer.write("</pre>\n");
     }
