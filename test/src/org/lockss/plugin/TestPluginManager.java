@@ -824,6 +824,37 @@ public class TestPluginManager extends LockssTestCase {
     assertEquals(url, cuss.getUrl());
   }
 
+  public void testGetCandidateAus() throws Exception {
+    String h1 = "http://www.foo.org/";
+    String h2 = "http://www.bar.org/";
+
+    MockArchivalUnit au0 = new MockArchivalUnit("au0");
+    au0.setName("The Little Prince");
+    au0.setUrlStems(ListUtil.list(h2));
+    PluginTestUtil.registerArchivalUnit(au0);
+
+    MockArchivalUnit au1 = new MockArchivalUnit("au1");
+    au1.setName("The Little Dipper");
+    au1.setUrlStems(ListUtil.list(h1, h2));
+    PluginTestUtil.registerArchivalUnit(au1);
+
+    MockArchivalUnit au2 = new MockArchivalUnit("au2");
+    au2.setName("Little Richard Journal 10");
+    au2.setUrlStems(ListUtil.list(h1, h2));
+    PluginTestUtil.registerArchivalUnit(au2);
+
+    MockArchivalUnit au3 = new MockArchivalUnit("au3");
+    au3.setName("Little Richard Journal 9");
+    au3.setUrlStems(ListUtil.list(h1));
+    PluginTestUtil.registerArchivalUnit(au3);
+		    
+    assertIsomorphic(ListUtil.list(au1, au3, au2),
+		     mgr.getCandidateAus(h1 + " foo.html"));
+    assertIsomorphic(ListUtil.list(au1, au0, au2),
+		     mgr.getCandidateAus(h2 + " foo.html"));
+  }
+
+
   public void testFindMostRecentCachedUrl() throws Exception {
     String prefix = "http://foo.bar/";
     String url1 = "http://foo.bar/baz";
