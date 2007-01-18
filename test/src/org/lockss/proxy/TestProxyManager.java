@@ -118,6 +118,45 @@ public class TestProxyManager extends LockssTestCase {
     assertFalse(mgr.isRecentlyAccessedUrl(url1));
   }
 
+  void setNoIndexMode(String val) {
+    if (val != null) {
+      ConfigurationUtil.setFromArgs(ProxyManager.PARAM_NO_MANIFEST_INDEX_RESPONSES,
+				    val);
+    } else {
+      // used to remove exiting config
+      ConfigurationUtil.setFromArgs("borkborkbork", "1");
+    }
+  }
+
+  public void testShowManifestIndexForResponse() throws Exception {
+    assertTrue(mgr.showManifestIndexForResponse(404));
+    assertTrue(mgr.showManifestIndexForResponse(403));
+
+    setNoIndexMode("all");
+
+    assertFalse(mgr.showManifestIndexForResponse(404));
+    assertFalse(mgr.showManifestIndexForResponse(403));
+
+    setNoIndexMode("404");
+
+    assertFalse(mgr.showManifestIndexForResponse(404));
+    assertTrue(mgr.showManifestIndexForResponse(403));
+    assertTrue(mgr.showManifestIndexForResponse(401));
+
+    setNoIndexMode("404;401");
+
+    assertFalse(mgr.showManifestIndexForResponse(404));
+    assertTrue(mgr.showManifestIndexForResponse(403));
+    assertFalse(mgr.showManifestIndexForResponse(401));
+
+    setNoIndexMode(null);
+
+    assertTrue(mgr.showManifestIndexForResponse(404));
+    assertTrue(mgr.showManifestIndexForResponse(403));
+    assertTrue(mgr.showManifestIndexForResponse(401));
+
+  }
+
   class MyProxyManager extends ProxyManager {
     protected void startProxy() {
     }
