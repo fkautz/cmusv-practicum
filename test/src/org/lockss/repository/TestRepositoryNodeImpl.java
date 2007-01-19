@@ -502,13 +502,13 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
 
     File testFileDir = new File(tempDirPath + "/#content");
     File[] files = testFileDir.listFiles();
-    assertEquals(3, files.length);
+    assertEquals(2, files.length);
     File testFile = new File(testFileDir, "current");
     assertTrue(testFile.exists());
     testFile = new File(testFileDir, "current.props");
     assertTrue(testFile.exists());
-    testFile = new File(testFileDir, "1.props-123321");
-    assertFalse(testFile.exists());
+//    testFile = new File(testFileDir, "1.props-123321");
+//    assertFalse(testFile.exists());
   }
 
   public void testMakeNewIdenticalVersionOldWay() throws Exception {
@@ -588,13 +588,13 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
 
     File testFileDir = new File(tempDirPath + "/#content");
     File[] files = testFileDir.listFiles();
-    assertEquals(3, files.length);
+    assertEquals(2, files.length);
     File testFile = new File(testFileDir, "current");
     assertTrue(testFile.exists());
     testFile = new File(testFileDir, "current.props");
     assertTrue(testFile.exists());
-    testFile = new File(testFileDir, "1.props-123321");
-    assertFalse(testFile.exists());
+//    testFile = new File(testFileDir, "1.props-123321");
+//    assertFalse(testFile.exists());
   }
 
   public void testIdenticalVersionFixesVersionError() throws Exception {
