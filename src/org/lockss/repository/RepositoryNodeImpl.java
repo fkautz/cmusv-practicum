@@ -101,6 +101,10 @@ public class RepositoryNodeImpl implements RepositoryNode {
   // distinguish invalidated from never-been-set.
   static final String INVALID = "U";
 
+  public static final String PARAM_KEEP_ALL_PROPS_FOR_DUPE_FILE =
+    Configuration.PREFIX + "repository.keepAllPropsForDupeFile";
+  public static final boolean DEFAULT_KEEP_ALL_PROPS_FOR_DUPE_FILE = false;
+
   // the filenames associated with the filesystem storage structure
   // the node property file
   static final String NODE_PROPS_FILENAME = "#node_props";
@@ -568,7 +572,9 @@ public class RepositoryNodeImpl implements RepositoryNode {
       // get versioned props file
       File verPropsFile;
       // name 'identical version' props differently
-      if (identicalVersion) {
+      if (identicalVersion
+	  && CurrentConfig.getBooleanParam(PARAM_KEEP_ALL_PROPS_FOR_DUPE_FILE,
+	                                   DEFAULT_KEEP_ALL_PROPS_FOR_DUPE_FILE)) {
         // rename to dated property version, using 'File.lastModified()'
         long date = currentPropsFile.lastModified();
         verPropsFile = getDatedVersionedPropsFile(currentVersion, date);
