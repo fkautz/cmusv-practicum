@@ -241,7 +241,7 @@ public class ProxyInfo {
       buffer.append(getProxyHost());
       buffer.append(":");
       buffer.append(getProxyPort());
-      buffer.append("\"; }\n\n");
+      buffer.append("; DIRECT\"; }\n\n");
     }
 
     /**

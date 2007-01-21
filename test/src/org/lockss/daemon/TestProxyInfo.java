@@ -77,10 +77,10 @@ public class TestProxyInfo extends LockssTestCase {
   String ifsRE =
       " // .*\\n"
     + " if \\(shExpMatch\\(url, \\\"http://foo\\.bar/\\*\\\"\\)\\)\\n"
-    + " { return \\\"PROXY " + HOST + ":9090\\\"; }\\n\\n"
+    + " { return \\\"PROXY " + HOST + ":9090; DIRECT\\\"; }\\n\\n"
     + " // .*\\n"
     + " if \\(shExpMatch\\(url, \\\"http://x\\.com/\\*\\\"\\)\\)\\n"
-    + " { return \\\"PROXY " + HOST + ":9090\\\"; }\\n\\n";
+    + " { return \\\"PROXY " + HOST + ":9090; DIRECT\\\"; }\\n\\n";
 
   List urlStems = ListUtil.list("http://foo.bar", "http://x.com");
 
@@ -347,7 +347,7 @@ public class TestProxyInfo extends LockssTestCase {
     assertMatchesRE(
           " // Foo\\n"
         + " if \\(shExpMatch\\(url, \\\"http://foo\\.com/\\*\\\"\\)\\)\\n"
-        + " { return \\\"PROXY " + HOST + ":9090\\\"; }",
+        + " { return \\\"PROXY " + HOST + ":9090; DIRECT\\\"; }",
         removeEmptyLines(buffer.toString())
     );
   }
