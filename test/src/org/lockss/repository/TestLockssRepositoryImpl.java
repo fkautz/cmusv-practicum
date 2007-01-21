@@ -137,6 +137,18 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
     assertEquals("/foo/bar", LockssRepositoryImpl.getRepositoryRoot(mau));
   }
 
+  // The whole point of isDirInRepository() is to resolve symbolic links,
+  // but testing that would require using Runtime.exec() to create such a
+  // link.  So we test only that isDirInRepository() is canonicalizing the
+  // path.
+  public void testIsDirInRepository() throws Exception {
+    assertTrue(LockssRepositoryImpl.isDirInRepository("/foo/bar", "/foo"));
+    assertTrue(LockssRepositoryImpl.isDirInRepository("/foo/bar", "/foo/"));
+    assertTrue(LockssRepositoryImpl.isDirInRepository("/foo/../bar/a",
+						      "/bar"));
+    assertFalse(LockssRepositoryImpl.isDirInRepository("/foo/bar", "/bar"));
+  }
+
   public void testFileLocation() throws Exception {
     String cachePath =
       LockssRepositoryImpl.mapAuToFileLocation(tempDirPath, mau);
