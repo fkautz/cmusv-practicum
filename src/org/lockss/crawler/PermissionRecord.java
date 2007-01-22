@@ -46,6 +46,7 @@ public class PermissionRecord {
   public static final int PERMISSION_MISSING = 4;
   public static final int PERMISSION_REPOSITORY_ERROR = 5;
   public static final int PERMISSION_NOT_IN_CRAWL_SPEC = 6;
+  public static final int PERMISSION_CRAWL_WINDOW_CLOSED = 7;
 
   private String url;
   private String host;
