@@ -44,6 +44,10 @@ public class MockCrawlWindow implements CrawlWindow {
 
   public MockCrawlWindow() { }
 
+  public MockCrawlWindow(boolean allowCrawl) {
+    this.allowCrawl = allowCrawl;
+  }
+
   public boolean canCrawl() {
     return allowCrawl;
   }
