@@ -1081,7 +1081,7 @@ public class ProxyHandler extends AbstractHttpHandler {
 		     PlatformUtil.getLocalHostname() +
 		     ") does not contain content for that URL, " +
 		     "but it does contain possibly related content " +
-		     "in the following AU(s):\n");
+		     "in the following Archival Units:\n");
 	Element ele = ServletUtil.manifestIndex(theDaemon, candidateAus);
 	ele.write(writer);
       }
