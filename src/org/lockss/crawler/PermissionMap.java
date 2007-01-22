@@ -234,6 +234,11 @@ public class PermissionMap {
         // shouldn't happen
         logger.error("Permission unchecked for host: " + pUrl);
         // fall through, re-fetch permission like PERMISSION_FETCH_FAILED
+      case PermissionRecord.PERMISSION_CRAWL_WINDOW_CLOSED:
+	logger.debug("Couldn't fetch permission page, " +
+			"because crawl window was closed");
+	crawlStatus.setCrawlError("Crawl window closed, aborting permission check.");
+	return false;
       case PermissionRecord.PERMISSION_FETCH_FAILED:
         if (retryIfFailed) {
 	  logger.siteWarning("Failed to fetch permission page, retrying: " +
@@ -325,7 +330,7 @@ public class PermissionMap {
       } else if (!au.getCrawlSpec().inCrawlWindow()) {
         logger.debug("Crawl window closed, aborting permission check.");
         crawlErr = Crawler.STATUS_WINDOW_CLOSED;
-	status = PermissionRecord.PERMISSION_UNCHECKED;
+	status = PermissionRecord.PERMISSION_CRAWL_WINDOW_CLOSED;
       } else {
         // fetch the ppage and check for the permission statement
 	UrlCacher uc = pHelper.makeUrlCacher(pUrl);
