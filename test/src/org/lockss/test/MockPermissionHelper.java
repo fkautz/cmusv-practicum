@@ -32,7 +32,7 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.test;
 
-import java.io.BufferedInputStream;
+import java.io.*;
 
 import org.lockss.daemon.Crawler;
 import org.lockss.daemon.Crawler.PermissionHelper;
@@ -45,7 +45,8 @@ public class MockPermissionHelper implements PermissionHelper {
     throw new UnsupportedOperationException("not implemented");
   }
 
-  public BufferedInputStream resetInputStream(BufferedInputStream is, String url) {
+  public BufferedInputStream resetInputStream(BufferedInputStream is,
+                                              String url) throws IOException {
     throw new UnsupportedOperationException("not implemented");
   }
 
