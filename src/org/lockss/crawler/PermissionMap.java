@@ -237,7 +237,7 @@ public class PermissionMap {
       case PermissionRecord.PERMISSION_CRAWL_WINDOW_CLOSED:
 	logger.debug("Couldn't fetch permission page, " +
 			"because crawl window was closed");
-	crawlStatus.setCrawlError("Crawl window closed, aborting permission check.");
+	crawlStatus.setCrawlError("Crawl window closed.");
 	return false;
       case PermissionRecord.PERMISSION_FETCH_FAILED:
         if (retryIfFailed) {

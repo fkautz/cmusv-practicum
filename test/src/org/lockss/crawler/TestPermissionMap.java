@@ -154,7 +154,7 @@ public class TestPermissionMap extends LockssTestCase {
                         new MockPermissionChecker(999));
     map.init();
     assertFalse(map.hasPermission("http://www.example.com/"));
-    assertEquals("Crawl window closed, aborting permission check.",
+    assertEquals("Crawl window closed.",
                  helper.getCrawlStatus().getCrawlError());
   }
 
