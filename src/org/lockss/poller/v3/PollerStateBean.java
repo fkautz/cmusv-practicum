@@ -240,6 +240,15 @@ public class PollerStateBean implements LockssSerializable {
   public long getVoteDeadline() {
     return this.voteDeadline;
   }
+  
+  public long getVoteDuration() {
+    long dur = voteDeadline - TimeBase.nowMs();
+    if (dur < 0) {
+      return 0;
+    } else {
+      return dur;
+    }
+  }
 
   public long getDuration() {
     return duration;
@@ -551,7 +560,7 @@ public class PollerStateBean implements LockssSerializable {
       for (Iterator iter = pendingRepairs.keySet().iterator(); iter.hasNext(); ) {
         String url = (String)iter.next();
         Repair r = (Repair)pendingRepairs.get(url);
-        if (r.isPublisherRepair()) {
+        if (r != null && r.isPublisherRepair()) {
           publisherRepairs.add(url);
         }
       }

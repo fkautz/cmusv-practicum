@@ -540,7 +540,7 @@ public class TestPollManager extends LockssTestCase {
                         TimeBase.nowMs() + 50000, 
                         testID, tempDir, theDaemon);
     
-    pollMsg.setVoteDeadline(TimeBase.nowMs() + 20000);
+    pollMsg.setVoteDuration(20000);
       
     return new V3Voter(theDaemon, pollMsg);
   }

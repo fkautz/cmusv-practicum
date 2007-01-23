@@ -49,21 +49,22 @@ public class VoterActions {
     V3LcapMessage msg = (V3LcapMessage)evt.getMessage();
     VoterUserData ud = getUserData(interp);
     ud.setDeadline(TimeBase.nowMs() + msg.getDuration());
-    ud.setVoteDeadline(msg.getVoteDeadline());
+    ud.setVoteDeadline(TimeBase.nowMs() + msg.getVoteDuration());
     return V3Events.evtOk;
   }
 
   public static PsmEvent handleVerifyPollEffort(PsmEvent evt, 
                                                 PsmInterp interp) {
     // XXX: Implement effort service.
-    //
-    // If we don't want to participate, just send back a pollack
-    // with null effort proof at this point.
     return V3Events.evtOk;
   }
 
   public static PsmEvent handleProvePollAck(PsmEvent evt, PsmInterp interp) {
     VoterUserData ud = getUserData(interp);
+    // XXX: Implement effort service.
+    //
+    // If we don't want to participate, just send back a pollack
+    // with null effort proof at this point.    
     byte[] pollAckEffort = ByteArray.makeRandomBytes(20);
     ud.setPollAckEffortProof(pollAckEffort);
     return V3Events.evtOk;

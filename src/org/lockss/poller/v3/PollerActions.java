@@ -73,7 +73,7 @@ public class PollerActions {
       V3LcapMessage msg = ud.makeMessage(V3LcapMessage.MSG_POLL);
       msg.setPollerNonce(ud.getPollerNonce());
       msg.setEffortProof(ud.getIntroEffortProof());
-      msg.setVoteDeadline(ud.getPoller().getVoteDeadline());
+      msg.setVoteDuration(ud.getPoller().getVoteDuration());
       ud.sendMessageTo(msg, ud.getVoterId());
       ud.setStatus(V3Poller.PEER_STATUS_WAITING_POLL_ACK);
     } catch (IOException ex) {

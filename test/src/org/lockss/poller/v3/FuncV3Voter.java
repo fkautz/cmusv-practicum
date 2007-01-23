@@ -180,7 +180,7 @@ public class FuncV3Voter extends LockssTestCase {
                         ByteArray.makeRandomBytes(20),
                         V3LcapMessage.MSG_POLL,
                         msgDeadline, pollerId, tempDir, theDaemon);
-    msg.setVoteDeadline(msgDeadline - 10000);
+    msg.setVoteDuration((msgDeadline - TimeBase.nowMs()) + 10000);
     msg.setEffortProof(ByteArray.makeRandomBytes(20));
     return msg;
   }
