@@ -862,13 +862,15 @@ public class PollManager
       }
       
       // If neither a voter nor a poller was found, this dir can be
-      // cleaned up, unless KEEP_EMPTY_POLLSTATE_DIRS is true.
-      if (!restored && deleteInvalidPollStateDirs) {
-        FileUtil.delTree(dirs[ix]);
-        theLog.debug("Deleting empty poll state directory " + dirs[ix]);
-      } else {
-        theLog.debug("Not deleting empty poll state directory " + dirs[ix] +
-                     "due to config.");
+      // cleaned up, unless KEEP_INVALID_POLLSTATE_DIRS is true.
+      if (!restored) {
+        if (deleteInvalidPollStateDirs) {
+          FileUtil.delTree(dirs[ix]);
+          theLog.debug("Deleting invalid poll state directory " + dirs[ix]);
+        } else {
+          theLog.debug("Not deleting invalid poll state directory " 
+                       + dirs[ix]  + " due to config.");
+        }
       }
     }
   }
