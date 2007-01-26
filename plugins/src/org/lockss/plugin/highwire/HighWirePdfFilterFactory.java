@@ -210,7 +210,7 @@ public class HighWirePdfFilterFactory extends BasicPdfFilterFactory {
       public List getReplacement(List tokens) {
         // Known to have at least three "BT" tokens
         int bt = -1; int counter = 0;
-        for (int tok = tokens.size() - 1 ; counter < 3 && tok >= 0 ; ++tok) {
+        for (int tok = tokens.size() - 1 ; counter < 3 && tok >= 0 ; --tok) {
           if (PdfUtil.isBeginTextObject(tokens, tok)) {
             bt = tok; ++counter;
           }
