@@ -603,7 +603,12 @@ public class PollerStateBean implements LockssSerializable {
     public synchronized List getCompletedRepairs() {
       return completedRepairs;
     }
-    
+
+    public int size() {
+      return pendingRepairs.size() + activeRepairs.size() + 
+             completedRepairs.size();
+    }
+
     /**
      * Mark an entire list of URls active.
      * 
