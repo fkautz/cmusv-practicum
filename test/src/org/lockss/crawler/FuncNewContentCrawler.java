@@ -108,7 +108,7 @@ public class FuncNewContentCrawler extends LockssTestCase {
 
     sau =
         (SimulatedArchivalUnit)theDaemon.getPluginManager().getAllAus().get(0);
-    theDaemon.getLockssRepository(sau);
+    theDaemon.getLockssRepository(sau).startService();
     theDaemon.setNodeManager(new MockNodeManager(), sau);
   }
 
@@ -146,7 +146,7 @@ public class FuncNewContentCrawler extends LockssTestCase {
     // end.)  If the simulated AU params are changed, or
     // SimulatedContentGenerator is changed, this number may have to
     // change.
-    assertEquals(25598, AuUtil.getAuContentSize(sau));
+    assertEquals(25598, AuUtil.getAuContentSize(sau, true));
 
     List sbc = ((MySimulatedArchivalUnit)sau).sbc;
     Bag b = new HashBag(sbc);

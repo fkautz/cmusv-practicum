@@ -92,7 +92,8 @@ public class MockRepositoryNode implements RepositoryNode {
     return contentSize;
   }
 
-  public long getTreeContentSize(CachedUrlSetSpec filter) {
+  public long getTreeContentSize(CachedUrlSetSpec filter,
+				 boolean calcIfUnknown) {
     throw new UnsupportedOperationException("Not supported.");
   }
 

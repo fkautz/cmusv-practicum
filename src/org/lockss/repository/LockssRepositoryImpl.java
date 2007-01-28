@@ -142,6 +142,10 @@ public class LockssRepositoryImpl
   public void setAuConfig(Configuration auConfig) {
   }
 
+  void queueSizeCalc(RepositoryNode node) {
+    repoMgr.queueSizeCalc(node);
+  }
+
   public RepositoryNode getNode(String url) throws MalformedURLException {
     return getNode(url, false);
   }

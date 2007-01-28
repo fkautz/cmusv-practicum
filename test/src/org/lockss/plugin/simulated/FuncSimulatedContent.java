@@ -110,7 +110,7 @@ public class FuncSimulatedContent extends LockssTestCase {
     metrics.setHashSpeed(100);
 
     theDaemon.getHistoryRepository(sau).startService();
-    theDaemon.getLockssRepository(sau);
+    theDaemon.getLockssRepository(sau).startService();
     theDaemon.getNodeManager(sau).startService();
   }
 
@@ -158,7 +158,7 @@ public class FuncSimulatedContent extends LockssTestCase {
 
     sau =
         (SimulatedArchivalUnit)theDaemon.getPluginManager().getAuFromId(auId2);
-    theDaemon.getLockssRepository(sau);
+    theDaemon.getLockssRepository(sau).startService();
     theDaemon.getNodeManager(sau).startService();
 
     createContent();

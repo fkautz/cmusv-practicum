@@ -81,9 +81,12 @@ public interface RepositoryNode extends RepositoryNodeVersion {
    * Returns the size of the content tree under (and including) this cache, in
    * bytes.
    * @param filter a spec to determine which urls to return
-   * @return size
+   * @param calcIfUnknown if true, size will calculated if unknown (time
+   * consumeing)
+   * @return size, or -1 if currently unknown
    */
-  public long getTreeContentSize(CachedUrlSetSpec filter);
+  public long getTreeContentSize(CachedUrlSetSpec filter,
+				 boolean calcIfUnknown);
 
   /**
    * Returns true if node has no children.

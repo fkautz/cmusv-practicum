@@ -301,7 +301,7 @@ public class BaseCachedUrlSet implements CachedUrlSet {
     if (totalNodeSize==0) {
       try {
 	RepositoryNode node = repository.getNode(getUrl());
-        totalNodeSize = node.getTreeContentSize(spec);
+        totalNodeSize = node.getTreeContentSize(spec, true);
       } catch (MalformedURLException mue) {
         // this shouldn't happen
         logger.error("Malformed URL exception on "+spec.getUrl());
