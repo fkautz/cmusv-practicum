@@ -220,6 +220,12 @@ public class ParticipantUserData implements LockssSerializable {
   }
 
   /**
+   * @return true if this peer has agreed to participate in the poll.
+   */
+  public boolean isParticipating() {
+    return (status >= V3Poller.PEER_STATUS_ACCEPTED_POLL);
+  }
+  /**
    * Return the vote block iterator for this peer.
    * @return the vote block iterator for this peer.
    */

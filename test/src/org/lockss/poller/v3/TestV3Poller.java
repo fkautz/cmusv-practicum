@@ -274,6 +274,49 @@ public class TestV3Poller extends LockssTestCase {
     }
   }
   
+  public void testChoosePeers() throws Exception {
+    V3Poller p = makeV3Poller("testkey");
+    
+    PeerIdentity[] allPeers =
+    {
+     idmgr.findPeerIdentity("TCP:[127.0.0.1]:5000"),
+     idmgr.findPeerIdentity("TCP:[127.0.0.1]:5001"),
+     idmgr.findPeerIdentity("TCP:[127.0.0.1]:5002"),
+     idmgr.findPeerIdentity("TCP:[127.0.0.1]:5003"),
+     idmgr.findPeerIdentity("TCP:[127.0.0.1]:5004"),
+     idmgr.findPeerIdentity("TCP:[127.0.0.1]:5005"),
+     idmgr.findPeerIdentity("TCP:[127.0.0.1]:5006"),
+     idmgr.findPeerIdentity("TCP:[127.0.0.1]:5007"),
+     idmgr.findPeerIdentity("TCP:[127.0.0.1]:5008"),
+     idmgr.findPeerIdentity("TCP:[127.0.0.1]:5009"),
+    };
+    
+    PeerIdentity[] alreadySelected =
+    {    
+     allPeers[0],
+     allPeers[1],
+     allPeers[2],
+     allPeers[3]
+    };
+    
+    Collection unselectedPeers =
+      p.choosePeers(ListUtil.fromArray(allPeers),
+                    ListUtil.fromArray(alreadySelected),
+                    allPeers.length);
+    
+    assertEquals(6, unselectedPeers.size());
+    
+    assertFalse("List should not contain peer " + allPeers[0],
+                unselectedPeers.contains(allPeers[0]));
+    assertFalse("List should not contain peer " + allPeers[1],
+                unselectedPeers.contains(allPeers[1]));
+    assertFalse("List should not contain peer " + allPeers[2],
+                unselectedPeers.contains(allPeers[2]));
+    assertFalse("List should not contain peer " + allPeers[3],
+                unselectedPeers.contains(allPeers[3]));
+      
+  }
+  
   private HashBlock makeHashBlock(String url) {
     MockCachedUrl cu = new MockCachedUrl(url);
     return new HashBlock(cu);
