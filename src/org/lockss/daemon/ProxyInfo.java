@@ -355,7 +355,7 @@ public class ProxyInfo {
 
   /**
    * <p>A version of {@link FragmentBuilder} specialized to generate
-   * an EZProxy configuration fragment.</p>
+   * an EZproxy configuration fragment.</p>
    * @author Thib Guicherd-Callin
    */
   class EZProxyFragmentBuilder extends FragmentBuilder {
