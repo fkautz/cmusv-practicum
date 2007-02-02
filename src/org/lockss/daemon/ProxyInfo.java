@@ -481,7 +481,8 @@ public class ProxyInfo {
       buffer.append(" proxy-only\n");
 
       // Additional explanation if ICP is not quite ready
-      if (CurrentConfig.getBooleanParam(IcpManager.PARAM_PLATFORM_ICP_ENABLED, false)) {
+      IcpManager icpManager = (IcpManager)LockssDaemon.getManager(LockssDaemon.ICP_MANAGER);
+      if (!icpManager.isIcpServerAllowed()) {
         buffer.append(beforeCommands);
         buffer.append("# (The platform on ");
         buffer.append(getProxyHost());
