@@ -294,9 +294,9 @@ public class XmlStatusTable {
 
   static String formatByType(Object object, int type) {
     String str = DaemonStatus.convertDisplayString(object, type);
-    if (type == ColumnDescriptor.TYPE_STRING) {
-      str = StringEscapeUtils.escapeXml(str); 
-    }
+//     if (type == ColumnDescriptor.TYPE_STRING) {
+//       str = StringEscapeUtils.escapeXml(str); 
+//     }
     return str;
   }
 
