@@ -34,6 +34,7 @@ package org.lockss.util;
 
 import java.util.*;
 import java.io.*;
+import java.nio.charset.*;
 import junit.framework.TestCase;
 import org.apache.commons.io.input.*;
 import org.apache.commons.io.output.NullOutputStream;
@@ -326,6 +327,29 @@ public class TestStreamUtil extends LockssTestCase {
 				   new StringInputStream(s1)));
     assertFalse(StreamUtil.compare(new StringInputStream("foo"),
 				   new StringInputStream("bar")));
+  }
+
+  public void testGetReader() {
+    InputStream in = new StringInputStream("123");
+    InputStreamReader rdr;
+    Charset def = Charset.forName(Constants.DEFAULT_ENCODING);
+    Charset utf = Charset.forName("UTF-8");
+    rdr = (InputStreamReader)StreamUtil.getReader(in, null);
+    assertTrue(def.aliases().contains(rdr.getEncoding()));
+    rdr = (InputStreamReader)StreamUtil.getReader(in, "ISO-8859-1");
+    assertTrue(def.aliases().contains(rdr.getEncoding()));
+    rdr = (InputStreamReader)StreamUtil.getReader(in, "utf-8");
+    assertTrue(utf.aliases().contains(rdr.getEncoding()));
+    rdr = (InputStreamReader)StreamUtil.getReader(in, "NoSuchCharset");
+    assertTrue(def.aliases().contains(rdr.getEncoding()));
+  }
+
+  public void testGetReaderShortcut() throws Exception {
+    StringReader rdr = new StringReader("foo");
+    ReaderInputStream in = new ReaderInputStream(rdr);
+    Reader r2 = StreamUtil.getReader(in, null);
+    assertSame(rdr, r2);
+    assertReaderMatchesString("foo", r2);
   }
 
   public static class MyLockssWatchdog implements LockssWatchdog {
