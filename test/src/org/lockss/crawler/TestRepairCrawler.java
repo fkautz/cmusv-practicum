@@ -60,7 +60,7 @@ public class TestRepairCrawler extends LockssTestCase {
   private String startUrl = "http://www.example.com/index.html";
   private List startUrls = ListUtil.list(startUrl);
   private BaseCrawler crawler = null;
-  private MockContentParser parser = new MockContentParser();
+  private MockLinkExtractor extractor = new MockLinkExtractor();
   private MockIdentityManager idm;
   private MockLockssDaemon theDaemon = getMockLockssDaemon();
 
@@ -301,7 +301,8 @@ public class TestRepairCrawler extends LockssTestCase {
     String url2 = "http://example.com/link2.html";
 
     mau.addUrl(repairUrl1);
-    parser.addUrlsToReturn(repairUrl1, SetUtil.set(url1, url2, repairUrl2));
+    extractor.addUrlsToReturn(repairUrl1,
+				 SetUtil.set(url1, url2, repairUrl2));
     mau.addUrl(repairUrl2);
     mau.addUrl(url1);
     mau.addUrl(url2);

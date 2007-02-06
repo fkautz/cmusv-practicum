@@ -55,8 +55,10 @@ public class WrapperUtil {
 			   new FilterRuleWrapper.Factory());
     registerWrapperFactory(UrlNormalizer.class,
 			   new UrlNormalizerWrapper.Factory());
-    registerWrapperFactory(org.lockss.crawler.ContentParser.class,
-			   new ContentParserWrapper.Factory());
+    registerWrapperFactory(org.lockss.extractor.LinkExtractor.class,
+			   new LinkExtractorWrapper.Factory());
+    registerWrapperFactory(org.lockss.extractor.LinkExtractorFactory.class,
+			   new LinkExtractorFactoryWrapper.Factory());
     registerWrapperFactory(LoginPageChecker.class,
 			   new LoginPageCheckerWrapper.Factory());
     registerWrapperFactory(PermissionCheckerFactory.class,

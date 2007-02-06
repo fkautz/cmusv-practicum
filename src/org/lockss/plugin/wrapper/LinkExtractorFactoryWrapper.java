@@ -34,15 +34,15 @@ package org.lockss.plugin.wrapper;
 import java.io.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
-import org.lockss.crawler.*;
+import org.lockss.extractor.*;
 
-/** Error catching wrapper for ContentParser */
-public class ContentParserWrapper
-  implements ContentParser, PluginCodeWrapper {
+/** Error catching wrapper for LinkExtractorFactory */
+public class LinkExtractorFactoryWrapper
+  implements LinkExtractorFactory, PluginCodeWrapper {
 
-  ContentParser inst;
+  LinkExtractorFactory inst;
 
-  public ContentParserWrapper(ContentParser inst) {
+  public LinkExtractorFactoryWrapper(LinkExtractorFactory inst) {
     this.inst = inst;
   }
 
@@ -50,11 +50,10 @@ public class ContentParserWrapper
     return inst;
   }
 
-  public void parseForUrls(Reader reader, String srcUrl,
-			   ArchivalUnit au, ContentParser.FoundUrlCallback cb)
-      throws IOException, PluginException {
+  public LinkExtractor createLinkExtractor(String mimeType)
+      throws PluginException {
     try {
-      inst.parseForUrls(reader, srcUrl, au, cb);
+      return inst.createLinkExtractor(mimeType);
     } catch (LinkageError e) {
       throw new PluginException.LinkageError(e);
     }
@@ -62,7 +61,7 @@ public class ContentParserWrapper
 
   static class Factory implements WrapperFactory {
     public Object wrap(Object obj) {
-      return new ContentParserWrapper((ContentParser)obj);
+      return new LinkExtractorFactoryWrapper((LinkExtractorFactory)obj);
     }
   }
 }

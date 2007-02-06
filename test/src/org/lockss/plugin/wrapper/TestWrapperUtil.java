@@ -96,7 +96,7 @@ public class TestWrapperUtil extends LockssTestCase {
     assertRegistered(org.lockss.plugin.FilterFactory.class);
     assertRegistered(org.lockss.plugin.FilterRule.class);
     assertRegistered(org.lockss.plugin.UrlNormalizer.class);
-    assertRegistered(org.lockss.crawler.ContentParser.class);
+    assertRegistered(org.lockss.extractor.LinkExtractor.class);
     assertRegistered(LoginPageChecker.class);
     assertRegistered(PermissionCheckerFactory.class);
     assertRegistered(org.lockss.plugin.definable.DefinableArchivalUnit.ConfigurableCrawlWindow.class);

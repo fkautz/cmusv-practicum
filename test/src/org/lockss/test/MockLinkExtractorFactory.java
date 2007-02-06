@@ -34,45 +34,14 @@ package org.lockss.test;
 import java.util.*;
 import java.io.*;
 import org.lockss.plugin.*;
-import org.lockss.crawler.ContentParser;
+import org.lockss.extractor.*;
 
-public class MockContentParser implements ContentParser {
+public class MockLinkExtractorFactory implements LinkExtractorFactory {
 
-  private String urlToReturn = null;
-  private HashMap urlCollections = new HashMap();
-
-  private Set srcUrls = new HashSet();
-
-  public MockContentParser() {
+  public MockLinkExtractorFactory() {
   }
 
-  public void parseForUrls(Reader reader, String srcUrl,
-			   ArchivalUnit au, ContentParser.FoundUrlCallback cb) {
-    srcUrls.add(srcUrl);
-    if (urlToReturn != null) {
-      cb.foundUrl(urlToReturn);
-    } else if (urlCollections != null) {
-      Collection collToAdd = (Collection)urlCollections.get(srcUrl);
-      if (collToAdd != null) {
-	Iterator it = collToAdd.iterator();
-	while(it.hasNext()) {
-	  cb.foundUrl((String)it.next());
-	}
-      }
-    }
-
+  public LinkExtractor createLinkExtractor(String mimeType) {
+    return new MockLinkExtractor();
   }
-
-  public Set getSrcUrls() {
-    return srcUrls;
-  }
-
-  public void setUrlToReturn(String url) {
-    this.urlToReturn = url;
-  }
-
-  public void addUrlsToReturn(String url, Collection urls) {
-    urlCollections.put(url, urls);
-  }
-
 }
