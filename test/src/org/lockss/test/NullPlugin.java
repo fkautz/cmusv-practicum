@@ -44,6 +44,7 @@ import org.lockss.plugin.*;
 import org.lockss.state.*;
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
+import org.lockss.extractor.*;
 
 /**
  * Base class for test plugins that don't want to implement all the
@@ -181,6 +182,10 @@ public class NullPlugin {
 
     public long getContentSize() {
       return 0;
+    }
+
+    public String getContentType(){
+      return null;
     }
 
     public CIProperties getProperties() {
@@ -438,7 +443,7 @@ public class NullPlugin {
       return false;
     }
 
-    public ContentParser getContentParser(String mimeType) {
+    public LinkExtractor getLinkExtractor(String mimeType) {
       throw new UnsupportedOperationException("not implemented");
     }
 

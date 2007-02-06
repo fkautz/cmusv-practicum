@@ -119,6 +119,10 @@ public class PTestPlugin {
       return contents.length();
     }
 
+    public String getContentType(){
+      return props.getProperty(CachedUrl.PROPERTY_CONTENT_TYPE);
+    }
+
     public CIProperties getProperties() {
       return props;
     }

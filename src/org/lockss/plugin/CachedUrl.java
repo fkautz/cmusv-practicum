@@ -158,6 +158,12 @@ public interface CachedUrl extends CachedUrlSetNode {
   public long getContentSize();
 
   /**
+   * Return the content type (MIME or MIME;charset)
+   * @return the content type
+   */
+  public String getContentType();
+
+  /**
    * Return the ArchivalUnit to which this CachedUrl belongs.
    * @return the ArchivalUnit
    */

@@ -316,13 +316,10 @@ public abstract class BaseCrawler
    * found with different types of mime-types 
    */
   private void updateStatusMimeType(CachedUrl cu) {
-    CIProperties props = cu.getProperties();  
-    if (props != null) {
-      String conType = props.getProperty(CachedUrl.PROPERTY_CONTENT_TYPE);
-      if (conType != null) {      
-	String mimeType = HeaderUtil.getMimeTypeFromContentType(conType);
-        crawlStatus.signalMimeTypeOfUrl(mimeType, cu.getUrl()); 
-      }
+    String conType = cu.getContentType();  
+    if (conType != null) {      
+      String mimeType = HeaderUtil.getMimeTypeFromContentType(conType);
+      crawlStatus.signalMimeTypeOfUrl(mimeType, cu.getUrl()); 
     }
     return;
   }

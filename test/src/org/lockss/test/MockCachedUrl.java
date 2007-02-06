@@ -209,6 +209,11 @@ public class MockCachedUrl implements CachedUrl {
     return cachedProp;
   }
 
+  public String getContentType(){
+    if (cachedProp == null) return null;
+    return cachedProp.getProperty(PROPERTY_CONTENT_TYPE);
+  }
+
     // Write interface - used by the crawler.
 
   public void storeContent(InputStream input, CIProperties headers)
