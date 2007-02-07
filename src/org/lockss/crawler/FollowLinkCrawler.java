@@ -505,7 +505,7 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
      * Check that we should cache this url and haven't already parsed it
      * @param url the url string, fully qualified (ie, not relative)
      */
-    public void foundUrl(String url) {
+    public void foundLink(String url) {
       if (!isSupportedUrlProtocol(url)) {
 	return;
       }

@@ -51,7 +51,7 @@ public class TestCssLinkExtractor extends LockssTestCase {
   protected static class AlwaysFail implements LinkExtractor.Callback {
     
     /* Inherit documentation */
-    public void foundUrl(String url) {
+    public void foundLink(String url) {
       fail("Callback should not have been called");
     }
     
@@ -75,7 +75,7 @@ public class TestCssLinkExtractor extends LockssTestCase {
     }
     
     /* Inherit documentation */
-    public void foundUrl(String url) {
+    public void foundLink(String url) {
       found.add(url);
     }
   

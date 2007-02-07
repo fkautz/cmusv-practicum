@@ -32,8 +32,6 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.extractor;
 
-import java.io.*;
-
 import org.lockss.daemon.*;
 
 /** Factory to create a LinkExtractor */

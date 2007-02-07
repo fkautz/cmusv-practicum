@@ -53,13 +53,13 @@ public class MockLinkExtractor implements LinkExtractor {
     srcUrls.add(srcUrl);
     args.add(ListUtil.list(au, in, encoding, srcUrl));
     if (urlToReturn != null) {
-      cb.foundUrl(urlToReturn);
+      cb.foundLink(urlToReturn);
     } else if (urlCollections != null) {
       Collection collToAdd = (Collection)urlCollections.get(srcUrl);
       if (collToAdd != null) {
 	Iterator it = collToAdd.iterator();
 	while(it.hasNext()) {
-	  cb.foundUrl((String)it.next());
+	  cb.foundLink((String)it.next());
 	}
       }
     }

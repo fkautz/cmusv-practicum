@@ -115,7 +115,7 @@ public class TestBlackbirdPlugin extends LockssTestCase {
     final List urls = new ArrayList();
     ext.extractUrls(null, new StringInputStream(ram), null, null,
 		    new LinkExtractor.Callback() {
-		      public void foundUrl(String url) {
+		      public void foundLink(String url) {
 			urls.add(url);
 		      }});
     assertEquals(ListUtil.list("http://www.blackbird.vcu.edu/lockss_media/v0n0/foo/bar.rm"), urls);

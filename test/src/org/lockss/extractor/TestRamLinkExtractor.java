@@ -42,20 +42,20 @@ public class TestRamLinkExtractor extends LockssTestCase {
   static String ENC = Constants.DEFAULT_ENCODING;
 
   private RamLinkExtractor extractor = null;
-  private MyFoundUrlCallback cb = null;
+  private MyLinkExtractorCallback cb = null;
   private MockArchivalUnit mau;
 
   public void setUp() throws Exception {
     super.setUp();
     mau = new MockArchivalUnit();
     extractor = RamLinkExtractor.makeBasicRamLinkExtractor();
-    cb = new MyFoundUrlCallback();
+    cb = new MyLinkExtractorCallback();
   }
 
   public void testThrows() throws IOException {
     try {
       extractor.extractUrls(mau, null, ENC, "http://www.example.com/",
-			    new MyFoundUrlCallback());
+			    new MyLinkExtractorCallback());
       fail("Calling extractUrls with a null InputStream should have thrown");
     } catch (IllegalArgumentException iae) {
     }
@@ -169,10 +169,10 @@ public class TestRamLinkExtractor extends LockssTestCase {
     assertEquals(expected, actual);
   }
 
-  private class MyFoundUrlCallback implements LinkExtractor.Callback {
+  private class MyLinkExtractorCallback implements LinkExtractor.Callback {
     Set foundUrls = new HashSet();
 
-    public void foundUrl(String url) {
+    public void foundLink(String url) {
       foundUrls.add(url);
     }
 

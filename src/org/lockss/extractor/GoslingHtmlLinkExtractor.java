@@ -81,7 +81,6 @@ import org.lockss.daemon.*;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.util.*;
 import org.lockss.config.*;
-import org.lockss.filter.*;
 
 public class GoslingHtmlLinkExtractor implements LinkExtractor {
 
@@ -213,7 +212,7 @@ public class GoslingHtmlLinkExtractor implements LinkExtractor {
     if (isTrace) {
       logger.debug2("Extracted "+url);
     }
-    callback.foundUrl(url);
+    callback.foundLink(url);
   }
 
 

@@ -79,12 +79,12 @@ public class RamLinkExtractor implements LinkExtractor {
 	 line = bReader.readLine()) {
       line = line.trim();
       if (StringUtil.startsWithIgnoreCase(line, "http://")) {
-	cb.foundUrl(UrlUtil.stripQuery(line));
+	cb.foundLink(UrlUtil.stripQuery(line));
       } else if (source != null
 		 && dest != null
 		 && StringUtil.startsWithIgnoreCase(line, source)) {
 	line = translateString(line, source, dest);
-	cb.foundUrl(UrlUtil.stripQuery(line));
+	cb.foundLink(UrlUtil.stripQuery(line));
       }
     }
     IOUtil.safeClose(bReader);

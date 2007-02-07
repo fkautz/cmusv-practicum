@@ -34,7 +34,6 @@ package org.lockss.extractor;
 
 import java.io.*;
 
-import org.lockss.plugin.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.ArchivalUnit;
 
@@ -56,7 +55,7 @@ public interface LinkExtractor {
   /**
    * Callback for a LinkExtractor to call each time it finds a url
    */
-  public static interface Callback {
-    public void foundUrl(String url);
+  public interface Callback {
+    public void foundLink(String url);
   }
 }
