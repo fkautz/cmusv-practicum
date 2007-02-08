@@ -151,7 +151,7 @@ public class TestProxyAccessHandler extends LockssTestCase {
 
   private class MyMockPluginManager extends PluginManager {
     CachedUrl cu;
-    public CachedUrl findOneCachedUrl(String urlString) {
+    public CachedUrl findCachedUrl(String urlString) {
       return cu;
     }
 

@@ -97,7 +97,7 @@ public class ProxyAccessHandler extends IpAccessHandler {
 	String urlString = uri.toString();
 	// XXX this should check all AUs containing URL for *any* with
 	// legal access, then should pass cuurl to next handler
-	CachedUrl cu = pluginMgr.findOneCachedUrl(urlString);
+	CachedUrl cu = pluginMgr.findCachedUrl(urlString);
 	try {
 	  if (log.isDebug2()) {
 	    log.debug2("cu: " + cu);
