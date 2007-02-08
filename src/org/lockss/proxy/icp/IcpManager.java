@@ -42,6 +42,7 @@ import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.proxy.ProxyManager;
 import org.lockss.util.*;
+import org.lockss.state.*;
 
 /**
  * <p>A configurable daemon manager that controls the ICP server.</p>
@@ -414,8 +415,8 @@ public class IcpManager
         }
         else {
           String urlString = message.getPayloadUrl();
-          CachedUrl cu = pluginManager.findOneCachedUrl(urlString);
-          if (cu != null && cu.hasContent()) {
+          CachedUrl cu = pluginManager.findCachedUrl(urlString);
+          if (cu != null && cu.hasContent() && !isClockssUnsubscribed(cu)) {
             logger.debug2("processMessage: HIT");
             response = message.makeHit();
           }
@@ -468,6 +469,15 @@ public class IcpManager
       }
     }
   }
+
+  private boolean isClockssUnsubscribed(CachedUrl cu) {
+    if (getDaemon().isClockss()) {
+      ArchivalUnit au = cu.getArchivalUnit();
+      return AuUtil.getAuState(au).getClockssSubscriptionStatus()
+	!= AuState.CLOCKSS_SUB_YES;
+    }
+    return false;
+  }      
 
   /**
    * <p>Determines whether the ICP server should start now.</p>

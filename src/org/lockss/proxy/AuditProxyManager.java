@@ -90,7 +90,7 @@ public class AuditProxyManager extends BaseProxyManager {
   protected org.lockss.proxy.ProxyHandler makeProxyHandler() {
     org.lockss.proxy.ProxyHandler handler =
       new org.lockss.proxy.ProxyHandler(getDaemon());
-    handler.setFromCacheOnly(true);
+    handler.setAuditProxy(true);
     return handler;
   }
 }
