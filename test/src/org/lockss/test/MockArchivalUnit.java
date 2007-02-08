@@ -439,7 +439,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   public String toString() {
     StringBuffer sb = new StringBuffer();
     sb.append("[MockArchivalUnit: auId=");
-    sb.append(auId);
+    sb.append(getAuId());
     sb.append("]");
     return sb.toString();
   }
