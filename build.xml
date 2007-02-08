@@ -459,6 +459,7 @@ Test results in ${test.results}
          maxmemory="256m" haltonfailure="${halt}" failureproperty="failed"
          filtertrace="${filtertrace}" showoutput="${showoutput}">
       <junitelem/>
+      <jvmarg value="-server"/>
       <formatter type="plain" usefile="@{usefile}" />
       <classpath refid="@{cpid}" />
       <sysproperty key="java.library.path" value="${test.native}"/>
