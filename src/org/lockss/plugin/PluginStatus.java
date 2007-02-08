@@ -275,7 +275,6 @@ class PluginDetail extends PluginStatus implements StatusAccessor {
       if (info != null) {
 	String url = info.getCuUrl();
 	if (url != null) {
-// 	  CachedUrl cu = mgr.findMostRecentCachedUrl(url);
 	  ArchivalUnit au = info.getRegistryAu();
 	  res.add(new StatusTable.SummaryInfo("Plugin Registry",
 					      ColumnDescriptor.TYPE_STRING,

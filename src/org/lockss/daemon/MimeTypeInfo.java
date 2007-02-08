@@ -28,8 +28,6 @@ package org.lockss.daemon;
 
 import java.util.*;
 import org.lockss.util.*;
-// import org.lockss.app.*;
-// import org.lockss.config.*;
 import org.lockss.daemon.*;
 import org.lockss.extractor.*;
 import org.lockss.plugin.*;

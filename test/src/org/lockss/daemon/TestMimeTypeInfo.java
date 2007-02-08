@@ -32,7 +32,6 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.daemon;
 
-// import java.io.*;
 import java.util.*;
 
 import org.lockss.app.LockssApp;
@@ -46,9 +45,6 @@ import org.lockss.extractor.*;
  * This is the test class for org.lockss.daemon.MimeTypeInfo
  */
 public class TestMimeTypeInfo extends LockssTestCase {
-
-//   public void setUp() {
-//   }
 
   public void testAccessors() {
     MimeTypeInfo mti = new MimeTypeInfo();

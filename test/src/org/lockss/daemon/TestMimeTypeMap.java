@@ -32,7 +32,6 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.daemon;
 
-// import java.io.*;
 import java.util.*;
 
 import org.lockss.app.LockssApp;
