@@ -1288,9 +1288,13 @@ public class PluginManager
   public Collection getCandidateAus(String url) throws MalformedURLException {
     String normStem = UrlUtil.getUrlPrefix(UrlUtil.normalizeUrl(url));
     synchronized (hostAus) {
-      Set res = new TreeSet(new AuOrderComparator());
-      res.addAll((Collection)hostAus.get(normStem));
-      return res;
+      Collection cand = (Collection)hostAus.get(normStem);
+      if (cand != null) {
+	Set res = new TreeSet(new AuOrderComparator());
+	res.addAll(cand);
+	cand = res;
+      }
+      return cand;
     }
   }  
 

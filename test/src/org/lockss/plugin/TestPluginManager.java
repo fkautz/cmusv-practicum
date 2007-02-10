@@ -828,6 +828,8 @@ public class TestPluginManager extends LockssTestCase {
     String h1 = "http://www.foo.org/";
     String h2 = "http://www.bar.org/";
 
+    assertNull(mgr.getCandidateAus(h1 + " foo.html"));
+
     MockArchivalUnit au0 = new MockArchivalUnit("au0");
     au0.setName("The Little Prince");
     au0.setUrlStems(ListUtil.list(h2));
