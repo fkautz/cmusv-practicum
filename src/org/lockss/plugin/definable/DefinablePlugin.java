@@ -213,7 +213,7 @@ public class DefinablePlugin extends BasePlugin {
 	if (val instanceof String) {
 	  String factName = (String)val;
 	  log.debug("initMime " + mime + ": " + factName);
-	  MimeTypeInfo mti = mimeMap.modifyMimeTypeInfo(mime);
+	  MimeTypeInfo.Mutable mti = mimeMap.modifyMimeTypeInfo(mime);
 	  LinkExtractorFactory fact =
 	    (LinkExtractorFactory)loadClass(factName,
 					    LinkExtractorFactory.class);
@@ -226,7 +226,7 @@ public class DefinablePlugin extends BasePlugin {
 	if (val instanceof String) {
 	  String factName = (String)val;
 	  log.debug("initMime " + mime + ": " + factName);
-	  MimeTypeInfo mti = mimeMap.modifyMimeTypeInfo(mime);
+	  MimeTypeInfo.Mutable mti = mimeMap.modifyMimeTypeInfo(mime);
 	  FilterFactory fact =
 	    (FilterFactory)loadClass(factName, FilterFactory.class);
 	  mti.setFilterFactory(fact);

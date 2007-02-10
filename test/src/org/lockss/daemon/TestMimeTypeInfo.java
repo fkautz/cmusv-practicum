@@ -47,7 +47,7 @@ import org.lockss.extractor.*;
 public class TestMimeTypeInfo extends LockssTestCase {
 
   public void testAccessors() {
-    MimeTypeInfo mti = new MimeTypeInfo();
+    MimeTypeInfo.Mutable mti = new MimeTypeInfo.Impl();
     assertNull(mti.getFilterFactory());
     assertNull(mti.getLinkExtractorFactory());
     assertNull(mti.getFetchRateLimiter());
@@ -65,7 +65,7 @@ public class TestMimeTypeInfo extends LockssTestCase {
     assertSame(rl, mti.getFetchRateLimiter());
 
     // test clone
-    MimeTypeInfo m2 = new MimeTypeInfo(mti);
+    MimeTypeInfo m2 = new MimeTypeInfo.Impl(mti);
     assertSame(ff, mti.getFilterFactory());
     assertSame(uf, mti.getLinkExtractorFactory());
     assertSame(rl, mti.getFetchRateLimiter());
