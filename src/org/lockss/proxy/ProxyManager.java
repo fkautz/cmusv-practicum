@@ -103,7 +103,7 @@ public class ProxyManager extends BaseProxyManager {
    * if connection error (timeout, refuse, etc.) */
   static final String PARAM_NO_MANIFEST_INDEX_RESPONSES =
     PREFIX + "noManifestIndexResponses";
-  static final String DEFAULT_NO_MANIFEST_INDEX_RESPONSES = null;
+  static final String DEFAULT_NO_MANIFEST_INDEX_RESPONSES = "301;302;303;307";
 
   public static final String PARAM_PROXY_MAX_TOTAL_CONN =
     PREFIX + "connectionPool.max";
