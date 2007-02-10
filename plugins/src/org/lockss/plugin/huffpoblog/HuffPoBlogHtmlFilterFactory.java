@@ -42,7 +42,7 @@ import org.lockss.filter.*;
 import org.lockss.filter.html.*;
 import org.lockss.plugin.*;
 
-public class HuffPoBlogFilterFactory implements FilterFactory {
+public class HuffPoBlogHtmlFilterFactory implements FilterFactory {
 
   public InputStream createFilteredInputStream(ArchivalUnit au,
 					       InputStream in,
@@ -92,7 +92,7 @@ public class HuffPoBlogFilterFactory implements FilterFactory {
 
     HtmlTransform xform = new HtmlCompoundTransform(xform1, xform2);
 
-    InputStream htmlFilter = new HtmlFilterInputStream(in, xform);
+    InputStream htmlFilter = new HtmlFilterInputStream(in, encoding, xform);
 
     List tagList = ListUtil.list(
 	new HtmlTagFilter.TagPair("<!-- begin ad tag -->", "<!-- End ad tag -->"),
