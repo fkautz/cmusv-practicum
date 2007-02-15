@@ -56,7 +56,8 @@ public class TestBlackwellPlugin extends LockssTestCase {
                       "org.lockss.plugin.blackwell.BlackwellPlugin");
   }
 
-  public void testGetAuNullConfig() throws ArchivalUnit.ConfigurationException {
+  public void testGetAuNullConfig() 
+      throws ArchivalUnit.ConfigurationException {
     try {
       plugin.configureAu(null, null);
       fail("Didn't throw ArchivalUnit.ConfigurationException");
@@ -73,7 +74,6 @@ public class TestBlackwellPlugin extends LockssTestCase {
     log.debug("descrs: " + descrs);
     assertEquals(SetUtil.set(ConfigParamDescr.BASE_URL,
 			     ConfigParamDescr.VOLUME_NAME,
-			     ConfigParamDescr.YEAR,
 			     ConfigParamDescr.JOURNAL_ID,
 			     ConfigParamDescr.JOURNAL_ISSN),
 		 SetUtil.theSet(descrs));
