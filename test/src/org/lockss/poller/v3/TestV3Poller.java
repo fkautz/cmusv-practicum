@@ -382,7 +382,7 @@ public class TestV3Poller extends LockssTestCase {
     byte[] pollerNonce = ByteArray.makeRandomBytes(20);
     ParticipantUserData ud = new ParticipantUserData(id, poller, tempDir);
     ud.setPollerNonce(pollerNonce);
-    VoteBlocks vb = new MemoryVoteBlocks();
+    VoteBlocks vb = new DiskVoteBlocks(tempDir);
     for (int i = 0; i < votes.length; i++) {
       vb.addVoteBlock(votes[i]);
     }

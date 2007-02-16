@@ -382,10 +382,6 @@ public class ParticipantUserData implements LockssSerializable {
                              getDeadline(), getPollerId(), messageDir,
                              poller.getLockssDaemon());
   }
-
-  public V3LcapMessage makeMessage(int opcode, long sizeEst) {
-    return makeMessage(opcode);
-  }
   
   /**
    * Release unneeded resources used by this object at the end of a poll.

@@ -103,12 +103,18 @@ public class TestLcapRouter extends LockssTestCase {
     assertEquals(a.getPluginVersion(), b.getPluginVersion());
     assertEquals(a.getHashAlgorithm(), b.getHashAlgorithm());
     List aVoteBlocks = new ArrayList();
-    for (VoteBlocksIterator iter = a.getVoteBlockIterator(); iter.hasNext(); ) {
-      aVoteBlocks.add(iter.next());
+    VoteBlocksIterator iter = a.getVoteBlockIterator();
+    if (iter != null) {
+      while (iter.hasNext()) {
+        aVoteBlocks.add(iter.next());
+      }
     }
     List bVoteBlocks = new ArrayList();
-    for (VoteBlocksIterator iter = b.getVoteBlockIterator(); iter.hasNext(); ) {
-      bVoteBlocks.add(iter.next());
+    iter = b.getVoteBlockIterator();
+    if (iter != null) {
+      while (iter.hasNext()) {
+        bVoteBlocks.add(iter.next());
+      }
     }
     assertTrue(aVoteBlocks.equals(bVoteBlocks));
 
