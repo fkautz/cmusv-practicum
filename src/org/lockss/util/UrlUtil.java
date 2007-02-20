@@ -823,6 +823,23 @@ public class UrlUtil {
   }
 
   /**
+   * <p>Removes the protocol and its <code>://</code> component
+   * from a URL stem.</p>
+   * <p>Assumption: url stems always start with a protocol.</p>
+   * @param stem A URL stem.
+   * @return A new URL stem with the protocol removed.
+   */
+  public static String stripProtocol(String url) {
+    final String PROTOCOL_SUBSTRING = "://";
+    if (url == null) return null;
+    int pos = url.indexOf(PROTOCOL_SUBSTRING);
+    if (pos >= 0) {
+      return url.substring(pos + PROTOCOL_SUBSTRING.length());
+    }
+    return url;
+  }
+
+  /**
    * Return a list of header fields (in the format "key;fieldValue") for conn
    * @param conn URLConnection to get headers from
    * @return list of header fields (in the format "key;fieldValue") for conn

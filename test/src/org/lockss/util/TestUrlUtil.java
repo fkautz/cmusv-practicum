@@ -755,6 +755,19 @@ public class TestUrlUtil extends LockssTestCase {
 		 UrlUtil.stripQuery("rtsp://www.example.com/blah?param1=blah"));
   }
 
+  public void testStripProtocol() {
+    assertNull(UrlUtil.stripProtocol(null));
+    assertEquals("", UrlUtil.stripProtocol(""));
+    assertEquals("www.example.com/",
+		 UrlUtil.stripProtocol("http://www.example.com/"));
+    assertEquals("www.example.com/",
+		 UrlUtil.stripProtocol("http://www.example.com/"));
+    assertEquals("www.example.com:8080/",
+		 UrlUtil.stripProtocol("rtsp://www.example.com:8080/"));
+  }
+
+
+
   public void testResolveJavascriptUrl() {
     assertEquals("http://www.example.com/link2.html",
 		 UrlUtil.parseJavascriptUrl("javascript:popup(http://www.example.com/link2.html)"));
