@@ -100,6 +100,9 @@ public class AuNodeImpl extends RepositoryNodeImpl {
     TreeMap childM = new TreeMap();
     // for all directories beneath Au level
     File[] urlDirs = nodeRootFile.listFiles();
+    if (urlDirs == null) {
+      return Collections.EMPTY_LIST;
+    }
     for (int ii=0; ii<urlDirs.length; ii++) {
       File urlDir = urlDirs[ii];
       if (!urlDir.isDirectory()) continue;
