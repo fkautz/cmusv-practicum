@@ -854,6 +854,7 @@ public class TestPluginManager extends LockssTestCase {
 		     mgr.getCandidateAus(h1 + " foo.html"));
     assertIsomorphic(ListUtil.list(au1, au0, au2),
 		     mgr.getCandidateAus(h2 + " foo.html"));
+    assertIsomorphic(ListUtil.list(h2, h1), mgr.getAllStems());
   }
 
 
