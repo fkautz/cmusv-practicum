@@ -58,7 +58,6 @@ import org.lockss.util.*;
 public class CreativeCommonsPermissionChecker
   implements PermissionChecker {
 
-//  private static String RDF_START = "<rdf:RDF ";
   private static String RDF_START = "<rdf:RDF";
   private static String RDF_END = "</rdf:RDF>";
 
