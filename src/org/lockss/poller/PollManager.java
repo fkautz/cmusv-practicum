@@ -545,7 +545,8 @@ public class PollManager
     ArchivalUnit au = cus.getArchivalUnit();
     if (!spec.getPluginVersion().equals(au.getPlugin().getVersion())) {
       theLog.debug("Ignoring poll request for " + au.getName() +
-                   ", plugin version mismatch; have: " +
+                   " from peer " + orig +
+                   ". plugin version mismatch; have: " +
                    au.getPlugin().getVersion() +
                    ", need: " + spec.getPluginVersion());
       return null;
