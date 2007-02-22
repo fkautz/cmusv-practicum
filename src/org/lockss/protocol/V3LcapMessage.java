@@ -582,7 +582,7 @@ public class V3LcapMessage extends LcapMessage implements LockssSerializable {
 
   public VoteBlocksIterator getVoteBlockIterator() {
     if (m_voteBlocks == null) {
-      return null;
+      return VoteBlocksIterator.EMPTY_ITERATOR;
     } else {
       return m_voteBlocks.iterator();
     }
