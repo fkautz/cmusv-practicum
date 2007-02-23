@@ -28,7 +28,7 @@ Except as contained in this notice, the name of Stanford University shall not
 be used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from Stanford University.
 
-*/
+ */
 
 package org.lockss.plugin.highwire;
 
@@ -37,10 +37,10 @@ import java.io.IOException;
 import org.lockss.filter.pdf.*;
 import org.lockss.plugin.highwire.HighWirePdfFilterFactory.*;
 
-public class AmericanMedicalAssociationPdfTransform extends SimpleOutputDocumentTransform {
+public class AmericanSocietyForNutritionPdfTransform extends SimpleOutputDocumentTransform {
 
   public static class Simplified extends TextScrapingDocumentTransform {
-    
+
     public DocumentTransform makePreliminaryTransform() throws IOException {
       return new ConditionalDocumentTransform(// If on the first page...
                                               new TransformFirstPage(// ...collapsing "Downloaded from" succeeds,
@@ -49,10 +49,10 @@ public class AmericanMedicalAssociationPdfTransform extends SimpleOutputDocument
                                               new TransformEachPageExceptFirst(// ...collapse "Downloaded from"
                                                                                new CollapseDownloadedFrom()));
     }
-    
+
   }
-  
-  public AmericanMedicalAssociationPdfTransform() throws IOException {
+
+  public AmericanSocietyForNutritionPdfTransform() throws IOException {
     super(new ConditionalDocumentTransform(// If on the first page...
                                            new TransformFirstPage(// ...collapsing "Downloaded from" and normalizing the hyperlinks succeeds,
                                                                   new CollapseDownloadedFromAndNormalizeHyperlinks()),
@@ -62,5 +62,5 @@ public class AmericanMedicalAssociationPdfTransform extends SimpleOutputDocument
                                            // ...and normalize the metadata
                                            new NormalizeMetadata()));
   }
-  
+
 }
