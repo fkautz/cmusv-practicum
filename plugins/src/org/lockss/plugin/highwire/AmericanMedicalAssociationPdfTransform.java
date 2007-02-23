@@ -43,7 +43,7 @@ public class AmericanMedicalAssociationPdfTransform extends SimpleOutputDocument
     
     public DocumentTransform makePreliminaryTransform() throws IOException {
       return new ConditionalDocumentTransform(// If on the first page...
-                                              new TransformFirstPage(// ...collpasing "Downloaded from" succeeds,
+                                              new TransformFirstPage(// ...collapsing "Downloaded from" succeeds,
                                                                      new CollapseDownloadedFrom()),
                                               // Then on all other pages...
                                               new TransformEachPageExceptFirst(// ...collapse "Downloaded from"
