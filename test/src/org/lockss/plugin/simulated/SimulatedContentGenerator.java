@@ -185,7 +185,7 @@ public class SimulatedContentGenerator {
     boolean arc = CurrentConfig.getBooleanParam("org.lockss.plugin.simulated.SimulatedContentGenerator.doArcFile", false);
     logger.debug3("SimulatedContentGenerator.getInstance(" + rootPath + "," + arc + ")");
     if (arc) {
-      ret = new SimulatedArcContentGenerator(rootPath);
+      // ret = new SimulatedArcContentGenerator(rootPath);
     } else {
       ret = new SimulatedContentGenerator(rootPath);
     }
