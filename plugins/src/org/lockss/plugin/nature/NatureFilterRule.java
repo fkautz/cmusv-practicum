@@ -44,9 +44,9 @@ public class NatureFilterRule implements FilterRule {
     List tagList = ListUtil.list(
                     new HtmlTagFilter.TagPair("<!-- end content -->", 
 					      "</html>", true),
-                    new HtmlTagFilter.TagPair("<!--", "-->", true),
+                    new HtmlTagFilter.TagPair("<!--", "-->", true, false),
 		    new HtmlTagFilter.TagPair("<script", "</script>", true),
-		    new HtmlTagFilter.TagPair("<", ">")
+		    new HtmlTagFilter.TagPair("<", ">", false, false)
 		    );
     Reader tagFilter = HtmlTagFilter.makeNestedFilter(reader, tagList);
     return new WhiteSpaceFilter(tagFilter);
