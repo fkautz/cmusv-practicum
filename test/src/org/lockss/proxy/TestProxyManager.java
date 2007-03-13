@@ -157,6 +157,28 @@ public class TestProxyManager extends LockssTestCase {
 
   }
 
+  public void testIsMethodAllowed() throws Exception {
+    assertTrue(mgr.isMethodAllowed("GET"));
+    assertTrue(mgr.isMethodAllowed("POST"));
+    assertTrue(mgr.isMethodAllowed("HEAD"));
+    assertFalse(mgr.isMethodAllowed("CONNECT"));
+
+    ConfigurationUtil.setFromArgs(ProxyManager.PARAM_DISALLOWED_METHODS,
+				  "CONNECT;POST");
+    assertTrue(mgr.isMethodAllowed("GET"));
+    assertFalse(mgr.isMethodAllowed("POST"));
+    assertTrue(mgr.isMethodAllowed("HEAD"));
+    assertFalse(mgr.isMethodAllowed("CONNECT"));
+
+    ConfigurationUtil.setFromArgs(ProxyManager.PARAM_DISALLOWED_METHODS,
+				  "");
+    assertTrue(mgr.isMethodAllowed("GET"));
+    assertTrue(mgr.isMethodAllowed("POST"));
+    assertTrue(mgr.isMethodAllowed("HEAD"));
+    assertTrue(mgr.isMethodAllowed("CONNECT"));
+
+  }
+
   class MyProxyManager extends ProxyManager {
     protected void startProxy() {
     }
