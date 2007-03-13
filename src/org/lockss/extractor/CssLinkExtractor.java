@@ -92,9 +92,9 @@ public class CssLinkExtractor implements LinkExtractor {
    */
   private static class LockssDocumentHandler implements DocumentHandler {
 
-    protected LinkExtractor.Callback callback;
-    
     protected URL baseUrl;
+    
+    protected LinkExtractor.Callback callback;
     
     public LockssDocumentHandler(URL baseUrl,
                                  LinkExtractor.Callback callback) {
