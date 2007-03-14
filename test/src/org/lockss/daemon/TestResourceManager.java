@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -125,18 +125,19 @@ public class TestResourceManager extends LockssTestCase {
     String srvr = "server";
     assertNull(rmgr.getUsableTcpPorts(srvr));
     ConfigurationUtil.setFromArgs(PlatformUtil.PARAM_UNFILTERED_TCP_PORTS,
-				  "9900;1234;1235");
+                                  "9900;1234;1235");
     assertEquals(ListUtil.list("9900", "1234", "1235"),
-		 rmgr.getUsableTcpPorts(srvr));
+                 rmgr.getUsableTcpPorts(srvr));
     assertTrue(rmgr.reserveTcpPort(1234, srvr));
     assertEquals(ListUtil.list("9900", "1234", "1235"),
-		 rmgr.getUsableTcpPorts(srvr));
+		         rmgr.getUsableTcpPorts(srvr));
     assertTrue(rmgr.reserveTcpPort(1235, "another service"));
-    assertEquals(ListUtil.list("9900", "1234"), rmgr.getUsableTcpPorts(srvr));
+    assertEquals(ListUtil.list("9900", "1234"),
+                               rmgr.getUsableTcpPorts(srvr));
     ConfigurationUtil.setFromArgs(PlatformUtil.PARAM_UNFILTERED_TCP_PORTS,
-				  "9900;1234;1235;333-335");
+				                  "9900;1234;1235;333-335");
     assertEquals(ListUtil.list("9900", "1234", "333-335"),
-		 rmgr.getUsableTcpPorts(srvr));
+		         rmgr.getUsableTcpPorts(srvr));
     assertTrue(rmgr.reserveTcpPort(334, "not server"));
     assertEquals(ListUtil.list("9900", "1234", "333", "335"),
                  rmgr.getUsableTcpPorts(srvr));

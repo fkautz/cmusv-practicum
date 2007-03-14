@@ -240,12 +240,12 @@ public class ResourceManager extends BaseLockssManager  {
    * server */
   public List getUsableTcpPorts(Object serverToken) {
     List unfilteredPorts = PlatformUtil.getInstance().getUnfilteredTcpPorts();
-    PortAvailable udpAvailable = new PortAvailable() {
+    PortAvailable tcpAvailable = new PortAvailable() {
       public boolean isAvailable(int port, Object token) {
         return isTcpPortAvailable(port, token);
       }
     };
-    return parseUsablePortList(unfilteredPorts, serverToken, udpAvailable);
+    return parseUsablePortList(unfilteredPorts, serverToken, tcpAvailable);
   }
 
   public List getUsableUdpPorts(Object serverToken) {
