@@ -63,7 +63,7 @@ public class PollerStatus {
   static class ManagerStatus
     extends PollerStatus implements StatusAccessor {
     static final String TABLE_NAME = MANAGER_STATUS_TABLE_NAME;
-    private static String POLLMANAGER_TABLE_TITLE = "Polls";
+    private static String POLLMANAGER_TABLE_TITLE = "V1 Polls";
 
     static final int STRINGTYPE = ColumnDescriptor.TYPE_STRING;
     static final int DATETYPE = ColumnDescriptor.TYPE_DATE;
