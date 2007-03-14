@@ -34,7 +34,9 @@ import java.util.*;
 import org.lockss.daemon.status.*;
 import org.lockss.util.*;
 
-public class IdentityManagerStatus implements StatusAccessor {
+public class IdentityManagerStatus
+  implements StatusAccessor,  StatusAccessor.DebugOnly {
+
   private Map theIdentities;
 
   public IdentityManagerStatus(Map theIdentities) {
