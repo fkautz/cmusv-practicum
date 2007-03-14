@@ -180,11 +180,11 @@ public abstract class LockssRunnable  implements LockssWatchdog, Runnable {
   public void setPriority(String name, int defaultPriority) {
     int prio = getPriorityFromParam(name, defaultPriority);
     if (prio == -1) {
-      log.debug("Leaving priority of " + getName() +
-		" thread at " + thread.getPriority());
+      log.debug3("Leaving priority of " + getName() +
+		 " thread at " + thread.getPriority());
       return;
     }
-    log.debug("Setting priority of " + getName() + " thread to " + prio);
+    log.debug2("Setting priority of " + getName() + " thread to " + prio);
     thread.setPriority(prio);
   }
 

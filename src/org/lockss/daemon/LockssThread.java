@@ -160,11 +160,11 @@ public abstract class LockssThread extends Thread implements LockssWatchdog {
   public void setPriority(String name, int defaultPriority) {
     int prio = getPriorityFromParam(name, defaultPriority);
     if (prio == -1) {
-      log.debug("Leaving priority of " + getName() +
-		" thread at " + getPriority());
+      log.debug3("Leaving priority of " + getName() +
+		 " thread at " + getPriority());
       return;
     }
-    log.debug("Setting priority of " + getName() + " thread to " + prio);
+    log.debug2("Setting priority of " + getName() + " thread to " + prio);
     setPriority(prio);
   }
 
