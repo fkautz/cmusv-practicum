@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -39,12 +39,12 @@ import java.net.ProtocolException;
  * protocol.</p>
  * @author Thib Guicherd-Callin
  */
-public class IcpProtocolException extends ProtocolException {
+public class IcpException extends ProtocolException {
 
   /**
    * <p>Builds a new IcpProtocolException instance.</p>
    */
-  public IcpProtocolException() {
+  public IcpException() {
     super();
   }
 
@@ -52,7 +52,7 @@ public class IcpProtocolException extends ProtocolException {
    * <p>Builds a new IcpProtocolException instance
    * with the given message.</p>
    */
-  public IcpProtocolException(String message) {
+  public IcpException(String message) {
     super(message);
   }
 
@@ -60,7 +60,7 @@ public class IcpProtocolException extends ProtocolException {
    * <p>Builds a new IcpProtocolException instance
    * with the given message and cause.</p>
    */
-  public IcpProtocolException(String message, Throwable cause) {
+  public IcpException(String message, Throwable cause) {
     super(message);
     initCause(cause);
   }
@@ -69,7 +69,7 @@ public class IcpProtocolException extends ProtocolException {
    * <p>Builds a new IcpProtocolException instance
    * with the given cause.</p>
    */
-  public IcpProtocolException(Throwable cause) {
+  public IcpException(Throwable cause) {
     super();
     initCause(cause);
   }

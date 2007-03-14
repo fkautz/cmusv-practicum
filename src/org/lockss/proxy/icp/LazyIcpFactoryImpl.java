@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -250,27 +250,27 @@ public class LazyIcpFactoryImpl extends BaseIcpFactory {
     }
 
     /* Inherit documentation */
-    public IcpMessage makeDenied() throws IcpProtocolException {
+    public IcpMessage makeDenied() throws IcpException {
       if (!isQuery()) {
-        throw new IcpProtocolException(DENIED_NOT_QUERY_ERROR);
+        throw new IcpException(DENIED_NOT_QUERY_ERROR);
       }
       writeResponse(IcpMessage.ICP_OP_DENIED);
       return this;
     }
 
     /* Inherit documentation */
-    public IcpMessage makeError() throws IcpProtocolException {
+    public IcpMessage makeError() throws IcpException {
       if (!isQuery()) {
-        throw new IcpProtocolException(ERR_NOT_QUERY_ERROR);
+        throw new IcpException(ERR_NOT_QUERY_ERROR);
       }
       writeResponse(IcpMessage.ICP_OP_ERR);
       return this;
     }
 
     /* Inherit documentation */
-    public IcpMessage makeHit() throws IcpProtocolException {
+    public IcpMessage makeHit() throws IcpException {
       if (!isQuery()) {
-        throw new IcpProtocolException(HIT_NOT_QUERY_ERROR);
+        throw new IcpException(HIT_NOT_QUERY_ERROR);
       }
       writeResponse(IcpMessage.ICP_OP_HIT);
       return this;
@@ -279,42 +279,42 @@ public class LazyIcpFactoryImpl extends BaseIcpFactory {
     /**
      * <p>Not supported; throws an {@link UnsupportedOperationException}.</p>
      */
-    public IcpMessage makeHit(short srcRttResponse) throws IcpProtocolException {
+    public IcpMessage makeHit(short srcRttResponse) throws IcpException {
       throw new UnsupportedOperationException(NOT_IMPLEMENTED_ERROR);
     }
 
     /**
      * <p>Not supported; throws an {@link UnsupportedOperationException}.</p>
      */
-    public IcpMessage makeHitObj(byte[] payloadObject) throws IcpProtocolException {
+    public IcpMessage makeHitObj(byte[] payloadObject) throws IcpException {
       throw unsupported();
     }
 
     /**
      * <p>Not supported; throws an {@link UnsupportedOperationException}.</p>
      */
-    public IcpMessage makeHitObj(short srcRttResponse, byte[] payloadObject) throws IcpProtocolException {
+    public IcpMessage makeHitObj(short srcRttResponse, byte[] payloadObject) throws IcpException {
       throw unsupported();
     }
 
     /**
      * <p>Not supported; throws an {@link UnsupportedOperationException}.</p>
      */
-    public IcpMessage makeMiss() throws IcpProtocolException {
+    public IcpMessage makeMiss() throws IcpException {
       throw unsupported();
     }
 
     /**
      * <p>Not supported; throws an {@link UnsupportedOperationException}.</p>
      */
-    public IcpMessage makeMiss(short srcRttResponse) throws IcpProtocolException {
+    public IcpMessage makeMiss(short srcRttResponse) throws IcpException {
       throw unsupported();
     }
 
     /* Inherit documentation */
-    public IcpMessage makeMissNoFetch() throws IcpProtocolException {
+    public IcpMessage makeMissNoFetch() throws IcpException {
       if (!isQuery()) {
-        throw new IcpProtocolException(MISS_NOFETCH_NOT_QUERY_ERROR);
+        throw new IcpException(MISS_NOFETCH_NOT_QUERY_ERROR);
       }
       writeResponse(IcpMessage.ICP_OP_MISS_NOFETCH);
       return this;
@@ -323,7 +323,7 @@ public class LazyIcpFactoryImpl extends BaseIcpFactory {
     /**
      * <p>Not supported; throws an {@link UnsupportedOperationException}.</p>
      */
-    public IcpMessage makeMissNoFetch(short srcRttResponse) throws IcpProtocolException {
+    public IcpMessage makeMissNoFetch(short srcRttResponse) throws IcpException {
       throw new UnsupportedOperationException(NOT_IMPLEMENTED_ERROR);
     }
 
@@ -413,7 +413,7 @@ public class LazyIcpFactoryImpl extends BaseIcpFactory {
 
   /* Inherit documentation */
   public IcpMessage makeMessage(DatagramPacket udpPacket)
-      throws IcpProtocolException {
+      throws IcpException {
     return new LazyIcpMessageImpl(udpPacket);
   }
 

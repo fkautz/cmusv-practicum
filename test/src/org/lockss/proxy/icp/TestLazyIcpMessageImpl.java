@@ -4,7 +4,7 @@
 
 /*
 
- Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
+ Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
  all rights reserved.
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -94,7 +94,7 @@ public class TestLazyIcpMessageImpl extends IcpMessageTester {
     try {
       return icpFactory.makeMessage(MockIcpMessage.getSampleQueryUdpPacket());
     }
-    catch (IcpProtocolException ipe) {
+    catch (IcpException ipe) {
       throw new RuntimeException(
           "Unexpected internal error in " + getClass().getName());
     }
