@@ -164,7 +164,7 @@ public class ProxyAndContent extends LockssServlet {
                                       FILTER_FOOT,
                                       ICP_PORT_NAME,
                                       getDefaultIcpPort(),
-                                      resourceMgr.getUsableUdpPorts(AuditProxyManager.SERVER_NAME));
+                                      resourceMgr.getUsableUdpPorts(IcpManager.SERVER_NAME));
     }
     else {
       final String ICP_DISABLED_FOOT =
