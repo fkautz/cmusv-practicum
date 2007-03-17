@@ -99,5 +99,21 @@ public class TestSpiderCrawlSpec extends LockssTestCase {
     SpiderCrawlSpec cs = new SpiderCrawlSpec("blah", rule);
     assertEquals(1, cs.getRefetchDepth());
   }
+
+  public void testArcFilePattern() {
+    List l1 = ListUtil.list("one", "two");
+    List l2 = ListUtil.list("three", "four");
+    {
+      SpiderCrawlSpec cs = new SpiderCrawlSpec(l1, l2, rule, 1, null, null);
+      assertNull(cs.arcFilePattern());
+    }
+    {
+      String pattern = "pattern";
+      SpiderCrawlSpec cs = new SpiderCrawlSpec(l1, l2, rule, 2, null, null,
+					       pattern);
+      assertEquals(cs.arcFilePattern(), pattern);
+    }
+  }
+    
 }
 

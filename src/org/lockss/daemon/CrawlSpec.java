@@ -92,6 +92,11 @@ public interface CrawlSpec {
    */
   public LoginPageChecker getLoginPageChecker();
 
+  /**
+   * @return pattern to recognize ARC files
+   */
+  public String arcFilePattern();
+
 }
 
 

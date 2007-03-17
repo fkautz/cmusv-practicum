@@ -130,6 +130,10 @@ public abstract class BaseCrawlSpec implements CrawlSpec {
     return loginPageChecker;
   }
 
+  public String arcFilePattern() {
+    return null;
+  }
+
 }
 
 
