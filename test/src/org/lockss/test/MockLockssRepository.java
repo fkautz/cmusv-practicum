@@ -50,7 +50,7 @@ public class MockLockssRepository implements LockssRepository {
 
   public MockLockssRepository() { }
 
-  MockLockssRepository(String rootPath, ArchivalUnit au) {
+  public MockLockssRepository(String rootPath, ArchivalUnit au) {
     rootLocation = rootPath;
     repoAu = au;
     nodeCache = new HashMap();

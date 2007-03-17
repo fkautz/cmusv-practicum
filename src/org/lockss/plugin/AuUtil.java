@@ -83,6 +83,20 @@ public class AuUtil {
       throw new RuntimeException(e);
     }
   }
+  
+  /**
+   * @param au An ArchivalUnit
+   * @param url A URL
+   * @return The RepositoryNode representing the URL in the given AU.
+   * 
+   * @throws MalformedURLException if the URL cannot be parsed.
+   */
+  public static RepositoryNode getRepositoryNode(ArchivalUnit au, String url) 
+      throws MalformedURLException {
+    LockssDaemon daemon = getDaemon(au);
+    LockssRepository repo = daemon.getLockssRepository(au);
+    return repo.getNode(url);
+  }
 
   /**
    * Return the size of the AU, calculating it if necessary.
