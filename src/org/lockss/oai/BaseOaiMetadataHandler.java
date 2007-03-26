@@ -114,8 +114,8 @@ public class BaseOaiMetadataHandler implements OaiMetadataHandler{
 	    articleUrls.add(str);
 	    logger.debug3("node (" + i + ") value = " + str);
 	  } else {
-	    logger.error("No XML elements with the tag name : "+urlContainerTagName+
-			 " in the namespace : "+metadataNamespaceUrl);
+	    logger.siteError("No XML elements with the tag name : "+urlContainerTagName+
+	                     " in the namespace : "+metadataNamespaceUrl);
 	  }
 	}
     }
