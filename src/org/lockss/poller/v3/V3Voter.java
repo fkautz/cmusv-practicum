@@ -742,8 +742,13 @@ public class V3Voter extends BasePoll {
   }
 
   private class BlockEventHandler implements BlockHasher.EventHandler {
-    public void blockStart(HashBlock block) { /* do nothing */ }
+    public void blockStart(HashBlock block) { 
+      log.debug2("Poll " + getKey() + ": Starting hash for block " 
+                 + block.getUrl());
+    }
     public void blockDone(HashBlock block) {
+      log.debug2("Poll " + getKey() + ": Ending hash for block " 
+                 + block.getUrl());
       blockHashComplete(block);
     }
   }
