@@ -116,12 +116,11 @@ public class TestAcsPlugin extends LockssTestCase {
   }
 
   public void testGetAuConfigProperties() {
-    assertEquals(ListUtil.list(ConfigParamDescr.BASE_URL,
-                               ARTICLE_URL,
-                               JOURNAL_KEY,
-			       ConfigParamDescr.VOLUME_NUMBER,
-                               ConfigParamDescr.YEAR),
-		 plugin.getLocalAuConfigDescrs());
+    assertIsomorphic(ListUtil.list(ConfigParamDescr.VOLUME_NUMBER,
+				   ConfigParamDescr.BASE_URL,
+				   ARTICLE_URL,
+				   JOURNAL_KEY),
+		     plugin.getLocalAuConfigDescrs());
   }
 
   public static void main(String[] argv) {
