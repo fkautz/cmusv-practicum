@@ -225,7 +225,7 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
 	    logger.debug("Expected exception while aborting crawl: " + e);
 	    return aborted();
 	  }
-	  logger.warning("Unexpected exception in crawl", e);
+	  logger.warning("Unexpected exception processing: " + nextUrl, e);
 	}
 	urlsToCrawl.remove(nextUrl);
 	if  (!crawlRes) {
