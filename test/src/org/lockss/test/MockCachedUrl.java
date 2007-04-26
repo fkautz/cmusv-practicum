@@ -202,6 +202,22 @@ public class MockCachedUrl implements CachedUrl {
     if (contentSize != -1) {
       return contentSize;
     }
+    if (cachedFile != null) {
+      if (isResource) {
+	InputStream in =
+	  ClassLoader.getSystemClassLoader(). getResourceAsStream(cachedFile);
+	try {
+	  return in.skip(Long.MAX_VALUE);
+	} catch (IOException e) {
+	  return 100;
+	} finally {
+	  IOUtil.safeClose(in);
+	}
+      } else {
+	return new File(cachedFile).length();
+      }
+    }
+
     return content == null ? 0 : content.length();
   }
 
