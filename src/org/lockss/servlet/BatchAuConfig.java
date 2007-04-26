@@ -415,8 +415,7 @@ public class BatchAuConfig extends LockssServlet {
         PlatformUtil.DF df = remoteApi.getRepositoryDF(repo);
         repoChoices.put(repo, df);
       }
-      frm.add(ServletUtil.makeRepoTable(
-          this, repoChoices.entrySet().iterator(), KEY_DEFAULT_REPO));
+      frm.add(ServletUtil.makeRepoTable(this, repoChoices, KEY_DEFAULT_REPO));
       session.setAttribute(SESSION_KEY_REPO_MAP, repoChoices);
     }
 
