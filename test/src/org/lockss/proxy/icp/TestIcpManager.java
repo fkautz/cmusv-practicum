@@ -151,7 +151,7 @@ public class TestIcpManager extends LockssTestCase {
   }
 
   private int getNewPort() {
-    return port++;
+    return port += 7;
   }
 
   private void setEnabled(boolean enabled, int port) {
