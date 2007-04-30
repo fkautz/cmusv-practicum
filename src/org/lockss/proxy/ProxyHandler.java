@@ -295,7 +295,7 @@ public class ProxyHandler extends AbstractHttpHandler {
     CachedUrl cu = pluginMgr.findCachedUrl(urlString);
 
     // Don't allow CLOCKSS to serve local content for unsubscribed AUs
-    if (cu != null && theDaemon.isClockss() && !auditProxy) {
+    if (cu != null && theDaemon.isDetectClockssSubscription() && !auditProxy) {
       ArchivalUnit au = cu.getArchivalUnit();
       switch (AuUtil.getAuState(au).getClockssSubscriptionStatus()) {
       case AuState.CLOCKSS_SUB_UNKNOWN:

@@ -76,6 +76,7 @@ public class ClockssSubscriptionProbe {
     case AuState.CLOCKSS_SUB_UNKNOWN:
     case AuState.CLOCKSS_SUB_YES:
     case AuState.CLOCKSS_SUB_INACCESSIBLE:
+    case AuState.CLOCKSS_SUB_NOT_MAINTAINED:
       switch (probeState) {
       case PROBE_NONE:
 	uc.setLocalAddress(mgr.getInstitutionSubscriptionAddr());
@@ -122,6 +123,7 @@ public class ClockssSubscriptionProbe {
       switch (aus.getClockssSubscriptionStatus()) {
       case AuState.CLOCKSS_SUB_UNKNOWN:
       case AuState.CLOCKSS_SUB_INACCESSIBLE:
+      case AuState.CLOCKSS_SUB_NOT_MAINTAINED:
 	switch (probeState) {
 	case PROBE_INST:
 	  aus.setClockssSubscriptionStatus(AuState.CLOCKSS_SUB_YES);

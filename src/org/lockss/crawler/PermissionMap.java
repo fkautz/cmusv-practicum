@@ -277,7 +277,7 @@ public class PermissionMap {
    * @return a PermissionRecord.PERMISSION_XXX status code
    */
   int probe(PermissionRecord rec) {
-    if (getDaemon().isClockss()) {
+    if (getDaemon().isDetectClockssSubscription()) {
       return clockssProbe(rec);
     } else {
       return probe0(rec);

@@ -1416,7 +1416,7 @@ public class PluginManager
   }
 
   private boolean isUnsubscribed(ArchivalUnit au) {
-    return (getDaemon().isClockss() &&
+    return (getDaemon().isDetectClockssSubscription() &&
 	    (AuUtil.getAuState(au).getClockssSubscriptionStatus() !=
 	     AuState.CLOCKSS_SUB_YES));
   }

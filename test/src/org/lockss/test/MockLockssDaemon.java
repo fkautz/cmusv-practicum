@@ -455,6 +455,16 @@ public class MockLockssDaemon extends LockssDaemon {
     return clockssParams;
   }
 
+  private boolean forceIsClockss = false;
+
+  public void setClockss(boolean val) {
+    forceIsClockss = val;
+  }
+
+  public boolean isClockss() {
+    return forceIsClockss || super.isClockss();
+  }
+
   /**
    * Set the datagram CommManager
    * @param commMan the new manager

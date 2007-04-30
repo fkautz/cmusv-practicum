@@ -49,11 +49,15 @@ public class ClockssUrlCacher implements UrlCacher {
   private static Logger log = Logger.getLogger("ClockssUrlCacher");
 
   private UrlCacher uc;
-  private ClockssSubscriptionProbe probe;
+  ArchivalUnit au;
+  private ClockssSubscriptionProbe probe = null;
 
   public ClockssUrlCacher(UrlCacher uc) {
     this.uc = uc;
-    probe = new ClockssSubscriptionProbe(uc.getArchivalUnit());
+    au = uc.getArchivalUnit();
+    if (AuUtil.getDaemon(au).isDetectClockssSubscription()) {
+      probe = new ClockssSubscriptionProbe(au);
+    }
   }
 
   public ArchivalUnit getArchivalUnit() {
@@ -111,6 +115,13 @@ public class ClockssUrlCacher implements UrlCacher {
   }
 
   public int cache() throws IOException {
+    if (probe == null) {
+      AuState aus = AuUtil.getAuState(au);
+      aus.setClockssSubscriptionStatus(AuState.CLOCKSS_SUB_NOT_MAINTAINED);
+      ClockssParams mgr = AuUtil.getDaemon(au).getClockssParams();
+      uc.setLocalAddress(mgr.getClockssSubscriptionAddr());
+      return uc.cache();
+    }
     int res;
     boolean update = false;
     boolean worked = false;
@@ -138,6 +149,13 @@ public class ClockssUrlCacher implements UrlCacher {
   }
 
   public InputStream getUncachedInputStream() throws IOException {
+    if (probe == null) {
+      AuState aus = AuUtil.getAuState(au);
+      aus.setClockssSubscriptionStatus(AuState.CLOCKSS_SUB_NOT_MAINTAINED);
+      ClockssParams mgr = AuUtil.getDaemon(au).getClockssParams();
+      uc.setLocalAddress(mgr.getClockssSubscriptionAddr());
+      return uc.getUncachedInputStream();
+    }
     InputStream res = null;
     boolean update = false;
     probe.setupAddr(uc);
@@ -165,7 +183,9 @@ public class ClockssUrlCacher implements UrlCacher {
 
   public void reset() {
     uc.reset();
+    if (probe != null) {
     probe.reset();
+    }
   }
 
   public void setPermissionMapSource(PermissionMapSource pmSource) {

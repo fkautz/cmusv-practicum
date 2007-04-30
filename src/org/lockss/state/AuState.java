@@ -191,6 +191,7 @@ public class AuState implements LockssSerializable {
   public static final int CLOCKSS_SUB_YES = 1;
   public static final int CLOCKSS_SUB_NO = 2;
   public static final int CLOCKSS_SUB_INACCESSIBLE = 3;
+  public static final int CLOCKSS_SUB_NOT_MAINTAINED = 4;
 
   /**
    * Return the CLOCKSS subscription status: CLOCKSS_SUB_UNKNOWN,
@@ -207,6 +208,7 @@ public class AuState implements LockssSerializable {
     case CLOCKSS_SUB_YES: return "Yes";
     case CLOCKSS_SUB_NO: return "No";
     case CLOCKSS_SUB_INACCESSIBLE: return "Inaccessible";
+    case CLOCKSS_SUB_NOT_MAINTAINED: return "";
     default: return "Unknown status " + status;
     }
   }

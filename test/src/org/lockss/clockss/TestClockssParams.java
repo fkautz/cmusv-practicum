@@ -67,4 +67,14 @@ public class TestClockssParams extends LockssTestCase {
 		 mgr.getClockssSubscriptionAddr().getHostAddress());
   }
 
+  public void testEnable() throws Exception {
+    MockLockssDaemon daemon = getMockLockssDaemon();
+    ClockssParams mgr = new ClockssParams();
+    mgr.initService(daemon);
+    mgr.startService();
+    assertFalse(mgr.isDetectSubscription());
+    ConfigurationUtil.setFromArgs(ClockssParams.PARAM_ENABLE_CLOCKSS_SUBSCRIPTION_DETECTION, "true");
+    assertTrue(mgr.isDetectSubscription());
+  }
+
 }

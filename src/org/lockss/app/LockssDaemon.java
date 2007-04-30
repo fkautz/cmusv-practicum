@@ -246,6 +246,14 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
     return isClockss;
   }
 
+  /**
+   * Convenience method returns {@link
+   * ClockssParams#isDetectClockssSubscription()}
+   */
+  public boolean isDetectClockssSubscription() {
+    return isClockss() && getClockssParams().isDetectSubscription();
+  }
+
   /** Stop the daemon.  Currently only used in testing. */
   public void stopDaemon() {
     stopApp();
