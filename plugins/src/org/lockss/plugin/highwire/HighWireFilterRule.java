@@ -58,6 +58,8 @@ public class HighWireFilterRule implements FilterRule {
 //        new HtmlTagFilter.TagPair("<!--", "-->", true),
         new HtmlTagFilter.TagPair("<STRONG>Institution:",
 				  "</A>", true),
+        new HtmlTagFilter.TagPair("<STRONG>Brought to you by:",
+				  "</A>", true),
         new HtmlTagFilter.TagPair("<!-- begin ad tag -->",
 				  "<!-- End ad tag -->", true),
         new HtmlTagFilter.TagPair("<script", "</script>", true, false),
