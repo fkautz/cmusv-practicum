@@ -56,7 +56,7 @@ public class MyTextArea extends TextArea {
     super(name, s);
   }
 
-  // Copy of Block.write(Writer), changed to onit the newline in the
+  // Copy of Block.write(Writer), changed to omit the newline in the
   // closing tag.  Block.write(Writer) calls super.write(Writer), but we
   // can't do that here (because that would call Block.write(Writer)), so
   // the body of Block.write(Writer) is also copied here.
