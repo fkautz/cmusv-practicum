@@ -285,6 +285,17 @@ public class TestDefinableArchivalUnit extends LockssTestCase {
     assertEquals("return value", expectedReturn, actualReturn);
   }
 
+  public void testUserMessage() {
+    String str = "test user msg";
+    Collection configProps = ListUtil.list(ConfigParamDescr.BASE_URL,
+					   ConfigParamDescr.VOLUME_NUMBER);
+    defMap.putCollection(DefinablePlugin.KEY_PLUGIN_CONFIG_PROPS,
+			 configProps);
+    defMap.putString(DefinablePlugin.KEY_PLUGIN_AU_CONFIG_USER_MSG, str);
+    cau.addImpliedConfigParams();
+    assertEquals(str, cau.getProperties().getString(DefinableArchivalUnit.KEY_AU_CONFIG_USER_MSG, null));
+  }
+
   public void testGetManifestPage() {
 
     configMap.putString("HOST", "www.example.com");

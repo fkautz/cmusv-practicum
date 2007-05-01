@@ -69,6 +69,10 @@ public class DefinablePlugin extends BasePlugin {
   public static final String KEY_CRAWL_TYPE =
       "plugin_crawl_type";
   public static final String KEY_FOLLOW_LINKS = "plugin_follow_link";
+  /** Message to be displayed when user configures an AU with this plugin */
+  public static final String KEY_PLUGIN_AU_CONFIG_USER_MSG =
+    "plugin_au_config_user_msg";
+
   public static final String DEFAULT_PLUGIN_VERSION = "1";
   public static final String DEFAULT_REQUIRED_DAEMON_VERSION = "0.0.0";
   public static final String MAP_SUFFIX = ".xml";

@@ -149,6 +149,16 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
 
   }
 
+  protected void addImpliedConfigParams() {
+    super.addImpliedConfigParams();
+    String umsg =
+      definitionMap.getString(DefinablePlugin.KEY_PLUGIN_AU_CONFIG_USER_MSG,
+			      null);
+    if (umsg != null) {
+      paramMap.putString(KEY_AU_CONFIG_USER_MSG, umsg);
+    }
+  }
+
   protected String makeName() {
     String namestr = definitionMap.getString(KEY_AU_NAME, "");
     String convstr = convertVariableString(namestr);

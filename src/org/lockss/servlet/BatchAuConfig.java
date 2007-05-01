@@ -625,9 +625,16 @@ public class BatchAuConfig extends LockssServlet {
 
     Page page = newPage();
     layoutErrorBlock(page);
-    ServletUtil.layoutExplanationBlock(page, okCnt + " AUs " + verb.past +
-        ", " + errCnt + " skipped");
-    ServletUtil.layoutAuStatus(page, statusList.iterator());
+    StringBuilder sb = new StringBuilder();
+    sb.append(okCnt);
+    sb.append(okCnt == 1 ? " AU " : " AUs ");
+    sb.append(verb.past);
+    if (errCnt != 0) {
+      sb.append(errCnt);
+      sb.append(" skipped");
+    }
+    ServletUtil.layoutExplanationBlock(page, sb.toString());
+    ServletUtil.layoutAuStatus(this, page, statusList);
     endPage(page);
   }
 
