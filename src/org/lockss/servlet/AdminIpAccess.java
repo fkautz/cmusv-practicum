@@ -39,7 +39,7 @@ import org.lockss.config.ConfigManager;
 public class AdminIpAccess extends IpAccessControl {
   private static final String exp =
     "Enter the list of IP addresses that should be allowed to access the " +
-    "administrative user interface on this cache.  " +
+    "administrative user interface on this LOCKSS box.  " +
     commonExp;
 
   protected String getExplanation() {

@@ -51,7 +51,7 @@ public class ProxyIpAccess extends IpAccessControl {
 
   private static final String exp =
     "Enter the list of IP addresses that should be allowed to use this " +
-    "cache as a proxy server, and access the content stored on it.  " +
+    "LOCKSS box as a proxy server, and access the content preserved on it.  " +
     commonExp;
 
   protected String getExplanation() {

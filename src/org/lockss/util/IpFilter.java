@@ -259,6 +259,12 @@ public class IpFilter {
       }
     }
 
+    /** Return number of one bits in mask
+     */
+    public int getMaskBits() {
+      return cidr;
+    }
+
     /** Return string representation
      */
     public String toString () {
