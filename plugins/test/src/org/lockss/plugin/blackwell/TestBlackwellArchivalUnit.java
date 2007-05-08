@@ -176,8 +176,8 @@ public class TestBlackwellArchivalUnit extends LockssPluginTestCase {
 		      au, cus);
     assertShouldCache(baseUrl+"doi/pdf/10.1111/j.1540-8159.2005.00355",
 		      au, cus);
-    // ISSN and volue must match
-    assertShouldNotCache(baseUrl+"doi/pdf/10.1111/j.1540-7234.2005.00355",
+    // we now ignore the ISSN
+    assertShouldCache(baseUrl+"doi/pdf/10.1111/j.1540-7234.2005.00355",
 			 au, cus);
 
     //Now we ignore the year
