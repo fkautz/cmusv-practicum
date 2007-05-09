@@ -35,6 +35,7 @@ package org.lockss.servlet;
 import javax.servlet.*;
 import java.io.*;
 import java.util.*;
+import java.util.List;
 import java.text.*;
 import java.security.*;
 import org.mortbay.html.*;

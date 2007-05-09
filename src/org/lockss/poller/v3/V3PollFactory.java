@@ -201,15 +201,15 @@ public class V3PollFactory extends BasePollFactory {
       return null;
     }
     V3LcapMessage m = (V3LcapMessage)msg;
-    // Ignore messages not coming from our group
-    String ourGroup = ConfigManager.getPlatformGroup();
-    if (m.getGroup() == null ||
-        !m.getGroup().equals(ourGroup)) {
-      log.debug("Ignoring message from peer " + m.getOriginatorId()
-                + " in group " + m.getGroup() + " due to group mismatch (" 
-                + ourGroup  + ")");
-      return null;
-    }
+//    // Ignore messages not coming from our group
+//    String ourGroup = ConfigManager.getPlatformGroup();
+//    if (m.getGroup() == null ||
+//        !m.getGroup().equals(ourGroup)) {
+//      log.debug("Ignoring message from peer " + m.getOriginatorId()
+//                + " in group " + m.getGroup() + " due to group mismatch (" 
+//                + ourGroup  + ")");
+//      return null;
+//    }
     
     // Check to see if we're running too many polls already.
     int maxVoters =

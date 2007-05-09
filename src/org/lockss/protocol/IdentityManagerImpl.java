@@ -1112,6 +1112,15 @@ public class IdentityManagerImpl extends BaseLockssDaemonManager
       return !map.isEmpty();
     }
   }
+  
+  public void removePeer(String key) {
+    log.debug("Removing peer " + key);
+    synchronized (thePeerIdentities) {
+      PeerIdentity pid = (PeerIdentity)(thePeerIdentities.get(key));
+      thePeerIdentities.remove(key);
+      theIdentities.remove(pid);
+    }
+  }
 
   /**
    * <p>Copies the identity agreement file for the AU to the given

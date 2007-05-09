@@ -426,6 +426,11 @@ public interface IdentityManager extends LockssManager {
   public Map getDisagreed(ArchivalUnit au);
 
   public boolean hasAgreeMap(ArchivalUnit au);
+  
+  /**
+   * <p>Remove a peer from our list of known peers.
+   */
+  public void removePeer(String key);
 
   /**
    * <p>Copies the identity agreement file for the AU to the given
