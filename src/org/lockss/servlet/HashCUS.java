@@ -35,7 +35,7 @@ package org.lockss.servlet;
 import javax.servlet.*;
 import java.io.*;
 import java.util.*;
-import java.util.List;
+//import java.util.List;
 import java.text.*;
 import java.security.*;
 import org.mortbay.html.*;
@@ -545,7 +545,11 @@ public class HashCUS extends LockssServlet {
       
     public void blockDone(HashBlock block) {
       HashBlock.Version ver = block.currentVersion();
-      outs.println(byteString(ver.getHashes()[0]) + "   " + block.getUrl());
+      if (ver.getHashError() != null) {
+	outs.println("Hash error (see log)        " + block.getUrl());
+      } else {
+	outs.println(byteString(ver.getHashes()[0]) + "   " + block.getUrl());
+      }
     }
   }
 
