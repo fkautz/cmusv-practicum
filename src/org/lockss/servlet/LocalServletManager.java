@@ -75,7 +75,6 @@ public class LocalServletManager extends BaseServletManager {
   static final String DEFAULT_INFRAME_CONTENT_TYPES =
     "text;image;application/pdf";
 
-
   private String redirectRootTo = DEFAULT_REDIRECT_ROOT;
   protected String isodir;
   private LockssResourceHandler rootResourceHandler;
@@ -208,6 +207,8 @@ public class LocalServletManager extends BaseServletManager {
                        "org.lockss.servlet.ProxyAndContent");
     handler.addServlet("Hash CUS", "/HashCUS",
 		       "org.lockss.servlet.HashCUS");
+    handler.addServlet("Plugin Configuration", "/PluginConfig",
+		       "org.lockss.servlet.PluginConfig");
     handler.addServlet("Raise Alert", "/RaiseAlert",
 		       "org.lockss.servlet.RaiseAlert");
     handler.addServlet("Debug Panel", "/DebugPanel",

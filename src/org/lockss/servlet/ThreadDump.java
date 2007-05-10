@@ -61,8 +61,6 @@ public class ThreadDump extends LockssServlet {
   /** Handle a request */
   public void lockssHandleRequest() throws IOException {
     platInfo.threadDump(true);
-    resp.setHeader("pragma", "no-cache");
-    resp.setHeader("Cache-control", "no-cache");
     dumpMXBean();
   }
 
