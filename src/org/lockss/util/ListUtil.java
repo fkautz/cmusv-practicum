@@ -189,6 +189,18 @@ public class ListUtil {
         return l;
     }
 
+  /**
+   * Append lists together. */
+  public static List append(List... lists) {
+    List res = new ArrayList();
+    for (int ix = 0; ix < lists.length; ix++) {
+      if (lists[ix] != null) {
+	res.addAll(lists[ix]);
+      }
+    }
+    return res;
+  }
+
   /** Create a list containing the elements of an array */
     public static List fromArray(Object array[]) {
 	List l = list();

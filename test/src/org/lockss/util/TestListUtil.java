@@ -100,6 +100,16 @@ public class TestListUtil extends LockssTestCase {
 				     lList(ListUtil.list("3"))));
   }
 
+  public void testAppend() {
+    List l1 = ListUtil.list("1", "2", "3");
+    List l2 = ListUtil.list("a", "b", "c");
+    List l3 = ListUtil.list("1", "2", "3", "a", "b", "c");
+    assertEquals(Collections.EMPTY_LIST, ListUtil.append((List)null));
+    assertEquals(Collections.EMPTY_LIST,
+		 ListUtil.append((List)null, (List)null));
+    assertEquals(l3, ListUtil.append(l1, l2));
+  }
+
   public void testImmutableListOfType() {
     String arr[] = {"1", "2", "4"};
     List l0 = ListUtil.fromArray(arr);
