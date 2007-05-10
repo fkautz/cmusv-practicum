@@ -569,7 +569,7 @@ public abstract class Configuration {
 
   /** Returns the set of keys in the configuration.
    */
-  public abstract Set keySet();
+  public abstract Set<String> keySet();
 
   /** Returns an <code>Iterator</code> over all the keys in the configuration.
    */
