@@ -69,12 +69,13 @@ public class V3Voter extends BasePoll {
   public static final int STATUS_EXPIRED = 6;
   public static final int STATUS_ERROR = 7;
   public static final int STATUS_DECLINED_POLL = 8;
+  public static final int STATUS_VOTE_ACCEPTED = 9;
   
   public static final String[] STATUS_STRINGS = 
   {
    "Initialized", "Accepted Poll", "Hashing", "Voted",
    "No Time Available", "Complete", "Expired w/o Voting", "Error",
-   "Declined Poll"
+   "Declined Poll", "Vote Accepted"
   };
 
   static String PREFIX = Configuration.PREFIX + "poll.v3.";

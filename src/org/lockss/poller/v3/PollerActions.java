@@ -117,8 +117,9 @@ public class PollerActions {
     ParticipantUserData ud = getUserData(interp);
     IdentityManager idMgr = ud.getPoller().getIdentityManager();
     idMgr.removePeer(ud.getVoterId().getIdString());
-    ud.removeParticipant();
-    log.info("Removed peer " + ud.getVoterId() + " from peer list.");
+    ud.setStatus(V3Poller.PEER_STATUS_DECLINED_POLL);
+//    ud.removeParticipant();
+//    log.info("Removed peer " + ud.getVoterId() + " from peer list.");
     return V3Events.evtFinalize;
   }
 
