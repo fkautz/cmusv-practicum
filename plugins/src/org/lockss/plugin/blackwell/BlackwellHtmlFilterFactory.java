@@ -96,7 +96,7 @@ public class BlackwellHtmlFilterFactory implements FilterFactory {
 
     // Still need to remove actual inverse citation section
 
-    InputStream htmlFilter = new HtmlFilterInputStream(in, xform1);
+    InputStream htmlFilter = new HtmlFilterInputStream(in, encoding, xform1);
 
     Reader rdr = FilterUtil.getReader(htmlFilter, encoding);
     Reader tagFilter = HtmlTagFilter.makeNestedFilter(rdr, tagList);
