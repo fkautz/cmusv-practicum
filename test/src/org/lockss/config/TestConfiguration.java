@@ -264,6 +264,13 @@ public class TestConfiguration extends LockssTestCase {
     assertEquals(ListUtil.list("a", "b"), config.getList("prop.p1"));
   }
 
+  public void testGetListDefault() throws IOException {
+    Configuration config = newConfiguration();
+    assertEquals(Collections.EMPTY_LIST, config.getList("foo"));
+    assertEquals(ListUtil.list("bar"), config.getList("foo",
+						      ListUtil.list("bar")));
+  }
+
   private static final String c2 =
     "timeint=14d\n" +
     "prop.p1=12\n" +

@@ -222,14 +222,27 @@ public class TestConfigManager extends LockssTestCase {
 		 config.get(ClockssParams.PARAM_CLOCKSS_SUBSCRIPTION_ADDR));
   }
 
+  public void testInitNewConfiguration() throws Exception {
+    mgr =  new ConfigManager(ListUtil.list("foo"), "group1;GROUP2");
+    Configuration config = mgr.initNewConfiguration();
+    assertEquals("group1;group2", config.getPlatformGroups());
+    assertEquals(ListUtil.list("group1", "group2"),
+		 config.getPlatformGroupList());
+  }
 
   public void testGroup() throws Exception {
     Properties props = new Properties();
     ConfigurationUtil.setCurrentConfigFromProps(props);
-    assertEquals("nogroup", Configuration.getPlatformGroup());
-    props.put(ConfigManager.PARAM_DAEMON_GROUP, "foog");
+    assertEquals("nogroup", ConfigManager.getPlatformGroups());
+    props.put(ConfigManager.PARAM_DAEMON_GROUPS, "foog");
     ConfigurationUtil.setCurrentConfigFromProps(props);
-    assertEquals("foog", Configuration.getPlatformGroup());
+    assertEquals("foog", ConfigManager.getPlatformGroups());
+    assertEquals(ListUtil.list("foog"), ConfigManager.getPlatformGroupList());
+    props.put(ConfigManager.PARAM_DAEMON_GROUPS, "foog;barg");
+    ConfigurationUtil.setCurrentConfigFromProps(props);
+    assertEquals("foog;barg", ConfigManager.getPlatformGroups());
+    assertEquals(ListUtil.list("foog", "barg"),
+		 ConfigManager.getPlatformGroupList());
   }
 
   // platform access not set, ui and proxy access not set
