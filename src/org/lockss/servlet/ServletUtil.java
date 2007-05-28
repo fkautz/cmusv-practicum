@@ -111,6 +111,8 @@ public class ServletUtil {
   /** Groups names not to display in header */
   static final String PARAM_DONT_DISPLAY_GROUPS =
     Configuration.PREFIX + "ui.dontDisplayGroups";
+  static final List DEFAULT_DONT_DISPLAY_GROUPS =
+    ConfigManager.DEFAULT_DAEMON_GROUP_LIST;
 
   /** Format to display date/time in headers */
   public static final DateFormat headerDf =
@@ -719,7 +721,8 @@ public class ServletUtil {
   }
 
   static boolean shouldDisplayGroups(List groups) {
-    List dontGroups = CurrentConfig.getList(PARAM_DONT_DISPLAY_GROUPS);
+    List dontGroups = CurrentConfig.getList(PARAM_DONT_DISPLAY_GROUPS,
+					    DEFAULT_DONT_DISPLAY_GROUPS);
     return groups != null && !CollectionUtils.containsAny(groups, dontGroups);
   }
 
