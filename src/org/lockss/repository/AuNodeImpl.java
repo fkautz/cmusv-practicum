@@ -117,7 +117,7 @@ public class AuNodeImpl extends RepositoryNodeImpl {
         String protocolStr = protocolDir.getName();
         // use as top-level, with protocol-URL as url
         try {
-          String dirName = new URL(protocolStr, urlStr, "").toString();
+          String dirName = protocolStr + "://" + urlStr;
           RepositoryNode node = repository.getNode(dirName);
           // add all nodes which are internal or active leaves
           if (!node.isLeaf() || (!node.isContentInactive()) || includeInactive) {
