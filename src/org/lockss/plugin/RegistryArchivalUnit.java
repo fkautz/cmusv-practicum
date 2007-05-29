@@ -140,8 +140,14 @@ public class RegistryArchivalUnit extends BaseArchivalUnit {
   }
 
   // If there is a <title> element on the start page, use that as our AU
-  // name
+  // name.
   String recomputeRegName() {
+    if (!isStarted()) {
+      // This can get invoked (seveeral times, mostly from logging) before
+      // enough mechanism has started to make it possible to resolve the CuUrl
+      // below.
+      return null;
+    }
     try {
       CachedUrl cu = makeCachedUrl(m_registryUrl);
       if (cu == null) return null;
@@ -167,6 +173,11 @@ public class RegistryArchivalUnit extends BaseArchivalUnit {
       }
       return null;
     }
+  }
+
+  boolean isStarted() {
+    return getPlugin().getDaemon().getPluginManager().getAuFromId(getAuId())
+      != null;
   }
 
   /**
