@@ -199,6 +199,8 @@ public class LocalServletManager extends BaseServletManager {
 		       "org.lockss.servlet.DaemonStatus");
     handler.addServlet("ViewContent", "/ViewContent",
 		       "org.lockss.servlet.ViewContent");
+    handler.addServlet("ListUrls", "/ListUrls",
+		       "org.lockss.servlet.ListUrls");
     handler.addServlet("AdminIpAccess", "/AdminIpAccess",
 		       "org.lockss.servlet.AdminIpAccess");
     handler.addServlet("ProxyIpAccess", "/ProxyIpAccess",
