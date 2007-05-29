@@ -119,6 +119,16 @@ public class UrlUtil {
    */
   public static String normalizeUrl(String urlString)
       throws MalformedURLException {
+    return normalizeUrl(urlString, pathTraversalAction);
+  }
+
+  /** Normalize URL to a canonical form: lowercase scheme and hostname,
+   * normalize path.  Removes any reference part.  XXX need to add
+   * character escaping
+   * @throws MalformedURLException
+   */
+  public static String normalizeUrl(String urlString, int pathTraversalAction)
+      throws MalformedURLException {
     log.debug3("Normalizing "+urlString);
     urlString = trimNewlinesAndLeadingWhitespace(urlString);
     if ("".equals(urlString)) {		// permit empty
@@ -164,7 +174,7 @@ public class UrlUtil {
       path = "/";
       changed = true;
     } else {
-      String normPath = normalizePath(path);
+      String normPath = normalizePath(path, pathTraversalAction);
       if (!normPath.equals(path)) {
 	if (log.isDebug3()) log.debug3("Normalized "+path+" to "+normPath);
 	path = normPath;
