@@ -63,6 +63,7 @@ public class TestNodeManagerImpl extends LockssTestCase {
     p.setProperty(NodeManagerManager.PARAM_MAX_PER_AU_CACHE_SIZE, "10");
     p.setProperty(IdentityManager.PARAM_LOCAL_IP, "127.1.2.3");
     p.setProperty(NodeManagerManager.PARAM_RECALL_DELAY, "5s");
+    p.setProperty(AuUtil.PARAM_POLL_PROTOCOL_VERSION, "1");
     ConfigurationUtil.setCurrentConfigFromProps(p);
     mau = new MockArchivalUnit();
     mau.setPlugin(new MockPlugin());
