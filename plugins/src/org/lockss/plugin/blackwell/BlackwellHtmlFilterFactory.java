@@ -87,7 +87,7 @@ public class BlackwellHtmlFilterFactory implements FilterFactory {
       HtmlNodeFilters.tagWithAttribute("form", "id", "quick_link");
 
     filters[8] =
-      HtmlNodeFilters.tagWithAttribute("ul", "id", "mini_tools1");
+      HtmlNodeFilters.tagWithAttribute("div", "id", "left_column");
 
     //    "<h3 id=\"CitedBy\">This article is cited by:</h3></div>" +
 
