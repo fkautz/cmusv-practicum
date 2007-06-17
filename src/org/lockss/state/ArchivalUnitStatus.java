@@ -257,10 +257,10 @@ public class ArchivalUnitStatus
         //      the method declaration for more information.  It should
         //      eventually be removed, but is harmless for now.
         if (auState.getV3Agreement() < 0 || !auState.hasV3Poll()) {
-          if (auState.lastCrawlTime < 0) {
-            stat = "Waiting for Crawl";
-          } else {
+          if (auState.lastCrawlTime > 0 || AuUtil.isPubDown(au)) {
             stat = "Waiting for Poll";
+          } else {
+            stat = "Waiting for Crawl";
           }
         } else {
           stat = doubleToPercent(auState.getV3Agreement()) + "% Agreement";
