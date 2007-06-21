@@ -70,7 +70,7 @@ public abstract class LockssServlet extends HttpServlet
   /** Inactive HTTP session (cookie) timeout */
   static final String PARAM_UI_SESSION_TIMEOUT =
     Configuration.PREFIX + "ui.sessionTimeout";
-  static final long DEFAULT_UI_SESSION_TIMEOUT = Constants.HOUR;
+  static final long DEFAULT_UI_SESSION_TIMEOUT = 2 * Constants.DAY;
 
   /** Maximum size of uploaded file accepted */
   static final String PARAM_MAX_UPLOAD_FILE_SIZE =
