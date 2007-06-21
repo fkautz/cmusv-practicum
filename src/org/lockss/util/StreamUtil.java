@@ -127,9 +127,9 @@ public class StreamUtil {
       rem -= nread;
       if (wdog != null) {
 	if ((wcnt += nread) > COPY_WDOG_CHECK_EVERY_BYTES) {
-	  log.debug("checking: "+ wnext);
+	  log.debug2("checking: "+ wnext);
 	  if (TimeBase.nowMs() > wnext) {
-	    log.debug("poke: " + wcnt);
+	    log.debug2("poke: " + wcnt);
 	    wdog.pokeWDog();
 	    wnext = TimeBase.nowMs() + wint;
 	  }
@@ -264,4 +264,3 @@ public class StreamUtil {
     }
   }
 }
-
