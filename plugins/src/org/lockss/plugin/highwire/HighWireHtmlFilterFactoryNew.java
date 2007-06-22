@@ -54,12 +54,18 @@ public class HighWireHtmlFilterFactoryNew implements FilterFactory {
 					       InputStream in,
 					       String encoding) {
 
-    NodeFilter[] filters = new NodeFilter[3];
+    NodeFilter[] filters = new NodeFilter[4];
     filters[0] =
       HtmlNodeFilters.tagWithAttribute("div", "id", "authenticationstring");
 
     filters[1] = new TagNameFilter("script");
-    filters[2] = new TagNameFilter("table");
+
+    filters[2] =
+      HtmlNodeFilters.tagWithAttribute("div", "id", "user_nav");
+
+    filters[3] =
+      HtmlNodeFilters.tagWithAttribute("table", "class", "content_box_inner_table");
+
     OrFilter combineFilter = new OrFilter();
     combineFilter.setPredicates(filters);
 
