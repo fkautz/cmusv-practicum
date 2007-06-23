@@ -611,7 +611,7 @@ public class BaseUrlCacher implements UrlCacher {
   /** Handle a single redirect response: determine whether it should be
    * followed and change the state (fetchUrl) to set up for the next fetch.
    * @return true if another request should be issued, false if not. */
-  private boolean processRedirectResponse() {
+  private boolean processRedirectResponse() throws CacheException {
     //get the location header to find out where to redirect to
     String location = conn.getResponseHeaderValue("location");
     if (location == null) {
@@ -633,6 +633,10 @@ public class BaseUrlCacher implements UrlCacher {
 			 " from: " + origUrl);
 	  return false;
 	}
+      }
+      if (au.isLoginPageUrl(newUrlString)) {
+	String msg = "Redirected to login page: " + newUrlString;
+	throw new CacheException.PermissionException(msg);
       }
       PermissionMap permissionMap = null;
       if (permissionMapSource != null) {
