@@ -105,6 +105,13 @@ public interface ArchivalUnit {
   public boolean shouldBeCached(String url);
 
   /**
+   * Return true if the URL is that of a login page.
+   * @param url the url to test
+   * @return true if login page URL
+   */
+  public boolean isLoginPageUrl(String url);
+
+  /**
    * Return the {@link CachedUrlSet} representing the entire contents
    * of this AU
    * @return the top-level {@link CachedUrlSet}

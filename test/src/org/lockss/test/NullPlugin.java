@@ -392,6 +392,10 @@ public class NullPlugin {
       return false;
     }
 
+    public boolean isLoginPageUrl(String url) {
+      return false;
+    }
+
     public String siteNormalizeUrl(String url) {
       return url;
     }

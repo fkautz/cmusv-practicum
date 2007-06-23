@@ -72,6 +72,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   private Map extractors = new HashMap();
   private TypedEntryMap propertyMap = new TypedEntryMap();
   private List urlStems = Collections.EMPTY_LIST;
+  private Collection loginUrls;
 
   private static final Logger logger = Logger.getLogger("MockArchivalUnit");
 
@@ -302,6 +303,15 @@ public class MockArchivalUnit implements ArchivalUnit {
 
   public boolean shouldBeCached(String url) {
     return urlsToCache.contains(url);
+  }
+
+  public boolean isLoginPageUrl(String url) {
+    if (loginUrls == null) return false;
+    return loginUrls.contains(url);
+  }
+
+  public void setLoginPageUrls(Collection urls) {
+    loginUrls = urls;
   }
 
   public String siteNormalizeUrl(String url) {

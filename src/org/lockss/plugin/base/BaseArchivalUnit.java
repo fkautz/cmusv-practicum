@@ -329,7 +329,8 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     titleDbChanged();
   }
 
-  protected void addImpliedConfigParams() {
+  protected void addImpliedConfigParams()
+      throws ArchivalUnit.ConfigurationException {
     for (Iterator it = plugin.getAuConfigDescrs().iterator();
 	 it.hasNext() ; ) {
       ConfigParamDescr descr = (ConfigParamDescr)it.next();
@@ -457,6 +458,10 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   public boolean shouldBeCached(String url) {
     boolean val = getCrawlSpec().isIncluded(url);
     return val;
+  }
+
+  public boolean isLoginPageUrl(String url) {
+    return false;
   }
 
   public String siteNormalizeUrl(String url) {
