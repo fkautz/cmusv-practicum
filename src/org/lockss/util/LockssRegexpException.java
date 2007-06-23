@@ -43,4 +43,8 @@ public class LockssRegexpException extends Exception {
   public LockssRegexpException(String msg) {
     super(msg);
   }
+
+  public LockssRegexpException(Throwable t) {
+    super(t);
+  }
 }
