@@ -1120,8 +1120,6 @@ JAVA_COMMAND_ARGS="-server `/usr/local/lib/maxheap` -Dsun.net.inetaddr.ttl=3600 
     <tar destfile="./lockss-daemon.tgz" compression="gzip">
      <tarfileset dir="${tar.top}" includes="${tar.scripts}" mode="755" />
      <tarfileset dir="${tar.top}" excludes="${tar.scripts}" />
-<!--      <tarfileset dir="${tar.top}" mode="755" includes="plugintool" /> -->
-<!--      <tarfileset dir="${temp.pkg.dir}" excludes="plugintool" /> -->
     </tar>
   </target>
 
