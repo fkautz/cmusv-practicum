@@ -379,7 +379,7 @@ public class PluginManager
       plugList = CollectionUtil.randomPermutation(plugList);
       for (Iterator iter = plugList.iterator(); iter.hasNext(); ) {
 	String pluginKey = (String)iter.next();
-	log.debug("Configuring plugin key: " + pluginKey);
+	log.debug2("Configuring plugin key: " + pluginKey);
 	Configuration pluginConf = allPlugs.getConfigTree(pluginKey);
 	Configuration prevPluginConf =
 	  currentAllPlugs.getConfigTree(pluginKey);
