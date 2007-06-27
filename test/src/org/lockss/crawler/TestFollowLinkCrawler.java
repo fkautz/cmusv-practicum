@@ -131,8 +131,12 @@ public class TestFollowLinkCrawler extends LockssTestCase {
   }
 
   public void testMakeUrlCacherProxy() {
-    ConfigurationUtil.setFromArgs(FollowLinkCrawler.PARAM_PROXY_HOST, "pr.wub",
-				  FollowLinkCrawler.PARAM_PROXY_PORT, "27");
+    Properties p = new Properties();
+    p.put(FollowLinkCrawler.PARAM_PROXY_ENABLED, "true");
+    p.put(FollowLinkCrawler.PARAM_PROXY_HOST, "pr.wub");
+    p.put(FollowLinkCrawler.PARAM_PROXY_PORT, "27");
+    ConfigurationUtil.setCurrentConfigFromProps(p);
+
     crawler.setCrawlConfig(ConfigManager.getCurrentConfig());
     mau.addUrl(startUrl);
     crawler.makeUrlCacher(startUrl);
