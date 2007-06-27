@@ -136,6 +136,8 @@ public class AuTreeWalkManager
 	startWDog(TreeWalkManager.WDOG_PARAM_TREEWALK,
 		  TreeWalkManager.WDOG_DEFAULT_TREEWALK);
 	happened = runWalker(finishBy);
+      } catch (RuntimeException e) {
+	log.error("Error in treewalk", e);
       } finally {
 	// we are done running, in the sense that we should no longer be
 	// aborted if the FINISHED taskEvent occurs.  (In fact, we're about
