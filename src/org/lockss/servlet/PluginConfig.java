@@ -272,7 +272,7 @@ public class PluginConfig extends LockssServlet {
 
     props.put(PluginManager.PARAM_USER_PLUGIN_REGISTRIES, plugStr);
     props.put(ConfigManager.PARAM_USER_TITLE_DB_URLS, titleStr);
-    if (keystoreUrl != null) {
+    if (!StringUtil.isNullString(keystoreUrl)) {
       props.put(PluginManager.PARAM_USER_KEYSTORE_LOCATION, keystoreUrl);
       props.put(PluginManager.PARAM_USER_KEYSTORE_PASSWORD,
 		keystorePassword);
