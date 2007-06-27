@@ -941,7 +941,14 @@ public class ServletUtil {
   public static void layoutSubmitButton(LockssServlet servlet,
                                         Composite composite,
                                         String value) {
-    Input submit = new Input(Input.Submit, "action", value);
+    layoutSubmitButton(servlet, composite, "action", value);
+  }
+
+  public static void layoutSubmitButton(LockssServlet servlet,
+                                        Composite composite,
+					String key,
+                                        String value) {
+    Input submit = new Input(Input.Submit, key, value);
     servlet.setTabOrder(submit);
     composite.add(SUBMIT_BEFORE + submit + SUBMIT_AFTER);
   }
