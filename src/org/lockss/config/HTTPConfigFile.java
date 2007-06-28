@@ -126,12 +126,15 @@ public class HTTPConfigFile extends BaseConfigFile {
       break;
     case HttpURLConnection.HTTP_NOT_FOUND:
       m_loadError = resp + ": " + respMsg;
+      IOUtil.safeRelease(conn);
       throw new FileNotFoundException(m_loadError);
     case HttpURLConnection.HTTP_FORBIDDEN:
       m_loadError = findErrorMessage(resp, conn);
+      IOUtil.safeRelease(conn);
       throw new IOException(m_loadError);
     default:
       m_loadError = resp + ": " + respMsg;
+      IOUtil.safeRelease(conn);
       throw new IOException(m_loadError);
     }
 
