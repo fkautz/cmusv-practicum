@@ -77,7 +77,10 @@ public class ProxyIpAccess extends IpAccessControl {
     boolean icpEnable = getLockssDaemon().getIcpManager().isIcpServerRunning();
     int icpPort = getLockssDaemon().getIcpManager().getCurrentPort();
     ProxyAndContent.saveAuditAndIcp(configMgr,
-        auditEnable, auditPort, icpEnable, icpPort);
+				    auditEnable,
+				    Integer.toString(auditPort),
+				    icpEnable,
+				    Integer.toString(icpPort));
     super.saveChanges();
   }
 
