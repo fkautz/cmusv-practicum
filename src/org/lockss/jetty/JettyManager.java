@@ -100,9 +100,18 @@ public abstract class JettyManager
       // Tell Jetty to allow symbolic links in file resources
       System.setProperty("org.mortbay.util.FileResource.checkAliases",
 			 "false");
+      String maxform = CurrentConfig.getParam(PARAM_MAX_FORM_SIZE,
+					      DEFAULT_MAX_FORM_SIZE);
       System.setProperty("org.mortbay.http.HttpRequest.maxFormContentSize",
-			 CurrentConfig.getParam(PARAM_MAX_FORM_SIZE,
-						DEFAULT_MAX_FORM_SIZE));
+			 maxform);
+      // Jetty grabs System property in static initializer.  Ensure no
+      // loading order dependence
+      try {
+	int max = Integer.parseInt(maxform);
+	HttpRequest.__maxFormContentSize = max;
+      } catch (NumberFormatException e) {
+	log.error("Can't set max form size: " + e.toString());
+      }
       HttpResponse.__statusMsg.put(new Integer(HttpResponse.__502_Bad_Gateway),
 				   "Upstream Error");
       isJettyInited = true;
