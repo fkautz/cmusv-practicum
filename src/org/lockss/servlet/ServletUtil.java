@@ -650,10 +650,14 @@ public class ServletUtil {
     // Start line
     table.newCell(ENABLEPORT_CELL_ATTRIBUTES);
 
+    Input portElem = new Input(Input.Text, portFieldName, defaultPort);
+
     // "enable" element
     Input enaElem = new Input(Input.Checkbox, enableFieldName, "1");
     if (defaultEnable) {
       enaElem.check();
+    } else {
+      portElem.attribute("disabled", "true");
     }
     String portFieldId = "id_" + portFieldName;
     enaElem.attribute("onchange",
@@ -665,7 +669,6 @@ public class ServletUtil {
     table.add(" on port&nbsp;");
 
     // "port" element
-    Input portElem = new Input(Input.Text, portFieldName, defaultPort);
     portElem.setSize(6);
     portElem.attribute("id", portFieldId);
     servlet.setTabOrder(portElem);
