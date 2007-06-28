@@ -370,7 +370,7 @@ public class ProxyAndContent extends LockssServlet {
 
   private boolean isLegalIcpPort(int port) {
     return port >= 1024 &&
-        resourceMgr.isUdpPortAvailable(port, IcpManager.class);
+        resourceMgr.isUdpPortAvailable(port, IcpManager.SERVER_NAME);
   }
 
   private LinkWithExplanation makeDescriptor(String linkText,
