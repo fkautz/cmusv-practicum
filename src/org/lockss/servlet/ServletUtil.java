@@ -655,6 +655,9 @@ public class ServletUtil {
     if (defaultEnable) {
       enaElem.check();
     }
+    String portFieldId = "id_" + portFieldName;
+    enaElem.attribute("onchange",
+		      "selectEnable(this,'" + portFieldId + "')");
     servlet.setTabOrder(enaElem);
     table.add(enaElem);
     table.add("Enable " + enableDescription);
@@ -664,6 +667,7 @@ public class ServletUtil {
     // "port" element
     Input portElem = new Input(Input.Text, portFieldName, defaultPort);
     portElem.setSize(6);
+    portElem.attribute("id", portFieldId);
     servlet.setTabOrder(portElem);
     table.add(portElem);
 
