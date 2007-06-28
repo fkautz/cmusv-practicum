@@ -899,7 +899,7 @@ public abstract class TestIdentityManagerImpl extends LockssTestCase {
 
     for (Iterator iter = idMap.values().iterator();
 	 iter.hasNext();) {
-      LcapIdentity id = (LcapIdentity)iter.next();
+      LcapIdentity id = ((PeerIdentityStatus)iter.next()).getLcapIdentity();
       assertTrue(id.getPeerIdentity() + " not found in " + expectedAddresses,
 		 expectedAddresses.contains(id.getPeerIdentity().getIdString()));
     }

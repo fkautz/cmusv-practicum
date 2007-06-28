@@ -34,6 +34,12 @@ package org.lockss.protocol;
 import java.io.Serializable;
 import java.util.Collection;
 
+/**
+ * As of daemon 1.25, this class is deprecated.  Please delete this class
+ * after several daemon releases.
+ * 
+ * @deprecated
+ */
 public class IdentityListBean implements Serializable {
   Collection idBeans;
 

@@ -303,7 +303,7 @@ public class TestIDUtil extends LockssTestCase {
     encodedKey[7] = (byte)0x00;
     
     try {
-      IDUtil.decodeOneKey(new ByteArrayInputStream(encodedKey));
+      IDUtil.decodeOneKey(new DataInputStream(new ByteArrayInputStream(encodedKey)));
       // Should throw.
       fail("Should have thrown IdentityParseException");
     } catch (IdentityParseException ex) {

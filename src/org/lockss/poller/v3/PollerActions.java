@@ -108,6 +108,14 @@ public class PollerActions {
       log.info("Peer " + ud.getVoterId() + " accepted invitation for poll " + 
                ud.getKey() + " and sent voter nonce " +
                ByteArray.toBase64(voterNonce));
+      
+      // Update the peer status.
+      PeerIdentityStatus status = ud.getPoller().getIdentityManager().
+                                  getPeerIdentityStatus(msg.getOriginatorId());
+      if (status != null) {
+        status.joinedPoll();
+      }
+      
       return V3Events.evtOk;
     }
   }

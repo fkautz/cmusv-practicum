@@ -320,6 +320,14 @@ public class MockIdentityManager implements IdentityManager {
     throw new UnsupportedOperationException("not implemented");
   }
 
+  public PeerIdentityStatus getPeerIdentityStatus(PeerIdentity pid) {
+    throw new UnsupportedOperationException("not implemented");
+  }
+
+  public PeerIdentityStatus getPeerIdentityStatus(String key) {
+    throw new UnsupportedOperationException("not implemented");
+  }
+
 //   protected String getLocalIpParam(Configuration config) {
 //     throw new UnsupportedOperationException("not implemented");
 //   }
