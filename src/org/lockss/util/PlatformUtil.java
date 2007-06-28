@@ -93,7 +93,14 @@ public class PlatformUtil {
 
   public List getUnfilteredTcpPorts() {
     Configuration config = CurrentConfig.getCurrentConfig();
-    return config.getList(PARAM_UNFILTERED_TCP_PORTS);
+    List lst = config.getList(PARAM_UNFILTERED_TCP_PORTS);
+    // CD <= 248 use comma as separator in this string
+    String str;
+    if (lst.size() == 1 &&
+	((str = (String)lst.get(0)).indexOf(',') != -1)) {
+      return StringUtil.breakAt(str, ',', 0, true);
+    }
+    return lst;
   }
 
   public List getUnfilteredUdpPorts() {
