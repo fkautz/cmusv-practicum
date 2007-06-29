@@ -184,6 +184,15 @@ public class HtmlNodeFilters {
     return new CommentRegexFilter(regex, ignoreCase);
   }
 
+  /** Create a NodeFilter that matches the lowest level node that matches the
+   * specified filter.  This is useful for searching for text within a tag, 
+   * because the default is to match parent nodes as well.
+   */
+  public static NodeFilter lowestLevelMatchFilter(NodeFilter filter) {
+    return new AndFilter(filter,
+			 new NotFilter(new HasChildFilter(filter, true)));
+  }
+
   /**
    * This class accepts all comment nodes containing the given string.
    */
