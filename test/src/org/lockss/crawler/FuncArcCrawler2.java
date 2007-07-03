@@ -171,7 +171,7 @@ public class FuncArcCrawler2 extends LockssTestCase {
     log.debug3("Actual content size = " + actualSize);
     long error = 29368 - actualSize;
     error = (error < 0 ? -error : error);
-    assertTrue(error < 60);
+    assertTrue("ARC file changed size by " + error + " bytes", error < 70);
 
   }
 
