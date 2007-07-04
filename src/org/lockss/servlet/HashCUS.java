@@ -417,13 +417,7 @@ public class HashCUS extends LockssServlet {
     Table autbl = new Table(0, "cellpadding=0");
     autbl.newRow();
     autbl.addHeading("Select AU");
-    Select sel = new Select(KEY_AUID, false);
-    sel.add("", auid == null, "");
-    for (Iterator iter = pluginMgr.getAllAus().iterator(); iter.hasNext(); ) {
-      ArchivalUnit au0 = (ArchivalUnit)iter.next();
-      String id = au0.getAuId();
-      sel.add(au0.getName(), id.equals(auid), id);
-    }
+    Composite sel = ServletUtil.layoutSelectAu(this, KEY_AUID, auid);
     autbl.newRow(); autbl.newCell();
     setTabOrder(sel);
     autbl.add(sel);
