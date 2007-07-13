@@ -156,6 +156,7 @@ public class MockIdentityManager implements IdentityManager {
   }
 
 
+  /** @deprecated */
   public IdentityListBean getIdentityListBean() {
     throw new UnsupportedOperationException("not implemented");
   }
