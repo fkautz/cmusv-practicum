@@ -109,6 +109,10 @@ public class ClockssUrlCacher implements UrlCacher {
     uc.setWatchdog(wdog);
   }
 
+  public void setPreviousContentType(String previousContentType) {
+    uc.setPreviousContentType(previousContentType);
+  }
+
   public void storeContent(InputStream input, CIProperties headers)
       throws IOException {
     uc.storeContent(input, headers);

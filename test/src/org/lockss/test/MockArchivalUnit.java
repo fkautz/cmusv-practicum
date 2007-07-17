@@ -387,7 +387,7 @@ public class MockArchivalUnit implements ArchivalUnit {
     auId = newId;
   }
 
-  public void pauseBeforeFetch() {
+  public void pauseBeforeFetch(String previousContentType) {
     if (pauseCallback != null) {
       pauseCallback.callback();
     }

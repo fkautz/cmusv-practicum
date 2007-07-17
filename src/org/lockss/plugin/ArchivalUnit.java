@@ -164,7 +164,7 @@ public interface ArchivalUnit {
   /**
    * Sleeps for the interval needed between requests to the server
    */
-  public void pauseBeforeFetch();
+  public void pauseBeforeFetch(String previousContentType);
 
   /**
    * Return the RateLimiter for page fetches from the publisher's server.

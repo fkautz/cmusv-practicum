@@ -244,6 +244,9 @@ public class NullPlugin {
     public void setWatchdog(LockssWatchdog wdog) {
     }
 
+    public void setPreviousContentType(String previousContentType) {
+    }
+
     public int cache() throws IOException {
       return CACHE_RESULT_NOT_MODIFIED;
     }
@@ -424,7 +427,7 @@ public class NullPlugin {
       return null;
     }
 
-    public void pauseBeforeFetch() {
+    public void pauseBeforeFetch(String previousContentType) {
     }
 
     public RateLimiter findFetchRateLimiter() {

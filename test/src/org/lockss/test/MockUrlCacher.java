@@ -60,6 +60,7 @@ public class MockUrlCacher implements UrlCacher {
   private int numTimesToThrow = 1;
   private BitSet fetchFlags = new BitSet();
   private PermissionMapSource permissionMapSource;
+  private String previousContentType;
 
   public MockUrlCacher(String url, MockArchivalUnit au){
     this.url = url;
@@ -115,6 +116,14 @@ public class MockUrlCacher implements UrlCacher {
 
   public BitSet getFetchFlags() {
     return this.fetchFlags;
+  }
+
+  public void setPreviousContentType(String previousContentType) {
+    this.previousContentType = previousContentType;
+  }
+
+  public String getPreviousContentType() {
+    return previousContentType;
   }
 
   public void setRequestProperty(String key, String value) {

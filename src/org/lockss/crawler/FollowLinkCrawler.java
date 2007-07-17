@@ -114,9 +114,7 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
   protected Set extractedUrls;
   protected boolean cachingStartUrls = false; //added to report an error when
                                               //not able to cache a starting Url
-
   protected BitSet fetchFlags = new BitSet();
-
 
   public FollowLinkCrawler(ArchivalUnit au, CrawlSpec crawlSpec, AuState aus) {
     super(au, crawlSpec, aus);

@@ -1183,7 +1183,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
       }
     }
 
-    public void pauseBeforeFetch() {
+    public void pauseBeforeFetch(String previousContentType) {
       pauseBeforeFetchCounter++;
     }
   }

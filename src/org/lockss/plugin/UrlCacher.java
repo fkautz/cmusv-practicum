@@ -130,7 +130,7 @@ public interface UrlCacher {
    * sorce of outgoing URL connections */
   public void setLocalAddress(IPAddr localAddr);
 
-  /** Set the host and port the UrlCache should proxy through */
+  /** Set the host and port the UrlCacher should proxy through */
   public void setProxy(String proxyHost, int proxyPort);
 
   /**
@@ -154,6 +154,10 @@ public interface UrlCacher {
    * @see StreamUtil#copy(InputStream, OutputStream, long, LockssWatchdog)
    */
   public void setWatchdog(LockssWatchdog wdog);
+
+  /** Set the content type just fetched, for MIME-type dependent rate
+   * limiters */
+  public void setPreviousContentType(String prevContentType);
 
   /**
    * Copies the content and properties from the source into the cache.

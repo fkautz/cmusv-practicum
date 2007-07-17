@@ -441,4 +441,19 @@ public abstract class BasePlugin
       log.debug3(contentType + " filter: " + mti.getFilterFactory());
     return mti.getFilterFactory();
   }
+
+  /**
+   * Returns the fetch rate limiter for the mime type, if any
+   * @param contentType the content type
+   * @return the RateLimiter or null
+   */
+  public RateLimiter getFetchRateLimiter(String contentType) {
+    MimeTypeInfo mti = getMimeTypeInfo(contentType);
+    if (mti == null) {
+      return null;
+    }
+    if (log.isDebug3())
+      log.debug3(contentType + " rate limiter: " + mti.getFetchRateLimiter());
+    return mti.getFetchRateLimiter();
+  }
 }

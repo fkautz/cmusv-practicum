@@ -157,6 +157,12 @@ public class FuncNewContentCrawler extends LockssTestCase {
     // Permission pages get checked twice.  Hard to avoid that, so allow it
     b.removeAll(sau.getCrawlSpec().getPermissionPages());
     assertEmpty("shouldBeCached() called multiple times on same URLs.", b);
+
+    String th = "text/html";
+    String tp = "text/plain";
+    String[] ct = {null, th, tp, tp, null, th, tp, th, tp, tp, tp, th, tp};
+    Bag ctb = new HashBag(ListUtil.fromArray(ct));
+    assertEquals(ctb, new HashBag(sau.getPauseContentTypes()));
   }
 
   //recursive caller to check through the whole file tree

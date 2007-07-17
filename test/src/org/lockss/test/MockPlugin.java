@@ -177,4 +177,13 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
   }
 
 
+  Map<String,RateLimiter> rateLimiterMap = new HashMap<String,RateLimiter>();
+
+  public void setFetchRateLimiter(String contentType, RateLimiter limit) {
+    rateLimiterMap.put(contentType, limit);
+  }
+
+  public RateLimiter getFetchRateLimiter(String contentType) {
+    return rateLimiterMap.get(contentType);
+  }
 }
