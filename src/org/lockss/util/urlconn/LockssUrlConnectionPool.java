@@ -96,6 +96,13 @@ public class LockssUrlConnectionPool {
     hcConnManager.getParams().setSoTimeout(this.dataTimeout);
   }
 
+  /** Close connections that have been idle for at least idleTime.  If
+   * zero, close all connections not currently actuve.  Use this when
+   * you're done with the connection pool for a while. */
+  public void closeIdleConnections(long idleTime) {
+    hcConnManager.closeIdleConnections(idleTime);
+  }
+
   private HttpClient setupNewHttpClient() {
     HttpClient client = newHttpClient();
     client.setHttpConnectionManager(hcConnManager);

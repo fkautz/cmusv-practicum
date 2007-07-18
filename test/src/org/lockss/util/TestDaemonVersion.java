@@ -73,6 +73,10 @@ public class TestDaemonVersion extends LockssTestCase {
     assertIllegalFormat("2.b.5");
   }
 
+  public void testDisplayString() {
+    assertEquals("1.2.3", new DaemonVersion("1.2.3").displayString());
+  }
+
   public void testToLong() {
     try {
       Version a = new DaemonVersion("123.123.123");
