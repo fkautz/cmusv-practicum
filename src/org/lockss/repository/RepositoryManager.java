@@ -130,6 +130,10 @@ public class RepositoryManager
 	globalNodeCache.setMaxSize(paramGlobalNodeCacheSize);
       }
     }
+    if (changedKeys.contains(PARAM_SIZE_CALC_MAX_LOAD)) {
+      sizeCalcMaxLoad = config.getPercentage(PARAM_SIZE_CALC_MAX_LOAD,
+					     DEFAULT_SIZE_CALC_MAX_LOAD);
+    }
   }
 
   /** Return list of known repository names.  Needs a registration
