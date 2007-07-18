@@ -37,7 +37,7 @@ import org.lockss.util.*;
 import org.lockss.test.LockssTestCase;
 
 public class TestBloggerFilterRule extends LockssTestCase {
-  private BloggerFilterRule rule;
+  private BasicBloggerFilterRule rule;
 
   private static final String filterStart = "<!--LOCKSS ignore start-->";
   private static final String filterEnd = "<!--LOCKSS ignore end-->";
@@ -45,7 +45,7 @@ public class TestBloggerFilterRule extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
-    rule = new BloggerFilterRule();
+    rule = new BasicBloggerFilterRule();
   }
 
   public void testFiltering() throws IOException {
