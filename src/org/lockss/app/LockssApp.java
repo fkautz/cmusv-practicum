@@ -440,7 +440,10 @@ public abstract class LockssApp {
     configMgr.initService(this);
     configMgr.startService();
     log.info("Waiting for config");
-    configMgr.waitConfig();
+    if (!configMgr.waitConfig()) {
+      log.critical("Initial config load timed out");
+      System.exit(Constants.EXIT_CODE_RESOURCE_UNAVAILABLE);
+    }
     log.info("Config loaded");
 
     prevExitOnce = CurrentConfig.getBooleanParam(PARAM_APP_EXIT_ONCE,
