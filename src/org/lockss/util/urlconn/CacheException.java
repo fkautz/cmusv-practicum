@@ -281,6 +281,21 @@ public class CacheException extends IOException {
     }
   }
 
+  public static class RedirectOutsideCrawlSpecException
+      extends UnretryableException {
+    public RedirectOutsideCrawlSpecException() {
+      super();
+    }
+
+    public RedirectOutsideCrawlSpecException(String message) {
+      super(message);
+    }
+
+    protected void setAttributes() {
+      attributeBits.clear(ATTRIBUTE_FAIL);
+    }
+  }
+
   /** An error storing the cached content or properties in the repository */
   public static class RepositoryException
       extends UnretryableException {

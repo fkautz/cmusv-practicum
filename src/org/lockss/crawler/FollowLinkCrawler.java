@@ -339,6 +339,11 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
 	crawlStatus.signalErrorForUrl(uc.getUrl(),
 				      "Can't store page: " + ex.getMessage());
  	error = Crawler.STATUS_REPO_ERR;
+      } catch (CacheException.RedirectOutsideCrawlSpecException ex) {
+	// Count this as an excluded URL
+	crawlStatus.signalUrlExcluded(uc.getUrl());
+	// and claim success, because false causes crawl to fail
+	return true;
       } catch (CacheException ex) {
 	// Failed.  Don't try this one again during this crawl.
 	failedUrls.add(uc.getUrl());

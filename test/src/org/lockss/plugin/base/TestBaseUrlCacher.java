@@ -594,8 +594,8 @@ public class TestBaseUrlCacher extends LockssTestCase {
     try {
       InputStream is = muc.getUncachedInputStream();
       fail("Should have thrown RetryNewUrlException");
-    } catch (CacheException.NoRetryNewUrlException e) {
-      assertEquals("301 Moved to Fresno", e.getMessage());
+    } catch (CacheException.RedirectOutsideCrawlSpecException e) {
+      assertEquals(redTo, e.getMessage());
       CIProperties p = muc.getUncachedProperties();
       assertEquals(redTo, p.getProperty("location"));
     }

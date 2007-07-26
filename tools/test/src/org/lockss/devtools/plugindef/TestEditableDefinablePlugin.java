@@ -174,6 +174,7 @@ public class TestEditableDefinablePlugin
     set.add("org.lockss.util.urlconn.CacheException$NoRetryNewUrlException");
     set.add("org.lockss.util.urlconn.CacheException$NoRetryPermUrlException");
     set.add("org.lockss.util.urlconn.CacheException$NoRetryTempUrlException");
+    set.add("org.lockss.util.urlconn.CacheException$RedirectOutsideCrawlSpecException");
     set.add("org.lockss.util.urlconn.CacheException$PermissionException");
     set.add("org.lockss.util.urlconn.CacheException$ExpectedNoRetryException");
     set.add("org.lockss.util.urlconn.CacheException$NoRetryDeadLinkException");
