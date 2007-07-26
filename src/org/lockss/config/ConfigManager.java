@@ -669,7 +669,9 @@ public class ConfigManager implements LockssManager {
     if (res && needImmediateReload) {
       updateConfigOnce(urls, false);
     }
-    haveConfig.fill();
+    if (res) {
+      haveConfig.fill();
+    }
     connPool.closeIdleConnections(0);
     return res;
   }
