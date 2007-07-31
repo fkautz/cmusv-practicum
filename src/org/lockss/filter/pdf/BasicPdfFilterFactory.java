@@ -55,6 +55,7 @@ public class BasicPdfFilterFactory implements FilterFactory {
   public InputStream createFilteredInputStream(ArchivalUnit au,
                                                InputStream in,
                                                String encoding) {
+    logger.debug2("Basic PDF filter factory for: " + au.getName());
     OutputDocumentTransform documentTransform = PdfUtil.getOutputDocumentTransform(au);
     if (documentTransform == null) {
       logger.debug2("Unfiltered");
