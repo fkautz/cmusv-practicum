@@ -98,6 +98,17 @@ public interface Constants {
    * testing */
   public static String X_LOCKSS_REAL_ID = "X-Lockss-Id";
 
+  // Cookie policies.
+
+  /** Cookie policy: ignore cookies */
+  public static String COOKIE_POLICY_IGNORE = "ignore";
+  /** Cookie policy: Netscape draft policy */
+  public static String COOKIE_POLICY_NETSCAPE = "netscape";
+  /** Cookie policy: Common browser compatibility */
+  public static String COOKIE_POLICY_COMPATIBILITY = "compatibility";
+  /** Cookie policy: RFC 2109  */
+  public static String COOKIE_POLICY_RFC_2109 = "rfc2109";
+
   // Exit codes
 
   /** Exit code - normal exit */
