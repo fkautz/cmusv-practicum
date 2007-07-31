@@ -1175,6 +1175,29 @@ return success;
   }
 
   /**
+   *
+   * @param tokens
+   * @param index
+   * @return TODO
+   */
+  public static boolean isSetTextMatrix(List tokens,
+                                        int index) {
+    return 0 <= index
+    && index < tokens.size()
+    && isSetTextMatrix(tokens.get(index));
+  }
+
+  /**
+   *
+   * @param candidateToken
+   * @return TODO
+   */
+  public static boolean isSetTextMatrix(Object candidateToken) {
+    return matchPdfOperator(candidateToken,
+                            SET_TEXT_MATRIX);
+  }
+
+  /**
    * <p>Determines if the token at the given index is
    * {@link #SHOW_TEXT}.</p>
    * @param tokens A list of tokens.
@@ -1562,6 +1585,23 @@ return success;
    * @param tokens
    * @param index
    * @return TODO
+   */
+  public static boolean matchSetTextMatrix(List tokens,
+                                           int index) {
+    return isSetTextMatrix(tokens, index)
+    && isPdfNumber(tokens, index - 6)
+    && isPdfNumber(tokens, index - 5)
+    && isPdfNumber(tokens, index - 4)
+    && isPdfNumber(tokens, index - 3)
+    && isPdfNumber(tokens, index - 2)
+    && isPdfNumber(tokens, index - 1);
+  }
+
+  /**
+   *
+   * @param tokens
+   * @param index
+   * @return TODO
    * @see #isShowText(List, int)
    * @see #isPdfString(List, int)
    */
@@ -1588,7 +1628,7 @@ return success;
   }
 
   /**
-   * 
+   *
    * @param tokens
    * @param index
    * @param str
@@ -1602,7 +1642,7 @@ return success;
     return isShowText(tokens, index)
     && matchPdfStringEndsWith(tokens, index - 1, str);
   }
-  
+
   /**
    *
    * @param tokens
