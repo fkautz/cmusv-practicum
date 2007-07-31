@@ -941,7 +941,7 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     }
   }
 
-  private class TestCrawlCB implements CrawlManager.Callback {
+  private static class TestCrawlCB implements CrawlManager.Callback {
     SimpleBinarySemaphore sem;
     boolean called = false;
     Object cookie;
@@ -1138,7 +1138,7 @@ public class TestCrawlManagerImpl extends LockssTestCase {
     }
   }
 
-  private class ThrowingAU extends NullPlugin.ArchivalUnit {
+  private static class ThrowingAU extends NullPlugin.ArchivalUnit {
     public CachedUrlSet makeCachedUrlSet(CachedUrlSetSpec spec) {
       throw new ExpectedRuntimeException("I throw");
     }

@@ -414,7 +414,7 @@ public abstract class TestConfigFile extends LockssTestCase {
     public void testNullExceptionMessage() throws IOException {
       MyHttpConfigFile hcf =
 	new MyHttpConfigFile("http://foo.bar/lockss.xml", "");
-      hcf.setExecuteException(new IOException(null));
+      hcf.setExecuteException(new IOException((String)null));
       try {
 	Configuration config = hcf.getConfiguration();
 	fail("Should throw");

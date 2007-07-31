@@ -906,7 +906,7 @@ public class TestNewContentCrawler extends LockssTestCase {
 
     MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
     mau.addUrl(startUrl);
-    extractor.addUrlsToReturn(startUrl, SetUtil.set(url1, url2, url3));
+    extractor.addUrlsToReturn(startUrl, ListUtil.list(url1, url2, url3));
     mau.addUrl(url1);
     mau.addUrl(url2);
     mau.addUrl(url3);

@@ -118,7 +118,7 @@ public class TestBaseCachedUrl extends LockssTestCase {
   }
 
   // helper for above tests
-  private class MyCachedUrl extends BaseCachedUrl {
+  private static class MyCachedUrl extends BaseCachedUrl {
     private boolean gotUnfilteredStream = false;
     private boolean gotFilteredStream = false;
     private CIProperties props = new CIProperties();
