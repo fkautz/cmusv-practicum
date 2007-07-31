@@ -113,6 +113,9 @@ public interface LockssUrlConnection {
   /** Set the followRedirects flag. */
   public void setFollowRedirects(boolean followRedirects);
 
+  /** Set the cookie policy to "rfc2109", "netscape" or "compatibility". */
+  public void setCookiePolicy(String policy);
+
   /** Return numeric response code */
   public int getResponseCode();
 

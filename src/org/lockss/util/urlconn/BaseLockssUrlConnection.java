@@ -91,6 +91,10 @@ public abstract class BaseLockssUrlConnection implements LockssUrlConnection {
     throw new UnsupportedOperationException();
   }
 
+  public void setCookiePolicy(String policy) {
+    throw new UnsupportedOperationException();
+  }
+
   public void setIfModifiedSince(long time) {
     log.debug3("setIfModifiedSince(" + time + ")");
     setRequestPropertyDate("If-Modified-Since", time);
