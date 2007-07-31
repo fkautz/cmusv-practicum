@@ -75,6 +75,8 @@ public class TestV3LcapMessage extends LockssTestCase {
     theDaemon = getMockLockssDaemon();
     tempDir = getTempDir();
     String tempDirPath = tempDir.getAbsolutePath();
+    System.setProperty("java.io.tmpdir", tempDirPath);
+
     Properties p = new Properties();
     p.setProperty(IdentityManager.PARAM_IDDB_DIR, tempDirPath + "iddb");
     p.setProperty(LockssRepositoryImpl.PARAM_CACHE_LOCATION, tempDirPath);

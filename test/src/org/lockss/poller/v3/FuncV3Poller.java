@@ -104,7 +104,8 @@ public class FuncV3Poller extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     tempDir = getTempDir();
-    tempDirPath = tempDir.getAbsolutePath() + File.separator;
+    tempDirPath = tempDir.getAbsolutePath();
+    System.setProperty("java.io.tmpdir", tempDirPath);
     startDaemon();
   }
 

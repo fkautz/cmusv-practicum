@@ -84,7 +84,8 @@ public class FuncV3Voter extends LockssTestCase {
     TimeBase.setSimulated();
     msgDeadline = TimeBase.nowMs() + 100000;
     tempDir = getTempDir();
-    tempDirPath = tempDir.getAbsolutePath() + File.separator;
+    tempDirPath = tempDir.getAbsolutePath();
+    System.setProperty("java.io.tmpdir", tempDirPath);
     startDaemon();
   }
 
