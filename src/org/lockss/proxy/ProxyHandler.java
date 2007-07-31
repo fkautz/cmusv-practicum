@@ -604,6 +604,11 @@ public class ProxyHandler extends AbstractHttpHandler {
       conn.addRequestProperty("Via", makeVia(request));
       conn.addRequestProperty(HttpFields.__XForwardedFor,
 			      request.getRemoteAddr());
+      String cookiePolicy = proxyMgr.getCookiePolicy();
+      if (cookiePolicy != null &&
+	  !cookiePolicy.equalsIgnoreCase(ProxyManager.COOKIE_POLICY_DEFAULT)) {
+	conn.setCookiePolicy(cookiePolicy);
+      }
 
       // If we ever handle input, this is (more-or-less) the HttpClient way
       // to do it
