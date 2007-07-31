@@ -371,6 +371,7 @@ public class ConfigManager implements LockssManager {
 	try {
 	  platVer = new PlatformVersion(ver);
 	} catch (RuntimeException e) {
+	  log.warning("Illegal platform version: " + ver, e);
 	}
       }
     }
