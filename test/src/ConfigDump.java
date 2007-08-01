@@ -33,8 +33,7 @@ in this Software without prior written authorization from Stanford University.
 import java.io.*;
 import java.util.*;
 import org.lockss.util.*;
-import org.lockss.config.ConfigManager;
-import org.lockss.config.Configuration;
+import org.lockss.config.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.test.*;
@@ -104,8 +103,8 @@ public class ConfigDump {
       configUrls.add(localConfig);
     }
 
-    MockLockssDaemon daemon = new MyMockLockssDaemon();
     ConfigManager mgr = ConfigManager.makeConfigManager();
+    MockLockssDaemon daemon = new MyMockLockssDaemon();
     Configuration config = mgr.readConfig(configUrls, groupName);
     if (config == null) {
       System.err.println("Couldn't load config");
