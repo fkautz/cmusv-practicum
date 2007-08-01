@@ -44,6 +44,16 @@ public class AnnualReviewsPdfFilterFactory
     extends SimpleOutputDocumentTransform
     implements FilterFactory {
 
+  public static class NormalizeMetadata implements DocumentTransform {
+
+    public boolean transform(PdfDocument pdfDocument) throws IOException {
+      pdfDocument.removeCreationDate();
+      pdfDocument.removeModificationDate();
+      return true;
+    }
+
+  }
+
   public static class NormalizeXObjects extends AggregatePageTransform {
 
     public static class NormalizeDownloadedFrom extends PageStreamTransform {
@@ -175,8 +185,8 @@ public class AnnualReviewsPdfFilterFactory
 
   public AnnualReviewsPdfFilterFactory() throws IOException {
     super(new ConditionalDocumentTransform(new TransformFirstPage(new NormalizeXObjects()),
-                                           new TransformEachPageExceptFirst(new NormalizeXObjects())/*,
-                                           new NormalizeMetadata()*/));
+                                           new TransformEachPageExceptFirst(new NormalizeXObjects()),
+                                           new NormalizeMetadata()));
   }
 
   public InputStream createFilteredInputStream(ArchivalUnit au,
