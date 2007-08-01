@@ -731,6 +731,8 @@ public class ConfigManager implements LockssManager {
     putIf(p, "groups",
 	  StringUtil.separatedString(getPlatformGroupList(), ";"));
     putIf(p, "host", getPlatformHostname());
+    putIf(p, "peerid",
+	  currentConfig.get(IdentityManager.PARAM_LOCAL_V3_IDENTITY));
     return p;
   }
 
@@ -1495,6 +1497,14 @@ public class ConfigManager implements LockssManager {
   public void doingAuBatch(boolean flg) {
     isDoingAuBatch = flg;
   }
+
+  // Testing assistance
+
+  void setGroups(String groups) {
+    this.groupNames = groups;
+  }
+
+  // TinyUI comes up on port 8081 if can't complete initial props load
 
   TinyUi tiny = null;
   String[] tinyData = new String[1];
