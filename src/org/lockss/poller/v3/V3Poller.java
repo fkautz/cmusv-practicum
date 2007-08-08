@@ -1683,7 +1683,13 @@ public class V3Poller extends BasePoll {
                               IdentityManagerImpl.DEFAULT_INITIAL_PEERS);
       Collection initialPeers = new ArrayList(keys.size());
       for (Iterator iter = keys.iterator(); iter.hasNext(); ) {
-        initialPeers.add(idManager.findPeerIdentity((String)iter.next()));
+        String key = (String)iter.next();
+        PeerIdentity id = (PeerIdentity)idManager.findPeerIdentity(key);
+        // Never include a LocalPeerIdentity - we don't want to include
+        // ourselves
+        if (id != null && !id.isLocalIdentity()) {
+          initialPeers.add(id);
+        }
       }
       return initialPeers;
     }
