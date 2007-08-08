@@ -54,6 +54,7 @@ public class LockssPermission {
                                   new StringPermissionChecker.StringFilterRule());
     permissionList.add(spc);
     permissionList.add(new CreativeCommonsPermissionChecker());
+    permissionList.add(new CreativeCommonsV3PermissionChecker());
   }
 
   public List getCheckers() {
