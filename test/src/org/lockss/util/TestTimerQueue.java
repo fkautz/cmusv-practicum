@@ -82,6 +82,31 @@ public class TestTimerQueue extends LockssTestCase {
     assertEquals("foo", q.get(500));
   }
 
+  public void testPeriodic() {
+    final SimpleQueue.Fifo q = new SimpleQueue.Fifo();
+    TimerQueue.Callback cb = new TimerQueue.Callback() {
+	public void timerExpired(Object cookie) {
+	  q.put(TimeBase.nowMs());
+	}};
+    TimerQueue.Request req =
+      TimerQueue.schedule(Deadline.in(500), 1000, cb, null);
+    assertTrue(q.isEmpty());
+    TimeBase.step(501);
+    assertEquals(new Long(501), q.get(500));
+    assertTrue(q.isEmpty());
+    TimeBase.step(501);
+    assertTrue(q.isEmpty());
+    TimeBase.step(501);
+    assertEquals(new Long(1503), q.get(500));
+    assertTrue(q.isEmpty());
+    TimeBase.step(1001);
+    assertEquals(new Long(2504), q.get(500));
+    assertTrue(q.isEmpty());
+    TimerQueue.cancel(req);
+    TimeBase.step(1001);
+    assertTrue(q.isEmpty());
+  }
+
   // ensure that exceptions thrown by a timer callback doesn't cause
   // notification thread to exit
   public void testThrows() {
