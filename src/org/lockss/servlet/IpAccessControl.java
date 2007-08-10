@@ -74,7 +74,7 @@ public abstract class IpAccessControl extends LockssServlet {
     "class A, B or C subnets (<code>10.*.*.*</code> ,&nbsp " +
     "<code>172.16.31.*</code>) or CIDR notation " +
     "subnets (<code>172.16.31.0/24</code>). " +
-    "<br>Enter each address or subnet mask on a separate line. ";
+    "<br>Enter each address or subnet on a separate line. ";
 
   protected static final String commonExp =
     "To be allowed access, an IP address must match some entry on the " +
