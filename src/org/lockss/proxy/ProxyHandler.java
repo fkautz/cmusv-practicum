@@ -123,6 +123,8 @@ public class ProxyHandler extends AbstractHttpHandler {
     this.quickFailConnPool = quickFailConnPool;
   }
 
+  // Entry points from ProxyManager
+
   /** If set to true, will act like an audit proxy.  (Content will be
    * served only from the cache; requests will never be proxied, will serve
    * CLOCKSS unsubscribed content */
@@ -143,6 +145,21 @@ public class ProxyHandler extends AbstractHttpHandler {
   public void setProxiedTarget(String target) {
     failOverTargetUri = new URI(target);
     isFailOver = true;
+  }
+
+  public void closeIdleConnections(long idleTime) {
+    log.debug2("Closing idle connections");
+    closeIdleConnections(quickFailConnPool, idleTime);
+    closeIdleConnections(connPool, idleTime);
+  }
+
+  private void closeIdleConnections(LockssUrlConnectionPool pool,
+				    long idleTime) {
+    try {
+      pool.closeIdleConnections(0);
+    } catch (RuntimeException e) {
+      log.warning("closeIdleConnections: ", e);
+    }
   }
 
   /** Create a Via header value:
