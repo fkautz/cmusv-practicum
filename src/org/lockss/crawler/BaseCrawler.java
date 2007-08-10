@@ -259,6 +259,14 @@ public abstract class BaseCrawler
       throw e;
     } finally {
       crawlStatus.signalCrawlEnded();
+      if (connectionPool != null) {
+	try {
+	  connectionPool.closeIdleConnections(0);
+	  connectionPool = null;
+	} catch (RuntimeException e) {
+	  logger.warning("closeIdleConnections", e);
+	}
+      }
     }
   }
 
