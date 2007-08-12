@@ -512,6 +512,10 @@ public class ProxyHandler extends AbstractHttpHandler {
     }
   }
 
+  boolean isPubNever(CachedUrl cu) {
+    return cu != null && AuUtil.isPubNever(cu.getArchivalUnit());
+  }
+
   /** Proxy a connection using LockssUrlConnection */
   void doLockss(String pathInContext,
 		String pathParams,
@@ -528,9 +532,25 @@ public class ProxyHandler extends AbstractHttpHandler {
       // publisher for newer content.
       // XXX This needs to forward the request to the publisher (but not
       // wait for the result) so the publisher can count the access.
-      if (isInCache && proxyMgr.isRecentlyAccessedUrl(urlString)) {
+      if (isInCache && (proxyMgr.isRecentlyAccessedUrl(urlString)
+			|| isPubNever(cu))) {
+	if (log.isDebug2()) log.debug2("Nopub: " + cu.getUrl());
 	serveFromCache(pathInContext, pathParams, request, response, cu);
 	return;
+      }
+      if (isPubNever(cu)) {
+	Collection candidateAus = pluginMgr.getCandidateAus(urlString);
+	if (candidateAus != null && !candidateAus.isEmpty()) {
+	  sendErrorPage(request, response, 404,
+			"Host " + request.getURI().getHost() +
+			" no longer has content",
+			candidateAus);
+	  return;
+	} else {
+	  // what to do here?  No content, no candidate AUs, no pub.
+	  // send 404
+	  return;
+	}
       }
       boolean useQuick =
 	(isInCache ||

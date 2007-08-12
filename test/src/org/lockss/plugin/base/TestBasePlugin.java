@@ -76,6 +76,17 @@ public class TestBasePlugin extends LockssTestCase {
     } catch (ArchivalUnit.ConfigurationException e) { }
   }
 
+  public void testGetAuConfigDescrs() {
+    mbp.setConfigDescrs(ListUtil.list(PD_VOL, PD_YEAR));
+    List descrs = mbp.getAuConfigDescrs();
+    assertEquals(SetUtil.set(PD_VOL, PD_YEAR,
+			     ConfigParamDescr.AU_CLOSED,
+			     ConfigParamDescr.PUB_DOWN,
+			     ConfigParamDescr.PUB_NEVER,
+			     ConfigParamDescr.PROTOCOL_VERSION),
+		 SetUtil.theSet(descrs));
+  }
+
   public void testInitTitleDB() {
     String plugName = "org.lockss.plugin.base.TestBasePlugin$MyMockBasePlugin";
     mbp.setConfigDescrs(ListUtil.list(PD_VOL, PD_YEAR));

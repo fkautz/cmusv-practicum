@@ -186,13 +186,25 @@ public class AuUtil {
   }
 
   public static boolean isPubDown(ArchivalUnit au) {
+    return isPubNever(au) ||
+      getBoolValue(getAuParamOrTitleDefault(au, ConfigParamDescr.PUB_DOWN),
+		   false);
+  }
+
+  public static boolean isPubNever(ArchivalUnit au) {
     return getBoolValue(getAuParamOrTitleDefault(au,
-						 ConfigParamDescr.PUB_DOWN),
+						 ConfigParamDescr.PUB_NEVER),
 			false);
   }
 
   public static boolean isPubDown(TitleConfig tc) {
-    return getBoolValue(getTitleDefault(tc, ConfigParamDescr.PUB_DOWN),
+    return isPubNever(tc) ||
+      getBoolValue(getTitleDefault(tc, ConfigParamDescr.PUB_DOWN),
+		   false);
+  }
+
+  public static boolean isPubNever(TitleConfig tc) {
+    return getBoolValue(getTitleDefault(tc, ConfigParamDescr.PUB_NEVER),
 			false);
   }
 

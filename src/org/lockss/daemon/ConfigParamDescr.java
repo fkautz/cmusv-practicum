@@ -205,6 +205,16 @@ public class ConfigParamDescr implements Comparable, LockssSerializable {
     .setType(TYPE_BOOLEAN)
     .setDescription("If true, AU is no longer available from the publisher");
 
+  // See ProxyHandler
+  public static final ConfigParamDescr PUB_NEVER =
+    new ConfigParamDescr()
+    .setDefinitional(false)
+    .setDefaultOnly(true)
+    .setKey("pub_never")
+    .setDisplayName("Pub Never")
+    .setType(TYPE_BOOLEAN)
+    .setDescription("If true, don't try to access any content from publisher");
+
   public static final ConfigParamDescr PROTOCOL_VERSION =
     new ConfigParamDescr()
     .setDefinitional(false)
