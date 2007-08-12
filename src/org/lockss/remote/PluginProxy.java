@@ -95,6 +95,10 @@ public class PluginProxy {
     return plugin.getPluginName();
   }
 
+  public String getPublishingPlatform() {
+    return plugin.getPublishingPlatform();
+  }
+
   /**
    * Return the list of names of the {@link ArchivalUnit}s and volranges
    * supported by this plugin.

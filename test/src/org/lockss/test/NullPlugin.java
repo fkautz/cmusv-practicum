@@ -86,6 +86,10 @@ public class NullPlugin {
       return "Null Plugin";
     }
 
+    public String getPublishingPlatform() {
+      return null;
+    }
+
     public LockssDaemon getDaemon() {
       return null;
     }

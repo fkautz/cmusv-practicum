@@ -113,6 +113,13 @@ public abstract class BasePlugin
     return "0.0.0";
   }
 
+  /** Subclasses should override this if they want to supply a publishing
+   * platform name
+   */
+  public String getPublishingPlatform() {
+    return null;
+  }
+
   /**
    * Default implementation collects keys from titleConfigMap.
    * @return a List

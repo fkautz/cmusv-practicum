@@ -89,6 +89,12 @@ public interface Plugin {
   public String getPluginName();
 
   /**
+   * Return the human-readable name of the publishing platform, if any.
+   * @return the name
+   */
+  public String getPublishingPlatform();
+
+  /**
    * Return the list of names of the {@link ArchivalUnit}s and volranges
    * supported by this plugin.
    * @return a List of Strings

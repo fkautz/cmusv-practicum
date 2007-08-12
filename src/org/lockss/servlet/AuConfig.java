@@ -402,8 +402,11 @@ public class AuConfig extends LockssServlet {
 	}
 	String selText = encodeText(title);
 	String dispText = selText;
-	if (includePluginInTitleSelect) {
-	  if (titlePlugin != null) {
+	if (titlePlugin != null) {
+	  String plat = titlePlugin.getPublishingPlatform();
+	  if (plat != null) {
+	    dispText = selText + " (" + plat + ")";
+	  } else if (includePluginInTitleSelect) {
 	    String plugName = titlePlugin.getPluginName();
 	    dispText = selText + " (" + plugName + ")";
 	  }

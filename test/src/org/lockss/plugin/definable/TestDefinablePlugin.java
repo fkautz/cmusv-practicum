@@ -197,6 +197,14 @@ public class TestDefinablePlugin extends LockssTestCase {
                  definablePlugin.getPluginId());
   }
 
+  public void testGetPublishingPlatform() throws Exception {
+    assertNull("Internal", definablePlugin.getPublishingPlatform());
+    String expectedReturn = "Publisher Platform Shoes";
+    defMap.putString(DefinablePlugin.KEY_PUBLISHING_PLATFORM, expectedReturn);
+    assertEquals("return value", expectedReturn,
+		 definablePlugin.getPublishingPlatform());
+  }
+
   public void testInitPlugin() throws Exception {
     definablePlugin = null; //   ensure don't accidentally use wrong veriable
     LockssDaemon daemon = getMockLockssDaemon();
