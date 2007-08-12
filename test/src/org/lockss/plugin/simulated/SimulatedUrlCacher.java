@@ -72,7 +72,7 @@ public class SimulatedUrlCacher extends BaseUrlCacher {
   }
 
   // overrides base behavior to get local file
-  public InputStream getUncachedInputStream(String lastModified)
+  public InputStream getUncachedInputStreamOnly(String lastModified)
       throws IOException {
     if (getUrl().indexOf("xxxfail") > 0) {
       throw new CacheException.NoRetryDeadLinkException("Simulated failed fetch");
