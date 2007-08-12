@@ -146,5 +146,9 @@ public interface Plugin {
    */
   public LockssDaemon getDaemon();
 
-
+  /** Create and return a new instance of a plugin auxilliary class.
+   * @param className the name of the auxilliary class
+   * @param expectedType Type (class or interface) of expected rexult
+   */
+  public Object newAuxClass(String className, Class expectedType);
 }

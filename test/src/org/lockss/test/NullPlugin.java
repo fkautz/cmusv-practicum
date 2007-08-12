@@ -117,6 +117,9 @@ public class NullPlugin {
       return null;
     }
 
+    public Object newAuxClass(String className, Class expectedType) {
+      return null;
+    }
   }
 
   /**
