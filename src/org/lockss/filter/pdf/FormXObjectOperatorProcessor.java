@@ -94,7 +94,7 @@ public class FormXObjectOperatorProcessor extends SimpleOperatorProcessor {
 
       // Restore the state of the current stream transform
       pageStreamTransform.mergeOutputList(new ArrayList());
-      pageStreamTransform.setChangeFlag(saveFlag);
+      pageStreamTransform.setChangeFlag(saveFlag || pageStreamTransform.getChangeFlag());
     }
   }
 
