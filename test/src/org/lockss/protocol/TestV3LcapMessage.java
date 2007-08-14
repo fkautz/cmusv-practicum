@@ -145,6 +145,21 @@ public class TestV3LcapMessage extends LockssTestCase {
       "B:10 ver 3 rev 3]";
     assertEquals(expectedResult, m_testMsg.toString());
   }
+  
+  public void getGroup() throws Exception {
+    m_testMsg.setGroups(null);
+    assertNull(m_testMsg.getGroups());
+    assertNull(m_testMsg.getGroupList());
+    m_testMsg.setGroups("foo");
+    assertEquals("foo", m_testMsg.getGroups());
+    assertEquals(ListUtil.list("foo"), m_testMsg.getGroupList());
+    m_testMsg.setGroups("foo;bar");
+    assertEquals("foo;bar", m_testMsg.getGroups());
+    assertEquals(ListUtil.list("foo", "bar"), m_testMsg.getGroupList());
+    m_testMsg.setGroups("foo;bar;baz");
+    assertEquals("foo;bar;baz", m_testMsg.getGroups());
+    assertEquals(ListUtil.list("foo", "bar", "baz"), m_testMsg.getGroupList());
+  }
 
   public void testNoOpEncoding() throws Exception {
     V3LcapMessage noopMsg = V3LcapMessage.makeNoOpMsg(m_testID,

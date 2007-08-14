@@ -401,9 +401,6 @@ public abstract class TestIdentityManagerImpl extends LockssTestCase {
     otherDaemon.setIdentityManager(im);
     im.reloadIdentities();
     im.findPeerIdentity("127.0.0.2");
-    assertTrue("The identity manager has maps of inconsistent sizes.",
-               im.areMapsEqualSize());
-
   }
 
   public void testSignalAgreedThrowsOnNullAu() throws Exception {
