@@ -88,22 +88,22 @@ public class NodeManagerManager
   public void startService() {
     super.startService();
 
-    StatusService statusServ = getDaemon().getStatusService();
-    statusServ.registerStatusAccessor(SERVICE_STATUS_TABLE_NAME,
-				      new ServiceStatus(this));
-    statusServ.registerStatusAccessor(MANAGER_STATUS_TABLE_NAME,
-				      new ManagerStatus(this));
-    statusServ.registerStatusAccessor(POLLHISTORY_STATUS_TABLE_NAME,
-				      new PollHistoryStatus(this));
+//     StatusService statusServ = getDaemon().getStatusService();
+//     statusServ.registerStatusAccessor(SERVICE_STATUS_TABLE_NAME,
+// 				      new ServiceStatus(this));
+//     statusServ.registerStatusAccessor(MANAGER_STATUS_TABLE_NAME,
+// 				      new ManagerStatus(this));
+//     statusServ.registerStatusAccessor(POLLHISTORY_STATUS_TABLE_NAME,
+// 				      new PollHistoryStatus(this));
     logger.debug2("Status accessors registered.");
   }
 
   public void stopService() {
     // unregister our status accessors
-    StatusService statusServ = getDaemon().getStatusService();
-    statusServ.unregisterStatusAccessor(SERVICE_STATUS_TABLE_NAME);
-    statusServ.unregisterStatusAccessor(MANAGER_STATUS_TABLE_NAME);
-    statusServ.unregisterStatusAccessor(POLLHISTORY_STATUS_TABLE_NAME);
+//     StatusService statusServ = getDaemon().getStatusService();
+//     statusServ.unregisterStatusAccessor(SERVICE_STATUS_TABLE_NAME);
+//     statusServ.unregisterStatusAccessor(MANAGER_STATUS_TABLE_NAME);
+//     statusServ.unregisterStatusAccessor(POLLHISTORY_STATUS_TABLE_NAME);
     logger.debug2("Status accessors unregistered.");
 
     super.stopService();
