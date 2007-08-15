@@ -109,6 +109,13 @@ public interface Constants {
   /** Cookie policy: RFC 2109  */
   public static String COOKIE_POLICY_RFC_2109 = "rfc2109";
 
+  // Colors
+
+  public static final String COLOR_WHITE = "#ffffff";
+  public static final String COLOR_BLACK = "#000000";
+  public static final String COLOR_RED = "#ff0000";
+  public static final String COLOR_ORANGE = "#ff6600";
+
   // Exit codes
 
   /** Exit code - normal exit */
