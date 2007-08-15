@@ -67,22 +67,6 @@ public class PlatformConfigStatus extends BaseLockssDaemonManager {
       this.daemon = daemon;
     }
 
-    private final List colDescs =
-      ListUtil.list(
-		    new ColumnDescriptor("plugin", "Name",
-					 ColumnDescriptor.TYPE_STRING),
-		    new ColumnDescriptor("version", "Version",
-					 ColumnDescriptor.TYPE_STRING),
-		    new ColumnDescriptor("type", "Type",
-					 ColumnDescriptor.TYPE_STRING),
-		    // 		  new ColumnDescriptor("id", "Plugin ID",
-		    // 				       ColumnDescriptor.TYPE_STRING),
-		    new ColumnDescriptor("registry", "Registry",
-					 ColumnDescriptor.TYPE_STRING)
-		    // 		  new ColumnDescriptor("cu", "Loaded From",
-		    // 				       ColumnDescriptor.TYPE_STRING)
-		    );
-
     public String getDisplayName() {
       return "Platform Configuration";
     }

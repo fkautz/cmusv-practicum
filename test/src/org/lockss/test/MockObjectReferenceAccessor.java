@@ -40,7 +40,7 @@ public class MockObjectReferenceAccessor implements ObjectReferenceAccessor {
   private String table;
   private StatusTable.Reference ref;
 
-  public StatusTable.Reference getReference(Object obj, String tableName) {
+  public StatusTable.Reference getReference(String tableName, Object obj) {
     this.obj = obj;
     this.table = tableName;
     return ref;

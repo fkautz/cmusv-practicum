@@ -790,6 +790,10 @@ public class V3Voter extends BasePoll {
     return V3Voter.STATUS_STRINGS[voterUserData.getStatus()];
   }
   
+  public int getStatus() {
+    return voterUserData.getStatus();
+  }
+  
   IdentityManager getIdentityManager() {
     return this.idManager;
   }

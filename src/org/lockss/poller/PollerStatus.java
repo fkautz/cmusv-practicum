@@ -544,7 +544,7 @@ public class PollerStatus {
       return cnt;
     }
 
-    public StatusTable.Reference getReference(Object obj, String tableName) {
+    public StatusTable.Reference getReference(String tableName, Object obj) {
       ArchivalUnit au = (ArchivalUnit)obj;
       String auid = au.getAuId();
       String keys =

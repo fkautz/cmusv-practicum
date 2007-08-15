@@ -385,9 +385,20 @@ public class StatusTable {
      * legal except another LinkValue
      * @param tableName name of the {@link StatusTable} that this
      * links to
+     */
+    public Reference(Object value, String tableName) {
+      this(value, tableName, null);
+    }
+
+    /**
+     * Create a Reference object with an embedded value.
+     * @param value value to be displayed.  Any value is
+     * legal except another LinkValue
+     * @param tableName name of the {@link StatusTable} that this
+     * links to
      * @param key object further specifying the table this links to
      */
-    public Reference(Object value, String tableName, String key){
+    public Reference(Object value, String tableName, String key) {
       if (value instanceof LinkValue) {
 	throw new IllegalArgumentException("Value of a Reference can't be a LinkValue");
       }

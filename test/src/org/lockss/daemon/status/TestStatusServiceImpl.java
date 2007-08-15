@@ -100,6 +100,7 @@ public class TestStatusServiceImpl extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     statusService = new StatusServiceImpl();
+    statusService.initService(getMockLockssDaemon());
   }
 
 
@@ -677,6 +678,33 @@ public class TestStatusServiceImpl extends LockssTestCase {
       assertEquals(expectedCol.getFootnote(), actualCol.getFootnote());
     }
     assertFalse(actualIt.hasNext());
+  }
+
+  public void testGetDefaultTableName() {
+    assertEquals(OverviewStatus.OVERVIEW_STATUS_TABLE,
+		 statusService.getDefaultTableName());
+    ConfigurationUtil.addFromArgs(StatusServiceImpl.PARAM_DEFAULT_TABLE,
+				  "other_table_and_chairs");
+    assertEquals("other_table_and_chairs",
+		 statusService.getDefaultTableName());
+  }
+
+  public void testRegisterOveriewAccessor() {
+    statusService.registerOverviewAccessor("table1",
+					   new OverviewAccessor() {
+					     public Object getOverview(String tableName, 
+								       BitSet options) {
+					       return "over1";
+					     }});
+    statusService.registerOverviewAccessor("table2",
+					   new OverviewAccessor() {
+					     public Object getOverview(String tableName, 
+								       BitSet options) {
+					       return "over2";
+					     }});
+    assertEquals("over1", statusService.getOverview("table1"));
+    assertEquals("over2", statusService.getOverview("table2"));
+    assertNull(statusService.getOverview("table3"));
   }
 
   public void testRegisterObjectReferenceAccessor() {

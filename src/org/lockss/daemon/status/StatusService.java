@@ -45,6 +45,11 @@ public interface StatusService {
    */
   public static final String ALL_TABLES_TABLE = "table_of_all_tables";
 
+  /** Returns the name of the table to be displayed if no table is
+   * specified.  Set to <code>table_of_all_tables</code> to display index
+   * of tables */
+  public String getDefaultTableName();
+
   /**
    * Returns the StatusService.Table object identified by the tableName
    * and key specified.
@@ -95,6 +100,26 @@ public interface StatusService {
    */
   public void unregisterStatusAccessor(String tableName);
 
+
+  /**
+   * Register an OverviewAccessor that returns a single line overview of
+   * the subsystem */
+  public void registerOverviewAccessor(String tableName,
+				      OverviewAccessor acc);
+
+  /**
+   * Unregister an OverviewAccessor */
+  public void unregisterOverviewAccessor(String tableName);
+
+  /**
+   * Get the one-line overview of the subsystem associated with the table
+   * name */
+  public Object getOverview(String tableName);
+
+  /**
+   * Get the one-line overview of the subsystem associated with the table
+   * name */
+  public Object getOverview(String tableName, BitSet options);
 
   /**
    * Get a reference to the named table for the given object.
