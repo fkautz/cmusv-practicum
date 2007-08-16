@@ -1048,7 +1048,7 @@ public abstract class LockssServlet extends HttpServlet
   /** Display "The cache isn't ready yet, come back later"
    */
   protected void displayNotStarted() throws IOException {
-    displayWarningInLieuOfPage("This LOCKSS Cache is still starting.  Please "
+    displayWarningInLieuOfPage("This LOCKSS box is still starting.  Please "
 			       + srvLink(myServletDescr(), "try again",
 					 getParamsAsProps())
 			       + " in a moment.");
