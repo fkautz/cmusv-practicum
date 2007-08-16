@@ -142,7 +142,7 @@ public class ArchivalUnitStatus
       new ColumnDescriptor("DiskUsage", "Disk Usage (MB)",
 			   ColumnDescriptor.TYPE_FLOAT, FOOT_SIZE),
       new ColumnDescriptor("Peers", "Peers", ColumnDescriptor.TYPE_INT),
-      new ColumnDescriptor("AuPolls", "Polls",
+      new ColumnDescriptor("AuPolls", "Recent Polls",
                            ColumnDescriptor.TYPE_INT),
       new ColumnDescriptor("Damaged", "Status",
                            ColumnDescriptor.TYPE_STRING,
