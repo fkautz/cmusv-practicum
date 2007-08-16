@@ -100,7 +100,7 @@ public class TestServletUtil extends LockssTestCase {
       "</td></tr>" +
       (!started ? ("<tr><td align=\"center\" colspan=\"3\"><center>" +
 		     "<font color=red size=\\+1>" +
-		     "This LOCKSS Cache is still starting.  " +
+		     "This LOCKSS box is still starting.  " +
 		     "Table contents may be incomplete.</font></center>" +
 		     "<br></td></tr>")
        : "") +
