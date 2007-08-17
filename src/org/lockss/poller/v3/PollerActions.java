@@ -77,6 +77,12 @@ public class PollerActions {
       msg.setVoteDuration(ud.getPoller().getVoteDuration());
       ud.sendMessageTo(msg, ud.getVoterId());
       ud.setStatus(V3Poller.PEER_STATUS_WAITING_POLL_ACK);
+      // Signal that the peer has been invited.
+      IdentityManager idMgr = ud.getPoller().getIdentityManager();
+      PeerIdentityStatus status = idMgr.getPeerIdentityStatus(ud.getVoterId());
+      if (status != null) {
+        status.invitedPeer();
+      }
     } catch (IOException ex) {
       log.error("Unable to send message: ", ex);
       return V3Events.evtError;

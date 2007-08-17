@@ -51,7 +51,7 @@ public class TestCacheResultHandlerWrapper extends LockssTestCase {
 
     wrapper.init(null);
     MockCacheResultHandler mn = (MockCacheResultHandler)obj;
-    assertEquals(ListUtil.list(null), mn.args);
+    assertEquals(ListUtil.list((Object)null), mn.args);
   }
 
   public void testWrapHandleResult() throws PluginException, IOException {

@@ -875,8 +875,8 @@ public class PollManager
       // cleaned up, unless KEEP_INVALID_POLLSTATE_DIRS is true.
       if (!restored) {
         if (deleteInvalidPollStateDirs) {
-          FileUtil.delTree(dirs[ix]);
           theLog.debug("Deleting invalid poll state directory " + dirs[ix]);
+          FileUtil.delTree(dirs[ix]);
         } else {
           theLog.debug("Not deleting invalid poll state directory " 
                        + dirs[ix]  + " due to config.");
