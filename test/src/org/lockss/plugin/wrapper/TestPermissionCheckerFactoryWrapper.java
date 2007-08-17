@@ -49,7 +49,7 @@ public class TestPermissionCheckerFactoryWrapper extends LockssTestCase {
     assertTrue(WrapperUtil.unwrap(wrapper) instanceof MockPermissionCheckerFactory);
 
     MockArchivalUnit mau = new MockArchivalUnit();
-    assertEquals(ListUtil.list(null), wrapper.createPermissionCheckers(mau));
+    assertEquals(ListUtil.list((Object)null), wrapper.createPermissionCheckers(mau));
     MockPermissionCheckerFactory mn = (MockPermissionCheckerFactory)obj;
     assertEquals(ListUtil.list(mau), mn.args);
   }
@@ -85,7 +85,7 @@ public class TestPermissionCheckerFactoryWrapper extends LockssTestCase {
       if (error != null) {
 	throw error;
       }
-      return ListUtil.list(null);
+      return ListUtil.list((Object)null);
     }
   }
 }
