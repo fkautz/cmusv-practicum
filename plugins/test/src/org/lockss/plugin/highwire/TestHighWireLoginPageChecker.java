@@ -101,7 +101,7 @@ public class TestHighWireLoginPageChecker extends LockssTestCase {
     assertFalse(checker.isLoginPage(props, reader));
   }
 
-  public void testHasDifferenCacheControlHeader() throws IOException {
+  public void testHasDifferentCacheControlHeader() throws IOException {
     HighWireLoginPageChecker checker = new HighWireLoginPageChecker();
     CIProperties props = new CIProperties();
     props.put("Cache-Control", "blah");
@@ -112,7 +112,7 @@ public class TestHighWireLoginPageChecker extends LockssTestCase {
     assertFalse(reader.readWasCalled());
   }
 
-  public void testHasDifferenCacheControlHeaderButLoginPage()
+  public void testHasDifferentCacheControlHeaderButLoginPage()
       throws IOException {
     HighWireLoginPageChecker checker = new HighWireLoginPageChecker();
     CIProperties props = new CIProperties();
