@@ -30,7 +30,7 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.plugin.annualreviews;
+package uk.org.lockss.plugin.annualreviews;
 
 import java.io.*;
 import java.util.List;
