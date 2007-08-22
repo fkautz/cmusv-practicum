@@ -426,9 +426,11 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
 	if (df != null) {
 	  StringBuilder sb = new StringBuilder();
 	  sb.append(StringUtil.sizeKBToString(df.getSize()));
-	  sb.append(", ");
+	  sb.append(" (");
 	  sb.append(Long.toString(Math.round(df.getPercent() * 100)));
-	  sb.append("% full");
+	  sb.append("% full, ");
+	  sb.append(StringUtil.sizeKBToString(df.getAvail()));
+	  sb.append(" free)");
 	  Object s = sb.toString();
  	  if (df.isFullerThan(repoMgr.getDiskFullThreshold())) {
 	    s = new StatusTable.DisplayedValue(s)
@@ -442,7 +444,7 @@ public class LockssRepositoryStatus extends BaseLockssDaemonManager {
 	  res.add("???");
 	}
 	if (iter.hasNext()) {
-	  res.add("; ");
+	  res.add(", ");
 	}
       }
       return new StatusTable.Reference(res, SPACE_TABLE_NAME);
