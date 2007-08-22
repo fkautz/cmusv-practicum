@@ -292,7 +292,7 @@ public class LockssRepositoryImpl
    * @return String the canonicalized url
    * @throws MalformedURLException
    */
-  public static String canonicalizePath(String url)
+  public String canonicalizePath(String url)
       throws MalformedURLException {
     String canonUrl =
       UrlUtil.normalizeUrl(url, UrlUtil.PATH_TRAVERSAL_ACTION_THROW);

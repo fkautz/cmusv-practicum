@@ -665,7 +665,7 @@ public class MockLockssDaemon extends LockssDaemon {
     }
   }
 
-  void setAuManager(String key, ArchivalUnit au, LockssAuManager mgr) {
+  public void setAuManager(String key, ArchivalUnit au, LockssAuManager mgr) {
     setAuManager(findAuManagerDesc(key), au, mgr);
   }
 
