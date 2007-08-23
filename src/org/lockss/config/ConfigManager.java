@@ -749,7 +749,7 @@ public class ConfigManager implements LockssManager {
       Map.Entry ent = (Map.Entry)iter.next();
       sb.append(ent.getKey());
       sb.append("=");
-      sb.append(StringUtil.csvEncode((String)ent.getValue()));
+      sb.append(StringUtil.ckvEscape((String)ent.getValue()));
       if (iter.hasNext()) {
 	sb.append(",");
       }
