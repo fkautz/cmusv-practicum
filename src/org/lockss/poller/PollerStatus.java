@@ -281,7 +281,7 @@ public class PollerStatus {
       if (url != null) {
 	suffix.add("on " + url);
       }
-      StringBuffer sb = new StringBuffer();
+      StringBuilder sb = new StringBuilder();
       StringUtil.separatedString(prefix, "", ", ", " ", sb);
       sb.append("Polls");
       StringUtil.separatedString(suffix, " ", ", ", "", sb);

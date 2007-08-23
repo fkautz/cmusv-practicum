@@ -394,7 +394,7 @@ public class ProxyAndContent extends LockssServlet {
     // Prepare error message
     if (errList.size() > 0) {
       // There were errors
-      StringBuffer buffer = new StringBuffer();
+      StringBuilder buffer = new StringBuilder();
       StringUtil.separatedString(errList, "<br>", buffer);
       errMsg = buffer.toString();
     }
@@ -518,7 +518,7 @@ public class ProxyAndContent extends LockssServlet {
     // Prepare error message
     if (errList.size() > 0) {
       // There were errors
-      StringBuffer buffer = new StringBuffer();
+      StringBuilder buffer = new StringBuilder();
       StringUtil.separatedString(errList, "<br>", buffer);
       errMsg = buffer.toString();
     }

@@ -321,7 +321,7 @@ public class UrlUtil {
       }
     }
 
-    StringBuffer sb = new StringBuffer();
+    StringBuilder sb = new StringBuilder();
     if (path.startsWith("/")) {
       sb.append("/");
     }
