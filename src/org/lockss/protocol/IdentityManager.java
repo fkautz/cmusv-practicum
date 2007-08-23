@@ -124,7 +124,7 @@ public interface IdentityManager extends LockssManager {
    * with a peer.
    */
   public static final float DEFAULT_MIN_PERCENT_AGREEMENT =
-    0.9f;
+    0.5f;
 
   /**
    * <p>The MAX_DELTA reputation constant.</p>

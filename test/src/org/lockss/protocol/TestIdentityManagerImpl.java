@@ -499,11 +499,11 @@ public abstract class TestIdentityManagerImpl extends LockssTestCase {
     assertFalse(idmgr.hasAgreed(peer2, mau));
     assertFalse(idmgr.hasAgreed(peer3, mau));
 
-    idmgr.signalPartialAgreement(peer1, mau, 0.89f);
+    idmgr.signalPartialAgreement(peer1, mau, 0.49f);
     TimeBase.step();
-    idmgr.signalPartialAgreement(peer2, mau, 0.90f);
+    idmgr.signalPartialAgreement(peer2, mau, 0.50f);
     TimeBase.step();
-    idmgr.signalPartialAgreement(peer3, mau, 0.91f);
+    idmgr.signalPartialAgreement(peer3, mau, 0.51f);
 
     Map expectedDisagree = new HashMap();
     expectedDisagree.put(peer1, new Long(10));

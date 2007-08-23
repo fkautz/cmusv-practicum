@@ -699,8 +699,9 @@ public class V3Poller extends BasePoll {
       // If we haven't got enough peers, invite more.
       log.debug("Scheduling check for more peers to invite in " +
                 timeBetweenInvitations + "ms.");
-      TimerQueue.schedule(Deadline.in(timeBetweenInvitations),
-                          new InvitationCallback(), this);
+      invitationRequest = 
+        TimerQueue.schedule(Deadline.in(timeBetweenInvitations),
+                            new InvitationCallback(), this);
     } else {
       log.debug("Not scheduling a followup invitation check, " +
                 "due to configuration.");
