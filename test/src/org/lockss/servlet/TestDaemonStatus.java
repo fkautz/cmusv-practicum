@@ -142,7 +142,7 @@ public class TestDaemonStatus extends LockssServletTestCase {
     WebRequest request = new GetMethodWebRequest("http://null/DaemonStatus");
     request.setParameter( "table", table );
     if (text) {
-      request.setParameter( "text", "1");
+      request.setParameter( "output", "text");
     }
     return sClient.getResponse(request);
   }
