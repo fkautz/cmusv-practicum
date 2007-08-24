@@ -1723,7 +1723,6 @@ public class V3Poller extends BasePoll {
   }
   
   boolean shouldIncludePeer(PeerIdentity pid) {
-    log.debug("shouldIncludePeer(" + pid + ") being called...");
     // Never include a local id.
     if (pid.isLocalIdentity()) { return false; }
     PeerIdentityStatus status = idManager.getPeerIdentityStatus(pid);
@@ -2152,7 +2151,6 @@ public class V3Poller extends BasePoll {
     allUrls.addAll(getDisagreedUrls());
     allUrls.addAll(getTooCloseUrls());
     allUrls.addAll(getNoQuorumUrls());
-    allUrls.addAll(getErrorUrls().keySet());
     return allUrls;
   }
 

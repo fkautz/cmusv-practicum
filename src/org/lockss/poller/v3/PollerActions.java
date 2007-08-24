@@ -106,13 +106,8 @@ public class PollerActions {
       log.info("Peer " + ud.getVoterId() + " sent no voter nonce, "
                + "declining to participate in poll " + ud.getKey()
                + ".  Reason: " + msg.getNak());
-      // Switch based on the type of NAK received.  At the moment, there
-      // is only one.
-      switch (msg.getNak()) {
-      default:
-        ud.setPollNak(PollNak.NAK_GROUP_MISMATCH);
-        return V3Events.evtDeclinePoll;
-      }
+      ud.setPollNak(msg.getNak());
+      return V3Events.evtDeclinePoll;
     } else {
       ud.setVoterNonce(voterNonce);
       ud.setStatus(V3Poller.PEER_STATUS_ACCEPTED_POLL);
