@@ -205,6 +205,10 @@ public class BaseCachedUrlSet implements CachedUrlSet {
       nodeManager.getNodeState(this).getAverageHashDuration();
     long newEst;
 
+    logger.debug("storeActualHashDuration(" +
+		 StringUtil.timeIntervalToString(elapsed) +
+		 ", " + err + "), cur = " +
+		 StringUtil.timeIntervalToString(currentEstimate));
     if (err!=null) {
       if (err instanceof HashService.Timeout) {
         // timed out - guess 50% longer next time
@@ -229,10 +233,7 @@ public class BaseCachedUrlSet implements CachedUrlSet {
         newEst = elapsed;
       }
     }
-    logger.debug("storeActualHashDuration(" +
-		 StringUtil.timeIntervalToString(elapsed) +
-		 ", " + err + ") = " +
-		 StringUtil.timeIntervalToString(newEst));
+    logger.debug("newEst = " + StringUtil.timeIntervalToString(newEst));
     if (newEst > Constants.DAY) {
       logger.error("Unreasonably long has estimate", new Throwable());
     }
