@@ -79,14 +79,12 @@ public class PollRunner {
    */
   public void runTask(PollRunner.Task task) {
     try {
-      log.debug("Starting poll task " + task.toString());
+      log.debug("Starting task: " + task);
       executor.execute(task);
-      log.debug("Task " + task.toString() + " is now running.");
     } catch (InterruptedException ex) {
       // Don't want to ignore these yet, but they must be handled.
       // We'll log for now.
-      log
-          .warning("Caught InterruptedException while running task: " + task,
+      log.warning("Caught InterruptedException while running task: " + task,
                    ex);
     }
   }
@@ -105,6 +103,13 @@ public class PollRunner {
     /** Return the ID of the poll this task is associated with. */
     public String getPollId() {
       return pollId;
+    }
+    
+    /** Provide a default description of this task that can be overridden
+     * by implementers.
+     */
+    public String toString() {
+      return "[" + getName() + "]";
     }
 
     /** Perform the task's action. */

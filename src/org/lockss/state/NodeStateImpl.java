@@ -351,7 +351,7 @@ public class NodeStateImpl
 
     // XXX: Hacked on for V3 history.  Trim V3 list for age and length.
 
-    if (completedV3Polls.size() > 0) {
+    if (completedV3Polls != null && completedV3Polls.size() > 0) {
       // trim any that are too old.
       for (int ix = 0; ix < completedV3Polls.size() - 1; ix++ ) {
         V3PollState ps = (V3PollState)completedV3Polls.get(ix);

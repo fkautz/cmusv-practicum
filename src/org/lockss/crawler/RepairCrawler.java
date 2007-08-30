@@ -86,7 +86,7 @@ public class RepairCrawler extends BaseCrawler {
    */
   public static final String PARAM_FETCH_FROM_PUBLISHER_ONLY =
     Configuration.PREFIX + "crawler.fetch_from_publisher_only";
-  public static final boolean DEFAULT_FETCH_FROM_PUBLISHER_ONLY = false;
+  public static final boolean DEFAULT_FETCH_FROM_PUBLISHER_ONLY = true;
 
   /**
    * Sets this in properties to limit the number of caches it will try in repair mode 1,3 and 4.
