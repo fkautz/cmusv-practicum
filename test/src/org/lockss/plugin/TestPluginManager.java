@@ -221,6 +221,29 @@ public class TestPluginManager extends LockssTestCase {
     assertTrue(mgr.ensurePluginLoaded(key));
   }
 
+  static class APlugin extends MockPlugin {
+    private List initArgs = new ArrayList();
+
+    public void initPlugin(LockssDaemon daemon) {
+      initArgs.add(daemon);
+      super.initPlugin(daemon);
+    }
+
+    List getInitArgs() {
+      return initArgs;
+    }
+  }
+
+
+  public void testLoadBuiltinPlugin() throws Exception {
+    // Non-plugin class shouldn't load
+    assertNull(mgr.loadBuiltinPlugin(String.class));
+    Plugin plug = mgr.loadBuiltinPlugin(APlugin.class);
+    assertTrue(plug instanceof APlugin);
+    assertSame(plug, mgr.loadBuiltinPlugin(APlugin.class));
+    assertEquals(1, ((APlugin)plug).getInitArgs().size());
+  }
+
   public void testInitPluginRegistry() {
     String n1 = "org.lockss.test.MockPlugin";
     String n2 = ThrowingMockPlugin.class.getName();
