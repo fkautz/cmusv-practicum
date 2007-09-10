@@ -452,7 +452,10 @@ public class BaseUrlCacher implements UrlCacher {
   protected final InputStream getUncachedInputStream(String lastModified)
       throws IOException {
     InputStream is = getUncachedInputStreamOnly(lastModified);
-    is = checkLoginPage(is, getHeaders(), lastModified);
+    if (is != null) {
+      // Check for login page iff got new content
+      is = checkLoginPage(is, getHeaders(), lastModified);
+    }
     return is;
   }
 
