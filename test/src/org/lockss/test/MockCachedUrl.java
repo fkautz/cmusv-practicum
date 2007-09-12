@@ -130,15 +130,17 @@ public class MockCachedUrl implements CachedUrl {
     return version;
   }
   
-  public void addVersion(String content) {
+  public CachedUrl addVersion(String content) {
     // Special case: If this is the first version, alias for 'addContent'
     if (this.content == null) {
       this.content = content;
+      return this;
     } else {
       MockCachedUrl cus = new MockCachedUrl(url, au);
       cus.content = content;
       cus.version = versions.size() + 1;
       versions.add(cus);
+      return cus;
     }
   }
 
