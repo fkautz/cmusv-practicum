@@ -463,9 +463,7 @@ public class RemoteApi
       new CloseCallbackInputStream(fileStream,
 				   new CloseCallbackInputStream.Callback() {
 				     public void streamClosed(Object file) {
-				       try {
-					 ((File)file).delete();
-				       } catch (Exception e) {}
+				       ((File)file).delete();
 				     }},
 				   file);
   }
