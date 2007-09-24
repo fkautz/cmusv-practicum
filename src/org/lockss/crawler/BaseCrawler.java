@@ -422,4 +422,8 @@ public abstract class BaseCrawler
   public CrawlerStatus getCrawlStatus() {
     return crawlStatus;
   }
+
+  protected void cacheWithRetries(UrlCacher uc, int maxRetries)
+      throws IOException {
+  }
 }

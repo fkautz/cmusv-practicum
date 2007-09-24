@@ -150,7 +150,7 @@ public class TestBaseCrawlSpec extends LockssTestCase {
   public void testArcFilePattern() {
     List l1 = ListUtil.list("one", "two");
     BaseCrawlSpec cs = new TestableBaseCrawlSpec(l1, rule, null, null);
-    assertNull(cs.arcFilePattern());
+    assertNull(cs.getExploderPattern());
   }
     
   private static class TestableBaseCrawlSpec extends BaseCrawlSpec {

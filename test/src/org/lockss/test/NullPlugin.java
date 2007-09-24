@@ -242,6 +242,10 @@ public class NullPlugin {
     public void setFetchFlags(BitSet fetchFlags) {
     }
 
+    public BitSet getFetchFlags() {
+      return new BitSet();
+    }
+
     public void setRequestProperty(String key, String value) {
     }
 

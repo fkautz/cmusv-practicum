@@ -67,6 +67,8 @@ public class WrapperUtil {
 			   new ConfigurableCrawlWindowWrapper.Factory());
     registerWrapperFactory(org.lockss.util.urlconn.CacheResultHandler.class,
 			   new CacheResultHandlerWrapper.Factory());
+    registerWrapperFactory(ExploderHelper.class,
+			   new ExploderHelperWrapper.Factory());
   }
 
   /** Register a wrapper factory for instances of the interface */

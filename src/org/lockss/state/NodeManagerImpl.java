@@ -909,7 +909,12 @@ public class NodeManagerImpl
                          "on " + managedAu.getName());
             return;
           }
-          
+
+	  // If polling is disabled, don't call a poll
+	  if (!managedAu.shouldCallTopLevelPoll(getAuState())) {
+	    logger.debug("Not calling poll on " + managedAu.getName());
+	    return;
+	  }
           // If this AU has successfully crawled in the past, or if it
           // is a closed AU (publisher is no longer available), then
           // start a poll.

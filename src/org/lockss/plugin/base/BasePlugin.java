@@ -400,6 +400,11 @@ public abstract class BasePlugin
     }
   }
 
+  protected ExploderHelper getExploderHelper() {
+    return null;
+  }
+  protected ExploderHelper exploderHelper = null;
+
   /**
    * Returns a filter rule from the cache if found, otherwise calls
    * 'constructFilterRule()' and caches the result if non-null.  Content-type

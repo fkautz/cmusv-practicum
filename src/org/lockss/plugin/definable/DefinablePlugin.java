@@ -353,6 +353,19 @@ public class DefinablePlugin extends BasePlugin {
     return urlNorm;
   }
 
+  protected ExploderHelper getExploderHelper() {
+    if (exploderHelper == null) {
+      String helperClass =
+	definitionMap.getString(DefinableArchivalUnit.KEY_AU_EXPLODER_HELPER,
+				null);
+      if (helperClass != null) {
+	exploderHelper =
+	  (ExploderHelper)newAuxClass(helperClass, ExploderHelper.class);
+      }
+    }
+    return exploderHelper;
+  }
+
   protected FilterRule constructFilterRule(String contentType) {
     String mimeType = HeaderUtil.getMimeTypeFromContentType(contentType);
 

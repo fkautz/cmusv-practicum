@@ -97,6 +97,10 @@ public class ClockssUrlCacher implements UrlCacher {
     uc.setFetchFlags(fetchFlags);
   }
 
+  public BitSet getFetchFlags() {
+    return uc.getFetchFlags();
+  }
+
   public void setRequestProperty(String key, String value) {
     uc.setRequestProperty(key, value);
   }

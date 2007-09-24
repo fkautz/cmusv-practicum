@@ -334,6 +334,10 @@ public class ConfigManager implements LockssManager {
     Configuration config = new ConfigurationPropTreeImpl();
     for (Iterator iter = props.keySet().iterator(); iter.hasNext(); ) {
       String key = (String)iter.next();
+      if (props.getProperty(key) == null) {
+	log.error(key + " has no value");
+	throw new RuntimeException("no value for " + key);
+      }
       config.put(key, props.getProperty(key));
     }
     return config;
