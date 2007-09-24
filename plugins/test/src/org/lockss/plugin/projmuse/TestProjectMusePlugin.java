@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -110,7 +110,7 @@ public class TestProjectMusePlugin extends LockssTestCase {
     props.setProperty(VOL_KEY, "322");
 
     DefinableArchivalUnit au = makeAuFromProps(props);
-    assertEquals("www.example.com, journal_dir, vol. 322", au.getName());
+    assertEquals("http://www.example.com/, journal_dir, Volume 322", au.getName());
   }
 
   public void testGetPluginId() {
