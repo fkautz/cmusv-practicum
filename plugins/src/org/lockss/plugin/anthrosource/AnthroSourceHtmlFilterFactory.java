@@ -44,12 +44,20 @@ public class AnthroSourceHtmlFilterFactory implements FilterFactory {
                                                InputStream in,
                                                String encoding)
       throws PluginException {
-    // Filter out <td class="rightRegion">...</td>
     return new HtmlFilterInputStream(in,
                                      encoding,
-                                     HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("td",
-                                                                                                      "class",
-                                                                                                      "rightRegion")));
+                                     new HtmlCompoundTransform(// Filter out <td class="rightRegion">...</td>
+                                                               HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("td",
+                                                                                                                                "class",
+                                                                                                                                "rightRegion")),
+                                                               // Filter out <img class="JournalCover">...</img>
+                                                               HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("img",
+                                                                                                                                "class",
+                                                                                                                                "JournalCover")),
+                                                               // Filter out <div class="institutionBanner">...</img>
+                                                               HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
+                                                                                                                                "class",
+                                                                                                                                "institutionBanner"))));
   }
 
 }
