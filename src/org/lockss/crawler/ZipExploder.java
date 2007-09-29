@@ -111,7 +111,11 @@ public class ZipExploder extends Exploder {
 						    zis, crawlSpec);
 	  logger.debug3("ArchiveEntry: " + ae.getName()
 			+ " bytes "  + ae.getSize());
-	  helper.process(ae);
+          try {
+	    helper.process(ae);
+          } catch (PluginException ex) {
+            logger.error("Helper process() threw " + ex);
+          }
 	  if (ae.getBaseUrl() != null &&
 	      ae.getRestOfUrl() != null &&
 	      ae.getHeaderFields() != null) {
