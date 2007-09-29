@@ -49,8 +49,12 @@ public class ExploderHelperWrapper
     return inst;
   }
 
-  public void process(ArchiveEntry ae) {
+  public void process(ArchiveEntry ae) throws PluginException {
+    try {
       inst.process(ae);
+    } catch (LinkageError e) {
+      throw new PluginException.LinkageError(e);
+    }
   }
 
   static class Factory implements WrapperFactory {

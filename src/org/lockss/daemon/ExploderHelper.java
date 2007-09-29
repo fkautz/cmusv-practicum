@@ -52,6 +52,6 @@ public interface ExploderHelper {
    * up in, the URL it is to be assigned, and the header fields.
    * @param ae the entry to be processed
    */
-  public void process(ArchiveEntry ae);
+  public void process(ArchiveEntry ae) throws PluginException;
 
 }
