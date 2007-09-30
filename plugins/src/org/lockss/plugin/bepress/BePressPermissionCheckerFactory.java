@@ -41,7 +41,7 @@ import org.lockss.util.ListUtil;
 public class BePressPermissionCheckerFactory implements PermissionCheckerFactory {
 
   public List createPermissionCheckers(ArchivalUnit au) throws PluginException {
-    return ListUtil.list(new ProbePermissionChecker(au));
+    return ListUtil.list(new ProbePermissionChecker(null, au));
   }
 
 }
