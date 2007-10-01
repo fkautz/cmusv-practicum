@@ -445,6 +445,10 @@ public class NullPlugin {
       return RateLimiter.UNLIMITED;
     }
 
+    public Object getFetchRateLimiterKey() {
+      return null;
+    }
+
     public int hashCode() {
       return 0;
     }

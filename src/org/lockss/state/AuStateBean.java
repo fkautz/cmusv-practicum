@@ -52,10 +52,14 @@ public class AuStateBean extends AuState {
    * Constructor to create the bean from an AuState prior to marshalling.
    * @param auState the AuState
    */
-  AuStateBean(AuState auState) {
-    super(auState.au, auState.lastCrawlTime, auState.lastTopLevelPoll,
-          auState.lastTreeWalk, auState.crawlUrls,
-	  auState.clockssSubscriptionStatus, auState.v3Agreement, null);
+  AuStateBean(AuState auState) {super(auState.au, auState.lastCrawlTime,
+				      auState.lastCrawlAttempt,
+				      auState.lastCrawlResult,
+				      auState.lastCrawlResultCode,
+				      auState.lastTopLevelPoll,
+				      auState.lastTreeWalk, auState.crawlUrls,
+				      auState.clockssSubscriptionStatus,
+				      auState.v3Agreement, null);
   }
 
   /**

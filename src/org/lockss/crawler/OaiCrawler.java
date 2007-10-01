@@ -108,7 +108,9 @@ public class OaiCrawler extends FollowLinkCrawler {
       oaiHandler.processResponse(maxOaiRetries);
     } catch (RuntimeException ex) {
       logger.error("Error while trying to process the OAI request", ex);
-      crawlStatus.setCrawlError("Error in processing Oai Request");
+      crawlStatus.setCrawlStatus(Crawler.STATUS_ERROR,
+				 "Error processing Oai Request: " +
+				 ex.toString());
       return Collections.EMPTY_SET;
     }
     
@@ -116,7 +118,8 @@ public class OaiCrawler extends FollowLinkCrawler {
 
     List errList = oaiHandler.getErrors();
     if ( !errList.isEmpty() ){
-      crawlStatus.setCrawlError("Error in processing Oai Records");
+      crawlStatus.setCrawlStatus(Crawler.STATUS_ERROR,
+				 "Error processing Oai Request: " + errList);
       //XXX need to think how to reflect errors occurs in OaiHandler back to UI or daemon
 //    logger.error("Error in processing Oai Records, here is the stack of error(s):\n");
 //    Iterator errIt = errList.iterator();

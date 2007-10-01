@@ -99,5 +99,8 @@ public interface CrawlManager {
 
     /** Return true if the crawler is enabled */
     public boolean isCrawlerEnabled();
+
+    /** Return collection of pending CrawlReq */
+    Collection<CrawlReq> getPendingQueue();
   }
 }

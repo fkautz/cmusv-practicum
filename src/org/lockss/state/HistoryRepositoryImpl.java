@@ -159,6 +159,9 @@ public class HistoryRepositoryImpl
       AuState auState = (AuState)unwrap(deserializer.deserialize(auFile));
       return new AuState(storedAu,
                          auState.getLastCrawlTime(),
+                         auState.getLastCrawlAttempt(),
+                         auState.getLastCrawlResult(),
+                         auState.getLastCrawlResultCode(),
                          auState.getLastTopLevelPollTime(),
                          -1,
                          auState.getCrawlUrls(),

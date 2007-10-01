@@ -54,7 +54,7 @@ public class MockPermissionHelper implements PermissionHelper {
     throw new UnsupportedOperationException("not implemented");
   }
 
-  public CrawlerStatus getCrawlStatus() {
+  public CrawlerStatus getCrawlerStatus() {
     return new CrawlerStatus(null, null, null);
   }
 

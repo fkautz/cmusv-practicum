@@ -221,6 +221,48 @@ public class TestBaseCrawler extends LockssTestCase {
     assertEquals(lastCrawlTime, aus.getLastCrawlTime());
   }
 
+  public void testWholeCrawlUpdatesLastCrawlAttempt() {
+    setupAuState();
+    long lastCrawlAttempt = aus.getLastCrawlAttempt();
+    TestableBaseCrawler crawler = new TestableBaseCrawler(mau, spec, aus);
+    crawler.setWholeAu(true);
+    crawler.doCrawl();
+    assertNotEquals(lastCrawlAttempt, aus.getLastCrawlAttempt());
+  }
+
+  public void testPartialCrawlDoesntUpdateLastCrawlAttempt() {
+    setupAuState();
+    long lastCrawlAttempt = aus.getLastCrawlAttempt();
+    TestableBaseCrawler crawler = new TestableBaseCrawler(mau, spec, aus);
+    crawler.setWholeAu(false);
+    crawler.doCrawl();
+    assertEquals(lastCrawlAttempt, aus.getLastCrawlAttempt());
+  }
+
+  public void testFailedCrawlUpdatesLastCrawlAttempt() {
+    setupAuState();
+    long lastCrawlAttempt = aus.getLastCrawlAttempt();
+    TestableBaseCrawler crawler = new TestableBaseCrawler(mau, spec, aus);
+    crawler.setWholeAu(true);
+    crawler.setResult(false);
+    crawler.doCrawl();
+    assertNotEquals(lastCrawlAttempt, aus.getLastCrawlAttempt());
+  }
+
+  public void testThrowingCrawlUpdatesLastCrawlAttempt() {
+    setupAuState();
+    long lastCrawlAttempt = aus.getLastCrawlAttempt();
+    TestableBaseCrawler crawler = new TestableBaseCrawler(mau, spec, aus);
+    crawler.setWholeAu(true);
+    crawler.setDoCrawlThrowException(new ExpectedRuntimeException("Blah"));
+    try {
+      crawler.doCrawl();
+    } catch (RuntimeException e) {
+      // expected
+    }
+    assertNotEquals(lastCrawlAttempt, aus.getLastCrawlAttempt());
+  }
+
   /**
    * Subclasses rely on setWatchdog(wdog) assigning this value to the instance
    * varable wdog, so we're testing it

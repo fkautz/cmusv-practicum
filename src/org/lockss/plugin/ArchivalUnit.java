@@ -175,6 +175,13 @@ public interface ArchivalUnit {
   public RateLimiter findFetchRateLimiter();
 
   /**
+   * If the fetch rate limiter key is non-null, all AU with the same fetch
+   * rate limiter key share a fetch rate limiter.  If the key is null the
+   * AU doesn't share its fetch rate limiter.
+   */
+  public Object getFetchRateLimiterKey();
+
+  /**
    * Return a list of urls which need to be recrawled during a new content
    * crawl.
    * @return the {@link List} of urls to crawl

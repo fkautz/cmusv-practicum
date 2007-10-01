@@ -75,7 +75,7 @@ public class SingleCrawlStatusAccessor implements StatusAccessor {
       throw new IllegalArgumentException("SingleCrawlStatusAccessor requires a key");
     }
     String key = table.getKey();
-    CrawlerStatus status = statusSource.getStatus().getCrawlStatus(key);
+    CrawlerStatus status = statusSource.getStatus().getCrawlerStatus(key);
     if (status == null) {
       throw new StatusService.NoSuchTableException("Status info from that crawl is no longer available");
     }

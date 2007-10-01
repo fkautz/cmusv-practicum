@@ -84,15 +84,19 @@ public class MockCrawlManagerStatusSource
     return true;
   }
 
+  public Collection<CrawlReq> getPendingQueue() {
+    return new ArrayList();
+  }
+
   static class MyCrawlManagerStatus extends CrawlManagerStatus {
     List clist;
     MyCrawlManagerStatus(List clist) {
       super(2);
       this.clist = clist;
     }
-    public List getCrawlStatusList() {
+    public List getCrawlerStatusList() {
       if (clist != null) return clist;
-      return super.getCrawlStatusList();
+      return super.getCrawlerStatusList();
     }
   }
 }

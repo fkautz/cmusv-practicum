@@ -38,7 +38,8 @@ import java.util.*;
 
 public class MockCrawlStatus extends CrawlerStatus {
 
-  String crawlStatus = null;
+  int crawlStatus = -1;
+  String crawlStatusString = null;
   boolean crawlEndSignaled = false;
 
 
@@ -58,11 +59,20 @@ public class MockCrawlStatus extends CrawlerStatus {
     this.endTime = endTime;
   }
 
-  public void setCrawlStatus(String crawlStatus) {
-    this.crawlStatus = crawlStatus;
+  public void setCrawlStatus(int crawlStatus) {
+    setCrawlStatus(crawlStatus, getDefaultMessage(crawlStatus));
   }
 
-  public String getCrawlStatus() {
+  public void setCrawlStatus(int crawlStatus, String crawlStatusString) {
+    this.crawlStatus = crawlStatus;
+    this.crawlStatusString = crawlStatusString;
+  }
+
+  public String getCrawlStatusString() {
+    return crawlStatusString;
+  }
+
+  public int getCrawlStatus() {
     return crawlStatus;
   }
 

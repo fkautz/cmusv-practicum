@@ -102,7 +102,7 @@ public class CrawlUrlsStatusAccessor implements StatusAccessor {
     CrawlerStatus status;
     String tableStr;
 
-    status = statusSource.getStatus().getCrawlStatus(getStatusKeyFromTableKey(key));
+    status = statusSource.getStatus().getCrawlerStatus(getStatusKeyFromTableKey(key));
     tableStr = getTableStrFromKey(key);
     if (status == null) {
       throw new StatusService.NoSuchTableException("Status info from that crawl is no longer available");
