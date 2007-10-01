@@ -779,6 +779,11 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
     ausStarted.waitFull(Deadline.MAX);
   }
 
+  /** Return true if all AUs have been started */
+  public boolean areAusStarted() {
+    return ausStarted.isFull();
+  }
+
   protected void setConfig(Configuration config, Configuration prevConfig,
 			   Configuration.Differences changedKeys) {
 
