@@ -207,9 +207,10 @@ public class TimerQueue {
   synchronized void startOrKickThread() {
     if (timerThread == null) {
       log.debug("Starting thread");
-      timerThread = new TimerThread("TimerQ");
-      timerThread.start();
-      timerThread.waitRunning();
+      TimerThread th = new TimerThread("TimerQ");
+      timerThread = th;
+      th.start();
+      th.waitRunning();
     } else {
       threadWait.give();
     }
