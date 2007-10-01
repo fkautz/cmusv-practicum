@@ -47,8 +47,6 @@ import org.lockss.extractor.*;
  */
 
 public class ProbePermissionChecker implements PermissionChecker {
-//   static final int PERM_BUFFER_MAX = 16 * 1024;
-
 
   String probeUrl = null;
 

@@ -142,7 +142,7 @@ public class UrlUtil {
     String path = url.getPath();
     String query = url.getQuery();
     if (log.isDebug3()) {
-      log.debug3("protocal: "+protocol);
+      log.debug3("protocol: "+protocol);
       log.debug3("host: "+host);
       log.debug3("port: "+port);
       log.debug3("path: "+path);

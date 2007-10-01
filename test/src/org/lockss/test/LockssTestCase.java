@@ -996,7 +996,7 @@ public class LockssTestCase extends TestCase {
 	sb.append(message);
 	sb.append(" ");
       }
-      sb.append("Expected empty Collection, but containted ");
+      sb.append("Expected empty Collection, but contained ");
       sb.append(coll);
       fail(sb.toString());
     }

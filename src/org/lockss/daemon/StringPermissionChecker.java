@@ -45,7 +45,6 @@ public class StringPermissionChecker implements PermissionChecker {
   FilterRule m_filter;
   String m_encoding;
   static Logger m_logger = Logger.getLogger("PermissionCheck");
-  private static final int PERM_BUFFER_MAX = 20000;
 
   public StringPermissionChecker(String matchString, FilterRule filterRule) {
       m_matchString = matchString;
