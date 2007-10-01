@@ -99,7 +99,7 @@ public class TestAuConfig extends LockssServletTestCase {
 
   public void testAfterAusLoaded() throws Exception {
     // Force PluginManager to think all AUs have started.
-    pluginMgr.setLoadablePluginsReady(true);
+    theDaemon.setAusStarted(true);
     initServletRunner();
     WebRequest request =
       new GetMethodWebRequest("http://null/AuConfig" );

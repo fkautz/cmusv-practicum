@@ -67,6 +67,7 @@ public class TestServletUtil extends LockssTestCase {
 
   public void testManifestIndex(boolean started) throws Exception {
     MockLockssDaemon daemon = getMockLockssDaemon();
+    daemon.setAusStarted(started);
     daemon.getPluginManager().setLoadablePluginsReady(started);
 
     Plugin pl = new MockPlugin();
