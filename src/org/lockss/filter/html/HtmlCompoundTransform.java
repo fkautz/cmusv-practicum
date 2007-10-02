@@ -51,13 +51,23 @@ public class HtmlCompoundTransform implements HtmlTransform {
 
   private HtmlTransform[] transforms;
 
-  public HtmlCompoundTransform(HtmlTransform t1, HtmlTransform t2) {
-    transforms = new HtmlTransform[] {t1, t2};
+  public HtmlCompoundTransform(HtmlTransform[] transforms) {
+    this.transforms = transforms;
   }
 
-  public HtmlCompoundTransform(HtmlTransform t1, HtmlTransform t2,
+  public HtmlCompoundTransform(HtmlTransform t1) {
+    this(new HtmlTransform[] {t1});
+  }
+
+  public HtmlCompoundTransform(HtmlTransform t1,
+                               HtmlTransform t2) {
+    this(new HtmlTransform[] {t1, t2});
+  }
+
+  public HtmlCompoundTransform(HtmlTransform t1,
+                               HtmlTransform t2,
 			       HtmlTransform t3) {
-    transforms = new HtmlTransform[] {t1, t2, t3};
+    this(new HtmlTransform[] {t1, t2, t3});
   }
 
   public NodeList transform(NodeList nodeList) throws IOException {
