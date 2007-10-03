@@ -76,7 +76,6 @@ public class MockLockssDaemon extends LockssDaemon {
   ServletManager servletManager = null;
   CrawlManager crawlManager = null;
   RepositoryManager repositoryManager = null;
-  TreeWalkManager treeWalkManager = null;
   NodeManagerManager nodeManagerManager = null;
   PluginManager pluginManager = null;
   IdentityManager identityManager = null;
@@ -127,7 +126,6 @@ public class MockLockssDaemon extends LockssDaemon {
     scommManager = null;
     proxyManager = null;
     crawlManager = null;
-    treeWalkManager = null;
     pluginManager = null;
     identityManager = null;
     statusService = null;
@@ -373,19 +371,6 @@ public class MockLockssDaemon extends LockssDaemon {
   }
 
   /**
-   * return the treewalk manager instance
-   * @return the TreewalkManager
-   */
-  public TreeWalkManager getTreeWalkManager() {
-    if (treeWalkManager == null) {
-      treeWalkManager =
-	(TreeWalkManager)newManager(LockssDaemon.TREEWALK_MANAGER);
-      managerMap.put(LockssDaemon.TREEWALK_MANAGER, treeWalkManager);
-    }
-    return treeWalkManager;
-  }
-
-  /**
    * return the repository manager instance
    * @return the RepositoryManager
    */
@@ -509,15 +494,6 @@ public class MockLockssDaemon extends LockssDaemon {
   public void setCrawlManager(CrawlManager crawlMan) {
     crawlManager = crawlMan;
     managerMap.put(LockssDaemon.CRAWL_MANAGER, crawlManager);
-  }
-
-  /**
-   * Set the TreeWalkManager
-   * @param treeWalkMan the new manager
-   */
-  public void setTreeWalkManager(TreeWalkManager treeWalkMan) {
-    treeWalkManager = treeWalkMan;
-    managerMap.put(LockssDaemon.TREEWALK_MANAGER, treeWalkManager);
   }
 
   /**

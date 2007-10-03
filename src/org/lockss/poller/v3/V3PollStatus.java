@@ -136,8 +136,20 @@ public class V3PollStatus {
         throws StatusService.NoSuchTableException {
       String key = table.getKey();
       table.setColumnDescriptors(colDescs);
+      table.setSummaryInfo(getSummary(pollManager));
       table.setDefaultSortRules(sortRules);
       table.setRows(getRows(key));
+    }
+    
+    private List getSummary(PollManager pollManager) {
+      List summary = new ArrayList();
+      V3PollStatusAccessor status = pollManager.getV3Status();
+      if (status.getNextPollStartTime() != null) {
+        summary.add(new SummaryInfo("Poll Starter",
+                                    ColumnDescriptor.TYPE_TIME_INTERVAL,
+                                    status.getNextPollStartTime().getRemainingTime()));
+      }
+      return summary;
     }
 
     public boolean requiresKey() {

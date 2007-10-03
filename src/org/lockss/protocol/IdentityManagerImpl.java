@@ -983,6 +983,18 @@ public class IdentityManagerImpl extends BaseLockssDaemonManager
       }
     }
   }
+  
+  public float getHighestPercentAgreement(PeerIdentity pid, ArchivalUnit au) {
+    Map map = findAuAgreeMap(au);
+    synchronized (map) {
+      IdentityAgreement ida = (IdentityAgreement)map.get(pid);
+      if (ida == null) {
+        return 0.0f;
+      } else {
+        return ida.getHighestPercentAgreement();
+      }
+    }
+  }
 
   /**
    * For V1 polls, the partialAgreement flag is meaningless (and ignored)
@@ -1317,19 +1329,15 @@ public class IdentityManagerImpl extends BaseLockssDaemonManager
         config.getInt(PARAM_VOTE_VERIFIED, DEFAULT_VOTE_VERIFIED);
       reputationDeltas[VOTE_DISOWNED] =
         config.getInt(PARAM_VOTE_DISOWNED, DEFAULT_VOTE_DISOWNED);
-      
       updatesBeforeStoring =
         config.getLong(PARAM_UPDATES_BEFORE_STORING,
                        DEFAULT_UPDATES_BEFORE_STORING);
-
       isMergeRestoredAgreemMap =
         config.getBoolean(PARAM_MERGE_RESTORED_AGREE_MAP,
                           DEFAULT_MERGE_RESTORED_AGREE_MAP);
-
       minPercentPartialAgreement =
         config.getPercentage(PARAM_MIN_PERCENT_AGREEMENT,
                              DEFAULT_MIN_PERCENT_AGREEMENT);
-
       configV3Identities();
     }
   }

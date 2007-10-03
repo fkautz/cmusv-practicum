@@ -329,6 +329,11 @@ public class MockIdentityManager implements IdentityManager {
     throw new UnsupportedOperationException("not implemented");
   }
 
+  public float getHighestPercentAgreement(PeerIdentity pid, ArchivalUnit au) {
+    // TODO Auto-generated method stub
+    return 0.0f;
+  }
+
 //   protected String getLocalIpParam(Configuration config) {
 //     throw new UnsupportedOperationException("not implemented");
 //   }
