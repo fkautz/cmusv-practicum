@@ -30,45 +30,30 @@ in this Software without prior written authorization from Stanford University.
 
 */
 package org.lockss.daemon;
-
+import java.io.*;
 import java.util.*;
-import org.lockss.plugin.*;
+
 import org.lockss.state.*;
+import org.lockss.clockss.*;
+import org.lockss.test.*;
 
-/** The acceptable permission statements, one of which LOCKSS needs to see
- * before it will collect content
- */
+public class LockssPermissionCheckerTestCase extends LockssTestCase {
 
-public class LockssPermission {
-  public static final String LOCKSS_PERMISSION_STRING =
-  "LOCKSS system has permission to collect, preserve, and serve this Archival Unit";
+  protected MockArchivalUnit mau;
+  protected MockPermissionHelper pHelper;
+  protected MockAuState aus;
 
-  public static final String LOCKSS_OPEN_ACCESS_PERMISSION_STRING =
-  "LOCKSS system has permission to collect, preserve, and serve this open access Archival Unit";
+  public void setUp() throws Exception {
+    super.setUp();
 
-  List permissionList;
-
-  public LockssPermission() {
-    ArrayList lst = new ArrayList();
-    StringPermissionChecker spc;
-
-    spc = new StringPermissionChecker(LOCKSS_PERMISSION_STRING,
-				      new StringPermissionChecker.StringFilterRule());
-    spc.doSetAccessType(AuState.AccessType.Subscription);
-    lst.add(spc);
-
-    spc = new StringPermissionChecker(LOCKSS_OPEN_ACCESS_PERMISSION_STRING,
-				      new StringPermissionChecker.StringFilterRule());
-    spc.doSetAccessType(AuState.AccessType.OpenAccess);
-    lst.add(spc);
-
-    lst.add(new CreativeCommonsPermissionChecker());
-    lst.add(new CreativeCommonsV3PermissionChecker());
-    lst.trimToSize();
-    permissionList = Collections.unmodifiableList(lst);
-  }
-
-  public List getCheckers() {
-    return permissionList;
+    MockLockssDaemon daemon = getMockLockssDaemon();
+    MockPlugin mplugin = new MockPlugin(daemon);
+    mau = new MockArchivalUnit(mplugin);
+    aus = new MockAuState(mau);
+    MockNodeManager nm = new MockNodeManager();
+    nm.setAuState(aus);
+    daemon.setNodeManager(nm, mau);
+    pHelper = new MockPermissionHelper();
+    pHelper.setAu(mau);
   }
 }

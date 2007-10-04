@@ -165,6 +165,7 @@ public class HistoryRepositoryImpl
                          auState.getLastTopLevelPollTime(),
                          -1,
                          auState.getCrawlUrls(),
+                         auState.getAccessType(),
                          auState.getClockssSubscriptionStatus(),
                          auState.getV3Agreement(),
                          this);

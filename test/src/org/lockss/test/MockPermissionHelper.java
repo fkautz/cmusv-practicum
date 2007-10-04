@@ -40,9 +40,14 @@ import org.lockss.crawler.*;
 import org.lockss.plugin.*;
 
 public class MockPermissionHelper implements PermissionHelper {
+  private ArchivalUnit au;
 
   public ArchivalUnit getAu() {
-    throw new UnsupportedOperationException("not implemented");
+    return au;
+  }
+
+  public void setAu(ArchivalUnit au) {
+    this.au = au;
   }
 
   public UrlCacher makeUrlCacher(String url) {

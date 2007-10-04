@@ -31,44 +31,18 @@ in this Software without prior written authorization from Stanford University.
 */
 package org.lockss.daemon;
 
-import java.util.*;
+import java.io.*;
+
 import org.lockss.plugin.*;
 import org.lockss.state.*;
+import org.lockss.util.*;
 
-/** The acceptable permission statements, one of which LOCKSS needs to see
- * before it will collect content
- */
+public abstract class BasePermissionChecker implements PermissionChecker {
 
-public class LockssPermission {
-  public static final String LOCKSS_PERMISSION_STRING =
-  "LOCKSS system has permission to collect, preserve, and serve this Archival Unit";
-
-  public static final String LOCKSS_OPEN_ACCESS_PERMISSION_STRING =
-  "LOCKSS system has permission to collect, preserve, and serve this open access Archival Unit";
-
-  List permissionList;
-
-  public LockssPermission() {
-    ArrayList lst = new ArrayList();
-    StringPermissionChecker spc;
-
-    spc = new StringPermissionChecker(LOCKSS_PERMISSION_STRING,
-				      new StringPermissionChecker.StringFilterRule());
-    spc.doSetAccessType(AuState.AccessType.Subscription);
-    lst.add(spc);
-
-    spc = new StringPermissionChecker(LOCKSS_OPEN_ACCESS_PERMISSION_STRING,
-				      new StringPermissionChecker.StringFilterRule());
-    spc.doSetAccessType(AuState.AccessType.OpenAccess);
-    lst.add(spc);
-
-    lst.add(new CreativeCommonsPermissionChecker());
-    lst.add(new CreativeCommonsV3PermissionChecker());
-    lst.trimToSize();
-    permissionList = Collections.unmodifiableList(lst);
-  }
-
-  public List getCheckers() {
-    return permissionList;
+  protected void setAuAccessType(Crawler.PermissionHelper pHelper,
+				 AuState.AccessType accessType) {
+    ArchivalUnit au = pHelper.getAu();
+    AuState aus = AuUtil.getAuState(au);
+    aus.setAccessType(accessType);
   }
 }

@@ -297,8 +297,9 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
     strCol.add("test");
     AuState auState = new AuState(mau, 123000, 123123,
 				  41, "woop woop",
-				  321000, 456000,
-				  strCol, 2, 1.0, repository);
+				  321000, 456000, strCol,
+				  AuState.AccessType.OpenAccess,
+				  2, 1.0, repository);
     repository.storeAuState(auState);
     log.info("auState: " + auState);
 
@@ -317,8 +318,7 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
     assertEquals(41, auState.getLastCrawlResult());
     assertEquals("woop woop", auState.getLastCrawlResultMsg());
     assertEquals(2, auState.getClockssSubscriptionStatus());
-    // doesn't store last treewalk time, so should reset to -1
-    assertEquals(-1, auState.getLastTreeWalkTime());
+    assertEquals(AuState.AccessType.OpenAccess, auState.getAccessType());
     assertEquals(mau.getAuId(), auState.getArchivalUnit().getAuId());
 
     // check crawl urls

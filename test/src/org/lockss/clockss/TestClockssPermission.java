@@ -37,10 +37,14 @@ import java.util.*;
 import org.lockss.daemon.*;
 import org.lockss.test.*;
 
-public class TestClockssPermission extends LockssTestCase {
+public class TestClockssPermission extends LockssPermissionCheckerTestCase {
 
   private String PERM_STRING = "CLOCKSS system has permission to ingest, " +
     "preserve, and serve this Archival Unit";
+
+  public void setUp() throws Exception {
+    super.setUp();
+  }
 
   public void testString() {
     assertEquals(PERM_STRING, ClockssPermission.CLOCKSS_PERMISSION_STRING);
@@ -48,7 +52,7 @@ public class TestClockssPermission extends LockssTestCase {
 
   private boolean hasPermission(String page) throws IOException {
     return MiscTestUtil.hasPermission(new ClockssPermission().getCheckers(),
-				      page);
+				      page, pHelper);
   }
 
   public void testNoPermission() throws IOException {

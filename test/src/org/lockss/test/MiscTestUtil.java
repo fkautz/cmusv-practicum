@@ -35,21 +35,26 @@ package org.lockss.test;
 import java.util.*;
 import java.io.*;
 import java.net.*;
+
+import org.lockss.test.*;
 import org.lockss.util.*;
 import org.lockss.daemon.*;
+import org.lockss.crawler.*;
 
 /** Miscellaneous testing utilities */
 public class MiscTestUtil {
   protected static Logger log = Logger.getLogger("MiscTestUtil");
 
-  public static boolean hasPermission(List checkers, String page)
+  public static boolean hasPermission(List checkers, String page,
+				      Crawler.PermissionHelper pHelper)
       throws IOException {
     int len = page.length() * 2;
     Reader rdr = new BufferedReader(new StringReader(page), len);
+
     for (Iterator it = checkers.iterator(); it.hasNext(); ) {
       PermissionChecker checker = (PermissionChecker)it.next();
       rdr.mark(len);
-      if (checker.checkPermission(null, rdr, null)) {
+      if (checker.checkPermission(pHelper, rdr, null)) {
 	return true;
       }
       rdr.reset();

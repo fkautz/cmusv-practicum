@@ -722,6 +722,12 @@ public class ArchivalUnitStatus
       res.add(new StatusTable.SummaryInfo("Volume",
 					  ColumnDescriptor.TYPE_STRING,
 					  au.getName()));
+      AuState.AccessType atype = state.getAccessType();
+      if (atype != null) {
+	res.add(new StatusTable.SummaryInfo("Access Type",
+					    ColumnDescriptor.TYPE_STRING,
+					    atype.toString()));
+      }
       if (contentSize != -1) {
 	res.add(new StatusTable.SummaryInfo("Content Size",
 					    ColumnDescriptor.TYPE_INT,
