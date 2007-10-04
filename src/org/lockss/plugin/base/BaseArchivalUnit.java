@@ -522,12 +522,8 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     }
   }
 
-  public Object getFetchRateLimiterKey() {
-    String defaultSource =
-      CurrentConfig.getParam(PARAM_DEFAULT_FETCH_RATE_LIMITER_SOURCE,
-			     DEFAULT_DEFAULT_FETCH_RATE_LIMITER_SOURCE);
-    String limiterSource =
-      paramMap.getString(KEY_AU_FETCH_RATE_LIMITER_SOURCE, defaultSource);
+  public final Object getFetchRateLimiterKey() {
+    String limiterSource = getFetchRateLimiterSource();
     if (logger.isDebug3()) logger.debug3("Limiter source: " + limiterSource);
     if ("au".equalsIgnoreCase(limiterSource)) {
       return null;
@@ -557,13 +553,20 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     }
   }
 
+  protected String getFetchRateLimiterSource() {
+    String defaultSource =
+      CurrentConfig.getParam(PARAM_DEFAULT_FETCH_RATE_LIMITER_SOURCE,
+			     DEFAULT_DEFAULT_FETCH_RATE_LIMITER_SOURCE);
+    return paramMap.getString(KEY_AU_FETCH_RATE_LIMITER_SOURCE, defaultSource);
+  }
+
   private RateLimiter getLimiterWithRate(RateLimiter oldLimiter,
 					 int events, long interval) {
     if (oldLimiter != null) {
-      oldLimiter.setRate(1, interval);
+      oldLimiter.setRate(events, interval);
       return oldLimiter;
     } else {
-      return new RateLimiter(1, interval);
+      return new RateLimiter(events, interval);
     }
   }
 
