@@ -390,7 +390,7 @@ public class CrawlManagerStatusAccessor implements StatusAccessor {
 	      pluginMgr.isInternalAu(crawlStat.getAu())) {
 	    continue;
 	  }
-	  if (crawlStat.getCrawlStatus() == Crawler.STATUS_ACTIVE) {
+	  if (crawlStat.isCrawlActive()) {
 	    active++;
 	  }
 	}
