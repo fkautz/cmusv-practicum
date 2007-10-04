@@ -161,7 +161,7 @@ public class HistoryRepositoryImpl
                          auState.getLastCrawlTime(),
                          auState.getLastCrawlAttempt(),
                          auState.getLastCrawlResult(),
-                         auState.getLastCrawlResultCode(),
+                         auState.getLastCrawlResultMsg(),
                          auState.getLastTopLevelPollTime(),
                          -1,
                          auState.getCrawlUrls(),

@@ -75,6 +75,9 @@ public interface CrawlManager {
   /** Return true if the periodic crawl starter is running */
   public boolean isCrawlStarterEnabled();
 
+  /** Return the StatusSource */
+  public StatusSource getStatusSource();
+
   public interface Callback {
     /**
      * Called when the crawl is completed

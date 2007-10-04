@@ -136,7 +136,11 @@ public class MockNodeManager implements NodeManager {
   }
 
   public void newContentCrawlFinished() {
-    aus.newCrawlFinished();
+    aus.newCrawlFinished(Crawler.STATUS_SUCCESSFUL, null);
+  }
+
+  public void newContentCrawlFinished(int result, String msg) {
+    aus.newCrawlFinished(result, msg);
   }
 
   public void hashFinished(CachedUrlSet cus, long hashDuration) {

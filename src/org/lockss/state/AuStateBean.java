@@ -55,7 +55,7 @@ public class AuStateBean extends AuState {
   AuStateBean(AuState auState) {super(auState.au, auState.lastCrawlTime,
 				      auState.lastCrawlAttempt,
 				      auState.lastCrawlResult,
-				      auState.lastCrawlResultCode,
+				      auState.lastCrawlResultMsg,
 				      auState.lastTopLevelPoll,
 				      auState.lastTreeWalk, auState.crawlUrls,
 				      auState.clockssSubscriptionStatus,

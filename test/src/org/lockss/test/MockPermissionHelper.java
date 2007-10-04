@@ -41,7 +41,11 @@ import org.lockss.plugin.*;
 
 public class MockPermissionHelper implements PermissionHelper {
 
-    public UrlCacher makeUrlCacher(String url) {
+  public ArchivalUnit getAu() {
+    throw new UnsupportedOperationException("not implemented");
+  }
+
+  public UrlCacher makeUrlCacher(String url) {
     throw new UnsupportedOperationException("not implemented");
   }
 

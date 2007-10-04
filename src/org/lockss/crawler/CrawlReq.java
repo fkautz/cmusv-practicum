@@ -113,6 +113,6 @@ public class CrawlReq {
   }
 
   public String toString() {
-    return "[CrawlReq: " + au + "]";
+    return "[CrawlReq: " + au + ", pri: " + priority + ", cb: " + cb + "]";
   }
 }

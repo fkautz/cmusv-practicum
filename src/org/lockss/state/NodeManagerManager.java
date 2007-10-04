@@ -156,7 +156,7 @@ public class NodeManagerManager
     for (Iterator iter = getDaemon().getAllNodeManagers().iterator();
 	 iter.hasNext(); ) {
       NodeManager manager = (NodeManager)iter.next();
-      if (manager.getAuState().au.getAuId().equals(key)) {
+      if (manager.getAuState().getArchivalUnit().getAuId().equals(key)) {
         return (NodeManagerImpl)manager;
       }
     }

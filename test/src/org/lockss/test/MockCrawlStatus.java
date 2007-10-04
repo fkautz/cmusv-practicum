@@ -68,7 +68,7 @@ public class MockCrawlStatus extends CrawlerStatus {
     this.crawlStatusString = crawlStatusString;
   }
 
-  public String getCrawlStatusString() {
+  public String getCrawlStatusMsg() {
     return crawlStatusString;
   }
 

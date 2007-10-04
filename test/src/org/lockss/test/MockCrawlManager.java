@@ -119,5 +119,9 @@ public class MockCrawlManager implements CrawlManager, LockssManager {
 				       CrawlManager.Callback cb,
 				       Object cookie) {
     scheduledCrawls.put(au, SCHEDULED);
+  } 
+
+  public StatusSource getStatusSource() {
+    throw new UnsupportedOperationException("Not Implemented");
   }
 }

@@ -130,7 +130,7 @@ public class TestPermissionMap extends LockssTestCase {
     map.init();
     assertFalse(map.hasPermission("http://www.example.com/"));
     assertEquals("No permission statement on manifest page.",
-                 helper.getCrawlerStatus().getCrawlStatusString());
+                 helper.getCrawlerStatus().getCrawlStatusMsg());
   }
 
   public void testCheckPermissionPluginPermissionRefuses() throws Exception {
@@ -141,7 +141,7 @@ public class TestPermissionMap extends LockssTestCase {
     map.init();
     assertFalse(map.hasPermission("http://www.example.com/"));
     assertEquals("No permission statement on manifest page.",
-                 helper.getCrawlerStatus().getCrawlStatusString());
+                 helper.getCrawlerStatus().getCrawlStatusMsg());
   }
 
   public void testCheckPermissionPluginCrawlWindowClosed() throws Exception {
@@ -154,8 +154,8 @@ public class TestPermissionMap extends LockssTestCase {
                         new MockPermissionChecker(999));
     map.init();
     assertFalse(map.hasPermission("http://www.example.com/"));
-    assertEquals("Crawl window closed",
-                 helper.getCrawlerStatus().getCrawlStatusString());
+    assertEquals("Interrupted by crawl window",
+                 helper.getCrawlerStatus().getCrawlStatusMsg());
   }
 
   // XXX unfinished

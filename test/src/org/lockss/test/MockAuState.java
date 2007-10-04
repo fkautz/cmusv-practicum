@@ -94,8 +94,13 @@ public class MockAuState extends AuState {
     this.lastCrawlAttempt = lastCrawlAttempt;
   }
 
-  public void newCrawlFinished() {
-    super.newCrawlFinished();
+  public void newCrawlFinished(int result, String resultMsg) {
+    super.newCrawlFinished(result, resultMsg);
+  }
+
+  public void setLastCrawlResult(int result, String resultMsg) {
+    lastCrawlResult = result;
+    lastCrawlResultMsg = resultMsg;
   }
 
   public HashSet getCrawlUrls() {

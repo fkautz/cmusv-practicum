@@ -252,7 +252,7 @@ public class RepairCrawler extends BaseCrawler {
     }
     if (crawlStatus.isCrawlError()) {
       logger.info("Unfinished crawl of " + au.getName() + ", " +
-		  crawlStatus.getCrawlStatusString());
+		  crawlStatus.getCrawlErrorMsg());
     } else {
       logger.info("Finished crawl of "+au.getName());
     }

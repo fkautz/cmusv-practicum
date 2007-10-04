@@ -105,7 +105,21 @@ public class RateLimiter {
   public static RateLimiter
     getConfiguredRateLimiter(Configuration config, RateLimiter currentLimiter,
 			     String param, String dfault) {
-    String rate = config.get(param, dfault);
+    return getRateLimiter(currentLimiter, config.get(param, dfault), dfault);
+  }
+
+  /** Create a RateLimiter with the specified rate, reusing an existing
+   * RateLimiter if supplied
+   * @param currentLimiter optional existing RateLimiter, modified if
+   * necessary
+   * @param rate rate string
+   * @param dfault default rate string
+   * @return a new RateLimiter iff currentLimiter is null, else
+   * currentLimiter, possible reset to a new rate
+   * @throws RuntimeException if dfault rate string is unparseable
+   */
+  public static RateLimiter
+    getRateLimiter(RateLimiter currentLimiter, String rate, String dfault) {
     if (currentLimiter == null) {
       return makeRateLimiter(rate, dfault);
     }

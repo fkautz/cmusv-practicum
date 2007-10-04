@@ -102,6 +102,15 @@ public class StringUtil {
   }
 
   /**
+   * Concatenate elements of collection into string, separated by commas
+   * @param c - Collection of object (on which toString() will be called)
+   * @return Concatenated string
+   */
+  public static String separatedString(Collection c) {
+    return separatedString(c, ", ");
+  }
+
+  /**
    * Concatenate elements of collection into string, with separators
    * @param c - Collection of object (on which toString() will be called)
    * @param separator - String to put between elements

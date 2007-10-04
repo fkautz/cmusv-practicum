@@ -738,7 +738,7 @@ public class TestNewContentCrawler extends LockssTestCase {
     assertEquals(Crawler.STATUS_NO_PUB_PERMISSION,
 		 crawlStatus.getCrawlStatus());
     assertEquals("Can't fetch permission page", 
-		 crawlStatus.getCrawlStatusString());
+		 crawlStatus.getCrawlStatusMsg());
   }
 
   public void testGetStatusRepoErrorStartUrl() {
@@ -759,7 +759,7 @@ public class TestNewContentCrawler extends LockssTestCase {
     CrawlerStatus crawlStatus = crawler.getStatus();
 
     assertEquals(Crawler.STATUS_REPO_ERR, crawlStatus.getCrawlStatus());
-    assertEquals("Repository error", crawlStatus.getCrawlStatusString());
+    assertEquals("Repository error", crawlStatus.getCrawlStatusMsg());
     Map expectedErrors = MapUtil.map(permissionPage,
 				     "Can't store page: Test exception");
     assertEquals(expectedErrors, crawlStatus.getUrlsWithErrors());
@@ -779,7 +779,7 @@ public class TestNewContentCrawler extends LockssTestCase {
     CrawlerStatus crawlStatus = crawler.getStatus();
 
     assertEquals(Crawler.STATUS_REPO_ERR, crawlStatus.getCrawlStatus());
-    assertEquals("Repository error", crawlStatus.getCrawlStatusString());
+    assertEquals("Repository error", crawlStatus.getCrawlStatusMsg());
     Map expectedErrors = MapUtil.map(url1, "Can't store page: Test exception");
     assertEquals(expectedErrors, crawlStatus.getUrlsWithErrors());
     assertEquals(1, crawlStatus.getNumUrlsWithErrors());

@@ -371,17 +371,25 @@ public class NodeManagerImpl
     activeNodes.remove(results.getPollKey());
   }
 
+  // Callers should call AuState directly when NodeManager goes.
   public void newContentCrawlFinished() {
-    // notify and checkpoint the austate (it writes through)
-    getAuState().newCrawlFinished();
+    newContentCrawlFinished(Crawler.STATUS_SUCCESSFUL, null);
+  }
 
-    // checkpoint the top-level nodestate
-    NodeState topState = getNodeState(managedAu.getAuCachedUrlSet());
-    CrawlState crawl = topState.getCrawlState();
-    crawl.status = CrawlState.FINISHED;
-    crawl.type = CrawlState.NEW_CONTENT_CRAWL;
-    crawl.startTime = getAuState().getLastCrawlTime();
-    historyRepo.storeNodeState(topState);
+  // Callers should call AuState directly when NodeManager goes.
+  public void newContentCrawlFinished(int result, String msg) {
+    // notify and checkpoint the austate (it writes through)
+    getAuState().newCrawlFinished(result, msg);
+
+    if (result == Crawler.STATUS_SUCCESSFUL) {
+      // checkpoint the top-level nodestate
+      NodeState topState = getNodeState(managedAu.getAuCachedUrlSet());
+      CrawlState crawl = topState.getCrawlState();
+      crawl.status = CrawlState.FINISHED;
+      crawl.type = CrawlState.NEW_CONTENT_CRAWL;
+      crawl.startTime = getAuState().getLastCrawlTime();
+      historyRepo.storeNodeState(topState);
+    }
   }
 
   public void hashFinished(CachedUrlSet cus, long hashDuration) {

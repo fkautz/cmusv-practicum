@@ -88,6 +88,11 @@ public interface NodeManager extends LockssAuManager {
   public void newContentCrawlFinished();
 
   /**
+   * Alerts the NodeManager that a new top-level content crawl has finished.
+   */
+  public void newContentCrawlFinished(int result, String msg);
+
+  /**
    * Alerts the NodeManager that a hash finished on a specific
    * {@link CachedUrlSet} with the specified duration.
    * @param cus the {@link CachedUrlSet}
