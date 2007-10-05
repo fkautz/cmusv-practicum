@@ -471,11 +471,11 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
       if (crawler.isWholeAU()) {
 	runningNCCrawls.add(au);
 	cmStatus.setRunningNCCrawls(new ArrayList(runningNCCrawls));
+	Object key = au.getFetchRateLimiterKey();
+	if (key != null) {
+	  runningRateKeys.add(key);
+	}
       }      
-      Object key = au.getFetchRateLimiterKey();
-      if (key != null) {
-	runningRateKeys.add(key);
-      }
     }
     highPriorityCrawlRequests.remove(au);
   }
@@ -488,12 +488,12 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
 	if (crawler.isWholeAU()) {
 	  runningNCCrawls.remove(au);
 	  cmStatus.setRunningNCCrawls(new ArrayList(runningNCCrawls));
+	  Object key = au.getFetchRateLimiterKey();
+	  if (key != null) {
+	    runningRateKeys.remove(key);
+	    startOneWait.expire();
+	  }
 	}      
-	Object key = au.getFetchRateLimiterKey();
-	if (key != null) {
-	  runningRateKeys.remove(key);
-	  startOneWait.expire();
-	}
       }
     }
   }
