@@ -343,7 +343,7 @@ public class PermissionMap {
         crawlStatus.setCrawlStatus(Crawler.STATUS_WINDOW_CLOSED);
 	rec.setStatus(PermissionRecord.PERMISSION_CRAWL_WINDOW_CLOSED);
       } else {
-        // fetch the ppage and check for the permission statement
+        // fetch the page and check for the permission statement
 	UrlCacher uc = pHelper.makeUrlCacher(pUrl);
         if (fetchAndCheck(uc, crawlStatus)) {
           rec.setStatus(PermissionRecord.PERMISSION_OK);
@@ -397,15 +397,20 @@ public class PermissionMap {
    * @return true iff all required permission checkers were satisfied.
    */
   private boolean fetchAndCheck(UrlCacher uc, CrawlerStatus crawlStatus)
-      throws IOException {
+      throws IOException, PluginException {
 
     String pUrl = uc.getUrl();
     PermissionChecker checker;
     // fetch and cache the permission page
     uc.setRedirectScheme(UrlCacher.REDIRECT_SCHEME_FOLLOW_ON_HOST);
 
-    BufferedInputStream is =
-      new BufferedInputStream(uc.getUncachedInputStream());
+    InputStream uis = uc.getUncachedInputStream();
+    if (uis == null) {
+      String msg = "getUncachedInputStream("+ uc.getUrl()+") returned null";
+      logger.critical(msg);
+      throw new PluginException.BehaviorException(msg);
+    }
+    BufferedInputStream is = new BufferedInputStream(uis);
 
     crawlStatus.signalUrlFetched(uc.getUrl());
     boolean needPermission = true;
@@ -466,7 +471,6 @@ public class PermissionMap {
     } finally {
       IOUtil.safeClose(is);
     }
-
     return true;
   }
 
