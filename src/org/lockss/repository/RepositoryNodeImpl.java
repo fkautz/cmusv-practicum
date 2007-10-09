@@ -1768,7 +1768,7 @@ public class RepositoryNodeImpl implements RepositoryNode {
   private static class FileComparator implements Comparator {
     public int compare(Object o1, Object o2) {
       // compares file pathnames
-      return ((File)o1).getName().compareToIgnoreCase(((File)o2).getName());
+      return ((File)o1).getName().compareTo(((File)o2).getName());
     }
   }
 }
