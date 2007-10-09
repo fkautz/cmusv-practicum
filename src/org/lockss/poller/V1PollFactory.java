@@ -418,15 +418,15 @@ public class V1PollFactory extends BasePollFactory {
 		      theRandom.nextLong(m_maxNamePollDuration -
 					 m_minNamePollDuration));
 
-      return findSchedulableDuration(m_nameHashEstimate,
-				     minPoll, m_maxNamePollDuration,
-				     m_nameHashEstimate, pm);
+      return PollUtil.findSchedulableDuration(m_nameHashEstimate,
+                                              minPoll, m_maxNamePollDuration,
+                                              m_nameHashEstimate, pm);
     }
     case Poll.V1_CONTENT_POLL: {
       long hashEst = cus.estimatedHashDuration();
       theLog.debug3("CUS estimated hash duration: " + hashEst);
 
-      hashEst = getAdjustedEstimate(hashEst, pm);
+      hashEst = PollUtil.getAdjustedEstimate(pollspec, pm);
       theLog.debug3("My adjusted hash duration: " + hashEst);
 
       long totalHash = hashEst * (quorum + 1);
@@ -435,7 +435,8 @@ public class V1PollFactory extends BasePollFactory {
       long maxPoll = Math.max(Math.min(totalHash * m_maxDurationMultiplier,
 				       m_maxContentPollDuration),
 			      m_minContentPollDuration);
-      return findSchedulableDuration(totalHash, minPoll, maxPoll, totalHash, pm);
+      return PollUtil.findSchedulableDuration(totalHash, minPoll, maxPoll, 
+                                              totalHash, pm);
     }
     default:
       return -1;

@@ -672,39 +672,8 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
    * @param aus the {@link AuState}
    * @return true iff a top level poll should be called
    */
-  public boolean shouldCallTopLevelPoll(AuState aus) {
-    checkNextPollInterval();
-    checkPollProb();
-
-    logger.debug3("Deciding whether to call a top level poll");
-    long lastPoll = aus.getLastTopLevelPollTime();
-    if (logger.isDebug3()) {
-      if (lastPoll==-1) {
-	logger.debug3("No previous top level poll.");
-      } else {
-	logger.debug3("Last poll at " + sdf.format(new Date(lastPoll)));
-      }
-      logger.debug3("Poll interval: " +
-		    StringUtil.timeIntervalToString(nextPollInterval));
-      logger.debug3("Poll likelihood: "+curTopLevelPollProb);
-    }
-    if (TimeBase.msSince(lastPoll) < nextPollInterval) {
-      logger.debug("Not time for poll.");
-      return false;
-    }
-    // Choose probabilistically whether to call poll, but always reset poll
-    // interval next time checkNextPollInterval() runs.
-    nextPollInterval = -1;
-    if (ProbabilisticChoice.choose(curTopLevelPollProb)) {
-      logger.debug("Allowing poll.");
-      curTopLevelPollProb = -1;
-      return true;
-    } else {
-      logger.debug("Skipping poll.");
-      // decided not to call the poll
-      curTopLevelPollProb = incrementPollProb(curTopLevelPollProb);
-      return false;
-    }
+  public boolean shouldCallTopLevelPoll(AuState auState) {
+    return true;
   }
 
   /**

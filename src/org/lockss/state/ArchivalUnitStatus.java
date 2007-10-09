@@ -783,8 +783,9 @@ public class ArchivalUnitStatus
       res.add(new StatusTable.SummaryInfo("Last Poll",
 					  ColumnDescriptor.TYPE_DATE,
 					  new Long(state.getLastTopLevelPollTime())));
+      PollManager pm = theDaemon.getPollManager();
       boolean isCrawling = cmStatus.isRunningNCCrawl(au);
-      boolean isPolling = false;
+      boolean isPolling = pm.isPollRunning(au);
       List lst = new ArrayList();
       if (isCrawling) {
 	lst.add(makeCrawlRef("Crawling", au));

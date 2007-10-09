@@ -118,7 +118,7 @@ public class V3LcapMessage extends LcapMessage implements LockssSerializable {
   
   /** For poll messages, the time by which a participant must have voted. 
    * @deprecated */
-  long m_voteDeadline;
+  transient long m_voteDeadline;
 
   /** For poll messages, the time left until a participant must have voted. */
   long m_voteDuration;

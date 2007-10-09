@@ -123,9 +123,7 @@ public class FuncV3Poller extends LockssTestCase {
     p.setProperty(LockssRepositoryImpl.PARAM_CACHE_LOCATION, tempDirPath);
     p.setProperty(IdentityManager.PARAM_LOCAL_IP, "127.0.0.1");
     p.setProperty(ConfigManager.PARAM_NEW_SCHEDULER, "true");
-    p.setProperty(V3Poller.PARAM_MIN_POLL_SIZE, "4");
-    p.setProperty(V3Poller.PARAM_MAX_POLL_SIZE, "4");
-    p.setProperty(V3PollFactory.PARAM_POLL_DURATION_MAX, "6m");
+    p.setProperty(V3Poller.PARAM_MAX_POLL_DURATION, "6m");
     p.setProperty(V3Poller.PARAM_QUORUM, "3");
     p.setProperty(LcapStreamComm.PARAM_ENABLED, "true");
     p.setProperty(LcapDatagramComm.PARAM_ENABLED, "false");

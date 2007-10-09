@@ -337,11 +337,11 @@ public class TestPollManager extends LockssTestCase {
     // Accept polls that finish no earlier than this
     pf.setMinPollDeadline(Deadline.in(1000));
     // this one can't
-    assertFalse(pf.canPollBeScheduled(500, 100, pollmanager));
+    assertFalse(PollUtil.canPollBeScheduled(500, 100, pollmanager));
     // can
-    assertTrue(pf.canPollBeScheduled(2000, 100, pollmanager));
+    assertTrue(PollUtil.canPollBeScheduled(2000, 100, pollmanager));
     // neededTime > duration
-    assertFalse(pf.canPollBeScheduled(500, 600, pollmanager));
+    assertFalse(PollUtil.canPollBeScheduled(500, 600, pollmanager));
   }
 
   //  Now test the PollManager itself
