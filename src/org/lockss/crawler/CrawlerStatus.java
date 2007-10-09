@@ -161,7 +161,7 @@ public class CrawlerStatus {
       excluded = newSetCounter("excluded", recordUrls);
       notModified = newListCounter("notModified", recordUrls);
       parsed = newListCounter("parsed", recordUrls);
-      sources = newListCounter("source", recordUrls);
+      sources = newSetCounter("source", recordUrls);
       pending = newSetCounter("pending", recordUrls);
       errors = newMapCounter("error", recordUrls);
       paramRecordUrls = recordUrls;
