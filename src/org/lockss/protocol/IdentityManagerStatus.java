@@ -54,7 +54,7 @@ public class IdentityManagerStatus
 				       ColumnDescriptor.TYPE_DATE,
 				       "Last time a message was received " +
 				       "from this peer."),
-		  new ColumnDescriptor("lastOp", "Mesage Type",
+		  new ColumnDescriptor("lastOp", "Message Type",
 				       ColumnDescriptor.TYPE_STRING,
 				       "Last message type that " +
 				       "was sent from this peer."),
