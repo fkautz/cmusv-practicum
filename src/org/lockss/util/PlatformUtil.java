@@ -600,14 +600,14 @@ public class PlatformUtil {
 
   /** Struct holding disk space info (from df) */
   public static class DF {
-    String path;
-    String fs;
-    int size;
-    int used;
-    int avail;
-    String percentString;
-    double percent = -1.0;
-    String mnt;
+    protected String path;
+    protected String fs;
+    protected int size;
+    protected int used;
+    protected int avail;
+    protected String percentString;
+    protected double percent = -1.0;
+    protected String mnt;
 
     public static DF makeThreshold(int minFreeMB, double minFreePercent) {
       DF df = new DF();
