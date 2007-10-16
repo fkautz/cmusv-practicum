@@ -258,7 +258,7 @@ public class FuncTarExploder extends LockssTestCase {
       log.debug2("Check: " + url[i] + " cu " + cu + " au " + cu.getArchivalUnit().getAuId());
       assertTrue(cu + " has no content", cu.hasContent());
       assertTrue(cu + " isn't ExplodedArchivalUnit",
-		 !(cu instanceof ExplodedArchivalUnit));
+		 (cu.getArchivalUnit() instanceof ExplodedArchivalUnit));
       assertNotEquals(sau, cu.getArchivalUnit());
     }
     log.debug2("Checking Exploded URLs done.");
@@ -277,7 +277,7 @@ public class FuncTarExploder extends LockssTestCase {
       log.debug2("Check: " + url2[i] + " cu " + cu + " au " + cu.getArchivalUnit().getAuId());
       assertTrue(cu + " has no content", cu.hasContent());
       assertTrue(cu + " isn't MySimulatedArchivalUnit",
-		 !(cu instanceof MySimulatedArchivalUnit));
+		 (cu.getArchivalUnit() instanceof MySimulatedArchivalUnit));
       assertEquals(sau, cu.getArchivalUnit());
     }
     log.debug2("Checking UnExploded URLs done.");

@@ -238,7 +238,7 @@ public class FuncTarExploder2 extends LockssTestCase {
   }
 
   private static String URL_PREFIX =
-    "http://www.elsevier.com/CLOCKSS/20070004";
+    "http://elsevier.clockss.org/20070004";
   String[] url = {
     URL_PREFIX + "/07700618/main.raw",
     URL_PREFIX + "/07700618/main.pdf",

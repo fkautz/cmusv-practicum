@@ -236,7 +236,7 @@ public class FuncZipExploder2 extends LockssTestCase {
   }
 
   private static String URL_PREFIX =
-    "http://www.springer.com/CLOCKSS/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00109/VOL=83/ISU=12";
+    "http://springer.clockss.org/PUB=Springer-Verlag-Berlin-Heidelberg/JOU=00109/VOL=83/ISU=12";
   String[] url = {
     URL_PREFIX + "/ART=2005_719/109_2005_Article_719.xml.meta",
     URL_PREFIX + "/ART=2005_719/BodyRef/PDF/109_2005_Article_719.pdf",
