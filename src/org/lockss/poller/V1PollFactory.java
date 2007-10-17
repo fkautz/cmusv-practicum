@@ -420,14 +420,11 @@ public class V1PollFactory extends BasePollFactory {
 
       return PollUtil.findSchedulableDuration(m_nameHashEstimate,
                                               minPoll, m_maxNamePollDuration,
-                                              m_nameHashEstimate, pm);
+                                              pm);
     }
     case Poll.V1_CONTENT_POLL: {
       long hashEst = cus.estimatedHashDuration();
       theLog.debug3("CUS estimated hash duration: " + hashEst);
-
-      hashEst = PollUtil.getAdjustedEstimate(pollspec, pm);
-      theLog.debug3("My adjusted hash duration: " + hashEst);
 
       long totalHash = hashEst * (quorum + 1);
       long minPoll = Math.max(totalHash * m_minDurationMultiplier,
@@ -435,8 +432,7 @@ public class V1PollFactory extends BasePollFactory {
       long maxPoll = Math.max(Math.min(totalHash * m_maxDurationMultiplier,
 				       m_maxContentPollDuration),
 			      m_minContentPollDuration);
-      return PollUtil.findSchedulableDuration(totalHash, minPoll, maxPoll, 
-                                              totalHash, pm);
+      return PollUtil.findSchedulableDuration(totalHash, minPoll, maxPoll, pm);
     }
     default:
       return -1;
