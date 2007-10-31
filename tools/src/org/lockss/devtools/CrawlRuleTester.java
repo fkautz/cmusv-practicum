@@ -500,6 +500,10 @@ public class CrawlRuleTester extends Thread {
       return reader;
     }
 
+    public Reader openWithUrlRewriting() {
+      return null;
+    }
+
     /**
      * getUnfilteredInputStream
      *

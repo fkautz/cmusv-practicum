@@ -187,6 +187,10 @@ public class NullPlugin {
       throw new UnsupportedOperationException("Not implemented");
     }
 
+    public Reader openWithUrlRewriting() {
+      return null;
+    }
+
     public long getContentSize() {
       return 0;
     }

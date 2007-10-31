@@ -115,6 +115,10 @@ public class PTestPlugin {
       throw new UnsupportedOperationException("Not implemented");
     }
 
+    public Reader openWithUrlRewriting() {
+      return null;
+    }
+
     public long getContentSize() {
       return contents.length();
     }

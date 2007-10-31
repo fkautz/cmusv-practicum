@@ -192,6 +192,11 @@ public class BaseCachedUrl implements CachedUrl {
     }
   }
 
+  public Reader openWithUrlRewriting() {
+    // Default is no URL re-writing
+    return null;
+  }
+
  public CIProperties getProperties() {
     ensureRnc();
     return CIProperties.fromProperties(rnc.getProperties());

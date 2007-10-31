@@ -144,6 +144,14 @@ public interface CachedUrl extends CachedUrlSetNode {
   public Reader openForReading();
 
   /**
+   * Return a reader on this CachedUrl that
+   * performs appropriate URL re-writing,
+   * perhaps by inserting Javascript to do it.
+   * @return {@link Reader}
+   */
+  public Reader openWithUrlRewriting();
+
+  /**
    * Get the properties attached to the url in the cache, if any.
    * @return the {@link CIProperties} object attached to the
    *         url.  If no properties have been attached, an
