@@ -55,6 +55,7 @@ public class IpAccessHandler extends AbstractHttpHandler {
   private boolean allowLocal = false;
   private Set localIps;
   private boolean logForbidden;
+  private String _403Msg;
 
   public IpAccessHandler(String serverName) {
     this.serverName = serverName;
@@ -80,6 +81,10 @@ public class IpAccessHandler extends AbstractHttpHandler {
       // tk - add local interfaces
     }
     this.allowLocal = allowLocal;
+  }
+
+  public void set403Msg(String text) {
+    _403Msg = text;
   }
 
   public boolean isIpAuthorized(String ip) throws IpFilter.MalformedException {
@@ -109,7 +114,12 @@ public class IpAccessHandler extends AbstractHttpHandler {
 	if (logForbidden) {
 	  log.info("Access to " + serverName + " forbidden from " + ip);
 	}
-	response.sendError(HttpResponse.__403_Forbidden);
+	if (_403Msg != null) {
+	  response.sendError(HttpResponse.__403_Forbidden,
+			     StringUtil.replaceString(_403Msg, "%IP%", ip));
+	} else {
+	  response.sendError(HttpResponse.__403_Forbidden);
+	}
 	request.setHandled(true);
 	return;
       } else {
