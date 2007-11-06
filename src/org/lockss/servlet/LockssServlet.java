@@ -95,7 +95,7 @@ public abstract class LockssServlet extends HttpServlet
     "org/lockss/htdocs/admin.js";
 
   protected static final String footAccessDenied =
-    "Clicking on this link will result in an access denied error, unless your browser is configured to proxy through a LOCKSS cache, or your workstation is allowed access by the publisher.";
+    "Clicking on this link will result in an access denied error, unless your browser is configured to proxy through a LOCKSS box, or your workstation is allowed access by the publisher.";
 
   protected static Logger log = Logger.getLogger("LockssServlet");
 

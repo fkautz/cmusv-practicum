@@ -1075,7 +1075,7 @@ public class ProxyHandler extends AbstractHttpHandler {
       throws IOException {
     if (true) {
       if (candidateAus != null && !candidateAus.isEmpty()) {
-	writer.write("<br>This LOCKSS cache (" +
+	writer.write("<br>This LOCKSS box (" +
 		     PlatformUtil.getLocalHostname() +
 		     ") does not contain content for that URL, " +
 		     "but it does contain possibly related content " +

@@ -65,7 +65,7 @@ public class UiHome extends LockssServlet {
     Table tab = new Table(0, "align=\"center\" width=\"80%\"");
     tab.newRow();
     tab.newCell("align=\"center\"");
-    tab.add("Welcome to the administration page for LOCKSS cache <b>");
+    tab.add("Welcome to the administration page for LOCKSS box <b>");
     tab.add(getMachineName());
     tab.add("</b>.");
     tab.newRow();
