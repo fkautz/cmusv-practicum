@@ -73,6 +73,11 @@ public class TestBlockingSslStreamComm1 extends TestBlockingStreamComm {
     super(name);
   }
 
+  public void setUp() throws Exception {
+    super.setUp();
+    shutdownOutputSupported = false;
+  }
+
   void setupCommArrayEntry(int ix) {
     comms[ix] = new MyBlockingSslStreamComm(pids[ix]);
   }
