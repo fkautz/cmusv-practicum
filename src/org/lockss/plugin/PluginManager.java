@@ -1588,7 +1588,7 @@ public class PluginManager
   /** Return a collection of all RegistryArchivalUnits.  This is a subset
    * of getAllAus() */
   public Collection<ArchivalUnit> getAllRegistryAus() {
-    return new ArrayList(getRegistryPlugin().getAllAus());
+    return getRegistryPlugin().getAllAus();
   }
 
   Object titleMonitor = new Object();

@@ -103,7 +103,9 @@ public abstract class BasePlugin
 
   public void stopAu(ArchivalUnit au) {
     // Is there any reason to notify the AU itself?
-    aus.remove(au);
+    synchronized (aus) {
+      aus.remove(au);
+    }
   }
 
   /** Subclasses should override this if they want to require a minimum
@@ -250,7 +252,7 @@ public abstract class BasePlugin
       try {
 	BaseArchivalUnit au = (BaseArchivalUnit)iter.next();
 	au.titleDbChanged();
-      } catch (Exception e) {
+      } catch (ClassCastException e) {
 	log.warning("notifyAusTitleDbChanged: " + this, e);
       }
     }
@@ -296,7 +298,9 @@ public abstract class BasePlugin
 
   public Collection getAllAus() {
     if (log.isDebug2()) log.debug2("getAllAus: aus: " + aus);
-    return aus;
+    synchronized (aus) {
+      return new ArrayList(aus);
+    }
   }
 
   public ArchivalUnit configureAu(Configuration config, ArchivalUnit au) throws
@@ -318,7 +322,9 @@ public abstract class BasePlugin
   public final ArchivalUnit createAu(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
     ArchivalUnit au = createAu0(auConfig);
-    aus.add(au);
+    synchronized (aus) {
+      aus.add(au);
+    }
     return au;
   }
     
