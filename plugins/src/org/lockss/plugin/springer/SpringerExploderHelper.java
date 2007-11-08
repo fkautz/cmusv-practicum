@@ -66,7 +66,7 @@ import org.lockss.crawler.Exploder;
  *
  * This class maps this into base URLs that look like:
  *
- * <code>http://www.springer.com/CLOCKSS/PUB=${PUBLISHER}/JOU=${JOURNAL_ID}/
+ * <code>http://springer.clockss.org/PUB=${PUBLISHER}/JOU=${JOURNAL_ID}/
  *
  * and the rest of the url inside the AU is the rest of the name of the entry.
  * It synthesizes suitable header fields for the files based on their
