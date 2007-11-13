@@ -142,7 +142,7 @@ public abstract class Exploder {
     newUc.storeContentIn(newUrl, ae.getInputStream(), newProps);
     crawler.getCrawlerStatus().signalUrlFetched(newUrl);
     String mimeType = (String)newProps.get(CachedUrl.PROPERTY_CONTENT_TYPE);
-    crawler.getCrawlerStatus().signalMimeTypeOfUrl(newUrl, mimeType);
+    crawler.getCrawlerStatus().signalMimeTypeOfUrl(mimeType, newUrl);
     // XXX other stats to update?
   }
 
