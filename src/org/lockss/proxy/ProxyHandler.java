@@ -309,6 +309,14 @@ public class ProxyHandler extends AbstractHttpHandler {
       sendIndexPage(request, response);
       return;
     }
+    // Does the URL point to a resolver rather than a
+    // server?
+    String resolvedUrl = Metadata.proxyResolver(urlString);
+    if (resolvedUrl != null) {
+      // Yes - send a redirect
+      sendRedirect(request, response, resolvedUrl);
+      return;
+    }
     CachedUrl cu = pluginMgr.findCachedUrl(urlString);
 
     // Don't allow CLOCKSS to serve local content for unsubscribed AUs
@@ -1121,6 +1129,17 @@ public class ProxyHandler extends AbstractHttpHandler {
     } catch (RuntimeException e) {
       log.error("sendIndexPage", e);
       throw e;
+    }
+  }
+
+  void sendRedirect(HttpRequest request,
+		    HttpResponse response,
+		    String toUrl) throws IOException {
+    try {
+      log.debug("Redirecting to " + toUrl);
+      response.sendRedirect(toUrl);
+    } catch (RuntimeException e) {
+      log.error("sendRedirect ", e);
     }
   }
 
