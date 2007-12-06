@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -38,9 +38,9 @@ import org.lockss.util.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.definable.*;
 
-public class HighwireCrawlWindow
+public class HighWireCrawlWindow
     implements DefinableArchivalUnit.ConfigurableCrawlWindow {
-  public HighwireCrawlWindow() {}
+  public HighWireCrawlWindow() {}
 
   public CrawlWindow makeCrawlWindow() {
     // disallow crawls from 6am->9am

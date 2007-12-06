@@ -79,12 +79,13 @@ public class AmericanMedicalAssociationPdfTransform
   }
 
   public boolean transform(PdfDocument pdfDocument) throws IOException {
+    if (au == null) throw new IOException("Uninitialized AU-dependent transform");
     DocumentTransform documentTransform = new ConditionalDocumentTransform(// If on the first page...
                                                                            new TransformFirstPage(// ...collapsing "Downloaded from" and normalizing the hyperlinks succeeds,
-                                                                                                  new CollapseDownloadedFromAndNormalizeHyperlinks()),
+                                                                                                  new CollapseDownloadedFromAndNormalizeHyperlinks(au)),
                                                                            // Then on all other pages...
                                                                            new TransformEachPageExceptFirst(// ...collapse "Downloaded from" and normalize the hyperlink,
-                                                                                                            new CollapseDownloadedFromAndNormalizeHyperlinks()),
+                                                                                                            new CollapseDownloadedFromAndNormalizeHyperlinks(au)),
                                                                            // ...and normalize the metadata
                                                                            new NormalizeMetadata());
     return documentTransform.transform(pdfDocument);

@@ -127,17 +127,6 @@ public class AmericanPhysiologicalSocietyPdfTransform
 
     }
 
-    /**
-     * <p>Builds a new page stream transform.</p>
-     * @throws IOException if any processing error occurs.
-     * @deprecated
-     */
-    @Deprecated
-    public NormalizeCurrentAsOf() throws IOException {
-      super(// "Tj" operator: replace string conditionally using ReplaceCurrentAsOf
-            PdfUtil.SHOW_TEXT, ReplaceCurrentAsOf.class);
-    }
-
     public NormalizeCurrentAsOf(final ArchivalUnit au) throws IOException {
       super(new OperatorProcessorFactory() {
               public OperatorProcessor newInstanceForName(String className) throws LinkageError, ExceptionInInitializerError, ClassNotFoundException, IllegalAccessException, InstantiationException, SecurityException {
