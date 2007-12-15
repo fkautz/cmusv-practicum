@@ -209,6 +209,7 @@ public class V3PollFactory extends BasePollFactory {
       return null;
     }
 
+    // CR: move earlier in method
     // Only participate if we have and have successfully crawled this AU,
     // and if 'enableV3Voter' is set.
     boolean enableV3Voter =
