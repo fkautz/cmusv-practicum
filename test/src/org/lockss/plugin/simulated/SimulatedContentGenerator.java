@@ -396,6 +396,7 @@ public class SimulatedContentGenerator {
 		   (alterFile && (jj==getAbnormalFileNumber())));
     }
     generateIndexFile(treeRoot, LockssPermission.LOCKSS_PERMISSION_STRING);
+    logger.debug("Generated content tree: " + contentRoot);
     return treeRoot.toString();
   }
 
