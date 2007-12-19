@@ -637,6 +637,6 @@ public class ProxyAndContent extends LockssServlet {
     "Manage this cache's audit proxy and ICP server.";
 
   private static final String PROXY_CLIENT_EXPLANATION =
-    "Configure the LCOKSS crawler to access the net through a proxy server.";
+    "Configure the LOCKSS crawler to access the net through a proxy server.";
 
 }
