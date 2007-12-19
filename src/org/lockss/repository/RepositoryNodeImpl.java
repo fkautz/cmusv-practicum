@@ -361,18 +361,32 @@ public class RepositoryNodeImpl implements RepositoryNode {
 
   File normalize(File file) {
     String name = file.getName();
-    if (name.indexOf('%') == -1) {
-      return file;
-    }
-    Perl5Matcher matcher = RegexpUtil.getMatcher();
-    if (!matcher.matches(name, UNNORMALIZED)) {
-      return file;
-    }
-    String normName = UrlUtil.normalizeUrlEncodingCase(name);
+    String normName = normalizeUrlEncodingCase(name);
+    normName = normalizeTrailingQuestion(normName);
     if (normName.equals(name)) {
       return file;
     }
     return new File(file.getParent(), normName);
+  }
+
+  String normalizeUrlEncodingCase(String name) {
+    if (name.indexOf('%') == -1) {
+      return name;
+    }
+    Perl5Matcher matcher = RegexpUtil.getMatcher();
+    if (!matcher.matches(name, UNNORMALIZED)) {
+      return name;
+    }
+    return UrlUtil.normalizeUrlEncodingCase(name);
+  }
+
+  String normalizeTrailingQuestion(String name) {
+    if (CurrentConfig.getBooleanParam(UrlUtil.PARAM_NORMALIZE_EMPTY_QUERY,
+				      UrlUtil.DEFAULT_NORMALIZE_EMPTY_QUERY)) {
+      return StringUtil.removeTrailing(name, "?");
+    } else {
+      return name;
+    }
   }
 
   File checkUnnormalized(File file, File[] all, int ix) {
