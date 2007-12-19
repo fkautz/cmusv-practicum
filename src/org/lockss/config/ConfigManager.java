@@ -683,8 +683,11 @@ public class ConfigManager implements LockssManager {
 
   private String sendVersionInfo;
   private long lastSendVersion;
+  private long startUpdateTime;
+  private long startCallbacksTime;
 
   public boolean updateConfigOnce(List urls, boolean reload) {
+    startUpdateTime = TimeBase.nowMs();
     if (currentConfig.isEmpty()) {
       // first load preceded by platform config setup
       setupPlatformConfig(urls);
@@ -708,14 +711,26 @@ public class ConfigManager implements LockssManager {
 
     if (!isChanged(gens)) {
       if (reloadInterval >= 10 * Constants.MINUTE) {
-	log.info("Config up tp date, not updated");
+	log.info("Config up to date, not updated");
       }
       return false;
     }
     Configuration newConfig = initNewConfiguration();
     loadList(newConfig, gens);
 
-    return installConfig(newConfig, gens);
+    boolean did = installConfig(newConfig, gens);
+    long tottime = TimeBase.msSince(startUpdateTime);
+    long cbtime = TimeBase.msSince(startCallbacksTime);
+    if (log.isDebug2() || tottime > Constants.SECOND) {
+      if (did) {
+	log.debug("Reload time: "
+		  + StringUtil.timeIntervalToString(tottime - cbtime)
+		  + ", cb time: " + StringUtil.timeIntervalToString(cbtime));
+      } else {
+	log.debug("Reload time: " + StringUtil.timeIntervalToString(tottime));
+      }
+    }
+    return did;
   }
 
   Properties getVersionProps() {
@@ -828,6 +843,7 @@ public class ConfigManager implements LockssManager {
     setCurrentConfig(newConfig);
     updateGenerations(gens);
     logConfigLoaded(newConfig, oldConfig, diffs, gens);
+    startCallbacksTime = TimeBase.nowMs();
     runCallbacks(newConfig, oldConfig, diffs);
     return true;
   }
