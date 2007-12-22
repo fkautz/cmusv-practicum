@@ -350,7 +350,7 @@ public class ParticipantUserData implements LockssSerializable {
    */
   private static Logger log = Logger.getLogger("V3Poller");
   public float getPercentAgreement() {
-    log.debug2("*** [getPercentAgreement] agreeUrls = "
+    log.debug2("[getPercentAgreement] agreeUrls = "
                + agreeUrls + "; talliedUrls = " + talliedUrls);
     if (agreeUrls > 0 && talliedUrls > 0) {
       return (float)agreeUrls / (float)talliedUrls;

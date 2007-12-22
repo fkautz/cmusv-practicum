@@ -264,6 +264,7 @@ public class PollerActions {
                + " in poll " + ud.getKey());
     V3LcapMessage msg = ud.makeMessage(V3LcapMessage.MSG_EVALUATION_RECEIPT);
     msg.setEffortProof(ud.getReceiptEffortProof());
+    msg.setAgreementHint(ud.getPercentAgreement());
     try {
       ud.sendMessageTo(msg, ud.getVoterId());
       ud.setStatus(V3Poller.PEER_STATUS_COMPLETE);
