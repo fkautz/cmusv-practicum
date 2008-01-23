@@ -37,9 +37,7 @@ import java.util.List;
 
 import org.lockss.daemon.PluginException;
 import org.lockss.filter.*;
-import org.lockss.filter.html.*;
 import org.lockss.plugin.*;
-import org.lockss.plugin.highwire.HighWireFilterRule;
 import org.lockss.util.*;
 
 public class HispanicIssuesOnLineHtmlFilterFactory implements FilterFactory {
