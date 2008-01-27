@@ -48,6 +48,7 @@ public class MockHistoryRepository implements HistoryRepository {
   public AuState theAuState;
   public DamagedNodeSet theDamagedNodeSet;
   public HashMap storedNodes = new HashMap();
+  private File auStateFile = null;
 
   private List storedIdentityAgreement = null;
   private List loadedIdentityAgreement = null;
@@ -115,6 +116,14 @@ public class MockHistoryRepository implements HistoryRepository {
 
   public File getIdentityAgreementFile() {
     throw new UnsupportedOperationException();
+  }
+
+  public File getAuStateFile() {
+    return auStateFile;
+  }
+
+  public void setAuStateFile(File file) {
+    auStateFile = file;
   }
 
   public void storeIdentityAgreements(List list) {

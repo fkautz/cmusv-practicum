@@ -87,6 +87,10 @@ public interface HistoryRepository extends LockssAuManager {
    */
   public File getIdentityAgreementFile();
 
+  /** Return AuState File for this AU
+   */
+  public File getAuStateFile();
+
   /**
    * Stores the AuState for this ArchivalUnit
    * @param auState the state to store
