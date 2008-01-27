@@ -107,11 +107,18 @@ public class TestPollerStateMachineFactory extends LockssTestCase {
       new PsmMsgEvent(V3LcapMessage.makeNoOpMsg(this.id, theDaemon));
   }
 
+  private PsmMachine makeMachine(Class factoryClass, Class actionsClass)
+      throws Exception {
+    PsmMachine.Factory fact = (PsmMachine.Factory)factoryClass.newInstance();
+    return fact.getMachine(actionsClass);
+  }
+
   /**
    * Test a normal no-repair machine order
    */
   public void testMachineOrder() throws Exception {
-    PsmMachine mach = PollerStateMachineFactory.getMachine(TestActions.class);
+    PsmMachine mach = makeMachine(PollerStateMachineFactory.class,
+				  TestActions.class);
     PsmInterp interp = new PsmInterp(mach, new ArrayList());
     interp.start();
     assertWaiting(interp, "WaitPollAck");

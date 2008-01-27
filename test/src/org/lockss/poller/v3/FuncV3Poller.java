@@ -107,6 +107,7 @@ public class FuncV3Poller extends LockssTestCase {
     tempDirPath = tempDir.getAbsolutePath();
     System.setProperty("java.io.tmpdir", tempDirPath);
     startDaemon();
+    getMockLockssDaemon().getPsmManager().startService();
   }
 
   public void tearDown() throws Exception {
