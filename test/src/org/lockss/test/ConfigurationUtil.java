@@ -45,6 +45,12 @@ public class ConfigurationUtil {
     return ConfigManager.getConfigManager();
   }
 
+  /** Read a Configuration from a file.
+   */
+  public static Configuration fromFile(String f) throws IOException {
+    return mgr().readConfig(ListUtil.list(f));
+  }
+
   /** Create a Configuration from the supplied string.
    */
   public static Configuration fromString(String s)
