@@ -41,6 +41,7 @@ import org.lockss.scheduler.*;
 import org.lockss.plugin.*;
 import org.lockss.poller.*;
 import org.lockss.protocol.*;
+import org.lockss.protocol.psm.*;
 import org.lockss.repository.*;
 import org.lockss.state.*;
 import org.lockss.proxy.*;
@@ -103,6 +104,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
   public static final String CRAWL_MANAGER = "CrawlManager";
   public static final String PLUGIN_MANAGER = "PluginManager";
   public static final String POLL_MANAGER = "PollManager";
+  public static final String PSM_MANAGER = "PsmManager";
   public static final String REPOSITORY_MANAGER = "RepositoryManager";
   public static final String LOCKSS_REPOSITORY = "LockssRepository";
   public static final String HISTORY_REPOSITORY = "HistoryRepository";
@@ -135,6 +137,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
     new ManagerDesc(HASH_SERVICE, "org.lockss.hasher.HashSvcQueueImpl"),
     new ManagerDesc(SYSTEM_METRICS, "org.lockss.daemon.SystemMetrics"),
     new ManagerDesc(IDENTITY_MANAGER, "org.lockss.protocol.IdentityManagerImpl"),
+    new ManagerDesc(PSM_MANAGER, "org.lockss.protocol.psm.PsmManager"),
     new ManagerDesc(POLL_MANAGER, "org.lockss.poller.PollManager"),
     new ManagerDesc(CRAWL_MANAGER, "org.lockss.crawler.CrawlManagerImpl"),
     new ManagerDesc(REPOSITORY_MANAGER,
@@ -295,6 +298,15 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
    */
   public PollManager getPollManager() {
     return (PollManager) getManager(POLL_MANAGER);
+  }
+
+  /**
+   * return the psm manager instance
+   * @return the PsmManager
+   * @throws IllegalArgumentException if the manager is not available.
+   */
+  public PsmManager getPsmManager() {
+    return (PsmManager) getManager(PSM_MANAGER);
   }
 
   /**
