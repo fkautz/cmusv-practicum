@@ -134,4 +134,9 @@ public class PsmMachine {
       stateMap = newmap;
     }
   }
+
+  public interface Factory {
+    public PsmMachine getMachine(Class actionClass);
+  }
+
 }

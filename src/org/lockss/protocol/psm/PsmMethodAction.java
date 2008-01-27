@@ -85,6 +85,10 @@ public class PsmMethodAction extends PsmAction {
     }
   }
 
+  public Method getMethod() {
+    return method;
+  }
+
   public PsmEvent run(PsmEvent event, PsmInterp interp) {
     return this.run(event, interp, new Object[]{event, interp});
   }
