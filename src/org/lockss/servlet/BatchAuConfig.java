@@ -334,7 +334,7 @@ public class BatchAuConfig extends LockssServlet {
       } else {
 	// Set chooser not needed
 	String msg = "All titles in all predefined collections of titles " +
-	  "already exist on this cache.";
+	  "already exist on this LOCKSS box.";
 	ServletUtil.layoutExplanationBlock(page, msg);
       }
     }
