@@ -57,25 +57,25 @@ public class MockAuState extends AuState {
   public MockAuState(ArchivalUnit au,
 		     long lastCrawlTime, long lastPollTime,
                      long lastTreeWalk, HistoryRepository historyRepo) {
-    this(au, lastCrawlTime, -1, lastPollTime, lastTreeWalk,
+    this(au, lastCrawlTime, -1, lastPollTime, -1, lastTreeWalk,
 	 null, historyRepo);
   }
 
   public MockAuState(ArchivalUnit au,
 		     long lastCrawlTime, long lastCrawlAttempt,
-		     long lastPollTime,
+		     long lastPollTime, long lastPollAttempt,
                      long lastTreeWalk, HistoryRepository historyRepo) {
-    this(au, lastCrawlTime, lastCrawlAttempt, lastPollTime, lastTreeWalk,
-	 null, historyRepo);
+    this(au, lastCrawlTime, lastCrawlAttempt, lastPollTime, lastPollAttempt,
+	 lastTreeWalk, null, historyRepo);
   }
 
   public MockAuState(ArchivalUnit au,
 		     long lastCrawlTime, long lastCrawlAttempt,
-		     long lastPollTime,
+		     long lastPollTime, long lastPollAttempt,
                      long lastTreeWalk, HashSet crawlUrls,
                      HistoryRepository historyRepo) {
-    super(au, lastCrawlTime, lastCrawlAttempt, lastPollTime, lastTreeWalk,
-	  crawlUrls, 0, 1.0, historyRepo);
+    super(au, lastCrawlTime, lastCrawlAttempt, lastPollTime, lastPollAttempt,
+	  lastTreeWalk, crawlUrls, 0, 1.0, historyRepo);
   }
 
   public void setLastCrawlTime(long newCrawlTime) {

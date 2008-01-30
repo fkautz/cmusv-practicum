@@ -519,7 +519,7 @@ public class NodeManagerImpl
         // the proper status
         if (isTopLevelPollFinished(nodeState.getCachedUrlSet().getSpec(),
                                    pollState.getType())) {
-          getAuState().newPollFinished();
+          getAuState().pollFinished();
           logger.info("Top level poll finished.");
         }
 
