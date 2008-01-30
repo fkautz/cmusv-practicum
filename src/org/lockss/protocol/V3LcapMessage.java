@@ -74,10 +74,10 @@ public class V3LcapMessage extends LcapMessage implements LockssSerializable {
   // Poll rejection codes.
   public static enum PollNak { 
     NAK_GROUP_MISMATCH {
-      public String toString() { return "Incorrect Group"; }
+      public String toString() { return "Wrong Group"; }
     },
     NAK_NO_TIME {
-      public String toString() { return "Not Enough Time"; }
+      public String toString() { return "Too Busy"; }
     },
     NAK_UNKNOWN {
       public String toString() { return "Unknown"; }
@@ -87,6 +87,15 @@ public class V3LcapMessage extends LcapMessage implements LockssSerializable {
     },
     NAK_PLUGIN_VERSION_MISMATCH {
       public String toString() { return "Plugin Version Mismatch"; }
+    },
+    NAK_DISABLED {
+      public String toString() { return "Disabled"; }
+    },
+    NAK_NOT_CRAWLED {
+      public String toString() { return "Not crawled"; }
+    },
+    NAK_TOO_MANY_VOTERS {
+      public String toString() { return "Voter Limit"; }
     }
    };
 
