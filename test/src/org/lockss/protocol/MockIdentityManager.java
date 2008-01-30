@@ -31,6 +31,8 @@ in this Software without prior written authorization from Stanford University.
 */
 package org.lockss.protocol;
 
+import org.apache.commons.collections.Predicate;
+
 import java.util.*;
 import java.io.*;
 import org.lockss.app.*;
@@ -106,7 +108,17 @@ public class MockIdentityManager implements IdentityManager {
   }
 
   public PeerIdentity getLocalPeerIdentity(int pollVersion) {
-    return new MockPeerIdentity("127.0.0.1");
+    switch (pollVersion) {
+    case 3:
+      return new MockPeerIdentity("TCP:{127.0.0.1:1234");
+    case 1:
+    default:
+      return new MockPeerIdentity("127.0.0.1");
+    }
+  }
+
+  public List<PeerIdentity> getLocalPeerIdentities() {
+    return ListUtil.list(getLocalPeerIdentity(3));
   }
 
   public IPAddr getLocalIPAddr() {
@@ -292,15 +304,6 @@ public class MockIdentityManager implements IdentityManager {
      agreeMap.put(au, map);
    }
 
-  //protected
-//   protected IdentityManagerStatus makeStatusAccessor(Map theIdentities) {
-//     throw new UnsupportedOperationException("not implemented");
-//   }
-
-//   protected LcapIdentity findLcapIdentity(PeerIdentity pid, String key) {
-//     throw new UnsupportedOperationException("not implemented");
-//   }
-
   protected LcapIdentity findLcapIdentity(PeerIdentity pid,
 					  IPAddr addr, int port) {
     throw new UnsupportedOperationException("not implemented");
@@ -317,7 +320,15 @@ public class MockIdentityManager implements IdentityManager {
     throw new UnsupportedOperationException("not implemented");
   }
 
+  public Collection getTcpPeerIdentities(Predicate peerPredicate) {
+    throw new UnsupportedOperationException("not implemented");
+  }
+
   public LcapIdentity findLcapIdentity(PeerIdentity pid, String key) {
+    throw new UnsupportedOperationException("not implemented");
+  }
+
+  public List<PeerIdentityStatus> getPeerIdentityStatusList() {
     throw new UnsupportedOperationException("not implemented");
   }
 

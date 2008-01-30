@@ -35,8 +35,21 @@ import org.lockss.test.*;
 
 public class TestIdentityManagerStatus extends LockssTestCase {
 
+  MockLockssDaemon daemon;
+  MockIdentityManager idmgr;
+
+  public void setUp() throws Exception {
+    super.setUp();
+
+    daemon = getMockLockssDaemon();
+    idmgr = new MockIdentityManager();
+    idmgr.initService(daemon);
+    daemon.setIdentityManager(idmgr);
+//     idmgr.startService();
+  }
+
   public void testCreatedWithNull() {
-    new IdentityManagerStatus(null);
+    new IdentityManagerStatus(idmgr);
   }
 
 }
