@@ -1779,7 +1779,6 @@ public class PollManager
 
     // If a poll is already running, don't start another one.
     if (isPollRunning(au)) {
-      theLog.debug3("Already polling: " + au);
       return false;
     }
     return true;
@@ -1787,6 +1786,12 @@ public class PollManager
 
   boolean startPoll(PollReq req) {
     ArchivalUnit au = req.getAu();
+    if (isPollRunning(au)) {
+      theLog.debug("Attempted to start poll when one is already running: " +
+		   au.getName());
+      return false;
+    }
+
     PollSpec spec = new PollSpec(au.getAuCachedUrlSet(), Poll.V3_POLL);
     theLog.debug("Calling a V3 poll on AU " + au);
 
