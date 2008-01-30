@@ -114,9 +114,9 @@ public class FuncV3Voter extends LockssTestCase {
 		  "TCP:[127.0.0.1]:3456");
     p.setProperty(ConfigManager.PARAM_PLATFORM_DISK_SPACE_LIST, tempDirPath);
     p.setProperty(IdentityManagerImpl.PARAM_INITIAL_PEERS,
-                  "TCP:[127.0.0.2]:3456,TCP:[127.0.0.3]:3456,"
-                  + "TCP:[127.0.0.4]:3456,TCP:[127.0.0.5]:3456,"
-                  + "TCP:[127.0.0.6]:3456,TCP:[127.0.0.7]:3456");
+                  "TCP:[127.0.0.2]:3456;TCP:[127.0.0.3]:3456;"
+                  + "TCP:[127.0.0.4]:3456;TCP:[127.0.0.5]:3456;"
+                  + "TCP:[127.0.0.6]:3456;TCP:[127.0.0.7]:3456");
     p.setProperty(ConfigManager.PARAM_DAEMON_GROUPS, "nogroup");
     ConfigurationUtil.setCurrentConfigFromProps(p);
     idmgr = theDaemon.getIdentityManager();

@@ -294,14 +294,15 @@ public class PeerIdentityStatus implements LockssSerializable {
    * @return The groups he last told us he's in
    */
   public List getGroups() {
-    return StringUtil.breakAt(groups, ",");
+    return StringUtil.breakAt(groups, Constants.GROUP_SEPARATOR);
   }
 
   /**
    * @param groups The groups he said he's in
    */
   public void setGroups(List groups) {
-    this.groups = StringUtil.separatedString(groups, ",");
+    this.groups = StringUtil.separatedString(groups,
+					     Constants.GROUP_SEPARATOR);
   }
 
   /**

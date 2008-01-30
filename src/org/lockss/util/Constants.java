@@ -63,6 +63,9 @@ public interface Constants {
   /** The line separator string on this system */
   public static String EOL = System.getProperty("line.separator");
 
+  /** Separator for polling groups */
+  public static String GROUP_SEPARATOR = ";";
+
   /** The RE string matching the EOL string */
   public static String EOL_RE = StringUtil.escapeNonAlphaNum(EOL);
 
