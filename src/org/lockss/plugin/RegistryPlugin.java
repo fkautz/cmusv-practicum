@@ -36,6 +36,7 @@ import java.util.*;
 
 import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
+import org.lockss.config.*;
 import org.lockss.plugin.base.BasePlugin;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.util.*;
@@ -64,11 +65,12 @@ public class RegistryPlugin extends BasePlugin {
   protected ArchivalUnit createAu0(Configuration auConfig)
       throws ArchivalUnit.ConfigurationException {
     // create a new archival unit
-    ArchivalUnit au = newRegistryArchivalUnit();
+    RegistryArchivalUnit au = newRegistryArchivalUnit();
 
     // Now configure it.
     au.setConfiguration(auConfig);
-
+    au.setConfig(ConfigManager.getCurrentConfig(), null,
+		 Configuration.DIFFERENCES_ALL);
     return au;
   }
 
