@@ -672,7 +672,25 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
    * @param aus the {@link AuState}
    * @return true iff a top level poll should be called
    */
-  public boolean shouldCallTopLevelPoll(AuState auState) {
+  public boolean shouldCallTopLevelPoll(AuState aus) {
+    checkNextPollInterval();
+
+    logger.debug3("Deciding whether to call a top level poll");
+    long lastPoll = aus.getLastTopLevelPollTime();
+    if (logger.isDebug3()) {
+      if (lastPoll==-1) {
+	logger.debug3("No previous top level poll.");
+      } else {
+	logger.debug3("Last poll at " + sdf.format(new Date(lastPoll)));
+      }
+      logger.debug3("Poll interval: " +
+		    StringUtil.timeIntervalToString(nextPollInterval));
+    }
+    if (TimeBase.msSince(lastPoll) < nextPollInterval) {
+      logger.debug3("Not time for poll.");
+      return false;
+    }
+    nextPollInterval = -1;
     return true;
   }
 
