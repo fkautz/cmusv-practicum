@@ -478,6 +478,7 @@ public class V3Poller extends BasePoll {
   PsmInterp newPsmInterp(PsmMachine stateMachine, Object userData) {
     PsmManager mgr = theDaemon.getPsmManager();
     PsmInterp interp = mgr.newPsmInterp(stateMachine, userData);
+    interp.setName(PollUtil.makeShortPollKey(getKey()));
     interp.setThreaded(isAsynch);
     return interp;
   }

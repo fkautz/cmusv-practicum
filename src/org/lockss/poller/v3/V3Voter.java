@@ -291,6 +291,7 @@ public class V3Voter extends BasePoll {
   private PsmInterp makeStateMachine(final VoterUserData ud) {
     PsmMachine machine = makeMachine();
     PsmInterp interp = newPsmInterp(machine, ud);
+    interp.setName(PollUtil.makeShortPollKey(getKey()));
     interp.setCheckpointer(new PsmInterp.Checkpointer() {
       public void checkpoint(PsmInterpStateBean resumeStateBean) {
         voterUserData.setPsmState(resumeStateBean);
