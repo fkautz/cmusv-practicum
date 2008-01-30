@@ -74,10 +74,6 @@ public class V3PollStatus {
     this.pollManager = pollManager;
   }
 
-  String makeShortPollKey(String pollKey) {
-    return pollKey.substring(0, 10);
-  }
-
   /**
    * <p>Overview status table for all V3 polls in which we are acting as
    * the caller of the poll.</p>
@@ -208,10 +204,10 @@ public class V3PollStatus {
       }
       row.put("start", new Long(poller.getCreateTime()));
       row.put("deadline", poller.getDeadline());
-      row.put("pollId",
-              new StatusTable.Reference(makeShortPollKey(poller.getKey()),
-                                        "V3PollerDetailTable",
-                                        poller.getKey()));
+      String skey = PollUtil.makeShortPollKey(poller.getKey());
+      row.put("pollId", new StatusTable.Reference(skey,
+						  "V3PollerDetailTable",
+						  poller.getKey()));
       return row;
     }
   }
@@ -281,10 +277,10 @@ public class V3PollStatus {
       row.put("status", voter.getStatusString());
       row.put("start", new Long(voter.getCreateTime()));
       row.put("deadline", voter.getDeadline());
-      row.put("pollId",
-              new StatusTable.Reference(makeShortPollKey(voter.getKey()),
-                                        "V3VoterDetailTable",
-                                        voter.getKey()));
+      String skey = PollUtil.makeShortPollKey(voter.getKey());
+      row.put("pollId", new StatusTable.Reference(skey,
+						  "V3VoterDetailTable",
+						  voter.getKey()));
       return row;
     }
   }

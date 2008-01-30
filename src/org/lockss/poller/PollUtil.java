@@ -42,6 +42,13 @@ public class PollUtil {
 
   public static Logger log = Logger.getLogger("PollUtil");
 
+  public static String makeShortPollKey(String pollKey) {
+    if (pollKey == null || pollKey.length() <= 10) {
+      return pollKey;
+    }
+    return pollKey.substring(0, 10);
+  }
+
   /**
    * @deprecated Only used by V1.  Remove when removing V1.
    */
