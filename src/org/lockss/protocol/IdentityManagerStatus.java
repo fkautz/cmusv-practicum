@@ -145,7 +145,7 @@ public class IdentityManagerStatus
 
   private boolean isGroupMatch(PeerIdentityStatus status, List myGroups) {
     Collection hisGroups = status.getGroups();
-    return hisGroups == null ||
+    return hisGroups == null || hisGroups.isEmpty() ||
       CollectionUtils.containsAny(myGroups, hisGroups);
   }
 

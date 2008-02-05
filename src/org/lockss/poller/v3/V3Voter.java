@@ -656,7 +656,7 @@ public class V3Voter extends BasePoll {
 	    return false;
 	  }
 	  List hisGroups = status.getGroups();
-	  if (hisGroups == null) {
+	  if (hisGroups == null || hisGroups.isEmpty()) {
 	    return false;
 	  }
 	  List myGroups = ConfigManager.getPlatformGroupList();

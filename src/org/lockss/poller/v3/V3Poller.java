@@ -1950,7 +1950,7 @@ public class V3Poller extends BasePoll {
   boolean isGroupMatch(PeerIdentityStatus status) {
     List groups = status.getGroups();
     // if we haven't recorded a group, allow it
-    if (groups == null) {
+    if (groups == null || groups.isEmpty()) {
       return true;
     }
     if (CollectionUtils.containsAny(groups,
