@@ -36,6 +36,7 @@ import java.io.*;
 import java.util.*;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
+import org.lockss.util.urlconn.*;
 import org.lockss.plugin.*;
 import org.lockss.plugin.base.*;
 import org.lockss.plugin.exploded.*;
@@ -104,7 +105,7 @@ public abstract class Exploder {
   /**
    * Explode the archive into its constituent elements
    */
-  protected abstract void explodeUrl();
+  protected abstract void explodeUrl() throws CacheException;
 
   protected void storeEntry(ArchiveEntry ae) throws IOException {
     // We assume that all exploded content is organized into

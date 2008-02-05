@@ -62,7 +62,11 @@ public class ArchiveEntry {
 
   public ArchiveEntry(String name, long bytes, long date, InputStream is,
 		      CrawlSpec crawlSpec) {
-    this.name = name;
+    if (name.startsWith("./")) {
+      this.name = name.substring(2);
+    } else {
+      this.name = name;
+    }
     this.bytes = bytes;
     this.date = date;
     this.is = is;
