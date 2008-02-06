@@ -46,7 +46,7 @@ public class AmericanChemicalSocietyUrlNormalizer implements UrlNormalizer {
                              ArchivalUnit au)
       throws PluginException {
     int idx = url.indexOf("?sessid=");
-    return idx < 0 ? url : url.replaceFirst("?sessid=[0-9]+", "");
+    return idx < 0 ? url : url.replaceFirst("\\?sessid=[0-9]+", "");
   }
 
 }
