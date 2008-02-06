@@ -40,15 +40,13 @@ import org.lockss.plugin.*;
  * This removes the session id if it it is present.
  */
 
-public class AcsUrlNormalizer implements UrlNormalizer {
-
-  private static final String QUERY_ARG = "?sessid=";
+public class AmericanChemicalSocietyUrlNormalizer implements UrlNormalizer {
 
   public String normalizeUrl(String url,
                              ArchivalUnit au)
       throws PluginException {
-    int idx = url.indexOf(QUERY_ARG);
-    return idx < 0 ? url : url.replaceFirst("sessid=[0-9]+", "sessid=LOCKSS");
+    int idx = url.indexOf("?sessid=");
+    return idx < 0 ? url : url.replaceFirst("?sessid=[0-9]+", "");
   }
 
 }
