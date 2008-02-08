@@ -88,7 +88,7 @@ public class PsychiatryOnlineTextbooksHtmlLinkExtractor extends GoslingHtmlLinkE
     return super.extractLinkFromTag(link, au, cb);
   }
 
-  protected static Logger logger = Logger.getLogger("PsychiatryOnlineTextbooksLinkExtractor");
+  protected static Logger logger = Logger.getLogger("PsychiatryOnlineTextbooksHtmlLinkExtractor");
 
   protected static PatternCache patternCache = new PatternCacheLRU(4, new Perl5Compiler());
 
