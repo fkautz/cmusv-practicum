@@ -135,25 +135,29 @@ public class PsychiatryOnlineTextbooksHtmlLinkExtractor extends GoslingHtmlLinkE
   }
 
   public static String interpretBookInfoMatch(MatchResult bookInfoMatch) {
-    if (bookInfoMatch.groups() != 1) {
+    if (bookInfoMatch.groups() != 2) {
       logger.warning("Internal inconsistency: '"
                      + bookInfoMatch.toString()
                      + "' has "
-                     + bookInfoMatch.groups()
+                     + (bookInfoMatch.groups() - 1)
                      + " groups (expected 1)");
-      return null;
+      if (bookInfoMatch.groups() < 2) {
+        return null;
+      }
     }
     return "/" + bookInfoMatch.group(1);
   }
 
   public static String interpretPopupMatch(MatchResult popupMatch) {
-    if (popupMatch.groups() != 2) {
+    if (popupMatch.groups() != 3) {
       logger.warning("Internal inconsistency: '"
                      + popupMatch.toString()
                      + "' has "
-                     + popupMatch.groups()
+                     + (popupMatch.groups() - 1)
                      + " groups (expected 2)");
-      return null;
+      if (popupMatch.groups() < 3) {
+        return null;
+      }
     }
     return "/" + popupMatch.group(1) + popupMatch.group(2);
   }
