@@ -42,6 +42,10 @@ import org.lockss.filter.*;
 import org.lockss.filter.html.*;
 import org.lockss.plugin.*;
 
+/**
+ * @deprecated
+ */
+@Deprecated
 public class AcsHtmlFilterFactory implements FilterFactory {
 
   // Remove everything on the line after these comments
