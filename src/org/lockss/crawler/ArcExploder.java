@@ -162,6 +162,7 @@ public class ArcExploder extends Exploder {
 	newUc.storeContent(element, makeCIProperties(elementHeader));
 	stemSet.add(UrlUtil.getUrlPrefix(elementUrl));
 	elementCount++;
+	crawler.getCrawlerStatus().addContentBytesFetched(elementHeader.getLength());
       }
     }
     // Now adjust the AU's host list and crawl rules if necessary
