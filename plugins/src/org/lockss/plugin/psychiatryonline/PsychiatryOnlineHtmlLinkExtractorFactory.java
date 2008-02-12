@@ -35,10 +35,10 @@ package org.lockss.plugin.psychiatryonline;
 import org.lockss.daemon.PluginException;
 import org.lockss.extractor.*;
 
-public class PsychiatryOnlineTextbooksHtmlLinkExtractorFactory implements LinkExtractorFactory {
+public class PsychiatryOnlineHtmlLinkExtractorFactory implements LinkExtractorFactory {
 
   public LinkExtractor createLinkExtractor(String mimeType) throws PluginException {
-    return new PsychiatryOnlineTextbooksHtmlLinkExtractor();
+    return new PsychiatryOnlineHtmlLinkExtractor();
   }
 
 }
