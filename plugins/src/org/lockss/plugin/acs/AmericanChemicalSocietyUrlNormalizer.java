@@ -35,18 +35,14 @@ package org.lockss.plugin.acs;
 import org.lockss.daemon.PluginException;
 import org.lockss.plugin.*;
 
-/** ACS site redirects to
- * <code><i>orig-url</i>?sessid=<blah></code> when you try to fetch a PDF.
- * This removes the session id if it it is present.
- */
-
 public class AmericanChemicalSocietyUrlNormalizer implements UrlNormalizer {
 
   public String normalizeUrl(String url,
                              ArchivalUnit au)
       throws PluginException {
+    // Note: see the HTML filter factory
     int idx = url.indexOf("?sessid=");
-    return idx < 0 ? url : url.replaceFirst("\\?sessid=[0-9]+", "");
+    return idx < 0 ? url : url.replaceFirst("\\?sessid=[0-9]+", "?sessid=LOCKSS");
   }
 
 }
