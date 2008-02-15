@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -113,7 +113,7 @@ public class LcapRouter
         String paramDataDir = config.get(PARAM_V3_LCAP_MESSAGE_DATA_DIR,
                                          PlatformUtil.getSystemTempDir());
         File dir = new File(paramDataDir);
-        if (dir.exists() || dir.mkdirs()) {
+        if (FileUtil.ensureDirExists(dir)) {
           dataDir = dir;
           log.debug2("V3LcapMessage data dir: " + dataDir);
         } else {

@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -278,9 +278,7 @@ public class LockssRepositoryImpl
    */
   void deactivateInconsistentNode(RepositoryNodeImpl node) {
     logger.warning("Deactivating inconsistent node.");
-    if (!node.contentDir.exists()) {
-      node.contentDir.mkdirs();
-    }
+    FileUtil.ensureDirExists(node.contentDir);
     // manually deactivate
     node.deactivateContent();
   }
