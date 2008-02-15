@@ -168,7 +168,7 @@ public class TestCXSerializer extends ObjectSerializerTester {
   protected ObjectSerializer[] getObjectSerializers_ExtMapBean() {
     // Compatibility modes
     int[] compatModes = new int[] {
-        CXSerializer.CASTOR_MODE,
+//         CXSerializer.CASTOR_MODE,
         CXSerializer.XSTREAM_MODE,
         CXSerializer.XSTREAM_OVERWRITE_MODE,
     };
