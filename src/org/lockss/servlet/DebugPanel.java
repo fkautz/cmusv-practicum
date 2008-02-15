@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -238,7 +238,7 @@ public class DebugPanel extends LockssServlet {
   private void callV3ContentPoll(ArchivalUnit au) {
     PollSpec spec = new PollSpec(au.getAuCachedUrlSet(), Poll.V3_POLL);
     log.debug("Calling a V3 Content Poll on " + au.getName());
-    if (pollManager.callPoll(spec) == null) {
+    if (pollManager.callPoll(au, spec) == null) {
       errMsg = "Failed to call poll on " + au.getName() + ", see log.";
     } else {
       statusMsg = "Started V3 poll for " + au.getName();
