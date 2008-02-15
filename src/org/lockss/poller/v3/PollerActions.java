@@ -4,7 +4,7 @@
 
 /*
 
- Copyright (c) 2000-2002 Board of Trustees of Leland Stanford Jr. University,
+ Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
  all rights reserved.
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -218,11 +218,21 @@ public class PollerActions {
     return V3Events.evtOk;
   }
 
-  @ReturnEvents("evtOk")
+  @ReturnEvents("evtOk,evtError")
   public static PsmEvent handleReceiveVote(PsmMsgEvent evt, PsmInterp interp) {
     ParticipantUserData ud = getUserData(interp);
     V3LcapMessage msg = (V3LcapMessage) evt.getMessage();
-    log.debug2("Received vote from voter " + ud.getVoterId() + " in poll "
+    PollNak nak = msg.getNak();
+    if (nak != null) {
+      ud.setPollNak(nak);
+      log.debug2("Received nak (" + nak + ") instead of vote from "
+		 + ud.getVoterId() + " in poll " + ud.getKey());
+      ud.setStatus(V3Poller.PEER_STATUS_DROPPED_OUT,
+		   ud.getPollNak().toString());
+      ud.removeParticipant();
+      return V3Events.evtError;
+    }
+    log.debug2("Received vote from " + ud.getVoterId() + " in poll "
                + ud.getKey());
     ud.setStatus(V3Poller.PEER_STATUS_VOTED);
     ud.setVoteComplete(msg.isVoteComplete());

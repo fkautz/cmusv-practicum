@@ -4,7 +4,7 @@
 
 /*
 
- Copyright (c) 2000-2002 Board of Trustees of Leland Stanford Jr. University,
+ Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
  all rights reserved.
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -95,6 +95,7 @@ public class PollerStateMachineFactory implements PsmMachine.Factory {
                      new PsmResponse(V3Events.msgVote,
                                      new PsmMethodMsgAction(actionClass,
                                                            "handleReceiveVote")),
+                     new PsmResponse(V3Events.evtError, "FinalizePoller"),
                      new PsmResponse(V3Events.evtOk, "TallyVote")).setResumable(true),
         new PsmState("TallyVote", new PsmMethodAction(actionClass,
                                                       "handleTallyVote"),
