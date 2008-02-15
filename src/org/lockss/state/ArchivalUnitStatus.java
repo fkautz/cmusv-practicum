@@ -3,7 +3,7 @@
  */
 
 /*
- Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
+ Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
  all rights reserved.
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -783,14 +783,14 @@ public class ArchivalUnitStatus
 					    ColumnDescriptor.TYPE_STRING,
 					    state.getLastCrawlResultMsg()));
       }
-      long lastPollAttempt = state.getLastPollAttempt();
+      long lastPollStart = state.getLastPollStart();
       res.add(new StatusTable.SummaryInfo("Last Completed Poll",
 					  ColumnDescriptor.TYPE_DATE,
 					  new Long(state.getLastTopLevelPollTime())));
-      if (lastPollAttempt > 0) {
+      if (lastPollStart > 0) {
 	res.add(new StatusTable.SummaryInfo("Last Poll",
 					    ColumnDescriptor.TYPE_DATE,
-					    new Long(lastPollAttempt)));
+					    new Long(lastPollStart)));
 	String pollResult = state.getLastPollResultMsg();
 	if (!StringUtil.isNullString(pollResult)) {
 	  res.add(new StatusTable.SummaryInfo("Last Poll Result",
