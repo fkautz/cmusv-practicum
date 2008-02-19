@@ -712,8 +712,9 @@ public class ArchivalUnitStatus
 
       StatusTable.SrvLink urlListLink =
 	new StatusTable.SrvLink("URL list",
-				LockssServlet.SERVLET_LIST_URLS,
-				PropUtil.fromArgs("auid", au.getAuId()));
+				LockssServlet.SERVLET_LIST_OBJECTS,
+				PropUtil.fromArgs("type", "urls",
+						  "auid", au.getAuId()));
 
       List res = new ArrayList();
       res.add(new StatusTable.SummaryInfo("Volume",

@@ -193,9 +193,9 @@ public abstract class LockssServlet extends HttpServlet
     new ServletDescr(ServeContent.class,
                      "Serve Content",
                      ServletDescr.NOT_IN_NAV);
-  public static final ServletDescr SERVLET_LIST_URLS =
-    new ServletDescr(ListUrls.class,
-                     "List URLs",
+  public static final ServletDescr SERVLET_LIST_OBJECTS =
+    new ServletDescr(ListObjects.class,
+                     "List Objests",
                      ServletDescr.NOT_IN_NAV);
   protected static final ServletDescr SERVLET_HASH_CUS =
     new ServletDescr(HashCUS.class,
@@ -270,7 +270,7 @@ public abstract class LockssServlet extends HttpServlet
      SERVLET_DAEMON_STATUS,
      SERVLET_DISPLAY_CONTENT,
      SERVLET_SERVE_CONTENT,
-     SERVLET_LIST_URLS,
+     SERVLET_LIST_OBJECTS,
      SERVLET_HASH_CUS,
      LINK_LOGS,
      LINK_ISOS,
