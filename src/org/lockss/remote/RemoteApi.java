@@ -1423,9 +1423,12 @@ public class RemoteApi
 	Entry ostat = (Entry)o;
 	int res = order - ostat.order;
 	if (res == 0) {
-	  res = coc.compare(getName(), ostat.getName());
+	  res = compareTitle(getName(), ostat.getName());
 	}
 	return res;
+      }
+      private int compareTitle(String a, String b) {
+ 	return coc.compare(a == null ? "" : a, b == null ? "" : b);
       }
       public String toString() {
 	return "[" + name + ", " + status + ", " + getConfig() +
