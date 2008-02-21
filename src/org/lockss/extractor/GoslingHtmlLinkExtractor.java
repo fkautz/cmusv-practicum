@@ -84,7 +84,7 @@ import org.lockss.config.*;
 
 public class GoslingHtmlLinkExtractor implements LinkExtractor {
 
-  static String PREFIX = Configuration.PREFIX + "extractor.gosling.";
+  static final String PREFIX = Configuration.PREFIX + "extractor.gosling.";
 
   public static final String PARAM_BUFFER_CAPACITY =
     PREFIX + "buffer_capacity";

@@ -58,7 +58,7 @@ import org.apache.commons.collections.map.LinkedMap;
 public class LockssDaemon extends LockssApp {
   private static Logger log = Logger.getLogger("LockssDaemon");
 
-  private static String PREFIX = Configuration.PREFIX + "daemon.";
+  private static final String PREFIX = Configuration.PREFIX + "daemon.";
 
   public static final float MIN_JAVA_VERSION = 1.5f;
 

@@ -81,7 +81,7 @@ public class V3Voter extends BasePoll {
    "Declined Poll", "Vote Accepted"
   };
 
-  static String PREFIX = Configuration.PREFIX + "poll.v3.";
+  private static final String PREFIX = Configuration.PREFIX + "poll.v3.";
 
   /** The minimum number of peers to select for a nomination message.
    * If there are fewer than this number of peers available to nominate,

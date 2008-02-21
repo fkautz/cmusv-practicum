@@ -40,7 +40,7 @@ import org.lockss.util.*;
 
 public abstract class V3Serializer {
 
-  private static String PREFIX = Configuration.PREFIX + "poll.v3.";
+  private static final String PREFIX = Configuration.PREFIX + "poll.v3.";
 
   /** Location of the V3 state directory.  Should be an absolute path. */
   public static String PARAM_V3_STATE_LOCATION = PREFIX + "stateDir";

@@ -108,7 +108,7 @@ public class V3Poller extends BasePoll {
    "Waiting for Repairs",
   };
 
-  private static String PREFIX = Configuration.PREFIX + "poll.v3.";
+  private static final String PREFIX = Configuration.PREFIX + "poll.v3.";
 
   /** Quorum for V3 polls. */
   public static final String PARAM_QUORUM = PREFIX + "quorum";
