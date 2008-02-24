@@ -156,8 +156,8 @@ public class PollUtil {
 
   static long getVoteDurationPadding() {
     return
-      CurrentConfig.getLongParam(V3Poller.PARAM_VOTE_DURATION_PADDING,
-				 V3Poller.DEFAULT_VOTE_DURATION_PADDING);
+      CurrentConfig.getTimeIntervalParam(V3Poller.PARAM_VOTE_DURATION_PADDING,
+					 V3Poller.DEFAULT_VOTE_DURATION_PADDING);
   }
 
   static int getTallyDurationMultiplier() {
@@ -168,8 +168,8 @@ public class PollUtil {
 
   static long getTallyDurationPadding() {
     return
-      CurrentConfig.getLongParam(V3Poller.PARAM_TALLY_DURATION_PADDING,
-				 V3Poller.DEFAULT_TALLY_DURATION_PADDING);
+      CurrentConfig.getTimeIntervalParam(V3Poller.PARAM_TALLY_DURATION_PADDING,
+					 V3Poller.DEFAULT_TALLY_DURATION_PADDING);
   }
 
   static long getReceiptPadding() {
