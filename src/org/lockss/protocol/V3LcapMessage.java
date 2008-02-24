@@ -321,8 +321,8 @@ public class V3LcapMessage extends LcapMessage implements LockssSerializable {
     String addr_str = m_props.getProperty("origId");
     m_originatorID = m_idManager.stringToPeerIdentity(addr_str);
     m_hashAlgorithm = m_props.getProperty("hashAlgorithm");
-    duration = m_props.getInt("duration", 0) * 1000;
-    elapsed = m_props.getInt("elapsed", 0) * 1000;
+    duration = m_props.getInt("duration", 0) * 1000L;
+    elapsed = m_props.getInt("elapsed", 0) * 1000L;
     m_opcode = m_props.getInt("opcode", -1);
     m_archivalID = m_props.getProperty("au", "UNKNOWN");
     m_targetUrl = m_props.getProperty("url");

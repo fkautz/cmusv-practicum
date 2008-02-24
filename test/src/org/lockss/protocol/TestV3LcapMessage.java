@@ -199,6 +199,15 @@ public class TestV3LcapMessage extends LockssTestCase {
     assertEquals(m_repairData, repairCopy);
   }
   
+  public void testPollDuration() throws Exception {
+    TimeBase.setSimulated(TimeBase.nowMs());
+    V3LcapMessage src = this.makePollMessage(6 * Constants.WEEK);
+    InputStream srcStream = src.getInputStream();
+    V3LcapMessage copy = new V3LcapMessage(srcStream, tempDir, theDaemon);
+    assertEqualMessages(src, copy);
+    assertEquals(6 * Constants.WEEK, copy.getDuration());
+  }
+  
   public void testNullPollNak() throws Exception {
     V3LcapMessage src = this.makePollAckMessage(null);
     InputStream srcStream = src.getInputStream();
@@ -307,6 +316,17 @@ public class TestV3LcapMessage extends LockssTestCase {
 
     //  TODO: Figure out how to test time.
 
+  }
+  
+  private V3LcapMessage makePollMessage(long duration) {
+    V3LcapMessage msg = new V3LcapMessage("ArchivalID_2", "key", "Plug42",
+                                          m_testBytes,
+                                          m_testBytes,
+                                          V3LcapMessage.MSG_POLL,
+                                          TimeBase.nowMs() + duration,
+					  m_testID, tempDir,
+                                          theDaemon);
+    return msg;
   }
   
   private V3LcapMessage makePollAckMessage(V3LcapMessage.PollNak nak) {
