@@ -29,13 +29,11 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.repository;
+package org.lockss.protocol;
 
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Set;
-import org.lockss.protocol.PeerIdentity;
 
 /* Note: This interface comes very close to 'implement Set<PeerIdentity>'.
  * However, it isn't an implementation.
@@ -49,6 +47,7 @@ import org.lockss.protocol.PeerIdentity;
 public interface PersistentPeerIdSet  {
   /* To handle direct loading and saving. */
   public void load() throws IOException;
+  public void checkpoint() throws IOException;
   public void store() throws IOException;
 
   /* These methods are equivalents to the functions of java.util.Set. */
