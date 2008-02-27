@@ -651,6 +651,7 @@ public class Logger {
       String name = unannouncedName;
       unannouncedName = null;
       info("ThreadId " + id + " is " + name);
+      announcedName = name;
     }
     return id;
   }
