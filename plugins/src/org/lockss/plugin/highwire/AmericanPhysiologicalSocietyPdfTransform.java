@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -39,7 +39,6 @@ import org.lockss.plugin.ArchivalUnit;
 import org.lockss.plugin.highwire.AmericanPhysiologicalSocietyPdfTransform.NormalizeCurrentAsOf.ReplaceCurrentAsOf;
 import org.lockss.plugin.highwire.HighWirePdfFilterFactory.*;
 import org.lockss.util.*;
-import org.pdfbox.util.PDFStreamEngine.OperatorProcessorFactory;
 import org.pdfbox.util.operator.OperatorProcessor;
 
 /**
@@ -150,7 +149,7 @@ public class AmericanPhysiologicalSocietyPdfTransform
    * @see AmericanPhysiologicalSocietyPdfTransform
    */
   public static class Simplified
-      extends TextScrapingDocumentTransform
+      extends ResilientTextScrapingDocumentTransform
       implements ArchivalUnitDependent {
 
     protected ArchivalUnit au;
