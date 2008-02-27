@@ -255,8 +255,8 @@ public class TestProxyInfo extends LockssTestCase {
 							  url, url), 40));
     assertEquals(ListUtil.list("MockAU 1",
 			       "MockAU 10, MockAU 11",
-			       "MockAU 20, MockAU 21, 1 more AUs",
-			       "MockAU 40, MockAU 41, 3 more AUs"),
+			       "MockAU 20, MockAU 21, (1 more)",
+			       "MockAU 40, MockAU 41, (3 more)"),
 		 comments);
   }
 

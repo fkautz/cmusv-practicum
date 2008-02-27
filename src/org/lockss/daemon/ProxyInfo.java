@@ -107,7 +107,7 @@ public class ProxyInfo {
 	String stem = (String)iter.next();
 	Collection aus = getPluginMgr().getCandidateAusFromStem(stem);
 	if (aus != null && !aus.isEmpty()) {
-	  // Assemble comment string:  AU1, AU2, n more AUs
+	  // Assemble comment string:  AU1, AU2, (n more)
 	  StringBuffer sb = new StringBuffer();
 	  Iterator auIter = aus.iterator();
 	  int n = 0;
@@ -120,9 +120,9 @@ public class ProxyInfo {
 	    n++;
 	  }
 	  if (auIter.hasNext()) {
-	    sb.append(", ");
+	    sb.append(", (");
 	    sb.append(aus.size() - n);
-	    sb.append(" more AUs");
+	    sb.append(" more)");
 	  }
 	  generateEntry(buffer, StringUtil.removeTrailing(stem, "/"),
 			sb.toString());
