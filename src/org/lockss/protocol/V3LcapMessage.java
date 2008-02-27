@@ -344,7 +344,12 @@ public class V3LcapMessage extends LcapMessage implements LockssSerializable {
     m_groups = m_props.getProperty("groups");
     String nakString = m_props.getProperty("nak");
     if (nakString != null) {
-      m_nak = PollNak.valueOf(nakString);
+      try {
+	m_nak = PollNak.valueOf(nakString);
+      } catch (IllegalArgumentException e) {
+	log.warning("Unknown nak: " + nakString);
+	m_nak = PollNak.NAK_UNKNOWN;
+      }
     }
     
     // If we have vote blocks, pass them to a VoteBlock object.
