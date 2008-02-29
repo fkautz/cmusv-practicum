@@ -932,25 +932,25 @@ public class TestXmlPropertyLoader extends LockssTestCase {
    * Tom would like XML files to be able to add lists in multiple points.  The following
    * new action would be allowed:
    * 
-   *   <property name="d">
-   *      <list>
-   *        <value>1</value>
-   *        <value>2</value>
-   *        <value>3</value>
-   *        <value>4</value>
-   *        <value>5</value>
-   *      </list>
-   *   </property>
+   *   <property name="d">
+   *      <list>
+   *        <value>1</value>
+   *        <value>2</value>
+   *        <value>3</value>
+   *        <value>4</value>
+   *        <value>5</value>
+   *      </list>
+   *   </property>
    *
-   *     . . . 
+   *     . . . 
    *
-   *   <property name="d">
-   *      <list append="true">
-   *        <value>6</value>
-   *        <value>7</value>
-   *        <value>8</value>
-   *      </list>
-   *  </property>
+   *   <property name="d">
+   *      <list append="true">
+   *        <value>6</value>
+   *        <value>7</value>
+   *        <value>8</value>
+   *      </list>
+   *  </property>
    */
   public void testListAppend() throws Exception {
     PropertyTree props = new PropertyTree();
