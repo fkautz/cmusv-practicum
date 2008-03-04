@@ -334,7 +334,7 @@ public class DaemonStatus extends LockssServlet {
 
       table.newRow();
       table.addHeading(title, "ALIGN=CENTER COLSPAN=" + (cols * 2 - 1));
-      table.newRow("\"background=#e0e0e0'|");
+      table.newRow();
 
       addSummaryInfo(table, statTable, cols);
 
