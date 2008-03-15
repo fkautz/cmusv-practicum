@@ -366,6 +366,15 @@ public class ConfigManager implements LockssManager {
     return res;
   }
 
+  public static void setPlatformConfig(Configuration config) {
+    if (platformConfig.isEmpty()) {
+      platformConfig = config;
+    } else {
+      throw
+	new IllegalStateException("Can't override existing  platform config");
+    }
+  }
+
   private static PlatformVersion platVer = null;
 
   public static PlatformVersion getPlatformVersion() {
