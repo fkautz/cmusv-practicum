@@ -117,7 +117,7 @@ public class MockPollManager extends PollManager {
     thePolls.put(key, SUSPENDED);
   }
 
-  public void resumePoll(boolean replayNeeded, Object key) {
+  public void resumePoll(boolean replayNeeded, String key) {
     thePolls.put(key, RESUMED);
   }
 
