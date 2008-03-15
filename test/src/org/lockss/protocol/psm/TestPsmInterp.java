@@ -722,9 +722,7 @@ public class TestPsmInterp extends LockssTestCase {
       new ER(statesCheck[2], Sched, null, null),
     };
     // Should get to state No, with last resumable state Yes
-    while (!CollectionUtil.isIsomorphic(exp1, interp.events)) {
-      assertTrue(interp.waitIdle(TIMEOUT_SHOULDNT));
-    }
+    assertTrue(interp.waitIdle(TIMEOUT_SHOULDNT));
     assertIsomorphic(exp1, interp.events);
     assertEquals(1, cptr.cnt);
     PsmInterpStateBean resumeBean = cptr.lastBean;

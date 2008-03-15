@@ -50,7 +50,7 @@ public class PsmInterp {
   private long lastStateChange = -1;
   private int maxChainedEvents = 10;
   private StateTimer timer;
-  private boolean isWaiting;
+  private volatile boolean isWaiting;
   private int curEventNum;
   private PsmInterpStateBean stateBean;
   private Checkpointer checkpointer;
@@ -299,7 +299,9 @@ public class PsmInterp {
     if (timeout > 0) {
       setCurrentStateTimeout(timeout);
     }
-    isWaiting = true;
+    if (eventQueue.isEmpty()) {
+      isWaiting = true;
+    }
   }
 
   private void startRunner() throws InterruptedException {
@@ -355,7 +357,7 @@ public class PsmInterp {
   public boolean waitFinal(Deadline timer) throws InterruptedException {
     return waitCondition(timer, new Condition() {
 	public boolean evaluate() {
-	  return eventQueue.isEmpty() && curState.isFinal();
+	  return eventQueue.isEmpty() && isWaiting && curState.isFinal();
 	}
       });
   }
@@ -421,6 +423,7 @@ public class PsmInterp {
 
   private void enqueueReq(Req req) {
     assertThreaded();
+    isWaiting = false;
     synchronized (runnerLock) {
       eventQueue.put(req);
       if (runner == null) {
