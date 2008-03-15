@@ -1586,7 +1586,7 @@ JAVA_COMMAND_ARGS="-server `/usr/local/lib/maxheap` -Dsun.net.inetaddr.ttl=3600 
 
   <!-- ==================================================================== -->
   <target name="test-all"
-   depends="package,test-unit,test-func,test-plugins,test-tools,test-xml"
+   depends="package,test-unit,test-func,test-plugins,test-tools,load-xml"
    description="Run all unit tests, functional tests and plugin unit tests" >
   </target>
 
