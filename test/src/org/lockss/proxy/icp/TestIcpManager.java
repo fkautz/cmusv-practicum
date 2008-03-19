@@ -151,7 +151,7 @@ public class TestIcpManager extends LockssTestCase {
   }
 
   private int getNewPort() {
-    return port += 7;
+    return port += 7; // Used to be +1 but that failed on Solaris
   }
 
   private void setEnabled(boolean enabled, int port) {
