@@ -97,7 +97,7 @@ public class LockssTiming extends LockssTestCase {
     reporter.report(delta, cnt);
   }
 
-  interface TimingReporter {
+  protected interface TimingReporter {
     void report(long totalTime, int rpt);
   }
 
