@@ -304,12 +304,8 @@ public class JarValidator {
 
   
   /**
-   * Tom Lipkis requested:
-   * 
-   * You forgot the part about a config param that determines whether
-   * expired (and not yet valid) certificates are allowed, whose default
-   * value is to allow.  At least some PLNs are known to have at least some
-   * plugins with expired certs, so we need to avoid breaking them.
+   * Some PLNs are known to have at least some plugins with expired 
+   * certs, so we need to avoid breaking them.
    * 
    * @param b
    */
