@@ -477,11 +477,9 @@ public class TestJarValidator extends LockssTestCase {
   public void testPlugInDirUnwritable() throws Exception {
     File fileUnwritable;
     
-    fileUnwritable = getTempDir();
-    if (fileUnwritable.canWrite()) {
-      fileUnwritable.setReadOnly();
-    }
-    
+    fileUnwritable = getTempDir("readonly");
+    fileUnwritable.setReadOnly();
+
     try {
       MockCachedUrl mcuGood2 =
         new MockCachedUrl("http://foo.com/Good2.jar", Good2Jar, true);
@@ -489,13 +487,11 @@ public class TestJarValidator extends LockssTestCase {
       validator.getBlessedJar(mcuGood2);
       
       fail("testPlugInDirUnwritable: We should have caused an exception when we got the blessed jar.");      
-    } catch (Exception e) {
+    } catch (IOException e) {
       // The expected behavior.
     }
-    
-    fileUnwritable.delete();
   }
-  
+
   // ** Tests of getBlessedJob
   // What happens if cu is null?
   public void testNullCU() throws Exception {
