@@ -603,6 +603,26 @@ public class TestSortScheduler extends LockssTestCase {
     assertFalse(sched.createSchedule());
   }
 
+  public void testAlreadyAccepted() {
+    SortScheduler sched;
+    StepTask h1 = taskBetween("h1", 100, 700, 500);
+    StepTask h2 = taskBetween("h2", 500, 600, 100);
+    StepTask h3 = taskBetween("h4", 100, 300, 100);
+    StepTask h4 = taskBetween("h4", 100, 400, 100);
+    sched = new SortScheduler(ListUtil.list(h1, h2, h3));
+    assertFalse(sched.createSchedule());
+    sched = new SortScheduler(ListUtil.list(h1, h2));
+    assertTrue(sched.createSchedule());
+    sched.acceptTasks();
+    // h3 doesn't fit, ensure fails
+    sched = new SortScheduler(ListUtil.list(h1, h2, h3));
+    assertFalse(sched.createSchedule());
+    // but succeeds if h3 had already been accepted
+    h3.setAccepted(true);
+    sched = new SortScheduler(ListUtil.list(h1, h2, h3));
+    assertTrue(sched.createSchedule());
+  }
+
   // full schedule plus background task
   public void testBImpossible2() {
     SortScheduler sched =
