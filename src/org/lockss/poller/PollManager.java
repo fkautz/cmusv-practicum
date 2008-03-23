@@ -1694,10 +1694,10 @@ public class PollManager
 	if (req != null) {
 	  startPoll(req);
 	  return true;
-	} else {
-	  startOneWait.expireIn(paramQueueEmptySleep);
 	}
       }
+    } else {
+      startOneWait.expireIn(paramQueueEmptySleep);
     }
     v3Status.setNextPollStartTime(startOneWait);
     while (!startOneWait.expired()) {
