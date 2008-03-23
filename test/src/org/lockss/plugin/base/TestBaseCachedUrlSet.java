@@ -40,6 +40,7 @@ import org.lockss.state.*;
 import org.lockss.test.*;
 import org.lockss.plugin.*;
 import org.lockss.hasher.HashService;
+import org.lockss.scheduler.*;
 
 /**
  * This is the test class for
@@ -462,7 +463,7 @@ public class TestBaseCachedUrlSet extends LockssTestCase {
     fileSet.storeActualHashDuration(100, null);
     assertEquals(100, nodeMan.getNodeState(fileSet).getAverageHashDuration());
     // simulate a timeout
-    fileSet.storeActualHashDuration(200, new HashService.Timeout("test"));
+    fileSet.storeActualHashDuration(200, new SchedService.Timeout("test"));
     assertEquals(300, nodeMan.getNodeState(fileSet).getAverageHashDuration());
     // and another,less than current estimate, shouldn't change it
     fileSet.storeActualHashDuration(100, new HashService.Timeout("test"));
