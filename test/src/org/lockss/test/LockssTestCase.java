@@ -98,7 +98,20 @@ public class LockssTestCase extends TestCase {
    * @throws IOException
    */
   public File getTempDir() throws IOException {
-    File tmpdir = FileUtil.createTempDir("locksstest", null);
+    return getTempDir("locksstest");
+  }
+
+  /**
+   * Create and return the name of a temp dir.  The dir is created within
+   * the default temp file dir.
+   * It will be deleted following the test, by tearDown().  (So if you
+   * override tearDown(), be sure to call <code>super.tearDown()</code>.)
+   * @param prefix the prefix of the name of the directory
+   * @return The newly created directory
+   * @throws IOException
+   */
+  public File getTempDir(String prefix) throws IOException {
+    File tmpdir = FileUtil.createTempDir(prefix, null);
     if (tmpdir != null) {
       if (tmpDirs == null) {
 	tmpDirs = new LinkedList();
