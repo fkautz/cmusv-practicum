@@ -121,6 +121,9 @@ public class PlatformConfigStatus extends BaseLockssDaemonManager {
       addSum(res, "Admin Email", config.get(PARAM_PLATFORM_ADMIN_EMAIL));
       addSum(res, "Disks",
 	     seplist(config.getList(PARAM_PLATFORM_DISK_SPACE_LIST)));
+      addSum(res, "Cwd",
+	     PlatformUtil.getInstance().getCwd());
+
       return res;
     }
     
