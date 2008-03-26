@@ -72,8 +72,9 @@ public class TestBaseCrawler extends LockssPermissionCheckerTestCase {
   private MockLinkExtractor extractor = new MockLinkExtractor();
 
   private static final String PARAM_RETRY_TIMES =
-    Configuration.PREFIX + "BaseCrawler.numCacheRetries";
-  private static final int DEFAULT_RETRY_TIMES = 3;
+    BaseCrawler.PARAM_DEFAULT_RETRY_COUNT;
+  private static final int DEFAULT_RETRY_TIMES =
+    BaseCrawler.DEFAULT_DEFAULT_RETRY_COUNT;
 
   private MockCachedUrlSet cus;
   private String permissionPage = "http://example.com/permission.html";
@@ -110,7 +111,7 @@ public class TestBaseCrawler extends LockssPermissionCheckerTestCase {
     mau.addUrl(startUrl);
     mau.addUrl(permissionPage);
     Properties p = new Properties();
-    p.setProperty(NewContentCrawler.PARAM_RETRY_PAUSE, "0");
+    p.setProperty(NewContentCrawler.PARAM_DEFAULT_RETRY_DELAY, "0");
     ConfigurationUtil.setCurrentConfigFromProps(p);
   }
 
@@ -447,7 +448,7 @@ public class TestBaseCrawler extends LockssPermissionCheckerTestCase {
 // 	       +"DEFAULT_RETRY_TIMES", retryNum > DEFAULT_RETRY_TIMES);
 //     Properties p = new Properties();
 //     p.setProperty(PARAM_RETRY_TIMES, String.valueOf(retryNum));
-//     p.setProperty(NewContentCrawler.PARAM_RETRY_PAUSE, "0");
+//     p.setProperty(NewContentCrawler.PARAM_DEFAULT_RETRY_DELAY, "0");
 //     ConfigurationUtil.setCurrentConfigFromProps(p);
 
 //     MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
@@ -468,7 +469,7 @@ public class TestBaseCrawler extends LockssPermissionCheckerTestCase {
 //     int retryNum = 3;
 //     Properties p = new Properties();
 //     p.setProperty(PARAM_RETRY_TIMES, String.valueOf(retryNum));
-//     p.setProperty(NewContentCrawler.PARAM_RETRY_PAUSE, "0");
+//     p.setProperty(NewContentCrawler.PARAM_DEFAULT_RETRY_DELAY, "0");
 //     ConfigurationUtil.setCurrentConfigFromProps(p);
 
 //     MyMockCachedUrlSet cus = (MyMockCachedUrlSet)mau.getAuCachedUrlSet();

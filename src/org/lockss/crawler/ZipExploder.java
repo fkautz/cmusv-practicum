@@ -95,7 +95,7 @@ public class ZipExploder extends Exploder {
       goodEntries = 0;
       badEntries = 0;
       if (storeArchive) {
-	crawler.cacheWithRetries(urlCacher, maxRetries);
+	crawler.cacheWithRetries(urlCacher);
 	// Get a stream from which the ZIP data can be read
 	logger.debug3("About to get ZIP stream from " + urlCacher.toString());
 	cachedUrl = urlCacher.getCachedUrl();

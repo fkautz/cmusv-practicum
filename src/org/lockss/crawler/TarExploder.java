@@ -97,7 +97,7 @@ public class TarExploder extends Exploder {
       goodEntries = 0;
       badEntries = 0;
       if (storeArchive) {
-	crawler.cacheWithRetries(urlCacher, maxRetries);
+	crawler.cacheWithRetries(urlCacher);
 	// Get a stream from which the TAR data can be read
 	logger.debug3("About to get TAR stream from " + urlCacher.toString());
 	cachedUrl = urlCacher.getCachedUrl();

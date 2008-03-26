@@ -83,7 +83,7 @@ public class ArcExploder extends Exploder {
 		arcUrl + (explodeFiles ? " will" : " won't") + " explode");
     try {
       if (storeArchive) {
-	crawler.cacheWithRetries(urlCacher, maxRetries);
+	crawler.cacheWithRetries(urlCacher);
 	// Get a stream from which the ARC data can be read
 	logger.debug3("About to get ARC stream from " + urlCacher.toString());
 	cachedUrl = urlCacher.getCachedUrl();
