@@ -37,4 +37,7 @@ public interface CacheResultHandler {
   public CacheException handleResult(int code,
 				     LockssUrlConnection connection)
       throws PluginException;
+  public CacheException handleResult(Exception ex,
+				     LockssUrlConnection connection)
+      throws PluginException;
 }

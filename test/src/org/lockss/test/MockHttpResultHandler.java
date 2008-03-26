@@ -52,4 +52,9 @@ public class MockHttpResultHandler implements CacheResultHandler {
 				     LockssUrlConnection connection) {
     return null;
   }
+
+  public CacheException handleResult(Exception ex,
+				     LockssUrlConnection connection) {
+    return null;
+  }
 }

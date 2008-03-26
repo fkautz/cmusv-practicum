@@ -124,5 +124,14 @@ public class TestCacheResultHandlerWrapper extends LockssTestCase {
       }
       return new CacheException("bar");
     }
+
+    public CacheException handleResult(Exception ex,
+				       LockssUrlConnection connection) {
+      args = ListUtil.list(ex, connection);
+      if (error != null) {
+	throw error;
+      }
+      return new CacheException("bar");
+    }
   }
 }

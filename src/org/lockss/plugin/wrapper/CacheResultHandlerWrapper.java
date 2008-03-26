@@ -67,6 +67,16 @@ public class CacheResultHandlerWrapper
     }
   }
 
+  public CacheException handleResult(Exception ex,
+				     LockssUrlConnection connection)
+      throws PluginException {
+    try {
+      return inst.handleResult(ex, connection);
+    } catch (LinkageError e) {
+      throw new PluginException.LinkageError(e);
+    }
+  }
+
   static class Factory implements WrapperFactory {
     public Object wrap(Object obj) {
       return new CacheResultHandlerWrapper((CacheResultHandler)obj);
