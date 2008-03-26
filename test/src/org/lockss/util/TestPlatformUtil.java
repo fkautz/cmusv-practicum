@@ -58,6 +58,10 @@ public class TestPlatformUtil extends LockssTestCase {
     assertEquals(parmtmp, PlatformUtil.getSystemTempDir());
   }
 
+  public void testGetCwd() {
+    log.info("cwd: " + info.getCwd());
+  }
+
   public void testGetUnfilteredTcpPorts() throws Exception {
     assertEmpty(info.getUnfilteredTcpPorts());
     ConfigurationUtil.setFromArgs(PlatformUtil.PARAM_UNFILTERED_TCP_PORTS, "9909");

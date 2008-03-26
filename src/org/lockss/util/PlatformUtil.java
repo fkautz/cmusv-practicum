@@ -91,6 +91,11 @@ public class PlatformUtil {
     return System.getProperty("java.io.tmpdir");
   }
 
+  /** Return the current working dir name */
+  public static String getCwd() {
+    return new File(".").getAbsoluteFile().getParent();
+  }
+
   public List getUnfilteredTcpPorts() {
     Configuration config = CurrentConfig.getCurrentConfig();
     List lst = config.getList(PARAM_UNFILTERED_TCP_PORTS);
