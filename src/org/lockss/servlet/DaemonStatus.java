@@ -679,7 +679,6 @@ public class DaemonStatus extends LockssServlet {
   private boolean getDefaultSortAscending(ColumnDescriptor cd) {
     switch (cd.getType()) {
     case ColumnDescriptor.TYPE_STRING:
-    case ColumnDescriptor.TYPE_DATE:
     case ColumnDescriptor.TYPE_IP_ADDRESS:
     case ColumnDescriptor.TYPE_TIME_INTERVAL:
     default:
@@ -687,6 +686,7 @@ public class DaemonStatus extends LockssServlet {
     case ColumnDescriptor.TYPE_INT:
     case ColumnDescriptor.TYPE_PERCENT:
     case ColumnDescriptor.TYPE_FLOAT:	// tk - should align decimal points?
+    case ColumnDescriptor.TYPE_DATE:
       return false;
     }
   }
