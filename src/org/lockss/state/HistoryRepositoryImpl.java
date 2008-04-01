@@ -134,6 +134,11 @@ public class HistoryRepositoryImpl
     return new File(rootLocation, AU_FILE_NAME);
   }
 
+  public long getAuCreationTime() {
+    File auidfile = new File(rootLocation, LockssRepositoryImpl.AU_ID_FILE);
+    return auidfile.lastModified();
+  }
+
   /**
    * <p>Loads the state of an AU.</p>
    * @return An AuState instance loaded from file.

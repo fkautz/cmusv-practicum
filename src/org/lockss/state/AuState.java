@@ -151,6 +151,13 @@ public class AuState implements LockssSerializable {
     return previousPollState != null;
   }
 
+  /**
+   * Returns the date/time the au was created.
+   * @return au creation time
+   */
+  public long getAuCreationTime() {
+    return historyRepo.getAuCreationTime();
+  }
 
   /**
    * Returns the last new content crawl time of the au.

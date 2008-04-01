@@ -122,6 +122,10 @@ public class MockHistoryRepository implements HistoryRepository {
     return auStateFile;
   }
 
+  public long getAuCreationTime() {
+    return -1;
+  }
+
   public void setAuStateFile(File file) {
     auStateFile = file;
   }

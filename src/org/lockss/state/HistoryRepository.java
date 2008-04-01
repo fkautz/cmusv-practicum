@@ -92,6 +92,11 @@ public interface HistoryRepository extends LockssAuManager {
   public File getAuStateFile();
 
   /**
+   * Return the date/time the au was created.
+   */
+  public long getAuCreationTime();
+
+  /**
    * Stores the AuState for this ArchivalUnit
    * @param auState the state to store
    */

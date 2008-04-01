@@ -772,6 +772,9 @@ public class ArchivalUnitStatus
 // 						ColumnDescriptor.TYPE_INT,
 // 						new Integer(AuUtil.getProtocolVersion(au))));
 
+      res.add(new StatusTable.SummaryInfo("Created",
+					  ColumnDescriptor.TYPE_DATE,
+					  new Long(state.getAuCreationTime())));
       long lastCrawlAttempt = state.getLastCrawlAttempt();
       res.add(new StatusTable.SummaryInfo("Last Completed Crawl",
 					  ColumnDescriptor.TYPE_DATE,
