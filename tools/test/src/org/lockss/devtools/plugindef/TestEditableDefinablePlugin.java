@@ -168,7 +168,7 @@ public class TestEditableDefinablePlugin
     "RetrySameUrlException",
     "RetryDeadLinkException",
     "UnretryableException",
-    "HostException",
+    "ExploderException",
     "RepositoryException",
     "NoRetryNewUrlException",
     "NoRetryPermUrlException",
