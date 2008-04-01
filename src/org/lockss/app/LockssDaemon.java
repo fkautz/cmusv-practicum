@@ -119,6 +119,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
   public static final String REPOSITORY_STATUS = "RepositoryStatus";
   public static final String ARCHIVAL_UNIT_STATUS = "ArchivalUnitStatus";
   public static final String PLATFORM_CONFIG_STATUS = "PlatformConfigStatus";
+  public static final String CONFIG_STATUS = "ConfigStatus";
   public static final String OVERVIEW_STATUS = "OverviewStatus";
   public static final String ICP_MANAGER = "IcpManager";
   public static final String CRON = "Cron";
@@ -166,6 +167,8 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
 		    "org.lockss.proxy.icp.IcpManager"),
     new ManagerDesc(PLATFORM_CONFIG_STATUS,
 		    "org.lockss.config.PlatformConfigStatus"),
+    new ManagerDesc(CONFIG_STATUS,
+		    "org.lockss.config.ConfigStatus"),
     new ManagerDesc(ARCHIVAL_UNIT_STATUS,
 		    "org.lockss.state.ArchivalUnitStatus"),
     new ManagerDesc(REPOSITORY_STATUS,
