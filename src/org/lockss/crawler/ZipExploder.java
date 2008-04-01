@@ -137,7 +137,7 @@ public class ZipExploder extends Exploder {
           try {
 	    helper.process(ae);
           } catch (PluginException ex) {
-	    throw new CacheException.HostException("helper.process() threw " +
+	    throw new CacheException.ExploderException("helper.process() threw " +
 						   ex);
           }
 	  if (ae.getBaseUrl() != null &&
@@ -160,7 +160,7 @@ public class ZipExploder extends Exploder {
       if (badEntries > 0) {
 	String msg = archiveUrl + " had " + badEntries + "/" +
 	  (goodEntries + badEntries) + " bad entries";
-	throw new CacheException.HostException(msg);
+	throw new CacheException.ExploderException(msg);
       } else {
 	logger.info(archiveUrl + " had " + goodEntries + " entries");
 	if (!storeArchive) {
@@ -172,7 +172,7 @@ public class ZipExploder extends Exploder {
 	reTry = maxRetries+1;
       }
     } catch (IOException ex) {
-      throw new CacheException.HostException(ex);
+      throw new CacheException.ExploderException(ex);
     } finally {
       if (cachedUrl != null) {
 	cachedUrl.release();

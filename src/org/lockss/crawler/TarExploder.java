@@ -139,7 +139,7 @@ public class TarExploder extends Exploder {
           try {
 	    helper.process(ae);
           } catch (PluginException ex) {
-	    throw new CacheException.HostException("helper.process() threw " +
+	    throw new CacheException.ExploderException("helper.process() threw " +
 						   ex);
           }
 	  if (ae.getBaseUrl() != null) {
@@ -167,7 +167,7 @@ public class TarExploder extends Exploder {
 	if (ignoredEntries > 0) {
 	  msg += " " + ignoredEntries + " ignored";
 	}
-	throw new CacheException.HostException(msg);
+	throw new CacheException.ExploderException(msg);
       } else {
 	String msg = archiveUrl + " had " + goodEntries + " entries";
 	if (ignoredEntries > 0) {
@@ -182,7 +182,7 @@ public class TarExploder extends Exploder {
 	reTry = maxRetries+1;
       }
     } catch (IOException ex) {
-      throw new CacheException.HostException(ex);
+      throw new CacheException.ExploderException(ex);
     } finally {
       if (cachedUrl != null) {
 	cachedUrl.release();

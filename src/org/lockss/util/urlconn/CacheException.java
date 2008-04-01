@@ -174,6 +174,11 @@ public class CacheException extends IOException {
       super(message);
     }
 
+    public UnknownExceptionException(Exception e) {
+      super(e.toString());
+      initCause(e);
+    }
+
     protected void setAttributes() {
       attributeBits.set(ATTRIBUTE_FAIL);
     }
@@ -478,22 +483,21 @@ public class CacheException extends IOException {
     }
   }
 
-  /** An error connecting to the host serving the URL.  (<i>Eg</i>, host
-   * not found, down, connection refused) */
-  public static class HostException
+  /** An error esploding a archive file during a crawl */
+  public static class ExploderException
       extends UnretryableException {
-    public HostException() {
+    public ExploderException() {
       super();
       suppressStackTrace = false;
     }
 
-    public HostException(String message) {
+    public ExploderException(String message) {
       super(message);
       suppressStackTrace = false;
     }
 
     /** Create this if details of causal exception are more relevant. */
-    public HostException(Exception e) {
+    public ExploderException(Exception e) {
       super(e.toString());
       initCause(e);
     }
