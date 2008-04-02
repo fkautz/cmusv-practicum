@@ -430,6 +430,10 @@ public class AuState implements LockssSerializable {
     return accessType;
   }
 
+  public boolean isOpenAccess() {
+    return accessType == AccessType.OpenAccess;
+  }
+
   // CLOCKSS status
 
   public static final int CLOCKSS_SUB_UNKNOWN = 0;
