@@ -170,7 +170,7 @@ public class PlatformUtil {
     return Runtime.getRuntime();
   }
 
-  /** Return disk usage below path, in K (du -sk) */
+  /** Return disk usage below path, in bytes */
   public long getDiskUsage(String path) {
     String cmd = "du -k -s " + path;
     if (log.isDebug2()) log.debug2("cmd: " + cmd);
