@@ -224,8 +224,7 @@ public class FuncZipExploder extends LockssTestCase {
     }
 
     // Test PluginManager.getAuContentSize(), just because this is a
-    // convenient place to do it.  (And ArcCrawler calls it at the
-    // end.)  If the simulated AU params are changed, or
+    // convenient place to do it.  If the simulated AU params are changed, or
     // SimulatedContentGenerator is changed, this number may have to
     // change.  NB - because the ZIP files are compressed,  their
     // size varies randomly by a small amount.
