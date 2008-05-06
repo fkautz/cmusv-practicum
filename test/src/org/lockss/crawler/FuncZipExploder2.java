@@ -299,7 +299,7 @@ public class FuncZipExploder2 extends LockssTestCase {
 
   private void crawlContent() {
     log.debug("Crawling tree...");
-    List urls = ListUtil.list(SimulatedArchivalUnit.SIMULATED_URL_START);
+    List urls = sau.getNewContentCrawlUrls();
     CrawlSpec spec =
       new SpiderCrawlSpec(urls,
 			  urls, // permissionUrls

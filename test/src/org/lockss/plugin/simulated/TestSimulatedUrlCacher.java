@@ -62,8 +62,8 @@ public class TestSimulatedUrlCacher extends LockssTestCase {
     MockPlugin plugin = new MockPlugin();
     plugin.initPlugin(theDaemon);
     mau.setPlugin(plugin);
-    mau.setCrawlSpec(new SpiderCrawlSpec(SimulatedArchivalUnit.SIMULATED_URL_START,
-					 null));
+    SimulatedArchivalUnit sau = new SimulatedArchivalUnit();
+    mau.setCrawlSpec(new SpiderCrawlSpec(sau.getNewContentCrawlUrls(), null));
 
     theDaemon.setLockssRepository(new MockLockssRepository(), mau);
   }

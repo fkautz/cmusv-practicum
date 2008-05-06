@@ -63,6 +63,7 @@ public class ArchiveItExploderHelper implements ExploderHelper {
       url = new URL(name);
       if (!"http".equals(url.getProtocol())) {
 	logger.debug2("ignoring: " + url.toString());
+	return;
       }
     } catch (MalformedURLException ex) {
       logger.debug2("Bad URL: " + (name == null ? "null" : name));

@@ -134,7 +134,7 @@ public class HashSpeedTest extends LockssTestCase {
   private void crawlContent() {
     System.out.println("Crawling tree...");
     CrawlSpec spec = 
-      new SpiderCrawlSpec(SimulatedArchivalUnit.SIMULATED_URL_START, null);
+      new SpiderCrawlSpec(sau.getNewContentCrawlUrls(), null);
     Crawler crawler = new NewContentCrawler(sau, spec, new MockAuState());
     crawler.doCrawl();
   }

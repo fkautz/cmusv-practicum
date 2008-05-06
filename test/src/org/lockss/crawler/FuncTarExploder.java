@@ -315,7 +315,7 @@ public class FuncTarExploder extends LockssTestCase {
 
   private boolean crawlContent(String bad) {
     log.debug("Crawling tree..." + (bad == null ? "" : " fail at " + bad));
-    List urls = ListUtil.list(SimulatedArchivalUnit.SIMULATED_URL_START);
+    List urls = sau.getNewContentCrawlUrls();
     CrawlSpec spec =
       new SpiderCrawlSpec(urls,
 			  urls, // permissionUrls

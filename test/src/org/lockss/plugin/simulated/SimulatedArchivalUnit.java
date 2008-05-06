@@ -57,19 +57,19 @@ import org.lockss.state.*;
 public class SimulatedArchivalUnit extends BaseArchivalUnit {
   static final Logger log = Logger.getLogger("SAU");
 
-  public static final String SIMULATED_URL_STEM = "http://www.example.com";
+  private static final String SIMULATED_URL_STEM = "http://www.example.com";
 
   /**
    * This is the url which the Crawler should start at.
    */
-  public static final String SIMULATED_URL_START =
+  private static final String SIMULATED_URL_START =
     SIMULATED_URL_STEM + "/index.html";
 
   /**
    * This is the root of the url which the SimAU pretends to be.
    * It is replaced with the actual directory root.
    */
-  public static final String SIMULATED_URL_ROOT = "http://www.example.com";
+  private static final String SIMULATED_URL_ROOT = "http://www.example.com";
 
   private String fileRoot; //root directory for the generated content
   private SimulatedContentGenerator scgen;
@@ -237,6 +237,10 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
 
   public Collection getUrlStems() {
     return ListUtil.list(SIMULATED_URL_STEM);
+  }
+
+  public String getUrlRoot() {
+    return SIMULATED_URL_ROOT;
   }
 
   protected CrawlRule makeRules() {
