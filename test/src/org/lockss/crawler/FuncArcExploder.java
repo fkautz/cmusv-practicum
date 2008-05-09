@@ -89,6 +89,30 @@ public class FuncArcExploder extends LockssTestCase {
     "http://www.content.org/branch1/branch1/branch1/index.html",
     "http://www.content.org/branch1/branch1/index.html",
     "http://www.content.org/branch1/index.html",
+
+    "http://www.website.org/001file.bin",
+    "http://www.website.org/002file.bin",
+    "http://www.website.org/branch1/001file.bin",
+    "http://www.website.org/branch1/002file.bin",
+    "http://www.website.org/branch1/branch1/001file.bin",
+    "http://www.website.org/branch1/branch1/002file.bin",
+    "http://www.website.org/branch1/branch1/branch1/001file.bin",
+    "http://www.website.org/branch1/branch1/branch1/002file.bin",
+    "http://www.website.org/branch1/branch1/branch1/index.html",
+    "http://www.website.org/branch1/branch1/index.html",
+    "http://www.website.org/branch1/index.html",
+
+    "http://www.library.org/001file.bin",
+    "http://www.library.org/002file.bin",
+    "http://www.library.org/branch1/001file.bin",
+    "http://www.library.org/branch1/002file.bin",
+    "http://www.library.org/branch1/branch1/001file.bin",
+    "http://www.library.org/branch1/branch1/002file.bin",
+    "http://www.library.org/branch1/branch1/branch1/001file.bin",
+    "http://www.library.org/branch1/branch1/branch1/002file.bin",
+    "http://www.library.org/branch1/branch1/branch1/index.html",
+    "http://www.library.org/branch1/branch1/index.html",
+    "http://www.library.org/branch1/index.html",
   };
 
   static String[] url2 = {
@@ -229,7 +253,7 @@ public class FuncArcExploder extends LockssTestCase {
     // SimulatedContentGenerator is changed, this number may have to
     // change.  NB - because the ARC files are compressed,  their
     // size varies randomly by a small amount.
-    long expected = 2296;
+    long expected = 5613;
     long actual = AuUtil.getAuContentSize(sau, true);
     long error = expected - actual;
     long absError = (error < 0 ? -error : error);

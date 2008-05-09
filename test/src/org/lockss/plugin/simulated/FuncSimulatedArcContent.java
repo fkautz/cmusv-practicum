@@ -194,6 +194,7 @@ public class FuncSimulatedArcContent extends LockssTestCase {
       childL.add( ( (CachedUrlSetNode) setIt.next()).getUrl());
     }
 
+    // XXX assumpiton here that simulated content fits into a single arc.gz
     expectedA = new String[2];
     expectedA[0] = sau.getUrlRoot() + "/" + arcFileName;
     expectedA[1] = sau.getUrlRoot() + "/index.html";
