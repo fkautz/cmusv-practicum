@@ -178,7 +178,9 @@ public class ExplodedArchivalUnit extends BaseArchivalUnit {
     try {
       String stem = UrlUtil.getUrlPrefix(url);
       permissionPageUrls.add(url);
-      urlStems.add(stem);
+      if (urlStems.indexOf(stem) < 0) {
+	urlStems.add(stem);
+      }
     } catch (MalformedURLException ex) {
       logger.debug3("addUrlStemToAU(" + url + ") threw " + ex);
     }

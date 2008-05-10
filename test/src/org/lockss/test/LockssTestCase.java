@@ -1207,6 +1207,18 @@ public class LockssTestCase extends TestCase {
   }
 
   /**
+   * Asserts that two collections have all the same elements of the same
+   * cardinality; tries to give useful output if it fails
+   */
+  public static void assertSameElements(Object[] expected,
+					Collection actual) {
+    assertTrue("Expected "+expected+" but was "+actual,
+	       org.apache.commons.collections.
+	       CollectionUtils.isEqualCollection(ListUtil.fromArray(expected),
+						 actual));
+  }
+
+  /**
    * Asserts that the collection contains no duplicate elements
    */
   public static void assertNoDuplicates(Collection c) {

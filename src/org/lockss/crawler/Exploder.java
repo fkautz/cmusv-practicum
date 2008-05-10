@@ -149,6 +149,7 @@ public abstract class Exploder {
 		      explodedAUBaseUrl);
 	if (singleAU == null) {
 	  singleAU = createAu(ae, explodedAUBaseUrl);
+	  singleAU.addUrlStemToAU(explodedAUBaseUrl);
 	}
 	// Add this baseUrl to the stem set for the AU we're making
 	singleAU.addUrlStemToAU(baseUrl);
