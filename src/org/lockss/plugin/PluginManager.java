@@ -825,7 +825,7 @@ public class PluginManager
     return au;
   }
 
-  private void addHostAus(ArchivalUnit au) {
+  public void addHostAus(ArchivalUnit au) {
     try {
       Collection stems = au.getUrlStems();
       if (stems != null) {
