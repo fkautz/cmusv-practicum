@@ -148,7 +148,7 @@ class HashQueue {
       Request req = (Request)iter.next();
       try {
 	if (req.callback != null) {
-	  req.callback.hashingFinished(req.urlset, req.cookie,
+	  req.callback.hashingFinished(req.urlset, req.timeUsed, req.cookie,
 				       req.urlsetHasher, req.e);
 	}
       } catch (Exception e) {

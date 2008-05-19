@@ -55,8 +55,8 @@ public class BlockHasher extends GenericHasher {
   private int maxVersions = DEFAULT_HASH_MAX_VERSIONS;
   private boolean includeUrl = false;
 
-  MessageDigest[] initialDigests;
-  byte[][] initByteArrays;
+  protected MessageDigest[] initialDigests;
+  protected byte[][] initByteArrays;
   EventHandler cb;
 
   private HashBlock hblock;

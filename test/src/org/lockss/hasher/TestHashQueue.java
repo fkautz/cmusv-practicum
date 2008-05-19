@@ -189,6 +189,7 @@ public class TestHashQueue extends LockssTestCase {
     final List eList = new LinkedList();
     HashService.Callback cb = new HashService.Callback() {
 	public void hashingFinished(CachedUrlSet urlset,
+				    long timeUsed,
 				    Object cookie,
 				    CachedUrlSetHasher hasher,
 				    Exception e) {
@@ -238,6 +239,7 @@ public class TestHashQueue extends LockssTestCase {
     final List cookieList = new LinkedList();
     HashService.Callback cb = new HashService.Callback() {
 	public void hashingFinished(CachedUrlSet urlset,
+				    long timeUsed,
 				    Object cookie,
 				    CachedUrlSetHasher hasher,
 				    Exception e) {

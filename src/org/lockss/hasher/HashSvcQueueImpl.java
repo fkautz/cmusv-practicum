@@ -107,7 +107,7 @@ public class HashSvcQueueImpl
    * @param hasher   an instance of a <code>CachedUrlSetHasher</code>
    *                 representing a specific <code>CachedUrlSet</code>
    *                 and hash type
-   * @param deadline the time by which the callbeack must have been
+   * @param deadline the time by which the callback must have been
    *                 called.
    * @param callback the object whose <code>hashComplete()</code>
    *                 method will be called when hashing succeds

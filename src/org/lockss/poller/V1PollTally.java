@@ -448,6 +448,7 @@ class ReplayVoteCallback implements HashService.Callback {
      * @param e       the exception that caused the hash to fail.
      */
   public void hashingFinished(CachedUrlSet urlset,
+			      long timeUsed,
 			      Object cookie,
 			      CachedUrlSetHasher hasher,
 			      Exception e) {

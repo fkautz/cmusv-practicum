@@ -618,6 +618,7 @@ public abstract class V1Poll extends BasePoll {
      * @param e       the exception that caused the hash to fail.
      */
     public void hashingFinished(CachedUrlSet urlset,
+				long timeUsed,
 				Object cookie,
 				CachedUrlSetHasher hasher,
 				Exception e) {
@@ -656,6 +657,7 @@ public abstract class V1Poll extends BasePoll {
      * @param e       the exception that caused the hash to fail.
      */
     public void hashingFinished(CachedUrlSet urlset,
+				long timeUsed,
 				Object cookie,
 				CachedUrlSetHasher hasher,
 				Exception e) {
