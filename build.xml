@@ -1783,7 +1783,7 @@ Test results in ${test.results}
     <if>
      <not> <equals arg1="${xml.files}" arg2="" /> </not>
      <then>
-      <echo message="Loading xml config files"/>
+      <echo message="Validating xml config files"/>
       <java classname="ConfigDump" fork="true" failonerror="true" >
 	<classpath refid="test.run.classpath" />
         <sysproperty key="org.lockss.defaultLogLevel" value="${loglevel}"/>
