@@ -148,7 +148,7 @@ public class TestBaseCrawler extends LockssPermissionCheckerTestCase {
     assertTrue(BaseCrawler.isSupportedUrlProtocol("HTTP://www.example.com"));
     assertFalse(BaseCrawler.isSupportedUrlProtocol("ftp://www.example.com"));
     assertFalse(BaseCrawler.isSupportedUrlProtocol("gopher://www.example.com"));
-    assertFalse(BaseCrawler.isSupportedUrlProtocol("https://www.example.com"));
+    assertTrue(BaseCrawler.isSupportedUrlProtocol("https://www.example.com"));
   }
 
   public void testGetAu() {
