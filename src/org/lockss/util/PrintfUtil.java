@@ -102,7 +102,7 @@ public class PrintfUtil {
 
   public static class PrintfData {
     String m_format;
-    ArrayList m_arguments;
+    List<String> m_arguments;
 
     public PrintfData() {
       m_format = "";
@@ -128,7 +128,7 @@ public class PrintfUtil {
       return m_format;
     }
 
-    public Collection getArguments() {
+    public Collection<String> getArguments() {
       return m_arguments;
     }
 

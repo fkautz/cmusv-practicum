@@ -210,6 +210,16 @@ public class TestDefinableArchivalUnit extends LockssTestCase {
                  rule.match("http://www1example.com/"));
   }
 
+  public void testConvertRuleMissingOptionalParam()
+      throws LockssRegexpException {
+    configMap.putString("URL", "http://www.example.com/");
+    String rule1 = "1,\"%s\",URL";
+    String rule2 = "1,\"%s%d\",URL,FOO";
+
+    assertNotNull(cau.convertRule(rule1, false));
+    assertNull(cau.convertRule(rule2, false));
+  }
+
   public void testConvertRangeRule() throws LockssRegexpException {
     Vector vec = new Vector(2);
     String key = ConfigParamDescr.ISSUE_RANGE.getKey();
