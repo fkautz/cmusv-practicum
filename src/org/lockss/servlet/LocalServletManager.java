@@ -69,7 +69,7 @@ public class LocalServletManager extends BaseServletManager {
    * index page of the root context.  This is used to replace the UI home
    * with a servlet. */
   public static final String PARAM_REDIRECT_ROOT = PREFIX + "redirectRoot";
-  public static final String DEFAULT_REDIRECT_ROOT = null;
+  public static final String DEFAULT_REDIRECT_ROOT = "Home";
 
   static final String COMPRESSOR_PREFIX = PREFIX + "compressor.";
 
