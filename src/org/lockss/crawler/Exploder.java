@@ -129,6 +129,10 @@ public abstract class Exploder {
    */
   protected abstract void explodeUrl() throws CacheException;
 
+  public String getArchiveUrl() {
+    return archiveUrl;
+  }
+
   protected void storeEntry(ArchiveEntry ae) throws IOException {
     // We assume that all exploded content is organized into
     // AUs which each contain only URLs starting with the AUs
