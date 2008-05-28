@@ -120,16 +120,12 @@ public class PollSpec {
   }
 
   public PollSpec(V3LcapMessage msg) {
-    auId = msg.getArchivalId();
-    pluginVersion = msg.getPluginVersion();
-    if (msg.getTargetUrl() == null) {
-      url = "lockssau:";
-    } else {
-      url = msg.getTargetUrl();
-    }
+    this(msg.getArchivalId(),
+	 (msg.getTargetUrl() == null) ? "lockssau:" : msg.getTargetUrl(),
+	 null,
+	 null,
+	 Poll.V3_POLL);
     protocolVersion = msg.getProtocolVersion();
-    pollType = Poll.V3_POLL;
-    cus = getPluginManager().findCachedUrlSet(this);
   }
 
   /**
@@ -141,8 +137,8 @@ public class PollSpec {
     this.url = url;
     uprBound = upper;
     lwrBound = lower;
-    cus = getPluginManager().findCachedUrlSet(this);
     this.pollType = pollType;
+    cus = getPluginManager().findCachedUrlSet(this);
     this.protocolVersion = protocolVersionFromPollType(pollType);
   }
 
