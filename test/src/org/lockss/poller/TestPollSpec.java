@@ -155,7 +155,6 @@ public class TestPollSpec extends LockssTestCase {
                                           TimeBase.nowMs() + Constants.WEEK,
 					  id, tempDir, theDaemon);
     PollSpec ps = new PollSpec(msg);
-    log.info("ps2: " + ps);
 
     assertEquals(Poll.V3_PROTOCOL, ps.getProtocolVersion());
     assertEquals(auid, ps.getAuId());
