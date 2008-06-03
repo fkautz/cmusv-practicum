@@ -126,6 +126,7 @@ public class PollSpec {
 	 null,
 	 Poll.V3_POLL);
     protocolVersion = msg.getProtocolVersion();
+    pluginVersion = msg.getPluginVersion();
   }
 
   /**
@@ -251,8 +252,13 @@ public class PollSpec {
   }
 
   public String toString() {
-    return "[PS: " + Poll.POLL_NAME[pollType] + " auid=" + auId + ", url=" + url
-      + ", l=" + lwrBound + ", u=" + uprBound
-      + ", type=" + pollType + ", protocol=" + protocolVersion + "]";
+    return "[PS: " + Poll.POLL_NAME[pollType]
+      + " auid=" + auId
+      + ", url=" + url
+      + ", l=" + lwrBound
+      + ", u=" + uprBound
+      + ", type=" + pollType
+      + ", plugVer=" + getPluginVersion()
+      + ", protocol=" + protocolVersion + "]";
   }
 }
