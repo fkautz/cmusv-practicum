@@ -662,7 +662,7 @@ public class V3LcapMessage extends LcapMessage implements LockssSerializable {
     m_voteBlocks.addVoteBlock(vb);
   }
 
-  public VoteBlocksIterator getVoteBlockIterator() {
+  public VoteBlocksIterator getVoteBlockIterator() throws FileNotFoundException {
     if (m_voteBlocks == null) {
       return VoteBlocksIterator.EMPTY_ITERATOR;
     } else {
