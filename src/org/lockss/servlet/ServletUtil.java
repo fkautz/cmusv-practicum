@@ -336,16 +336,16 @@ public class ServletUtil {
   // This is a crock.  It's called from RemoteAPI, which has no servlet
   // instance and thus can't use LockssServlet.srvURL().
   public static String backupFileUrl(String hostname) {
-    ServletDescr backupServlet = LockssServlet.SERVLET_BATCH_AU_CONFIG;
-    int port = CurrentConfig.getIntParam(LocalServletManager.PARAM_PORT,
-					 LocalServletManager.DEFAULT_PORT);
+    ServletDescr backupServlet = AdminServletManager.SERVLET_BATCH_AU_CONFIG;
+    int port = CurrentConfig.getIntParam(AdminServletManager.PARAM_PORT,
+					 AdminServletManager.DEFAULT_PORT);
     StringBuffer sb = new StringBuffer();
     sb.append("http://");
     sb.append(hostname);
     sb.append(":");
     sb.append(port);
     sb.append("/");
-    sb.append(backupServlet.getName());
+    sb.append(backupServlet.getPath());
     sb.append("?");
     sb.append(BatchAuConfig.ACTION_TAG);
     sb.append("=");

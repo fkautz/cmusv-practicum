@@ -47,7 +47,7 @@ public class AdminIpAccess extends IpAccessControl {
   }
 
   protected String getParamPrefix() {
-    return ServletManager.IP_ACCESS_PREFIX;
+    return AdminServletManager.IP_ACCESS_PREFIX;
   }
 
   protected String getConfigFileName() {

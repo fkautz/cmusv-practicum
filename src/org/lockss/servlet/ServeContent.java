@@ -68,7 +68,7 @@ public class ServeContent extends LockssServlet {
   private long clen;
 
   private PluginManager pluginMgr;
-  private LocalServletManager srvltMgr;
+  private AdminServletManager srvltMgr;
 
   // If we can't resolve a DOI, here is where to send it
   private static final String DOI_LOOKUP_URL = "http://dx.doi.org/";
@@ -252,9 +252,9 @@ public class ServeContent extends LockssServlet {
     pluginMgr = getLockssDaemon().getPluginManager();
     try {
       srvltMgr =
-	(LocalServletManager) getLockssDaemon().getServletManager();
+	(AdminServletManager) getLockssDaemon().getServletManager();
     } catch (RuntimeException e) {
-      log.warning("Can't find LocalServletManager", e);
+      log.warning("Can't find AdminServletManager", e);
     }
   }
 

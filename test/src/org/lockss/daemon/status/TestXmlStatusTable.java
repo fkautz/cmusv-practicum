@@ -45,7 +45,7 @@ import org.w3c.dom.*;
 public class TestXmlStatusTable extends LockssTestCase {
 
   static ServletDescr srvDescr =
-    new ServletDescr(LockssServlet.class, "name");
+    new ServletDescr("test", LockssServlet.class, "name");
 
 
   // The expected value for this test is in statustest1.xml in this dir.

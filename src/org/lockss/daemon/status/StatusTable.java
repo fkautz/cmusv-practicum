@@ -504,7 +504,7 @@ public class StatusTable {
       sb.append("[StatusTable.SrvLink:");
       sb.append(value);
       sb.append(", ");
-      sb.append(srvDescr.getName());
+      sb.append(srvDescr.getPath());
       sb.append(args);
       sb.append("]");
       return sb.toString();

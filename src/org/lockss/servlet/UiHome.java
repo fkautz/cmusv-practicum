@@ -76,7 +76,7 @@ public class UiHome extends LockssServlet {
 
   protected Iterator getDescriptors() {
     // Iterate over the servlet descriptors...
-    Iterator iterateOverDescr = new ObjectArrayIterator(servletDescrs);
+    Iterator iterateOverDescr = new ObjectArrayIterator(getServletDescrs());
 
     // ...select those that appear in UiHome...
     Predicate selectUiHome = new Predicate() {

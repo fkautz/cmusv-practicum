@@ -35,7 +35,7 @@ public class TestStatusTable extends LockssTestCase {
   StatusTable table;
 
   static ServletDescr srvDescr =
-    new ServletDescr(LockssServlet.class, "name");
+    new ServletDescr("name", LockssServlet.class, "name");
   static Properties args = new Properties();
   static {
     args.setProperty("foo", "bar");
@@ -336,7 +336,7 @@ public class TestStatusTable extends LockssTestCase {
     assertTrue(lnk.equals(new StatusTable.SrvLink("C", srvDescr, args)));
     assertFalse(lnk.equals(new StatusTable.SrvLink("D", srvDescr, args)));
     assertFalse(lnk.equals(new StatusTable.SrvLink("C", srvDescr, null)));
-    assertFalse(lnk.equals(new StatusTable.SrvLink("C", new ServletDescr(LockssServlet.class, "bar"), args)));
+    assertFalse(lnk.equals(new StatusTable.SrvLink("C", new ServletDescr("test", LockssServlet.class, "bar"), args)));
     assertFalse(lnk.equals(new StatusTable.SrvLink("C", srvDescr,
 						   new Properties())));
   }
