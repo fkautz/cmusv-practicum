@@ -149,7 +149,7 @@ public interface CachedUrl extends CachedUrlSetNode {
    * perhaps by inserting Javascript to do it.
    * @return {@link Reader}
    */
-  public Reader openWithUrlRewriting();
+  public InputStream openWithUrlRewriting();
 
   /**
    * Get the properties attached to the url in the cache, if any.

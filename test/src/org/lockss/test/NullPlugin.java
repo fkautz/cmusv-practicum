@@ -41,6 +41,7 @@ import org.lockss.config.Configuration;
 import org.lockss.crawler.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
+import org.lockss.rewriter.*;
 import org.lockss.state.*;
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
@@ -187,7 +188,7 @@ public class NullPlugin {
       throw new UnsupportedOperationException("Not implemented");
     }
 
-    public Reader openWithUrlRewriting() {
+    public InputStream openWithUrlRewriting() {
       return null;
     }
 
@@ -478,6 +479,10 @@ public class NullPlugin {
     }
 
     public FilterFactory getFilterFactory(String mimeType) {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
+    public LinkRewriterFactory getLinkRewriterFactory(String mimeType) {
       throw new UnsupportedOperationException("Not implemented");
     }
 

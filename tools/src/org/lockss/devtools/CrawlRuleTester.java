@@ -500,7 +500,7 @@ public class CrawlRuleTester extends Thread {
       return reader;
     }
 
-    public Reader openWithUrlRewriting() {
+    public InputStream openWithUrlRewriting() {
       return null;
     }
 

@@ -34,6 +34,7 @@ package org.lockss.plugin.definable;
 
 import org.lockss.plugin.*;
 import org.lockss.plugin.base.*;
+import org.lockss.rewriter.*;
 import org.lockss.config.Configuration;
 import org.lockss.app.*;
 import org.lockss.daemon.*;
@@ -248,6 +249,16 @@ public class DefinablePlugin extends BasePlugin {
 	    mti.setFetchRateLimiter(new RateLimiter(rate));
 	  }
 	}
+      } else if (key.endsWith(DefinableArchivalUnit.SUFFIX_LINK_REWRITER_FACTORY)) {
+	String mime =
+	  stripSuffix(key, DefinableArchivalUnit.SUFFIX_LINK_REWRITER_FACTORY);
+	String factName = (String)val;
+	log.debug(mime + " link rewriter: " + factName);
+	MimeTypeInfo.Mutable mti = mimeMap.modifyMimeTypeInfo(mime);
+	LinkRewriterFactory fact =
+	  (LinkRewriterFactory)newAuxClass(factName,
+					   LinkRewriterFactory.class);
+	mti.setLinkRewriterFactory(fact);
       }
     }
   }
