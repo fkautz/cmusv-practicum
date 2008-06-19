@@ -59,6 +59,8 @@ public class WrapperUtil {
 			   new LinkExtractorWrapper.Factory());
     registerWrapperFactory(org.lockss.extractor.LinkExtractorFactory.class,
 			   new LinkExtractorFactoryWrapper.Factory());
+    registerWrapperFactory(org.lockss.rewriter.LinkRewriterFactory.class,
+			   new LinkRewriterFactoryWrapper.Factory());
     registerWrapperFactory(LoginPageChecker.class,
 			   new LoginPageCheckerWrapper.Factory());
     registerWrapperFactory(PermissionCheckerFactory.class,
