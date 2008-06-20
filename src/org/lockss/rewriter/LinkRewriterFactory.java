@@ -45,10 +45,12 @@ public interface LinkRewriterFactory {
    * @param au the ArchivalUnit the stream comes from
    * @param in the InputStream to be rewritten
    * @param encoding the character encoding to use when reading, or null
+   * @param url the url to which in is attached
    */
   public InputStream createLinkRewriter(String mimeType,
 					ArchivalUnit au,
 					InputStream in,
-					String encoding)
+					String encoding,
+					String url)
       throws PluginException;
 }

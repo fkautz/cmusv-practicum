@@ -203,7 +203,7 @@ public class BaseCachedUrl implements CachedUrl {
 	// XXX how do I find the encoding?
 	String encoding = null; // XXX
 	rewrittenStream =
-	  lrf.createLinkRewriter(ctype, au, originalStream, encoding);
+	  lrf.createLinkRewriter(ctype, au, originalStream, encoding, url);
       } catch (PluginException e) {
 	logger.error("Can't create link rewriter " + e.toString());
       }

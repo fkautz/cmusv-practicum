@@ -53,10 +53,11 @@ public class LinkRewriterFactoryWrapper
     public InputStream createLinkRewriter(String mimeType,
 					  ArchivalUnit au,
 					  InputStream is,
-					  String encoding)
+					  String encoding,
+					  String url)
       throws PluginException {
     try {
-	return inst.createLinkRewriter(mimeType, au, is, encoding);
+	return inst.createLinkRewriter(mimeType, au, is, encoding, url);
     } catch (LinkageError e) {
       throw new PluginException.LinkageError(e);
     }

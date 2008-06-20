@@ -50,7 +50,8 @@ public class MockLinkRewriterFactory implements LinkRewriterFactory {
   public InputStream createLinkRewriter(String mimeType,
 					ArchivalUnit au,
 					InputStream in,
-					String encoding)
+					String encoding,
+					String url)
     throws PluginException {
     if (ex != null)
       throw ex;
