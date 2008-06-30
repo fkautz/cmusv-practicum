@@ -578,8 +578,8 @@ public class TestConfigManager extends LockssTestCase {
   }
 
   public void testModifyCacheConfigFile() throws Exception {
-    // Use some config file; for instance the ICP server config file
-    final String FILE = ConfigManager.CONFIG_FILE_ICP_SERVER;
+    // Arbitrary config file
+    final String FILE = ConfigManager.CONFIG_FILE_AU_CONFIG;
 
     String tmpdir = getTempDir().toString();
     ConfigurationUtil.setFromArgs(ConfigManager.PARAM_PLATFORM_DISK_SPACE_LIST,
