@@ -70,18 +70,19 @@ public class ProxyIpAccess extends IpAccessControl {
     return "Proxy IP Access Control";
   }
 
-  protected void saveChanges() throws IOException {
-    boolean auditEnable = CurrentConfig.getBooleanParam(
-        ProxyAndContent.PARAM_AUDIT_ENABLE, ProxyAndContent.DEFAULT_AUDIT_ENABLE);
-    int auditPort = CurrentConfig.getIntParam(ProxyAndContent.PARAM_AUDIT_PORT, 0);
-    boolean icpEnable = getLockssDaemon().getIcpManager().isIcpServerRunning();
-    int icpPort = getLockssDaemon().getIcpManager().getCurrentPort();
-    ProxyAndContent.saveAuditAndIcp(configMgr,
-				    auditEnable,
-				    Integer.toString(auditPort),
-				    icpEnable,
-				    Integer.toString(icpPort));
-    super.saveChanges();
-  }
+  // XXX What was the purpose of this?
+//   protected void saveChanges() throws IOException {
+//     boolean auditEnable = CurrentConfig.getBooleanParam(
+//         ProxyAndContent.PARAM_AUDIT_ENABLE, ProxyAndContent.DEFAULT_AUDIT_ENABLE);
+//     int auditPort = CurrentConfig.getIntParam(ProxyAndContent.PARAM_AUDIT_PORT, 0);
+//     boolean icpEnable = getLockssDaemon().getIcpManager().isIcpServerRunning();
+//     int icpPort = getLockssDaemon().getIcpManager().getCurrentPort();
+//     ProxyAndContent.saveAuditAndIcp(configMgr,
+// 				    auditEnable,
+// 				    Integer.toString(auditPort),
+// 				    icpEnable,
+// 				    Integer.toString(icpPort));
+//     super.saveChanges();
+//   }
 
 }
