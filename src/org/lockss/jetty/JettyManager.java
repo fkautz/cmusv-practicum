@@ -136,6 +136,7 @@ public abstract class JettyManager
     try {
       if (resourceMgr != null &&
 	  !resourceMgr.reserveTcpPort(port, serverName)) {
+	log.warning(serverName + " not started; port " + port + " is in use");
 	return false;
       }
       ownedPort = port;
