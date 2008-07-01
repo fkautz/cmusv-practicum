@@ -186,8 +186,7 @@ public class TestPermissionMap extends LockssTestCase {
 
   String getPermissionUrl(PermissionMap map, String url)
       throws java.net.MalformedURLException {
-    PermissionRecord rec = map.get(url);
-    return rec.getUrl();
+    return map.getPermissionUrl(url);
   }
 
   public void testGetPermissionUrl() throws Exception {
