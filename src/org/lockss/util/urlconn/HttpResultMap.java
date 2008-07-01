@@ -95,6 +95,8 @@ public class HttpResultMap implements CacheResultMap {
     // and PortUnreachableException
     storeMapEntry(SocketException.class,
  		  CacheException.RetryableNetworkException_3_30S.class);
+    storeMapEntry(LockssUrlConnection.ConnectionTimeoutException.class,
+ 		  CacheException.RetryableNetworkException_3_30S.class);
     // I don't think these can happen
     storeMapEntry(ProtocolException.class,
  		  CacheException.RetryableNetworkException_3_30S.class);

@@ -37,6 +37,7 @@ import java.util.*;
 
 import org.lockss.test.*;
 import org.lockss.plugin.*;
+import org.lockss.util.urlconn.*;
 
 public class TestHttpResultMap extends LockssTestCase {
   private HttpResultMap resultMap = null;
@@ -144,6 +145,13 @@ public class TestHttpResultMap extends LockssTestCase {
 				       "foo");
     assertTrue(exception instanceof
 	       CacheException.RetryableNetworkException_2_30S);
+
+    exception = resultMap.mapException(null,
+				       new LockssUrlConnection.ConnectionTimeoutException("msg"),
+				       "foo");
+    assertTrue(exception instanceof
+	       CacheException.RetryableNetworkException_3_30S);
+
   }
 
   public void testInitExceptionTable() {

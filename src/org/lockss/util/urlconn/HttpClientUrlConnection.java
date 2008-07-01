@@ -191,7 +191,7 @@ public class HttpClientUrlConnection extends BaseLockssUrlConnection {
       // Thrown by HttpClient if the connect timeout elapses before
       // socket.connect() returns.
       // Turn this into a non HttpClient-specific exception
-      throw new ConnectionTimeoutException(e);
+      throw new ConnectionTimeoutException("Host did not respond", e);
       // XXX If socket.connect() returns an error because the underlying
       // socket connect times out, the behavior is platform dependent.  On
       // Linux, java.net.ConnectException is thrown (same as for connection
