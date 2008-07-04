@@ -216,6 +216,10 @@ public class TestHtmlNodeFilters extends LockssTestCase {
     "foo<a href=\"http://www.example.com/index.html\">bar</a>baz";
   private static final String origUrl = "http://www.example.com/index.html";
   private static final String finalUrl = "http://foo.lockss.org/index.html";
+  private static final  String[] attrs = {
+    "href",
+    "src",
+  };
 
   public void testLinkRegexYesXformsNoMatch() throws Exception {
     NodeList nl = parse(page);
@@ -234,7 +238,8 @@ public class TestHtmlNodeFilters extends LockssTestCase {
     NodeFilter filt = HtmlNodeFilters.linkRegexYesXforms(linkRegex,
 							 ignoreCase,
 							 rewriteRegex,
-							 rewriteTarget);
+							 rewriteTarget,
+							 attrs);
     assertEquals("Should be empty: " + nl,
 		 0, nl.extractAllNodesThatMatch(filt).size());
     Node node = nl.elementAt(1);
@@ -258,13 +263,23 @@ public class TestHtmlNodeFilters extends LockssTestCase {
     String[] rewriteTarget = {
       "http://foo.lockss.org/",
     };
+    log.debug3("testLinkRegexYesXformsMatch before " + nl.toHtml());
     NodeFilter filt = HtmlNodeFilters.linkRegexYesXforms(linkRegex,
 							 ignoreCase,
 							 rewriteRegex,
-							 rewriteTarget);
+							 rewriteTarget,
+							 attrs);
     assertEquals("Should be empty: " + nl,
 		 0, nl.extractAllNodesThatMatch(filt).size());
-    Node node = nl.elementAt(1);
+    // XXX this is wierd - the NodeList has been rewritten
+    // XXX but node.getLink() returns the old value.
+    log.debug3("testLinkRegexYesXformsMatch after " + nl.toHtml());
+    log.debug3("Node is " + nl.elementAt(1).toHtml());
+    log.debug3("Link is " + ((LinkTag)nl.elementAt(1)).getLink());
+    NodeList nl2 = parse(nl.toHtml());
+    Node node = nl2.elementAt(1);
+    log.debug3("Node is " + node.toHtml());
+    log.debug3("Link is " + ((LinkTag)node).getLink());
     assertNotNull(node);
     assertTrue(""+node.getClass(),
 	       node instanceof org.htmlparser.tags.LinkTag);
@@ -288,7 +303,8 @@ public class TestHtmlNodeFilters extends LockssTestCase {
     NodeFilter filt = HtmlNodeFilters.linkRegexNoXforms(linkRegex,
 							ignoreCase,
 							rewriteRegex,
-							rewriteTarget);
+							rewriteTarget,
+							attrs);
     assertEquals("Should be empty: " + nl,
 		 0, nl.extractAllNodesThatMatch(filt).size());
     Node node = nl.elementAt(1);
@@ -315,10 +331,19 @@ public class TestHtmlNodeFilters extends LockssTestCase {
     NodeFilter filt = HtmlNodeFilters.linkRegexNoXforms(linkRegex,
 							ignoreCase,
 							rewriteRegex,
-							rewriteTarget);
+							rewriteTarget,
+							attrs);
     assertEquals("Should be empty: " + nl,
 		 0, nl.extractAllNodesThatMatch(filt).size());
-    Node node = nl.elementAt(1);
+    // XXX this is wierd - the NodeList has been rewritten
+    // XXX but node.getLink() returns the old value.
+    log.debug3("testLinkRegexYesXformsMatch after " + nl.toHtml());
+    log.debug3("Node is " + nl.elementAt(1).toHtml());
+    log.debug3("Link is " + ((LinkTag)nl.elementAt(1)).getLink());
+    NodeList nl2 = parse(nl.toHtml());
+    Node node = nl2.elementAt(1);
+    log.debug3("Node is " + node.toHtml());
+    log.debug3("Link is " + ((LinkTag)node).getLink());
     assertNotNull(node);
     assertTrue(""+node.getClass(),
 	       node instanceof org.htmlparser.tags.LinkTag);
