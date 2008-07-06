@@ -189,7 +189,11 @@ public class NullPlugin {
     }
 
     public InputStream openWithUrlRewriting() {
-      return null;
+      return getUnfilteredInputStream();
+    }
+
+    public Reader openForReadingWithRewriting() {
+      return openForReading();
     }
 
     public long getContentSize() {

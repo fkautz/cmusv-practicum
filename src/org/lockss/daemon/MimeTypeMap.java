@@ -46,7 +46,8 @@ public class MimeTypeMap {
   static {
     HTML.setLinkExtractorFactory(new GoslingHtmlLinkExtractor.Factory());
     // XXX
-    // HTML.setLinkRewriterFactory(new JavascriptHtmlLinkRewriter.Factory());
+    // HTML.setLinkRewriterFactory(new JavascriptHtmlLinkRewriterFactory());
+    HTML.setLinkRewriterFactory(new NodeFilterHtmlLinkRewriterFactory());
     DEFAULT.putMimeTypeInfo("text/html", HTML);
     CSS.setLinkExtractorFactory(new CssLinkExtractor.Factory());
     // XXX

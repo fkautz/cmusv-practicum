@@ -144,12 +144,20 @@ public interface CachedUrl extends CachedUrlSetNode {
   public Reader openForReading();
 
   /**
-   * Return a reader on this CachedUrl that
+   * Return an InputStream on this CachedUrl that
+   * performs appropriate URL re-writing,
+   * perhaps by inserting Javascript to do it.
+   * @return {@link InputStream}
+   */
+  public InputStream openWithUrlRewriting();
+
+  /**
+   * Return a Reader on this CachedUrl that
    * performs appropriate URL re-writing,
    * perhaps by inserting Javascript to do it.
    * @return {@link Reader}
    */
-  public InputStream openWithUrlRewriting();
+  public Reader openForReadingWithRewriting();
 
   /**
    * Get the properties attached to the url in the cache, if any.

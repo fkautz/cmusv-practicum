@@ -156,8 +156,11 @@ public class MockCachedUrl implements CachedUrl {
   }
 
   public InputStream openWithUrlRewriting() {
-    // XXX needs to be able to provide rewriting
-    return null;
+    return getUnfilteredInputStream();
+  }
+
+  public Reader openForReadingWithRewriting() {
+    return openForReading();
   }
 
   public boolean hasContent() {

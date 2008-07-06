@@ -43,6 +43,7 @@ import org.lockss.plugin.wrapper.*;
 import org.lockss.plugin.base.*;
 import org.lockss.test.*;
 import org.lockss.extractor.*;
+import org.lockss.rewriter.*;
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
 
@@ -79,7 +80,9 @@ public class TestDefinablePlugin extends LockssTestCase {
     mti = definablePlugin.getMimeTypeInfo("text/html");
     assertTrue(mti.getLinkExtractorFactory()
 	       instanceof GoslingHtmlLinkExtractor.Factory);
-    assertNull(mti.getLinkRewriterFactory()); // XXX 
+    assertTrue(""+mti.getLinkRewriterFactory().getClass(),
+	       mti.getLinkRewriterFactory() instanceof
+	       NodeFilterHtmlLinkRewriterFactory);
     mti = definablePlugin.getMimeTypeInfo("text/css");
     assertTrue(mti.getLinkExtractorFactory()
 	       instanceof CssLinkExtractor.Factory);
@@ -130,14 +133,18 @@ public class TestDefinablePlugin extends LockssTestCase {
     mti = p2.getMimeTypeInfo("text/html");
     assertTrue(mti.getLinkExtractorFactory()
 	       instanceof GoslingHtmlLinkExtractor.Factory);
-    assertNull(mti.getLinkRewriterFactory()); // XXX
+    assertTrue(""+mti.getLinkRewriterFactory().getClass(),
+	       mti.getLinkRewriterFactory() instanceof
+	       NodeFilterHtmlLinkRewriterFactory);
     mti = p2.getMimeTypeInfo("text/css");
     assertTrue(mti.getLinkExtractorFactory()
 	       instanceof CssLinkExtractor.Factory);
+    assertNull(mti.getLinkRewriterFactory()); // XXX 
 
     mti = p2.getMimeTypeInfo("application/pdf");
     assertNull(mti.getFilterFactory());
     assertNull(mti.getFetchRateLimiter());
+    assertNull(mti.getLinkRewriterFactory()); // XXX 
   }
 
   public void testInitMimeMap() {
