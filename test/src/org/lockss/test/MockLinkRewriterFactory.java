@@ -58,6 +58,17 @@ public class MockLinkRewriterFactory implements LinkRewriterFactory {
     return is;
   }
 
+  public Reader createLinkRewriterReader(String mimeType,
+					ArchivalUnit au,
+					Reader in,
+					String encoding,
+					String url)
+    throws PluginException {
+    if (ex != null)
+      throw ex;
+    return new InputStreamReader(is);
+  }
+
   public void setException(PluginException e) {
     ex = e;
   }
