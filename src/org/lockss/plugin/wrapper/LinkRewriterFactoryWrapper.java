@@ -50,14 +50,27 @@ public class LinkRewriterFactoryWrapper
     return inst;
   }
 
-    public InputStream createLinkRewriter(String mimeType,
-					  ArchivalUnit au,
-					  InputStream is,
-					  String encoding,
-					  String url)
+  public InputStream createLinkRewriter(String mimeType,
+					ArchivalUnit au,
+					InputStream is,
+					String encoding,
+					String url)
       throws PluginException {
     try {
-	return inst.createLinkRewriter(mimeType, au, is, encoding, url);
+      return inst.createLinkRewriter(mimeType, au, is, encoding, url);
+    } catch (LinkageError e) {
+      throw new PluginException.LinkageError(e);
+    }
+  }
+
+  public Reader createLinkRewriterReader(String mimeType,
+					 ArchivalUnit au,
+					 Reader is,
+					 String encoding,
+					 String url)
+      throws PluginException {
+    try {
+      return inst.createLinkRewriterReader(mimeType, au, is, encoding, url);
     } catch (LinkageError e) {
       throw new PluginException.LinkageError(e);
     }

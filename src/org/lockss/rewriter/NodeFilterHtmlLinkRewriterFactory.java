@@ -40,6 +40,8 @@ import org.lockss.util.*;
 import org.lockss.plugin.*;
 import org.lockss.filter.*;
 import org.lockss.filter.html.*;
+import org.lockss.config.*;
+import org.lockss.servlet.*;
 import org.htmlparser.*;
 import org.htmlparser.tags.*;
 import org.htmlparser.filters.*;
@@ -65,6 +67,17 @@ public class NodeFilterHtmlLinkRewriterFactory implements LinkRewriterFactory {
     "action",
   };
 
+  public Reader createLinkRewriterReader(String mimeType,
+					 ArchivalUnit au,
+					 Reader in,
+					 String encoding,
+					 String url)
+      throws PluginException {
+    InputStream inStream = new ReaderInputStream(in);
+    return new InputStreamReader(createLinkRewriter(mimeType, au,
+						    inStream, encoding, url));
+  }
+
   public InputStream createLinkRewriter(String mimeType,
 					ArchivalUnit au,
 					InputStream in,
@@ -73,7 +86,12 @@ public class NodeFilterHtmlLinkRewriterFactory implements LinkRewriterFactory {
       throws PluginException {
     if ("text/html".equalsIgnoreCase(mimeType)) {
       logger.debug("Rewriting " + url + " in AU " + au);
-      int port = 8080; // XXX get from configuration
+      int port = 0;
+      try {
+	  port = CurrentConfig.getIntParam(ContentServletManager.PARAM_PORT);
+      } catch (org.lockss.config.Configuration.InvalidParam ex) {
+	  throw new PluginException("No port available: " + ex);
+      }
       String targetStem = "http://" + PlatformUtil.getLocalHostname() + ":" +
 	port + "/ServeContent?url=";
       Collection urlStems = au.getUrlStems();
