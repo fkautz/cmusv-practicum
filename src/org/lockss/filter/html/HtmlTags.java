@@ -80,7 +80,7 @@ public class HtmlTags {
   }
 
   /**
-   * An IFRAME tag.  Registered with PrototypicalNodeFactory to cause iframe
+   * A NOSCRIPT tag.  Registered with PrototypicalNodeFactory to cause iframe
    * to be a CompositeTag.  See code samples in org.htmlparser.tags.
    * @see HtmlFilterInputStream#makeParser()
    */
