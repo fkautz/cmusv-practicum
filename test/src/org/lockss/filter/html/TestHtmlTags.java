@@ -59,4 +59,20 @@ public class TestHtmlTags extends LockssTestCase {
     assertTrue(node instanceof HtmlTags.Iframe);
     assertEquals(1, nl.size());
   }
+
+  // Ensure <noscript>...</noscript> gets parse as an HtmlTags.Noscript composite
+  // tag, not as the default sequence of TagNodes
+  public void testNoscriptTag() throws IOException {
+    String in = "<noscript><i>iii</i></noscript>";
+    MockHtmlTransform xform =
+      new MockHtmlTransform(ListUtil.list(new NodeList()));
+    InputStream ins =
+      new HtmlFilterInputStream(new StringInputStream(in), xform);
+    assertInputStreamMatchesString("", ins);
+    NodeList nl = xform.getArg(0);
+    Node node = nl.elementAt(0);
+    assertTrue(node instanceof HtmlTags.Noscript);
+    assertEquals(1, nl.size());
+  }
+
 }

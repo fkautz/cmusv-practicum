@@ -151,6 +151,7 @@ public class HtmlFilterInputStream extends InputStream {
 
     PrototypicalNodeFactory factory = new PrototypicalNodeFactory();
     factory.registerTag(new HtmlTags.Iframe());
+    factory.registerTag(new HtmlTags.Noscript());
     parser.setNodeFactory(factory);
     return parser;
   }
