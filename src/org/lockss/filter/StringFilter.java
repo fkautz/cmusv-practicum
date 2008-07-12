@@ -47,19 +47,19 @@ public class StringFilter extends Reader {
     Configuration.PREFIX + "filter.buffer_capacity";
 
   private static Logger logger = Logger.getLogger("StringFilter");
-  private boolean streamDone = false;
-
-  private CharRing charBuffer = null;
-  private int ringSize;
-  private Reader reader;
-  private String str;
-  private String replaceStr = null;
-  private int strlen;
   private int replaceLen;
-  private boolean ignoreCase = false;
   private int toReplace = 0;
-  private boolean isClosed = false;
-  private boolean isTrace = logger.isDebug3();
+
+  protected boolean streamDone = false;
+  protected CharRing charBuffer = null;
+  protected int ringSize;
+  protected Reader reader;
+  protected String str;
+  protected String replaceStr = null;
+  protected int strlen;
+  protected boolean ignoreCase = false;
+  protected boolean isClosed = false;
+  protected boolean isTrace = logger.isDebug3();
 
   public StringFilter(Reader reader, String str) {
     this(reader, -1, str, null);

@@ -40,7 +40,7 @@ import java.util.*;
 import java.io.*;
 
 public class TestNodeFilterHtmlLinkRewriterFactory extends LockssTestCase {
-  static Logger log = Logger.getLogger("FuncArcExploder");
+  static Logger log = Logger.getLogger("TestNodeFilterHtmlLinkRewriterFactory");
 
   private MockArchivalUnit au;
   private NodeFilterHtmlLinkRewriterFactory nfhlrf;
