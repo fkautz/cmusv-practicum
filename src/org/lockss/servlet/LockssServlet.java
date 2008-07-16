@@ -331,7 +331,7 @@ public abstract class LockssServlet extends HttpServlet
   // behind NAT).
   String getLcapIPAddr() {
     String ip = CurrentConfig.getParam(PARAM_LOCAL_IP);
-    if (ip.length() <= 0)  {
+    if (ip == null || ip.length() <= 0)  {
       return getLocalIPAddr();
     }
     return ip;
