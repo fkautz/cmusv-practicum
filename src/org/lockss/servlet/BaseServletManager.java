@@ -186,20 +186,22 @@ public abstract class BaseServletManager
       _403Msg = config.get(prefix + SUFFIX_403_MSG, mi.default403Msg);
       enableDebugUser = config.getBoolean(prefix + SUFFIX_ENABLE_DEBUG_USER,
 					  mi.defaultEnableDebugUser);
+    }
+    // Access control prefix not nec. related to prefix, don't nest inside
+    // if (changedKeys.contains(prefix))
 
-      String accessPrefix = mi.accessPrefix;
-      if (mi.accessPrefix == null) {
-	accessPrefix = prefix + SUFFIX_IP_ACCESS_PREFIX;
-      }
-      if (changedKeys.contains(accessPrefix)) {
-	includeIps = config.get(accessPrefix + SUFFIX_IP_INCLUDE, "");
-	excludeIps = config.get(accessPrefix + SUFFIX_IP_EXCLUDE, "");
-	logForbidden = config.getBoolean(accessPrefix + SUFFIX_LOG_FORBIDDEN,
-					 mi.defaultLogForbidden);
-	log.debug("Installing new ip filter: incl: " + includeIps +
-		  ", excl: " + excludeIps);
-	setIpFilters();
-      }
+    String accessPrefix = mi.accessPrefix;
+    if (mi.accessPrefix == null) {
+      accessPrefix = prefix + SUFFIX_IP_ACCESS_PREFIX;
+    }
+    if (changedKeys.contains(accessPrefix)) {
+      includeIps = config.get(accessPrefix + SUFFIX_IP_INCLUDE, "");
+      excludeIps = config.get(accessPrefix + SUFFIX_IP_EXCLUDE, "");
+      logForbidden = config.getBoolean(accessPrefix + SUFFIX_LOG_FORBIDDEN,
+				       mi.defaultLogForbidden);
+      log.debug("Installing new ip filter: incl: " + includeIps +
+		", excl: " + excludeIps);
+      setIpFilters();
     }
   }
 
