@@ -66,7 +66,7 @@ public class Cron
   private Cron.State state;
   private Collection tasks = new ArrayList();
   private boolean enabled = false;
-  private long interval;
+  private long interval = DEFAULT_SLEEP;
   private TimerQueue.Request req;
 
   public void startService() {
