@@ -257,7 +257,8 @@ public class ParticipantUserData implements LockssSerializable {
    * Return the vote block iterator for this peer.
    * @return the vote block iterator for this peer.
    */
-  public VoteBlocksIterator getVoteBlockIterator() throws FileNotFoundException {
+  public synchronized VoteBlocksIterator getVoteBlockIterator()
+      throws FileNotFoundException {
     if (voteBlockIterator == null && voteBlocks != null) {
       voteBlockIterator = voteBlocks.iterator();
     }
@@ -436,6 +437,10 @@ public class ParticipantUserData implements LockssSerializable {
     messageDir = null;
     nominees = null;
     voteBlocks = null;
+    VoteBlocksIterator iter = voteBlockIterator;
+    if (iter != null) {
+      iter.release();
+    }
     voteBlockIterator = null;
 
     psmInterp = null;

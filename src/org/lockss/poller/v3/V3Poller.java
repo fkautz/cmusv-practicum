@@ -1841,10 +1841,7 @@ public class V3Poller extends BasePoll {
 	  ud.setStatus(peerStatus);
 	}
         // Release used resources.
-        VoteBlocks vb = ud.getVoteBlocks();
-        if (vb != null) {
-          vb.release();
-        }
+	ud.release();
         serializer.removePollerUserData(id);
         theParticipants.remove(id);
 	synchronized (exParticipants) {

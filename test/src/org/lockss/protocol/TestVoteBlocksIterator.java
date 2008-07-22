@@ -32,54 +32,25 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.protocol;
 
-import java.util.*;
 import java.io.*;
-import org.lockss.util.*;
+import java.util.*;
 
-/**
- * Provide an Iterator with a <tt>peek</tt> method.
- */
-public interface VoteBlocksIterator extends LockssSerializable {
-  
-  /** An empty, immutable VoteBlock iterator.  Calling next() throws
-   * NoSuchElementException.
-   */
-  public static final VoteBlocksIterator EMPTY_ITERATOR =
-    new VoteBlocksIterator() {
-      public boolean hasNext() { return false; }
-      public VoteBlock next() { throw new NoSuchElementException(); }
-      public VoteBlock peek() { return null; }
-      public void release() { }
-    };
+import org.lockss.test.LockssTestCase;
 
-  /**
-   * Return true if the iteration has more VoteBlock objects.
-   *  
-   * @return true if the iteration has more elements.
-   */
-  public boolean hasNext() throws IOException;
-  
-  /**
-   * Returns the next VoteBlock in the iteration.
-   * 
-   * @return The next VoteBlock in the iteration
-   * VoteBlocks
-   * @throws IOException
-   * @throws NoSuchElementException
-   */
-  public VoteBlock next() throws IOException;
-  
-  /**
-   * Returns the VoteBlock that next() would return, or null if next()
-   * would throw NoSuchElementException.  Does not advance the iterator
-   * cursor forward.
-   * 
-   * @return The next VoteBlock in the iteration, or null if no more
-   * VoteBlocks.
-   */
-  public VoteBlock peek() throws IOException;
 
-  /** Release any resources held by the iterator */
-  public void release();
+public class TestVoteBlocksIterator extends LockssTestCase {
 
+  public void testEmpty() throws Exception {
+    VoteBlocksIterator iter = VoteBlocksIterator.EMPTY_ITERATOR;
+    assertFalse(iter.hasNext());
+    assertNull(iter.peek());
+
+    try {
+      iter.next();
+      fail("EMPTY_ITERATOR.next() should throw NoSuchElementException.");
+    } catch (NoSuchElementException e) {
+    }
+
+    iter.release();
+  }    
 }
