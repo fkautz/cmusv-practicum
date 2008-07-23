@@ -34,6 +34,7 @@ package org.lockss.config;
 
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
+import org.lockss.servlet.ServletUtil;
 
 /** Miscellaneous config actions.  Convenient for auxilliary components
  * that don't currently have the ability to register themselves.
@@ -48,6 +49,7 @@ public class MiscConfig {
 	  HttpClientUrlConnection.setConfig(config, oldConfig, diffs);
 	  UrlUtil.setConfig(config, oldConfig, diffs);
 	  PluginUtil.setConfig(config, oldConfig, diffs);
+	  ServletUtil.setConfig(config, oldConfig, diffs);
 	}
       };
   }
