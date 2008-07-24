@@ -109,7 +109,7 @@ public class NodeFilterHtmlLinkRewriterFactory implements LinkRewriterFactory {
 	if (defUrlStem == null) {
 	  defUrlStem = urlStem;
 	}
-	linkRegex1[i] = urlStem;
+	linkRegex1[i] = "^" + urlStem;
 	ignCase1[i] = true;
 	rwRegex1[i] = urlStem;
 	rwTarget1[i] = targetStem + urlStem;
