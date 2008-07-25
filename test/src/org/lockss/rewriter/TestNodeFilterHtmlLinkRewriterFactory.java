@@ -103,6 +103,11 @@ public class TestNodeFilterHtmlLinkRewriterFactory extends LockssTestCase {
     "An absolute CSS import" +
     "<style type=\"text/css\" media=\"screen,print\">@import url(" + urlStem + "css/extra.css) @import url(" + urlStem + "css/extra2.css);</style>\n" +
     "<br>\n" +
+    /*
+    "A mixed CSS import" +
+    "<style type=\"text/css\" media=\"screen,print\">@import url(" + urlStem + "css/extra3.css) @import url(/css/extra4.css);</style>\n" +
+    "<br>\n" +
+    */
     "</body>\n" +
     "</HTML>\n";
 
