@@ -589,9 +589,10 @@ public class HtmlNodeFilters {
 	    String url = attribute.getValue();
 	    if (!matcher.contains(url, pat)) {
 	      log.debug3("Attribute " + attribute.getName() + " old " + url);
-	      attribute.setValue(urlEncode(url.replaceFirst(target, replace)));
+	      String newUrl = url.replaceFirst(target, replace);
+	      log.debug3("new " + newUrl);
+	      attribute.setValue(urlEncode(newUrl));
 	      ((TagNode)node).setAttributeEx(attribute);
-	      log.debug3("new " + url);
 	    }
 	    return false;
 	  }
