@@ -63,10 +63,10 @@ public class UniversityOfChicagoPressHtmlFilterFactory implements FilterFactory 
                                                                          "id",
                                                                          "copyrightInfo")),
 
-        // Filter out <div class="CitedBySection">...</div>
+        // Filter out <div class="citedBySection">...</div>
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
                                                                          "id",
-                                                                         "CitedBySection")),
+                                                                         "citedBySection")),
 //        // Filter out <table class="articleEntry">...</table>
 //        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("table",
 //                                                                         "class",
