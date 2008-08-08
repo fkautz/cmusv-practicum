@@ -1,5 +1,5 @@
+*.pyc
+*.pyo
 lib
-lockss_daemon.pyc
-lockss_util.pyc
 simContent
 testcase-*
