@@ -118,6 +118,18 @@ public class TestPollUtil extends LockssTestCase {
     assertEquals(22, schedSvc.events.size());
   }
 
+  public void testGetPollStateRoot() {
+    ConfigurationUtil.setFromArgs(V3Poller.PARAM_STATE_PATH, "/tmp/path");
+    assertEquals("/tmp/path",
+		 PollUtil.getPollStateRoot().toString());
+    ConfigurationUtil.setFromArgs(V3Poller.PARAM_REL_STATE_PATH, "path/2",
+				  ConfigManager.PARAM_PLATFORM_DISK_SPACE_LIST,
+				  "/mount/point");
+    assertEquals("/mount/point/path/2",
+		 PollUtil.getPollStateRoot().toString());
+  }
+
+
   public class MyMockSchedService extends MockSchedService {
 
     List events = new ArrayList();
