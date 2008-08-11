@@ -87,4 +87,15 @@ public class TestHtmlUtil extends LockssTestCase {
   public void testEncodeJsString() {
     assertEquals("foo\\n", HtmlUtil.encode("foo\r\n", ENCODE_JS_STRING));
   }
+
+  public void testExtractMetaRefreshUrl() {
+    assertEquals("http://foo.com/xxx",
+		 HtmlUtil.extractMetaRefreshUrl("0; url=http://foo.com/xxx"));
+    assertEquals("http://bar.com/xxy",
+		 HtmlUtil.extractMetaRefreshUrl("0;url=http://bar.com/xxy"));
+    assertEquals("http://bar.com/xxz",
+		 HtmlUtil.extractMetaRefreshUrl("5;url=http://bar.com/xxz"));
+    assertEquals("http://bar.com/xxz",
+		 HtmlUtil.extractMetaRefreshUrl("5 ; url = http://bar.com/xxz"));
+  }
 }

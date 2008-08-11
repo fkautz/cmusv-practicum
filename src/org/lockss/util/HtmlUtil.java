@@ -32,6 +32,8 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.util;
 
+import org.apache.oro.text.regex.*;
+
 /** Static html utilities */
 public class HtmlUtil {
   /** Encode for open html text */
@@ -129,7 +131,7 @@ public class HtmlUtil {
 	// Special characters
       case '\n':
 	sb.append("\\n");
-        break;
+	break;
       case '\r':
 	break;
       default:
@@ -140,4 +142,18 @@ public class HtmlUtil {
     return sb.toString();
   }
 
+  private static Pattern metaRedirectUrlPat =
+    RegexpUtil.uncheckedCompile(".*\\burl\\b\\s*=\\s*(.*)$",
+				(Perl5Compiler.CASE_INSENSITIVE_MASK +
+				 Perl5Compiler.READ_ONLY_MASK));
+  
+
+  public static String extractMetaRefreshUrl(String metaRefreshContent) {
+    Perl5Matcher matcher = RegexpUtil.getMatcher();
+    if (matcher.contains(metaRefreshContent, metaRedirectUrlPat)) {
+      MatchResult matchResult = matcher.getMatch();
+      return matchResult.group(1);
+    }
+    return null;
+  }
 }
