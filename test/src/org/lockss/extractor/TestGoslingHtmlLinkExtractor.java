@@ -941,6 +941,14 @@ public class TestGoslingHtmlLinkExtractor extends LockssTestCase {
       +"</head></html>";
 
     assertEquals(SetUtil.set(url1), parseSingleSource(source));
+
+    source =
+      "<html><head>"
+      +"<meta http-equiv=\"refresh\" "
+      +"content=\"0;url=http://example.com/blah.html\">"
+      +"</head></html>";
+
+    assertEquals(SetUtil.set(url1), parseSingleSource(source));
   }
 
   //tests that we are only parsing out the URL when the
