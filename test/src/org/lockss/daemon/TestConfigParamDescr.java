@@ -117,6 +117,8 @@ public class TestConfigParamDescr extends LockssTestCase {
     ConfigParamDescr d1 = new ConfigParamDescr("k1");
     ConfigParamDescr d2 = new ConfigParamDescr(new String("k1"));
     ConfigParamDescr d3 = new ConfigParamDescr("k2");
+    ConfigParamDescr d4 = new ConfigParamDescr("k2");
+
     assertEquals(d1, d1);
     assertEquals(d1, d2);
     assertNotEquals(d1, d3);
@@ -126,6 +128,10 @@ public class TestConfigParamDescr extends LockssTestCase {
     assertEquals(d1, d2);
     d2.setSize(10);
     assertNotEquals(d1, d2);
+
+    assertEquals(d3, d4);
+    d4.setDefinitional(false);
+    assertNotEquals(d3, d4);
   }
 
   public void testIsReserved() {

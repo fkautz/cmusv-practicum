@@ -547,8 +547,10 @@ public class ConfigParamDescr implements Comparable, LockssSerializable {
       return false;
     }
     ConfigParamDescr opd = (ConfigParamDescr)o;
-    return type == opd.getType() && getSize() == opd.getSize() &&
-      key.equals(opd.getKey());
+    return type == opd.getType()
+      && getSize() == opd.getSize()
+      && definitional == opd.isDefinitional()
+      && key.equals(opd.getKey());
   }
 
   public int hashCode() {
