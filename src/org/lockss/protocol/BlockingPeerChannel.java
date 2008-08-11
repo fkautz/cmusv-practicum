@@ -68,7 +68,7 @@ class BlockingPeerChannel implements PeerChannel {
   private ChannelState prevState = ChannelState.NONE;
   private boolean isOriginate = false;
 
-  volatile private PeerIdentity peer;
+  volatile private PeerIdentity peer = null;
   volatile private PeerAddress pad;
   private PeerIdentity localPeer;
   private BlockingStreamComm scomm;
@@ -368,12 +368,15 @@ class BlockingPeerChannel implements PeerChannel {
     stopChannel(true, t != null ? t.toString() : null, t);
   }
 
-  void abortChannel(String msg, Throwable t) {
-    stopChannel(true, msg, t);
+  void abortChannel(String msg) {
+    abortChannel(msg, null);
   }
 
-  void abortChannel(String msg) {
-    stopChannel(true, msg, null);
+  void abortChannel(String msg, Throwable t) {
+    if (peer == null && sock != null) {
+      msg += " (conn from " + sock.getInetAddress() + ")";
+    }
+    stopChannel(true, msg, t);
   }
 
   void stopChannel() {
