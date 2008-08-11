@@ -168,15 +168,13 @@ public class AdminServletManager extends BaseServletManager {
     new ServletDescr("BatchAuConfig",
 		     BatchAuConfig.class,
                      "Journal Configuration",
-                     ServletDescr.IN_NAV | ServletDescr.IN_UIHOME |
-		     ServletDescr.DISALLOW_IF_UI_WARNING,
+                     ServletDescr.IN_NAV | ServletDescr.IN_UIHOME,
                      "Add or remove titles from this cache");
   protected static final ServletDescr SERVLET_AU_CONFIG =
     new ServletDescr("AuConfig",
 		     AuConfig.class,
                      "Manual Journal Configuration",
-		     (ServletDescr.IN_UIHOME |
-		      ServletDescr.DISALLOW_IF_UI_WARNING),
+		     (ServletDescr.IN_UIHOME),
                      "Manually edit single AU configuration");
   protected static final ServletDescr SERVLET_ADMIN_ACCESS_CONTROL =
     new ServletDescr("AdminIpAccess",

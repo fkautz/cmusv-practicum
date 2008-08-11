@@ -167,11 +167,10 @@ public abstract class LockssServlet extends HttpServlet
       }
       submitButtonNumber = 0;
 
-      if (myServletDescr().isFlagSet(ServletDescr.DISALLOW_IF_UI_WARNING) &&
-	  CurrentConfig.getParam(PARAM_UI_WARNING) != null) {
-	Page page = newPage();
-	layoutFooter(page);
-	page.write(resp.getWriter());
+      String reason =
+	ServletUtil.servletDisabledReason(myServletDescr().getServletName());
+      if (reason != null) {
+	displayWarningInLieuOfPage("This function is disabled. " + reason);
 	return;
       }
       lockssHandleRequest();

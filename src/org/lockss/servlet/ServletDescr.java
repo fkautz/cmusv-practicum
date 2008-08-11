@@ -74,9 +74,6 @@ public class ServletDescr {
    * links */
   public static final int PATH_IS_URL = 0x40;
 
-  /** Refuse to run this servlet if o.l.ui.warning has a value */
-  public static final int DISALLOW_IF_UI_WARNING = 0x80;
-
   public static final int STATUS = ON_CLIENT | PER_CLIENT; // shorthand
 
 //   public static final int IN_PROXYANDCONTENT = 0x4000; // Will probably go away now
