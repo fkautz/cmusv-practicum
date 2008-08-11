@@ -322,7 +322,7 @@ public class ServeContent extends LockssServlet {
 						   url,
 						   "url=" + url);
 				  }},
-				false);
+				true);
     page.add(ele);
     layoutFooter(page);
     ServletUtil.writePage(resp, page);
