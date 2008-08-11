@@ -450,6 +450,23 @@ public class TestNewContentCrawler extends LockssTestCase {
     assertFalse(crawler.doCrawl());
   }
 
+  public void testPluginThrowsOnPermissionFetch() {
+    MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
+    mau.addUrl(permissionPage,
+	       new ExpectedRuntimeException("Test exception (perm)"), 1);
+    mau.addUrl(startUrl);
+
+    assertFalse(crawler.doCrawl());
+  }
+
+  public void testPluginThrowsInGetLinkExtractor() {
+    MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
+    mau.addUrl(startUrl);
+    mau.getLinkExtractorThrows = new ExpectedRuntimeException("getLE()");
+
+    assertFalse(crawler.doCrawl());
+  }
+
   /** test recording mime-types and urls during a crawl */
   public void testKeepMimeTypeUrl() {
     ConfigurationUtil.addFromArgs(CrawlerStatus.PARAM_RECORD_URLS, "mime",
@@ -1008,10 +1025,18 @@ public class TestNewContentCrawler extends LockssTestCase {
 
   protected class MyMockArchivalUnit extends MockArchivalUnit {
     MyMockUrlCacher lastMmuc;
+    RuntimeException getLinkExtractorThrows = null;
 
     protected MockUrlCacher makeMockUrlCacher(String url) {
       lastMmuc = new MyMockUrlCacher(url, this);
       return lastMmuc;
+    }
+
+    public LinkExtractor getLinkExtractor(String mimeType) {
+      if (getLinkExtractorThrows != null) {
+	throw getLinkExtractorThrows;
+      }
+      return super.getLinkExtractor(mimeType);
     }
   }
 

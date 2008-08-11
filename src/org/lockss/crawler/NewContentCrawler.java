@@ -105,36 +105,47 @@ public class NewContentCrawler extends FollowLinkCrawler {
       for (Iterator it = urlsToCrawl.iterator();
 	   it.hasNext() && !crawlAborted; ) {
 	String url = (String)it.next();
-	//XXX should we add code here to check if the URL is in the protocol
-	//we are supporting right now ? or the check is done in plugin already ?
-	//same apply to check if the url is Malformed
+	try {
+	  //XXX should we add code here to check if the URL is in the protocol
+	  //we are supporting right now ? or the check is done in plugin already ?
+	  //same apply to check if the url is Malformed
 
-	logger.debug2("Trying to process " +url);
+	  logger.debug2("Trying to process " +url);
 
-        // check crawl window during crawl
-	if (!withinCrawlWindow()) {
-	  crawlStatus.setCrawlStatus(Crawler.STATUS_WINDOW_CLOSED);
-	  abortCrawl();
-	  //return null;
-	}
-
-        crawlStatus.removePendingUrl(url);
-	if (parsedPages.contains(url)) {
-	  continue;
-	}
-
-	//catch and warn if there's a url in the start urls
-	//that we shouldn't cache
- 	if (spec.isIncluded(url)) {
-	  if (!fetchAndParse(url, extractedUrls, parsedPages, true, true)) {
-	    if (!crawlStatus.isCrawlError()) {
-	      crawlStatus.setCrawlStatus(Crawler.STATUS_ERROR);
-	    }
+	  // check crawl window during crawl
+	  if (!withinCrawlWindow()) {
+	    crawlStatus.setCrawlStatus(Crawler.STATUS_WINDOW_CLOSED);
+	    abortCrawl();
+	    //return null;
 	  }
-	} else if (ix == 0) {
-	  logger.warning("Starting url not in crawl spec: " + url);
-	  crawlStatus.setCrawlStatus(Crawler.STATUS_PLUGIN_ERROR,
-				     "Starting url not in crawl spec: " + url);
+
+	  crawlStatus.removePendingUrl(url);
+	  if (parsedPages.contains(url)) {
+	    continue;
+	  }
+
+	  //catch and warn if there's a url in the start urls
+	  //that we shouldn't cache
+	  if (spec.isIncluded(url)) {
+	    if (!fetchAndParse(url, extractedUrls, parsedPages, true, true)) {
+	      if (!crawlStatus.isCrawlError()) {
+		crawlStatus.setCrawlStatus(Crawler.STATUS_ERROR);
+	      }
+	    }
+	  } else if (ix == 0) {
+	    logger.warning("Starting url not in crawl spec: " + url);
+	    crawlStatus.setCrawlStatus(Crawler.STATUS_PLUGIN_ERROR,
+				       "Starting url not in crawl spec: "
+				       + url);
+	  }
+	} catch (RuntimeException e) {
+	  if (crawlAborted) {
+	    logger.debug("Expected exception while aborting crawl: " + e);
+	    return null;
+	  }
+	  logger.warning("Unexpected exception processing: " + url, e);
+	  crawlStatus.signalErrorForUrl(url, e.toString());
+	  abortCrawl();
 	}
       } // end while loop
       lvlCnt++;

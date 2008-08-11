@@ -214,7 +214,16 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
     urlsToCrawl = Collections.EMPTY_SET;
 
     // get the Urls to follow from either NewContentCrawler or OaiCrawler
-    extractedUrls = getUrlsToFollow();
+    try {
+      extractedUrls = getUrlsToFollow();
+    } catch (RuntimeException e) {
+      logger.warning("Unexpected exception, should have been caught lower", e);
+      if (!crawlStatus.isCrawlError()) {
+	crawlStatus.setCrawlStatus(Crawler.STATUS_ERROR);
+      }
+      abortCrawl();
+    }
+
     if (logger.isDebug3()) logger.debug3("Start URLs: " + extractedUrls );
     if (crawlAborted) {
       return aborted();
