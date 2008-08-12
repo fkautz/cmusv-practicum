@@ -186,6 +186,11 @@ public class MockIdentityManager implements IdentityManager {
     throw new UnsupportedOperationException("not implemented");
   }
   
+  public void signalPartialAgreementHint(PeerIdentity pid, ArchivalUnit au,
+                                     float percentAgreement) {
+    throw new UnsupportedOperationException("not implemented");
+  }
+  
   public float getPercentAgreement(PeerIdentity pid, ArchivalUnit au) {
     throw new UnsupportedOperationException("not implemented");
   }

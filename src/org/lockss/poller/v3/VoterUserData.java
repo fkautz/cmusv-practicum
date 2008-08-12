@@ -75,6 +75,7 @@ public class VoterUserData
   private int status;
   private String errorDetail;
   private boolean activePoll = true;
+  private double agreementHint;
   /** @deprecated 
    * Left here only for deserialization compatibility */
   private String statusString;
@@ -378,6 +379,14 @@ public class VoterUserData
   
   public void setActivePoll(boolean b) {
     this.activePoll = b;
+  }
+
+  public double getAgreementHint() {
+    return agreementHint;
+  }
+
+  public void setAgreementHint(double agreementHint) {
+    this.agreementHint = agreementHint;
   }
 
   /*

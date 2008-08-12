@@ -121,6 +121,7 @@ public class V3TestUtil extends LockssTestCase {
                  d2.getPollerId().getIdString());
     assertEquals(d1.getPollVersion(), d2.getPollVersion());
     assertEquals(d1.getVoteBlocks().size(), d2.getVoteBlocks().size());
+    assertEquals(d1.getAgreementHint(), d2.getAgreementHint());
   }
 }
 
