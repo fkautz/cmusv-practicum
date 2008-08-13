@@ -858,7 +858,11 @@ public class V3Voter extends BasePoll {
   }
   
   public File getStateDir() {
-    return pollSerializer.pollDir;
+    File ret = null;
+    if (pollSerializer != null) {
+      ret = pollSerializer.pollDir;
+    }
+    return ret;
   }
 
   // Not used by V3.

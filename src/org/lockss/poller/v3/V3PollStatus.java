@@ -34,6 +34,7 @@ package org.lockss.poller.v3;
 
 import java.util.*;
 import java.text.*;
+import java.io.*;
 import org.lockss.daemon.status.*;
 import org.lockss.daemon.status.StatusService.*;
 import org.lockss.daemon.status.StatusTable.SummaryInfo;
@@ -990,9 +991,12 @@ public class V3PollStatus {
                                   voter.getStatusString()));
 
       if (isDebug) {
-	summary.add(new SummaryInfo("",
-				    ColumnDescriptor.TYPE_STRING,
-				    voter.getStateDir()));
+	File stateDir = voter.getStateDir();
+        if (stateDir != null) {
+	  summary.add(new SummaryInfo("",
+				      ColumnDescriptor.TYPE_STRING,
+				      stateDir));
+        }
 	PsmInterp interp = voter.getPsmInterp();
 	if (interp != null) {
 	  PsmState state = interp.getCurrentState();
