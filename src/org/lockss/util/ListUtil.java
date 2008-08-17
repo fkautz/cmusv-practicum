@@ -49,11 +49,12 @@ public class ListUtil {
   /**
    * Create a list from any number of arguments. */
   public static List list(Object... elements) {
-    List l = new ArrayList();
+    ArrayList l = new ArrayList();
     if (elements == null) { return l; }
     for (Object arg : elements) {
       l.add(arg);
     }
+    l.trimToSize();
     return l;
   }
   
@@ -64,7 +65,7 @@ public class ListUtil {
 
   /**
    * Create list from arg list. */
-  public static List list(Object object1) {
+  private static List list1(Object object1) {
       List l = new ArrayList();
       l.add(object1);
       return l;
@@ -72,8 +73,16 @@ public class ListUtil {
 
   /**
    * Create list from arg list. */
+  public static List list(Object object1) {
+      List l = new ArrayList(1);
+      l.add(object1);
+      return l;
+  }
+
+  /**
+   * Create list from arg list. */
   public static List list(Object object1, Object object2) {
-      List l = list(object1);
+      List l = list1(object1);
       l.add(object2);
       return l;
   }
@@ -219,7 +228,7 @@ public class ListUtil {
   
   /** Create a list containing the elements of an array */
   public static List fromArray(Object array[]) {
-    List l = list();
+    List l = new ArrayList(array.length);
     for (Object o : array) {
       l.add(o);
     }
