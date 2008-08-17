@@ -548,7 +548,12 @@ public class RepositoryNodeImpl implements RepositoryNode {
     ensureCurrentInfoLoaded();
     if (!nodeRootFile.exists()) {
       logger.debug3("Creating root directory for CUS '"+url+"'");
-      nodeRootFile.mkdirs();
+      if (!nodeRootFile.mkdirs()) {
+	throw new LockssRepository.RepositoryStateException("mkdirs(" +
+							    nodeRootFile +
+							    ") failed for "
+							    + nodeRootFile);
+      }
     }
   }
 
