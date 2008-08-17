@@ -156,9 +156,7 @@ public class ExplodedArchivalUnit extends BaseArchivalUnit {
    * @return CrawlSpec
    */
   protected CrawlSpec makeCrawlSpec() throws LockssRegexpException {
-    ArrayList startUrls = new ArrayList();
-    startUrls.add(startUrlString);
-    return new ExplodedCrawlSpec(startUrls);
+    return new ExplodedCrawlSpec(getNewContentCrawlUrls());
   }
 
   /**

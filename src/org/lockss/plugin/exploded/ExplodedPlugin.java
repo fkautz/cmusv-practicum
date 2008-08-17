@@ -58,7 +58,7 @@ public class ExplodedPlugin extends BasePlugin {
 
   // List of defining properties (only base_url for Exploded plugins)
   private static final List m_auConfigDescrs =
-    ListUtil.list(ConfigParamDescr.BASE_URL);
+    Collections.singletonList(ConfigParamDescr.BASE_URL);
 
   public ExplodedPlugin() {
   }

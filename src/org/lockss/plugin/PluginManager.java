@@ -1162,6 +1162,8 @@ public class PluginManager
       }
     } catch (FileNotFoundException ex) {
       log.debug2("No XML plugin: " + pluginName + ": " + ex);
+    } catch (PluginException.InvalidDefinition ex) {
+      log.warning("Bad plugin: " + pluginName, ex);
     } catch (Exception ex) {
       log.debug2("No XML plugin: " + pluginName, ex);
     }

@@ -98,8 +98,7 @@ public class OaiArchivalUnit extends BaseArchivalUnit {
     CrawlRule rule = makeRules();
     //XXXOAI return OaiCrawlSpec
     logger.debug("making OaiCrawlSpec");
-    //    return new OaiCrawlSpec(startUrls,rule);
-    return new OaiCrawlSpec(startUrlString, rule);
+    return new OaiCrawlSpec(getNewContentCrawlUrls().get(0), rule);
   }
 
   /**

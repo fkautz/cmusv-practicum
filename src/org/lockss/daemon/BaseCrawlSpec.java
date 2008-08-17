@@ -100,6 +100,11 @@ public abstract class BaseCrawlSpec implements CrawlSpec {
     return permissionList;
   }
 
+  /** Not part of CrawlSpec interface - for testing */
+  public CrawlRule getCrawlRule() {
+    return rule;
+  }
+
   /**
    * Returns whether the rule is null
    * @author Rebecca Illowsky
