@@ -148,6 +148,14 @@ public class HtmlUtil {
 				 Perl5Compiler.READ_ONLY_MASK));
   
 
+  /** Extract the URL from a string obtained from the content attribute of
+   * a meta http-equiv redirect tag, <i>eg</i>,
+   * <pre>&lt;meta http-equiv="refresh"
+   *      content="0; url=http://example.com/blah.html"&gt;</pre>
+   * @param metaRefreshContent Refresh spec from content attribute,
+   * <i>eg</i>, <pre>    0; url=http://example.com/blah.html</pre>
+   * @return the URL (value of url sub-attribute).
+   */
   public static String extractMetaRefreshUrl(String metaRefreshContent) {
     Perl5Matcher matcher = RegexpUtil.getMatcher();
     if (matcher.contains(metaRefreshContent, metaRedirectUrlPat)) {
