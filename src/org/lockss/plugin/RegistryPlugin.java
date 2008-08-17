@@ -56,7 +56,7 @@ public class RegistryPlugin extends BasePlugin {
     Configuration.PREFIX + "plugin.registries.";
 
   // List of defining properties (only base_url for Registry plugins)
-  private static final List m_auConfigDescrs =
+  private static final List<ConfigParamDescr> m_auConfigDescrs =
     ListUtil.list(ConfigParamDescr.BASE_URL);
 
   public RegistryPlugin() {
@@ -116,7 +116,7 @@ public class RegistryPlugin extends BasePlugin {
   /**
    * We only have one defining attribute, a base URL.
    */
-  public List getLocalAuConfigDescrs() {
+  public List<ConfigParamDescr> getLocalAuConfigDescrs() {
     return m_auConfigDescrs;
   }
 }

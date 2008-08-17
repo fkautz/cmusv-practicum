@@ -107,6 +107,10 @@ public class NullPlugin {
       return null;
     }
 
+    public ConfigParamDescr findAuConfigDescr(String key) {
+      return null;
+    }
+
     public org.lockss.plugin.ArchivalUnit configureAu(Configuration config,
 						      org.lockss.plugin.ArchivalUnit au)
 	throws org.lockss.plugin.ArchivalUnit.ConfigurationException {

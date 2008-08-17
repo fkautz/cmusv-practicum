@@ -118,6 +118,11 @@ public interface Plugin {
   public List getAuConfigDescrs();
 
   /**
+   * Return the ConfigParamDescr for the named param, or null if none.
+   */
+  public ConfigParamDescr findAuConfigDescr(String key);
+
+  /**
    * Create or (re)configure an {@link ArchivalUnit} from the specified
    * configuration.
    * @param config {@link Configuration} object with values for the AU

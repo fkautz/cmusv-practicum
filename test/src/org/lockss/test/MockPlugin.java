@@ -145,6 +145,7 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
 
   public void setAuConfigDescrs(List descrs) {
     auConfigDescrs = descrs;
+    allParamDescrs = null;		// clear cache
   }
 
   /**

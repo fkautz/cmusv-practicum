@@ -128,6 +128,14 @@ public class PluginProxy {
   }
 
   /**
+   * Find the ConfigParamDescr for a param
+   * @return a ConfigParamDescr or null
+   */
+  public ConfigParamDescr findAuConfigDescr(String key) {
+    return plugin.findAuConfigDescr(key);
+  }
+
+  /**
    * Return a collection of {@link AuProxy}s for the {@link ArchivalUnit}s
    * that exist within this plugin.
    * @return a Collection of {@link AuProxy}s

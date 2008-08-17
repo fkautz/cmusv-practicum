@@ -865,7 +865,8 @@ public class AuConfig extends LockssServlet {
       ConfigParamDescr descr = (ConfigParamDescr)iter.next();
       if (descr.isDefinitional()) {
 	defKeys.add(descr.getKey());
-      } else if (allowEditDefaultOnly || !descr.isDefaultOnly()) {
+      } else if (allowEditDefaultOnly || !descr.isDefaultOnly()
+		 && !descr.isDerived()) {
 	editKeys.add(descr.getKey());
       }
     }
