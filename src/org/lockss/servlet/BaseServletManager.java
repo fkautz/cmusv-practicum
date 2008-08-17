@@ -338,6 +338,7 @@ public abstract class BaseServletManager
     if (!StringUtil.isNullString(platUser) &&
 	!StringUtil.isNullString(platPass)) {
       realm.put(platUser, platPass);
+      realm.addUserToRole(platUser, LockssServlet.ROLE_ADMIN);
     }
   }
 

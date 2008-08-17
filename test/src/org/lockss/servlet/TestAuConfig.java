@@ -77,6 +77,8 @@ public class TestAuConfig extends LockssServletTestCase {
   protected void initServletRunner() {
     super.initServletRunner();
     sRunner.registerServlet("/AuConfig", AuConfig.class.getName() );
+    sRunner.setServletContextAttribute(LockssServlet.ATTR_ALLOW_ROLES,
+				       ListUtil.list(LockssServlet.ROLE_ADMIN));
   }
 
 
