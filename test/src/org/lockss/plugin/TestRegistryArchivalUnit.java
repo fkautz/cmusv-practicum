@@ -138,8 +138,7 @@ public class TestRegistryArchivalUnit extends LockssTestCase {
     MyRegistryArchivalUnit au = new MyRegistryArchivalUnit(regPlugin);
     au.setConfiguration(auConfig);
     PluginTestUtil.registerArchivalUnit(regPlugin, au);
-    TypedEntryMap map = au.getProperties();
-    au.addContent(map.getString(ArchivalUnit.KEY_AU_START_URL),
+    au.addContent(au.getNewContentCrawlUrls().get(0),
 		  "<html><head><h2>foobar</h2>\n" +
 		  "<title>This Title No Verb</title></head></html>");
     assertEquals("This Title No Verb", au.recomputeRegName());
@@ -152,8 +151,7 @@ public class TestRegistryArchivalUnit extends LockssTestCase {
     MyRegistryArchivalUnit au = new MyRegistryArchivalUnit(regPlugin);
     au.setConfiguration(auConfig);
     PluginTestUtil.registerArchivalUnit(regPlugin, au);
-    TypedEntryMap map = au.getProperties();
-    au.addContent(map.getString(ArchivalUnit.KEY_AU_START_URL),
+    au.addContent(au.getNewContentCrawlUrls().get(0),
 		  "<html><head><h2>foobar</h2>\n" +
 		  "<title>First Title No Verb</title>" +
 		  "<title>Second Title No Verb</title></head></html>");
@@ -167,8 +165,7 @@ public class TestRegistryArchivalUnit extends LockssTestCase {
     MyRegistryArchivalUnit au = new MyRegistryArchivalUnit(regPlugin);
     au.setConfiguration(auConfig);
     PluginTestUtil.registerArchivalUnit(regPlugin, au);
-    TypedEntryMap map = au.getProperties();
-    au.addContent(map.getString(ArchivalUnit.KEY_AU_START_URL),
+    au.addContent(au.getNewContentCrawlUrls().get(0),
 		  "<html><h3>This Page No Title</h3></html>");
     assertEquals(null, au.recomputeRegName());
   }

@@ -350,8 +350,6 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
       throw new ConfigurationException(e.toString());
     }
     paramMap.setMapElement(KEY_AU_CRAWL_SPEC, crawlSpec);
-    startUrlString = makeStartUrl();
-    paramMap.putString(KEY_AU_START_URL, startUrlString);
     auName = makeName();
     paramMap.putString(KEY_AU_TITLE, auName);
 

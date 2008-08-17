@@ -146,7 +146,7 @@ public class TestClockssAmericanChemicalSocietyArchivalUnit
         new RangeCachedUrlSetSpec(base_url.toString()));
 
     // start url - should be cached
-    shouldCacheTest(acsAu.getProperties().getString(ArchivalUnit.KEY_AU_START_URL, null),
+    shouldCacheTest(acsAu.getNewContentCrawlUrls().get(0),
                     true, acsAu, cus);
 
     // issue index page - should be cached
@@ -207,7 +207,7 @@ public class TestClockssAmericanChemicalSocietyArchivalUnit
     URL a_url = new URL(ARTICLE_ROOT);
     URL base = new URL(ROOT_URL);
     DefinableArchivalUnit acsAu = makeAu(base, a_url, JOURNAL_KEY, VOL_ID);
-    assertEquals(expected, acsAu.getProperties().getString(ArchivalUnit.KEY_AU_START_URL, null));
+    assertEquals(ListUtil.list(expected), acsAu.getNewContentCrawlUrls());
   }
 
   public void testGetUrlStems() throws Exception {
