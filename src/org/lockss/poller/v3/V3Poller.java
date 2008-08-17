@@ -2321,7 +2321,10 @@ public class V3Poller extends BasePoll {
    * Return the serialization state directory used by this poll.
    */
   public File getStateDir() {
-    return serializer.pollDir;
+    if (serializer != null) {
+      return serializer.pollDir;
+    }
+    return null;
   }
 
   /**
