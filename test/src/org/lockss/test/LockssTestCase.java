@@ -98,7 +98,17 @@ public class LockssTestCase extends TestCase {
    * @throws IOException
    */
   public File getTempDir() throws IOException {
-    return getTempDir("locksstest");
+    File res =  getTempDir("locksstest");
+    // To aid in finding the cause of temp dirs that don't get deleted,
+    // setting -Dorg.lockss.test.idTempDirs=true will record the name of
+    // the test creating the dir in <dir>/.locksstestcase .  This may cause
+    // tests to fail (expecting empty dir).
+    if (!isKeepTempFiles()
+	&& Boolean.getBoolean("org.lockss.test.idTempDirs")) {
+      FileTestUtil.writeFile(new File(res, ".locksstestcase"),
+			     StringUtil.shortName(this.getClass()));
+    }
+    return res;
   }
 
   /**
