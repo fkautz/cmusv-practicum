@@ -168,7 +168,7 @@ public class TestFileUtil extends LockssTestCase {
   }
 
   public void testDelTree() throws IOException {
-    File dir = FileUtil.createTempDir("deltree", null);
+    File dir = getTempDir("deltree");
     File d1 = new File(dir, "foo");
     assertTrue(d1.mkdir());
     File d2 = new File(d1, "bar");
@@ -182,14 +182,14 @@ public class TestFileUtil extends LockssTestCase {
   }
 
   public void testDelTreeNoDir() throws IOException {
-    File dir = FileUtil.createTempDir("deltree", null);
+    File dir = getTempDir("deltree");
     File d1 = new File(dir, "foo");
     assertFalse(d1.exists());
     assertTrue(FileUtil.delTree(d1));
   }
 
   public void testEmptyDir() throws IOException {
-    File dir = FileUtil.createTempDir("deltree", null);
+    File dir = getTempDir("deltree");
     File d1 = new File(dir, "foo");
     assertTrue(d1.mkdir());
     File d2 = new File(d1, "bar");
@@ -204,7 +204,7 @@ public class TestFileUtil extends LockssTestCase {
   }
 
   public void testEmptyDirNoDir() throws IOException {
-    File dir = FileUtil.createTempDir("deltree", null);
+    File dir = getTempDir("deltree");
     File d1 = new File(dir, "foo");
     assertFalse(d1.exists());
     assertFalse(FileUtil.emptyDir(d1));

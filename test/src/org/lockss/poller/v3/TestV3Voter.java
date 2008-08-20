@@ -115,6 +115,7 @@ public class TestV3Voter extends LockssTestCase {
   }
   
   public void tearDown() throws Exception {
+    super.tearDown();
   }
   
   /* 
