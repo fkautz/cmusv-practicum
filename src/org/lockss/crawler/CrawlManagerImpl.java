@@ -1023,13 +1023,13 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
 
       if (goOn) {
 	try {
+	  logger.debug("Waiting until AUs started");
+	  waitUntilAusStarted();
 	  if (paramOdc) {
 	    startOneWait.expireIn(paramStartCrawlsInitialDelay);
 	    cmStatus.setNextCrawlStarter(startOneWait);
 	    startOneWait.sleep();
 	  } else {
-	    logger.debug("Waiting until AUs started");
-	    waitUntilAusStarted();
 	    logger.debug3("AUs started");
 	    Deadline initial = Deadline.in(paramStartCrawlsInitialDelay);
 	    cmStatus.setNextCrawlStarter(initial);
