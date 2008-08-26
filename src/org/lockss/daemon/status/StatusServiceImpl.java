@@ -263,7 +263,7 @@ public class StatusServiceImpl
     private List sortRules;
     private static final String COL_NAME = "table_name";
     private static final String COL_TITLE = "Available Tables";
-    private static final String ALL_TABLE_TITLE = "Cache Overview";
+    private static final String ALL_TABLE_TITLE = "Box Overview";
 
     public AllTableStatusAccessor() {
       ColumnDescriptor col =

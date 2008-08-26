@@ -54,7 +54,7 @@ public class TestStatusServiceImpl extends LockssTestCase {
     ListUtil.list(new StatusTable.SortRule("name", true));
 
   private static final Object[][] colArray2 = {
-    {"cache", "Cache", new Integer(ColumnDescriptor.TYPE_STRING)},
+    {"cache", "Box", new Integer(ColumnDescriptor.TYPE_STRING)},
   };
 
   private static final Object[][] rowArray2 = {

@@ -132,11 +132,11 @@ public class Alert {
     setAttribute(ATTR_SEVERITY, SEVERITY_WARNING);
 
   public static final Alert CACHE_DOWN =
-    new Alert("CacheDown").
+    new Alert("BoxDown").
     setAttribute(ATTR_SEVERITY, SEVERITY_ERROR);
 
   public static final Alert CACHE_UP =
-    new Alert("CacheUp").
+    new Alert("BoxUp").
     setAttribute(ATTR_SEVERITY, SEVERITY_INFO);
 
   public static final Alert DISK_SPACE_LOW =

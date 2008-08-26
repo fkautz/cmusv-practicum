@@ -134,7 +134,7 @@ public class TestAlertManagerImpl extends LockssTestCase {
   public void testRaiseIgnoredAlert() throws Exception {
     config(true);
     ConfigurationUtil.addFromArgs(AlertManagerImpl.PARAM_IGNORED_ALERTS,
-				  "InconclusivePoll;CacheDown");
+				  "InconclusivePoll;BoxDown");
     Alert a1 = Alert.cacheAlert(Alert.CACHE_DOWN);
     a1.setAttribute(Alert.ATTR_IS_TIME_CRITICAL, true);
     MyMockAlertAction action = new MyMockAlertAction();
@@ -149,7 +149,7 @@ public class TestAlertManagerImpl extends LockssTestCase {
     assertEmpty(recs);
 
     ConfigurationUtil.addFromArgs(AlertManagerImpl.PARAM_IGNORED_ALERTS,
-				  "InconclusivePoll;NotCacheNotDownNot");
+				  "InconclusivePoll;NotBoxNotDownNot");
     mgr.raiseAlert(a1);
     recs = action.getAlerts();
     assertEquals(ListUtil.list(a1), recs);

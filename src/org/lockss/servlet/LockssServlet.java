@@ -594,7 +594,7 @@ public abstract class LockssServlet extends HttpServlet
     // Compute heading
     String heading = getHeading();
     if (heading == null) {
-      heading = "Cache Administration";
+      heading = "Box Administration";
     }
 
     // Create page and layout header
