@@ -202,6 +202,14 @@ public class HttpClientUrlConnection extends BaseLockssUrlConnection {
       // ConnectionTimeoutException, the solution for now is to use
       // java-level connect timeouts that are shorter than the underlying
       // socket connect timeout.
+    } catch (NoHttpResponseException e) {
+      // Thrown by HttpClient if the server closes the connection before
+      // sending a response.
+      // Turn this into a non HttpClient-specific exception
+      java.net.SocketException se =
+	new java.net.SocketException("Connection reset by peer");
+      se.initCause(e);
+      throw se;
     }
   }
 
