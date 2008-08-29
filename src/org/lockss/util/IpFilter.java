@@ -78,7 +78,7 @@ public class IpFilter {
    * exclude entry could be dangerous.
    * @throws MalformedException
    */
-  public void setFilters(Vector inclVec, Vector exclVec)
+  public void setFilters(List inclVec, List exclVec)
       throws MalformedException {
     inclFilters = new Mask[inclVec.size()];
     exclFilters = new Mask[exclVec.size()];

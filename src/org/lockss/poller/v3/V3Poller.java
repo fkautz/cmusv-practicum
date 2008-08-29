@@ -1982,6 +1982,10 @@ public class V3Poller extends BasePoll {
 	}
       }
     }
+    if (isNoInvitationSubnet(pid)) {
+      return false;
+    }
+
     PeerIdentityStatus status = idManager.getPeerIdentityStatus(pid);
     if (status != null) {
       
@@ -2017,6 +2021,16 @@ public class V3Poller extends BasePoll {
       return true;
     }
     return false;      
+  }
+
+  boolean isNoInvitationSubnet(PeerIdentity pid) {
+    try {
+      IpFilter filter = pollManager.getNoInvitationSubnetFilter();
+      return filter != null && pid.getPeerAddress().isAllowed(filter);
+    } catch (IdentityManagerImpl.MalformedIdentityKeyException e) {
+      log.error("Malformed pid: " + pid);
+      return false;
+    }
   }
 
   /**

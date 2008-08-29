@@ -98,6 +98,10 @@ public abstract class PeerAddress {
     }
   }
 
+  public boolean isAllowed(IpFilter filter) {
+    return false;
+  }    
+
   abstract boolean isStream();
 
   /** Check for legal numeric IP address, throw
@@ -123,6 +127,14 @@ public abstract class PeerAddress {
 
     protected IPAddr getIPAddr() {
       return addr;
+    }
+
+    public boolean isAllowed(IpFilter filter) {
+      try {
+	return filter != null && filter.isIpAllowed(addr.getHostAddress());
+      } catch (IpFilter.MalformedException e) {
+	return false;
+      }
     }
   }
 
