@@ -78,6 +78,9 @@ public interface CrawlManager {
   /** Return the StatusSource */
   public StatusSource getStatusSource();
 
+  /** Hook to apply patterns to exclude recursive URLs, etc. */
+  public boolean isGloballyExcludedUrl(ArchivalUnit au, String url);
+
   public interface Callback {
     /**
      * Called when the crawl is completed

@@ -70,6 +70,7 @@ public interface Crawler {
   public static final int STATUS_PLUGIN_ERROR = 9;
   public static final int STATUS_REPO_ERR = 10;
   public static final int STATUS_RUNNING_AT_CRASH = 11;
+  public static final int STATUS_EXTRACTOR_ERROR = 12;
 
   /**
    * Initiate a crawl starting with all the urls in urls

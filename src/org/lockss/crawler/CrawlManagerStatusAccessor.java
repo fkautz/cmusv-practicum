@@ -266,6 +266,7 @@ public class CrawlManagerStatusAccessor implements StatusAccessor {
 	  case Crawler.STATUS_ERROR:
 	  case Crawler.STATUS_ABORTED:
 	  case Crawler.STATUS_FETCH_ERROR:
+	  case Crawler.STATUS_EXTRACTOR_ERROR:
 	  case Crawler.STATUS_NO_PUB_PERMISSION:
 	  case Crawler.STATUS_PLUGIN_ERROR:
 	  case Crawler.STATUS_REPO_ERR:

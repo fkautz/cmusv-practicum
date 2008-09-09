@@ -183,6 +183,7 @@ public class TestEditableDefinablePlugin
     "NoRetryRepositoryException",
     "UnimplementedCodeException",
     "MalformedURLException",
+    "ExtractionError",
     "RetryableNetworkException_2",
     "RetryableNetworkException_3",
     "RetryableNetworkException_2_10S",

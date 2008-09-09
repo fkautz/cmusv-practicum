@@ -133,6 +133,8 @@ public abstract class BaseCrawler
 
   protected AuState aus = null;
 
+  protected CrawlManager crawlMgr = null;
+
   protected boolean crawlAborted = false;
 
   protected LockssWatchdog wdog = null;
@@ -191,6 +193,10 @@ public abstract class BaseCrawler
 
   protected LockssDaemon getDaemon() {
     return AuUtil.getDaemon(au);
+  }
+
+  protected void setCrawlManager(CrawlManager crawlMgr) {
+    this.crawlMgr = crawlMgr;
   }
 
   protected void setCrawlConfig(Configuration config) {

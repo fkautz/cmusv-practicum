@@ -95,6 +95,10 @@ public class MockCrawlManager implements CrawlManager, LockssManager {
     return false;
   }
 
+  public boolean isGloballyExcludedUrl(ArchivalUnit au, String url) {
+    return false;
+  }
+
   public void setShouldCrawlNewContent(boolean shouldCrawlNewContent) {
     this.shouldCrawlNewContent = shouldCrawlNewContent;
   }

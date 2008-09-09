@@ -508,17 +508,40 @@ public class CacheException extends IOException {
       extends UnretryableException {
     public MalformedURLException() {
       super();
-      suppressStackTrace = false;
     }
 
     public MalformedURLException(String message) {
       super(message);
-      suppressStackTrace = false;
     }
 
     /** Create this if details of causal exception are more relevant. */
     public MalformedURLException(Exception e) {
       super(e.toString());
+      initCause(e);
+    }
+
+    protected void setAttributes() {
+      attributeBits.clear(ATTRIBUTE_FAIL);
+    }
+  }
+
+  /** An error extracting URLs from a collected file.  No failure. */
+  public static class ExtractionError extends UnretryableException {
+    public ExtractionError() {
+      super();
+    }
+
+    public ExtractionError(String message) {
+      super(message);
+    }
+
+    public ExtractionError(Exception e) {
+      super(e.toString());
+      initCause(e);
+    }
+
+    public ExtractionError(String message, Exception e) {
+      super(message);
       initCause(e);
     }
 
