@@ -91,6 +91,10 @@ public class Alert {
     cAlert("CrawlFailed").
     setAttribute(ATTR_SEVERITY, SEVERITY_WARNING);
 
+  public static final Alert CRAWL_EXCLUDED_URL =
+    cAlert("CrawlExcludedURL").
+    setAttribute(ATTR_SEVERITY, SEVERITY_WARNING);
+
   public static final Alert NEW_CONTENT =
     cAlert("NewContent").
     setAttribute(ATTR_SEVERITY, SEVERITY_INFO);
@@ -173,9 +177,11 @@ public class Alert {
   public static Alert auAlert(Alert prototype, ArchivalUnit au) {
     Alert res = new Alert(prototype);
     res.setAttribute(ATTR_IS_CONTENT, true);
-    res.setAttribute(ATTR_AUID, au.getAuId());
-    res.setAttribute(ATTR_AU_NAME, au.getName());
+    if (au != null) {
+      res.setAttribute(ATTR_AUID, au.getAuId());
+      res.setAttribute(ATTR_AU_NAME, au.getName());
 //     res.setAttribute(ATTR_AU_TITLE, au.getJournalTitle());
+    }
     return res;
   }
 
