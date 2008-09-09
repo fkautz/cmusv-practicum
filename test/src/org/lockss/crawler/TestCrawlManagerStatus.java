@@ -84,6 +84,12 @@ public class TestCrawlManagerStatus extends LockssTestCase {
     cmStatus.addCrawlStatus(c6);
     assertEquals(ListUtil.list(c4, c1, c2, c5, c6),
 		 cmStatus.getCrawlerStatusList());
+    cmStatus.touchCrawlStatus(c2);
+    assertEquals(ListUtil.list(c4, c1, c5, c6, c2),
+		 cmStatus.getCrawlerStatusList());
+    cmStatus.touchCrawlStatus(c5.getKey());
+    assertEquals(ListUtil.list(c4, c1, c6, c2, c5),
+		 cmStatus.getCrawlerStatusList());
   }
 
   public void testHistAct() {

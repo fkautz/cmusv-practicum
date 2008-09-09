@@ -109,6 +109,16 @@ public class CrawlManagerStatus {
     return (CrawlerStatus)statusMap.get(key);
   }
 
+  /** Move the CrawlerStatus to the least-recently-used position */
+  public synchronized void touchCrawlStatus(String key) {
+    statusMap.get(key);
+  }
+
+  /** Move the CrawlerStatus to the least-recently-used position */
+  public synchronized void touchCrawlStatus(CrawlerStatus status) {
+    statusMap.get(status.getKey());
+  }
+
   public void setRunningNCCrawls(Collection coll) {
     runningNCCrawls = coll;
   }
