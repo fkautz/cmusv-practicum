@@ -574,11 +574,15 @@ public abstract class LockssServlet extends HttpServlet
   }
 
 
-  protected boolean isServletInNav(ServletDescr d) {
+  protected boolean isServletAvailable(ServletDescr d) {
     if (!isDebugUser() && d.isDebugOnly()) return false;
     if (!isAdminUser() && d.isAdminOnly()) return false;
     if (d.cls == ServletDescr.UNAVAILABLE_SERVLET_MARKER) return false;
-    return d.isInNav(this);
+    return true;
+  }
+
+  protected boolean isServletInNav(ServletDescr d) {
+    return isServletAvailable(d) && d.isInNav(this);
   }
 
   protected String getRequestKey() {
