@@ -2011,7 +2011,11 @@ public class V3Poller extends BasePoll {
 
     // Finally, make a probabilistic choice weighted by the last time that
     // we heard from this peer.
-    return ProbabilisticChoice.choose(inviteProb(status));
+    double prob = inviteProb(status);
+    if (log.isDebug3()) {
+      log.debug3("Invite prob of " + pid + ": " + prob);
+    }
+    return ProbabilisticChoice.choose(prob);
   }
 
   boolean isGroupMatch(PeerIdentityStatus status) {
