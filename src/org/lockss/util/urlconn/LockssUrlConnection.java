@@ -116,6 +116,9 @@ public interface LockssUrlConnection {
   /** Set the cookie policy to "rfc2109", "netscape" or "compatibility". */
   public void setCookiePolicy(String policy);
 
+  /** Set the username/password for the connection. */
+  public void setCredentials(String username, String password);
+
   /** Return numeric response code */
   public int getResponseCode();
 

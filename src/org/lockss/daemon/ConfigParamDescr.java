@@ -186,6 +186,14 @@ public class ConfigParamDescr implements Comparable, LockssSerializable {
     .setSize(40)
     .setDescription("Spec for journal in the OAI crawl");
 
+  public static final ConfigParamDescr USER_CREDENTIALS =
+    new ConfigParamDescr()
+    .setDefinitional(false)
+    .setKey("user_pass")
+    .setDisplayName("Username:Password")
+    .setType(TYPE_STRING)
+    .setSize(30);
+
   // Internal use
   public static final ConfigParamDescr AU_CLOSED =
     new ConfigParamDescr()

@@ -105,6 +105,10 @@ public abstract class BaseLockssUrlConnection implements LockssUrlConnection {
     setRequestProperty("If-Modified-Since", time);
   }
 
+  public void setCredentials(String username, String password) {
+    throw new UnsupportedOperationException();
+  }
+
   // Preferred date format according to RFC 2068(HTTP1.1),
   // RFC 822 and RFC 1123
   public static final SimpleDateFormat GMT_DATE_FORMAT =
