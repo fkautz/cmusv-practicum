@@ -1148,6 +1148,11 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
     getDaemon().waitUntilAusStarted();
   }
 
+  // Separate so can override for testing
+  boolean areAusStarted() {
+    return pluginMgr.areAusStarted();
+  }
+
   static Object UNSHARED_RATE_KEY = new Object();
 
   long paramRebuildCrawlQueueInterval = DEFAULT_REBUILD_CRAWL_QUEUE_INTERVAL;
@@ -1325,7 +1330,7 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
     synchronized (queueLock) {
       unsharedRateReqs.clear();
       sharedRateReqs.clear();
-      for (ArchivalUnit au : (pluginMgr.areAusStarted()
+      for (ArchivalUnit au : (areAusStarted()
 			      ? pluginMgr.getAllAus()
 			      : getHighPriorityAus())) {
 	try {
