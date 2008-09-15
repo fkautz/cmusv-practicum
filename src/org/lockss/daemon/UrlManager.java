@@ -48,6 +48,7 @@ import org.lockss.app.*;
 public class UrlManager extends BaseLockssDaemonManager {
   public static final String PROTOCOL_CU = "locksscu";
   public static final String PROTOCOL_AU = "lockssau";
+  public static final String PROTOCOL_RESOURCE = "resource";
 
   private static Logger log = Logger.getLogger("UrlManager");
 
@@ -91,9 +92,14 @@ public class UrlManager extends BaseLockssDaemonManager {
 	    protected URLConnection openConnection(URL u) throws IOException {
 	      return null;
 	    }};
-      } else {
-	return null;	 // use default stream handlers for other protocols
       }
+      if (PROTOCOL_RESOURCE.equalsIgnoreCase(protocol)) {
+	return new URLStreamHandler() {
+	    protected URLConnection openConnection(URL u) throws IOException {
+	      return new ResourceURLConnection(u);
+	    }};
+      }
+      return null;	 // use default stream handlers for other protocols
     }
   }
 }
