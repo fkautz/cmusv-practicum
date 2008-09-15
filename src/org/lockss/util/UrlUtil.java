@@ -861,6 +861,23 @@ public class UrlUtil {
   }
 
   /**
+   * <p>Returns a URL for a resource in a .jar on the classpath</p>
+   * @param resourceName name of the resource
+   * @return A new URL for the resource
+   */
+  public static URL getResourceUrl(String resourceName) {
+    URL url = null;
+    if (resourceName != null) {
+      ClassLoader loader = Thread.currentThread().getContextClassLoader();
+      url = loader.getResource(resourceName);
+      log.debug3(resourceName + " maps to " + url.toString());
+    } else {
+      log.error("null resourceName");
+    }
+    return url;
+  }
+
+  /**
    * Return a list of header fields (in the format "key;fieldValue") for conn
    * @param conn URLConnection to get headers from
    * @return list of header fields (in the format "key;fieldValue") for conn
