@@ -315,6 +315,14 @@ public abstract class BaseCrawler
       // get the permission list from crawl spec
     permissionMap = new PermissionMap(au, this, getDaemonPermissionCheckers(),
 				      pluginPermissionChecker);
+    String perHost = au.getPerHostPermissionPath();
+    if (perHost != null) {
+      try {
+	permissionMap.setPerHostPermissionPath(perHost);
+      } catch (MalformedURLException e) {
+	logger.error("Plugin error", e);
+      }
+    }
     return permissionMap.init();
   }
 

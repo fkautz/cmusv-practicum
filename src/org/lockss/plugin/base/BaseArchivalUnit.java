@@ -586,6 +586,11 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     return startUrls;
   }
 
+  /** Override to provide permission path */
+  public String getPerHostPermissionPath() {
+    return null;
+  }
+
   public String getName() {
     return paramMap.getString(KEY_AU_TITLE, auName);
   }

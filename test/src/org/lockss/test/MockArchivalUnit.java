@@ -76,6 +76,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   private List urlStems = Collections.EMPTY_LIST;
   private Collection loginUrls;
   private String fetchRateLimiterKey;
+  private String perHostPermissionPath;
 
   private static final Logger logger = Logger.getLogger("MockArchivalUnit");
 
@@ -157,6 +158,14 @@ public class MockArchivalUnit implements ArchivalUnit {
 
   public TypedEntryMap getProperties() {
     return propertyMap;
+  }
+
+  public String getPerHostPermissionPath() {
+    return perHostPermissionPath;
+  }
+
+  public void setPerHostPermissionPath(String path) {
+    perHostPermissionPath = path;
   }
 
   public CachedUrlSet makeCachedUrlSet( CachedUrlSetSpec spec) {

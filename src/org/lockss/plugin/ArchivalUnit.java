@@ -198,6 +198,13 @@ public interface ArchivalUnit {
   public List<String> getNewContentCrawlUrls();
 
   /**
+   * Return the host-independent path to look for permission pages on hosts
+   * not covered by getPermissionPages().  String must start with a slash
+   * @return path, or null if no such rule
+   */
+  public String getPerHostPermissionPath();
+
+  /**
    * Query the {@link AuState} object to determine if this is the proper
    * time to do a new content crawl.
    * @param aus {@link AuState} object for this archival unit

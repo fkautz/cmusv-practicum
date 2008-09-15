@@ -177,6 +177,10 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
     return res;
   }
 
+  public String getPerHostPermissionPath() {
+    return (String)definitionMap.getMapElement(DefinablePlugin.KEY_PER_HOST_PERMISSION_PATH);
+  }
+
   @Override
   protected List<String> makeStartUrls() throws ConfigurationException {
     List res = convertPatternList(KEY_AU_START_URL);

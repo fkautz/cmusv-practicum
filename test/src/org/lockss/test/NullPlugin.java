@@ -415,6 +415,10 @@ public class NullPlugin {
       return null;
     }
 
+    public String getPerHostPermissionPath() {
+      return null;
+    }
+
     public boolean shouldBeCached(String url) {
       return false;
     }

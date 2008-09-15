@@ -330,7 +330,6 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
   public UrlCacher makeUrlCacher(String url) {
     UrlCacher uc = super.makeUrlCacher(url);
     uc.setRedirectScheme(UrlCacher.REDIRECT_SCHEME_STORE_ALL_IN_SPEC);
-    uc.setPermissionMapSource(this);
     if (proxyHost != null) {
       uc.setProxy(proxyHost, proxyPort);
     }
