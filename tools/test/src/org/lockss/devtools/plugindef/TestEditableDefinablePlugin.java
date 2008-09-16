@@ -221,6 +221,7 @@ public class TestEditableDefinablePlugin
     set.add(ConfigParamDescr.ISSUE_SET);
     set.add(ConfigParamDescr.OAI_REQUEST_URL);
     set.add(ConfigParamDescr.OAI_SPEC);
+    set.add(ConfigParamDescr.USER_CREDENTIALS);
     Collection actualReturn = edPlugin.getKnownConfigParamDescrs();
     assertIsomorphic("default descrs", set, actualReturn);
 
