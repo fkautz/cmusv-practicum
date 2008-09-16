@@ -278,6 +278,35 @@ public class FuncLockssHttpClient extends LockssTestCase {
     assertEquals(1, th.getNumConnects());
   }
 
+  // Ensure that execute ends with 401 error if incorrect credentials are
+  // supplies.
+  public void testAuthFail() throws Exception {
+    int port = TcpTestUtil.findUnboundTcpPort();
+    ServerSocket server = new ServerSocket(port);
+    ServerThread th = new ServerThread(server);
+    th.setResponses(resp(RESP_401), resp(RESP_401));
+    th.setMaxReads(10);
+    th.start();
+    conn = UrlUtil.openConnection(LockssUrlConnection.METHOD_GET,
+				  localurl(port) + "foo",
+				  connectionPool);
+    conn.setCredentials("userfoo", "passbar");
+    aborter = abortIn(TIMEOUT_SHOULDNT, conn);
+    conn.execute();
+    aborter.cancel();
+    String req1 = th.getRequest(0);
+    assertMatchesRE("^GET /foo HTTP/", req1);
+    assertNotMatchesRE("Authorization:", req1);
+    // second request only should have Authorization: header
+    String req2 = th.getRequest(1);
+    assertMatchesRE("Authorization: Basic dXNlcmZvbzpwYXNzYmFy", req2);
+    assertEquals(401, conn.getResponseCode());
+    conn.release();
+
+    th.stopServer();
+    assertEquals(1, th.getNumConnects());
+  }
+
   public void testDontBindLocalAddress() throws Exception {
     int port = TcpTestUtil.findUnboundTcpPort();
     ServerSocket server = new ServerSocket(port);
