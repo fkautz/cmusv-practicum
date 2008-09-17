@@ -119,4 +119,15 @@ public class TestCompoundLinearSlope extends LockssTestCase {
     assertEquals(100, c.getY(4 * WEEK));
   }
 
+  public void testStairStep() {
+    CompoundLinearSlope c =
+      new CompoundLinearSlope("[10,100],[10,50],[20,50],[20,10]");
+    assertEquals(100, c.getY(0));
+    assertEquals(100, c.getY(10));
+    assertEquals(50, c.getY(11));
+    assertEquals(50, c.getY(12));
+    assertEquals(50, c.getY(20));
+    assertEquals(10, c.getY(21));
+  }
+
 }
