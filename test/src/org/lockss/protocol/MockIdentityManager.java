@@ -287,7 +287,7 @@ public class MockIdentityManager implements IdentityManager {
     throw new UnsupportedOperationException("not implemented");
   }
 
-  public Collection getIdentityAgreements(ArchivalUnit au) {
+  public Collection<IdentityAgreement> getIdentityAgreements(ArchivalUnit au) {
     throw new UnsupportedOperationException("not implemented");
   }
 
@@ -350,6 +350,15 @@ public class MockIdentityManager implements IdentityManager {
     return 0.0f;
   }
 
+  public float getPercentAgreementHint(PeerIdentity pid, ArchivalUnit au) {
+    return 0.0f;
+  }
+
+  public float getHighestPercentAgreementHint(PeerIdentity pid,
+					      ArchivalUnit au) {
+    return 0.0f;
+  }
+  
 //   protected String getLocalIpParam(Configuration config) {
 //     throw new UnsupportedOperationException("not implemented");
 //   }

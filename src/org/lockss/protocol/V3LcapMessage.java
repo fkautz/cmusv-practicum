@@ -105,6 +105,9 @@ public class V3LcapMessage extends LcapMessage implements LockssSerializable {
     },
     NAK_INSUFFICIENT_VOTE_DURATION {
       public String toString() { return "Insufficient Vote Duration"; }
+    },
+    NAK_HAVE_SUFFICIENT_REPAIRERS {
+      public String toString() { return "AU is safe"; }
     }
    };
 
