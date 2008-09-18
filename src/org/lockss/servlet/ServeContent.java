@@ -199,7 +199,7 @@ public class ServeContent extends LockssServlet {
     try {
       // Get the CachedUrl for the URL, only if it has content.
       cu = pluginMgr.findCachedUrl(url, true);
-      if (cu != null || cu.hasContent()) {
+      if (cu != null && cu.hasContent()) {
 	handleCuRequest();
       } else {
 	log.debug(url + " not found");
