@@ -166,7 +166,7 @@ public class BaseCachedUrl implements CachedUrl {
     return null;
   }
 
-  private String getEncoding() {
+  public String getEncoding() {
     String res = null;
     if (CurrentConfig.getBooleanParam(PARAM_FILTER_USE_CHARSET,
 				      DEFAULT_FILTER_USE_CHARSET)) {
@@ -193,27 +193,13 @@ public class BaseCachedUrl implements CachedUrl {
     }
   }
 
-  public InputStream openWithUrlRewriting() {
-    return new ReaderInputStream(openForReadingWithRewriting());
-  }
-
-  public Reader openForReadingWithRewriting() {
-    Reader original = openForReading();
-    Reader rewritten = null;
+  public LinkRewriterFactory getLinkRewriterFactory() {
+    LinkRewriterFactory ret = null;
     String ctype = getContentType();
-    LinkRewriterFactory lrf = au.getLinkRewriterFactory(ctype);
-    if (lrf != null && ctype != null) {
-      try {
-	rewritten =
-	    lrf.createLinkRewriterReader(ctype, au, original, getEncoding(),
-					 url);
-      } catch (PluginException e) {
-	logger.error("Can't create link rewriter " + e.toString());
-      }
-    } else {
-      rewritten = original;
+    if (ctype != null) {
+      ret = au.getLinkRewriterFactory(ctype);
     }
-    return rewritten;
+    return ret;
   }
 
   public CIProperties getProperties() {

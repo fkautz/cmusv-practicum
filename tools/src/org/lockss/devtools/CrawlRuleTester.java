@@ -42,6 +42,7 @@ import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.plugin.base.*;
 import org.lockss.extractor.*;
+import org.lockss.rewriter.*;
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
 import org.lockss.config.*;
@@ -500,12 +501,12 @@ public class CrawlRuleTester extends Thread {
       return reader;
     }
 
-    public InputStream openWithUrlRewriting() {
-      return null;
+    public LinkRewriterFactory getLinkRewriterFactory() {
+      throw new UnsupportedOperationException("Not implemented");
     }
 
-    public Reader openForReadingWithRewriting() {
-      return reader;
+    public String getEncoding(){
+      return Constants.DEFAULT_ENCODING;
     }
 
     /**

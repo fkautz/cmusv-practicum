@@ -51,7 +51,7 @@ public class MimeTypeMap {
     DEFAULT.putMimeTypeInfo("text/html", HTML);
     CSS.setLinkExtractorFactory(new CssLinkExtractor.Factory());
     // XXX
-    // CSS.setLinkExtractorFactory(new CssLinkRewriter.Factory());
+    CSS.setLinkRewriterFactory(new StringFilterCssLinkRewriterFactory());
     DEFAULT.putMimeTypeInfo("text/css", CSS);
   }
 

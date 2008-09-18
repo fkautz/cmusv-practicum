@@ -36,23 +36,10 @@ import java.io.*;
 
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.daemon.PluginException;
+import org.lockss.servlet.ServletUtil;
 
 /** Factory to create an InputStream that rewrites URLs */
 public interface LinkRewriterFactory {
-  /**
-   * Create an InputStream that rewrites links for the MimeType in question.
-   * @param mimeType the MIME type in which to rewrite URLs
-   * @param au the ArchivalUnit the stream comes from
-   * @param in the InputStream to be rewritten
-   * @param encoding the character encoding to use when reading, or null
-   * @param url the url to which in is attached
-   */
-  public InputStream createLinkRewriter(String mimeType,
-					ArchivalUnit au,
-					InputStream in,
-					String encoding,
-					String url)
-      throws PluginException;
   /**
    * Create an InputStream that rewrites links for the MimeType in question.
    * @param mimeType the MIME type in which to rewrite URLs
@@ -65,6 +52,7 @@ public interface LinkRewriterFactory {
 					 ArchivalUnit au,
 					 Reader in,
 					 String encoding,
-					 String url)
+					 String url,
+					 ServletUtil.LinkTransform xform)
       throws PluginException;
 }

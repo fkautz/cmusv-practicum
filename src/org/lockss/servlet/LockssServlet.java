@@ -297,7 +297,7 @@ public abstract class LockssServlet extends HttpServlet
   }
 
   // Return descriptor of running servlet
-  protected ServletDescr myServletDescr() {
+  public ServletDescr myServletDescr() {
     if (_myServletDescr == null) {
       _myServletDescr = servletMgr.findServletDescr(this);
     }

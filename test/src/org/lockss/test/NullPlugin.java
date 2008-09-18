@@ -192,19 +192,19 @@ public class NullPlugin {
       throw new UnsupportedOperationException("Not implemented");
     }
 
-    public InputStream openWithUrlRewriting() {
-      return getUnfilteredInputStream();
-    }
-
-    public Reader openForReadingWithRewriting() {
-      return openForReading();
-    }
-
     public long getContentSize() {
       return 0;
     }
 
     public String getContentType(){
+      return null;
+    }
+
+    public String getEncoding(){
+      return null;
+    }
+
+    public LinkRewriterFactory getLinkRewriterFactory() {
       return null;
     }
 

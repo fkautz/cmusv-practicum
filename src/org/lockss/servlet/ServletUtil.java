@@ -1715,4 +1715,9 @@ public class ServletUtil {
     }
     return tbl;
   }
+
+  /** Interface to link rewriting */
+  public interface LinkTransform {
+    public String rewrite(String url);
+  }
 }

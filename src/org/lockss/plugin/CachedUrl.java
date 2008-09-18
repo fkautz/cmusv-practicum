@@ -35,6 +35,7 @@ package org.lockss.plugin;
 import java.io.*;
 
 import org.lockss.util.*;
+import org.lockss.rewriter.*;
 
 /**
  * <code>CachedUrl</code> is used to access the contents and
@@ -144,20 +145,10 @@ public interface CachedUrl extends CachedUrlSetNode {
   public Reader openForReading();
 
   /**
-   * Return an InputStream on this CachedUrl that
-   * performs appropriate URL re-writing,
-   * perhaps by inserting Javascript to do it.
-   * @return {@link InputStream}
+   * Return a LinkRewriterFactory for this
+   * CachedUrl
    */
-  public InputStream openWithUrlRewriting();
-
-  /**
-   * Return a Reader on this CachedUrl that
-   * performs appropriate URL re-writing,
-   * perhaps by inserting Javascript to do it.
-   * @return {@link Reader}
-   */
-  public Reader openForReadingWithRewriting();
+  public LinkRewriterFactory getLinkRewriterFactory();
 
   /**
    * Get the properties attached to the url in the cache, if any.
@@ -178,6 +169,12 @@ public interface CachedUrl extends CachedUrlSetNode {
    * @return the content type
    */
   public String getContentType();
+
+  /**
+   * Return the encoding to use for the CachedUrl
+   * @return the encoding
+   */
+  public String getEncoding();
 
   /**
    * Return the ArchivalUnit to which this CachedUrl belongs.
