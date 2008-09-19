@@ -521,6 +521,13 @@ public class ConfigManager implements LockssManager {
     generationMap.put(url, new Integer(gen));
   }
 
+  /**
+   * @return a List of the urls from which the config is loaded.
+   */
+  public List getConfigUrlList() {
+    return configUrlList;
+  }
+
   ConfigFile.Generation getConfigGeneration(String url, boolean required,
 					    boolean reload, String msg)
       throws IOException {
