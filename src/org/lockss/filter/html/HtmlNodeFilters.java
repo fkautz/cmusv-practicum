@@ -452,6 +452,14 @@ public class HtmlNodeFilters {
       }
       startIx += tag.length();
       String oldUrl = url.substring(startIx);
+      // If it is already encoded,  leave it alone
+      String oldUrlLow = oldUrl.toLowerCase();
+      if (oldUrlLow.startsWith("http%") ||
+	  oldUrlLow.startsWith("ftp%") ||
+	  oldUrlLow.startsWith("https%")) {
+	log.debug3("not encoding " + url);
+	return url;
+      }
       int endIx = url.indexOf('"', startIx);
       if (endIx > startIx) {
 	// meta tag content attribute
