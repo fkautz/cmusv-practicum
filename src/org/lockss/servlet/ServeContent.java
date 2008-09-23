@@ -218,6 +218,7 @@ public class ServeContent extends LockssServlet {
     clen = cu.getContentSize();
     CIProperties props = cu.getProperties();
     ctype = props.getProperty(CachedUrl.PROPERTY_CONTENT_TYPE);
+    String mimeType = HeaderUtil.getMimeTypeFromContentType(ctype);
     log.debug2(url + " type " + ctype + " size " + clen);
     resp.setContentType(ctype);
     Writer outWriter = null;
@@ -229,7 +230,7 @@ public class ServeContent extends LockssServlet {
       if (lrf != null) {
 	try {
 	  rewritten =
-	    lrf.createLinkRewriterReader(ctype,
+	    lrf.createLinkRewriterReader(mimeType,
 					 cu.getArchivalUnit(),
 					 original,
 					 cu.getEncoding(),

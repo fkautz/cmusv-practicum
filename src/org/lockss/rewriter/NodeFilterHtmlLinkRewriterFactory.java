@@ -82,14 +82,13 @@ public class NodeFilterHtmlLinkRewriterFactory implements LinkRewriterFactory {
     // "data",     // object
   };
 
-  public Reader createLinkRewriterReader(String contentType,
+  public Reader createLinkRewriterReader(String mimeType,
 					 ArchivalUnit au,
 					 Reader in,
 					 String encoding,
 					 String url,
 					 ServletUtil.LinkTransform xform)
       throws PluginException {
-    String mimeType = HeaderUtil.getMimeTypeFromContentType(contentType);
     if ("text/html".equalsIgnoreCase(mimeType)) {
       logger.debug("Rewriting " + url + " in AU " + au);
       int port = 0;
