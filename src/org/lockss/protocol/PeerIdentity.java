@@ -47,8 +47,14 @@ public class PeerIdentity implements LockssSerializable {
   private String key;
   private transient PeerAddress pAddr;
 
-  PeerIdentity(String newKey) {
+  PeerIdentity(String newKey)
+      throws IdentityManager.MalformedIdentityKeyException {
     key = newKey;
+    pAddr = PeerAddress.makePeerAddress(key);
+  }
+
+  // Here only for Mock subclass
+  PeerIdentity() {
   }
 
   /**
@@ -77,11 +83,7 @@ public class PeerIdentity implements LockssSerializable {
     return key;
   }
 
-  public PeerAddress getPeerAddress()
-      throws IdentityManager.MalformedIdentityKeyException {
-    if (pAddr == null) {
-      pAddr = PeerAddress.makePeerAddress(key);
-    }
+  public PeerAddress getPeerAddress() {
     return pAddr;
   }
 
@@ -99,11 +101,17 @@ public class PeerIdentity implements LockssSerializable {
   protected Object postUnmarshalResolve(LockssApp lockssContext) {
     IdentityManager idm =
       (IdentityManager)lockssContext.getManagerByKey(LockssDaemon.IDENTITY_MANAGER);
-    return idm.findPeerIdentity(key);
+    try {
+      return idm.findPeerIdentity(key);
+    } catch (IdentityManager.MalformedIdentityKeyException e) {
+      theLog.error("Bad serialized peer id: " + key, e);
+      return null;
+    }
   }
   
   static class LocalIdentity extends PeerIdentity {
-    LocalIdentity(String key) {
+    LocalIdentity(String key)
+	throws IdentityManager.MalformedIdentityKeyException {
       super(key);
     }
 

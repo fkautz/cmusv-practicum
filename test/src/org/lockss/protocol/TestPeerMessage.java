@@ -210,8 +210,9 @@ public class TestPeerMessage extends LockssTestCase {
 
 
   class MyPeerIdentity extends PeerIdentity {
-    MyPeerIdentity() {
-      super("foo");
+    MyPeerIdentity()
+	throws IdentityManager.MalformedIdentityKeyException {
+      super("tcp:[1.2.3.4]:42");
     }
   }
 

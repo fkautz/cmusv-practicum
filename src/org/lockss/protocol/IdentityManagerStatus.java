@@ -156,12 +156,8 @@ public class IdentityManagerStatus
       PeerIdentity pid = status.getPeerIdentity();
       if (!pid.isLocalIdentity() &&
 	  (includeWrongGroup || isGroupMatch(status, myGroups))) {
-	try {
-	  if (includeV1 || pid.getPeerAddress().isStream()) {
-	    table.add(makeRow(pid, status));
-	  }
-	} catch (IdentityManager.MalformedIdentityKeyException e) {
-	  log.error("Can't get peer status: " + pid, e);
+	if (includeV1 || pid.getPeerAddress().isStream()) {
+	  table.add(makeRow(pid, status));
 	}
       }
     }

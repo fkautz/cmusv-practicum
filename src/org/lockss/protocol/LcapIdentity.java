@@ -95,13 +95,11 @@ public class LcapIdentity implements LockssSerializable {
     m_pid = pid;
   }
 
-  protected LcapIdentity(PeerIdentity pid, String idKey)
-      throws IdentityManager.MalformedIdentityKeyException {
+  protected LcapIdentity(PeerIdentity pid, String idKey) {
     this(pid, idKey, IdentityManager.INITIAL_REPUTATION);
   }
 
-  protected LcapIdentity(PeerIdentity pid, String idKey, int reputation)
-      throws IdentityManager.MalformedIdentityKeyException {
+  protected LcapIdentity(PeerIdentity pid, String idKey, int reputation) {
     this(pid);
     m_idKey = idKey;
     PeerAddress.Ip pa = (PeerAddress.Ip)pid.getPeerAddress();

@@ -961,10 +961,10 @@ public abstract class TestIdentityManagerImpl extends LockssTestCase {
   public void testGetUdpPeerIdentities() throws Exception {
     Collection udpPeers = idmgr.getUdpPeerIdentities();
     assertNotNull(udpPeers);
-    idmgr.findPeerIdentity("127.0.0.1;8001");
-    idmgr.findPeerIdentity("127.0.0.1;8002");
-    idmgr.findPeerIdentity("127.0.0.1;8003");
-    idmgr.findPeerIdentity("127.0.0.1;8004");
+    idmgr.findPeerIdentity("tcp:[127.0.0.1]:8001");
+    idmgr.findPeerIdentity("tcp:[127.0.0.1]:8002");
+    idmgr.findPeerIdentity("tcp:[127.0.0.1]:8003");
+    idmgr.findPeerIdentity("tcp:[127.0.0.1]:8004");
     PeerIdentity id1 = idmgr.findPeerIdentity("127.0.0.2");
     PeerIdentity id2 = idmgr.findPeerIdentity("127.0.0.3");
     PeerIdentity id3 = idmgr.findPeerIdentity("127.0.0.4");

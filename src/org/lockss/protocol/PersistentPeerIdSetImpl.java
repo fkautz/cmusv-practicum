@@ -406,7 +406,11 @@ public class PersistentPeerIdSetImpl implements PersistentPeerIdSet {
     PeerIdentity pi;
     try {
       while ((id = IDUtil.decodeOneKey(is)) != null) {
-        pi = m_identityManager.findPeerIdentity(id);
+	try {
+	  pi = m_identityManager.findPeerIdentity(id);
+	} catch (IdentityManager.MalformedIdentityKeyException e) {
+	  throw new IdentityParseException("Bad PeerId: " + id, e);
+	}
         if (pi != null) {
           history.add(pi);
         } else {

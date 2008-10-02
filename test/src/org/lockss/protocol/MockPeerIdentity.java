@@ -39,7 +39,6 @@ public class MockPeerIdentity extends PeerIdentity {
   private transient PeerAddress pAddr;
 
   public MockPeerIdentity(String newKey) {
-    super(newKey);
     key = newKey;
   }
 
@@ -67,8 +66,7 @@ public class MockPeerIdentity extends PeerIdentity {
     return key;
   }
 
-  public PeerAddress getPeerAddress()
-      throws IdentityManager.MalformedIdentityKeyException {
+  public PeerAddress getPeerAddress() {
     throw new UnsupportedOperationException("not implemented");
   }
 
