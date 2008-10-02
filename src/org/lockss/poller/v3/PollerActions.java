@@ -279,12 +279,13 @@ public class PollerActions {
       }
       uc.storeContent(msg.getRepairDataInputStream(),
                       props);
+      ud.getPoller().receivedRepair(msg.getTargetUrl());
     } catch (IOException ex) {
       log.error("Error attempting to store repair", ex);
       return V3Events.evtError;
+    } finally {
+      msg.delete();
     }
-
-    ud.getPoller().receivedRepair(msg.getTargetUrl());
     return V3Events.evtOk;
   }
 

@@ -754,6 +754,7 @@ public class V3LcapMessage extends LcapMessage implements LockssSerializable {
         log.debug2("Deleting V3LcapMessage Data File: " + repairDataFile);
         repairDataFile.delete();
       }
+      m_repairDataFilePath = null;
     }
   }
 
@@ -812,6 +813,10 @@ public class V3LcapMessage extends LcapMessage implements LockssSerializable {
       if (m_voteBlocks != null) {
         sb.append(" B:");
         sb.append(String.valueOf(m_voteBlocks.size()));
+      }
+      if (m_repairDataLen > 0) {
+        sb.append(" R:");
+        sb.append(m_repairDataLen);
       }
       sb.append(" ver " + m_pollProtocol + " rev " + getProtocolRev());
     }
