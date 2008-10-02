@@ -256,4 +256,28 @@ public class TestConfigParamDescr extends LockssTestCase {
     }
   }
 
+  /**
+   * <p>Tests {@link ConfigParamDescr#getValueOfType(String)} for
+   * the {@link ConfigParamDescr} instance
+   * {@link ConfigParamDescr#ISSUE_RANGE}.</p>
+   * @throws Exception if any unexpected error occurs.
+   */
+  public void testGetValueOfTypeUserPass() throws Exception {
+    ConfigParamDescr pass = ConfigParamDescr.USER_CREDENTIALS;
+    assertEquals("foo:bar", pass.getValueOfType("foo:bar"));
+    // Invalid pass
+    try {
+      pass.getValueOfType("foobar");
+      fail("Should have thrown InvalidFormatException");
+    } catch (InvalidFormatException expected) {
+    }
+    try {
+      pass.getValueOfType("foo:");
+      fail("Should have thrown InvalidFormatException");
+    } catch (InvalidFormatException expected) {
+    }
+  }
+
+
+
 }
