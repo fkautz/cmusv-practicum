@@ -185,8 +185,9 @@ public class V3Voter extends BasePoll {
     DEFAULT_RECALC_HASH_ESTIMATE_VOTE_DURATION_MULTIPLIER
     = "Twice reciprocal of " + V3Poller.PARAM_VOTE_DURATION_MULTIPLIER;
 
-  /** Curve expressing decreasing weight of nominating peer who has
-   * last voted in one of our polls X time ago.
+  /** Curve expressing decreasing weight of nominating peer who has last
+   * voted in one of our polls X time ago.  X coord is time (ms) since last
+   * vote, Y is float nomination weight.
    * @see org.lockss.util.CompoundLinearSlope */
   public static final String PARAM_NOMINATION_WEIGHT_AGE_CURVE =
     PREFIX + "nominationWeightAgeCurve";
