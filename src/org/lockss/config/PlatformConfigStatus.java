@@ -123,17 +123,9 @@ public class PlatformConfigStatus extends BaseLockssDaemonManager {
 	     seplist(config.getList(PARAM_PLATFORM_DISK_SPACE_LIST)));
       addSum(res, "Cwd",
 	     PlatformUtil.getInstance().getCwd());
-      StringBuffer sb = new StringBuffer();
       List propsUrls = ConfigManager.getConfigManager().getConfigUrlList();
       if (propsUrls != null) {
-	for (ListIterator it = propsUrls.listIterator(); it.hasNext(); ) {
-	  String url = (String)it.next();
-	  sb.append(url);
-	  if (it.hasNext()) {
-	    sb.append(", ");
-	  }
-	}
-	addSum(res, "Props", sb.toString());
+	addSum(res, "Props", StringUtil.separatedString(propsUrls, ", "));
       }
       return res;
     }
