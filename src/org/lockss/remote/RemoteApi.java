@@ -1610,8 +1610,9 @@ public class RemoteApi
       bfile = createConfigBackupFile(machineName);
       MimeMessage msg = new MimeMessage();
 
-      PeerIdentity pid = idMgr.getLocalPeerIdentity(Poll.V1_PROTOCOL);
-      String id = pid == null ? "unknown" : pid.getIdString();
+      String id =
+	CurrentConfig.getParam(ConfigManager.PARAM_PLATFORM_IP_ADDRESS,
+			       "unknown");
       String text =
 	sprintf(BACK_MAIL_TEXT,
 		new Object[] {machineName,
