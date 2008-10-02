@@ -480,7 +480,7 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
     boolean isExcluded =
       RegexpUtil.getMatcher().contains(url, globallyExcludedUrlPattern);
     if (isExcluded) {
-      String msg = "URL excluded (possible recursion): " + url;
+      String msg = "URL excluded (probably malformed): " + url;
       logger.siteWarning(msg);
       if (alertMgr != null) {
 	alertMgr.raiseAlert(Alert.auAlert(Alert.CRAWL_EXCLUDED_URL, au), msg);
