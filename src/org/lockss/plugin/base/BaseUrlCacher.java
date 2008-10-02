@@ -648,7 +648,7 @@ public class BaseUrlCacher implements UrlCacher {
 
   String getUserPass() {
     Configuration auConfig = au.getConfiguration();
-    if (auConfig != null) {
+    if (auConfig != null) {		// can be null in unit tests
       return auConfig.get(ConfigParamDescr.USER_CREDENTIALS.getKey());
     }
     return null;
