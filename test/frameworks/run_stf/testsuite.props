@@ -24,7 +24,10 @@
 # workDir = ./
 
 ## First port at which to start the daemons.
-# startPort = 8041
+# startUiPort = 8041
+
+## First V3 port
+# startV3Port = 8081
 
 ## Timeout, in seconds.  Maximum time to wait for any event.
 # timeout = 28800 # eight hours
