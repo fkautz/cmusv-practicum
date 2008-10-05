@@ -1689,8 +1689,6 @@ public class V3Poller extends BasePoll {
     log.debug3("Comparing block " + hashBlock.getUrl() + " against peer " +
                id + " in poll " + getKey());
 
-    int disagreementCount = 0;
-
     for (int hbIdx = 0; hbIdx < hbVersions.length;  hbIdx++ ) {
       byte[] hasherResults = hbVersions[hbIdx].getHashes()[hashIndex];
       Throwable pollerHashError = hbVersions[hbIdx].getHashError();
@@ -1729,19 +1727,15 @@ public class V3Poller extends BasePoll {
           ParticipantUserData ud = getParticipant(id);
           if (ud != null) ud.incrementAgreedBlocks();
           return;
-        } else {
-          disagreementCount++;
         }
       }
     }
 
-    // CR: replace count comparison with isAnyAgree boolean
-    if (disagreementCount == (vbVersions.length * hbVersions.length)) {
-      log.debug3("No agreement found for any version of block " +
-                 voteBlock.getUrl() + ".  Lost tally, adding voter " + id +
-                 " to the disagreeing voter list.");
-      tally.addDisagreeVoter(id);
-    }
+    // If we got here there was no agreement between any versions
+    log.debug3("No agreement found for any version of block " +
+	       voteBlock.getUrl() + ".  Lost tally, adding voter " + id +
+	       " to the disagreeing voter list.");
+    tally.addDisagreeVoter(id);
   }
 
 
