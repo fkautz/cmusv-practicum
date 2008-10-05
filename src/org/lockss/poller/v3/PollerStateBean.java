@@ -71,8 +71,10 @@ public class PollerStateBean implements LockssSerializable {
   private boolean hashStarted;
   private Collection votedPeers;
   private TallyStatus tallyStatus;
-  private String errorDetail; // If non-null, detailed information to be
-  // displayed in the status table regarding any kind of error state.
+  private String errorDetail; // If non-null, detailed error information to
+			      // be displayed in the status table
+  private String additionalInfo;    // If non-null, extra information to be
+				    // displayed in the status table
 
   /* Non-serializable transient fields */
   private transient PollSpec spec;
@@ -389,6 +391,14 @@ public class PollerStateBean implements LockssSerializable {
   
   public String getErrorDetail() {
     return errorDetail;
+  }
+
+  public void setAdditionalInfo(String info) {
+    this.additionalInfo = info;
+  }
+  
+  public String getAdditionalInfo () {
+    return additionalInfo;
   }
 
   /**
