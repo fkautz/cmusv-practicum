@@ -87,6 +87,32 @@ public class PeerIdentity implements LockssSerializable {
     return pAddr;
   }
 
+  /** If this PeerIdentity has an associated IP address, return it.
+      Violates encapsulation of PeerIdentity and PeerAddress. */
+  public IPAddr getIPAddr() {
+    if (pAddr instanceof PeerAddress.Ip) {
+      return ((PeerAddress.Ip)pAddr).getIPAddr();
+    }
+    return null;
+  }
+
+  /** Return a best guess at the URL at which to reach this peer's UI. */
+  public String getUiUrlStem(int defaultPort) {
+    IdentityManager idm =
+      (IdentityManager)LockssDaemon.getManager(LockssDaemon.IDENTITY_MANAGER);
+    if (idm != null) {
+      String stem = idm.getUiUrlStem(this);
+      if (stem != null) {
+	return stem;
+      }
+    }
+    IPAddr addr = getIPAddr();
+    if (addr != null) {
+      return "http://" + addr + ":" + defaultPort;
+    }
+    return null;
+  }
+
   /** Return true iff this is a local PeerIdentity.
    */
   public boolean isLocalIdentity() {

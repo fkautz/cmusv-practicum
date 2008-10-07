@@ -997,6 +997,26 @@ public abstract class TestIdentityManagerImpl extends LockssTestCase {
     assertTrue(expectedPeers.containsAll(tcpPeers));
   }
 
+  public void testGetUiUrlStem() throws Exception {
+    PeerIdentity id1 = idmgr.findPeerIdentity("tcp:[127.0.0.1]:8001");
+    PeerIdentity id2 = idmgr.findPeerIdentity("tcp:[127.0.0.1]:8002");
+    PeerIdentity id3 = idmgr.findPeerIdentity("tcp:[127.0.0.2]:8003");
+    assertNull(idmgr.getUiUrlStem(id1));
+    assertNull(idmgr.getUiUrlStem(id2));
+    assertNull(idmgr.getUiUrlStem(id3));
+    assertEquals("http://127.0.0.1:1234", id1.getUiUrlStem(1234));
+    assertEquals("http://127.0.0.1:1234", id2.getUiUrlStem(1234));
+    assertEquals("http://127.0.0.2:1234", id3.getUiUrlStem(1234));
+
+    String map = "tcp:[127.0.0.1]:8001,http://127.0.0.1:3333;" +
+      "tcp:[127.0.0.2]:8003,http://127.0.0.22:4444";
+    ConfigurationUtil.addFromArgs(IdentityManagerImpl.PARAM_UI_STEM_MAP, map);
+    assertEquals("http://127.0.0.1:3333", id1.getUiUrlStem(1234));
+    assertEquals("http://127.0.0.1:1234", id2.getUiUrlStem(1234));
+    assertEquals("http://127.0.0.22:4444", id3.getUiUrlStem(1234));
+  }
+
+
   private class TestableIdentityManager extends IdentityManagerImpl {
     Map identities = null;
 

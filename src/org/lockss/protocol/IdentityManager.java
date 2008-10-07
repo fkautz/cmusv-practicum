@@ -508,6 +508,8 @@ public interface IdentityManager extends LockssManager {
    */
   public PeerIdentityStatus getPeerIdentityStatus(String key);
 
+  public String getUiUrlStem(PeerIdentity pid);
+
   public static class IdentityAgreement implements LockssSerializable {
     private long lastAgree = 0;
     private long lastDisagree = 0;

@@ -363,5 +363,7 @@ public class MockIdentityManager implements IdentityManager {
 //     throw new UnsupportedOperationException("not implemented");
 //   }
 
-
+  public String getUiUrlStem(PeerIdentity pid) {
+    return null;
+  }
 }
