@@ -132,12 +132,3 @@ class Tdb(object):
         print repr(self.publishers())
         print self.titles()
         print self.aus()
-
-#if __name__ == '__main__':
-#    from tdbparse import TdbScanner, TdbParser
-#    from sys import stdin
-#    tdb = Tdb()
-#    scanner = TdbScanner(stdin)
-#    parser = TdbParser(scanner)
-#    tdb = parser.parse()
-#    tdb.internal_print()
