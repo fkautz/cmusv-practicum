@@ -28,6 +28,10 @@
 
 from tdbconst import *
 
+def __escape(str):
+    from xml.sax import saxutils
+    return saxutils.escape(str)
+
 def __preamble(tdb, options):
     if options.style == STYLE_XML_ENTRIES: return
     print '''<?xml version="1.0" encoding="UTF-8"?>
@@ -67,17 +71,44 @@ def __preamble(tdb, options):
 ]>
 '''
 
-def __escape(str):
-    from xml.sax import saxutils
-    return saxutils.escape(str)
-
 def __introduction(tdb, options):
     if options.style == STYLE_XML_ENTRIES: return
     print '''<lockss-config>
 '''
 
-def __process(tdb, options):
+def __process_au(au, options):
     pass
+
+def __process(tdb, options):
+    current_pub = None
+    if options.style == STYLE_XML_LEGACY:
+        print ''' <property name="org.lockss.title">
+'''
+    for au in tdb.aus():
+        if options.style == STYLE_XML and current_pub is not au.title().publisher():
+            if current_pub is not None:
+                print ''' </property>
+'''
+            current_pub = au.title().publisher()
+            print ''' <property name="org.lockss.titleSet">
+
+  <property name="%(pubname)s">
+   <property name="name" value="All %(pubname)s Titles" />
+   <property name="class" value="xpath" />
+   <property name="xpath" value="[attributes/publisher='%(pubname)s']" />
+  </property>
+  
+ </property>
+ 
+ <property name="org.lockss.title">
+''' % { 'pubname' : __escape(current_pub.name()) }
+        __process_au(au, options)
+    else:
+        if options.style == STYLE_XML: print ''' </property>
+'''             
+    if options.style == STYLE_XML_LEGACY:
+        print ''' </property>
+'''
 
 def __conclusion(tdb, options):
     if options.style == STYLE_XML_ENTRIES: return
