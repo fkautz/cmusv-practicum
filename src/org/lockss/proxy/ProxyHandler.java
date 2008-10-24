@@ -1005,10 +1005,10 @@ public class ProxyHandler extends AbstractHttpHandler {
       return;
     }
     if (e instanceof java.net.ConnectException) {
+      int port = uri.getPort() == 0 ? 80 : uri.getPort();
       sendErrorPage(request, response, 502,
 		    hostMsg("Can't connect to",
-			    uri.getHost() +
-			    (uri.getPort() != 80 ? (":" + uri.getPort()) : ""),
+			    uri.getHost() + ":" + port,
 			    "Connection refused"),
 		    candidateAus);
       return;
