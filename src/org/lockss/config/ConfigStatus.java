@@ -45,6 +45,8 @@ public class ConfigStatus extends BaseLockssDaemonManager {
 
   final static String CONFIG_STATUS_TABLE = "ConfigStatus";
 
+  final static String PARAM_AU_TREE_DOT = PluginManager.PARAM_AU_TREE + ".";
+
   public ConfigStatus() {
   }
 
@@ -99,7 +101,7 @@ public class ConfigStatus extends BaseLockssDaemonManager {
 
     boolean excludeKey(String key) {
       return key.startsWith(ConfigManager.PARAM_TITLE_DB)
-	|| key.startsWith(PluginManager.PARAM_AU_TREE)
+	|| key.startsWith(PARAM_AU_TREE_DOT)
 	|| key.indexOf(".password") >= 0;
     }
   }
