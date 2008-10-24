@@ -190,8 +190,9 @@ public class CssLinkExtractor implements LinkExtractor {
       MalformedURLException javaMalformedUrlException =
         lockssMalformedUrlException.getJavaMalformedUrlException();
       logger.siteError("Malformed URL while parsing " + srcUrl,
-                   javaMalformedUrlException);
-      throw javaMalformedUrlException;
+		       javaMalformedUrlException);
+      throw new CacheException.ExtractionError(javaMalformedUrlException.toString(),
+					       javaMalformedUrlException);
     } catch (org.w3c.css.sac.CSSException e) {
       logger.error("Can't parse CSS: " + srcUrl, e);
       throw new CacheException.ExtractionError(e.toString(), e);

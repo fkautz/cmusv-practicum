@@ -482,8 +482,8 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
       } else {
 	logger.siteWarning("Couldn't parse "+uc+". ignoring error", ex);
       }
-        } catch (IOException ioe) {
-      //XXX handle this better.  Requeue?
+    } catch (IOException ioe) {
+      crawlStatus.signalErrorForUrl(uc.getUrl(), ioe.getMessage());
       logger.error("Problem parsing "+uc+". Ignoring", ioe);
       crawlStatus.setCrawlStatus(Crawler.STATUS_FETCH_ERROR);
     }

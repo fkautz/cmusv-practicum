@@ -104,7 +104,8 @@ public class TestCssLinkExtractor extends LinkExtractorTestCase {
       extractUrls("@import url(\'\');");
       fail("Parser did not throw a MalformedURLException on an empty URL");
     }
-    catch (MalformedURLException expected) {
+    catch (CacheException expected) {
+      assertTrue(expected.getCause() instanceof MalformedURLException);
       // all is well
     }
   }
@@ -165,7 +166,8 @@ public class TestCssLinkExtractor extends LinkExtractorTestCase {
       extractUrls("@import url(\'" + badUrl + "\');");
       fail("Parser did not throw a MalformedURLException on " + badUrl);
     }
-    catch (MalformedURLException expected) {
+    catch (CacheException expected) {
+      assertTrue(expected.getCause() instanceof MalformedURLException);
       // all is well
     }
   }  
