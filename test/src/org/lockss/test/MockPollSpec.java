@@ -52,6 +52,7 @@ public class MockPollSpec extends PollSpec {
   private static Logger log = Logger.getLogger("MockPollSpec");
 
   private String overridePluginVersion = null;
+  private boolean nullCUS = false;
 
   /**
    * Constructor for a "mock" poll spec, for debugging
@@ -101,6 +102,17 @@ public class MockPollSpec extends PollSpec {
 
   public void setPluginVersion(String version) {
     overridePluginVersion = version;
+  }
+
+  public void setNullCUS(boolean val) {
+    nullCUS = val;
+  }
+
+  public CachedUrlSet getCachedUrlSet() {
+    if (nullCUS) {
+      return null;
+    }
+    return super.getCachedUrlSet();
   }
 
   private static CachedUrlSet makeCus(String auId, String url,
