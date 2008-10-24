@@ -105,7 +105,7 @@ public class CompoundLinearSlope {
   //* Pattern picks off first x,y pair into group(1) and group(2) and rest
   //* of string into group(3) */
   static Pattern ONE_POINT_PAT =
-    RegexpUtil.uncheckedCompile("^\\s*,?\\s*\\[(\\w+)\\s*,\\s*([0-9.]+)\\](.*)$",
+    RegexpUtil.uncheckedCompile("^\\s*,?\\s*\\[(\\w+)\\s*,\\s*([0-9.]+(?:[smhdwySMHDWY]?))\\](.*)$",
 				Perl5Compiler.READ_ONLY_MASK);
 
 
@@ -125,8 +125,14 @@ public class CompoundLinearSlope {
       String xstr = matchResult.group(1);
       String ystr = matchResult.group(2);
       str = matchResult.group(3);
-      res.add(new Point(StringUtil.parseTimeInterval(xstr),
-			Double.valueOf(ystr)));
+      double y;
+      try {
+	long ytime = StringUtil.parseTimeInterval(ystr);
+	y = (double)ytime;
+      } catch (NumberFormatException e) {
+	y = Double.valueOf(ystr);
+      }
+      res.add(new Point(StringUtil.parseTimeInterval(xstr), y));
     }
     res.trimToSize();
     return res;
