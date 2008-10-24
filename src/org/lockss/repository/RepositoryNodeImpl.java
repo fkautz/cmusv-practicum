@@ -980,14 +980,14 @@ public class RepositoryNodeImpl implements RepositoryNode {
       try {
         agreeingPeers.add(key);
       } catch (IOException e) {
-        logger.debug("signalAgreement: IO Exception at location 1: " + e.getMessage());
+        logger.warning("impossible error in loaded PeerIdSet");
         return;   /* TODO: Should this pass up an exception? */
       }
     }
     try {
-      agreeingPeers.store();
+      agreeingPeers.store(true);
     } catch (IOException e) {
-      logger.debug("signalAgreement: IO Exception at location 2: " + e.getMessage());
+      logger.error("Couldn't store node agreement: " + getNodeUrl(), e);
     }
   }
 

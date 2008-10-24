@@ -579,14 +579,14 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
   /**
    *  Make sure that we have one (and only one) dated peer id set 
    */
-  public void testGetDatedPeerIdSet() {
+  public void testGetNoAuPeers() {
     DatedPeerIdSet dpis1;
     DatedPeerIdSet dpis2;
     
-    dpis1 = repository.getDatedPeerIdSet();
+    dpis1 = repository.getNoAuPeers();
     assertNotNull(dpis1);
     
-    dpis2 = repository.getDatedPeerIdSet();
+    dpis2 = repository.getNoAuPeers();
     assertNotNull(dpis2);
     
     assertSame(dpis1, dpis2);

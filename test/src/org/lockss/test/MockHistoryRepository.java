@@ -106,7 +106,6 @@ public class MockHistoryRepository implements HistoryRepository {
     return theDamagedNodeSet;
   }
 
-
   public void storeNodeState(NodeState nodeState) {
     storedNodes.put(nodeState.getCachedUrlSet(), nodeState);
   }
@@ -160,7 +159,7 @@ public class MockHistoryRepository implements HistoryRepository {
    *    Therefore, it's an unsupported operation for now.
    * @see org.lockss.state.HistoryRepository#getDatedPeerIdSet()
    */
-  public DatedPeerIdSet getDatedPeerIdSet() {
+  public DatedPeerIdSet getNoAuPeers() {
     throw new UnsupportedOperationException("Not implemented");
   }
 

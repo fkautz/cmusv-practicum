@@ -44,11 +44,12 @@ import java.util.Iterator;
  */
 
 
-public interface PersistentPeerIdSet  {
+public interface PersistentPeerIdSet extends Iterable<PeerIdentity>  {
   /* To handle direct loading and saving. */
   public void load() throws IOException;
-  public void checkpoint() throws IOException;
   public void store() throws IOException;
+  public void store(boolean release) throws IOException;
+  public void release();
 
   /* These methods are equivalents to the functions of java.util.Set. */
   public boolean add(PeerIdentity pi) throws IOException;
