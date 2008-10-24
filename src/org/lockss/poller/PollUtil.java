@@ -412,19 +412,25 @@ public class PollUtil {
 	   : idMgr.getIdentityAgreements(au)) {
       try {
 	if (ida.getHighestPercentAgreementHint() <= repairThreshold) {
-	  log.info("Not willing: " + repairThreshold + " >= " + ida);
+	  if (log.isDebug3()) {
+	    log.debug3("Not willing: " + repairThreshold + " >= " + ida);
+	  }
 	  continue;
 	}
 	PeerIdentity pid = idMgr.stringToPeerIdentity(ida.getId());
 	if (pollMgr.isNoInvitationSubnet(pid)) {
-	  log.info("No invitation subnet: " + ida);
+	  if (log.isDebug3()) {
+	    log.debug3("No invitation subnet: " + ida);
+	  }
 	  continue;
 	}
 	PeerIdentityStatus status = idMgr.getPeerIdentityStatus(pid);
 	long lastMessageTime = status.getLastMessageTime();
 	long noMessageFor = TimeBase.nowMs() - lastMessageTime;
 	if (noMessageFor > pollMgr.getWillingRepairerLiveness()) {
-	  log.info("No message for " + noMessageFor + ": " + ida);
+	  if (log.isDebug3()) {
+	    log.debug3("No message for " + noMessageFor + ": " + ida);
+	  }
 	  continue;
 	}
 	willing++;
