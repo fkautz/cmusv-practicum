@@ -182,6 +182,9 @@ public interface StatusService {
     public NoSuchTableException(String msg) {
       super(msg);
     }
+    public NoSuchTableException(String msg, Exception cause) {
+      super(msg, cause);
+    }
   }
 
   /**

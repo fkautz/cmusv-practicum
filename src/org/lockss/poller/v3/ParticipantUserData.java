@@ -402,6 +402,10 @@ public class ParticipantUserData implements LockssSerializable {
     poller.removeParticipant(voterId);
   }
 
+  void removeParticipant(PollNak nak) {
+    poller.removeParticipant(voterId, nak);
+  }
+
   /*
    * Callbacks methods.
    */
