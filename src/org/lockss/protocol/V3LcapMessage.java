@@ -108,6 +108,9 @@ public class V3LcapMessage extends LcapMessage implements LockssSerializable {
     },
     NAK_HAVE_SUFFICIENT_REPAIRERS {
       public String toString() { return "AU is safe"; }
+    },
+    NAK_NOT_READY {
+      public String toString() { return "Not ready"; }
     }
    };
 
