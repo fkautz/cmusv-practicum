@@ -241,6 +241,9 @@ public class CollectionUtil {
       for (Map.Entry ent : (Set<Map.Entry>)itemMap.entrySet()) {
 	items[ix] = ent.getKey();
 	double weight = (Double)ent.getValue();
+	if (weight <= 0.0) {
+	  throw new IllegalArgumentException("Weight <= 0: " + weight);
+	}
 	weightIndices[ix] = totalWeight;
 	totalWeight += weight;
 	ix++;
