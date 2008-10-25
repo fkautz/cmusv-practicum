@@ -2209,6 +2209,10 @@ public class V3Poller extends BasePoll {
     if (peers == null || !peers.contains(status.getPeerIdentity())) {
       return 1.0;
     }
+    if (log.isDebug2()) {
+      log.debug2("At risk AU instance: " + status.getPeerIdentity() +
+		 ", " + getAu().getName());
+    }
     return pollManager.getInvitationWeightAtRisk();
   }
 
