@@ -98,12 +98,21 @@ public class MockAuState extends AuState {
     lastTopLevelPoll = newPollTime;
   }
 
+  @Override
   public void setV3Agreement(double d) {
     v3Agreement = d;
   }
 
   public void setLastPollResult(int result) {
     lastPollResult = result;
+  }
+
+  public void setLastPollStart(long time) {
+    lastPollStart = time;
+  }
+
+  public void setLastToplevalPoll(long time) {
+    lastTopLevelPoll = time;
   }
 
   public void setLastTreeWalkTime(long newTreeWalkTime) {

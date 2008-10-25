@@ -60,6 +60,7 @@ public class AuStateBean extends AuState {
 				      auState.lastPollStart,
 				      auState.lastPollResult,
 				      auState.lastPollResultMsg,
+				      auState.pollDuration,
 				      auState.lastTreeWalk, auState.crawlUrls,
 				      auState.accessType,
 				      auState.clockssSubscriptionStatus,

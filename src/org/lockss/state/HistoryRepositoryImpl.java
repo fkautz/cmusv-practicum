@@ -267,6 +267,7 @@ public class HistoryRepositoryImpl
                          auState.getLastPollStart(),
                          auState.getLastPollResult(),
                          auState.getLastPollResultMsg(),
+                         auState.getPollDuration(),
                          -1,
                          auState.getCrawlUrls(),
                          auState.getAccessType(),
