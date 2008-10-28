@@ -78,7 +78,7 @@ public class NcawHtmlLinkExtractor extends GoslingHtmlLinkExtractor {
     return super.extractLinkFromTag(link, au, cb);
   }
   
-  protected static Logger logger = Logger.getLogger("NcawHtmlFilterFactory");
+  protected static Logger logger = Logger.getLogger("NcawHtmlLinkExtractor");
 
   protected static final Pattern OPEN_WINDOW_PATTERN = RegexpUtil.uncheckedCompile("javascript:openWindow\\([^']*'([^']*)'[^,]*,[^']*'(?:[^']*)'[^,]*,[^']*'(?:[^']*)'\\);",
                                                                                    Perl5Compiler.READ_ONLY_MASK);
