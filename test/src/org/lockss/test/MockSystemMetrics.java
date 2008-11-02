@@ -65,8 +65,7 @@ public class MockSystemMetrics extends SystemMetrics {
     }
   }
 
-  public int getBytesPerMsHashEstimate()
-      throws NoHashEstimateAvailableException {
+  public int getBytesPerMsHashEstimate() {
     if (hashSpeed >= 0) {
       return hashSpeed;
     } else {
