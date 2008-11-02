@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -273,8 +273,10 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
 					       SimulatedPlugin.AU_PARAM_NUM_FILES));
       }
       if (config.containsKey(SimulatedPlugin.AU_PARAM_BIN_FILE_SIZE)) {
-        gen.setBinaryFileSize(config.getInt(
-					    SimulatedPlugin.AU_PARAM_BIN_FILE_SIZE));
+        gen.setBinaryFileSize(config.getLong(SimulatedPlugin.AU_PARAM_BIN_FILE_SIZE));
+      }
+      if (config.containsKey(SimulatedPlugin.AU_PARAM_BIN_RANDOM_SEED)) {
+        gen.setRandomSeed(config.getLong(SimulatedPlugin.AU_PARAM_BIN_RANDOM_SEED));
       }
       if (config.containsKey(SimulatedPlugin.AU_PARAM_MAXFILE_NAME)) {
         gen.setMaxFilenameLength(config.getInt(
