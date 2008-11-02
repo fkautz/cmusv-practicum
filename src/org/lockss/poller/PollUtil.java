@@ -176,8 +176,8 @@ public class PollUtil {
   }
 
   public static long getReceiptPadding() {
-    return CurrentConfig.getLongParam(V3Poller.PARAM_RECEIPT_PADDING,
-				      V3Poller.DEFAULT_RECEIPT_PADDING);
+    return CurrentConfig.getTimeIntervalParam(V3Poller.PARAM_RECEIPT_PADDING,
+					      V3Poller.DEFAULT_RECEIPT_PADDING);
   }
 
   public static double getExtendPollMultiplier() {
