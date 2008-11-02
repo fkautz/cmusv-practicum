@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -117,7 +117,8 @@ public class TestLcapRouter extends LockssTestCase {
   }
 
   static class MyLcapRouter extends LcapRouter {
-    PeerMessage newPeerMessage() {
+    @Override
+    PeerMessage newPeerMessage(long estSize) {
       return new MemoryPeerMessage();
     }
   }

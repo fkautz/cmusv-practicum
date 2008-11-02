@@ -152,6 +152,10 @@ public class DiskVoteBlocks implements VoteBlocks {
     return m_size;
   }
 
+  public long getEstimatedEncodedLength() {
+    return m_file.length();
+  }
+
   public synchronized void release() {
     // The poller should have already cleaned up our directory by now,
     // but just in case, we'll run some cleanup code.

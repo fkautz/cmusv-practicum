@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -47,8 +47,8 @@ interface PeerChannel {
   static final int HEADER_OFF_CHECK = 0;
   static final int HEADER_OFF_OP = 1;
   static final int HEADER_OFF_LEN = 2;
-  static final int HEADER_OFF_PROTO = 6;
-  static final int HEADER_LEN = 10;
+  static final int HEADER_OFF_PROTO = 10;
+  static final int HEADER_LEN = 14;
 
   static final byte HEADER_CHECK = (byte)0xff;
   static final byte OP_PEERID = 0x01;

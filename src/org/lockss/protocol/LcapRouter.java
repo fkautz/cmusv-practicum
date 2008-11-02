@@ -160,8 +160,7 @@ public class LcapRouter
     OutputStream out = null;
     InputStream in = null;
     try {
-      // XXX need estimate of lcap msg size here
-      PeerMessage pmsg = newPeerMessage();
+      PeerMessage pmsg = newPeerMessage(lmsg.getEstimatedEncodedLength());
       pmsg.setProtocol(PeerMessage.PROTOCOL_LCAP_V3);
       out = pmsg.getOutputStream();
       in = lmsg.getInputStream();
@@ -186,8 +185,8 @@ public class LcapRouter
     }
   }
 
-  PeerMessage newPeerMessage() {
-    return scomm.newPeerMessage();
+  PeerMessage newPeerMessage(long estSize) {
+    return scomm.newPeerMessage(estSize);
   }
 
   // Incoming peer message - decode to V3LcapMessage and run handlers

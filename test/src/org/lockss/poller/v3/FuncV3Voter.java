@@ -378,7 +378,7 @@ public class FuncV3Voter extends LockssTestCase {
     public PeerMessage newPeerMessage() {
       throw new UnsupportedOperationException("Not implemented");
     }
-    public PeerMessage newPeerMessage(int estSize) {
+    public PeerMessage newPeerMessage(long estSize) {
       throw new UnsupportedOperationException("Not implemented");
     }
     public void registerMessageHandler(int protocol, MessageHandler handler) {

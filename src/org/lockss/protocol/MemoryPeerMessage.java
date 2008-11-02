@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -81,7 +81,7 @@ class MemoryPeerMessage extends PeerMessage {
   /** Return the size of the data
    * @throw IllegalStateException if message data not stored yet
    */
-  public int getDataSize() {
+  public long getDataSize() {
     checkHasData();
     return payload.length;
   }
