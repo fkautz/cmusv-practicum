@@ -227,6 +227,10 @@ public class ServeContent extends LockssServlet {
     try {
       outWriter = resp.getWriter();
       LinkRewriterFactory lrf = cu.getLinkRewriterFactory();
+      if (!StringUtil.isNullString(getParameter("norewrite"))) {
+	log.info("Not rewriting " + url);
+	lrf = null;
+      }
       if (lrf != null) {
 	try {
 	  rewritten =
