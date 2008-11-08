@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -66,6 +66,7 @@ public class TestAdminServletManager extends LockssTestCase {
 
   ServletDescr debugDescrs[] = {
      SERVLET_HASH_CUS,
+     SERVLET_DEBUG_PANEL,
      LINK_LOGS,
      SERVLET_THREAD_DUMP,
      SERVLET_RAISE_ALERT,

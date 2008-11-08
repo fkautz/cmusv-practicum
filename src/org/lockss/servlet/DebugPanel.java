@@ -280,6 +280,8 @@ public class DebugPanel extends LockssServlet {
     Input backup = new Input(Input.Submit, KEY_ACTION, ACTION_MAIL_BACKUP);
     setTabOrder(backup);
     frm.add("<br><center>"+backup+"</center>");
+    ServletDescr d1 = AdminServletManager.SERVLET_HASH_CUS;
+    frm.add("<br><center>"+srvLink(d1, d1.heading)+"</center>");
     Input thrw = new Input(Input.Submit, KEY_ACTION, ACTION_THROW_IOEXCEPTION);
     Input thmsg = new Input(Input.Text, KEY_MSG);
     setTabOrder(thrw);
