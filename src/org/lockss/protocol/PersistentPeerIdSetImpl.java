@@ -64,7 +64,7 @@ public class PersistentPeerIdSetImpl implements PersistentPeerIdSet {
   protected boolean m_isInMemory;
   private static Logger m_logger = Logger.getLogger("PersistentPeerIdSet");
   protected Set<PeerIdentity> m_setPeerId;
-  protected boolean changed = true;
+  protected boolean changed = false;
 
 
   public PersistentPeerIdSetImpl(File filePeerId, IdentityManager identityManager) {
