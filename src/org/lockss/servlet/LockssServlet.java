@@ -59,6 +59,7 @@ import org.lockss.util.*;
 // single thread (request) at a time.
 public abstract class LockssServlet extends HttpServlet
   implements SingleThreadModel {
+  protected static Logger log = Logger.getLogger("LockssServlet");
 
   // Constants
   static final String PARAM_LOCAL_IP = Configuration.PREFIX + "localIPAddress";
@@ -92,8 +93,6 @@ public abstract class LockssServlet extends HttpServlet
 
   public static final String ROLE_ADMIN = "adminRole";
   public static final String ROLE_DEBUG = "debugRole";
-
-  protected static Logger log = Logger.getLogger("LockssServlet");
 
   protected ServletContext context;
 
@@ -525,6 +524,11 @@ public abstract class LockssServlet extends HttpServlet
   String srvLink(ServletDescr d, String text, Properties params) {
     return new Link(srvURL(d, params),
 		    text).toString();
+  }
+
+  /** Return an absolute link to a servlet with params */
+  String srvAbsLink(ServletDescr d, String text, Properties params) {
+    return srvAbsLink(d, text, concatParams(params));
   }
 
   /** Return an absolute link to a servlet with params */

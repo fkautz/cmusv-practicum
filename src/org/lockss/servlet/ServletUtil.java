@@ -1563,18 +1563,18 @@ public class ServletUtil {
     return str.replaceAll("\n", "<br>");
   }
 
-  private static Element radioButton(LockssServlet servlet,
-                                     String key,
-                                     String value,
-                                     boolean checked) {
+  public static Element radioButton(LockssServlet servlet,
+				    String key,
+				    String value,
+				    boolean checked) {
     return radioButton(servlet, key, value, value, checked);
   }
 
-  private static Element radioButton(LockssServlet servlet,
-                                     String key,
-                                     String value,
-                                     String text,
-                                     boolean checked) {
+  public static Element radioButton(LockssServlet servlet,
+				    String key,
+				    String value,
+				    String text,
+				    boolean checked) {
     Composite c = new Composite();
     Input in = new Input(Input.Radio, key, value);
     if (checked) { in.check(); }
