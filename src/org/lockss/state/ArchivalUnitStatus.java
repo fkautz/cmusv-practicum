@@ -891,18 +891,20 @@ public class ArchivalUnitStatus
         throws StatusService.NoSuchTableException {
       HistoryRepository historyRepo = theDaemon.getHistoryRepository(au);
       table.setTitle("Peers not holding " + au.getName());
-      DatedPeerIdSet noAuSet = historyRepo.getNoAuPeers();
-      try {
-	noAuSet.load();
-	table.setSummaryInfo(getSummaryInfo(au, noAuSet));
-	table.setColumnDescriptors(columnDescriptors);
-	table.setRows(getRows(table, au, noAuSet));
-      } catch (IOException e) {
-	String msg = "Couldn't load NoAuSet";
-	logger.warning(msg, e);
-	throw new StatusService.NoSuchTableException(msg, e);
-      } finally {
-	noAuSet.release();
+      DatedPeerIdSet noAuSet = theDaemon.getPollManager().getNoAuPeerSet(au);
+      synchronized (noAuSet) {
+	try {
+	  noAuSet.load();
+	  table.setSummaryInfo(getSummaryInfo(au, noAuSet));
+	  table.setColumnDescriptors(columnDescriptors);
+	  table.setRows(getRows(table, au, noAuSet));
+	} catch (IOException e) {
+	  String msg = "Couldn't load NoAuSet";
+	  logger.warning(msg, e);
+	  throw new StatusService.NoSuchTableException(msg, e);
+	} finally {
+	  noAuSet.release();
+	}
       }
     }
 

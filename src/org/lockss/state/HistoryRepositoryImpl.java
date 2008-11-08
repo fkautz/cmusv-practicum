@@ -210,7 +210,7 @@ public class HistoryRepositoryImpl
   /**
    * Return the associated NoAuPeerIdSet
    */
-  public DatedPeerIdSet getNoAuPeers()
+  public DatedPeerIdSet getNoAuPeerSet()
   {
     IdentityManager idman;
     

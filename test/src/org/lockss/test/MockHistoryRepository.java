@@ -159,7 +159,7 @@ public class MockHistoryRepository implements HistoryRepository {
    *    Therefore, it's an unsupported operation for now.
    * @see org.lockss.state.HistoryRepository#getDatedPeerIdSet()
    */
-  public DatedPeerIdSet getNoAuPeers() {
+  public DatedPeerIdSet getNoAuPeerSet() {
     throw new UnsupportedOperationException("Not implemented");
   }
 

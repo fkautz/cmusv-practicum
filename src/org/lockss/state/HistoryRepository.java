@@ -100,7 +100,7 @@ public interface HistoryRepository extends LockssAuManager {
   /**
    * Return the associated DatedPeerIdSet
    */
-  public DatedPeerIdSet getNoAuPeers();
+  public DatedPeerIdSet getNoAuPeerSet();
   
   /**
    * Stores the AuState for this ArchivalUnit
