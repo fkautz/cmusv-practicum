@@ -87,6 +87,10 @@ public class PeerIdentity implements LockssSerializable {
     return pAddr;
   }
 
+  void setPeerAddress(PeerAddress addr) {
+    this.pAddr = addr;
+  }
+
   /** If this PeerIdentity has an associated IP address, return it.
       Violates encapsulation of PeerIdentity and PeerAddress. */
   public IPAddr getIPAddr() {
