@@ -1065,6 +1065,26 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
     assertEquals("value 2", props.getProperty("test 1"));
   }
 
+  public void testCorruptProperties() throws Exception {
+    Properties props = new Properties();
+    props.setProperty("test 1", "value 1");
+    RepositoryNode leaf =
+        createLeaf("http://www.example.com/testDir/test.cache",
+        "test stream", props);
+
+    RepositoryNodeImpl leafImpl = (RepositoryNodeImpl)leaf;
+    File propsFile = new File(leafImpl.getContentDir(),
+			      RepositoryNodeImpl.CURRENT_PROPS_FILENAME);
+    // Write a Malformed unicode escape that will cause Properties.load()
+    // to throw
+    OutputStream os =
+      new BufferedOutputStream(new FileOutputStream(propsFile, true));
+    os.write("\\uxxxxfoo=bar".getBytes());
+    os.close();
+
+    assertTrue(leaf.isDeleted());
+  }
+
   static String cntnt(int ix) {
     return "content " + ix + "ABCDEFGHIJKLMNOPQRSTUVWXYZ".substring(0, ix);
   }
