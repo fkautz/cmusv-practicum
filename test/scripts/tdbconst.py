@@ -26,12 +26,12 @@
 # be used in advertising or otherwise to promote the sale, use or other dealings
 # in this Software without prior written authorization from Stanford University.
 
-OPTION_STYLE       = 'style'
+TDB_OPTION_STYLE       = 'style'
 
-STYLE_XML         = 'xml'
-STYLE_XML_ENTRIES = 'xml_entries'
-STYLE_XML_LEGACY  = 'xml_legacy'
-STYLES            = [STYLE_XML,
-                     STYLE_XML_ENTRIES,
-                     STYLE_XML_LEGACY]
-STYLE_DEFAULT     = STYLE_XML_ENTRIES
+TDB_STYLE_XML         = 'xml'
+TDB_STYLE_XML_ENTRIES = 'xml_entries'
+TDB_STYLE_XML_LEGACY  = 'xml_legacy'
+TDB_STYLES            = [TDB_STYLE_XML,
+                         TDB_STYLE_XML_ENTRIES,
+                         TDB_STYLE_XML_LEGACY]
+TDB_STYLE_DEFAULT     = TDB_STYLE_XML_ENTRIES
