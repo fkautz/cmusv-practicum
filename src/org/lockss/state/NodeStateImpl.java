@@ -118,7 +118,7 @@ public class NodeStateImpl
    * @param polls List of PollState objects
    * @param repository HistoryRepository
    */
-  NodeStateImpl(CachedUrlSet cus, long hashDuration, CrawlState crawlState,
+  public NodeStateImpl(CachedUrlSet cus, long hashDuration, CrawlState crawlState,
                 List polls, HistoryRepository repository) {
     this.cus = cus;
     this.crawlState = crawlState;

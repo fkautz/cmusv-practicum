@@ -73,7 +73,7 @@ public class CrawlState implements LockssSerializable {
    * @param status the status
    * @param startTime the start time
    */
-  CrawlState(int type, int status, long startTime) {
+  public CrawlState(int type, int status, long startTime) {
     this.type = type;
     this.status = status;
     this.startTime = startTime;
