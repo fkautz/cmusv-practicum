@@ -106,10 +106,9 @@ class AU(ChainedTdbObject):
     NAME = 'name'
     PARAM = 'param'
     PLUGIN = 'plugin'
+    RIGHTS='rights'
     STATUS = 'status'
     TITLE = 'title'
-    
-    STATUS_DOWN = 'down'
 
     def __init__(self, next=None):
         ChainedTdbObject.__init__(self, next)
@@ -123,6 +122,7 @@ class AU(ChainedTdbObject):
     def param(self, param): return self.geti('%s[%s]' % ( AU.PARAM, param ))
     def params(self): return self.geti(AU.PARAM)
     def plugin(self): return self.get(AU.PLUGIN)
+    def rights(self): return self.get(AU.RIGHTS)
     def status(self): return self.get(AU.STATUS)
     def title(self): return self.get(AU.TITLE)
 
