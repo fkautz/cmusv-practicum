@@ -419,7 +419,7 @@ public class EditableDefinablePlugin extends DefinablePlugin {
 
   public long getNewContentCrawlInterval() {
     // Ensure default is saved
-    if (!definitionMap.containsKey(DefinableArchivalUnit.KEY_AU_NEW_CONTENT_CRAWL_INTERVAL)) {
+    if (!definitionMap.containsKey(DefinableArchivalUnit.KEY_AU_DEFAULT_NEW_CONTENT_CRAWL_INTERVAL)) {
       setNewContentCrawlInterval(DefinableArchivalUnit.DEFAULT_NEW_CONTENT_CRAWL_INTERVAL);
     }
     long ret = definitionMap.getLong(DefinableArchivalUnit.KEY_AU_DEFAULT_NEW_CONTENT_CRAWL_INTERVAL,
