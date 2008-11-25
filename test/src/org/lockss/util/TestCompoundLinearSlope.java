@@ -140,4 +140,15 @@ public class TestCompoundLinearSlope extends LockssTestCase {
     assertEquals(10.0, c.getY(21), .001);
   }
 
+  public void testNegative() {
+    CompoundLinearSlope c =
+      new CompoundLinearSlope("[10,100],[10,-50],[20,-50],[20,10]");
+    assertEquals(100.0, c.getY(0), .001);
+    assertEquals(100.0, c.getY(10), .001);
+    assertEquals(-50.0, c.getY(11), .001);
+    assertEquals(-50.0, c.getY(12), .001);
+    assertEquals(-50.0, c.getY(20), .001);
+    assertEquals(10.0, c.getY(21), .001);
+  }
+
 }
