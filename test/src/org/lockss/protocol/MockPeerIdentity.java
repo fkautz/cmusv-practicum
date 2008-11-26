@@ -35,8 +35,6 @@ import java.util.*;
 import org.lockss.util.*;
 
 public class MockPeerIdentity extends PeerIdentity {
-  private String key;
-  private transient PeerAddress pAddr;
 
   public MockPeerIdentity(String newKey) {
     key = newKey;
