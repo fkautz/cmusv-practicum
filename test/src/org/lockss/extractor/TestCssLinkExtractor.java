@@ -84,6 +84,14 @@ public class TestCssLinkExtractor extends LinkExtractorTestCase {
     assertEmpty(extractUrls(source));
   }
   
+  public void testHandlesInputWithBadHexConstant() throws Exception {
+    extractUrls("foo { background-color: #1; }");
+    extractUrls("foo { background-color: #12; }");
+    extractUrls("foo { background-color: #1234; }");
+    extractUrls("foo { background-color: #12345; }");
+    extractUrls("foo { background-color: #1234567; }");
+  }
+  
   public void testRelativeUrl() throws Exception {
     String url = "stylesheet.css";
     String fullUrl = SOURCE_URL.substring(0, SOURCE_URL.lastIndexOf('/') + 1) + url;
@@ -191,7 +199,7 @@ public class TestCssLinkExtractor extends LinkExtractorTestCase {
                               String expectedUrl)
       throws IOException, PluginException {
     assertEquals(SetUtil.set(expectedUrl),
-		 extractUrls(beginning + middle + end));
+                 extractUrls(beginning + middle + end));
   }  
 
   protected static final String SOURCE_URL =
@@ -203,7 +211,7 @@ public class TestCssLinkExtractor extends LinkExtractorTestCase {
 
     public void parseStyleSheet(InputSource inputSource) throws IOException {
       if (toThrow != null) {
-	throw toThrow;
+        throw toThrow;
       }
       super.parseStyleSheet(inputSource);
     }
@@ -225,7 +233,7 @@ public class TestCssLinkExtractor extends LinkExtractorTestCase {
 
     public static class Factory implements LinkExtractorFactory {
       public LinkExtractor createLinkExtractor(String mimeType) {
-	return new MyCssLinkExtractor();
+        return new MyCssLinkExtractor();
       }
     }
 
