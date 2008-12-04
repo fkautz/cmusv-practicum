@@ -46,7 +46,7 @@ def _escape(str):
 
 def _short_au_name(au):
     str = au.name()
-    str = re.sub(r'Volume\s+(\S+)$', '\1', str)
+    str = re.sub(r'Volume\s+(\S+)$', r'\1', str)
     str = re.sub(r'\s+', '', str)
     str = re.sub(r'\W+', '', str)
     return _escape(str)
