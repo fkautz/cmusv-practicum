@@ -104,7 +104,7 @@ public class TestAbsinthePlugin extends LockssTestCase {
     props.setProperty(YEAR_KEY, "2003");
 
     DefinableArchivalUnit au = makeAuFromProps(props);
-    assertEquals("www.example.com, 2003", au.getName());
+    assertEquals("Absinthe Literary Review Plugin, Base URL http://www.example.com/, Year 2003", au.getName());
   }
 
   public void testGetPluginId() {

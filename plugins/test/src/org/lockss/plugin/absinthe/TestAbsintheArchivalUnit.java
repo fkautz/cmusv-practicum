@@ -218,9 +218,9 @@ public class TestAbsintheArchivalUnit extends LockssTestCase {
 
   public void testGetName() throws Exception {
     DefinableArchivalUnit au = makeAu(new URL(ROOT_URL), "2003");
-    assertEquals("absinthe-literary-review.com, 2003", au.getName());
+    assertEquals("Absinthe Literary Review Plugin, Base URL http://absinthe-literary-review.com/, Year 2003", au.getName());
     au = makeAu(new URL("http://www.bmj.com/"), "2005");
-    assertEquals("www.bmj.com, 2005", au.getName());
+    assertEquals("Absinthe Literary Review Plugin, Base URL http://www.bmj.com/, Year 2005", au.getName());
   }
 
   public static void main(String[] argv) {
