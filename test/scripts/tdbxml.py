@@ -113,6 +113,7 @@ def _do_attr(au, attr, value=None):
    <property name="attribute.%s" value="%s" />''' % ( attr, value )
 
 def _process_au(au, options):
+    if au.status() not in options.level: return
     print '''\
   <property name="%s">
    <property name="attributes.publisher" value="%s" />
