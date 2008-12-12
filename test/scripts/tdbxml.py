@@ -34,7 +34,7 @@ _IMPLICIT_PARAM_ORDER = [
     'base_url', 'base_url2', 'base_url3', 'base_url4', 'base_url5',
     'oai_request_url',
     'publisher_id', 'publisher_code', 'publisher_name',
-    'journal_id', 'journal_code', 'journal_issn',
+    'journal_id', 'journal_code', 'journal_issn', 'journal_dir',
     'year',
     'issues', 'issue_set', 'issue_range', 'num_issue_range',
     'volume_name', 'volume'
