@@ -155,7 +155,7 @@ public class PeerIdentity implements LockssSerializable {
   }
   
   // Accessor for our variables.  Here because of the MockPeerIdentity. 
-  private String getKey() {
+  protected String getKey() {
     return key;
   }
 }

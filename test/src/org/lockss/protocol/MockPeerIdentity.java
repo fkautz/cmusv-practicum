@@ -74,8 +74,9 @@ public class MockPeerIdentity extends PeerIdentity {
     return false;
   }
   
-  // Accessor for our variables.  Here because of the MockPeerIdentity. 
-  private String getKey() {
+  // Accessor for our variables, so superclass uses mock vars
+  @Override
+  protected String getKey() {
     return keyMock;
   }
 
