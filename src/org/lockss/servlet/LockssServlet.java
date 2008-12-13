@@ -153,9 +153,11 @@ public abstract class LockssServlet extends HttpServlet
 	logParams();
       }
       resp.setContentType("text/html");
-      // Don't want anything served by a servlet to be cached
-      resp.setHeader("pragma", "no-cache");
-      resp.setHeader("Cache-control", "no-cache");
+
+      if (!mayPageBeCached()) {
+	resp.setHeader("pragma", "no-cache");
+	resp.setHeader("Cache-control", "no-cache");
+      }
 
       footNumber = 0;
       tabindex = 1;
@@ -208,6 +210,12 @@ public abstract class LockssServlet extends HttpServlet
     _myServletDescr = null;
     myName = null;
     multiReq = null;
+  }
+
+  /** Return true if generated page may be cached (e.g., by browser).
+   * Default is false as most servlets generate dynamic results */
+  protected boolean mayPageBeCached() {
+    return false;
   }
 
   /** Set the session timeout to the configured value */
