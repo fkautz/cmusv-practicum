@@ -58,7 +58,7 @@ public class TinyUi extends BaseServletManager {
 
   public static final boolean DEFAULT_START = true;
   public static final int DEFAULT_PORT = 8081;
-  public static final boolean DO_USER_AUTH = true;
+  public static final boolean DO_USER_AUTH = false;
 
   private String[] tinyData;
 
