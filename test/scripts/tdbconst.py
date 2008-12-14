@@ -73,7 +73,7 @@ TDB_LEVEL_CONTENT_TESTING_STATUSES = [TDB_STATUS_EXISTS,
                                       TDB_STATUS_RELEASED,
                                       TDB_STATUS_DOWN]
 TDB_LEVEL_EVERYTHING               = 'everything'
-TDB_LEVEL_EVERYTHING               = TDB_STATUSES[:]
+TDB_LEVEL_EVERYTHING_STATUSES      = TDB_STATUSES[:]
 TDB_LEVEL_PRODUCTION               = 'production'
 TDB_LEVEL_PRODUCTION_STATUSES      = [TDB_STATUS_RELEASED,
                                       TDB_STATUS_DOWN,
