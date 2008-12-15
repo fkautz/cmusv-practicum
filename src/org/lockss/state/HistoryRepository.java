@@ -36,6 +36,7 @@ import java.io.*;
 import java.util.List;
 import org.lockss.plugin.*;
 import org.lockss.protocol.DatedPeerIdSet;
+import org.lockss.repository.jcr.*;
 import org.lockss.app.LockssAuManager;
 
 /**
@@ -75,14 +76,14 @@ public interface HistoryRepository extends LockssAuManager {
    * @param list the list of {@link
    * org.lockss.protocol.IdentityManager.IdentityAgreement}s
    */
-  public void storeIdentityAgreements(List list);
+  public void storeIdentityAgreements(List list) throws LockssRepositoryException;
 
   /**
    * Loads and returns IdentityAgreement list
    * @return List the list {@link
    * org.lockss.protocol.IdentityManager.IdentityAgreement}s
    */
-  public List loadIdentityAgreements();
+  public List loadIdentityAgreements() throws LockssRepositoryException;
 
   /** Return identity agreement File for this AU
    */
@@ -95,7 +96,7 @@ public interface HistoryRepository extends LockssAuManager {
   /**
    * Return the date/time the au was created.
    */
-  public long getAuCreationTime();
+  public long getAuCreationTime() throws LockssRepositoryException;
 
   /**
    * Return the associated DatedPeerIdSet
