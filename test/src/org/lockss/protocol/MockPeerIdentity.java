@@ -68,6 +68,19 @@ public class MockPeerIdentity extends PeerIdentity {
     throw new UnsupportedOperationException("not implemented");
   }
 
+  /**
+   * The original getUiUrlStem calls 'getIpAddr', which depends on
+   * pAddr being set.  This method makes the mock peer identity's 
+   * lack of support explicit.  
+   * 
+   * @see org.lockss.protocol.PeerIdentity#getUiUrlStem(int)
+   * @param defaultPort
+   * @return
+   */
+  public String getUiUrlStem(int defaultPort) {
+    throw new UnsupportedOperationException("not implemented");
+  }
+  
   /** Return true iff this is a local PeerIdentity.
    */
   public boolean isLocalIdentity() {
@@ -79,5 +92,5 @@ public class MockPeerIdentity extends PeerIdentity {
   protected String getKey() {
     return keyMock;
   }
-
+  
 }

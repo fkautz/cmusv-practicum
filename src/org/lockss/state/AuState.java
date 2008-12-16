@@ -39,6 +39,7 @@ import org.lockss.util.*;
 import org.lockss.daemon.*;
 import org.lockss.crawler.CrawlerStatus;
 import org.lockss.poller.v3.*;
+import org.lockss.repository.*;
 import org.lockss.repository.jcr.*;
 
 /**
