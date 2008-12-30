@@ -346,8 +346,6 @@ Args:
     <pathelement path="${nekohtml.jar}" />
     <pathelement path="${js.jar}" />
     <pathelement path="${xmlunit.jar}" />
-    <pathelement path="/home/tal/java/opencsv-1.8/deploy/opencsv-1.8.jar" />
-
     <!-- plugin jar -->
     <pathelement path="${lockss.plugins.jar}" />
   </path>
