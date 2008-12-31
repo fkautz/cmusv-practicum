@@ -33,6 +33,7 @@ def tdb_lint(tdb, options):
     # Check that each AU has a name and a recognized status
     for au in tdb.aus():
         if au.name() is None or au.name() == '':
+            valid = False
             print 'AU with no name'
         if au.status() is None or au.status() == '':
             valid = False
@@ -41,6 +42,6 @@ def tdb_lint(tdb, options):
             valid = False
             print 'AU with unrecognized status: %s [%s]' % ( au.name(), au.status() )
     if not valid:
-        if options.lintforgive: return
+        if options.lintForgive: return
         import sys
         sys.exit('The input is invalid')
