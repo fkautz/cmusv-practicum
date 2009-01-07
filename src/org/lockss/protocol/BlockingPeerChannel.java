@@ -406,6 +406,7 @@ class BlockingPeerChannel implements PeerChannel {
       connecter = wtConnecter = stopThread(connecter);
       reader = (ChannelReader)stopThread(reader);
       writer = stopThread(writer);
+      scomm.drainQueue(sendQueue);
       stateTrans(ChannelState.CLOSING, ChannelState.CLOSED);
     }
   }

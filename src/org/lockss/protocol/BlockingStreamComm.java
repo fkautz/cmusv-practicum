@@ -691,6 +691,21 @@ public class BlockingStreamComm
   }
 
   /**
+   * Remove and delete all the PeerMessages on the queue.  Needed to ensure
+   * backing files get deleted if channel is aborted with unsent messages.
+   */
+  void drainQueue(Queue queue) {
+    PeerMessage msg;
+    try {
+      while ((msg = (PeerMessage)queue.get(Deadline.EXPIRED)) != null) {
+	msg.delete();
+      }
+    } catch (InterruptedException e) {
+      // can't happen (get doesn't wait)
+    }
+  }
+
+  /**
    * Return an existing channel for the peer or create and start one
    */
   BlockingPeerChannel findOrMakeChannel(PeerIdentity pid)
