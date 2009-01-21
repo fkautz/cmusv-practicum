@@ -1469,6 +1469,7 @@ public class V3Poller extends BasePoll {
     V3LcapMessage msg = ud.makeMessage(V3LcapMessage.MSG_REPAIR_REQ);
     msg.setTargetUrl(url);
     msg.setEffortProof(null);
+    msg.setExpiration(getRepairMsgExpiration());
     try {
       sendMessageTo(msg, peer);
     } catch (IOException ex) {
@@ -1923,6 +1924,9 @@ public class V3Poller extends BasePoll {
    */
   void sendMessageTo(V3LcapMessage msg, PeerIdentity to)
       throws IOException {
+    if (log.isDebug2()) {
+      log.debug2("sendTo(" + msg + ", " + to + ")");
+    }
     pollManager.sendMessageTo(msg, to);
   }
 
@@ -2616,6 +2620,10 @@ public class V3Poller extends BasePoll {
     return Deadline.restoreDeadlineAt(pollerState.getPollDeadline());
   }
 
+  public long getPollExpiration() {
+    return pollerState.getPollDeadline();
+  }
+
   public long getDuration() {
     return pollerState.getDuration();
   }
@@ -2677,6 +2685,14 @@ public class V3Poller extends BasePoll {
   
   public long getVoteDuration() {
     return pollerState.getVoteDuration();
+  }
+
+  public long getPollMsgExpiration() {
+    return TimeBase.nowMs() + timeBetweenInvitations;
+  }
+
+  public long getRepairMsgExpiration() {
+    return pollerState.getPollDeadline() + extraPollTime;
   }
 
   public List getActiveRepairs() {

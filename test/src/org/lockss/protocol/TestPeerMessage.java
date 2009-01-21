@@ -153,6 +153,33 @@ public class TestPeerMessage extends LockssTestCase {
     assertEquals(pid, pm.getSender());
   }
 
+  public void testExpired() throws Exception {
+    TimeBase.setSimulated(1000);
+    PeerMessage pm = makePeerMessage(4);
+    assertFalse(pm.isRequeueable());
+    assertFalse(pm.isExpired());
+    pm.setExpiration(2000);
+    assertTrue(pm.isRequeueable());
+    assertFalse(pm.isExpired());
+    TimeBase.setSimulated(3000);
+    assertTrue(pm.isRequeueable());
+    assertTrue(pm.isExpired());
+  }
+
+  public void testRetryCounters() throws Exception {
+    PeerMessage pm = makePeerMessage(4);
+    assertEquals(0, pm.getRetryCount());
+    assertEquals(1, pm.getRetryMax());
+    pm.setRetryInterval(1234000000);
+    pm.setRetryMax(1234);
+    pm.incrRetryCount();
+    assertEquals(1234000000, pm.getRetryInterval());
+    assertEquals(1234, pm.getRetryMax());
+    assertEquals(1, pm.getRetryCount());
+    pm.incrRetryCount();
+    assertEquals(2, pm.getRetryCount());
+  }
+
   public void testEquals() throws Exception {
     String s1 = "01\0003456789abcdefghijklmnopq";
     PeerMessage pm1 = makePeerMessage(1);

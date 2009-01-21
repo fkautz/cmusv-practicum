@@ -162,6 +162,15 @@ public class LcapRouter
     try {
       PeerMessage pmsg = newPeerMessage(lmsg.getEstimatedEncodedLength());
       pmsg.setProtocol(PeerMessage.PROTOCOL_LCAP_V3);
+      pmsg.setExpiration(lmsg.getExpiration());
+      int rmax = lmsg.getRetryMax();
+      if (rmax >= 0) {
+	pmsg.setRetryMax(rmax);
+      }
+      long rint = lmsg.getRetryInterval();
+      if (rint > 0) {
+	pmsg.setRetryInterval(rint);
+      }
       out = pmsg.getOutputStream();
       in = lmsg.getInputStream();
       StreamUtil.copy(in, out);
