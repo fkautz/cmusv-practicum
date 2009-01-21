@@ -58,7 +58,7 @@ public class TinyUi extends BaseServletManager {
 
   public static final boolean DEFAULT_START = true;
   public static final int DEFAULT_PORT = 8081;
-  public static final boolean DO_USER_AUTH = false;
+  public static final boolean DO_USER_AUTH = true;
 
   private String[] tinyData;
 
@@ -95,6 +95,7 @@ public class TinyUi extends BaseServletManager {
     mi.doFilterIpAccess = false;
     mi.authRealm = AdminServletManager.UI_REALM;
     mi.defaultLogForbidden = AdminServletManager.DEFAULT_ENABLE_DEBUG_USER;
+    mi.defaultEnableDebugUser = true;
     mi.debugUserFile = AdminServletManager.PASSWORD_PROPERTY_FILE;
     return mi;
   }
