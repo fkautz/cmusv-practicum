@@ -79,6 +79,11 @@ public class UniversityOfChicagoPressHtmlFilterFactory implements FilterFactory 
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("link",
                                                                          "type",
                                                                          "application/rss+xml")),
+        // Filter out <div id="module_adSpaceJournals">...</link>
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
+                                                                         "id",
+                                                                         "module_adSpaceJournals")),                                                                 
+                                                                         
         // Filter out <a href="...">...</a> where the href value matches a regular exception
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttributeRegex("a",
                                                                               "href",
