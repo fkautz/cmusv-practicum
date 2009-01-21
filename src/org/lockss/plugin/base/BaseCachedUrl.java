@@ -60,7 +60,7 @@ public class BaseCachedUrl implements CachedUrl {
 
   public static final String PARAM_FILTER_USE_CHARSET =
     Configuration.PREFIX + "baseCachedUrl.filterUseCharset";
-  public static final boolean DEFAULT_FILTER_USE_CHARSET = false;
+  public static final boolean DEFAULT_FILTER_USE_CHARSET = true;
 
 
   public BaseCachedUrl(ArchivalUnit owner, String url) {

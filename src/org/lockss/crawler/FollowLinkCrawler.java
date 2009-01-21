@@ -61,7 +61,7 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
 
   public static final String PARAM_PARSE_USE_CHARSET =
     PREFIX + "parseUseCharset";
-  public static final boolean DEFAULT_PARSE_USE_CHARSET = false;
+  public static final boolean DEFAULT_PARSE_USE_CHARSET = true;
 
   public static final String PARAM_PERSIST_CRAWL_LIST =
     PREFIX + "persistCrawlList";
