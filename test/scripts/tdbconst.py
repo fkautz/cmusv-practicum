@@ -28,11 +28,6 @@
 
 from tdb import *
 
-TDB_OPTION_LINT          = 'lint'
-TDB_OPTION_LINT_FORGIVE  = 'lintForgive'
-TDB_LINT_DEFAULT         = False
-TDB_LINT_FORGIVE_DEFAULT = False
-
 TDB_OPTION_LEVEL                   = 'level'
 TDB_LEVEL_CONTENT_TESTING          = 'contentTesting'
 TDB_LEVEL_CONTENT_TESTING_STATUSES = (AU.STATUS_EXISTS,

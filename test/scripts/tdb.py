@@ -26,8 +26,6 @@
 # be used in advertising or otherwise to promote the sale, use or other dealings
 # in this Software without prior written authorization from Stanford University.
 
-#import re
-
 class Map(object):
     
     def __init__(self, dic={}):
@@ -132,6 +130,7 @@ class AU(ChainedMap):
     TITLE = 'title'
 
     def __init__(self, next=None):
+        '''Constructor.'''
         ChainedMap.__init__(self, next)
 
     def set_title(self, title): self.set(AU.TITLE, title)
@@ -150,6 +149,7 @@ class AU(ChainedMap):
 class Tdb(object):
 
     def __init__(self):
+        '''Constructor.'''
         self.__publishers = []
         self.__titles = []
         self.__aus = []
@@ -161,8 +161,3 @@ class Tdb(object):
     def publishers(self): return self.__publishers[:]
     def titles(self): return self.__titles[:]
     def aus(self): return self.__aus[:]
-
-    def internal_print(self):
-        print self.publishers()
-        print self.titles()
-        print self.aus()
