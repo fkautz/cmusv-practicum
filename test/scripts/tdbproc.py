@@ -28,6 +28,7 @@
 
 from tdbconst import *
 import tdblint
+import tdbsel
 
 TDBPROC_VERSION = '0.1.2'
 
@@ -51,7 +52,6 @@ def _make_command_line_parser():
     parser.add_option(OPTION_SHORT + TDB_OPTION_STYLE_SHORT,
                       OPTION_LONG + TDB_OPTION_STYLE,
                       dest=TDB_OPTION_STYLE,
-                      action='store',
                       choices=TDB_STYLES,
                       default=TDB_STYLE_DEFAULT,
                       help='output style (default: %default)')
@@ -59,6 +59,9 @@ def _make_command_line_parser():
 ## @begin tdblint
     tdblint.__option_parser__(parser)
 ## @end tdblint
+## @begin tdbsel
+    tdbsel.__option_parser__(parser)
+## @end tdbsel
 
     return parser
 
@@ -66,8 +69,11 @@ def _dispatch(tdb, options):
 ## @begin tdblint
     if tdblint.__dispatch__(options): tdblint.tdblint(tdb, options)
 ## @end tdblint
+## @begin tdbsel
+    if tdbsel.__dispatch__(options): tdb = tdbsel.tdb_select(tdb, options)
+## @end tdbsel
 ## @begin tdbxml
-    elif options.style in [ TDB_STYLE_XML, TDB_STYLE_XML_ENTRIES, TDB_STYLE_XML_LEGACY ]:
+    if options.style in [ TDB_STYLE_XML, TDB_STYLE_XML_ENTRIES, TDB_STYLE_XML_LEGACY ]:
         from tdbxml import tdb_to_xml
         tdb_to_xml(tdb, options)
 ## @end tdbxml
