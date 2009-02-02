@@ -641,7 +641,11 @@ public class XStreamSerializer extends ObjectSerializer {
   }
 
   /* Inherit documentation */
-  protected void serialize(Writer writer,
+  /**
+   * BEE - We need a two-way street.  If we're going to deserialize, then we
+   * need to serialize.
+   */
+  public void serialize(Writer writer,
                            Object obj)
       throws SerializationException,
              InterruptedIOException {
