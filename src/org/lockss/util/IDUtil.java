@@ -279,8 +279,6 @@ public class IDUtil {
       throw new IdentityParseException("Port must be exactly two bytes.");
     }
     
-    StringBuffer port = new StringBuffer();
-    
     int val = 0;
     
     val += portBytes[1] & 0xff;
