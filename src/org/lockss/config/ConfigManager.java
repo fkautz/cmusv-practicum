@@ -1132,6 +1132,9 @@ public class ConfigManager implements LockssManager {
       ClassLoader cl = (ClassLoader)it.next();
       URL titleDbUrl = cl.getResource(CONFIG_FILE_BUNDLED_TITLE_DB);
       if (titleDbUrl != null) {
+	if (pluginTitledbUrlList == null) {
+	  pluginTitledbUrlList = new ArrayList();
+	}
 	pluginTitledbUrlList.add(titleDbUrl);
 	needReload = true;
       }
