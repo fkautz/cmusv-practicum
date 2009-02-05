@@ -53,6 +53,7 @@ interface PeerChannel {
   static final byte HEADER_CHECK = (byte)0xff;
   static final byte OP_PEERID = 0x01;
   static final byte OP_DATA = 0x02;
+  static final byte OP_CLOSE = 0x03;
 
   static final int MAX_PEERID_LEN = 50;
 
