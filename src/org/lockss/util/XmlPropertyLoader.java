@@ -337,7 +337,7 @@ public class XmlPropertyLoader {
       boolean boTopValue;
       boTopValue = m_testEval.peek().pop().booleanValue();
       boTopValue = !boTopValue;
-      m_testEval.peek().push(new Boolean(boTopValue));
+      m_testEval.peek().push(Boolean.valueOf(boTopValue));
     }
 
     /**
@@ -406,7 +406,7 @@ public class XmlPropertyLoader {
       m_testEval.add(new Stack<Boolean>());
 
       if (attrs.getLength() > 0) {
-	m_testEval.peek().push(new Boolean(evaluateAttributes(attrs)));
+	m_testEval.peek().push(Boolean.valueOf(evaluateAttributes(attrs)));
       }
     }
 
@@ -585,7 +585,7 @@ public class XmlPropertyLoader {
       }
       
         m_testEval.pop();
-        m_testEval.peek().push(new Boolean(boResult));
+        m_testEval.peek().push(Boolean.valueOf(boResult));
     }
 
     private void endNotTag() {
@@ -598,7 +598,7 @@ public class XmlPropertyLoader {
       
       bo1 = m_testEval.peek().pop().booleanValue();
       boResult = !bo1;
-      m_testEval.peek().push(new Boolean(boResult));
+      m_testEval.peek().push(Boolean.valueOf(boResult));
     }
 
     
@@ -790,7 +790,7 @@ public class XmlPropertyLoader {
       
       if (boPopStack) {
         m_testEval.pop();
-        m_testEval.peek().push(new Boolean(boResult));
+        m_testEval.peek().push(Boolean.valueOf(boResult));
       }
       
       return boResult; 
