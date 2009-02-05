@@ -694,7 +694,7 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
   }
 
 
-  class MatchPattern {
+  static class MatchPattern {
     String regexp;
     List<List> matchArgs;
     List<ConfigParamDescr> matchArgDescrs;
