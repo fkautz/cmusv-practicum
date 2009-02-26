@@ -243,6 +243,12 @@ public abstract class BaseServletManager
   }
 
   public void startServlets() {
+    if (isRunningOnPort(port)) {
+      return;
+    }
+    if (isServerRunning()) {
+      stopServer();
+    }
     try {
       // Create the server
       HttpServer server = new HttpServer();
