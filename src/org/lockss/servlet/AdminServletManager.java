@@ -477,8 +477,7 @@ public class AdminServletManager extends BaseServletManager {
 
   void addCompressionFilter(WebApplicationHandler handler) {
     Configuration config = ConfigManager.getCurrentConfig();
-    if (config.getBoolean(PARAM_COMPRESSOR_ENABLED,
-			  DEFAULT_COMPRESSOR_ENABLED)) {
+    if (compressorEnabled) {
       String filterName = "CompressingFilter";
       FilterHolder holder =
 	handler.defineFilter(filterName, CompressingFilter.class.getName());
