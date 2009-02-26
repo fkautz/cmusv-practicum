@@ -1848,9 +1848,10 @@ Test results in ${test.results}
     <echo message="Checking .xml files"/>
     <apply executable="xmllint" dir="${basedir}"
            failonerror="true"
+           failifexecutionfails="false"
            resultproperty="xmllint.result"
            relative="true"
-           parallel="false">
+           parallel="true">
       <arg value="--noout"/>
       <fileset dir="${basedir}" includes="test/frameworks/*.xml"/>
       <fileset dir="${basedir}"
