@@ -100,7 +100,9 @@ public class LockssErrorHandler extends AbstractHttpHandler {
       writer.write("</pre>\n");
     }
     writer.write("<p>RequestURI=");
-    writer.write(HtmlUtil.encode(request.getPath(), HtmlUtil.ENCODE_TEXT));
+    writer.write(HtmlUtil.encode(request.getURI().toString(),
+				 HtmlUtil.ENCODE_TEXT));
+//     writer.write(HtmlUtil.encode(request.getPath(), HtmlUtil.ENCODE_TEXT));
     writer.write("</p>\n");
     writer.write("<p><i><small>" +
 		 "<a href=\"" + Constants.LOCKSS_HOME_URL +
