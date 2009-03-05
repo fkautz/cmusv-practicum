@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -40,6 +40,13 @@ import org.lockss.plugin.*;
  * and encapsulates the state of the hash in progress
  */
 public interface CachedUrlSetHasher {
+  /**
+   * Determines whether to hash filtered or raw content.  Default is
+   * filtered (true)
+   * @param val if true hash filtered content, if false hash raw content
+   */
+  public void setFiltered(boolean val);
+
   /**
    * @return the CachedUrlSet to be/being hashed by this hasher
    */

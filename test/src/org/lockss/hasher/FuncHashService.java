@@ -268,6 +268,9 @@ public class FuncHashService extends LockssTestCase {
       this.cookie = cookie;
     }
 
+    public void setFiltered(boolean val) {
+    }
+
     public CachedUrlSet getCachedUrlSet() {
       return cus;
     }

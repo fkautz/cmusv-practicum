@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -53,6 +53,7 @@ public abstract class GenericHasher implements CachedUrlSetHasher {
   protected Iterator iterator = null;
   protected boolean isFinished = false;
   protected boolean isAborted = false;
+  protected boolean isFiltered = true;
   protected boolean isTrace = log.isDebug3();
 
   protected GenericHasher(CachedUrlSet cus) {
@@ -94,6 +95,14 @@ public abstract class GenericHasher implements CachedUrlSetHasher {
    * nodes that are returned by the iterator */
   protected boolean isIncluded(CachedUrlSetNode node) {
     return true;
+  }
+
+  public void setFiltered(boolean val) {
+    isFiltered = val;
+  }
+
+  protected InputStream getInputStream(CachedUrl cu) {
+    return isFiltered ? cu.openForHashing() : cu.getUnfilteredInputStream();
   }
 
   /** Subclass should override to return proper array of digest */

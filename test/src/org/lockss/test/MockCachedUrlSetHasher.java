@@ -53,6 +53,9 @@ public class MockCachedUrlSetHasher implements CachedUrlSetHasher {
   public MockCachedUrlSetHasher() {
   }
 
+  public void setFiltered(boolean val) {
+  }
+
   public org.lockss.plugin.CachedUrlSet getCachedUrlSet() {
     throw new UnsupportedOperationException("Not implemented");
   }

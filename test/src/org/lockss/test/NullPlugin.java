@@ -511,6 +511,9 @@ public class NullPlugin {
   public static class CachedUrlSetHasher
     implements org.lockss.daemon.CachedUrlSetHasher {
 
+    public void setFiltered(boolean val) {
+    }
+
     public org.lockss.plugin.CachedUrlSet getCachedUrlSet() {
       return null;
     }
