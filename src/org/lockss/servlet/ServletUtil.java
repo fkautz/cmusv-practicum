@@ -1625,6 +1625,15 @@ public class ServletUtil {
     return warning;
   }
 
+  public static Element removeElementWithId(String id) {
+    Composite ele = new Composite();
+    ele.add("<script type=\"text/javascript\">\n");
+    ele.add("<!--\nremoveElementId(\"");
+    ele.add(id);
+    ele.add("\")\n//-->\n</script>");
+    return ele;
+  }
+
   /** Return an index of all the manifest pages.  Used by the ProxyHandler;
    * here because it's convenient and easier to test */
   public static Element manifestIndex(LockssDaemon daemon, String hostname) {
