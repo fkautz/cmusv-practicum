@@ -123,7 +123,7 @@ public class TestRegistryArchivalUnit extends LockssTestCase {
 				  "false");
     ArchivalUnit au = regPlugin.createAu(auConfig);
     AuState aus = new AuState(au, 123, 321, -1, -1,
-			  -1, null, 1, 1.0, (HistoryRepository)null);
+			  -1, null, 1, 1.0, 1.0, (HistoryRepository)null);
     assertFalse(au.shouldCallTopLevelPoll(aus));
     ConfigurationUtil.setFromArgs(RegistryArchivalUnit.PARAM_ENABLE_REGISTRY_POLLS,
 				  "true");

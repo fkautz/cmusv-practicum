@@ -301,7 +301,7 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
 				    321000, 222000, 3, "pollres", 12345,
 				    456000, strCol,
 				    AuState.AccessType.OpenAccess,
-				    2, 1.0, repository);
+				    2, 1.0, 1.0, repository);
     repository.storeAuState(origState);
 
     String filePath = LockssRepositoryImpl.mapAuToFileLocation(tempDirPath,
@@ -387,7 +387,7 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
 
   public void testStoreOverwrite() throws Exception {
     AuState auState = new AuState(mau, 123, 321, 321, 333,
-				  -1, null, 1, 1.0, repository);
+				  -1, null, 1, 1.0, 1.0, repository);
     repository.storeAuState(auState);
     String filePath = LockssRepositoryImpl.mapAuToFileLocation(tempDirPath,
 							       mau);
@@ -399,7 +399,7 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
     String expectedStr = baos.toString();
 
     auState = new AuState(mau, 1234, 4321, 4321, 5555,
-			  -1, null, 1, 1.0, repository);
+			  -1, null, 1, 1.0, 1.0, repository);
     repository.storeAuState(auState);
     assertEquals(1234, auState.getLastCrawlTime());
     assertEquals(4321, auState.getLastCrawlAttempt());
@@ -421,7 +421,7 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
     assertEquals(mau.getAuId(), auState.getArchivalUnit().getAuId());
 
     auState = new AuState(mau, 123, 321, 321, 333,
-			  -1, null, 1, 1.0, repository);
+			  -1, null, 1, 1.0, 1.0, repository);
     repository.storeAuState(auState);
     fis = new FileInputStream(xmlFile);
     baos = new ByteArrayOutputStream(expectedStr.length());

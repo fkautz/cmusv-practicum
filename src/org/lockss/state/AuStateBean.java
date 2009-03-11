@@ -64,7 +64,9 @@ public class AuStateBean extends AuState {
 				      auState.lastTreeWalk, auState.crawlUrls,
 				      auState.accessType,
 				      auState.clockssSubscriptionStatus,
-				      auState.v3Agreement, null);
+				      auState.v3Agreement,
+				      auState.highestV3Agreement,
+				      null);
   }
 
   /**
