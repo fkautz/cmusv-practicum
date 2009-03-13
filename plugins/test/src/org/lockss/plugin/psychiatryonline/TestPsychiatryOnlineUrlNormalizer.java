@@ -50,7 +50,7 @@ public class TestPsychiatryOnlineUrlNormalizer extends LockssTestCase {
     assertEquals("http://www.example.com/foo.html?param1=value1&param2=value2",
                  urlNormalizer.normalizeUrl("http://www.example.com/foo.html?param1=value1&param2=value2", null));
     assertEquals("http://www.example.com/foo.html?param1=value1&param2=value2",
-                 urlNormalizer.normalizeUrl(" http://\t\t\twww.example.com/\n\rfoo.html\t\t\t?\t\t\tparam1=value1\r\r\r&\n\n\nparam2=value2 ", null));
+                 urlNormalizer.normalizeUrl("   \t\thttp://\t\t\twww.example.com/\n\rfoo.html\t\t\t?\t\t\tparam1=value1\r\r\r&\n\n\nparam2=value2\n\n\t\t   ", null));
   }
 
 }

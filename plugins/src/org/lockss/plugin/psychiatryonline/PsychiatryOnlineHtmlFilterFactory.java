@@ -1,3 +1,6 @@
+/*
+ * $Id$
+ */
 
 /*
 
@@ -29,23 +32,46 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.plugin.psychiatryonline;
 
-import java.io.InputStream;
+import java.io.*;
 
 import org.lockss.daemon.PluginException;
+import org.lockss.filter.StringFilter;
 import org.lockss.filter.html.*;
 import org.lockss.plugin.*;
+import org.lockss.util.*;
 
 public class PsychiatryOnlineHtmlFilterFactory implements FilterFactory {
+
+  private static Logger logger = Logger.getLogger("PsychiatryOnlineHtmlFilterFactory");
+  
+  private static final String FILTERED_CHARSET_STRING = "<META http-equiv=\"Content-Type\" content=\"text/html; charset=utf-16\">";
 
   public InputStream createFilteredInputStream(ArchivalUnit au,
                                                InputStream in,
                                                String encoding)
       throws PluginException {
+    // First remove "<META http-equiv="Content-Type" content="text/html; charset=utf-16">"
+    try {
+      InputStreamReader unfilteredReader = new InputStreamReader(in, encoding);
+      StringFilter filteredReader = new StringFilter(unfilteredReader, FILTERED_CHARSET_STRING);
+      filteredReader.setIgnoreCase(true);
+      in = new ReaderInputStream(filteredReader); 
+    }
+    catch (UnsupportedEncodingException uee) {
+      // Leave in unchanged but log a message
+      logger.warning("Unknown InputStreamReader encoding: " + encoding, uee);
+    }
+
+    // Then filter out HTML constructs
     HtmlTransform[] transforms = new HtmlTransform[] {
         // Filter out <span id="lblSeeAlso">...</span>
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("span",
                                                                          "id",
                                                                          "lblSeeAlso")),
+        // Filter out <input type="hidden">...</input>
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("input",
+                                                                         "type",
+                                                                         "hidden")),
     };
     return new HtmlFilterInputStream(in,
                                      encoding,
