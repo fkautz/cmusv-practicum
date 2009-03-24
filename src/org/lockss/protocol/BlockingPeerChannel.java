@@ -274,6 +274,12 @@ class BlockingPeerChannel implements PeerChannel {
     return state == s;
   }
 
+  /** True if current state is equal to one of the states
+   */
+  boolean isState(ChannelState[] oneOf) {
+    return isState(state, oneOf);
+  }
+
   /** True if current state is CLOSING or CLOSED
    */
   boolean isClosed() {
