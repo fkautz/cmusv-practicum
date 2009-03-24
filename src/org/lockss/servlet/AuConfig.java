@@ -375,6 +375,7 @@ public class AuConfig extends LockssServlet {
     ServletUtil.layoutExplanationBlock(page, addExp);
 
     Form frm = new Form(srvURL(myServletDescr()));
+    frm.attribute("id", "AddAuForm");
     frm.method("POST");
 //     frm.add("<center>");
     Table tbl = new Table(0, "align=center cellspacing=4 cellpadding=0");
