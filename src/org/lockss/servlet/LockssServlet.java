@@ -192,9 +192,8 @@ public abstract class LockssServlet extends HttpServlet
       log.error("Servlet threw", e);
       throw e;
     } finally {
-      log.info("X-Lockss-Result: " + req.getHeader("X-Lockss-Result"));
       if ("please".equalsIgnoreCase(req.getHeader("X-Lockss-Result"))) {
-	log.info("X-Lockss-Result: " + (success ? "Ok" : "Fail"));
+	log.debug3("X-Lockss-Result: " + (success ? "Ok" : "Fail"));
 	resp.setHeader("X-Lockss-Result", success ? "Ok" : "Fail");
       }
       resetMyLocals();
