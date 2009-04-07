@@ -1,5 +1,6 @@
 /*
- * $Id: PortlandPressHtmlFilterFactory.java*/
+ * $Id$
+ */
 
 /*
 
