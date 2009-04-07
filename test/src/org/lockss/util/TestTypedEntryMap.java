@@ -240,4 +240,20 @@ public class TestTypedEntryMap extends LockssTestCase {
     catch(NoSuchElementException ex) {
     }
   }
+
+  public void testPutAll() {
+    map.putFloat("F2", 2.5f);
+    map.putFloat("F", 2.5f);
+    TypedEntryMap map2 = new TypedEntryMap();
+    map2.putFloat("F", 1.25f);
+    map2.putCollection("C", ListUtil.list(1, 2));
+    assertEquals(2, map.size());
+    assertEquals(2.5f, map.getFloat("F"));
+
+    map.putAll(map2);
+    assertEquals(3, map.size());
+    assertEquals(2.5f, map.getFloat("F2"));
+    assertEquals(1.25f, map.getFloat("F"));
+  }
+
 }
