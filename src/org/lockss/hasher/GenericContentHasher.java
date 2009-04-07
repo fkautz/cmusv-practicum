@@ -75,7 +75,7 @@ public class GenericContentHasher extends GenericHasher {
     return cus.contentHashIterator();
   }
 
-  protected int hashNodeUpToNumBytes(int numBytes)
+  protected long hashNodeUpToNumBytes(int numBytes)
       throws IOException {
     getCurrentCu();
     int totalHashed = 0;

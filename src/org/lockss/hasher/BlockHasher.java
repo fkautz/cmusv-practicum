@@ -198,10 +198,10 @@ public class BlockHasher extends GenericHasher {
     }
   }
   
-  protected int hashNodeUpToNumBytes(int numBytes) {
+  protected long hashNodeUpToNumBytes(int numBytes) {
     if (isTrace) log.debug3("hashing content");
     int remaining = numBytes; 
-    int bytesHashed = 0;
+    long bytesHashed = 0;
 
     if (is == null) {
       if (curCu == null) {

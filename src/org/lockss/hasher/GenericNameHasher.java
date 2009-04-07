@@ -68,7 +68,7 @@ public class GenericNameHasher extends GenericHasher {
     return cus.flatSetIterator();
   }
 
-  protected int hashNodeUpToNumBytes(int numBytes) {
+  protected long hashNodeUpToNumBytes(int numBytes) {
     int totalHashed = 0;
     if (nameBytes == null) {
       String nameStr = curNode.getUrl();

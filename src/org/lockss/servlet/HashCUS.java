@@ -127,7 +127,7 @@ public class HashCUS extends LockssServlet {
 
   MessageDigest digest;
   byte[] hashResult;
-  int bytesHashed;
+  long bytesHashed;
   int filesHashed;
   boolean showResult;
   protected void resetLocals() {
@@ -346,7 +346,7 @@ public class HashCUS extends LockssServlet {
     if (verifier != null) {
       addResultRow(tbl, "Verifier", byteString(verifier));
     }
-    addResultRow(tbl, "Size", Integer.toString(bytesHashed));
+    addResultRow(tbl, "Size", Long.toString(bytesHashed));
     addResultRow(tbl, "Hash", byteString(hashResult));
 
     addResultRow(tbl, "Time", getElapsedString());
@@ -385,7 +385,7 @@ public class HashCUS extends LockssServlet {
 
     addResultRow(tbl, "CUSS", cus.getSpec().toString());
     addResultRow(tbl, "Files", Integer.toString(filesHashed));
-    addResultRow(tbl, "Size", Integer.toString(bytesHashed));
+    addResultRow(tbl, "Size", Long.toString(bytesHashed));
     addResultRow(tbl, "Time", getElapsedString());
     if (blockFile != null && blockFile.exists()) {
       tbl.newRow();

@@ -53,7 +53,7 @@ public class SimpleHasher {
   private boolean isIncludeUrl = false;
 
   private int nbytes = 1000;
-  private int bytesHashed = 0;
+  private long bytesHashed = 0;
   private int filesHashed = 0;
   private long elapsedTime;
 
@@ -67,7 +67,7 @@ public class SimpleHasher {
     this(digest, null, null);
   }
 
-  public int getBytesHashed() {
+  public long getBytesHashed() {
     return bytesHashed;
   }
 

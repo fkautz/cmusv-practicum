@@ -88,7 +88,7 @@ public abstract class GenericHasher implements CachedUrlSetHasher {
 
   /* Subclass should override this to hash the specified element
    */
-  protected abstract int hashNodeUpToNumBytes(int numBytes)
+  protected abstract long hashNodeUpToNumBytes(int numBytes)
       throws IOException;
 
   /** Subclass should override if it wants to exclude from the hash some
@@ -163,7 +163,7 @@ public abstract class GenericHasher implements CachedUrlSetHasher {
 	  return numBytes - bytesLeftToHash;
 	}
       }
-      int numBytesHashed =
+      long numBytesHashed =
 	hashNodeUpToNumBytes(bytesLeftToHash);
       bytesLeftToHash -= numBytesHashed;
       totalBytesHashed += numBytesHashed;
