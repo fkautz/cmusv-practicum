@@ -1145,9 +1145,8 @@ public class V3PollStatus {
         summary.add(new SummaryInfo("Remaining",
                                     ColumnDescriptor.TYPE_TIME_INTERVAL,
                                     new Long(remain)));
-      } else {
-        theLog.debug3("voter " + voter + " user data " + voter.getVoterUserData() +
-                       " hint " + voter.getVoterUserData().getAgreementHint());
+      }
+      if (voter.getStatus() == STATUS_COMPLETE) {
 	String agreePercent =
 	  doubleToPercent(voter.getVoterUserData().getAgreementHint());
 	summary.add(new SummaryInfo("Agreement",
