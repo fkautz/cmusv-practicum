@@ -1152,8 +1152,8 @@ public class PluginManager
       xmlPlugin.initPlugin(getDaemon(), pluginName, loader);
       if (isCompatible(xmlPlugin)) {
 	// found a compatible plugin, return it
-	String url = xmlPlugin.getLoadedFrom();
-	PluginInfo info = new PluginInfo(xmlPlugin, loader, url);
+	List<String> urls = xmlPlugin.getLoadedFromUrls();
+	PluginInfo info = new PluginInfo(xmlPlugin, loader, urls.get(0));
 	return info;
       } else {
 	xmlPlugin.stopPlugin();
