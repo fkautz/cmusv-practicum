@@ -198,7 +198,7 @@ public class IdentityManagerImpl extends BaseLockssDaemonManager
 
   /** Maps PeerId to PeerAddress.  Useful to allow a node behind NAT to
    * reach others nodes behind the same NAT using the internal address.
-   * List of PeerId,Peer;,...*/
+   * List of PeerId,Peer;,...  Daemon restart required to remove mappings. */
   public static final String PARAM_PEER_ADDRESS_MAP = PREFIX + "peerAddressMap";
 
   /**
