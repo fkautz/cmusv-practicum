@@ -72,7 +72,6 @@ public class SimpleHasher {
   }
 
   public int getFilesHashed() {
-    log.info("foo: " + filesHashed);
     return filesHashed;
   }
 

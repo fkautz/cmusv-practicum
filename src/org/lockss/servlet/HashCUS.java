@@ -552,6 +552,7 @@ public class HashCUS extends LockssServlet {
 
   private void doV1(CachedUrlSetHasher cush) throws IOException {
     hasher = new SimpleHasher(digest, challenge, verifier);
+    hasher.setFiltered(true);
     hashResult = hasher.doV1Hash(cush);
     showResult = true;
   }
@@ -568,6 +569,7 @@ public class HashCUS extends LockssServlet {
       sb.append("# " + "Voter nonce: " + byteString(verifier) + "\n");
     }
     hasher = new SimpleHasher(digest, challenge, verifier);
+    hasher.setFiltered(true);
     blockFile = FileUtil.createTempFile("HashCUS", ".tmp");
     hasher.doV3Hash(cus, blockFile, sb.toString());
     showResult = true;
