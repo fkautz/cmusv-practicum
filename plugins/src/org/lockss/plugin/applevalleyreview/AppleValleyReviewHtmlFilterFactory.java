@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2009 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,11 +33,9 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.plugin.applevalleyreview;
 
 import java.io.*;
-import java.util.List;
 import org.lockss.util.*;
 import org.lockss.filter.*;
 import org.lockss.plugin.*;
-import org.lockss.plugin.base.*;
 
 public class AppleValleyReviewHtmlFilterFactory implements FilterFactory {
 
