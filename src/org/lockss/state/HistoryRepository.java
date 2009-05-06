@@ -37,7 +37,6 @@ import java.util.List;
 import org.lockss.plugin.*;
 import org.lockss.protocol.DatedPeerIdSet;
 import org.lockss.repository.*;
-import org.lockss.repository.jcr.*;
 import org.lockss.app.LockssAuManager;
 
 /**

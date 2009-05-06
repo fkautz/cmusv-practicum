@@ -44,7 +44,6 @@ import org.lockss.plugin.ArchivalUnit;
 import org.lockss.poller.*;
 import org.lockss.protocol.IdentityManager.MalformedIdentityKeyException;
 import org.lockss.repository.*;
-import org.lockss.repository.jcr.*;
 import org.lockss.state.HistoryRepository;
 import org.lockss.util.*;
 import org.lockss.util.SerializationException.FileNotFound;
