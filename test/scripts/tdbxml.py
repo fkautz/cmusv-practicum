@@ -140,8 +140,8 @@ def _process_au(au, options):
             i = i + 1
     if au.status() == AU.STATUS_DOWN:
         _do_param(au, 99, 'pub_down', value='true')
-    for attr in au.attrs():
-        _do_attr(au, attr)
+    for attrtup in au.attrs():
+        _do_attr(au, attrtup[0])
     if au.status() == AU.STATUS_PRE_RELEASED:
         _do_attr(au, 'releaseStatus', 'pre-release')
     if au.rights() == 'openaccess':

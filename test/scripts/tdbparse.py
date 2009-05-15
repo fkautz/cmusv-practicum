@@ -156,7 +156,7 @@ class TdbScanner(object):
             self.__options['_expect_string'] = TOKEN_EQUAL
             return self.__single(TOKEN_EQUAL)
         # Identifiers
-        match = re.match(r'\w+', self.__line)
+        match = re.match(r'[a-zA-Z0-9_./]+', self.__line)
         if match:
             self.__value = match.group()
             self.__advance(match.end())
