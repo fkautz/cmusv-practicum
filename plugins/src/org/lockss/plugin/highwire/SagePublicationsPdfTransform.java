@@ -147,8 +147,10 @@ public class SagePublicationsPdfTransform
                                                 new TransformFirstPage(// ...is removed,
                                                                        new RemovePage()),
                                                 // ...and on all the pages now that the first is gone...
-                                                new TransformEachPage(// ...collapse "Downloaded from"
-                                                                      new CollapseDownloadedFrom(au))
+                                                new TransformEachPage(// ...collapse "Downloaded from",
+                                                                      new CollapseDownloadedFrom(au)),
+                                                // ...and the modification date is removed
+                                                new HighWirePdfFilterFactory.RemoveModificationDate(),
                                               });
     }
 
