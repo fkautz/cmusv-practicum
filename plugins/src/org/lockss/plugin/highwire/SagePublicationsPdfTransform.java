@@ -43,7 +43,9 @@ import org.lockss.util.*;
 public class SagePublicationsPdfTransform
     implements OutputDocumentTransform,
                ArchivalUnitDependent {
-
+  
+  protected static Logger logger = Logger.getLogger("SagePublicationsPdfTransform");
+  
   public static class RecognizeSyntheticPage implements PageTransform {
 
     public boolean transform(PdfPage pdfPage) throws IOException {

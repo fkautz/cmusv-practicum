@@ -110,7 +110,7 @@ def _do_attr(au, attr, value=None):
     if value is None:
         value = au.attr(attr)
     print '''\
-   <property name="attribute.%s" value="%s" />''' % ( attr, value )
+   <property name="attributes.%s" value="%s" />''' % ( attr, value )
 
 def _process_au(au, options):
     if au.status() not in options.level: return
