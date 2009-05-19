@@ -256,6 +256,12 @@ public interface ArchivalUnit {
   public LinkRewriterFactory getLinkRewriterFactory(String contentType);
 
   /**
+   * Returns an ArticleIteratorFactory from the AU's plugin.
+   * @return the ArticleIteratorFactory
+   */
+  public ArticleIteratorFactory getArticleIteratorFactory();
+  
+  /**
    * Create a {@link CachedUrlSet}representing the content
    * with a specific {@link CachedUrlSetSpec}.
    * @param spec the {@link CachedUrlSetSpec}

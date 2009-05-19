@@ -208,6 +208,10 @@ public class NullPlugin {
       return null;
     }
 
+    public ArticleIteratorFactory getArticleIteratorFactory() {
+      return null;
+    }
+
     public CIProperties getProperties() {
       return new CIProperties();
     }
@@ -495,6 +499,10 @@ public class NullPlugin {
     }
 
     public LinkRewriterFactory getLinkRewriterFactory(String mimeType) {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
+    public ArticleIteratorFactory getArticleIteratorFactory() {
       throw new UnsupportedOperationException("Not implemented");
     }
 

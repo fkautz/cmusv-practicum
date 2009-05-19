@@ -71,6 +71,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   private FilterRule filterRule = null;
   private FilterFactory filterFactory = null;
   private LinkRewriterFactory rewriterFactory = null;
+  private ArticleIteratorFactory articleIteratorFactory = null;
   private Map extractors = new HashMap();
   private TypedEntryMap propertyMap = new TypedEntryMap();
   private List urlStems = Collections.EMPTY_LIST;
@@ -462,8 +463,16 @@ public class MockArchivalUnit implements ArchivalUnit {
     return rewriterFactory;
   }
 
-  public void setLinkRewriterFactory(LinkRewriterFactory filterFactory) {
-    this.rewriterFactory = filterFactory;
+  public void setLinkRewriterFactory(LinkRewriterFactory rewriterFactory) {
+    this.rewriterFactory = rewriterFactory;
+  }
+
+  public ArticleIteratorFactory getArticleIteratorFactory() {
+    return articleIteratorFactory;
+  }
+
+  public void setArticleIteratorFactory(ArticleIteratorFactory factory) {
+    this.articleIteratorFactory = factory;
   }
 
   public LinkExtractor getLinkExtractor(String contentType) {

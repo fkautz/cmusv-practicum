@@ -87,6 +87,8 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
   public static final String SUFFIX_FILTER_FACTORY = "_filter_factory";
   public static final String SUFFIX_LINK_REWRITER_FACTORY =
     "_link_rewriter_factory";
+  public static final String SUFFIX_ARTICLE_ITERATOR_FACTORY =
+    "_article_iterator_factory";
   public static final String SUFFIX_FETCH_RATE_LIMITER = "_fetch_rate_limiter";
 
   public static final String KEY_AU_PERMISSION_CHECKER_FACTORY =

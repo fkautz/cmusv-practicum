@@ -83,6 +83,10 @@ public class TestDefinablePlugin extends LockssTestCase {
     assertTrue(""+mti.getLinkRewriterFactory().getClass(),
 	       mti.getLinkRewriterFactory() instanceof
 	       NodeFilterHtmlLinkRewriterFactory);
+    assertTrue(""+mti.getArticleIteratorFactory().getClass(),
+	       mti.getArticleIteratorFactory() instanceof
+	       ArticleIteratorFactory);
+    assertFalse(mti.getArticleIteratorFactory().createArticleIterator("text/html", new MockArchivalUnit()).hasNext());
     mti = definablePlugin.getMimeTypeInfo("text/css");
     assertTrue(mti.getLinkExtractorFactory()
 	       instanceof CssLinkExtractor.Factory);
@@ -118,6 +122,10 @@ public class TestDefinablePlugin extends LockssTestCase {
 	       instanceof LinkRewriterFactoryWrapper);
     assertTrue(WrapperUtil.unwrap(mti.getLinkRewriterFactory())
 	       instanceof MockLinkRewriterFactory);
+    assertTrue(mti.getArticleIteratorFactory()
+	       instanceof ArticleIteratorFactoryWrapper);
+    assertTrue(WrapperUtil.unwrap(mti.getArticleIteratorFactory())
+	       instanceof MimeTypeInfo.NullArticleIteratorFactory);
     assertNull(mti.getFetchRateLimiter());
     mti = definablePlugin.getMimeTypeInfo("text/css");
     assertTrue(mti.getLinkExtractorFactory()
@@ -137,6 +145,10 @@ public class TestDefinablePlugin extends LockssTestCase {
     assertTrue(""+mti.getLinkRewriterFactory().getClass(),
 	       mti.getLinkRewriterFactory() instanceof
 	       NodeFilterHtmlLinkRewriterFactory);
+    assertTrue(""+mti.getArticleIteratorFactory().getClass(),
+	       mti.getArticleIteratorFactory() instanceof
+	       ArticleIteratorFactory);
+    assertFalse(mti.getArticleIteratorFactory().createArticleIterator("text/html", new MockArchivalUnit()).hasNext());
     mti = p2.getMimeTypeInfo("text/css");
     assertTrue(mti.getLinkExtractorFactory()
 	       instanceof CssLinkExtractor.Factory);
