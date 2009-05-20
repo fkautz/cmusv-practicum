@@ -122,8 +122,8 @@ public class HighWirePdfFilterFactory implements FilterFactory {
 
     /* Inherit documentation */
     public int getSubsequenceLength() {
-      // Examine the last 54 tokens in the output sequence
-      return 54;
+      // Examine the last 100 tokens in the output sequence
+      return 100;
     }
 
     /* Inherit documentation */
