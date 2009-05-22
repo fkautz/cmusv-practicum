@@ -42,10 +42,10 @@
 # hostname = localhost
 
 ## Username
-# username = testuser
+# username = lockss-u
 
 ## Password
-# password = testpass
+# password = lockss-p
 
 ##
 ## Extra properties.  Anything starting with 'org.lockss.' will
