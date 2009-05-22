@@ -103,8 +103,6 @@ class Content:
 
     def __init__( self, description ):
         self.description = description
-        #self.AU_ID = AU_ID
-        #self.clients = self.local_clients
         self.remote_crawl_retries = REMOTE_CRAWL_RETRY_TOTAL
         self.poll_failure_retries = POLL_FAILURE_RETRY_TOTAL
         self.poll_mismatch_retries = POLL_MISMATCH_RETRY_TOTAL
@@ -387,8 +385,7 @@ def self_test_startup():
                                        'org.lockss.localV3Identity': client.getPeerId(),
                                        'org.lockss.poll.v3.enableV3Poller': False,
                                        'org.lockss.poll.v3.quorum': 2,
-                                       'org.lockss.baseau.defaultFetchRateLimiterSource': 'au',
-                                       'org.lockss.ui.access.ip.include' : '171.66.236.62;171.65.29.194;128.12.137.0/24;192.168.10.0/24' },
+                                       'org.lockss.baseau.defaultFetchRateLimiterSource': 'au'
                                      client )
 
     logging.info( 'Starting framework in %s', framework.frameworkDir )
@@ -431,8 +428,6 @@ def self_test_startup():
     client.waitAu( slightly_damaged_AU )
     client.waitForSuccessfulCrawl( slightly_damaged_AU )
     client.randomDamageSingleNode( slightly_damaged_AU )
-    #assert not client.compareNode( node, simAu, victim, self.nonVictim ), "Failed to damage AU"
-    #log.info( "Damaged node %s on client %s" % ( node.url, victim ) )
 
     broken_AU_IDs = [ 'Invalid_AU_ID', 'a|particularly|InvalidPlugin&base_url~http%3A%2F%2Fwww%2Eexample%2Ecom%2F' ]
     
