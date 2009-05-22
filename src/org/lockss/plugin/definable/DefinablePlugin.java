@@ -357,12 +357,22 @@ public class DefinablePlugin extends BasePlugin {
 	String mime =
 	  stripSuffix(key, DefinableArchivalUnit.SUFFIX_ARTICLE_ITERATOR_FACTORY);
 	String factName = (String)val;
-	log.debug(mime + " link rewriter: " + factName);
+	log.debug(mime + " article iterator: " + factName);
 	MimeTypeInfo.Mutable mti = mimeMap.modifyMimeTypeInfo(mime);
 	ArticleIteratorFactory fact =
 	  (ArticleIteratorFactory)newAuxClass(factName,
 					      ArticleIteratorFactory.class);
 	mti.setArticleIteratorFactory(fact);
+      } else if (key.endsWith(DefinableArchivalUnit.SUFFIX_METADATA_EXTRACTOR_FACTORY)) {
+	String mime =
+	  stripSuffix(key, DefinableArchivalUnit.SUFFIX_METADATA_EXTRACTOR_FACTORY);
+	String factName = (String)val;
+	log.debug(mime + " metadata extractor: " + factName);
+	MimeTypeInfo.Mutable mti = mimeMap.modifyMimeTypeInfo(mime);
+	MetadataExtractorFactory fact =
+	  (MetadataExtractorFactory)newAuxClass(factName,
+						MetadataExtractorFactory.class);
+	mti.setMetadataExtractorFactory(fact);
       }
     }
   }

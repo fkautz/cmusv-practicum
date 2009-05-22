@@ -723,6 +723,14 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     return ret;
   }
 
+  /**
+   * Return a MetadataExtractor for the MIME type, or null.
+   * @param contentType content type to get a content parser for
+   */
+  public MetadataExtractor getMetadataExtractor(String contentType) {
+    return plugin.getMetadataExtractor(contentType);
+  }
+
   public List<String> getNewContentCrawlUrls() {
     return startUrls;
   }

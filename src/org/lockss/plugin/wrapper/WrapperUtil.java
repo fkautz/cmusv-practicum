@@ -63,6 +63,10 @@ public class WrapperUtil {
 			   new LinkRewriterFactoryWrapper.Factory());
     registerWrapperFactory(org.lockss.plugin.ArticleIteratorFactory.class,
 			   new ArticleIteratorFactoryWrapper.Factory());
+    registerWrapperFactory(org.lockss.extractor.MetadataExtractorFactory.class,
+			   new MetadataExtractorFactoryWrapper.Factory());
+    registerWrapperFactory(org.lockss.extractor.MetadataExtractor.class,
+			   new MetadataExtractorWrapper.Factory());
     registerWrapperFactory(LoginPageChecker.class,
 			   new LoginPageCheckerWrapper.Factory());
     registerWrapperFactory(PermissionCheckerFactory.class,

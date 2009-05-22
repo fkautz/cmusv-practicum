@@ -262,6 +262,12 @@ public interface ArchivalUnit {
   public ArticleIteratorFactory getArticleIteratorFactory();
   
   /**
+   * Return a MetadataExtractor for the MIME type, or null.
+   * @param contentType content type to get a content parser for
+   */
+  public MetadataExtractor getMetadataExtractor(String contentType);
+
+  /**
    * Create a {@link CachedUrlSet}representing the content
    * with a specific {@link CachedUrlSetSpec}.
    * @param spec the {@link CachedUrlSetSpec}

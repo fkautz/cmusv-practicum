@@ -490,6 +490,10 @@ public class NullPlugin {
       throw new UnsupportedOperationException("not implemented");
     }
 
+    public MetadataExtractor getMetadataExtractor(String mimeType) {
+      throw new UnsupportedOperationException("not implemented");
+    }
+
     public FilterRule getFilterRule(String mimeType) {
       throw new UnsupportedOperationException("Not implemented");
     }

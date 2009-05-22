@@ -43,7 +43,7 @@ public class HighWireArticleIteratorFactory implements ArticleIteratorFactory {
   static String defaultSubTreeRoot = "cgi/reprint";
   static Logger log = Logger.getLogger("HighWireArticleIterator");
 
-  HighWireArticleIteratorFactory() {
+  public HighWireArticleIteratorFactory() {
   }
   /**
    * Create an Iterator that iterates through the AU's articles, pointing

@@ -37,7 +37,9 @@ import java.io.*;
 import java.util.*;
 import org.mortbay.html.*;
 import org.lockss.util.*;
+import org.lockss.daemon.*;
 import org.lockss.plugin.*;
+import org.lockss.extractor.*;
 
 /** Output a plain list of the URLs in an AU
  */
@@ -86,6 +88,14 @@ public class ListObjects extends LockssServlet {
 	return;
       }
       listUrls();
+    } else if (type.equalsIgnoreCase("dois")) {
+      auid = getParameter("auid");
+      au = pluginMgr.getAuFromId(auid);
+      if (au == null) {
+	displayError("No such AU: " + auid);
+	return;
+      }
+      listDOIs();
     } else if (type.equalsIgnoreCase("aus")) {
       listAUs();
     } else if (type.equalsIgnoreCase("auids")) {
@@ -107,6 +117,36 @@ public class ListObjects extends LockssServlet {
       if (cusn.hasContent()) {
 	wrtr.println(cusn.getUrl());
       }
+    }
+  }
+
+  void listDOIs() throws IOException {
+    MetadataExtractor me = au.getMetadataExtractor(null);
+    ArticleIteratorFactory aif = au.getArticleIteratorFactory();
+    PrintWriter wrtr = resp.getWriter();
+    resp.setContentType("text/plain");
+    wrtr.println("# DOIs in " + au.getName());
+    wrtr.println();
+    try {
+      for (Iterator iter = aif.createArticleIterator(null, au);
+	   iter.hasNext(); ) {
+        CachedUrl cu = (CachedUrl)iter.next();
+	if (cu.hasContent()) {
+          try {
+            Metadata md = me.extract(cu);
+	    String doi = md.getDOI();
+	    if (doi != null) {
+	      wrtr.println(doi);
+	    }
+	  } catch (IOException e) {
+	    // Ignore
+	  } catch (PluginException e) {
+	    // Ignore
+	  }
+	}
+      }
+    } catch (PluginException e) {
+	// Ignore
     }
   }
 

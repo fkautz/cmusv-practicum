@@ -72,6 +72,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   private FilterFactory filterFactory = null;
   private LinkRewriterFactory rewriterFactory = null;
   private ArticleIteratorFactory articleIteratorFactory = null;
+  private MetadataExtractor metadataExtractor = null;
   private Map extractors = new HashMap();
   private TypedEntryMap propertyMap = new TypedEntryMap();
   private List urlStems = Collections.EMPTY_LIST;
@@ -486,6 +487,20 @@ public class MockArchivalUnit implements ArchivalUnit {
 
   public void setLinkExtractor(String mimeType, LinkExtractor extractor) {
     extractors.put(mimeType, extractor);
+  }
+
+  public MetadataExtractor getMetadataExtractor(String contentType) {
+    String mimeType = HeaderUtil.getMimeTypeFromContentType(contentType);
+    MetadataExtractor res =
+	(MetadataExtractor)extractors.get("metadata:" + mimeType);
+    if (res == null) {
+      res = (MetadataExtractor)extractors.get("metadata:*");
+    }      
+    return res;
+  }
+
+  public void setMetadataExtractor(String mimeType, MetadataExtractor extractor) {
+    extractors.put("metadata:" + mimeType, extractor);
   }
 
   public String toString() {

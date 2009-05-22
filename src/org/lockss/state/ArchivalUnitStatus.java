@@ -737,6 +737,12 @@ public class ArchivalUnitStatus
 				PropUtil.fromArgs("type", "urls",
 						  "auid", au.getAuId()));
 
+      StatusTable.SrvLink doiListLink =
+	new StatusTable.SrvLink("DOI list",
+				AdminServletManager.SERVLET_LIST_OBJECTS,
+				PropUtil.fromArgs("type", "dois",
+						  "auid", au.getAuId()));
+
       List res = new ArrayList();
       res.add(new StatusTable.SummaryInfo("Volume",
 					  ColumnDescriptor.TYPE_STRING,
@@ -861,6 +867,9 @@ public class ArchivalUnitStatus
       res.add(new StatusTable.SummaryInfo(null,
 					  ColumnDescriptor.TYPE_STRING,
 					  urlListLink));
+      res.add(new StatusTable.SummaryInfo(null,
+					  ColumnDescriptor.TYPE_STRING,
+					  doiListLink));
       return res;
     }
 
