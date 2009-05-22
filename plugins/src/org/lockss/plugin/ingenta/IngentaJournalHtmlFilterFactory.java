@@ -1,5 +1,6 @@
 /*
- * $Id: IngentaJournalHtmlFilterFactory.java*/
+ * $Id$
+ */ 
 
 /*
 
