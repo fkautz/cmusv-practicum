@@ -256,17 +256,20 @@ public interface ArchivalUnit {
   public LinkRewriterFactory getLinkRewriterFactory(String contentType);
 
   /**
-   * Returns an ArticleIteratorFactory from the AU's plugin.
-   * @return the ArticleIteratorFactory
+   * Returns an Iterator for articles from the AU's plugin. If there isn't
+   * one, an empty iterator will be returned.
+   * @return the ArticleIterator
    */
-  public ArticleIteratorFactory getArticleIteratorFactory();
+  public Iterator getArticleIterator();
   
   /**
-   * Return a MetadataExtractor for the MIME type, or null.
-   * @param contentType content type to get a content parser for
+   * Returns an Iterator for articles from the AU's plugin. If there isn't
+   * one, an empty iterator will be returned.
+   * @paraam contentType the content type of the articles
+   * @return the ArticleIterator
    */
-  public MetadataExtractor getMetadataExtractor(String contentType);
-
+  public Iterator getArticleIterator(String contentType);
+  
   /**
    * Create a {@link CachedUrlSet}representing the content
    * with a specific {@link CachedUrlSetSpec}.

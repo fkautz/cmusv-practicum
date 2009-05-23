@@ -36,6 +36,7 @@ import java.io.*;
 
 import org.lockss.util.*;
 import org.lockss.rewriter.*;
+import org.lockss.extractor.*;
 
 /**
  * <code>CachedUrl</code> is used to access the contents and
@@ -186,4 +187,12 @@ public interface CachedUrl extends CachedUrlSetNode {
    * Release resources.  Temporary.
    */
   public void release();
+
+  /**
+   * Return a MetadataExtractor for the CachedUrl's content type. If there
+   * isn't one, a null extractor will be returned.
+   * @param contentType content type to get a content parser for
+   */
+  public MetadataExtractor getMetadataExtractor();
+
 }

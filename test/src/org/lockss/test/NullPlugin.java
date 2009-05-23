@@ -41,6 +41,7 @@ import org.lockss.config.Configuration;
 import org.lockss.crawler.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
+import org.lockss.plugin.base.*;
 import org.lockss.rewriter.*;
 import org.lockss.state.*;
 import org.lockss.util.*;
@@ -129,6 +130,16 @@ public class NullPlugin {
     public Object newAuxClass(String className, Class expectedType) {
       return null;
     }
+
+    public org.lockss.extractor.MetadataExtractor
+	getMetadataExtractor(String contentType,
+			     org.lockss.plugin.ArchivalUnit au) {
+      return null;
+    }
+
+    public ArticleIteratorFactory getArticleIteratorFactory(String contentType) {
+      return null;
+    }
   }
 
   /**
@@ -208,7 +219,7 @@ public class NullPlugin {
       return null;
     }
 
-    public ArticleIteratorFactory getArticleIteratorFactory() {
+    public MetadataExtractor getMetadataExtractor() {
       return null;
     }
 
@@ -490,10 +501,6 @@ public class NullPlugin {
       throw new UnsupportedOperationException("not implemented");
     }
 
-    public MetadataExtractor getMetadataExtractor(String mimeType) {
-      throw new UnsupportedOperationException("not implemented");
-    }
-
     public FilterRule getFilterRule(String mimeType) {
       throw new UnsupportedOperationException("Not implemented");
     }
@@ -506,7 +513,11 @@ public class NullPlugin {
       throw new UnsupportedOperationException("Not implemented");
     }
 
-    public ArticleIteratorFactory getArticleIteratorFactory() {
+    public Iterator getArticleIterator() {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
+    public Iterator getArticleIterator(String contentType) {
       throw new UnsupportedOperationException("Not implemented");
     }
 

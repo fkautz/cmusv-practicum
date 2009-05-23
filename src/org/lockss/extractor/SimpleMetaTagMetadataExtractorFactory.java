@@ -48,6 +48,6 @@ public class SimpleMetaTagMetadataExtractorFactory
     if ("text/html".equalsIgnoreCase(mimeType)) {
       return new SimpleMetaTagMetadataExtractor();
     }
-    return new MimeTypeInfo.NullExtractor();
+    return null;
   }
 }

@@ -80,6 +80,8 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
 
   Set toBeDamaged = new HashSet();
 
+  private Iterator articleIterator = null;
+
   public SimulatedArchivalUnit(Plugin owner) {
     super(owner);
   }

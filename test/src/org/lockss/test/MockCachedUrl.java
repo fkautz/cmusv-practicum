@@ -40,6 +40,7 @@ import org.lockss.plugin.*;
 import org.lockss.daemon.*;
 import org.lockss.util.*;
 import org.lockss.rewriter.*;
+import org.lockss.extractor.*;
 
 /**
  * This is a mock version of <code>CachedUrl</code> used for testing
@@ -66,6 +67,7 @@ public class MockCachedUrl implements CachedUrl {
   private boolean isResource;
   private int version = 0;
   private LinkRewriterFactory lrf = null;
+  private MetadataExtractor metadataExtractor = null;
 
   public MockCachedUrl(String url) {
     this.versions = new ArrayList();
@@ -275,6 +277,10 @@ public class MockCachedUrl implements CachedUrl {
     cachedProp = headers;
   }
 
+  public MetadataExtractor getMetadataExtractor() {
+    return metadataExtractor;
+  }
+
   //mock specific acessors
 
   public void setInputStream(InputStream is){
@@ -300,6 +306,10 @@ public class MockCachedUrl implements CachedUrl {
   public void setProperty(String key, String val) {
     if (cachedProp == null) cachedProp = new CIProperties();
     cachedProp.put(key, val);
+  }
+
+  public void setMetadataExtractor(MetadataExtractor me) {
+    metadataExtractor = me;
   }
 
   public void release() {

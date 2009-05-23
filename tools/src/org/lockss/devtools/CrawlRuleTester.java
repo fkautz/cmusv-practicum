@@ -470,7 +470,8 @@ public class CrawlRuleTester extends Thread {
 
     public MyMockCachedUrl(String url, Reader reader) {
       this.url = url;
-      this.reader = reader;
+  
+    this.reader = reader;
     }
 
     public ArchivalUnit getArchivalUnit() {
@@ -566,6 +567,8 @@ public class CrawlRuleTester extends Thread {
       sb.append("]");
       return sb.toString();
     }
+    public MetadataExtractor getMetadataExtractor() {
+      return null;
+    }
   }
-
 }

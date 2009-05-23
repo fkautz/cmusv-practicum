@@ -39,6 +39,7 @@ import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import org.lockss.plugin.base.*;
 import org.lockss.util.*;
+import org.lockss.extractor.*;
 
 /**
  * This is a mock version of <code>Plugin</code> used for testing
@@ -60,6 +61,10 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
   private String requiredDaemonVersion = "0.0.0";
   private List auConfigDescrs = ListUtil.list(ConfigParamDescr.BASE_URL,
 					      ConfigParamDescr.VOLUME_NUMBER);
+
+  private MetadataExtractor metadataExtractor = null;
+  private ArticleIteratorFactory articleIteratorFactory = null;
+  
 
   public MockPlugin(){
     super();
@@ -122,6 +127,23 @@ public class MockPlugin extends BasePlugin implements PluginTestable {
 
   public void setPublishingPlatform(String pubPlatform) {
     this.pubPlatform = pubPlatform;
+  }
+
+  public MetadataExtractor getMetadataExtractor(String contentType,
+						ArchivalUnit au) {
+    return metadataExtractor;
+  }
+
+  public void setMetadataExtractor(MetadataExtractor me) {
+    metadataExtractor = me;
+  }
+
+  public ArticleIteratorFactory getArticleIteratorFactory(String contentType) {
+    return articleIteratorFactory;
+  }
+
+  public void setArticleIteratorFactory(ArticleIteratorFactory aif) {
+    articleIteratorFactory = aif;
   }
 
   /**
