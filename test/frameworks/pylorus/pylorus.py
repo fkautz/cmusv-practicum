@@ -385,7 +385,7 @@ def self_test_startup():
                                        'org.lockss.localV3Identity': client.getPeerId(),
                                        'org.lockss.poll.v3.enableV3Poller': False,
                                        'org.lockss.poll.v3.quorum': 2,
-                                       'org.lockss.baseau.defaultFetchRateLimiterSource': 'au'
+                                       'org.lockss.baseau.defaultFetchRateLimiterSource': 'au' },
                                      client )
 
     logging.info( 'Starting framework in %s', framework.frameworkDir )
@@ -498,11 +498,13 @@ try:
         local_clients = dict( zip( Content.Action.values, ( [] for value in Content.Action.values ) ) )
         for server in configuration.get( PROGRAM, 'local_servers' ):
             url_components = urlparse.urlparse( server )
+            assert url_components.scheme in Content.Action.values, 'Unknown local server scheme: "%s"' % url_components.scheme
             local_clients[ url_components.scheme ].append( lockss_daemon.Client( url_components.hostname, url_components.port if url_components.port else DEFAULT_UI_PORT, DEFAULT_V3_PORT, configuration.get( PROGRAM, 'username' ), configuration.get( PROGRAM, 'password' ) ) )
 
         remote_clients = dict( zip( Content.Action.values, ( [] for value in Content.Action.values ) ) )
         for server in configuration.get( PROGRAM, 'remote_servers' ):
             url_components = urlparse.urlparse( server )
+            assert url_components.scheme in Content.Action.values, 'Unknown remote server scheme: "%s"' % url_components.scheme
             remote_clients[ url_components.scheme ].append( lockss_daemon.Client( url_components.hostname, url_components.port if url_components.port else DEFAULT_UI_PORT, DEFAULT_V3_PORT, configuration.get( PROGRAM, 'username' ), configuration.get( PROGRAM, 'password' ) ) )
 
         simulated_AU_cache = {}
