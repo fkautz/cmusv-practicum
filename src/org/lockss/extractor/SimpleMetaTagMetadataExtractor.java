@@ -55,6 +55,7 @@ public class SimpleMetaTagMetadataExtractor implements MetadataExtractor {
 	 line = bReader.readLine()) {
       line = line.trim();
       if (StringUtil.startsWithIgnoreCase(line, "<meta ")) {
+	  log.debug2("Line: " + line);
 	  addTag(line, ret);
       }
     }

@@ -104,9 +104,12 @@ public class TestDefinablePlugin extends LockssTestCase {
     defMap.putString(  ("text/html"
 			+ DefinableArchivalUnit.SUFFIX_LINK_REWRITER_FACTORY),
 		     "org.lockss.test.MockLinkRewriterFactory");
-    defMap.putString(  ("text/html"
-			+ DefinableArchivalUnit.SUFFIX_METADATA_EXTRACTOR_FACTORY),
-		     "org.lockss.test.MockMetadataExtractorFactory");
+    Map factMap = new HashMap();
+    factMap.put(MimeTypeInfo.DEFAULT_METADATA_TYPE,
+		"org.lockss.test.MockMetadataExtractorFactory");
+    defMap.putMap(  ("text/html"
+                    + DefinableArchivalUnit.SUFFIX_METADATA_EXTRACTOR_FACTORY_MAP),
+                   factMap);
     defMap.putString(  ("text/html"
 			+ DefinableArchivalUnit.SUFFIX_ARTICLE_ITERATOR_FACTORY),
 		     "org.lockss.test.MockArticleIteratorFactory");

@@ -363,16 +363,23 @@ public class DefinablePlugin extends BasePlugin {
 	  (ArticleIteratorFactory)newAuxClass(factName,
 					      ArticleIteratorFactory.class);
 	mti.setArticleIteratorFactory(fact);
-      } else if (key.endsWith(DefinableArchivalUnit.SUFFIX_METADATA_EXTRACTOR_FACTORY)) {
+      } else if (key.endsWith(DefinableArchivalUnit.SUFFIX_METADATA_EXTRACTOR_FACTORY_MAP)) {
 	String mime =
-	  stripSuffix(key, DefinableArchivalUnit.SUFFIX_METADATA_EXTRACTOR_FACTORY);
-	String factName = (String)val;
-	log.debug(mime + " metadata extractor: " + factName);
+	  stripSuffix(key, DefinableArchivalUnit.SUFFIX_METADATA_EXTRACTOR_FACTORY_MAP);
+	Map factNameMap = (Map)val;
+	log.debug3(mime + " metadata extractor map: ");
+	Map factClassMap = new HashMap();
 	MimeTypeInfo.Mutable mti = mimeMap.modifyMimeTypeInfo(mime);
-	MetadataExtractorFactory fact =
-	  (MetadataExtractorFactory)newAuxClass(factName,
-						MetadataExtractorFactory.class);
-	mti.setMetadataExtractorFactory(fact);
+	for (Iterator it = factNameMap.keySet().iterator(); it.hasNext(); ) {
+          String mdType = (String)it.next();
+	  String factName = (String)factNameMap.get(mdType);
+	  log.debug3("Metadata type: " + mdType + " factory " + factName);
+	  MetadataExtractorFactory fact =
+	    (MetadataExtractorFactory)newAuxClass(factName,
+						  MetadataExtractorFactory.class);
+	  factClassMap.put(mdType, fact);
+	}
+	mti.setMetadataExtractorFactoryMap(factClassMap);
       }
     }
   }

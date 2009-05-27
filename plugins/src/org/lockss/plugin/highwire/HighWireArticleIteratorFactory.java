@@ -84,7 +84,8 @@ public class HighWireArticleIteratorFactory implements ArticleIteratorFactory {
 	private void makeIterator() {
 	    Collection stems = au.getUrlStems();
 	    for (Iterator it = stems.iterator(); it.hasNext(); ) {
-		String stem = (String) it.next() + "/";
+		String stem = (String) it.next();
+		if (!stem.endsWith("/")) stem += "/";
 		log.debug("Subtree: " + stem + " + " + subTreeRoot);
 		CachedUrlSetSpec cuss =
 		    new RangeCachedUrlSetSpec(stem + subTreeRoot);

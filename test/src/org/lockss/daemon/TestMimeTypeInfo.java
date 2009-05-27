@@ -73,9 +73,14 @@ public class TestMimeTypeInfo extends LockssTestCase {
     mti.setArticleIteratorFactory(ai);
     assertSame(ai, mti.getArticleIteratorFactory());
 
+    Map factMap = new HashMap();
     MetadataExtractorFactory me = new MockMetadataExtractorFactory();
-    mti.setMetadataExtractorFactory(me);
+    factMap.put(MimeTypeInfo.DEFAULT_METADATA_TYPE, me);
+    mti.setMetadataExtractorFactoryMap(factMap);
+    assertSame(factMap, mti.getMetadataExtractorFactoryMap());
     assertSame(me, mti.getMetadataExtractorFactory());
+    assertSame(me, mti.getMetadataExtractorFactory(MimeTypeInfo.DEFAULT_METADATA_TYPE));
+    assertNull(mti.getMetadataExtractorFactory("BogusMetadataType"));
 
     MimeTypeInfo m2 = new MimeTypeInfo.Impl(mti);
     assertSame(ff, m2.getFilterFactory());
@@ -83,6 +88,7 @@ public class TestMimeTypeInfo extends LockssTestCase {
     assertSame(rl, m2.getFetchRateLimiter());
     assertSame(lr, m2.getLinkRewriterFactory());
     assertSame(ai, m2.getArticleIteratorFactory());
+    assertSame(factMap, m2.getMetadataExtractorFactoryMap());
     assertSame(me, m2.getMetadataExtractorFactory());
 
   }
