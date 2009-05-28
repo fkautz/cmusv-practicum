@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,38 +30,54 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.plugin.highwire;
-
-import java.util.*;
+package org.lockss.plugin.bepress;
+import java.io.*;
 import org.lockss.util.*;
 import org.lockss.daemon.*;
+import org.lockss.extractor.*;
 import org.lockss.plugin.*;
-import org.lockss.plugin.base.*;
-import org.lockss.daemon.PluginException;
 
-public class HighWireArticleIteratorFactory implements ArticleIteratorFactory {
-  static Logger log = Logger.getLogger("HighWireArticleIterator");
-
-  /*
-   * The HighWire URL structure means that the HTML for an article
-   * is at a URL like http://apr.sagepub.com/cgi/reprint/34/2/135
-   */
-  protected String subTreeRoot = "cgi/reprint";
-
-  public HighWireArticleIteratorFactory() {
-  }
+public class BePressMetadataExtractorFactory
+    implements MetadataExtractorFactory {
+  static Logger log = Logger.getLogger("SimpleMetaTagMetadataExtractor");
   /**
-   * Create an Iterator that iterates through the AU's articles, pointing
-   * to the appropriate CachedUrl of type mimeType for each, or to the plugin's
-   * choice of CachedUrl if mimeType is null
-   * @param mimeType the MIME type desired for the CachedUrls
-   * @param au the ArchivalUnit to iterate through
-   * @return the ArticleIterator
+   * Create a MetadataExtractor
+   * @param contentType the content type type from which to extract URLs
    */
-  public Iterator createArticleIterator(String mimeType, ArchivalUnit au)
+  public MetadataExtractor createMetadataExtractor(String contentType)
       throws PluginException {
-    log.debug("createArticleIterator(" + mimeType + "," + au.toString() +
-              ") " + subTreeRoot);
-    return new SubTreeArticleIterator(mimeType, au, subTreeRoot);
+    String mimeType = HeaderUtil.getMimeTypeFromContentType(contentType);
+    if ("text/html".equalsIgnoreCase(mimeType)) {
+      return new BePressMetadataExtractor();
+    }
+    return null;
+  }
+  public class BePressMetadataExtractor extends SimpleMetaTagMetadataExtractor {
+
+    public BePressMetadataExtractor() {
+    }
+      String[] bePressField = {
+      "bepress_citation_date",
+      "bepress_citation_authors",
+      "bepress_citation_title",
+      "bepress_citation_doi",
+    };
+    String[] dublinCoreField = {
+      "dc.Date",
+      "dc.Contributor",
+      "dc.Title",
+      "dc.Identifier",
+    };
+
+    public Metadata extract(CachedUrl cu) throws IOException {
+      Metadata ret = super.extract(cu);
+      for (int i = 0; i < bePressField.length; i++) {
+	String content = ret.getProperty(bePressField[i]);
+	if (content != null) {
+	  ret.put(dublinCoreField[i], content);
+	}
+      }
+      return ret;
+    }
   }
 }
