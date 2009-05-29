@@ -74,7 +74,7 @@ public class BePressMetadataExtractorFactory
       for (int i = 0; i < bePressField.length; i++) {
 	String content = ret.getProperty(bePressField[i]);
 	if (content != null) {
-	  ret.put(dublinCoreField[i], content);
+	  ret.setProperty(dublinCoreField[i], content);
 	}
       }
       return ret;
