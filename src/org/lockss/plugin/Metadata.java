@@ -226,7 +226,7 @@ public class Metadata extends Properties {
     super(props);
   }
 
-  private static final String KEY_DOI = "dc.identifier";
+  public static final String KEY_DOI = "dc.identifier";
   public String getDOI() {
     return getProperty(KEY_DOI);
   }
