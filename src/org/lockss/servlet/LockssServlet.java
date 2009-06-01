@@ -36,6 +36,7 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.util.List;
+import java.security.Principal;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -434,14 +435,15 @@ public abstract class LockssServlet extends HttpServlet
 
   // user predicates
   String getUsername() {
-    return req.getUserPrincipal().toString();
+    Principal user = req.getUserPrincipal();
+    return user != null ? user.toString() : null;
   }
 
   protected UserAccount getUserAccount() {
-    if (acctMgr == null) {
-      return null;
+    if (acctMgr != null) {
+      return acctMgr.getUser(getUsername());
     }
-    return acctMgr.getUser(getUsername());
+    return AccountManager.NOBODY_ACCOUNT;
   }
 
   protected boolean isDebugUser() {
