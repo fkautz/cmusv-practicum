@@ -63,7 +63,7 @@ public class MDHashUserRealm extends HashMap
   /* ------------------------------------------------------------ */
   private String _realmName;
   private String _config;
-  protected HashMap _roles=new HashMap(7);
+  protected Map<String,Set> _roles=new HashMap<String,Set>(7);
   private SSORealm _ssoRealm;
 
 
@@ -188,6 +188,9 @@ public class MDHashUserRealm extends HashMap
 				Object credentials,
 				HttpRequest request)
   {
+    if (log.isDebug2()) {
+      log.debug2("authenticate("+username+", "+credentials+")");
+    }
     KnownUser user;
     synchronized (this)
       {
@@ -260,7 +263,7 @@ public class MDHashUserRealm extends HashMap
    */
   public synchronized void addUserToRole(String userName, String roleName)
   {
-    HashSet userSet = (HashSet)_roles.get(roleName);
+    Set userSet = _roles.get(roleName);
     if (userSet==null)
       {
 	userSet=new HashSet(11);
@@ -289,7 +292,7 @@ public class MDHashUserRealm extends HashMap
     if (user==null || ((User)user).getUserRealm()!=this)
       return false;
 
-    HashSet userSet = (HashSet)_roles.get(roleName);
+    Set userSet = _roles.get(roleName);
     return userSet!=null && userSet.contains(user.getName());
   }
 
