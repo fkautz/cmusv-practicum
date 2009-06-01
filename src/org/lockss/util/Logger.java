@@ -390,11 +390,11 @@ public class Logger {
     LogTarget tgt;
     try {
       tgt = (LogTarget)tgtClass.newInstance();
-      } catch (Exception e) {
-	System.err.println("Couldn't instantiate log target " + tgtName +
-			   ": " + e.toString());
-	tgt = new StdErrTarget();
-      }
+    } catch (Exception e) {
+      System.err.println("Couldn't instantiate log target " + tgtName +
+			 ": " + e.toString());
+      tgt = new StdErrTarget();
+    }
     return tgt;
   }
 
