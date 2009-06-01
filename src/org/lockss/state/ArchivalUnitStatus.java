@@ -807,6 +807,19 @@ public class ArchivalUnitStatus
       res.add(new StatusTable.SummaryInfo("Created",
 					  ColumnDescriptor.TYPE_DATE,
 					  new Long(state.getAuCreationTime())));
+      CrawlWindow window = au.getCrawlSpec().getCrawlWindow();
+      if (window != null) {
+	String wmsg = window.toString();
+	if (wmsg.length() > 140) {
+	  wmsg = "(not displayable)";
+	}
+	if (!window.canCrawl()) {
+	  wmsg = "Currently closed: " + wmsg;
+	}
+	res.add(new StatusTable.SummaryInfo("Crawl Window",
+					    ColumnDescriptor.TYPE_STRING,
+					    wmsg));
+      }
       long lastCrawlAttempt = state.getLastCrawlAttempt();
       res.add(new StatusTable.SummaryInfo("Last Completed Crawl",
 					  ColumnDescriptor.TYPE_DATE,
