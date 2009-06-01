@@ -239,8 +239,12 @@ public class ParamDoclet {
 	defaultVal = (new Integer(fld.getInt(null))).toString();
       } else if (long.class == cls) {
 	long timeVal = fld.getLong(null);
-	defaultVal = timeVal + " (" +
-	  StringUtil.timeIntervalToString(timeVal) + ")";
+	if (timeVal > 0) {
+	  defaultVal = timeVal + " (" +
+	    StringUtil.timeIntervalToString(timeVal) + ")";
+	} else {
+	  defaultVal = Long.toString(timeVal);
+	}
       } else if (boolean.class == cls) {
 	defaultVal = (new Boolean(fld.getBoolean(null))).toString();
       } else {

@@ -156,13 +156,14 @@ public class ParamDoc {
       }
       pout.print(nblanks(COL - len));
       pout.print(defaultVal);
+      String timeStr = "";
       if (defaultVal instanceof Long) {
-	String timeStr =
-	  StringUtil.timeIntervalToString(((Long)defaultVal).longValue());
-	pout.println(" ("+timeStr+")");
-      } else {
-	pout.println();
+	long val = ((Long)defaultVal).longValue();
+	if (val > 0) {
+	  timeStr = " (" + StringUtil.timeIntervalToString(val) + ")";
+	}	  
       }
+      pout.println(timeStr);
     }
   }
 
