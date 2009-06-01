@@ -190,7 +190,7 @@ public class ContentServletManager
 					  ? null : redTo);
   }
 
-  protected void installUsers(MDHashUserRealm realm) {
+  protected void installUsers() {
   }
 
   protected void configureContexts(HttpServer server) {

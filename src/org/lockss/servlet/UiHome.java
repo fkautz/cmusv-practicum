@@ -82,7 +82,7 @@ public class UiHome extends LockssServlet {
     Predicate selectUiHome = new Predicate() {
       public boolean evaluate(Object obj) {
 	ServletDescr d = (ServletDescr)obj;
-        return isServletAvailable(d) && d.isInUiHome(UiHome.this);
+        return isServletDisplayed(d) && d.isInUiHome(UiHome.this);
       }
     };
 
