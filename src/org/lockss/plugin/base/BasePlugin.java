@@ -55,10 +55,10 @@ public abstract class BasePlugin
   static final String TITLE_PARAM_PLUGIN_VERSION = "pluginVersion";
   static final String TITLE_PARAM_EST_SIZE = "estSize";
   static final String TITLE_PARAM_ATTRIBUTES = "attributes";
-  static final String TITLE_PARAM_PARAM = "param";
+  public static final String TITLE_PARAM_PARAM = "param";
   // Below org.lockss.title.xxx.param.n.
-  static final String TITLE_PARAM_PARAM_KEY = "key";
-  static final String TITLE_PARAM_PARAM_VALUE = "value";
+  public static final String TITLE_PARAM_PARAM_KEY = "key";
+  public static final String TITLE_PARAM_PARAM_VALUE = "value";
   static final String TITLE_PARAM_PARAM_EDITABLE = "editable";
 
   protected LockssDaemon theDaemon;
@@ -184,6 +184,10 @@ public abstract class BasePlugin
 	  }
 	  String title = titleConfig.get(TITLE_PARAM_TITLE);
 	  TitleConfig tc = initOneTitle(titleConfig);
+	  if (titleMap.containsKey(title)) {
+	    log.warning("Duplicate title: " + tc);
+	    log.warning("Previous def   : " + tc);
+	  }
 	  titleMap.put(title, tc);
 	} else {
 	  if (log.isDebug3()) {
