@@ -235,6 +235,23 @@ public class TestConfiguration extends LockssTestCase {
     assertFalse( config.containsKey("propnot"));
   }
 
+  enum TestEnum {x, Y, zZ};
+
+  public void testGetEnum() throws Exception {
+    Configuration config = newConfiguration();
+    config.put("foo", "x");
+    config.put("bar", "y");
+    config.put("baz", "Y");
+    assertSame(TestEnum.x, config.getEnum(TestEnum.class, "foo"));
+    assertSame(TestEnum.Y, config.getEnum(TestEnum.class, "baz", TestEnum.x));
+    assertSame(TestEnum.x, config.getEnum(TestEnum.class, "xxx", TestEnum.x));
+    try {
+      config.getEnum(TestEnum.class, "bar");
+      fail("Should have thrown IllegalArgumentException");
+    } catch (Exception ex) {
+    }
+  }
+
   private static final String c3 =
     "prop.p1=a;b;c;d;e;f;g";
 
