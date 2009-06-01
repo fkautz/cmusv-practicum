@@ -1020,7 +1020,6 @@ public class ConfigManager implements LockssManager {
 
   private void setParamsFromPairs(Configuration config, String[] pairs) {
     for (int ix = 0; ix < pairs.length; ix += 2) {
-      log.info("put("+pairs[ix]+", "+pairs[ix + 1]);
       config.put(pairs[ix], pairs[ix + 1]);
     }
   }

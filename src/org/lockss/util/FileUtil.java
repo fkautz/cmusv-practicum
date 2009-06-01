@@ -377,8 +377,6 @@ public class FileUtil {
     Collections.sort(lst1);
     Collections.sort(lst2);
     if (!lst1.equals(lst2)) {
-      log.info("not equal: " + lst1);
-      log.info("not equal: " + lst2);
       return false;
     }
     for (String file : lst1) {
