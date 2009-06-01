@@ -68,9 +68,6 @@ public interface ServletManager extends LockssManager {
    * context */
   public static final String CONTEXT_ATTR_SERVLET_MGR = "ServletMgr";
 
-  /** HttpContext attribute holding AccountManager instance */
-  public static final String CONTEXT_ATTR_ACCOUNT_MGR = "AccountMgr";
-
   /** HttpContext attribute holding ServletHandler instance in context */
   public static final String CONTEXT_ATTR_SERVLET_HANDLER = "ServletHandler";
 
