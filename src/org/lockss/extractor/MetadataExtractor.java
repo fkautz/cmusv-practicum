@@ -37,7 +37,7 @@ import java.io.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 
-/** Content parser that extracts URLs from links */
+/** Content parser that extracts metadata from CachedUrl objects */
 public interface MetadataExtractor {
   /**
    * Parse content on CachedUrl,  Return a Metadata object describing it

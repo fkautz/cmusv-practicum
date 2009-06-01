@@ -39,7 +39,7 @@ import org.lockss.plugin.*;
 
 public class NatureMetadataExtractorFactory
     implements MetadataExtractorFactory {
-  static Logger log = Logger.getLogger("SimpleMetaTagMetadataExtractor");
+  static Logger log = Logger.getLogger("NatureMetadataExtractorFactory");
   /**
    * Create a MetadataExtractor
    * @param contentType the content type type from which to extract URLs
@@ -56,7 +56,7 @@ public class NatureMetadataExtractorFactory
 
     public NatureMetadataExtractor() {
     }
-      String[] natureField = {
+    String[] natureField = {
       "dc.creator",
     };
     String[] dublinCoreField = {
@@ -70,10 +70,6 @@ public class NatureMetadataExtractorFactory
 	if (content != null) {
 	  ret.setProperty(dublinCoreField[i], content);
 	}
-      }
-      String doi = ret.getProperty(Metadata.KEY_DOI);
-      if (doi != null && doi.startsWith("doi:")) {
-        ret.setProperty(Metadata.KEY_DOI, doi.substring(4));
       }
       return ret;
     }
