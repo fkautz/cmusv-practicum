@@ -66,7 +66,7 @@ import org.mortbay.log.LogFactory;
  */
 public class FilteredDirFileResource extends URLResource
 {
-	private static Log log = LogFactory.getLog(Credential.class);
+    private static Log log = LogFactory.getLog(FilteredDirFileResource.class);
     private static boolean __checkAliases;
     static
     {
