@@ -44,7 +44,7 @@ public class WordsWithoutBordersCrawlHtmlFilterFactory implements FilterFactory 
                                                String encoding)
       throws PluginException {
     HtmlTransform[] transforms = new HtmlTransform[] {
-        // Filter out <div id="columnThree" name="columnThree">...</div>
+        // Keep only <div id="columnThree" name="columnTwo">...</div>
         HtmlNodeFilterTransform.include(HtmlNodeFilters.tagWithAttribute("div",
                                                                          "id",
                                                                          "columnTwo")),                                                                  
