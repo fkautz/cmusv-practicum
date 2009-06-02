@@ -245,9 +245,11 @@ public class LockssUserRealm implements UserRealm {
       }
       HttpServletRequest servletRequest =
 	(ServletHttpRequest)request.getWrapper();
-      HttpSession session = servletRequest.getSession();
-      if (msg != null) {
-	if (servletRequest != null) {
+      if (servletRequest != null) {
+	HttpSession session = servletRequest.getSession();
+	log.info("authenticate("+credentials+"): " + res
+		 + ", session: " + session);
+	if (msg != null) {
 	  session.setAttribute(LockssFormAuthenticator.__J_LOCKSS_AUTH_ERROR_MSG,
 			       msg);
 	}
