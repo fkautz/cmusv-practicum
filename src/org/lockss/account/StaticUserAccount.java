@@ -42,6 +42,10 @@ public class StaticUserAccount extends BasicUserAccount {
     super(name);
   }
 
+  public String getType() {
+    return "Static";
+  }
+
   @Override
   public boolean isStaticUser() {
     return true;

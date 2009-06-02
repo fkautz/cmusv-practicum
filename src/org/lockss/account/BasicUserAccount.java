@@ -89,6 +89,10 @@ public class BasicUserAccount extends UserAccount {
     super.postLoadInit(acctMgr, config);
   }
 
+  public String getType() {
+    return "Basic";
+  }
+
   protected int getMinPasswordLength() {
     return config.getInt(PARAM_MIN_PASSWORD_LENGTH,
 			 DEFAULT_MIN_PASSWORD_LENGTH);

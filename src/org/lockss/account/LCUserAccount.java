@@ -80,6 +80,10 @@ public class LCUserAccount extends UserAccount {
     super(name);
   }
 
+  public String getType() {
+    return "LC";
+  }
+
   protected int getHistorySize() {
     return HISTORY_SIZE;
   }
