@@ -58,7 +58,14 @@ public class IngentaJournalHtmlFilterFactory implements FilterFactory {
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
                                                                          "id",
                                                                          "vertical-ad")),
-                                                               
+        // Filter out <div class="right-col-download">...</div>
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
+                                                                         "class",
+                                                                         "right-col-download")),                                                               
+        // Filter out <div id="cart-navbar">...</div>
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
+                                                                         "id",
+                                                                         "cart-navbar")),   
     };
     return new HtmlFilterInputStream(in,
                                      encoding,
