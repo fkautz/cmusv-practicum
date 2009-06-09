@@ -372,8 +372,10 @@ public class LockssFormAuthenticator implements Authenticator {
       pathInContext!=null &&
       (pathInContext.equals(_formErrorPath)
        || pathInContext.equals(_formLoginPath)
-       || pathInContext.startsWith("/images"));
-    log.debug2("isLoginOrErrorPage("+pathInContext+"): " + res);
+       || pathInContext.startsWith("/images")
+       || pathInContext.startsWith("/favicon.ico"));
+    if (log.isDebug2())
+      log.debug2("isLoginOrErrorPage("+pathInContext+"): " + res);
     return res;
   }
     
