@@ -117,7 +117,7 @@ public class LCUserAccount extends UserAccount {
   }
 
   @Override
-  void checkLegalPassword(String newPwd, String hash, boolean isAdmin)
+  protected void checkLegalPassword(String newPwd, String hash, boolean isAdmin)
       throws IllegalPasswordChange {
     super.checkLegalPassword(newPwd, hash, isAdmin);
 
