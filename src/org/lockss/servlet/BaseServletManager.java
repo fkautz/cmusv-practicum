@@ -349,7 +349,8 @@ public abstract class BaseServletManager
 	KeyManagerFactory kmf =
 	  keystoreMgr.getKeyManagerFactory(sslKeystoreName);
 	if (kmf == null) {
-	  log.error("Keystore " + sslKeystoreName + " not found, not starting");
+	  log.critical("Keystore " + sslKeystoreName +
+		       " not found, not starting");
 	  return;
 	}
  	lsl.setKeyManagerFactory(kmf);
