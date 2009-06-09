@@ -33,6 +33,7 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.plugin.bepress;
 
 import java.util.*;
+import java.util.regex.*;
 import org.lockss.util.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
@@ -75,6 +76,8 @@ public class BePressArticleIteratorFactory implements ArticleIteratorFactory {
     subTreeRoot = abbr;
     log.debug("createArticleIterator(" + mimeType + "," + au.toString() +
               ") " + subTreeRoot);
-    return new SubTreeArticleIterator(mimeType, au, subTreeRoot);
+    Pattern pat = Pattern.compile("/vol[0-9]*/iss[0-9]*/art[0-9]*",
+				  Pattern.CASE_INSENSITIVE);
+    return new SubTreeArticleIterator(mimeType, au, subTreeRoot, pat);
   }
 }

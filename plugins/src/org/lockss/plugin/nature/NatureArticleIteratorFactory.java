@@ -33,6 +33,7 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.plugin.nature;
 
 import java.util.*;
+import java.util.regex.*;
 import org.lockss.util.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
@@ -72,6 +73,8 @@ public class NatureArticleIteratorFactory implements ArticleIteratorFactory {
     subTreeRoot = jid + "/journal/v" + vol;
     log.debug("createArticleIterator(" + mimeType + "," + au.toString() +
               ") " + subTreeRoot);
-    return new SubTreeArticleIterator(mimeType, au, subTreeRoot);
+    Pattern pat = Pattern.compile("journal/v[0-9]*/n[0-9]*/full/",
+				  Pattern.CASE_INSENSITIVE);
+    return new SubTreeArticleIterator(mimeType, au, subTreeRoot, pat);
   }
 }
