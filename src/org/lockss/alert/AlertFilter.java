@@ -73,6 +73,14 @@ public class AlertFilter implements LockssSerializable {
 //     return false;
 //   }
 
+  public boolean equals(Object o) {
+    if (o instanceof AlertFilter) {
+      AlertFilter filt = (AlertFilter)o;
+      return pattern.equals(filt.pattern)
+	&& action.equals(filt.action);
+    }
+    return false;
+  }
   public String toString() {
     return "[AlertFilter: " + pattern + "," + action + "]";
   }

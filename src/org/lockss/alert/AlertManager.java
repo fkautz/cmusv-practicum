@@ -40,6 +40,9 @@ public interface AlertManager extends LockssManager {
 
   static final String PREFIX = Configuration.PREFIX + "alert.";
 
+  static final String PARAM_ALERTS_ENABLED = PREFIX + "enabled";
+  static final boolean DEFAULT_ALERTS_ENABLED = true;
+
   /**
    * Raise an alert
    * @param alert the alert to raise

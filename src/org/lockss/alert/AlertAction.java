@@ -56,10 +56,10 @@ public interface AlertAction {
   public long getMaxPendTime();
 
   /** Implementations must implement a suitable equals() and hasCode() in
-   * order for grouped reproting to work */
+   * order for grouped reporting to work */
   public boolean equals(Object obj);
 
   /** Implementations must implement a suitable equals() and hasCode() in
-   * order for grouped reproting to work */
+   * order for grouped reporting to work */
   public int hashCode();
 }

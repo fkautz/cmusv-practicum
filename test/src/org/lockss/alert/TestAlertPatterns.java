@@ -88,6 +88,11 @@ public class TestAlertPatterns extends LockssTestCase {
     assertNoMatch(AlertPatterns.LE(ATTR2, new Integer(6)));
     assertMatch(AlertPatterns.LE(ATTR2, new Integer(7)));
     assertMatch(AlertPatterns.LE(ATTR2, new Integer(8)));
+
+    assertMatch(AlertPatterns.CONTAINS(ATTR1, ListUtil.list("four",
+							    "test text")));
+    assertNoMatch(AlertPatterns.CONTAINS(ATTR1, ListUtil.list("four",
+							      "testing 123")));
   }
 
   public void testBool() {

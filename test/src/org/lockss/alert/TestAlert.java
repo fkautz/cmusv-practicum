@@ -228,7 +228,7 @@ public class TestAlert extends LockssTestCase {
     String[] lbody =
       (String[])StringUtil.breakAt(body, '\n').toArray(new String[0]);
     int line = 0;
-    assertMatchesRE("^LOCKSS cache .* raised an alert at ", lbody[line++]);
+    assertMatchesRE("^LOCKSS box .* raised an alert at ", lbody[line++]);
     assertMatchesRE("^$", lbody[line++]);
     assertMatchesRE("^Name: RepairComplete$", lbody[line++]);
     assertMatchesRE("^Severity: trace$", lbody[line++]);
@@ -249,7 +249,7 @@ public class TestAlert extends LockssTestCase {
     a2.setAttribute(Alert.ATTR_SEVERITY, 7);
     String subject = a2.getMailSubject();
     log.debug(subject);
-    assertEquals("LOCKSS cache trace: RepairComplete", subject);
+    assertEquals("LOCKSS box trace: RepairComplete", subject);
   }
 
   Map newMap(String prop, Object val) {
