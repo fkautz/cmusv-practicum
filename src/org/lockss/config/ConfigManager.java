@@ -1016,6 +1016,14 @@ public class ConfigManager implements LockssManager {
     if ("basic".equalsIgnoreCase(acctPolicy)) {
       setParamsFromPairs(config, AccountManager.POLICY_BASIC);
     }
+    if ("compat".equalsIgnoreCase(acctPolicy)) {
+      setParamsFromPairs(config, AccountManager.POLICY_COMPAT);
+    }
+  }
+
+  public static class ConfigMacro{
+    public ConfigMacro(String name, String[] pairs) {
+    }
   }
 
   private void setParamsFromPairs(Configuration config, String[] pairs) {
