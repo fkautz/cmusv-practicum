@@ -47,10 +47,6 @@ public class TestLockssKeyStoreManager extends LockssTestCase {
   static final String KEY_PASSWD1 = "Vroomfondel";
   static final String KEY_PASSWD2 = "Slartibartfast";
 
-  public void setUp() throws Exception {
-    super.setUp();
-  }
-
   KeyStore createKeyStore(File file, String pass, String keyPass)
       throws Exception {
     Properties p = new Properties();

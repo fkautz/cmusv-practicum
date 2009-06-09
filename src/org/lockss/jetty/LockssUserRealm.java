@@ -134,7 +134,6 @@ public class LockssUserRealm implements UserRealm {
   }
 
   public boolean reauthenticate(Principal user) {
-    log.info("reauthenticate("+user+")");
     return ((User)user).isAuthenticated();
   }
 
@@ -238,7 +237,7 @@ public class LockssUserRealm implements UserRealm {
 	res = _acct.check(credentials);
       }
       if (res) {
-	if (_acct.hasPasswordExpired()) {
+	if (_acct.isPasswordExpired()) {
 	  msg = "Password expired";
 	  res = false;
 	}
@@ -247,8 +246,10 @@ public class LockssUserRealm implements UserRealm {
 	(ServletHttpRequest)request.getWrapper();
       if (servletRequest != null) {
 	HttpSession session = servletRequest.getSession();
-	log.info("authenticate("+credentials+"): " + res
-		 + ", session: " + session);
+	if (log.isDebug2()) {
+	  log.debug2("authenticate("+credentials+"): " + res
+		     + ", session: " + session);
+	}
 	if (msg != null) {
 	  session.setAttribute(LockssFormAuthenticator.__J_LOCKSS_AUTH_ERROR_MSG,
 			       msg);
