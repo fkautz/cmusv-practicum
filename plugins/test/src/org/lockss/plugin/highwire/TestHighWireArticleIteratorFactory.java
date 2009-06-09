@@ -34,6 +34,7 @@ package org.lockss.plugin.highwire;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.*;
 
 import org.lockss.test.*;
 import org.lockss.util.*;
@@ -182,6 +183,7 @@ public class TestHighWireArticleIteratorFactory extends LockssTestCase {
     }
     public void setSubTreeRoot(String root) {
       subTreeRoot = root;
+      pat = Pattern.compile("branch[0-9]*/", Pattern.CASE_INSENSITIVE);
       log.debug("Set subTreeRoot: " + subTreeRoot);
     }
   }
