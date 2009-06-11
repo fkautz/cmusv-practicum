@@ -29,7 +29,7 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.nypl.plugin.wordswithoutborders;
+package org.nypl.plugin;
 
 import java.io.InputStream;
 
