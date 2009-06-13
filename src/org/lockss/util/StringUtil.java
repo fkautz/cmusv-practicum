@@ -477,6 +477,14 @@ public class StringUtil {
     return str.substring(0, pos);
   }
 
+  public static String elideMiddleToMaxLen(String s, int len) {
+    if (s == null || s.length() <= len) {
+      return s;
+    }
+    int split = len / 2;
+    return s.substring(0, split) + "..." + s.substring(s.length() - split);
+  }
+
   /** Like indexOf except is case-independent */
   public static int indexOfIgnoreCase(String str, String substr) {
     return indexOfIgnoreCase(str, substr, 0);

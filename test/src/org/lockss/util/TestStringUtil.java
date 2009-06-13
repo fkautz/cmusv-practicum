@@ -103,6 +103,18 @@ public class TestStringUtil extends LockssTestCase {
 		 StringUtil.truncateAt("test|blah", '0'));
   }
 
+  public void testElideMiddleToMaxLen() {
+    assertNull(StringUtil.elideMiddleToMaxLen(null, 10));
+    assertEquals("test",
+		 StringUtil.elideMiddleToMaxLen("test", 10));
+    assertEquals("test123456",
+		 StringUtil.elideMiddleToMaxLen("test123456", 10));
+    assertEquals("test...3456",
+		 StringUtil.elideMiddleToMaxLen("test123456", 9));
+    assertEquals("foo...bar",
+		 StringUtil.elideMiddleToMaxLen("foonlyrebar", 6));
+  }
+
   public void testIndexOfIgnoreCase() {
     String testStr, testSubStr;
     // both null cases
