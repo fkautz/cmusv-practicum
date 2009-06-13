@@ -76,6 +76,14 @@ public class NobodyAccount extends UserAccount {
     return -1;
   }
 
+  protected long getFailedAttemptWindow() {
+    return -1;
+  }
+
+  protected long getFailedAttemptResetInterval() {
+    return -1;
+  }
+
   protected String getDefaultHashAlgorithm() {
     return null;
   }

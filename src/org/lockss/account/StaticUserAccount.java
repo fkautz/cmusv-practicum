@@ -75,6 +75,13 @@ public class StaticUserAccount extends BasicUserAccount {
     return false;
   }
 
+  public void checkPasswordReminder() {
+  }
+
+  protected void handleFailedLoginAttempt() {
+    // Login failures don't affect static accounts
+  }
+
   public static class Factory extends UserAccount.Factory {
     public UserAccount newUser(String name, AccountManager acctMgr,
 			       Configuration config) {
