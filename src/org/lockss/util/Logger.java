@@ -650,7 +650,7 @@ public class Logger {
     if (unannouncedName != null) {
       String name = unannouncedName;
       unannouncedName = null;
-      info("ThreadId " + id + " is " + name);
+      debug("ThreadId " + id + " is " + name);
       announcedName = name;
     }
     return id;
