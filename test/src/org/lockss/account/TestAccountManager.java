@@ -291,7 +291,9 @@ public class TestAccountManager extends LockssTestCase {
     File f1 = new File(acctMgr.getAcctDir(), "luser");
     assertTrue(f1.exists());
     assertSame(acct1, acctMgr.getUser(name));
+    assertTrue(acct1.isEnabled());
     assertTrue(acctMgr.deleteUser(name));
+    assertFalse(acct1.isEnabled());
     assertFalse(f1.exists());
     assertNull(acctMgr.getUserOrNull(name));
 

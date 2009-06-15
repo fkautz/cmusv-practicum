@@ -353,6 +353,8 @@ public class AccountManager
       res = file.delete();
     }
     if (res) {
+      acct.disable("Deleted");		// paranoia, in case someone holds
+					// onto object.
       accountMap.remove(acct.getName());
     }
     return res;

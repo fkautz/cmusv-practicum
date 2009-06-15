@@ -32,6 +32,8 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.account;
 
+import java.util.*;
+
 /** Least privileged user
  */
 public class NobodyAccount extends UserAccount {
@@ -46,6 +48,11 @@ public class NobodyAccount extends UserAccount {
 
   public String getType() {
     return "Nobody";
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return false;
   }
 
   protected int getMinPasswordLength() {
@@ -88,7 +95,13 @@ public class NobodyAccount extends UserAccount {
     return null;
   }
 
+  @Override
   public String getRoles() {
     return "";
+  }
+
+  @Override
+  public Set getRoleSet() {
+    return Collections.EMPTY_SET;
   }
 }

@@ -33,6 +33,7 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.account;
 
 import org.lockss.config.*;
+import org.lockss.util.*;
 
 /** Static user account for non-editable accounts
  */
@@ -80,6 +81,11 @@ public class StaticUserAccount extends BasicUserAccount {
 
   protected void handleFailedLoginAttempt() {
     // Login failures don't affect static accounts
+  }
+
+  protected void handleSuccessfulLoginAttempt() {
+    // Record last login time in memory, but can't write
+    lastLogin = TimeBase.nowMs();
   }
 
   public static class Factory extends UserAccount.Factory {

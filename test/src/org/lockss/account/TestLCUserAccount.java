@@ -327,8 +327,12 @@ public class TestLCUserAccount extends LockssTestCase {
     TimeBase.setSimulated(Constants.DAY);
     acct1.setPassword(PWD1);
     // test good and bad passwd
+    assertNotEquals(TimeBase.nowMs(), acct1.getLastLogin());
     assertTrue(acct1.check(PWD1));
+    assertEquals(TimeBase.nowMs(), acct1.getLastLogin());
+    TimeBase.step(Constants.WEEK);
     assertFalse(acct1.check(PWD2));
+    assertEquals(Constants.DAY, acct1.getLastLogin());
     assertTrue(acct1.check(PWD1));
   }
 
