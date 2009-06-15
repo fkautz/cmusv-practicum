@@ -178,18 +178,25 @@ public class AdminServletManager extends BaseServletManager {
 	return acctMgr != null && acctMgr.isEnabled();
       }
       public boolean isInNav(LockssServlet servlet) {
-	if (servlet.doesUserHaveRole(LockssServlet.ROLE_USER_ADMIN)
-	    && !servlet.doesUserHaveRole(LockssServlet.ROLE_DEBUG)) {
-	  return false;
-	}
+// 	if (servlet.doesUserHaveRole(LockssServlet.ROLE_USER_ADMIN)
+// 	    && !servlet.doesUserHaveRole(LockssServlet.ROLE_DEBUG)) {
+// 	  return false;
+// 	}
 	UserAccount acct = servlet.getUserAccount();
 	return acct != null && acct.isEditable();
+      }
+      public String getNavHeading(LockssServlet servlet) {
+	UserAccount acct = servlet.getUserAccount();
+	if (acct != null) {
+	  return super.getNavHeading(servlet) + " (" + acct.getName() + ")";
+	}
+	return super.getNavHeading(servlet);
       }};
 
   protected static final ServletDescr SERVLET_EDIT_ACCOUNTS =
     new ServletDescr("AdminEditAccounts",
 		     AdminEditAccounts.class,
-                     "Edit Accounts",
+                     "User Accounts",
                      (ServletDescr.IN_NAV | ServletDescr.IN_UIHOME
 		      | ServletDescr.NEED_ROLE_USER_ADMIN),
                      "Administer user accounts") {

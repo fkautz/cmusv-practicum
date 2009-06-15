@@ -202,6 +202,10 @@ public class ServletDescr {
     expl = s;
   }
 
+  public String getNavHeading(LockssServlet servlet) {
+    return heading;
+  }
+
   boolean needsUserAdminRole() {
     return (flags & NEED_ROLE_USER_ADMIN) != 0;
   }

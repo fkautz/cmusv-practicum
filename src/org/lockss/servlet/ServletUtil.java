@@ -1538,7 +1538,8 @@ public class ServletUtil {
       } else {
         navTable.add("<font size=\"-1\">");
       }
-      navTable.add(servlet.conditionalSrvLink(d, d.heading, servlet.isServletLinkInNav(d)));
+      navTable.add(servlet.conditionalSrvLink(d, d.getNavHeading(servlet),
+					      servlet.isServletLinkInNav(d)));
       navTable.add("</font>");
     }
     navTable.add("</font>");

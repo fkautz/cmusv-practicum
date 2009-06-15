@@ -105,9 +105,9 @@ public abstract class EditAccountBase extends LockssServlet {
 
   RoleDesc[] roleDescs = {
     new RoleDesc(ROLE_USER_ADMIN, "User Admin",
-		 "Administer user accounts and access to admin UI"),
+		 "Administer user accounts and control who is allowed access to the admin UI"),
     new RoleDesc(ROLE_CONTENT_ADMIN, "Access Admin",
-		 "Administer access to content"),
+		 "Control who is allowed access to content"),
     new RoleDesc(ROLE_AU_ADMIN, "Collection Admin",
 		 "Select content (AUs) to be collected and preserved"),
     new RoleDesc(ROLE_DEBUG, "Debug",
