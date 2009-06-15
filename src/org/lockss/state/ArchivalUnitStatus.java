@@ -886,12 +886,14 @@ public class ArchivalUnitStatus
       res.add(new StatusTable.SummaryInfo(null,
 					  ColumnDescriptor.TYPE_STRING,
 					  urlListLink));
-      res.add(new StatusTable.SummaryInfo(null,
-					  ColumnDescriptor.TYPE_STRING,
-					  doiListLink));
-      res.add(new StatusTable.SummaryInfo(null,
-					  ColumnDescriptor.TYPE_STRING,
-					  articleListLink));
+      if (!(au.getArticleIterator() == CollectionUtil.EMPTY_ITERATOR)) {
+        res.add(new StatusTable.SummaryInfo(null,
+					    ColumnDescriptor.TYPE_STRING,
+					    doiListLink));
+        res.add(new StatusTable.SummaryInfo(null,
+					    ColumnDescriptor.TYPE_STRING,
+					    articleListLink));
+      }
       return res;
     }
 
