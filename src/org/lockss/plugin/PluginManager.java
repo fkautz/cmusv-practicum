@@ -2296,7 +2296,7 @@ public class PluginManager
    * A simple class that wraps information about a loadable plugin,
    * used during the loading process.
    */
-  static class PluginInfo {
+  public static class PluginInfo {
     private Plugin plugin;
     private ArchivalUnit registryAu;
     private PluginVersion version;
