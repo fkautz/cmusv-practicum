@@ -148,8 +148,8 @@ public class SagePublicationsPdfTransform
                                                 // ...and on all the pages now that the first is gone...
                                                 new TransformEachPage(// ...collapse "Downloaded from",
                                                                       new CollapseDownloadedFrom(au)),
-                                                // ...and the modification date is removed
-                                                new HighWirePdfFilterFactory.RemoveModificationDate(),
+//                                              // ...and normalize the metadata
+                                                new HighWirePdfFilterFactory.NormalizeMetadata(),
                                               });
     }
 
