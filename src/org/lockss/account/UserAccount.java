@@ -519,6 +519,7 @@ public abstract class UserAccount implements LockssSerializable, Comparable {
     long window = getFailedAttemptWindow();
     return
       (window > 0
+       && failedAttemptHistory != null
        && ( ( failedAttemptHistory[0]
 	      - failedAttemptHistory[failedAttemptHistory.length - 1])
 	    <= window)
