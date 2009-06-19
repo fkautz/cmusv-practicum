@@ -753,6 +753,9 @@ public class ArchivalUnitStatus
       res.add(new StatusTable.SummaryInfo("Volume",
 					  ColumnDescriptor.TYPE_STRING,
 					  au.getName()));
+      res.add(new StatusTable.SummaryInfo("Plugin",
+					  ColumnDescriptor.TYPE_STRING,
+					  au.getPlugin().getPluginName()));
       AuState.AccessType atype = state.getAccessType();
       if (atype != null) {
 	res.add(new StatusTable.SummaryInfo("Access Type",
