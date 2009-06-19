@@ -64,6 +64,22 @@ public class TestKeyStoreUtil extends LockssTestCase {
     return p;
   }
 
+  void assertCharsBetween(int low, int hi, String str) {
+    for (int ch : str.toCharArray()) {
+      assertTrue(ch >= low && ch <= hi);
+    }
+  }
+
+  public void testRandomString() throws Exception {
+    String r10 = KeyStoreUtil.randomString(10);
+    String r1024 = KeyStoreUtil.randomString(1024);
+    assertEquals(10, r10.length());
+    assertEquals(1024, r1024.length());
+    assertCharsBetween(32, 126, r10);
+    assertCharsBetween(32, 126, r1024);
+    assertNotEquals(r1024, KeyStoreUtil.randomString(1024));
+  }
+
   public void testDefaults() throws Exception {
     Properties p = initProps();
     KeyStore ks = KeyStoreUtil.createKeyStore(p);
