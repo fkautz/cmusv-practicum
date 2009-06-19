@@ -79,15 +79,6 @@ class PluginStatus {
     this.mgr = mgr;
   }
 
-  String getPluginType(Plugin plugin) {
-    if (mgr.isLoadablePlugin(plugin)) {
-      return "Loadable";
-    } else if (mgr.isInternalPlugin(plugin)) {
-      return "Internal";
-    } else {
-      return "Builtin";
-    }
-  }
 }
 
 /**
@@ -149,7 +140,7 @@ class Plugins extends PluginStatus implements StatusAccessor {
 						   plugin));
 	row.put("version", plugin.getVersion());
 	row.put("id", plugin.getPluginId());
-	row.put("type", getPluginType(plugin));
+	row.put("type", mgr.getPluginType(plugin));
 	if (mgr.isLoadablePlugin(plugin)) {
 	  PluginManager.PluginInfo info = mgr.getLoadablePluginInfo(plugin);
 	  if (info != null) {
@@ -271,7 +262,7 @@ class PluginDetail extends PluginStatus implements StatusAccessor {
     }
     res.add(new StatusTable.SummaryInfo("Type",
 					ColumnDescriptor.TYPE_STRING,
-					getPluginType(plug)));
+					mgr.getPluginType(plug)));
     res.add(new StatusTable.SummaryInfo("# AUs",
 					ColumnDescriptor.TYPE_STRING,
 					plug.getAllAus().size()));

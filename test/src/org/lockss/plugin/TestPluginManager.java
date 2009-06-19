@@ -1221,6 +1221,10 @@ public class TestPluginManager extends LockssTestCase {
     mgr.processRegistryAus(registryAus);
     Plugin mockPlugin = mgr.getPlugin(pluginKey);
     assertNotNull(mockPlugin);
+    assertEquals(preferLoadable, mgr.isLoadablePlugin(mockPlugin));
+    assertFalse(mgr.isInternalPlugin(mockPlugin));
+    assertEquals(preferLoadable ? "Loadable" : "Builtin",
+		 mgr.getPluginType(mockPlugin));
     assertEquals("1", mockPlugin.getVersion());
     PluginManager.PluginInfo info = mgr.getLoadablePluginInfo(mockPlugin);
     assertEquals(mmau.getNthUrl(1), info.getCuUrl());

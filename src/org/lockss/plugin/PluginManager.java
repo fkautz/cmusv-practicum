@@ -1054,6 +1054,20 @@ public class PluginManager
   }
 
   /**
+   * Return a String identifying the type of plugin {Loadable, Internally,
+   * Builtin}
+   */
+  public String getPluginType(Plugin plugin) {
+    if (isLoadablePlugin(plugin)) {
+      return "Loadable";
+    } else if (isInternalPlugin(plugin)) {
+      return "Internal";
+    } else {
+      return "Builtin";
+    }
+  }
+
+  /**
    * Return the stored config info for an AU (from config file, not from
    * AU instance).
    * @param au the ArchivalUnit
