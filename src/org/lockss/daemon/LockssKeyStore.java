@@ -160,11 +160,14 @@ public class LockssKeyStore {
 
   // check for required params
   void check() {
-    if (filename == null
-	|| password == null
-	|| (keyPassword == null && keyPasswordFile == null)) {
-      throw new NullPointerException("filename: " + filename + ", " + "password: " + password + ", " + "keyPassword: " + keyPassword + ", " + "keyPasswordFile: " + keyPasswordFile);
-    }
+    if (StringUtil.isNullString(filename))
+      throw new NullPointerException("filename must be a non-null string");
+    if (StringUtil.isNullString(password))
+      throw new NullPointerException("password must be a non-null string");
+    if (StringUtil.isNullString(keyPassword)
+	&& StringUtil.isNullString(keyPasswordFile))
+      throw new NullPointerException("keyPassword or keyPasswordFile must be"
+				     + " a non-null string");
   }
 
   /** Read password from file, then overwrite and delete file */
