@@ -45,7 +45,7 @@ public class ConfigStatus extends BaseLockssDaemonManager {
 
   final static String CONFIG_STATUS_TABLE = "ConfigStatus";
 
-  public static final String PREFIX = Configuration.PREFIX + ".configStatus";
+  public static final String PREFIX = Configuration.PREFIX + "configStatus.";
 
   /** Truncate displayed values to this length */
   static final String PARAM_MAX_DISPLAY_VAL_LEN = PREFIX + "maxDisplayValLen";
