@@ -1384,15 +1384,18 @@ public class V3Poller extends BasePoll {
     // Now schedule the hash
     HashService hashService = theDaemon.getHashService();
     
-    boolean canHash = hashService.scheduleHash(hasher, deadline,
-                                               cb, null);
-
-    if (canHash) {
+    boolean res = false;
+    int oldStatus = getStatus();
+    try {
       setStatus(POLLER_STATUS_HASHING);
-      return true;
-    } else {
-      return false;
+      res = hashService.scheduleHash(hasher, deadline, cb, null);
+      if (!res) {
+	setStatus(oldStatus);
+      }
+    } catch (Exception e) {
+      setStatus(oldStatus);
     }
+    return res;
   }
 
   /**
@@ -2714,6 +2717,10 @@ public class V3Poller extends BasePoll {
 
   private void setStatus(int status) {
     if (pollerState.getStatus() != status) {
+      if (log.isDebug2()) {
+	log.debug2("Poll status: " + getStatusString() + " -> " +
+		   V3Poller.POLLER_STATUS_STRINGS[status]);
+      }
       pollerState.setStatus(status);
       checkpointPoll();
     }
