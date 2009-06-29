@@ -36,9 +36,12 @@ import java.io.IOException;
 
 import org.lockss.extractor.GoslingHtmlLinkExtractor;
 import org.lockss.plugin.ArchivalUnit;
+import org.lockss.util.Logger;
 
 public class IngentaLinkExtractor extends GoslingHtmlLinkExtractor {
 
+  protected static Logger logger = Logger.getLogger("IngentaLinkExtractor");
+  
   public IngentaLinkExtractor() {
     super();
   }
@@ -52,10 +55,12 @@ public class IngentaLinkExtractor extends GoslingHtmlLinkExtractor {
     if ((ch == 'm' || ch == 'M') && beginsWithTag(link, METATAG)) {
       String key = getAttributeValue("name", link);
       if (key != null && key.startsWith("CRAWLER.")) {
+        logger.debug3("Found a suitable <meta> tag");
         return getAttributeValue("content", link);
       }
     }
     
+    logger.debug3("No suitable <meta> tag");
     return super.extractLinkFromTag(link, au, cb);
   }
   
