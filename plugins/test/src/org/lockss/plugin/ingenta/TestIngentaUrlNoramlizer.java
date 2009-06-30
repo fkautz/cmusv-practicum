@@ -32,36 +32,19 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.plugin.ingenta;
 
-import java.io.IOException;
+import org.lockss.plugin.UrlNormalizer;
+import org.lockss.test.LockssTestCase;
 
-import org.lockss.extractor.GoslingHtmlLinkExtractor;
-import org.lockss.plugin.ArchivalUnit;
-import org.lockss.util.Logger;
+public class TestIngentaUrlNoramlizer extends LockssTestCase {
 
-public class IngentaLinkExtractor extends GoslingHtmlLinkExtractor {
-
-  protected static Logger logger = Logger.getLogger("IngentaLinkExtractor");
-  
-  public IngentaLinkExtractor() {
-    super();
-  }
-  
-  @Override
-  protected String extractLinkFromTag(StringBuffer link,
-                                      ArchivalUnit au,
-                                      Callback cb)
-      throws IOException {
-    char ch = link.charAt(0);
-    if ((ch == 'm' || ch == 'M') && beginsWithTag(link, METATAG)) {
-      String key = getAttributeValue("name", link);
-      if (key != null && key.startsWith("CRAWLER.")) {
-        logger.debug3("Found a suitable <meta> tag");
-        return getAttributeValue("content", link);
-      }
-    }
-    
-    logger.debug3("No suitable <meta> tag");
-    return super.extractLinkFromTag(link, au, cb);
+  public void testNormalizer() throws Exception {
+    UrlNormalizer normalizer = new IngentaUrlNormalizer();
+    assertEquals("http://www.example.com/content/bpsoc/bjp/2004/00000095/00000002/art00003",
+                 normalizer.normalizeUrl("http://www.example.com/content/bpsoc/bjp/2004/00000095/00000002/art00003", null));
+    assertEquals("http://www.example.com/content/bpsoc/bjp/2004/00000095/00000002/art00003",
+        normalizer.normalizeUrl("http://www.example.com/content/bpsoc/bjp/2004/00000095/00000002/art00003;jsessionid=18t24vno4f29p.alice", null));
+    assertEquals("http://www.example.com/content/bpsoc/bjp/2004/00000095/00000002/art00003?format=print&view=popup",
+                 normalizer.normalizeUrl("http://www.example.com/content/bpsoc/bjp/2004/00000095/00000002/art00003;jsessionid=18t24vno4f29p.alice?format=print&view=popup", null));
   }
   
 }

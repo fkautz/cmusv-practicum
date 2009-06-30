@@ -33,12 +33,13 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.plugin.ingenta;
 
 import org.lockss.daemon.PluginException;
-import org.lockss.extractor.*;
+import org.lockss.plugin.*;
 
-public class IngentaLinkExtractorFactory implements LinkExtractorFactory {
 
-  public LinkExtractor createLinkExtractor(String mimeType) throws PluginException {
-    return new IngentaHtmlLinkExtractor();
+public class IngentaUrlNormalizer implements UrlNormalizer {
+
+  public String normalizeUrl(String url, ArchivalUnit au) throws PluginException {
+    return url.replaceFirst(";jsessionid=[^?]+", "");
   }
-  
+
 }
