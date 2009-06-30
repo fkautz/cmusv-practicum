@@ -35,7 +35,7 @@ package org.lockss.plugin.ingenta;
 import org.lockss.daemon.PluginException;
 import org.lockss.extractor.*;
 
-public class IngentaLinkExtractorFactory implements LinkExtractorFactory {
+public class IngentaHtmlLinkExtractorFactory implements LinkExtractorFactory {
 
   public LinkExtractor createLinkExtractor(String mimeType) throws PluginException {
     return new IngentaHtmlLinkExtractor();
