@@ -49,13 +49,15 @@ public class PortlandPressHtmlFilterFactory implements FilterFactory {
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
                                                                          "class",
                                                                          "courtesy_box")),
-        
         // Filter out <div class="RHAdsBox">...</div>
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
                                                                          "class",
-                                                                         "RHAdsBox")),         
-                                                               
-    };
+                                                                         "RHAdsBox")),
+        // Filter out <div class="RHAdvert">...</div>
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
+                                                                         "class",
+                                                                         "RHAdvert")),         
+};
     return new HtmlFilterInputStream(in,
                                      encoding,
                                      new HtmlCompoundTransform(transforms));
