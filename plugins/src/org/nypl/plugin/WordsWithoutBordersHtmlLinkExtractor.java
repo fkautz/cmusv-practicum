@@ -37,7 +37,6 @@ import java.io.InputStream;
 
 import org.lockss.daemon.PluginException;
 import org.lockss.extractor.GoslingHtmlLinkExtractor;
-import org.lockss.extractor.LinkExtractor;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.plugin.FilterFactory;
 

@@ -33,8 +33,7 @@ in this Software without prior written authorization from Stanford University.
 package org.nypl.plugin;
 
 import org.lockss.daemon.PluginException;
-import org.lockss.extractor.LinkExtractor;
-import org.lockss.extractor.LinkExtractorFactory;
+import org.lockss.extractor.*;
 
 public class WordsWithoutBordersHtmlLinkExtractorFactory implements LinkExtractorFactory {
 
