@@ -71,7 +71,8 @@ public class BlockingStreamComm
     PREFIX + "sslClientAuth";
   public static final boolean DEFAULT_USE_SSL_CLIENT_AUTH = true;
 
-  /** Name of managed keystore to use (see {@link LockssKeystoreManager} */
+  /** Name of managed keystore to use (see
+   * org.lockss.keyMgr.keystore.<i>id</i>.name) */
   public static final String PARAM_SSL_KEYSTORE_NAME =
     PREFIX + "sslKeystoreName";
 

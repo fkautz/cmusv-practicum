@@ -150,7 +150,7 @@ public class AccountManager
     UI_PREFIX + SUFFIX_USE_SSL, "true",
   };
 
-  /** <code>Form</code>: HTTP, form auth */
+  /** <code>Form</code>: HTTP, form auth, configurable password rules */
   public static String[] POLICY_FORM = {
     PARAM_ENABLED, "true",
     PARAM_NEW_ACCOUNT_TYPE, "Basic",

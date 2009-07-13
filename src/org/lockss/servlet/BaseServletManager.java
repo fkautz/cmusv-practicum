@@ -108,7 +108,8 @@ public abstract class BaseServletManager
   public static final boolean DEFAULT_USE_SSL = false;
 
   public static final String SUFFIX_SSL_KEYSTORE_NAME = "sslKeystoreName";
-  /** Name of managed keystore to use (see {@link LockssKeystoreManager} */
+  /** Name of managed keystore to use (see
+   * org.lockss.keyMgr.keystore.<i>id</i>.name) */
   public static final String PARAM_SSL_KEYSTORE_NAME =
     DOC_PREFIX + SUFFIX_SSL_KEYSTORE_NAME;
 
