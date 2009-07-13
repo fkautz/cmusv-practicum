@@ -169,9 +169,10 @@ public class ParamDoclet {
   }
 
   private static void printParamInfo(ParamInfo info) {
+    String pname = info.paramName.trim();
     out.println("<tr>\n  <td colspan=\"2\" class=\"paramHeader\">");
-    out.print("    <span class=\"paramName\">" +
-		info.paramName.trim() + "</span> &nbsp; ");
+    out.print("    <span class=\"paramName\" id=\"" + pname + "\">" + 
+	      pname + "</span> &nbsp; ");
     out.print("<span class=\"defaultValue\">[");
     out.print(info.defaultValue == null ?
 	      "" : info.defaultValue.toString());
