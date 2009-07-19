@@ -48,7 +48,7 @@ public class HighWireArticleIteratorFactory implements ArticleIteratorFactory {
    * is at a URL like http://apr.sagepub.com/cgi/reprint/34/2/135
    */
   protected String subTreeRoot = "cgi/reprint";
-  protected Pattern pat = Pattern.compile("journal/[0-9]*/[0-9]*/[0-9]*",
+  protected Pattern pat = Pattern.compile("/[0-9]*/[0-9]*/[0-9]*",
 				  Pattern.CASE_INSENSITIVE);
 
   public HighWireArticleIteratorFactory() {
