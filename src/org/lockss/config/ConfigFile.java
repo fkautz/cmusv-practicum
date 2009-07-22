@@ -57,6 +57,8 @@ public interface ConfigFile {
 
   public long getLastAttemptTime();
 
+  public void setKeyPredicate(ConfigManager.KeyPredicate pred);
+
   public Generation getGeneration() throws IOException;
 
   public String getLoadErrorMessage();
