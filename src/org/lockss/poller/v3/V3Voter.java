@@ -109,6 +109,15 @@ public class V3Voter extends BasePoll {
   public static final boolean DEFAULT_ALLOW_V3_REPAIRS = true;
   
   /**
+   * If true, serve repairs to any trusted peer.  (A peer is trusted iff we
+   * are communicating with it securely, and its identity has been verified
+   * to match one of the public certs in our LCAP keystore.
+   */
+  public static final String PARAM_REPAIR_ANY_TRUSTED_PEER =
+    PREFIX + "repairAnyTrustedPeer";
+  public static final boolean DEFAULT_REPAIR_ANY_TRUSTED_PEER = false;
+
+  /**
    * If true, use per-URL agreement to determine whether it's OK to serve
    * a repair.  If false, rely on partial agreement level for serving
    * repairs.
@@ -222,6 +231,7 @@ public class V3Voter extends BasePoll {
   private LockssDaemon theDaemon;
   private V3VoterSerializer pollSerializer;
   private PollManager pollManager;
+  private LcapStreamComm scomm;
   private IdentityManager idManager;
   private boolean continuedPoll = false;
   private int nomineeCount;
@@ -280,6 +290,7 @@ public class V3Voter extends BasePoll {
     this.idManager = theDaemon.getIdentityManager();
 
     this.pollManager = daemon.getPollManager();
+    this.scomm = daemon.getStreamCommManager();
     isAsynch = pollManager.isAsynch();
 
     int min = CurrentConfig.getIntParam(PARAM_MIN_NOMINATION_SIZE,
@@ -319,6 +330,7 @@ public class V3Voter extends BasePoll {
     this.pollSerializer = new V3VoterSerializer(theDaemon, pollDir);
     this.voterUserData = pollSerializer.loadVoterUserData();
     this.pollManager = daemon.getPollManager();
+    this.scomm = daemon.getStreamCommManager();
     isAsynch = pollManager.isAsynch();
     this.continuedPoll = true;
     // Restore transient state.
@@ -1130,6 +1142,11 @@ public class V3Voter extends BasePoll {
       if (aus.isOpenAccess()) {
 	return true;
       }
+    }
+    if (scomm.isTrustedNetwork() &&
+	CurrentConfig.getBooleanParam(PARAM_REPAIR_ANY_TRUSTED_PEER,
+				      DEFAULT_REPAIR_ANY_TRUSTED_PEER)) {
+      return true;
     }
     return serveRepairs(pid, au, url, 10);
   }
