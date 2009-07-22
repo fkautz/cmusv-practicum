@@ -72,6 +72,7 @@ public class TestAdminServletManager extends LockssTestCase {
     LINK_ISOS,
     SERVLET_RAISE_ALERT,
     SERVLET_EDIT_ACCOUNTS,
+    SERVLET_EXPERT_CONFIG,
   };
 
   ServletDescr auAdminDescrs[] = {

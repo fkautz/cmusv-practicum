@@ -518,9 +518,8 @@ public class RemoteApi
 		    machineName);
 
       // add all the cache config files
-      for (Iterator iter = configMgr.getCacheConfigFiles().iterator();
-	   iter.hasNext(); ) {
-	File cfgfile = (File)iter.next();
+      for (ConfigManager.LocalFileDescr lfd : configMgr.getLocalFileDescrs()) {
+	File cfgfile = lfd.getFile();
 	if (cfgfile.getName().equals(ConfigManager.CONFIG_FILE_AU_CONFIG)) {
 	  addCfgFileToZip(zip, getAuConfigBackupStreamV1(machineName),
 			  ConfigManager.CONFIG_FILE_AU_CONFIG);
