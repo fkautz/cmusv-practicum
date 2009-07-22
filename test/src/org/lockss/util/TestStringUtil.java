@@ -705,6 +705,13 @@ public class TestStringUtil extends LockssTestCase {
     }
   }
 
+  public void testToFile() throws Exception {
+    String txt = "Here is some weird text.\nIt has !@#$%^&*()214 in it.";
+    File file = new File(getTempDir(), "foo.txt");
+    StringUtil.toFile(file, txt);
+    assertReaderMatchesString(txt, new FileReader(file));
+  }
+
   public void testUpToFinal() {
     assertEquals("foo", StringUtil.upToFinal("foo.bar", "."));
     assertEquals("foo.a", StringUtil.upToFinal("foo.a.bar", "."));

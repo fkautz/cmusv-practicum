@@ -709,6 +709,16 @@ public class StringUtil {
     return fromReader(new FileReader(file));
   }
 
+  /** Write a string to a file */
+  public static void toFile(File file, String s) throws IOException {
+    OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
+    try {
+      StringUtil.toOutputStream(os, s);
+    } finally {
+      IOUtil.safeClose(os);
+    }
+  }
+
   /* Write the string to the OutputStream */
   public static void toOutputStream(OutputStream out, String s)
       throws IOException {
