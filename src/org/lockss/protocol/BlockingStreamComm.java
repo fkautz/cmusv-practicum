@@ -1001,6 +1001,12 @@ public class BlockingStreamComm
     }
   }
 
+  /** Return true iff all connections are authenticated; <i>ie</i>, we only
+   * talk to known peers */
+  public boolean isTrustedNetwork() {
+    return paramUseV3OverSsl && paramSslClientAuth;
+  }
+
   // overridable for testing
   protected PeerIdentity getLocalPeerIdentity() {
     return idMgr.getLocalPeerIdentity(Poll.V3_PROTOCOL);

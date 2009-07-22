@@ -100,6 +100,7 @@ public class TestBlockingSslStreamComm1 extends TestBlockingStreamComm {
 
   @Override
   public void addSuiteProps(Properties p) {
+    super.addSuiteProps(p);
     p.setProperty(BlockingStreamComm.PARAM_USE_V3_OVER_SSL, "true");
     p.setProperty(BlockingStreamComm.PARAM_SSL_KEYSTORE_NAME, KS_NAME);
     p.setProperty(BlockingStreamComm.PARAM_USE_SSL_CLIENT_AUTH, "true");

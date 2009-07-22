@@ -416,6 +416,16 @@ public class TestBlockingStreamComm extends LockssTestCase {
 
   // Tests of BlockingPeerChannel
 
+  // Assumes that ssl test enables clientAuth, which may change
+  public void testIsTrusted() throws IOException {
+    setupComm1();
+    if (isSsl()) {
+      assertTrue(comm1.isTrustedNetwork());
+    } else {
+      assertFalse(comm1.isTrustedNetwork());
+    }
+  }
+
   public void testStateTrans() throws IOException {
     setupComm1();
     BlockingPeerChannel chan =
