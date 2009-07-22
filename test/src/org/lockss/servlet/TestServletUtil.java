@@ -111,8 +111,8 @@ public class TestServletUtil extends LockssTestCase {
 		     "Table contents may be incomplete.</font></center>" +
 		     "<br></td></tr>")
        : "") +
-      "<tr><th>Archival Unit</th>" + spacer +
-      "<th>Manifest</th></tr>" +
+      "<tr><th align=left>Archival Unit</th>" + spacer +
+      "<th align=left>Manifest</th></tr>" +
       "<tr><td align=\"left\">" + au1 + "</td.*>" + spacer +
       "<td align=\"left\">" +
       "<a href=\"" + m1 + "\">" + m1 + "</a></td></tr>" +
