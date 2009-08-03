@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2009 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -77,6 +77,8 @@ public class WrapperUtil {
 			   new CacheResultHandlerWrapper.Factory());
     registerWrapperFactory(ExploderHelper.class,
 			   new ExploderHelperWrapper.Factory());
+    registerWrapperFactory(CrawlUrlComparatorFactory.class,
+			   new CrawlUrlComparatorFactoryWrapper.Factory());
   }
 
   /** Register a wrapper factory for instances of the interface */

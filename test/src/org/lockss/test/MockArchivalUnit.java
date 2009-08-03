@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2009 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -78,6 +78,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   private Collection loginUrls;
   private String fetchRateLimiterKey;
   private String perHostPermissionPath;
+  private Comparator<CrawlUrl> crawlUrlCmp;
 
   private static final Logger logger = Logger.getLogger("MockArchivalUnit");
 
@@ -490,6 +491,14 @@ public class MockArchivalUnit implements ArchivalUnit {
 
   public void setLinkExtractor(String mimeType, LinkExtractor extractor) {
     extractors.put(mimeType, extractor);
+  }
+
+  public Comparator<CrawlUrl> getCrawlUrlComparator() {
+    return crawlUrlCmp;
+  }
+
+  public void setCrawlUrlComparator(Comparator<CrawlUrl> cmprtr) {
+    crawlUrlCmp = cmprtr;
   }
 
   public String toString() {
