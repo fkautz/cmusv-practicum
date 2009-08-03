@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2009 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -177,9 +177,6 @@ public class ServeContent extends LockssServlet {
   }
 
   private boolean isIncludedAu(ArchivalUnit au) {
-    if (pluginMgr.isInternalAu(au) || !(au instanceof BaseArchivalUnit)) {
-      return false;
-    }
     String pluginId = au.getPlugin().getPluginId();
     if (!includePlugins.isEmpty()) {
       return includePlugins.contains(pluginId);
