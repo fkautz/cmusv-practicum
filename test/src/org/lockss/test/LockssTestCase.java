@@ -455,7 +455,7 @@ public class LockssTestCase extends TestCase {
       sb.append(msg);
       sb.append(" ");
     }
-    sb.append("Expected a positive value but got ");
+    sb.append("Expected a negative value but got ");
     sb.append(value);
     assertTrue(sb.toString(), value<0);
   }
