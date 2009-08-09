@@ -153,7 +153,9 @@ public class LockssKeyStore {
       createKeyManagerFactory();
       createTrustManagerFactory();
       loaded = true;
+      log.info("Loaded keystore: " + name);
     } catch (Exception e) {
+      log.error("Error loading keystore: " + name, e);
       throw new UnavailableKeyStoreException(e);
     }
   }
