@@ -69,7 +69,7 @@ public abstract class Exploder {
     Configuration.PREFIX + "crawler.exploder.retryPause";
   public static final long DEFAULT_RETRY_PAUSE = 3*Constants.SECOND;
   public static final String PARAM_EXPLODED_AU_BASE_URL =
-    Configuration.PREFIX + "crawler.exploder.PARAM_EXPLODED_AU_BASE_URL";
+    Configuration.PREFIX + "crawler.exploder.explodedAuBaseUrl";
   public static final String DEFAULT_EXPLODED_AU_BASE_URL = "none";
 
 
