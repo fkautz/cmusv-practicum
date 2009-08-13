@@ -57,7 +57,7 @@ public class PortlandPressHtmlFilterFactory implements FilterFactory {
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
                                                                          "class",
                                                                          "RHAdvert")),         
-};
+    };
     return new HtmlFilterInputStream(in,
                                      encoding,
                                      new HtmlCompoundTransform(transforms));
