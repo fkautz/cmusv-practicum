@@ -38,7 +38,7 @@ CONFIGURATION_DEFAULTS = {
     'username':         'lockss-u',
     'password':         'lockss-p',
     'agreement':        95,
-    'expiration':       72,
+    'expiration':       168,
     'verbosity':        1,
     'delete':           'no',
     'batch':            'no',
