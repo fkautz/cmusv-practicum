@@ -113,6 +113,7 @@ class Content:
         self.thread = None
         self.update_time = time.time()
         self.state = Content.State.CREATE
+        self.directed_poll_clients = None
     
     def status_message( self, template ):
         return template % ( 'AU "%s"' % self.AU, 'server ' + self.client.ID() )
@@ -319,12 +320,12 @@ class Content:
                 for repairer in repairerInfo:
                     repairer_client = v3_identities.get(repairer)
                     if repairer_client:
-                        agrval = int(repairerInfo[repairer]['lastAgree'].split('%',1)[0])
+                        agrval = repairerInfo[repairer]['lastAgree']
                         if agrval < minagr: minagr = agrval
                         if agrval > maxagr: maxagr = agrval
                         lst = agrmap.get(agrval, [])
                         lst.append(repairer_client)
-                        agrmap[agr] = lst
+                        agrmap[agrval] = lst
                     else:
                         logging.warn('No client corresponding to %s' % repairer)
                 logging.debug('minagr: %d, maxagr: %d' % (minagr, maxagr))
