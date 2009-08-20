@@ -206,10 +206,11 @@ public class SimulatedContentGenerator {
       }
     } else if (tar) {
       boolean actual = CurrentConfig.getBooleanParam("org.lockss.plugin.simulated.SimulatedContentGenerator.actualTarFile", false);
+      String tarName = CurrentConfig.getParam("org.lockss.plugin.simulated.SimulatedContentGenerator.actualTarFileName", "content.tar");
       if (actual) {
-	ret = new ActualTarContentGenerator(rootPath);
+	  ret = new ActualTarContentGenerator(rootPath, tarName);
       } else {
-	ret = new SimulatedTarContentGenerator(rootPath);
+	  ret = new SimulatedTarContentGenerator(rootPath, tarName);
       }
     } else {
       ret = new SimulatedContentGenerator(rootPath);

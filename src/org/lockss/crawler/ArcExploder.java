@@ -156,7 +156,9 @@ public class ArcExploder extends Exploder {
 			     elementLength,
 			     0, // XXX need to convert getDate string to long
 			     element, // ArchiveRecord extends InputStream
-			     crawlSpec);
+			     crawlSpec,
+			     this,
+			     urlCacher.getUrl());
 	  ae.setHeaderFields(makeCIProperties(elementHeader));
 	  long bytesStored = elementLength;
 	  logger.debug3("ArchiveEntry: " + ae.getName()

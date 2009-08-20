@@ -69,9 +69,16 @@ public class SimulatedTarContentGenerator extends SimulatedContentGenerator {
     "application/octet-stream",
   };
   String stem = "http://www.content.org/";
+  String tarFileName = "content.tar";
 
   public SimulatedTarContentGenerator(String rootPath) {
     super(rootPath);
+    logger.debug3("Created instance for " + rootPath);
+  }
+
+    public SimulatedTarContentGenerator(String rootPath, String tarName) {
+    super(rootPath);
+    tarFileName = tarName;
     logger.debug3("Created instance for " + rootPath);
   }
 
@@ -176,7 +183,7 @@ public class SimulatedTarContentGenerator extends SimulatedContentGenerator {
     FileOutputStream fos = null;
     TarOutputStream zos = null;
     try {
-      fos = new FileOutputStream(new File(contentRoot, "content.tar"));
+      fos = new FileOutputStream(new File(contentRoot, tarFileName));
       zos = new TarOutputStream(fos);
     } catch (FileNotFoundException ex) {
       logger.error(ex.toString());
@@ -235,4 +242,5 @@ public class SimulatedTarContentGenerator extends SimulatedContentGenerator {
       logger.error("Directory " + contentRoot + " missing");
     }
   }
+
 }

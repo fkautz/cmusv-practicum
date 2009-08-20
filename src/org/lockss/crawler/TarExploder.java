@@ -132,7 +132,8 @@ public class TarExploder extends Exploder {
 	  ArchiveEntry ae = new ArchiveEntry(te.getName(),
 					     te.getSize(),
 					     te.getModTime().getTime(),
-					     tis, crawlSpec);
+					     tis, crawlSpec, this,
+					     urlCacher.getUrl());
 	  long bytesStored = ae.getSize();
 	  logger.debug3("ArchiveEntry: " + ae.getName()
 			+ " bytes "  + bytesStored);

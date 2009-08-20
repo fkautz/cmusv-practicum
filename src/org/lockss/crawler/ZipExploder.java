@@ -132,7 +132,8 @@ public class ZipExploder extends Exploder {
 					     ze.getTime(),
 					     zis,
 					     crawlSpec,
-					     this);
+					     this,
+					     urlCacher.getUrl());
 	  long bytesStored = ae.getSize();
 	  logger.debug3("ArchiveEntry: " + ae.getName()
 			+ " bytes "  + bytesStored);
