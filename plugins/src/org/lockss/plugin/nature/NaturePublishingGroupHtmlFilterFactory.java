@@ -50,6 +50,7 @@ public class NaturePublishingGroupHtmlFilterFactory implements FilterFactory {
       throws PluginException {
     
     HtmlTransform[] transforms = new HtmlTransform[] {
+        
         /*
          * At the top of an issue table of contents, a "leaderboard"
          * can contain a banner ad which is clearly marked as such
@@ -117,6 +118,7 @@ public class NaturePublishingGroupHtmlFilterFactory implements FilterFactory {
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
                                                                          "id",
                                                                          "more-like-this")),
+                                                                         
     };
 
     return new HtmlFilterInputStream(in,
