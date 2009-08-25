@@ -114,6 +114,7 @@ class Content:
         self.update_time = time.time()
         self.state = Content.State.CREATE
         self.directed_poll_clients = None
+        self.previous_polls = None
     
     def status_message( self, template ):
         return template % ( 'AU "%s"' % self.AU, 'server ' + self.client.ID() )
@@ -285,6 +286,7 @@ class Content:
             self.client = random.choice( self.crawl_successes[ : 2 ] )
         logging.info( self.status_message( 'Starting poll of %s on %s' ) )
         try:
+            self.previous_polls = self.client.getV3PollKeys( self.AU )
             self.client.startV3Poll( self.AU )
         except lockss_daemon.LockssError, exception:
             logging.error( exception )
@@ -296,7 +298,7 @@ class Content:
     def adjudicate( self ):
         '''Judge poll results for this AU on the server'''
         logging.info( self.status_message( 'Waiting for result of poll of %s on %s' ) )
-        if not self.client.waitForPollResults( self.AU, 0 ):
+        if not self.client.waitForFinishedV3Poll( self.AU, excludePolls=self.previous_polls, timeout=0 ):
             return
         logging.debug( self.status_message( 'Finished poll of %s on %s' ) )
         result, status = self.client.getPollResults( self.AU )
