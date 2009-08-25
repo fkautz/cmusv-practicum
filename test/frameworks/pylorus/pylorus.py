@@ -160,13 +160,13 @@ class Content:
             self.state = Content.State.CREATION_FAILURE
             raise Leaving_Pipeline
         logging.debug( 'Created AU from "%s"' % self.description )
-        self.clients = self.local_clients
+        self.clients = self.local_clients[:]
         self.state = Content.State.CHECK
 
     def check( self ):
         '''Does the server already have this AU?'''
         if len( self.crawl_successes ) == 2:
-            self.clients = self.remote_clients
+            self.clients = self.remote_clients[:]
         self.client = self.clients.pop( random.randrange( len( self.clients ) ) )
         logging.info( self.status_message( 'Checking for %s on %s' ) )
         self.pre_existent = self.client.hasAu( self.AU )
