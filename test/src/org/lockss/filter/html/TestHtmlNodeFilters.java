@@ -131,6 +131,14 @@ public class TestHtmlNodeFilters extends LockssTestCase {
 
   }
 
+  public void testEmptyComposite() throws Exception {
+    NodeFilter filt = HtmlNodeFilters.tagWithText("p",
+						  "a paragraph text");
+    NodeList nl = parse("foo<p class=\"cls\"/>bar");
+    nl = nl.extractAllNodesThatMatch(filt);
+    assertEquals(0, nl.size());
+  }
+
   public void testTagWithTextRegex() throws Exception {
     String opt = "This article is cited by the following articles in ...";
     NodeFilter filt =
@@ -155,6 +163,14 @@ public class TestHtmlNodeFilters extends LockssTestCase {
     nl = nl.extractAllNodesThatMatch(filt);
     assertEquals("should be empty: " + nl, 0, nl.size());
 
+  }
+
+  public void testEmptyCompositeRegex() throws Exception {
+    NodeFilter filt = HtmlNodeFilters.tagWithTextRegex("p",
+						       ".*text");
+    NodeList nl = parse("foo<p class=\"cls\"/>bar");
+    nl = nl.extractAllNodesThatMatch(filt);
+    assertEquals(0, nl.size());
   }
 
   public void testCommentWithString() throws Exception {

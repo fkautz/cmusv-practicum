@@ -299,6 +299,15 @@ public class HtmlNodeFilters {
     return new OrFilter(filters);
   }
 
+  static String getCompositeStringText(CompositeTag node) {
+    if (node.getEndTag() != null &&
+	node.getEndPosition() < node.getEndTag().getStartPosition()) {
+      return node.getStringText();
+    }
+    return "";
+  }
+
+
   /**
    * This class accepts all comment nodes containing the given string.
    */
@@ -366,7 +375,7 @@ public class HtmlNodeFilters {
 
     public boolean accept(Node node) {
       if (node instanceof CompositeTag) {
-	String nodestr = ((CompositeTag)node).getStringText();
+	String nodestr = getCompositeStringText((CompositeTag)node);
 	return -1 != (ignoreCase
 		      ? StringUtil.indexOfIgnoreCase(nodestr, string)
 		      : nodestr.indexOf(string));
@@ -858,7 +867,7 @@ public class HtmlNodeFilters {
 
     public boolean accept(Node node) {
       if (node instanceof CompositeTag) {
-	String nodestr = ((CompositeTag)node).getStringText();
+	String nodestr = getCompositeStringText((CompositeTag)node);
 	return matcher.contains(nodestr, pat);
       }
       return false;
