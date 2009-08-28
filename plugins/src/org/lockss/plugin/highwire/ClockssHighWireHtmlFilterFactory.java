@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2009 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -60,19 +60,21 @@ public class ClockssHighWireHtmlFilterFactory implements FilterFactory {
 					       String encoding) {
 
     NodeFilter[] filters = new NodeFilter[] {
-      new TagNameFilter("script"),
-      HtmlNodeFilters.tagWithAttribute("div", "id", "authenticationstring"),
-      HtmlNodeFilters.tagWithAttribute("div", "id", "universityarea"),
-      HtmlNodeFilters.tagWithAttribute("div", "id", "user_nav"),
-      HtmlNodeFilters.tagWithAttribute("table", "class", "content_box_inner_table"),
-      HtmlNodeFilters.tagWithAttribute("a", "class", "contentbox"),
-      HtmlNodeFilters.tagWithAttribute("div", "id", "ArchivesNav"),
-      HtmlNodeFilters.tagWithText("strong", "related", true),
-      HtmlNodeFilters.lowestLevelMatchFilter(HtmlNodeFilters.tagWithText("table", "Related Content", false)),
-      // Contains the name of the institution:
-      HtmlNodeFilters.tagWithAttribute("p", "id", "UserToolBar"),
-      // Contains the date and time:
-      HtmlNodeFilters.tagWithAttribute("a", "target", "help"),
+        new TagNameFilter("script"),
+        HtmlNodeFilters.tagWithAttribute("div", "id", "authenticationstring"),
+        HtmlNodeFilters.tagWithAttribute("div", "id", "universityarea"),
+        HtmlNodeFilters.tagWithAttribute("div", "id", "user_nav"),
+        HtmlNodeFilters.tagWithAttribute("table", "class", "content_box_inner_table"),
+        HtmlNodeFilters.tagWithAttribute("a", "class", "contentbox"),
+        HtmlNodeFilters.tagWithAttribute("div", "id", "ArchivesNav"),
+        HtmlNodeFilters.tagWithText("strong", "related", true),
+        HtmlNodeFilters.lowestLevelMatchFilter(HtmlNodeFilters.tagWithText("table", "Related Content", false)),
+        // Contains the name of the institution:
+        HtmlNodeFilters.tagWithAttribute("p", "id", "UserToolBar"),
+        // Contains the date and time:
+        HtmlNodeFilters.tagWithAttribute("a", "target", "help"),
+        // Typically contains ads:
+        new TagNameFilter("iframe"),
     };
 
     OrFilter combineFilter = new OrFilter();
