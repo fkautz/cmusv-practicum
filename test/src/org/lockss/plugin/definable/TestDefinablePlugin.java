@@ -254,6 +254,15 @@ public class TestDefinablePlugin extends LockssTestCase {
 		 definablePlugin.getPublishingPlatform());
   }
 
+  public void testGetDefaultArticleMimeType() throws Exception {
+    assertEquals("text/html", definablePlugin.getDefaultArticleMimeType());
+    String expectedReturn = "mime/type";
+    defMap.putString(DefinablePlugin.KEY_DEFAULT_ARTICLE_MIME_TYPE,
+		     expectedReturn);
+    assertEquals("return value", expectedReturn,
+		 definablePlugin.getDefaultArticleMimeType());
+  }
+
   public void testInitPlugin() throws Exception {
     definablePlugin = null; //   ensure don't accidentally use wrong veriable
     LockssDaemon daemon = getMockLockssDaemon();

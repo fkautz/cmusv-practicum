@@ -140,6 +140,10 @@ public class NullPlugin {
     public ArticleIteratorFactory getArticleIteratorFactory(String contentType) {
       return null;
     }
+
+    public String getDefaultArticleMimeType() {
+      return null;
+    }
   }
 
   /**

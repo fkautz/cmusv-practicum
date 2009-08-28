@@ -180,4 +180,10 @@ public interface Plugin {
    * @return the ArticleIteratorFactory
    */
     public ArticleIteratorFactory getArticleIteratorFactory(String contentType);
+
+  /**
+   * Returns the default mime type of articles in this AU
+   * @return the default MimeType
+   */
+  public String getDefaultArticleMimeType();
 }
