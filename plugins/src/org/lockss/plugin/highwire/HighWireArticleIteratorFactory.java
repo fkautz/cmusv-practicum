@@ -53,7 +53,7 @@ public class HighWireArticleIteratorFactory implements ArticleIteratorFactory {
    * prepended with a letter reminiscent of the journal title's main
    * keyword.
    */
-  protected String subTreeRoot = "cgi/reprint";
+  protected String subTreeRoot = "cgi/reprintframed";
   protected Pattern pat = Pattern.compile("/[^/]+/[^/]+/[^/]+",
 				  Pattern.CASE_INSENSITIVE);
 
