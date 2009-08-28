@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2007 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2009 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -234,7 +234,7 @@ public class Metadata extends Properties {
   public static final String PROTOCOL_DOI = "doi:";
   public String getDOI() {
     String ret = getProperty(KEY_DOI);
-    if (ret != null && ret.startsWith(PROTOCOL_DOI)) {
+    if (ret != null && StringUtil.startsWithIgnoreCase(ret, PROTOCOL_DOI)) {
       return ret.substring(PROTOCOL_DOI.length());
     } else {
       return null;
