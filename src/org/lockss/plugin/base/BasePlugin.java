@@ -298,6 +298,7 @@ public abstract class BasePlugin
 	res.add(ConfigParamDescr.PUB_DOWN);
 	res.add(ConfigParamDescr.PUB_NEVER);
 	res.add(ConfigParamDescr.PROTOCOL_VERSION);
+ 	res.add(ConfigParamDescr.CRAWL_PROXY);
       }
       res.trimToSize();
       Map<String,ConfigParamDescr> map = new HashMap();

@@ -237,6 +237,18 @@ public class ConfigParamDescr implements Comparable, LockssSerializable {
     .setDescription("The polling protocol version for the AU to use ('1' "
                     + "for V1 polling, or '3' for V3 polling)");
 
+  public static final ConfigParamDescr CRAWL_PROXY =
+    new ConfigParamDescr()
+    .setDefinitional(false)
+    .setDefaultOnly(true)
+    .setKey("crawl_proxy")
+    .setDisplayName("Crawl Proxy")
+    .setType(TYPE_STRING)
+    .setSize(40)
+    .setDescription("If set to host:port, crawls of this AU will be proxied." +
+		    " If set to DIRECT, crawls will not be proxied," +
+		    " even if a global crawl proxy has been set.");
+
   public static final ConfigParamDescr[] DEFAULT_DESCR_ARRAY = {
       BASE_URL, VOLUME_NUMBER, VOLUME_NAME, YEAR, JOURNAL_ID, JOURNAL_ISSN,
       PUBLISHER_NAME, ISSUE_RANGE, NUM_ISSUE_RANGE, ISSUE_SET, OAI_REQUEST_URL,

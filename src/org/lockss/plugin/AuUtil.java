@@ -257,6 +257,13 @@ public class AuUtil {
     return dfault;
   }
 
+  public static String getStringValue(Object value, String dfault) {
+    if (value instanceof String) {
+      return (String)value;
+    }
+    return dfault;
+  }
+
   public static Object getAuParamOrTitleDefault(ArchivalUnit au,
 						ConfigParamDescr cpd) {
     String key = cpd.getKey();
