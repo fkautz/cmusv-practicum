@@ -84,7 +84,8 @@ public class TestBasePlugin extends LockssTestCase {
 			     ConfigParamDescr.AU_CLOSED,
 			     ConfigParamDescr.PUB_DOWN,
 			     ConfigParamDescr.PUB_NEVER,
-			     ConfigParamDescr.PROTOCOL_VERSION),
+			     ConfigParamDescr.PROTOCOL_VERSION,
+			     ConfigParamDescr.CRAWL_PROXY),
 		 SetUtil.theSet(descrs));
   }
 
