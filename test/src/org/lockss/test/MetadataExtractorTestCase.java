@@ -46,6 +46,7 @@ public abstract class MetadataExtractorTestCase extends LockssTestCase {
   public static String URL = "http://www.example.com/";
 
   public static String MIME_TYPE_HTML = "text/html";
+  public static String MIME_TYPE_XML = "application/xml";
   public static String MIME_TYPE_RAM = "audio/x-pn-realaudio";
 
   protected MetadataExtractor extractor = null;

@@ -170,4 +170,8 @@ public class TestHighWirePlugin extends LockssTestCase {
     assertTrue(WrapperUtil.unwrap(plugin.getArticleIteratorFactory("text/html"))
 	       instanceof org.lockss.plugin.highwire.HighWireArticleIteratorFactory);
   }
+  public void testGetDefaultArticleMimeType() {
+    assertNotNull(plugin.getDefaultArticleMimeType());
+    assertEquals("text/html", plugin.getDefaultArticleMimeType());
+  }
 }
