@@ -98,7 +98,10 @@ public class SimulatedContentGenerator {
     "<entry><key>file</key><value>%1</value></entry>" +
     "<entry><key>depth</key><value>%2</value></entry>" +
     "<entry><key>branch</key><value>%3</value></entry>" +
-    "</map>";
+    "</map>" +
+    "<ce:doi>%1.%2/%3</ce:doi>" +  // Elsevier DOI
+    "<XXX>%1.%2/%3</XXX>" + // Springer DOI
+    "<foo>bar</foo>";
   /**
    * Name of top directory in which the content is generated.
    */
