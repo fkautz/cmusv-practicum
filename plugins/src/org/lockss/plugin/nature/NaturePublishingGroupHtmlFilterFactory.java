@@ -86,13 +86,16 @@ public class NaturePublishingGroupHtmlFilterFactory implements FilterFactory {
 
         /*
          * At the top of various pages, the institution name is
-         * visible; remove it.
+         * visible. The login-nav <div> is a little too much but the
+         * institution name sometimes appears with a multi-word class
+         * attribute (e.g. "logon links-above"), sometimes alone
+         * (e.g. "logon") so this is easier.
          * 
-         * Remove <div class="logon ..."
+         * Remove <div class="login-nav">
          */
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttributeRegex("div",
                                                                               "class",
-                                                                              "^logon ")),
+                                                                              "login-nav")),
                                                                               
         /*
          * Articles can have user-posted comments. We need to first
