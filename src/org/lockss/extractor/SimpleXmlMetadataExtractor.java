@@ -38,13 +38,13 @@ import org.lockss.plugin.*;
 
 public class SimpleXmlMetadataExtractor implements MetadataExtractor {
   static Logger log = Logger.getLogger("SimpleXmlMetadataExtractor");
-  private Map tagMap;
+  private Map<String, String> tagMap;
 
   /**
    * @param tagMap a map from XML tags to the property name in the
    * extracted Metadata object
    */
-  public SimpleXmlMetadataExtractor(Map tagMap) {
+  public SimpleXmlMetadataExtractor(Map<String, String> tagMap) {
     this.tagMap = tagMap;
   }
 
