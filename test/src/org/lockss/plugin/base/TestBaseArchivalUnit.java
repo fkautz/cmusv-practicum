@@ -264,11 +264,43 @@ public class TestBaseArchivalUnit extends LockssTestCase {
     assertEquals("return value", expectedReturn, actualReturn);
   }
 
-  public void testGetFetchDelay() {
-    long expectedReturn =
-        BaseArchivalUnit.DEFAULT_FETCH_DELAY;
-    long actualReturn = mbau.findFetchRateLimiter().getInterval();
-    assertEquals("return value", expectedReturn, actualReturn);
+  public void testDefaultFetchDelay() {
+    assertEquals(BaseArchivalUnit.DEFAULT_FETCH_DELAY,
+		 mbau.findFetchRateLimiter().getInterval());
+  }
+
+  public void testMinFetchDelayHigher() throws Exception {
+    ConfigurationUtil.setFromArgs(BaseArchivalUnit.PARAM_MIN_FETCH_DELAY,
+				  "12004");
+    Properties props = new Properties();
+    props.setProperty(ConfigParamDescr.BASE_URL.getKey(), baseUrl);
+    props.setProperty(ConfigParamDescr.VOLUME_NUMBER.getKey(), "10");
+    Configuration config = ConfigurationUtil.fromProps(props);
+    mbau.setConfiguration(config);
+    assertEquals(12004, mbau.findFetchRateLimiter().getInterval());
+  }
+
+  public void testMinFetchDelayLowerWithPluginDefault() throws Exception {
+    ConfigurationUtil.setFromArgs(BaseArchivalUnit.PARAM_MIN_FETCH_DELAY,
+				  "17");
+    Properties props = new Properties();
+    props.setProperty(ConfigParamDescr.BASE_URL.getKey(), baseUrl);
+    props.setProperty(ConfigParamDescr.VOLUME_NUMBER.getKey(), "10");
+    Configuration config = ConfigurationUtil.fromProps(props);
+    mbau.setConfiguration(config);
+    assertEquals(6000, mbau.findFetchRateLimiter().getInterval());
+  }
+
+  public void testMinFetchDelayLowerWithPluginLower() throws Exception {
+    ConfigurationUtil.setFromArgs(BaseArchivalUnit.PARAM_MIN_FETCH_DELAY,
+				  "25");
+    Properties props = new Properties();
+    props.setProperty(ConfigParamDescr.BASE_URL.getKey(), baseUrl);
+    props.setProperty(ConfigParamDescr.VOLUME_NUMBER.getKey(), "10");
+    Configuration config = ConfigurationUtil.fromProps(props);
+    mbau.getParamMap().putLong(BaseArchivalUnit.KEY_AU_FETCH_DELAY, 17);
+    mbau.setConfiguration(config);
+    assertEquals(25, mbau.findFetchRateLimiter().getInterval());
   }
 
   public void testFindFetchRateLimiterDefault() throws Exception {
