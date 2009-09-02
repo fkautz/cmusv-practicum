@@ -101,7 +101,11 @@ public class ElsevierExploderHelper implements ExploderHelper {
       return;
     }
     // The base URL contains the ISSN from the archive name
-    String baseUrl = BASE_URL + issn + "/";
+    String baseUrlStem = ae.getExplodedAUBaseUrlStem();
+    if (baseUrlStem == null) {
+      baseUrlStem = BASE_URL;
+    }
+    String baseUrl = baseUrlStem + issn + "/";
     // Parse the name
     String fullName = ae.getName();
     String[] pathElements = fullName.split("/");
