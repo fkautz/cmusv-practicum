@@ -29,59 +29,33 @@ be used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from Stanford University.
 
 */
-// Some portions of this code are:
-// ========================================================================
-// Copyright 199-2004 Mort Bay Consulting Pty. Ltd.
 
-package org.lockss.jetty;
+package org.lockss.daemon;
 
-import java.net.*;
+import java.io.*;
+import java.util.*;
 import java.security.*;
-import javax.net.ssl.*;
 
-import org.mortbay.http.*;
-import org.mortbay.util.*;
-
-import org.lockss.app.*;
-import org.lockss.daemon.*;
 import org.lockss.util.*;
-
+import org.lockss.test.*;
 
 /**
- * Extension of org.mortbay.http.SslListener that works with an externally
- * supplied, initialized, KeyManagerFactory.
+ * Test class for RandomManager.
  */
-public class LockssSslListener extends SslListener {
-  private static Logger log = Logger.getLogger("LockssSslListener");
+public class TestRandomManager extends LockssTestCase {
 
-  private KeyManagerFactory _keyManagerFactory;
+  MockLockssDaemon daemon;
+  RandomManager rmgr;
 
-  public LockssSslListener() {
-    super();
+  public void setUp() throws Exception {
+    super.setUp();
+    daemon = getMockLockssDaemon();
+    rmgr = daemon.getRandomManager();
   }
 
-  public LockssSslListener(InetAddrPort p_address) {
-    super(p_address);
-  }
-
-  public void setKeyManagerFactory(KeyManagerFactory fact) {
-    _keyManagerFactory = fact;
-  }
-
-  public KeyManagerFactory getKeyManagerFactory() {
-    return _keyManagerFactory;
-  }
-
-  protected SSLServerSocketFactory createFactory() throws Exception {
-    if (_keyManagerFactory == null) {
-      return super.createFactory();
-    }
-    RandomManager rmgr = LockssDaemon.getLockssDaemon().getRandomManager();
-    SecureRandom rng = rmgr.getSecureRandom();
-
-    SSLContext context = SSLContext.getInstance(getProtocol());
-    context.init(_keyManagerFactory.getKeyManagers(),
-		 null, rng);
-    return context.getServerSocketFactory();
+  public void testGetSecureRandom() throws Exception {
+    SecureRandom rand = rmgr.getSecureRandom();
+    assertEquals("SHA1PRNG", rand.getAlgorithm());
+    assertMatchesRE("SUN", rand.getProvider().toString());
   }
 }

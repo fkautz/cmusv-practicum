@@ -44,6 +44,8 @@ import sun.security.pkcs.PKCS10;
 import sun.security.provider.IdentityDatabase;
 import sun.security.provider.SystemSigner;
 
+import org.lockss.app.*;
+import org.lockss.daemon.*;
 import org.lockss.config.*;
 
 
@@ -96,7 +98,8 @@ public class KeyStoreUtil {
   public static String randomString(int len)
       throws NoSuchAlgorithmException,
 	     NoSuchProviderException {
-    SecureRandom rng = SecureRandom.getInstance("SHA1PRNG", "SUN");
+    RandomManager rmgr = LockssDaemon.getLockssDaemon().getRandomManager();
+    SecureRandom rng = rmgr.getSecureRandom();
     return org.apache.commons.lang.RandomStringUtils.random(len, 32, 126,
 							    false, false,
 							    null, rng);

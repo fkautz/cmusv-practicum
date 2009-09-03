@@ -131,7 +131,7 @@ public abstract class LockssApp {
   // need to be synchronized.
   protected LinkedMap managerMap = new LinkedMap();
 
-  private static LockssApp theApp;
+  protected static LockssApp theApp;
 
   protected LockssApp() {
     theApp = this;
