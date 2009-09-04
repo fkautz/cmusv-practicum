@@ -65,18 +65,11 @@ public class BePressArticleIteratorFactory implements ArticleIteratorFactory {
    */
   public Iterator createArticleIterator(String mimeType, ArchivalUnit au)
       throws PluginException {
-    String abbr;
-    abbr = au.getConfiguration().get(ConfigParamDescr.JOURNAL_ABBR.getKey());
-    // int vol;
-    // try {
-    //   vol = au.getConfiguration().getInt(ConfigParamDescr.VOLUME_NUMBER.getKey());
-    // } catch (Configuration.InvalidParam ex) {
-    //   throw new PluginException("BePressArticleIteratorFactory: " + ex);
-    // }
+    String abbr = au.getConfiguration().get(ConfigParamDescr.JOURNAL_ABBR.getKey());
     subTreeRoot = abbr;
     log.debug("createArticleIterator(" + mimeType + "," + au.toString() +
               ") " + subTreeRoot);
-    Pattern pat = Pattern.compile("/vol[0-9]*/iss[0-9]*/art[0-9]*",
+    Pattern pat = Pattern.compile("/vol[0-9]+/iss[0-9]+/[^/]+",
 				  Pattern.CASE_INSENSITIVE);
     return new SubTreeArticleIterator(mimeType, au, subTreeRoot, pat);
   }
