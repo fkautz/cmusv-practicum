@@ -704,7 +704,7 @@ public class TestPluginManager extends LockssTestCase {
     private String processOneRegistryJarThrowIf = null;
     private DaemonVersion mockDaemonVersion = null;
 
-    protected String getConfigurablePluginName() {
+    protected String getConfigurablePluginName(String pluginName) {
       return MyMockConfigurablePlugin.class.getName();
     }
     protected void processOneRegistryAu(ArchivalUnit au, Map tmpMap) {

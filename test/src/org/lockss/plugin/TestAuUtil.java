@@ -211,7 +211,7 @@ public class TestAuUtil extends LockssTestCase {
 
   public void testOkDeleteExtraFiles() {
     assertTrue(AuUtil.okDeleteExtraFiles(new MockArchivalUnit()));
-    assertFalse(AuUtil.okDeleteExtraFiles(new ExplodedArchivalUnit(new ExplodedPlugin())));
+    assertFalse(AuUtil.okDeleteExtraFiles(new ExplodedArchivalUnit(new ExplodedPlugin(), null)));
   }
 
   private static class LocalMockArchivalUnit extends MockArchivalUnit {
