@@ -178,6 +178,7 @@ public class FuncTarExploder2 extends LockssTestCase {
     String explodedPluginName =
       "org.lockss.plugin.elsevier.ClockssElsevierExplodedPlugin";
     props.setProperty(Exploder.PARAM_EXPLODED_PLUGIN_NAME, explodedPluginName);
+    props.setProperty(Exploder.PARAM_EXPLODED_AU_YEAR, "1997");
 
     theDaemon = getMockLockssDaemon();
     theDaemon.getAlertManager();

@@ -289,11 +289,13 @@ String explodedPluginKey = pluginMgr.pluginKeyFromName(explodedPluginName);
     for (int i = 0; i < url.length; i++) {
       CachedUrl cu = theDaemon.getPluginManager().findCachedUrl(url[i]);
       assertTrue(url[i] + " not in any AU", cu != null);
-      log.debug2("Check: " + url[i] + " cu " + cu + " au " + cu.getArchivalUnit().getAuId());
+      ArchivalUnit explodedAU = cu.getArchivalUnit();
+      log.debug2("Check: " + url[i] + " cu " + cu + " au " +
+		 explodedAU.getAuId());
       assertTrue(cu + " has no content", cu.hasContent());
       assertTrue(cu + " isn't ExplodedArchivalUnit",
-		 (cu.getArchivalUnit() instanceof ExplodedArchivalUnit));
-      assertNotEquals(sau, cu.getArchivalUnit());
+		 (explodedAU instanceof ExplodedArchivalUnit));
+      assertNotEquals(sau, explodedAU);
     }
     log.debug2("Checking Exploded URLs done.");
   }
