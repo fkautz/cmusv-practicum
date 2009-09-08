@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2009 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -74,7 +74,7 @@ public class BePressMetadataExtractorFactory
       for (int i = 0; i < bePressField.length; i++) {
 	String content = ret.getProperty(bePressField[i]);
 	if (content != null) {
-	    if (dublinCoreField[i].equalsIgnoreCase(Metadata.KEY_DOI)) {
+	  if (dublinCoreField[i].equalsIgnoreCase(Metadata.KEY_DOI)) {
 	    content = Metadata.PROTOCOL_DOI + content;
 	  }
 	  ret.setProperty(dublinCoreField[i], content);
