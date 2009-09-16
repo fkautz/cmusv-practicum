@@ -52,6 +52,8 @@ public class HighWireHtmlFilterFactory implements FilterFactory {
         new TagNameFilter("script"),
         // Typically contains ads 
         new TagNameFilter("iframe"),
+        // Contains ads (e.g. American Medical Association)
+        HtmlNodeFilters.tagWithAttribute("div", "id", "advertisement"),
         HtmlNodeFilters.tagWithAttribute("div", "id", "authenticationstring"),
         // Contains institution name (e.g. SAGE Publications)
         HtmlNodeFilters.tagWithAttribute("div", "id", "universityarea"),
@@ -81,10 +83,9 @@ public class HighWireHtmlFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttributeRegex("a", "href", "^/cgi/openurl"),
     };
 
-    OrFilter orFilter = new OrFilter();
-    orFilter.setPredicates(filters);
 
     // First filter with HtmlParser
+    OrFilter orFilter = new OrFilter(filters);
     InputStream filtered = new HtmlFilterInputStream(in,
                                                      encoding,
                                                      HtmlNodeFilterTransform.exclude(orFilter));

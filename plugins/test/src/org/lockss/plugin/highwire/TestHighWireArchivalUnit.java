@@ -195,10 +195,10 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
   public void testgetName() throws Exception {
     DefinableArchivalUnit au =
       makeAu(new URL("http://shadow1.stanford.edu/"), 42);
-    assertEquals("HighWire Press Plugin (Legacy), Base URL http://shadow1.stanford.edu/, Volume 42", au.getName());
+    assertEquals("HighWire Press Plugin (H10a), Base URL http://shadow1.stanford.edu/, Volume 42", au.getName());
     DefinableArchivalUnit au1 =
       makeAu(new URL("http://www.bmj.com/"), 42);
-    assertEquals("HighWire Press Plugin (Legacy), Base URL http://www.bmj.com/, Volume 42", au1.getName());
+    assertEquals("HighWire Press Plugin (H10a), Base URL http://www.bmj.com/, Volume 42", au1.getName());
   }
 
  public void testGetFilterRuleNoContentTytpe() throws Exception {
@@ -216,8 +216,8 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
   public void testGetFilterRuleHtmlContentType() throws Exception {
     DefinableArchivalUnit au =
       makeAu(new URL("http://shadow1.stanford.edu/"), 42);
-    assertTrue(WrapperUtil.unwrap(au.getFilterRule("text/html"))
-	       instanceof HighWireFilterRule);
+    assertTrue(WrapperUtil.unwrap(au.getFilterFactory("text/html"))
+	       instanceof HighWireHtmlFilterFactory);
   }
 
   /**

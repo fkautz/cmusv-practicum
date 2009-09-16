@@ -63,6 +63,8 @@ public class ClockssHighWireHtmlFilterFactory implements FilterFactory {
         new TagNameFilter("script"),
         // Typically contains ads 
         new TagNameFilter("iframe"),
+        // Contains ads (e.g. American Medical Association)
+        HtmlNodeFilters.tagWithAttribute("div", "id", "advertisement"),
         HtmlNodeFilters.tagWithAttribute("div", "id", "authenticationstring"),
         // Contains institution name (e.g. SAGE Publications)
         HtmlNodeFilters.tagWithAttribute("div", "id", "universityarea"),
@@ -92,9 +94,7 @@ public class ClockssHighWireHtmlFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttributeRegex("a", "href", "^/cgi/openurl"),
     };
 
-    OrFilter orFilter = new OrFilter();
-    orFilter.setPredicates(filters);
-
+    OrFilter orFilter = new OrFilter(filters);
     InputStream filtered = new HtmlFilterInputStream(in,
                                                        encoding,
                                                        HtmlNodeFilterTransform.exclude(orFilter));
