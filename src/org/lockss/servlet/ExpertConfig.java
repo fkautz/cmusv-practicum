@@ -124,8 +124,9 @@ public class ExpertConfig extends LockssServlet {
       displayPage();
     } else {
       try {
-	testAndSaveConfig();
-	statusMsg = "Update successful";
+	if (testAndSaveConfig()) {
+	  statusMsg = "Update successful";
+	}
       } catch (Exception e) {
 	log.error("Error saving changes", e);
 	errMsg = "Error: Couldn't save changes:<br>" + e.toString();
