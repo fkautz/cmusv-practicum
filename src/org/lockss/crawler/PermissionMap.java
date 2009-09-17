@@ -490,6 +490,7 @@ public class PermissionMap {
 	CachedUrl cu = uc.getCachedUrl();
 	if (cu != null && cu.hasContent()) {
 	  crawlStatus.addContentBytesFetched(cu.getContentSize());
+	  cu.release();
 	}
       }
     } finally {

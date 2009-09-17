@@ -421,6 +421,7 @@ public class IcpManager
             logger.debug2("processMessage: MISS_NOFETCH");
             response = message.makeMissNoFetch();
           }
+	  AuUtil.safeRelease(cu);
         }
       }
       catch (IcpException ipe) {

@@ -260,10 +260,11 @@ public class VoterActions {
     if (!ud.isPollActive()) return V3Events.evtError;
     log.debug2("Sending repair to " + ud.getPollerId() + " for URL : " +
                ud.getRepairTarget());
+    CachedUrl cu = null;
     try {
       V3LcapMessage msg = ud.makeMessage(V3LcapMessage.MSG_REPAIR_REP);
       ArchivalUnit au = ud.getCachedUrlSet().getArchivalUnit();
-      CachedUrl cu = au.makeCachedUrl(ud.getRepairTarget());
+      cu = au.makeCachedUrl(ud.getRepairTarget());
       msg.setTargetUrl(ud.getRepairTarget());
       msg.setRepairDataLength(cu.getContentSize());
       msg.setRepairProps(cu.getProperties());
@@ -274,6 +275,8 @@ public class VoterActions {
     } catch (IOException ex) {
       log.error("Unable to send message: ", ex);
       return V3Events.evtError;
+    } finally {
+      AuUtil.safeRelease(cu);
     }
     return V3Events.evtOk;
   }

@@ -310,6 +310,7 @@ public abstract class Exploder {
 				 manifestPageTag, manifestPageAdd);
       props = manifestCu.getProperties();
       props.setProperty("x-lockss-node-url", UrlUtil.minimallyEncodeUrl(url));
+      manifestCu.release();
     } else {
       logger.debug3("Adding text " + newText + " to page " + url +
 		    " in " + au.getAuId());

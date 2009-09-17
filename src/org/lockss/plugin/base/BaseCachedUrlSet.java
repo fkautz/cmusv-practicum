@@ -107,7 +107,11 @@ public class BaseCachedUrlSet implements CachedUrlSet {
       return false;
     }
     CachedUrl cu = au.makeCachedUrl(getUrl());
-    return (cu == null ? false : cu.hasContent());
+    try {
+      return (cu == null ? false : cu.hasContent());
+    } finally {
+      AuUtil.safeRelease(cu);
+    }	    
   }
 
   /**
