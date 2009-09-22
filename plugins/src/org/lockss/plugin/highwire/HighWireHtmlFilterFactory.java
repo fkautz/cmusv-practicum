@@ -49,7 +49,12 @@ public class HighWireHtmlFilterFactory implements FilterFactory {
 					       InputStream in,
 					       String encoding) {
     NodeFilter[] filters = new NodeFilter[] {
+        // Contains variable ad-generating code
         new TagNameFilter("script"),
+        // Contains variable ad-generating code
+        new TagNameFilter("noscript"),
+        // Typically contains ads (e.g. American Academy of Pediatrics)
+        new TagNameFilter("object"),
         // Typically contains ads 
         new TagNameFilter("iframe"),
         // Contains ads (e.g. American Medical Association)
@@ -81,6 +86,8 @@ public class HighWireHtmlFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttribute("div", "id", "oas_bottom"),
         // Optional institution-specific citation resolver (e.g. SAGE Publications)
         HtmlNodeFilters.tagWithAttributeRegex("a", "href", "^/cgi/openurl"),
+        // Contains ad-dependent URLs (e.g. American Academy of Pediatrics)
+        HtmlNodeFilters.tagWithAttributeRegex("a", "href", "^http://ads.adhostingsolutions.com/"),
     };
 
 
