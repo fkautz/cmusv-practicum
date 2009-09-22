@@ -137,7 +137,7 @@ def _process_au(au, options):
             i = i + 1
     for param in au_params:
         if param not in _IMPLICIT_PARAM_ORDER:
-            _do_param(au, i, au_params[param])
+            _do_param(au, i, param)
             i = i + 1
     if au.status() == AU.STATUS_DOWN:
         _do_param(au, 99, 'pub_down', value='true')
