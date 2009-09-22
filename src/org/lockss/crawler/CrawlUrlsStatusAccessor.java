@@ -238,7 +238,7 @@ public class CrawlUrlsStatusAccessor implements StatusAccessor {
       if (status.getNumExcludedExcludes() > 0) {
 	List summary = new ArrayList();
 	String str = status.getNumExcludedExcludes() +
-	  " or fewer additional off-site URLS were excluded but not listed";
+	  " or fewer additional off-site URLs were excluded but not listed";
 	summary.add(new StatusTable.SummaryInfo(null,
 						ColumnDescriptor.TYPE_STRING,
 						str));
