@@ -45,11 +45,26 @@ public class RoyalSocietyOfChemistryHtmlFilterFactory implements FilterFactory {
       throws PluginException {
     HtmlTransform[] transforms = new HtmlTransform[] {
 
-        // Filter out <div id="footer">...</div>
+        /*
+         * These sections contain (sometimes many) ads.
+         * 
+         * Exclude <div class="ads">
+         */
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttributeRegex("div", "class", "ads")),
+        
+        /*
+         * Contains the current year.
+         * 
+         * Exclude <div id="footer">
+         */
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttributeRegex("div",
                                                                               "id",
                                                                               "footer")),
-        // Filter out <img alt="...">...</img> where the href value matches a regular exception
+        /*
+         * References the thumbnail of the current issue.
+         * 
+         * Exclude <img alt="...Cover image...">
+         */
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttributeRegex("img",
                                                                               "alt",
                                                                               "Cover image")),
