@@ -494,7 +494,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     } else {
       Object key = null;
       if ("plugin".equalsIgnoreCase(limiterSource)) {
-	key = plugin;
+	key = plugin.getPluginId();
       } else if (StringUtil.startsWithIgnoreCase(limiterSource,
 						 "title_attribute:")) {
 	String attr = limiterSource.substring("title_attribute:".length());
@@ -502,6 +502,8 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
 	if (key != null) {
 	  key = attr + ":" + key;
 	}
+      } else if (StringUtil.startsWithIgnoreCase(limiterSource, "key:")) {
+	key = limiterSource.substring("key:".length());
       } else if (StringUtil.startsWithIgnoreCase(limiterSource, "host:")) {
 	String param = limiterSource.substring("host:".length());
 	key = paramMap.getString(param + SUFFIX_AU_HOST);

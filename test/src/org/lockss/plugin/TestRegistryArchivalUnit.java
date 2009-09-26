@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2004 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2009 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -112,7 +112,7 @@ public class TestRegistryArchivalUnit extends LockssTestCase {
 		      "plugin");
     ConfigurationUtil.setCurrentConfigFromProps(props);
     assertEquals("3/7s", au.findFetchRateLimiter().getRate());
-    assertSame(regPlugin, au.getFetchRateLimiterKey());
+    assertEquals(au.getPlugin().getPluginId(), au.getFetchRateLimiterKey());
   }
 
   public void testShouldCallTopLevelPoll() throws Exception {
