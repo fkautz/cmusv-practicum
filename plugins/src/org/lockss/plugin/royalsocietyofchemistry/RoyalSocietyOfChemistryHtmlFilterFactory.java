@@ -69,6 +69,19 @@ public class RoyalSocietyOfChemistryHtmlFilterFactory implements FilterFactory {
                                                                               "alt",
                                                                               "Cover image")),
 
+        /*
+         * On article landing pages, the list of view links is
+         * institution-dependent, as it may include optional open URL
+         * items (for instance). The only reliable way to normalize
+         * the list of view links between institutions is to filter
+         * out the entirety of the list.
+         * 
+         * Exclude <div class="hilite">
+         */
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttributeRegex("div",
+                                                                              "class",
+                                                                              "hilite")),
+
     };
     return new HtmlFilterInputStream(in,
                                      encoding,
