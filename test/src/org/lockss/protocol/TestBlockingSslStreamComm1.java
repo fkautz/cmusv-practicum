@@ -135,9 +135,9 @@ public class TestBlockingSslStreamComm1 extends TestBlockingStreamComm {
   // both sides require client auth, connections in either direction are
   // successful only if the certificate is verified.
 
-  void createKeystores(File dir, List hostnames)
-      throws NoSuchAlgorithmException, NoSuchProviderException {
-    KeyStoreUtil.createPLNKeyStores(null, dir, hostnames);
+  void createKeystores(File dir, List hostnames) throws Exception {
+    KeyStoreUtil.createPLNKeyStores(null, dir, hostnames,
+				    MiscTestUtil.getSecureRandom());
   }
 
   public void testClientAuth(Properties comm1Props,
