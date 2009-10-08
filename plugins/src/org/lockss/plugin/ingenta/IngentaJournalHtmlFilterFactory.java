@@ -69,10 +69,10 @@ public class IngentaJournalHtmlFilterFactory implements FilterFactory {
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
                                                                          "id",
                                                                           "vertical-ad")),
-//        // Filter out <div class="right-col-download">...</div>
-//        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
-//                                                                         "class",
-//                                                                         "right-col-download")),                                                               
+        // Filter out <div class="right-col-download">...</div>
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
+                                                                         "class",
+                                                                         "right-col-download")),                                                               
         // Filter out <div id="cart-navbar">...</div>
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
                                                                          "id",
@@ -81,11 +81,11 @@ public class IngentaJournalHtmlFilterFactory implements FilterFactory {
 //        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
 //                                                                         "class",
 //                                                                         "heading-macfix article-access-options")),                                                                           
-          // Filter out <div id="baynote-recommendations">...</div>
+        // Filter out <div id="baynote-recommendations">...</div>
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
                                                                          "id",
                                                                          "baynote-recommendations")),   
- 	};
+    };
     return new HtmlFilterInputStream(in,
                                      encoding,
                                      new HtmlCompoundTransform(transforms));
