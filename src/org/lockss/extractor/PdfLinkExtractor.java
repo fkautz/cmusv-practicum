@@ -95,6 +95,7 @@ public class PdfLinkExtractor implements LinkExtractor {
     PageTransform pageTransform = new OutputAllLinks(srcUrl, cb);
     DocumentTransform documentTransform = new TransformEachPage(pageTransform);
     documentTransform.transform(pdfDocument);
+    pdfDocument.close();
   }
 
   private static final Logger logger = Logger.getLogger("PdfLinkExtractor");

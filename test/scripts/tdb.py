@@ -79,7 +79,6 @@ class ChainedMap(Map):
                 if k2 not in map1: map1[k2] = dict()
                 self._recursive_update(map1[k2], v2)
             else: map1[k2] = v2
-        
 
 class Publisher(Map):
 
