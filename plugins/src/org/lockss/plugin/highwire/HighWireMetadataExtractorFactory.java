@@ -64,7 +64,7 @@ public class HighWireMetadataExtractorFactory
       
       Metadata ret = null;
       String reprintUrl = cu.getUrl();
-      if (reprintUrl.startsWith(reprintPrefix)) {
+      if (reprintUrl.contains(reprintPrefix)) {
         String reprintframedUrl = reprintUrl.replaceFirst(reprintPrefix, reprintframedPrefix);
         CachedUrl reprintframedCu = cu.getArchivalUnit().makeCachedUrl(reprintframedUrl);
         try {
