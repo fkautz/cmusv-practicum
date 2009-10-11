@@ -60,12 +60,12 @@ public interface ArchivalUnit {
 
   static final String KEY_AU_BASE_URL  = "au_base_url";
   static final String KEY_AU_FETCH_DELAY = "au_fetch_delay";
-  /** One of:
-   * au
-   * plugin
-   * key:<key>
-   * host:<param>
-   * title_attr:<attr>
+  /** One of:<br>
+   * au<br>
+   * plugin<br>
+   * key:&lt;key&gt;<br>
+   * host:&lt;param&gt;<br>
+   * title_attr:&lt;attr&gt;
    */
   static final String KEY_AU_FETCH_RATE_LIMITER_SOURCE =
     "au_fetch_rate_limiter_source";
@@ -281,7 +281,7 @@ public interface ArchivalUnit {
   /**
    * Returns an Iterator for articles from the AU's plugin. If there isn't
    * one, an empty iterator will be returned.
-   * @paraam contentType the content type of the articles
+   * @param contentType the content type of the articles
    * @return the ArticleIterator
    */
   public Iterator getArticleIterator(String contentType);
