@@ -280,8 +280,8 @@ public class ConfigManager implements LockssManager {
 	return "titleDbOnlyPred";
       }};
 
-  /** Disallow keys prohibited in expert config file, defined by {@LINK
-   * PARAM_EXPERT_ALLOW} and {@LINK PARAM_EXPERT_DENY} */
+  /** Disallow keys prohibited in expert config file, defined by {@link
+   * PARAM_EXPERT_ALLOW} and {@link PARAM_EXPERT_DENY} */
   public KeyPredicate expertConfigKeyPredicate = new KeyPredicate() {
       public boolean evaluate(Object obj) {
 	if (obj instanceof String) {

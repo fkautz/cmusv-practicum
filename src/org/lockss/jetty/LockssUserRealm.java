@@ -64,7 +64,7 @@ public class LockssUserRealm implements UserRealm {
 
   /** Construct new realm
    * @param name Realm Name
-   * @param name acctMgr the LOCKSS AccountManager
+   * @param acctMgr the LOCKSS AccountManager
    */
   public LockssUserRealm(String name, AccountManager acctMgr) {
     _realmName=name;

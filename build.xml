@@ -6,7 +6,7 @@
  Ant build file for LOCKSS daemon
 ========================================================================
 
-Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2009 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -1297,7 +1297,7 @@ JAVA_COMMAND_ARGS="-server `/usr/local/lib/maxheap` -Dsun.net.inetaddr.ttl=3600 
              verbose="false"
              overview="${src}/overview.html"
              header="${javadoc.header}"
-             bottom="Copyright &amp;copy; 2000-2006 Board of Trustees of Leland Stanford Jr. University, all rights reserved.">
+             bottom="Copyright &amp;copy; 2000-2009 Board of Trustees of Leland Stanford Jr. University, all rights reserved.">
        <classpath refid="compile.classpath" />
 <!-- disabled until javadoc back online -->
 <!--        <link href="${ext.javadoc}/commons-collections-3.2/docs/apidocs" /> -->
