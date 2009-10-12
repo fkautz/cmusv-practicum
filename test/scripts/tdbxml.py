@@ -139,8 +139,11 @@ def _process_au(au, options):
         if param not in _IMPLICIT_PARAM_ORDER:
             _do_param(au, i, param)
             i = i + 1
-    if au.status() == AU.STATUS_DOWN:
+    if au.status() in [AU.STATUS_DOWN, AU.STATUS_SUPERSEDED]:
         _do_param(au, 99, 'pub_down', value='true')
+    au_proxy = au.proxy()
+    if au_proxy is not None:
+        _do_param(au, 98, 'crawl_proxy', value=au_proxy)
     au_attrs = au.attrs()
     for attr in au_attrs:
         _do_attr(au, attr, au_attrs[attr])
