@@ -762,6 +762,12 @@ public class ArchivalUnitStatus
       res.add(new StatusTable.SummaryInfo("Plugin",
 					  ColumnDescriptor.TYPE_STRING,
 					  au.getPlugin().getPluginName()));
+      String yearStr = AuUtil.getTitleAttribute(au, "year");
+      if (yearStr != null) {
+        res.add(new StatusTable.SummaryInfo("Year",
+                                            ColumnDescriptor.TYPE_STRING,
+                                            yearStr));
+      }
       AuState.AccessType atype = state.getAccessType();
       if (atype != null) {
 	res.add(new StatusTable.SummaryInfo("Access Type",
