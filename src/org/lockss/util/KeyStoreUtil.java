@@ -40,9 +40,6 @@ import java.security.cert.*;
 import javax.net.ssl.*;
 
 import sun.security.x509.*;
-import sun.security.pkcs.PKCS10;
-import sun.security.provider.IdentityDatabase;
-import sun.security.provider.SystemSigner;
 
 import org.lockss.app.*;
 import org.lockss.daemon.*;
