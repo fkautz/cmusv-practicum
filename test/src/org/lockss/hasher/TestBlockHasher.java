@@ -417,7 +417,7 @@ public class TestBlockHasher extends LockssTestCase {
 
     RecordingEventHandler handRec = new RecordingEventHandler();
     MockArchivalUnit mau = setupContentTree();
-    mau.setFilterFactory(new SimpleFilterFactory());
+    mau.setHashFilterFactory(new SimpleFilterFactory());
     MockCachedUrlSet cus = (MockCachedUrlSet)mau.getAuCachedUrlSet();
     addContent(mau, urls[4], str);
     MessageDigest[] digs = { dig };

@@ -125,7 +125,7 @@ public class TestSimpleHasher extends LockssTestCase {
 
   public void testV3() throws Exception {
     MockArchivalUnit mau = setupContentTree();
-    mau.setFilterFactory(new SimpleFilterFactory());
+    mau.setHashFilterFactory(new SimpleFilterFactory());
     SimpleHasher hasher = new SimpleHasher(getMessageDigest(HASH_ALG),
 					   challenge, verifier);
     File blockFile = FileTestUtil.tempFile("hashtest", ".tmp");
@@ -137,7 +137,7 @@ public class TestSimpleHasher extends LockssTestCase {
 
   public void testV364() throws Exception {
     MockArchivalUnit mau = setupContentTree();
-    mau.setFilterFactory(new SimpleFilterFactory());
+    mau.setHashFilterFactory(new SimpleFilterFactory());
     SimpleHasher hasher = new SimpleHasher(getMessageDigest(HASH_ALG),
 					   challenge, verifier);
     hasher.setBase64Result(true);
@@ -180,7 +180,7 @@ public class TestSimpleHasher extends LockssTestCase {
 
   public void testV3Filtered() throws Exception {
     MockArchivalUnit mau = setupContentTree();
-    mau.setFilterFactory(new SimpleFilterFactory());
+    mau.setHashFilterFactory(new SimpleFilterFactory());
     SimpleHasher hasher = new SimpleHasher(getMessageDigest(HASH_ALG),
 					   challenge, verifier);
     hasher.setFiltered(true);
@@ -193,7 +193,7 @@ public class TestSimpleHasher extends LockssTestCase {
 
   public void testV3Filtered64() throws Exception {
     MockArchivalUnit mau = setupContentTree();
-    mau.setFilterFactory(new SimpleFilterFactory());
+    mau.setHashFilterFactory(new SimpleFilterFactory());
     SimpleHasher hasher = new SimpleHasher(getMessageDigest(HASH_ALG),
 					   challenge, verifier);
     hasher.setFiltered(true);

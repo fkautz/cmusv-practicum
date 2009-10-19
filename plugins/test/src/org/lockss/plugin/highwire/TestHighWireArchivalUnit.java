@@ -216,7 +216,7 @@ public class TestHighWireArchivalUnit extends LockssTestCase {
   public void testGetFilterRuleHtmlContentType() throws Exception {
     DefinableArchivalUnit au =
       makeAu(new URL("http://shadow1.stanford.edu/"), 42);
-    assertTrue(WrapperUtil.unwrap(au.getFilterFactory("text/html"))
+    assertTrue(WrapperUtil.unwrap(au.getHashFilterFactory("text/html"))
 	       instanceof HighWireHtmlFilterFactory);
   }
 

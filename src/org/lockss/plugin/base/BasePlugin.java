@@ -488,18 +488,33 @@ public abstract class BasePlugin
   }
 
   /**
-   * Returns the filter factory for the mime type, if any
+   * Returns the hash filter factory for the mime type, if any
    * @param contentType the content type
    * @return the FilterFactory
    */
-  public FilterFactory getFilterFactory(String contentType) {
+  public FilterFactory getHashFilterFactory(String contentType) {
     MimeTypeInfo mti = getMimeTypeInfo(contentType);
     if (mti == null) {
       return null;
     }
     if (log.isDebug3())
-      log.debug3(contentType + " filter: " + mti.getFilterFactory());
-    return mti.getFilterFactory();
+      log.debug3(contentType + " filter: " + mti.getHashFilterFactory());
+    return mti.getHashFilterFactory();
+  }
+
+  /**
+   * Returns the crawl filter factory for the mime type, if any
+   * @param contentType the content type
+   * @return the FilterFactory
+   */
+  public FilterFactory getCrawlFilterFactory(String contentType) {
+    MimeTypeInfo mti = getMimeTypeInfo(contentType);
+    if (mti == null) {
+      return null;
+    }
+    if (log.isDebug3())
+      log.debug3(contentType + " crawl filter: " + mti.getCrawlFilterFactory());
+    return mti.getCrawlFilterFactory();
   }
 
   /**

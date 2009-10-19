@@ -254,11 +254,11 @@ public class TestBlackwellArchivalUnit extends LockssPluginTestCase {
     assertEquals("jopy, vol. 3", au1.getName());
   }
 
-  public void testGetFilterFactory() throws Exception {
+  public void testGetHashFilterFactory() throws Exception {
     ArchivalUnit au = makeAu(BASE_URL, JOURNAL_ID, ISSN, YEAR, "2");
-    assertNull(au.getFilterFactory(null));
-    assertNull(au.getFilterFactory("jpg"));
-    assertNotNull(au.getFilterFactory("text/html"));
+    assertNull(au.getHashFilterFactory(null));
+    assertNull(au.getHashFilterFactory("jpg"));
+    assertNotNull(au.getHashFilterFactory("text/html"));
   }
 
   public void testCrawlWindow() throws Exception {

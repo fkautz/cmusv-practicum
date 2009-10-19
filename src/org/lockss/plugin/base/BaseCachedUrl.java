@@ -285,7 +285,7 @@ public class BaseCachedUrl implements CachedUrl {
     String contentType = getContentType();
     InputStream is = null;
     // first look for a FilterFactory
-    FilterFactory fact = au.getFilterFactory(contentType);
+    FilterFactory fact = au.getHashFilterFactory(contentType);
     if (fact != null) {
       if (logger.isDebug3()) {
 	logger.debug3("Filtering " + contentType +

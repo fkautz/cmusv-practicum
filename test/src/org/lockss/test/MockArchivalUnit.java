@@ -69,7 +69,8 @@ public class MockArchivalUnit implements ArchivalUnit {
   private Hashtable cuHash = new Hashtable();
 
   private FilterRule filterRule = null;
-  private FilterFactory filterFactory = null;
+  private FilterFactory hashFilterFactory = null;
+  private FilterFactory crawlFilterFactory = null;
   private LinkRewriterFactory rewriterFactory = null;
   private Iterator articleIterator = null;
   private Map extractors = new HashMap();
@@ -202,6 +203,9 @@ public class MockArchivalUnit implements ArchivalUnit {
     return uc;
   }
 
+  /**
+   * @deprecated
+   */
   public void addContent(String url, String content) {
     MockCachedUrl cu = (MockCachedUrl)makeCachedUrl(url);
     if (cu != null) {
@@ -452,12 +456,20 @@ public class MockArchivalUnit implements ArchivalUnit {
     this.filterRule = filterRule;
   }
 
-  public FilterFactory getFilterFactory(String contentType) {
-    return filterFactory;
+  public FilterFactory getHashFilterFactory(String contentType) {
+    return hashFilterFactory;
   }
 
-  public void setFilterFactory(FilterFactory filterFactory) {
-    this.filterFactory = filterFactory;
+  public void setHashFilterFactory(FilterFactory filterFactory) {
+    this.hashFilterFactory = filterFactory;
+  }
+
+  public FilterFactory getCrawlFilterFactory(String contentType) {
+    return crawlFilterFactory;
+  }
+
+  public void setCrawlFilterFactory(FilterFactory filterFactory) {
+    this.crawlFilterFactory = filterFactory;
   }
 
   public LinkRewriterFactory getLinkRewriterFactory(String contentType) {

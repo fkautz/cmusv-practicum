@@ -215,7 +215,7 @@ public class MockCachedUrl implements CachedUrl {
     InputStream is = null;
     // look for a FilterFactory
     if (au != null) {
-      FilterFactory fact = au.getFilterFactory(contentType);
+      FilterFactory fact = au.getHashFilterFactory(contentType);
       if (fact != null) {
 	InputStream unfis = getUnfilteredInputStream();
 	if (log.isDebug3()) {

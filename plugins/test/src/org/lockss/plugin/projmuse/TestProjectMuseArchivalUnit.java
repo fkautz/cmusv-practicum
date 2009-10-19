@@ -238,7 +238,7 @@ public class TestProjectMuseArchivalUnit extends LockssTestCase {
 
   public void testGetFilterRules() throws Exception {
     DefinableArchivalUnit au = makeAu(new URL(ROOT_URL), 60, DIR);
-    assertTrue(WrapperUtil.unwrap(au.getFilterFactory("text/html"))
+    assertTrue(WrapperUtil.unwrap(au.getHashFilterFactory("text/html"))
 	       instanceof ProjectMuseHtmlFilterFactory);
   }
 

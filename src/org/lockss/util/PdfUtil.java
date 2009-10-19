@@ -795,7 +795,7 @@ return success;
   }
 
   public static OutputDocumentTransform getOutputDocumentTransform(ArchivalUnit au) {
-    String key = PREFIX_PDF_FILTER_FACTORY_HINT + PDF_MIME_TYPE + DefinableArchivalUnit.SUFFIX_FILTER_FACTORY;
+    String key = PREFIX_PDF_FILTER_FACTORY_HINT + PDF_MIME_TYPE + DefinableArchivalUnit.SUFFIX_HASH_FILTER_FACTORY;
     String className = AuUtil.getTitleAttribute(au, key);
     if (className == null) {
       logger.debug2("No PDF filter factory hint");

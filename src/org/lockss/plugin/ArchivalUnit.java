@@ -254,13 +254,22 @@ public interface ArchivalUnit {
   public FilterRule getFilterRule(String contentType);
 
   /**
-   * Return the {@link FilterFactory} for the given contentType or null if
-   * there is none
+   * Return the {@link FilterFactory} to be used before hashing the given
+   * contentType, or null if there is none
    * @param contentType content type of the content we are going to filter
-   * @return {@link FilterFactory} for the given contentType or null if
-   * there is none
+   * @return hash {@link FilterFactory} for the given contentType or null
+   * if there is none
    */
-  public FilterFactory getFilterFactory(String contentType);
+  public FilterFactory getHashFilterFactory(String contentType);
+
+  /**
+   * Return the {@link FilterFactory} to be used before extracting links
+   * from the given contentType, or null if there is none
+   * @param contentType content type of the content we are going to filter
+   * @return crawl {@link FilterFactory} for the given contentType or null
+   * if there is none
+   */
+  public FilterFactory getCrawlFilterFactory(String contentType);
 
   /**
    * Return the {@link LinkRewriterFactory} for the given contentType or

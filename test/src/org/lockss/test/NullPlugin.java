@@ -509,7 +509,11 @@ public class NullPlugin {
       throw new UnsupportedOperationException("Not implemented");
     }
 
-    public FilterFactory getFilterFactory(String mimeType) {
+    public FilterFactory getHashFilterFactory(String mimeType) {
+      throw new UnsupportedOperationException("Not implemented");
+    }
+
+    public FilterFactory getCrawlFilterFactory(String mimeType) {
       throw new UnsupportedOperationException("Not implemented");
     }
 

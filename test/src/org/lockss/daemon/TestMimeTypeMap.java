@@ -81,12 +81,14 @@ public class TestMimeTypeMap extends LockssTestCase {
 
   public void testDefault() {
     MimeTypeInfo mt1 = MimeTypeMap.DEFAULT.getMimeTypeInfo("text/html");
-    assertNull(mt1.getFilterFactory());
+    assertNull(mt1.getHashFilterFactory());
+    assertNull(mt1.getCrawlFilterFactory());
     assertTrue(mt1.getLinkExtractorFactory()
 	       instanceof GoslingHtmlLinkExtractor.Factory);
 
     MimeTypeInfo mt2 = MimeTypeMap.DEFAULT.getMimeTypeInfo("text/css");
-    assertNull(mt2.getFilterFactory());
+    assertNull(mt2.getHashFilterFactory());
+    assertNull(mt2.getCrawlFilterFactory());
     assertTrue(mt2.getLinkExtractorFactory()
 	       instanceof CssLinkExtractor.Factory);
   }

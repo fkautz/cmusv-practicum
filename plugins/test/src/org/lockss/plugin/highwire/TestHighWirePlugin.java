@@ -158,10 +158,10 @@ public class TestHighWirePlugin extends LockssTestCase {
     assertTrue(plugin.getMetadataExtractor("text/html", au) instanceof
 	       org.lockss.extractor.SimpleMetaTagMetadataExtractor);
   }
-  public void testGetFilterFactory() {
-    assertNull(plugin.getFilterFactory("BogusFilterFactory"));
-    assertNotNull(plugin.getFilterFactory("application/pdf"));
-    assertTrue(WrapperUtil.unwrap(plugin.getFilterFactory("application/pdf"))
+  public void testGetHashFilterFactory() {
+    assertNull(plugin.getHashFilterFactory("BogusFilterFactory"));
+    assertNotNull(plugin.getHashFilterFactory("application/pdf"));
+    assertTrue(WrapperUtil.unwrap(plugin.getHashFilterFactory("application/pdf"))
 	       instanceof org.lockss.plugin.highwire.HighWirePdfFilterFactory);
   }
   public void testGetArticleIteratorFactory() {
