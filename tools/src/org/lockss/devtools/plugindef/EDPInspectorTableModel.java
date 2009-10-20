@@ -264,7 +264,7 @@ public class EDPInspectorTableModel extends AbstractTableModel
       else if (cause instanceof ClassNotFoundException) {
         errorMessage = "The class you have specified does not seem to be loadable under the current class path.";
       }
-      else if (cause instanceof InstantiationError) {
+      else if (cause instanceof InstantiationException) {
         errorMessage = "The class you have specified seems to have caused an instantiation error.";
       }
       else if (cause instanceof IllegalAccessException) {
