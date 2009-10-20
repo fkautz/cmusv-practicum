@@ -56,8 +56,8 @@ public class AboutBox extends JDialog implements ActionListener {
   FlowLayout flowLayout1 = new FlowLayout();
   GridLayout gridLayout1 = new GridLayout();
   String product = "LOCKSS Plugin Tool";
-  String version = "Version 0.11.1";
-  String copyright = "Copyright (c) 2000-2006" +
+  String version = "Version 0.12.1";
+  String copyright = "Copyright (c) 2000-2009" +
       " Board of Trustees of Leland Stanford Jr. University," +
       " all rights reserved.";
   String comments = "LOCKSS - Lots Of Copies Keep Stuff Safe";
