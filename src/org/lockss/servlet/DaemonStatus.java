@@ -250,7 +250,7 @@ public class DaemonStatus extends LockssServlet {
       throws IOException, XmlDomBuilder.XmlDomException {
     // By default, XmlDomBuilder will produce UTF-8.  Must set content type
     // *before* calling getWriter()
-    resp.setContentType("text/xml;charset=UTF-8");
+    resp.setContentType("text/xml; charset=UTF-8");
     PrintWriter wrtr = resp.getWriter();
     try {
       StatusTable statTable = makeTable();
