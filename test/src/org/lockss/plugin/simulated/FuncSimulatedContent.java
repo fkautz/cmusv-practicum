@@ -46,6 +46,7 @@ public class FuncSimulatedContent extends LockssTestCase {
   static final Logger log = Logger.getLogger("FuncSimulatedContent");
 
   private SimulatedArchivalUnit sau;
+  private SimulatedContentGenerator scgen = null;
   private MockLockssDaemon theDaemon;
   private String auId;
   private String auId2;
@@ -174,7 +175,7 @@ public class FuncSimulatedContent extends LockssTestCase {
 
   protected void createContent() {
     log.debug("createContent()");
-    SimulatedContentGenerator scgen = sau.getContentGenerator();
+    scgen = sau.getContentGenerator();
     scgen.setFileTypes(SimulatedContentGenerator.FILE_TYPE_HTML +
                        SimulatedContentGenerator.FILE_TYPE_TXT);
     scgen.setAbnormalFile("1,1", 1);
@@ -330,12 +331,12 @@ public class FuncSimulatedContent extends LockssTestCase {
     String expectedContent;
     if (path.endsWith(".html")) {
       String fn = path.substring(path.lastIndexOf("/") + 1);
-      expectedContent = SimulatedContentGenerator.getHtmlFileContent(fn,
-								     fileNum, depth, branchNum, isAbnormal);
+      expectedContent = scgen.getHtmlFileContent(fn, fileNum, depth,
+                                                 branchNum, isAbnormal);
     }
     else {
-      expectedContent = SimulatedContentGenerator.getTxtContent(
-								fileNum, depth, branchNum, isAbnormal);
+      expectedContent = scgen.getTxtContent(fileNum, depth, branchNum,
+                                            isAbnormal);
     }
     if (isDamaged) {
       assertNotEquals(expectedContent, content);

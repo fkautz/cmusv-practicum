@@ -54,6 +54,7 @@ public class SimulatedUrlCacher extends BaseUrlCacher {
   private String contentName = null;
   private File contentFile = null;
   private CIProperties props = null;
+  private SimulatedContentGenerator scgen = null;
 
   public SimulatedUrlCacher(ArchivalUnit owner, String url, String contentRoot) {
     super(owner, url);
@@ -83,8 +84,11 @@ public class SimulatedUrlCacher extends BaseUrlCacher {
     makeContentName();
     contentFile = new File(contentName);
     if (contentFile.isDirectory()) {
+      if (scgen == null) {
+	scgen = SimulatedContentGenerator.getInstance(fileRoot);
+      }
       File dirContentFile = new File(
-          SimulatedContentGenerator.getDirectoryContentFile(contentName));
+          scgen.getDirectoryContentFile(contentName));
       if (dirContentFile.exists()) {
         return getDefaultStream(dirContentFile, lastModified);
       } else {
