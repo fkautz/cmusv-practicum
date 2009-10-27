@@ -351,5 +351,9 @@ public class SimulatedPlugin extends BasePlugin implements PluginTestable {
     aus.remove(au);
   }
 
+  public SimulatedContentGenerator getContentGenerator(Configuration cf,
+                                                       String fileRoot) {
+    return SimulatedContentGenerator.getInstance(fileRoot);
+  }
 
 }
