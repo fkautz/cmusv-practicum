@@ -51,7 +51,7 @@ public class HodderArnoldPdfTransform implements OutputDocumentTransform {
   }
 
   public boolean transform(PdfDocument pdfDocument) throws IOException {
-    throw new IOException(new UnsupportedOperationException());
+    throw new IOException("HodderArnoldPdfTransform is an OutputDocumentTransform");
   }
 
 }
