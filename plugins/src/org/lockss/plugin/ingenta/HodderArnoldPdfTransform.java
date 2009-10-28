@@ -51,7 +51,7 @@ public class HodderArnoldPdfTransform implements OutputDocumentTransform {
         // Extract all text
         return new TransformEachPage(new ExtractStringsToOutputStream(outputStream)).transform(pdfDocument);
       }
-      else if ("iText 2.0.7 (by lowagie.com)".equals(pdfDocument.getCreator())) {
+      else if ("iText 2.0.7 (by lowagie.com)".equals(pdfDocument.getProducer())) {
         IngentaPdfFilterFactory.logger.debug2("iText");
         boolean ret = false;
         
