@@ -46,6 +46,7 @@ public class HodderArnoldPdfTransform implements OutputDocumentTransform {
       return new TransformEachPage(new ExtractStringsToOutputStream(outputStream)).transform(pdfDocument);
     }
     catch (IOException ioe) {
+      IngentaPdfFilterFactory.logger.debug2("IOException in HodderArnoldPdfTransform", ioe);
       return false;
     }
   }
