@@ -48,7 +48,7 @@ import org.lockss.plugin.base.*;
 import org.lockss.plugin.simulated.*;
 
 
-public class TestBepressMetadataExtractor extends LockssTestCase{
+public class TestBePressMetadataExtractor extends LockssTestCase{
 
   static Logger log = Logger.getLogger("TestBepressMetadataExtractor");
 
