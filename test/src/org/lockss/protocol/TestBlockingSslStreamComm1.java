@@ -140,6 +140,36 @@ public class TestBlockingSslStreamComm1 extends TestBlockingStreamComm {
 				    MiscTestUtil.getSecureRandom());
   }
 
+  // Ensure SO_TIMEOUT is set before SSL handshake
+  public void testReadTimeoutDuringHandshake() throws IOException {
+    TimeBase.setSimulated(1000);
+    PeerMessage msgIn;
+    cprops.setProperty(BlockingStreamComm.PARAM_CHANNEL_IDLE_TIME, "10h");
+    cprops.setProperty(BlockingStreamComm.PARAM_DATA_TIMEOUT, "100");
+    ConfigurationUtil.setCurrentConfigFromProps(cprops);
+    setupComm1();
+    setupComm2();
+    comm1.setAssocQueue(assocQ);
+    // delay comm2's accept()
+    comm2.setAcceptSem(sem2);
+    comm1.sendTo(msg1, pid2, null);
+    msgIn = (PeerMessage)rcvdMsgs2.get(TIMEOUT_SHOULDNT);
+    // Timeout might happen before channel reads 1st message (or even
+    // before it reads the peerid).  If this happens no message will be
+    // read and the queue get() will timeout and return null
+    if (msgIn != null) {
+      assertEqualsMessageFrom(msg1, pid1, msgIn);
+    }
+    List event;
+    assertNotNull("Channel didn't close automatically after timeout",
+		  (event = (List)assocQ.get(TIMEOUT_SHOULDNT)));
+    assertEquals("Channel didn't close automatically after timeout",
+		 "dissoc", event.get(0));
+    assertEquals(0, getChannels(comm1).size());
+    assertEquals(0, getRcvChannels(comm1).size());
+  }
+
+
   public void testClientAuth(Properties comm1Props,
 			     Properties comm2Props,
 			     boolean expectedSuccess)
