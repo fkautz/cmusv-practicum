@@ -117,6 +117,16 @@ public class AccountManager
     "      </pattern>" +
     "      <action class=\"org.lockss.alert.AlertActionMail\"/>" +
     "    </org.lockss.alert.AlertFilter>" +
+    "    <org.lockss.alert.AlertFilter>" +
+    "      <pattern class=\"org.lockss.alert.AlertPatterns-Predicate\">" +
+    "        <attribute>name</attribute>" +
+    "        <relation>CONTAINS</relation>" +
+    "        <value class=\"list\">" +
+    "          <string>AuditableEvent</string>" +
+    "        </value>" +
+    "      </pattern>" +
+    "      <action class=\"org.lockss.alert.AlertActionSyslog\"/>" +
+    "    </org.lockss.alert.AlertFilter>" +
     "  </filters>" +
     "</org.lockss.alert.AlertConfig>";
 
@@ -378,6 +388,8 @@ public class AccountManager
       acct.disable("Deleted");		// paranoia, in case someone holds
 					// onto object.
       accountMap.remove(acct.getName());
+    } else {
+      acct.auditableEvent("failed attempt to delete");
     }
     return res;
   }
@@ -610,8 +622,6 @@ public class AccountManager
       // ignored, expected during testing
     }
   }
-
-
 
   private ObjectSerializer makeObjectSerializer() {
     return new XStreamSerializer();

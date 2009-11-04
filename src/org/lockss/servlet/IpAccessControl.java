@@ -41,6 +41,7 @@ import org.mortbay.html.*;
 
 import org.lockss.config.*;
 import org.lockss.util.*;
+import org.lockss.account.*;
 
 /** Display and update IP access control lists.
  */
@@ -271,6 +272,10 @@ public abstract class IpAccessControl extends LockssServlet {
     configMgr.writeCacheConfigFile(props,
 				   getConfigFileName(),
 				   getConfigFileComment());
+    UserAccount acct = getUserAccount();
+    if (acct != null) {
+      acct.auditableEvent("IP access list changed");
+    }
   }
 
   protected void addConfigProps(Properties props) {

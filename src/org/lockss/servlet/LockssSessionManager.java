@@ -100,6 +100,21 @@ public class LockssSessionManager extends AbstractSessionManager {
     return res;
   }
 
+  /** Collect info about user sessions that are idle too long */
+  public Collection<HttpSession> getZombieSessions() {
+    List<HttpSession> res = new ArrayList<HttpSession>();
+    for (Map.Entry ent : (Set<Map.Entry>)_sessions.entrySet()) {
+      HttpSession sess = (HttpSession)ent.getValue();
+      // Process only authenticated sessions that will be logged out due
+      // to inactivity on their next use
+      if (sess.getAttribute(LockssFormAuthenticator.__J_AUTHENTICATED) != null
+	  && isInactiveTimeout(sess)) {
+	res.add(sess);
+      }
+    }
+    return res;
+  }
+
   protected class Session extends AbstractSessionManager.Session {
 
     protected Session(HttpServletRequest request) {

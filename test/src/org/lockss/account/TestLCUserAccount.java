@@ -59,6 +59,8 @@ public class TestLCUserAccount extends LockssTestCase {
     super.setUp();
     acctMgr = new MyAccountManager();
     getMockLockssDaemon().setAccountManager(acctMgr);
+    acctMgr.initService(getMockLockssDaemon());
+    acctMgr.startService();
     acct1 = (LCUserAccount)new LCUserAccount.Factory().newUser(NAME1, acctMgr);
   }
   

@@ -46,6 +46,10 @@ public class AlertActions {
     return new AlertActionMail(to);
   }
 
+  public static AlertAction Syslog(int level) {
+    return new AlertActionSyslog(level);
+  }
+
 //   public static AlertAction Mail(List addressees) {
 //     return new AlertActionMail(addressees);
 //   }
