@@ -36,7 +36,7 @@ import java.io.*;
 import java.util.List;
 
 import org.htmlparser.NodeFilter;
-import org.htmlparser.filters.OrFilter;
+import org.htmlparser.filters.*;
 import org.lockss.daemon.PluginException;
 import org.lockss.filter.HtmlTagFilter;
 import org.lockss.filter.html.*;
@@ -61,6 +61,8 @@ public class PortlandPressHtmlFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttribute("div", "class", "RHAdvert"),
         // Contains the editorial board which may change over time (e.g. Biochemical Journal)
         HtmlNodeFilters.tagWithAttribute("td", "id", "LeftPanel"),
+        // Contains the editorial board which may change over time (e.g. Biochemical Journal)
+        new TagNameFilter("script"),
         // Contains variable links to recent issues (e.g. Biochemical Journal)
         HtmlNodeFilters.tagWithAttribute("td", "id", "RightPanel"),
     };
