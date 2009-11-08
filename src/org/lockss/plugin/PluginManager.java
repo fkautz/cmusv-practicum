@@ -2060,8 +2060,8 @@ public class PluginManager
       // CachedUrlSet.
 
       String url = cusn.getUrl();
-	if (StringUtil.endsWithIgnoreCase(url, ".jar") &&
-	    cusn.isLeaf()) {
+      if (StringUtil.endsWithIgnoreCase(url, ".jar") &&
+	  cusn.isLeaf()) {
 
 	// This CachedUrl represents a plugin JAR, validate it and
 	// process the plugins it contains.
