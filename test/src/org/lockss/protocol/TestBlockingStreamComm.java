@@ -1803,6 +1803,7 @@ public class TestBlockingStreamComm extends LockssTestCase {
     msg2 = makePeerMessage(1, "1234567890", 10);
     comm1.sendTo(msg1, pid2, null);
     msgIn = (PeerMessage)rcvdMsgs2.get(TIMEOUT_SHOULDNT);
+    assertNotNull("Didn't receive message", msgIn);
     MyBlockingPeerChannel chan1 =
       (MyBlockingPeerChannel)getChannel(comm1, pid2);
     MyBlockingPeerChannel chan2 =
