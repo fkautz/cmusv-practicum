@@ -40,23 +40,13 @@ import org.lockss.plugin.*;
 
 public class DrogoResearchHtmlFilterFactory implements FilterFactory {
 
-  public InputStream createFilteredInputStream(ArchivalUnit au, InputStream in,
+  public InputStream createFilteredInputStream(ArchivalUnit au,
+                                               InputStream in,
                                                String encoding)
       throws PluginException {
-    HtmlTransform[] transforms = new HtmlTransform[] {
-
-        /*
-         * Contains the current date.
-         * 
-         * Exclude <div id="date">
-         */
-        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttributeRegex("div", "id", "date")),
-        
-    };
-    
     return new HtmlFilterInputStream(in,
                                      encoding,
-                                     new HtmlCompoundTransform(transforms));
+                                     HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div", "id", "date")));
   }
 
 }
