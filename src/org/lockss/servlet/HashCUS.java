@@ -567,6 +567,7 @@ public class HashCUS extends LockssServlet {
 
   private void doV3() throws IOException {
     StringBuilder sb = new StringBuilder();
+    // Pylorus' hash() depends upon the first 20 characters of this string
     sb.append("# Block hashes from " + getMachineName() + ", " +
 		      ServletUtil.headerDf.format(new Date()) + "\n");
     sb.append("# AU: " + au.getName() + "\n");

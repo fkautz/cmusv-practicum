@@ -191,6 +191,7 @@ public class SimpleHasher {
       filesHashed++;
       HashBlock.Version ver = block.currentVersion();
       if (ver.getHashError() != null) {
+	// Pylorus' diff() depends upon the first 20 characters of this string
 	outs.println("Hash error (see log)        " + block.getUrl());
       } else {
 	outs.println(byteString(ver.getHashes()[0]) + "   " + block.getUrl());
