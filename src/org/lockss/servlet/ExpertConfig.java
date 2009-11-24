@@ -44,6 +44,7 @@ import org.lockss.config.*;
 import org.lockss.util.*;
 import org.lockss.plugin.*;
 import org.lockss.jetty.*;
+import org.lockss.account.*;
 
 /** Allow user to edit arbitrary config params (subject to
  * org.lockss.config.expert.allow and org.lockss.config.expert.deny)
@@ -225,9 +226,13 @@ public class ExpertConfig extends LockssServlet {
 	  illKeys.add(key);
 	}
       }
+      UserAccount acct = getUserAccount();
       if (!illKeys.isEmpty()) {
 	errMsg = "Error: Illegal parameter" + (illKeys.size() > 1 ? "s" : "")
 	  + " in expert config: " + StringUtil.separatedString(illKeys, ", ");
+	if (acct != null) {
+	  acct.auditableEvent("used Expert Config but failed: " + etext);
+	}
 	return false;
       }
       log.info("saving expert config");
@@ -237,6 +242,9 @@ public class ExpertConfig extends LockssServlet {
       statusMsg = "Update successful";
       displayConfig =
 	configMgr.readCacheConfigFile(ConfigManager.CONFIG_FILE_EXPERT);
+      if (acct != null) {
+	acct.auditableEvent("used Expert Config successfully: " + etext);
+      }
 
       return true;
     } catch (IOException e) {

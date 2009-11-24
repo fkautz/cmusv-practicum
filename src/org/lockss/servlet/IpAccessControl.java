@@ -274,7 +274,7 @@ public abstract class IpAccessControl extends LockssServlet {
 				   getConfigFileComment());
     UserAccount acct = getUserAccount();
     if (acct != null) {
-      acct.auditableEvent("IP access list changed");
+      acct.auditableEvent("changed " + getConfigFileName() + " to: " + props);
     }
   }
 
