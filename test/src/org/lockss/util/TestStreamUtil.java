@@ -137,7 +137,6 @@ public class TestStreamUtil extends LockssTestCase {
 	  }
 	}};
     th.start();
-    poke.give();
     assertTrue(wait.take(TIMEOUT_SHOULDNT));
     assertEquals(0, wdog.times.size());
     TimeBase.step(1000);
@@ -398,7 +397,7 @@ public class TestStreamUtil extends LockssTestCase {
       firstPoke.give();
       thenWait.take();
       log.debug("done()");
-      next = in.getCount() + everyNBytes;
+      next += everyNBytes;
     }
 
     public int read(byte[] b) throws IOException {
