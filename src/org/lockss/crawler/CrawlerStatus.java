@@ -62,13 +62,13 @@ public class CrawlerStatus {
     Configuration.PREFIX + "crawlStatus.recordUrls";
   public static final String DEFAULT_RECORD_URLS = ALL_URLS;
 
-  /** Determines which sets/maps of URLs are recorded and which are only
-   * counted.  (Recording URLs in crawl status takes lots of memory.)  If
-   * the substrings <code>fetched</code>, <code>excluded</code>,
-   * <code>parsed</code>, <code>notModified</code>, <code>pending</code>,
-   * <code>error</code> appear in the value of the parameter, the
-   * corresponding sets or URLs will be recorded.  <code>all</code> causes
-   * all sets to be recorded. */
+  /** Determines which sets/maps of URLs are kept after the crawl ends.
+   * (Accumulating lots of URL lists from multiple crawls can cause the
+   * daemon to run out of memory.)  If the substrings <code>fetched</code>,
+   * <code>excluded</code>, <code>parsed</code>, <code>notModified</code>,
+   * <code>pending</code>, <code>error</code> appear in the value of the
+   * parameter, the corresponding sets or URLs will be recorded.
+   * <code>all</code> causes all sets to be kept. */
   public static final String PARAM_KEEP_URLS =
     Configuration.PREFIX + "crawlStatus.keepUrls";
   public static final String DEFAULT_KEEP_URLS = "errors, sources";
