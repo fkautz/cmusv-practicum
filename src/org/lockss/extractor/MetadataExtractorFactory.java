@@ -38,8 +38,8 @@ import org.lockss.daemon.*;
 public interface MetadataExtractorFactory {
   /**
    * Create a MetadataExtractor
-   * @param mimeType the MIME type from which to extract URLs
+   * @param contentType the MIME type from which to extract URLs
    */
-  public MetadataExtractor createMetadataExtractor(String mimeType)
+  public MetadataExtractor createMetadataExtractor(String contentType)
       throws PluginException;
 }
