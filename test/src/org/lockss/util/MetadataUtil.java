@@ -41,7 +41,7 @@ import java.util.regex.Matcher;
 public class MetadataUtil {
 
 
-  static Logger log = Logger.getLogger("TestBePressMetadataExtractor");
+  static Logger log = Logger.getLogger("MetadataUtil");
 
   /**
    * Check that ISSN is valid. Method checks that ISSN number is correctly balanced (4 digits on either side of a hyphen)
@@ -102,6 +102,7 @@ public class MetadataUtil {
       log.debug("Check digit is not right. Expected: "+shouldBe+" Found: "+found);
       return false;
     }
+
 
     return true;
   }
