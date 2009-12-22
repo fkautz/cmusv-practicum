@@ -62,6 +62,9 @@ public class MockPoll implements Poll {
 
   }
 
+  public void abortPoll() {
+  }
+
   public boolean isSubpollRunning() {
     return false;
   }

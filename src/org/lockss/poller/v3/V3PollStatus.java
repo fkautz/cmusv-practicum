@@ -436,6 +436,7 @@ public class V3PollStatus {
 	  break;
 	case POLLER_STATUS_ERROR:
 	case POLLER_STATUS_EXPIRED:
+	case POLLER_STATUS_ABORTED:
 	  break;
 	case POLLER_STATUS_NO_TIME:
 	  nTooBusy++;
@@ -491,6 +492,7 @@ public class V3PollStatus {
 	  break;
 	case STATUS_DECLINED_POLL:
 	case STATUS_VOTE_ACCEPTED:
+	case STATUS_ABORTED:
 	  break;
 	}
       }

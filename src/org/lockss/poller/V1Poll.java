@@ -444,6 +444,11 @@ public abstract class V1Poll extends BasePoll {
     log.debug3("closed the poll:" + m_key);
   }
 
+  public void abortPoll() {
+    m_pollstate = ERR_ABORTED;
+    stopPoll();
+  }
+
   /**
    * prepare to check a vote in a poll.  This should check any conditions that
    *  might make running a vote check unneccessary.

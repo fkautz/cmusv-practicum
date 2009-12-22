@@ -88,7 +88,7 @@ public abstract class V3Serializer {
     this.daemon = daemon;
     this.pollDir = dir;
     if (!pollDir.exists()) {
-      throw new IllegalArgumentException("Poll directories passed as"
+      throw new IllegalArgumentException("Poll directories passed as "
                                          + "arguments must already exist");
     }
   }
