@@ -56,7 +56,7 @@ public class HighWirePressH20HtmlFilterFactory implements FilterFactory {
                                                                          "class",
                                                                          "banner-ads")),                                                                         
 
-        // Filter out <div class="content-box" id="sidebar-current-issue">...</div>
+        // Filter out <div id="sidebar-current-issue">...</div>
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
                                                                          "id",
                                                                          "sidebar-current-issue")), 
@@ -80,7 +80,18 @@ public class HighWirePressH20HtmlFilterFactory implements FilterFactory {
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
                                                                          "id",
                                                                          "cited-by")),
-    
+        // Filter out <div class="science-jobs"> (e.g. PNAS)
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
+                                                                         "class",
+                                                                         "science-jobs")),
+        // Filter out <div class="most-links-box ..."> (e.g. PNAS)
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttributeRegex("div",
+                                                                              "class",
+                                                                              "most-links-box")),
+        // Filter out <div id="cb-art-recm"> (e.g. PNAS)
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
+                                                                         "id",
+                                                                         "cb-art-recm")),
     };
     
     return new HtmlFilterInputStream(in,
