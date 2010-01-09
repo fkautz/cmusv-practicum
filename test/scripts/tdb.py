@@ -122,8 +122,9 @@ class AU(ChainedMap):
     STATUS_MANIFEST       = 'manifest'
     STATUS_WANTED         = 'wanted'
     STATUS_TESTING        = 'testing'
-    STATUS_TESTED         = 'tested'
     STATUS_NOT_READY      = 'notReady'
+    STATUS_TESTED         = 'tested'
+    STATUS_RETESTING      = 'retesting'
     STATUS_READY          = 'ready'
     STATUS_PRE_RELEASING  = 'preReleasing'
     STATUS_PRE_RELEASED   = 'preReleased'
@@ -138,8 +139,9 @@ class AU(ChainedMap):
                  STATUS_MANIFEST,
                  STATUS_WANTED,
                  STATUS_TESTING,
-                 STATUS_TESTED,
                  STATUS_NOT_READY,
+                 STATUS_TESTED,
+                 STATUS_RETESTING,
                  STATUS_READY,
                  STATUS_PRE_RELEASING,
                  STATUS_PRE_RELEASED,
