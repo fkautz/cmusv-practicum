@@ -218,35 +218,27 @@ public abstract class BaseCrawler
     }
     String auProxySpec =
       AuUtil.getStringValue(AuUtil.getAuParamOrTitleDefault(au, ConfigParamDescr.CRAWL_PROXY), null);
-    if ("DIRECT".equalsIgnoreCase(auProxySpec)) {
-      if (proxyHost != null) {
-	logger.info("AU overrides crawl proxy with DIRECT");
-      }
-      proxyHost = null;
-    } else if (auProxySpec != null) {
-      List<String> lst = StringUtil.breakAt(auProxySpec, ':', 3, false, true);
-      if (lst.size() == 2) {
-	try {
-	  String host = lst.get(0);
-	  int port = Integer.parseInt(lst.get(1));
-	  if (!StringUtil.isNullString(host) && port > 0) {
-	    proxyHost = host;
-	    proxyPort = port;
-	    proxyEnabled = true;
-	    logger.info("Using AU crawl_proxy: " + proxyHost + ":" + proxyPort);
-	  } else {
-	    logger.warning("Illegal AU crawl_proxy: " + auProxySpec);
+    if (!StringUtil.isNullString(auProxySpec)) {
+      try {
+	HostPortParser hpp = new HostPortParser(auProxySpec);
+	if (hpp.getHost() == null) {
+	  if (proxyHost != null) {
+	    logger.info("AU overrides crawl proxy with DIRECT");
 	  }
-	} catch (NumberFormatException e) {
-	  logger.warning("Illegal AU crawl_proxy: " + auProxySpec);
+	  proxyHost = null;
+	} else {
+	  proxyHost = hpp.getHost();
+	  proxyPort = hpp.getPort();
+	  proxyEnabled = true;
+	  logger.debug2("Using AU crawl_proxy: " + proxyHost + ":" + proxyPort);
 	}
-      } else {
-	logger.warning("Illegal AU crawl_proxy: " + auProxySpec);
+      } catch (HostPortParser.InvalidSpec e) {
+	logger.warning("Illegal AU crawl_proxy: " + auProxySpec, e);
       }
-    }
-    if (proxyHost != null) {
-      if (logger.isDebug()) logger.debug("Proxying through " + proxyHost
-					 + ":" + proxyPort);
+      if (proxyHost != null) {
+	if (logger.isDebug()) logger.debug("Proxying through " + proxyHost
+					   + ":" + proxyPort);
+      }
     }
     mimeTypePauseAfter304 =
       config.getBoolean(PARAM_MIME_TYPE_PAUSE_AFTER_304,
