@@ -1416,7 +1416,7 @@ public class BlockingStreamComm
       java.security.cert.Certificate[] certs = session.getPeerCertificates();
       log.debug(session.getPeerHost() + " via " + session.getProtocol() + " verified");
     } catch (SSLPeerUnverifiedException ex) {
-      log.error(s.getInetAddress() + " not verified");
+      log.error(s.getInetAddress() + ":" + s.getPort() + " not verified");
       try {
         s.close();
       } catch (IOException ex2) {
