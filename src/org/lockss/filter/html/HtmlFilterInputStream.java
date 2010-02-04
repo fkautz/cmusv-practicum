@@ -162,6 +162,7 @@ public class HtmlFilterInputStream extends InputStream {
     factory.registerTag(new HtmlTags.Iframe());
     factory.registerTag(new HtmlTags.Noscript());
     factory.registerTag(new HtmlTags.Font());
+    factory.registerTag(new HtmlTags.MyTableRow());
     parser.setNodeFactory(factory);
     return parser;
   }
