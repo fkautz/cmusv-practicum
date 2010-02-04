@@ -1050,7 +1050,17 @@ public class RepositoryNodeImpl implements RepositoryNode {
 
       // load the node properties
       if (!nodePropsLoaded) {
-	loadNodeProps(true);
+	try {
+	  loadNodeProps(true);
+	} catch (LockssRepositoryImpl.RepositoryStateException rse) {
+	  currentVersion = DELETED_VERSION;
+	  logger.warning("Renaming faulty 'nodeProps' to 'nodeProps.ERROR'");
+	  if (!PlatformUtil.updateAtomically(nodePropsFile,
+					     new File(nodePropsFile.getAbsolutePath()
+						      + FAULTY_FILE_EXTENSION))) {
+	    logger.error("Error renaming nodeProps file");
+	  }
+	}
       }
 
       // no content, so version 0
