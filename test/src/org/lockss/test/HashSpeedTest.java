@@ -108,10 +108,12 @@ public class HashSpeedTest extends LockssTestCase {
     theDaemon.getPluginManager().startService();
     theDaemon.getSystemMetrics().startService();
     theDaemon.getHashService().startService();
+    theDaemon.getPluginManager().startLoadablePlugins();
 
     sau =
         (SimulatedArchivalUnit)theDaemon.getPluginManager().getAllAus().get(0);
-    theDaemon.getLockssRepository(sau);
+    theDaemon.getLockssRepository(sau).startService();
+    theDaemon.setNodeManager(new MockNodeManager(), sau);
   }
 
   public void tearDown() throws Exception {
