@@ -242,12 +242,6 @@ public class TestProjectMuseArchivalUnit extends LockssTestCase {
 	       instanceof ProjectMuseHtmlFilterFactory);
   }
 
-  public void testRefetchDepth() throws Exception {
-    DefinableArchivalUnit au = makeAu(new URL(ROOT_URL), 60, DIR);
-    SpiderCrawlSpec cs = (SpiderCrawlSpec) au.getCrawlSpec();
-    assertEquals(2, cs.getRefetchDepth());
-  }
-
   public static void main(String[] argv) {
     String[] testCaseList = {TestProjectMuseArchivalUnit.class.getName()};
     junit.swingui.TestRunner.main(testCaseList);
