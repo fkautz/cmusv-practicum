@@ -355,7 +355,14 @@ public abstract class ObjectSerializer {
                                                                DEFAULT_SERIALIZATION_READ_BACK));
     this.tempFileFactory = new TempFileFactory() {
       public File createTempFile(String prefix, String suffix, File directory) throws IOException {
-        return File.createTempFile(prefix, suffix, directory);
+	try {
+	  return File.createTempFile(prefix, suffix, directory);
+	} catch (IOException e) {
+	  IOException ne =
+	    new IOException("Couldn't create temp file in " + directory);
+	  ne.initCause(e);
+	  throw ne;
+	}
       }
     };
   }
