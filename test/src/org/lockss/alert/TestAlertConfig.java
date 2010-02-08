@@ -114,8 +114,8 @@ public class TestAlertConfig extends LockssTestCase {
     AlertConfig conf =
       new AlertConfig(ListUtil.list(passwdFilt, crawlExclFilt, devFilt));
 
-    File file = new File("/tmp/alertconf.xml");
-    File file2 = new File("/tmp/alertconf.asc");
+    File file = FileTestUtil.tempFile("alertconf", ".xml");
+    File file2 = FileTestUtil.tempFile("alertconf", ".asc");
     mgr.storeAlertConfig(file, conf);
 
     Reader rdr =
