@@ -851,15 +851,8 @@ public class TestUrlUtil extends LockssTestCase {
     assertFalse(UrlUtil.isJarUrl("file:/foo.bar"));
   }
 
-  public void testMakeJarFileUrl() {
-    assertEquals("jar:file:///dir/2!/file.txt",
-		 UrlUtil.makeJarFileUrl("/dir/2", "file.txt"));
+  public void testMakeJarFileUrl() throws MalformedURLException {
+    assertMatchesRE("jar:file://?dir/2!/file.txt",
+ 		    UrlUtil.makeJarFileUrl("/dir/2", "file.txt"));
   }
-
-  public static String makeJarFileUrl(String jarPath, String entryName) {
-    return "jar:file://" + jarPath + "!" + entryName;
-  }
-
-
-
 }

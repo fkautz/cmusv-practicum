@@ -441,8 +441,9 @@ public class UrlUtil {
   }
 
   /** Return a jar file URL pointing to the entry in the jar */
-  public static String makeJarFileUrl(String jarPath, String entryName) {
-    return "jar:file://" + jarPath + "!/" + entryName;
+  public static String makeJarFileUrl(String jarPath, String entryName)
+      throws MalformedURLException {
+    return "jar:" + new File(jarPath).toURI().toURL() + "!/" + entryName;
   }
 
   /**
