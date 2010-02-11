@@ -135,10 +135,7 @@ public class TestHighWirePlugin extends LockssTestCase {
   }
 
   public void testHandles404Result() throws Exception {
-    String name = RetryDeadLinkException.class.getName();
-    Class expected = Class.forName(name);
-    Class found =( (HttpResultMap) plugin.getCacheResultMap()).getExceptionClass(404);
-    assertEquals(expected, found);
+    assertClass(RetryDeadLinkException.class, ( (HttpResultMap) plugin.getCacheResultMap()).mapException(null, null, 404, null));
 
   }
 

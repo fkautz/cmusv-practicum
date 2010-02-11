@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2004 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,15 +29,24 @@ be used in advertising or otherwise to promote the sale, use or other dealings
 in this Software without prior written authorization from Stanford University.
 
 */
-package org.lockss.util.urlconn;
-import org.lockss.daemon.*;
 
-public interface CacheResultHandler {
+package org.lockss.util.urlconn;
+
+import org.lockss.daemon.*;
+import org.lockss.plugin.*;
+
+
+public interface CacheResultHandler extends PluginFetchEventResponse {
+
   public void init(CacheResultMap map) throws PluginException;
-  public CacheException handleResult(int code,
-				     LockssUrlConnection connection)
+
+  public CacheException handleResult(ArchivalUnit au,
+				     String url,
+				     int code)
       throws PluginException;
-  public CacheException handleResult(Exception ex,
-				     LockssUrlConnection connection)
+
+  public CacheException handleResult(ArchivalUnit au,
+				     String url,
+				     Exception ex)
       throws PluginException;
 }

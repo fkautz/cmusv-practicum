@@ -4,7 +4,7 @@
 
 /*
 
- Copyright (c) 2000-2005 Board of Trustees of Leland Stanford Jr. University,
+ Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
  all rights reserved.
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -112,7 +112,7 @@ public class TestEditableDefinablePlugin
         "org.lockss.util.urlconn.CacheException$NoRetryDeadLinkException";
     Class expected = Class.forName(name);
     Class actual = ( (HttpResultMap) edPlugin.getCacheResultMap()).
-        getExceptionClass(404);
+      mapException(null, null, 404, null).getClass();
     assertEquals("default 404", expected, actual);
 
     // test remapping a 404

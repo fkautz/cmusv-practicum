@@ -30,27 +30,10 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.util.urlconn;
+package org.lockss.plugin;
 
-import org.lockss.plugin.ArchivalUnit;
-
-
-/**
- * Maps the result of a cache (fetch and store locally) operation, to
- * success (null) or an exception understood by LOCKSS, usually one under
- * CacheException
- */
-
-public interface CacheResultMap {
-  public CacheException getMalformedURLException(Exception nestedException);
-
-  public CacheException getRepositoryException(Exception nestedException);
-
-  public CacheException checkResult(ArchivalUnit au,
-				    LockssUrlConnection connection);
-
-  public CacheException mapException(ArchivalUnit au,
-				     LockssUrlConnection connection,
-				     Exception fetchException,
-				     String message);
+/** Common supertype of plugin-specified responses to HTTP response codes
+ * or fetch exceptions.
+ * @see DefinablePlugin#initResultMap()*/
+public interface PluginFetchEventResponse {
 }
