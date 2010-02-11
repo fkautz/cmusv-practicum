@@ -1453,11 +1453,8 @@ public class PollManager
   private void preloadStoredPolls() {
     this.serializedPollers = new HashMap();
     this.serializedVoters = new HashMap();
-    String relStateDir =
-      CurrentConfig.getParam(V3Serializer.PARAM_V3_STATE_LOCATION,
-                             V3Serializer.DEFAULT_V3_STATE_LOCATION);
-    File stateDir =
-      ConfigManager.getConfigManager().getPlatformDir(relStateDir);
+    File stateDir = PollUtil.ensurePollStateRoot();
+
     File[] dirs = stateDir.listFiles();
     if (dirs == null || dirs.length == 0) {
       theLog.debug2("No saved polls found.");
