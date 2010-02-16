@@ -50,12 +50,11 @@ public class HindawiPublishingCorporationHtmlFilterFactory implements FilterFact
                                                                          "id",
                                                                          "left_column")),
                                                                          
-    HtmlTransform[] transforms = new HtmlTransform[] {
         // Filter out <input type="hidden" name="__VIEWSTATE" id="VIEWSTATE" 
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("input",
                                                                          "id",
                                                                          "VIEWSTATE")),
-    HtmlTransform[] transforms = new HtmlTransform[] {
+
         // Filter out <input type="hidden" name="__EVENTVALIDATION" id="EVENTVALIDATION"
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("input",
                                                                          "id",
