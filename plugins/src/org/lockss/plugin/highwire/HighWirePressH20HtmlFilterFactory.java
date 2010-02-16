@@ -62,6 +62,8 @@ public class HighWirePressH20HtmlFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttributeRegex("div", "class", "most-links-box"),
         // e.g. PNAS
         HtmlNodeFilters.tagWithAttribute("div", "id", "cb-art-recm"),
+        // e.g. SWCS TOC pages
+        HtmlNodeFilters.tagWithAttribute("div", "class", "cit-form-select"),
     };
     
     return new HtmlFilterInputStream(in,
