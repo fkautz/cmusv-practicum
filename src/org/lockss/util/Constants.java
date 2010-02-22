@@ -63,6 +63,9 @@ public interface Constants {
   /** The line separator string on this system */
   public static String EOL = System.getProperty("line.separator");
 
+  /** Carriage-return linefeed */
+  public static final String CRLF = "\r\n";
+
   /** Separator for polling groups */
   public static String GROUP_SEPARATOR = ";";
 
