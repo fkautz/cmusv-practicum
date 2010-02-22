@@ -261,6 +261,10 @@ public class HttpResultMap implements CacheResultMap {
  		  CacheException.RetryableNetworkException_3_30S.class);
     storeMapEntry(LockssUrlConnection.ConnectionTimeoutException.class,
  		  CacheException.RetryableNetworkException_3_30S.class);
+    // SocketTimeoutException is an InterruptedIOException, not a
+    // SocketException
+    storeMapEntry(SocketTimeoutException.class,
+ 		  CacheException.RetryableNetworkException_3_30S.class);
     // I don't think these can happen
     storeMapEntry(ProtocolException.class,
  		  CacheException.RetryableNetworkException_3_30S.class);

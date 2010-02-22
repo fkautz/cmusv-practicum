@@ -139,6 +139,12 @@ public class TestHttpResultMap extends LockssTestCase {
 	       CacheException.RetryableNetworkException_3_30S);
 
     exception = resultMap.mapException(null, null,
+				       new SocketTimeoutException(), "foo");
+    assertTrue(exception.toString(),
+	       exception instanceof
+	       CacheException.RetryableNetworkException_3_30S);
+
+    exception = resultMap.mapException(null, null,
 				       new ConnectException(), "foo");
     assertTrue(exception instanceof
 	       CacheException.RetryableNetworkException_3_30S);
