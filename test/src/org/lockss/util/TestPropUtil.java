@@ -323,4 +323,12 @@ public class TestPropUtil extends LockssTestCase {
     assertEncodedPropsInverse(props);
   }
 
+  public void testToHeaderString() {
+    Properties props = new Properties();
+    props.setProperty("key1", "val1");
+    props.setProperty("key2", "val 2");
+    assertEquals("key1: val1\r\nkey2: val 2\r\n",
+		 PropUtil.toHeaderString(props));
+  }
+
 }

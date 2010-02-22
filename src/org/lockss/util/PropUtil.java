@@ -306,5 +306,24 @@ public class PropUtil {
     }
   }
 
-
+  /**
+   * Returns a CRLF-separated string of prop: value, suitable for HTTP
+   * headers
+   * @param props properties to print
+   */
+  public static String toHeaderString(Properties props) {
+    // Sort to produce predictable order for tests
+    SortedSet<String> keys = new TreeSet<String>();
+    for (Map.Entry ent : props.entrySet()) {
+      keys.add((String)ent.getKey());
+    }
+    StringBuilder sb = new StringBuilder();
+    for (String key : keys) {
+      sb.append(key);
+      sb.append(": ");
+      sb.append(props.get(key));
+      sb.append(Constants.CRLF);
+    }
+    return sb.toString();
+  }
 }
