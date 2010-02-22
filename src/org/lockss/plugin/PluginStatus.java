@@ -343,7 +343,11 @@ class AllAuids extends PluginStatus implements StatusAccessor.DebugOnly {
     List rows = new ArrayList();
     for (TitleConfig tc : tcs) {
       Map row = new HashMap();
-      row.put("auid", tc.getAuId(pmgr));
+      try {
+	row.put("auid", tc.getAuId(pmgr));
+      } catch (RuntimeException e) {
+	row.put("auid", "(Can't compute AUID)");
+      }
       row.put("name", tc.getDisplayName());
       rows.add(row);
     }
