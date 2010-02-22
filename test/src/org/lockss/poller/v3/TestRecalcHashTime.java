@@ -78,7 +78,7 @@ public class TestRecalcHashTime extends LockssTestCase {
     pollMgr = daemon.getPollManager();
     hashSvc.startService();
     schedSvc.startService();
-    mau = new MockArchivalUnit();
+    mau = new MockArchivalUnit(new MockPlugin());
     mcus = new MyMockCUS();
     // hash iterator not used but must be non-null
     mcus.setHashIterator(ListUtil.list("1").iterator());

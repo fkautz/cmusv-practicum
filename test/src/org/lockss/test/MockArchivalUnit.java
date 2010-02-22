@@ -324,6 +324,10 @@ public class MockArchivalUnit implements ArchivalUnit {
     urlsToCache.add(url);
   }
 
+  public void removeUrlToBeCached(String url) {
+    urlsToCache.remove(url);
+  }
+
   public boolean shouldBeCached(String url) {
     return urlsToCache.contains(url);
   }

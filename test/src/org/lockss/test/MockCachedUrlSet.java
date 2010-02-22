@@ -78,7 +78,11 @@ public class MockCachedUrlSet implements CachedUrlSet {
   }
 
   public MockCachedUrlSet(MockArchivalUnit owner, CachedUrlSetSpec spec) {
+    this(owner);
     this.spec = spec;
+  }
+
+  public MockCachedUrlSet(MockArchivalUnit owner) {
     this.au = owner;
   }
 
