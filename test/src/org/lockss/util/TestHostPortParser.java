@@ -83,6 +83,11 @@ public class TestHostPortParser extends LockssTestCase {
     assertEquals(80, p1.getPort());
   }
 
+  public void testIsDirect() {
+    assertTrue(HostPortParser.isDirect("direct"));
+  }
+
+
   public void testIll() {
     try {
       new HostPortParser("foo.bar:32gb");

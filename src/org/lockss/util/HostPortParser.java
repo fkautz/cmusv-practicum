@@ -43,8 +43,7 @@ public class HostPortParser {
   private int port;
 
   public HostPortParser(String spec) throws InvalidSpec {
-    if (StringUtil.isNullString(spec)
-	|| "DIRECT".equalsIgnoreCase(spec) || "NONE".equalsIgnoreCase(spec)) {
+    if (StringUtil.isNullString(spec) || isDirect(spec)) {
       return;
     }
     int pos = spec.lastIndexOf(':');
@@ -68,6 +67,10 @@ public class HostPortParser {
 
   public int getPort() {
     return port;
+  }
+
+  public static boolean isDirect(String spec) {
+    return "DIRECT".equalsIgnoreCase(spec) || "NONE".equalsIgnoreCase(spec);
   }
 
   public class InvalidSpec extends Exception {
