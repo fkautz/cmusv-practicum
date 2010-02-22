@@ -32,11 +32,12 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.doclet;
 
-import org.lockss.util.StringUtil;
 import java.util.*;
 import java.io.*;
 import java.lang.reflect.*;
 import com.sun.javadoc.*;
+
+import org.lockss.util.*;
 
 /**
  * A JavaDoc doclet that prints configuration parameter information.
@@ -88,7 +89,7 @@ public class ParamDoclet {
 	      Object value = field.constantValue();
 
 	      if (value instanceof String) {
-		String paramName = escapeName((String)value);
+		String paramName = HtmlUtil.htmlEncode((String)value);
 		String comment = field.getRawCommentText();
 		info.paramName = paramName;
 		info.comment = comment;
@@ -102,7 +103,8 @@ public class ParamDoclet {
 	      info.usedIn.add(className);
 	    }
 	  } else if (name.startsWith("DEFAULT_")) {
-	    info.defaultValue = getDefaultValue(field, root);
+	    info.defaultValue =
+	      HtmlUtil.htmlEncode(getDefaultValue(field, root));
 	  }
 	}
       }
@@ -125,12 +127,6 @@ public class ParamDoclet {
     }
 
     return true;
-  }
-
-  // The simplest possible way to escape < and > in param names.
-  private static String escapeName(String name) {
-    String returnVal = StringUtil.replaceString(name, "<", "&lt;");
-    return StringUtil.replaceString(returnVal, ">", "&gt;");
   }
 
   private static void printDocHeader() {
