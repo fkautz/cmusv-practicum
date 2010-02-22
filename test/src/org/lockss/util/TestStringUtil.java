@@ -666,9 +666,13 @@ public class TestStringUtil extends LockssTestCase {
   }
 
   public void testTitleCase() {
+    assertEquals("", StringUtil.titleCase(""));
     String txt1 = "this is 8 words.  can it be handled?";
     String txt2 = "This Is 8 Words.  Can It Be Handled?";
-    assertEquals(StringUtil.titleCase(txt1),txt2);
+    assertEquals(txt2, StringUtil.titleCase(txt1));
+    assertEquals(txt2, StringUtil.titleCase(txt1, ' '));
+
+    assertEquals("Content-Type", StringUtil.titleCase("content-type", '-'));
   }
 
   public void testFromFile() {
