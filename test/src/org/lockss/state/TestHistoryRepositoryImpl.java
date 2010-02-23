@@ -396,6 +396,7 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
     FileInputStream fis = new FileInputStream(xmlFile);
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     StreamUtil.copy(fis, baos);
+    fis.close();
     String expectedStr = baos.toString();
 
     auState = new AuState(mau, 1234, 4321, 4321, 5555,
@@ -410,6 +411,7 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
     fis = new FileInputStream(xmlFile);
     baos = new ByteArrayOutputStream(expectedStr.length());
     StreamUtil.copy(fis, baos);
+    fis.close();
     log.info(baos.toString());
 
     auState = null;
@@ -426,6 +428,7 @@ public abstract class TestHistoryRepositoryImpl extends LockssTestCase {
     fis = new FileInputStream(xmlFile);
     baos = new ByteArrayOutputStream(expectedStr.length());
     StreamUtil.copy(fis, baos);
+    fis.close();
     assertEquals(expectedStr, baos.toString());
   }
 
