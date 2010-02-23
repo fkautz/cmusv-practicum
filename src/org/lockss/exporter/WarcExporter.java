@@ -135,7 +135,6 @@ public class WarcExporter extends Exporter {
       }
     } else {
       try {
-	String hdrString = getHttpResponseString(cu);
 	String mimeType =
 	  HeaderUtil.getMimeTypeFromContentType(cu.getContentType());
 	try {

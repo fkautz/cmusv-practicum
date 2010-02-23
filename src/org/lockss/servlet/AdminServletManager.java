@@ -317,8 +317,7 @@ public class AdminServletManager extends BaseServletManager {
     new ServletDescr("ExportContent",
 		     ExportContent.class,
                      "Export Content",
-		     (ServletDescr.IN_NAV
-		      | ServletDescr.NEED_ROLE_CONTENT_ADMIN),
+		     (ServletDescr.NEED_ROLE_CONTENT_ADMIN),
 		     "Export preserved content as Zip, WARC, etc.") {
       public boolean isEnabled(LockssDaemon daemon) {
 	return CurrentConfig.getBooleanParam(ExportContent.PARAM_ENABLE_EXPORT,
