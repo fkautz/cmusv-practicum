@@ -960,13 +960,16 @@ public abstract class LockssServlet extends HttpServlet
 
   private static synchronized String getJavascript() {
     if (jstext == null) {
+    InputStream istr = null;
       try {
 	ClassLoader loader = Thread.currentThread().getContextClassLoader();
-	InputStream istr = loader.getResourceAsStream(JAVASCRIPT_RESOURCE);
+	istr = loader.getResourceAsStream(JAVASCRIPT_RESOURCE);
 	jstext = StringUtil.fromInputStream(istr);
 	istr.close();
       } catch (Exception e) {
 	log.error("Can't load javascript", e);
+      } finally {
+    	IOUtil.safeClose(istr);
       }
     }
     return jstext;
