@@ -332,14 +332,19 @@ public class TestStringUtil extends LockssTestCase {
 
   }
 
+  static final String sbefore = "Here is some weird text. It has \n\n\r\n\r\r newlines.";
+  static final String safter =  "Here is some weird text. It has \n\n\n\n\n newlines.";
+
+  public void testGetLineReader() throws Exception {
+    this.assertReaderMatchesString(safter, StringUtil.getLineReader(new StringReader(sbefore)));
+  }
   public void testFromReader() throws Exception {
-    String s = makeTestString(45);
-    Reader r = new InputStreamReader(new StringInputStream(s));
-    assertEquals(s, StringUtil.fromReader(r));
+    Reader r = new InputStreamReader(new StringInputStream(sbefore));
+    assertEquals(safter, StringUtil.fromReader(r));
   }
 
   String makeTestString(int approxLen) {
-    String s = "asdfjsfdsdfkljasdlkjasdflkjasdlfkjasdflkjasldkfjasd";
+    String s = "a\nsdfjsfdsdfkljasdlkjasdflkjasdlfkjasdflkjasldkfjasd";
     if (s.length() >= approxLen) return s;
     StringBuffer sb = new StringBuffer(approxLen + 100);
     while (sb.length() < approxLen) {
@@ -374,6 +379,13 @@ public class TestStringUtil extends LockssTestCase {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     StringUtil.toOutputStream(baos, s);
     assertEquals(s, baos.toString());
+  }
+
+  public void testToWriter() throws Exception {
+	String s = "asdfjsfd";
+	StringWriter swrtr = new StringWriter();
+	StringUtil.toWriter(swrtr, s);
+	assertEquals(s, swrtr.toString());
   }
 
   public void testEqualStrings() {
