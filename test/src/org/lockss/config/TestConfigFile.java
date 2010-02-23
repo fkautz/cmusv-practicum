@@ -370,7 +370,7 @@ public abstract class TestConfigFile extends LockssTestCase {
       JarConfigFile jcf;
 
       jcf = new JarConfigFile("jar:file:///file/not/found!/who.cares");
-      testCantRead(jcf, "ZipException");
+      testCantRead(jcf, "(ZipException|FileNotFoundException)");
 
       String jarName = getTempDir().getAbsolutePath() +
 	File.separator + "test.jar";
