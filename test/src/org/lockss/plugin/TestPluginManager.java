@@ -1134,7 +1134,7 @@ public class TestPluginManager extends LockssTestCase {
     minimalConfig();
     File keystoreFile =
       copyKeystoreFileToKnownLocation("org/lockss/test/public.keystore");
-    String keystoreUrl = "file://" + keystoreFile.getAbsolutePath();
+    String keystoreUrl = keystoreFile.toURI().toURL().toExternalForm();
     KeyStore ks = mgr.initKeystore(keystoreUrl, "f00bar");
     assertNotNull(ks);
     assertTrue(ks.containsAlias("goodguy"));
@@ -1144,7 +1144,7 @@ public class TestPluginManager extends LockssTestCase {
     minimalConfig();
     File keystoreFile =
       copyKeystoreFileToKnownLocation("org/lockss/test/public.keystore");
-    String keystoreUrl = "file://" + keystoreFile.getAbsolutePath();
+    String keystoreUrl = keystoreFile.toURI().toURL().toExternalForm();
     KeyStore ks = mgr.initKeystore(keystoreUrl, "f00barrrrr");
     assertNull(ks);
   }
