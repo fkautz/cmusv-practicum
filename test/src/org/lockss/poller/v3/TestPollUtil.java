@@ -120,13 +120,13 @@ public class TestPollUtil extends LockssTestCase {
 
   public void testGetPollStateRoot() {
     ConfigurationUtil.setFromArgs(V3Poller.PARAM_STATE_PATH, "/tmp/path");
-    assertEquals("/tmp/path",
-		 PollUtil.getPollStateRoot().toString());
+    assertEquals(new File("/tmp/path"),
+		 PollUtil.getPollStateRoot());
     ConfigurationUtil.setFromArgs(V3Poller.PARAM_REL_STATE_PATH, "path/2",
 				  ConfigManager.PARAM_PLATFORM_DISK_SPACE_LIST,
 				  "/mount/point");
-    assertEquals("/mount/point/path/2",
-		 PollUtil.getPollStateRoot().toString());
+    assertEquals(new File("/mount/point/path/2"),
+		 PollUtil.getPollStateRoot());
   }
 
 
