@@ -66,6 +66,10 @@ public class AnnualReviewsHtmlFilterFactory implements FilterFactory {
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttributeRegex("a",
                                                                               "href",
                                                                               "/action/showFeed\\?(.*&)?mi=")),
+        // Filter out <a href="...">...</a> where the href value matches the incrementing trademark value
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttributeRegex("a",
+                                                                              "href",
+                                                                              "/about/trademark\\.aspx")),
         // Filter out <script>...</script>
         HtmlNodeFilterTransform.exclude(new TagNameFilter("script")),
     };
