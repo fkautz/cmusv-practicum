@@ -49,11 +49,11 @@ public class HindawiPublishingCorporationHtmlFilterFactory implements FilterFact
       throws PluginException {
         NodeFilter[] filters = new NodeFilter[] {
         // Filter out <div id="left_column">...</div>
-        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div", "id", "left_column")),
+        HtmlNodeFilters.tagWithAttribute("div", "id", "left_column"),
         // Filter out <input type="hidden" name="__VIEWSTATE" id="VIEWSTATE" 
-        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("input", "id", "VIEWSTATE")),
+        HtmlNodeFilters.tagWithAttribute("input", "id", "VIEWSTATE"),
         // Filter out <input type="hidden" name="__EVENTVALIDATION" id="EVENTVALIDATION"
-        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("input", "id", "EVENTVALIDATION")),
+        HtmlNodeFilters.tagWithAttribute("input", "id", "EVENTVALIDATION"),
     };
     return new HtmlFilterInputStream(in,
                                      encoding,
