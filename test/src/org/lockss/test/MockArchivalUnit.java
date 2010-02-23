@@ -139,7 +139,7 @@ public class MockArchivalUnit implements ArchivalUnit {
   }
 
   public TitleConfig getTitleConfig() {
-    throw new UnsupportedOperationException("Not implemented");
+    return null;
   }
 
   public void setNewContentCrawlUrls(List urls) {
