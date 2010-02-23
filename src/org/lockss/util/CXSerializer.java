@@ -273,9 +273,15 @@ public class CXSerializer extends ObjectSerializer {
       ret = deserialize(reader, wasCastor);
     }
     catch (SerializationException se) {
+      // must close reader to unlock inputFile
+      // because failDeserialize manipulates it
+      IOUtil.safeClose(reader);  
       throw failDeserialize(se, inputFile);
     }
     catch (InterruptedIOException iioe) {
+      // must close reader to unlock inputFile
+      // because failDeserialize manipulates it
+      IOUtil.safeClose(reader);
       throw failDeserialize(iioe, inputFile);
     }
     finally {
