@@ -835,13 +835,11 @@ public class ArchivalUnitStatus
 					  ColumnDescriptor.TYPE_DATE,
 					  new Long(state.getAuCreationTime())));
 
-      String auProxySpec =
-	AuUtil.getStringValue(AuUtil.getAuParamOrTitleDefault(au,
-							      ConfigParamDescr.CRAWL_PROXY),
-			      null);
-      if (!StringUtil.isNullString(auProxySpec)) {
-	String disp = (HostPortParser.isDirect(auProxySpec)
-		       ? "Direct connection" : auProxySpec);
+      AuUtil.AuProxyInfo aupinfo = AuUtil.getAuProxyInfo(au);
+      if (aupinfo.isAuOverride()) {
+	String disp = (aupinfo.getHost() == null
+		       ? "Direct connection"
+		       : aupinfo.getHost() + ":" + aupinfo.getPort());
 	res.add(new StatusTable.SummaryInfo("Crawl proxy",
 					    ColumnDescriptor.TYPE_STRING,
 					    disp));
