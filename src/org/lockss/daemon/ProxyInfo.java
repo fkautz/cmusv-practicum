@@ -695,9 +695,7 @@ public class ProxyInfo {
           " (generated from " + url + ")", url, isDirectFirst);
     }
     finally {
-      if (bis != null) {
-	bis.close();
-      }
+      IOUtil.safeClose(bis);
     }
   }
 
