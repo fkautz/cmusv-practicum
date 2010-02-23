@@ -60,7 +60,7 @@ public class JarConfigFile extends BaseConfigFile {
     }
     log.debug2("Loading JAR config file: " + m_fileUrl);
     URL jarUrl = new URL(m_fileUrl);
-    JarURLConnection con = (JarURLConnection)jarUrl.openConnection();
+    final JarURLConnection con = (JarURLConnection)jarUrl.openConnection();
     JarEntry entry = con.getJarEntry();
     if (m_jarFile == null) {
       JarFile jf = con.getJarFile();
@@ -69,7 +69,14 @@ public class JarConfigFile extends BaseConfigFile {
       m_jarFile = new File(name);
     }
 //     m_entryTime = Long.toString(entry.getTime());
-    return con.getInputStream();
+    return new FilterInputStream(con.getInputStream()) {
+    	public void close() throws IOException
+    	{
+    		super.close();
+    		// close connection JAR file to unlock file on Windows
+    		con.getJarFile().close();
+    	}
+    };
   }
 
   protected String calcNewLastModified() {
