@@ -852,7 +852,7 @@ public class TestUrlUtil extends LockssTestCase {
   }
 
   public void testMakeJarFileUrl() throws MalformedURLException {
-    assertMatchesRE("jar:file://?dir/2!/file.txt",
+    assertMatchesRE("jar:file:/.*/dir/2!/file.txt",    // ".*" skips over DOS drive spec
  		    UrlUtil.makeJarFileUrl("/dir/2", "file.txt"));
   }
 }
