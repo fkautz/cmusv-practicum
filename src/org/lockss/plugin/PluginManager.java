@@ -2005,7 +2005,7 @@ public class PluginManager
 	}
 	log.debug("Loading keystore: " + keystoreLoc);
         ks = KeyStore.getInstance("JKS", "SUN");
-	if (keystoreLoc.startsWith(File.separator)) {
+    if (new File(keystoreLoc).exists()) {
 	  InputStream kin = new FileInputStream(new File(keystoreLoc));
 	  try {
  	    ks.load(kin, passchar);
