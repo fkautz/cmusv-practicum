@@ -86,7 +86,7 @@ public class ZipExporter extends Exporter {
     ensureOpenZip();
     InputStream ins = cu.getUnfilteredInputStream();
     CIProperties props = cu.getProperties();
-    ZipEntry ent = new ZipEntry(cu.getUrl());
+    ZipEntry ent = new ZipEntry(xlateFilename(cu.getUrl()));
     // Store HTTP response headers into entry comment
     ent.setComment(getHttpResponseString(cu));
     try {
