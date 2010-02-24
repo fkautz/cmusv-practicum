@@ -245,22 +245,6 @@ public class TestStringUtil extends LockssTestCase {
     assertSame(testStr, StringUtil.replaceString(testStr, "xx", "xx"));
   }
 
-  public void testReplaceChars(){
-    String test1 = "abc123";
-    assertSame(test1, StringUtil.replaceChars("abc123",
-					      new char[0],
-					      new char[0]));
-    assertEquals("abx123", StringUtil.replaceChars("abc123",
-						   new char[] {'c'},
-						   new char[] {'x'}));
-    assertEquals("abc120", StringUtil.replaceChars("abc123",
-						   new char[] {'3'},
-						   new char[] {'0'}));
-    assertEquals("ABc123", StringUtil.replaceChars("abc123",
-						   new char[] {'z','a','x','b'},
-						   new char[] {'Z','A','X','B'}));
-  }
-
   public void testBreakAt() {
     Vector v = new Vector();
     assertEquals(v, StringUtil.breakAt(null, ' '));

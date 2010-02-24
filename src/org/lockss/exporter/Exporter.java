@@ -36,6 +36,8 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
+import org.apache.commons.lang.StringUtils;
+
 import org.lockss.app.*;
 import org.lockss.util.*;
 import org.lockss.config.*;
@@ -269,10 +271,10 @@ public abstract class Exporter {
     public Exporter makeExporter(LockssDaemon daemon, ArchivalUnit au);
   }      
 
-  static final char[] WINDOWS_FROM = {'?', '<', '>', '\\', ':', '*', '|'};
-  static final char[] WINDOWS_TO = {'_', '_', '_', '_', '_', '_', '_'};
-  static final char[] MAC_FROM = {':'};
-  static final char[] MAC_TO = {'_'};
+  static final String WINDOWS_FROM = "?<>:*|\\";
+  static final String WINDOWS_TO =   "_______";
+  static final String MAC_FROM = ":";
+  static final String MAC_TO =   "_";
 
   /** Enum of filename translation types */
   public static enum FilenameTranslation {
@@ -283,12 +285,12 @@ public abstract class Exporter {
     },
     XLATE_WINDOWS("Windows") {
       public String xlate(String s) {
-	return StringUtil.replaceChars(s, WINDOWS_FROM, WINDOWS_TO);
+	return StringUtils.replaceChars(s, WINDOWS_FROM, WINDOWS_TO);
       }
     },
     XLATE_MAC("MacOS") {
       public String xlate(String s) {
-	return StringUtil.replaceChars(s, MAC_FROM, MAC_TO);
+	return StringUtils.replaceChars(s, MAC_FROM, MAC_TO);
       }
     };
 
