@@ -104,7 +104,7 @@ public class HTTPConfigFile extends BaseConfigFile {
     InputStream in = null;
     LockssUrlConnection conn = openUrlConnection(url);
 
-    Configuration conf = ConfigManager.getCurrentConfig();
+    Configuration conf = ConfigManager.getPlatformConfig();
     String proxySpec = conf.get(ConfigManager.PARAM_PROPS_PROXY);
     String proxyHost = null;
     int proxyPort = 0;
