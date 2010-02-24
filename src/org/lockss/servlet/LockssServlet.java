@@ -889,7 +889,6 @@ public abstract class LockssServlet extends HttpServlet
     }
     setTabOrder(in);
     c.add(in);
-    c.add(" ");
     c.add(label);
     return c;
   }
