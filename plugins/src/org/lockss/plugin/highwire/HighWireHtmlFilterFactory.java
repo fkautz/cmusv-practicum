@@ -88,6 +88,8 @@ public class HighWireHtmlFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttributeRegex("a", "href", "^/cgi/openurl"),
         // Contains ad-dependent URLs (e.g. American Academy of Pediatrics)
         HtmlNodeFilters.tagWithAttributeRegex("a", "href", "^http://ads.adhostingsolutions.com/"),
+        // alt for less/greater than confuses WhiteSpace filter
+        HtmlNodeFilters.tagWithAttributeRegex("img", "alt", "[<>]"),
     };
 
 
