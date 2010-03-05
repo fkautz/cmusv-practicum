@@ -92,7 +92,7 @@ public class TestBlackbirdPlugin extends LockssTestCase {
     props.setProperty(VOL_KEY, "322");
 
     DefinableArchivalUnit au = makeAuFromProps(props);
-    assertEquals("www.example.com, vol. 322", au.getName());
+    assertEquals("Blackbird Plugin, Base URL http://www.example.com/, Volume 322", au.getName());
   }
 
   public void testGetPluginId() {
