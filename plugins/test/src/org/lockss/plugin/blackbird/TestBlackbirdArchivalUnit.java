@@ -207,9 +207,9 @@ public class TestBlackbirdArchivalUnit extends LockssPluginTestCase {
 
   public void testGetName() throws Exception {
     DefinableArchivalUnit au = makeAu(new URL(ROOT_URL), 2);
-    assertEquals("www.blackbird.vcu.edu, vol. 2", au.getName());
+    assertEquals("Blackbird Plugin, Base URL http://www.blackbird.vcu.edu/, Volume 2", au.getName());
     DefinableArchivalUnit au1 = makeAu(new URL("http://www.bmj.com/"), 3);
-    assertEquals("www.bmj.com, vol. 3", au1.getName());
+    assertEquals("Blackbird Plugin, Base URL http://www.bmj.com/, Volume 3", au1.getName());
   }
 
   public void testGetFilterRules() throws Exception {
