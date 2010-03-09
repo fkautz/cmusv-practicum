@@ -510,7 +510,7 @@ public class ArchivalUnitStatus
       try {
 	ArchivalUnit au = theDaemon.getPluginManager().getAuFromId(key);
 	if (au == null) {
-	  throw new StatusService.NoSuchTableException("Unknown auid: " + key);
+	  throw new StatusService.NoSuchTableException("Unknown AUID: " + key);
 	}
 	populateTable(table, au);
       } catch (StatusService.NoSuchTableException e) {
@@ -518,7 +518,7 @@ public class ArchivalUnitStatus
       } catch (Exception e) {
 	logger.warning("Error building table", e);
 	throw new StatusService.
-	  NoSuchTableException("Error building table for auid: " + key);
+	  NoSuchTableException("Error building table for AUID: " + key);
       }
     }
 
