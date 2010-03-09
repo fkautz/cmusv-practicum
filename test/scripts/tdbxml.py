@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# coding: utf-8
 
 # $Id$
 #
@@ -42,12 +43,14 @@ _IMPLICIT_PARAM_ORDER = [
 
 def _escape(str):
     from xml.sax import saxutils
-    return saxutils.escape(str)
+    return saxutils.escape(str).decode('utf-8').encode('ascii', 'xmlcharrefreplace')
 
 def _short_au_name(au):
     str = au.name()
     str = re.sub(r'Volume\s+(\S+)$', r'\1', str)
     str = re.sub(r'\s+', '', str)
+    str = re.sub(r'é|è|ê|ë', 'e', str)
+    str = re.sub(r'í|ì|î|ï', 'i', str)
     str = re.sub(r'\W+', '', str)
     return _escape(str)
 
