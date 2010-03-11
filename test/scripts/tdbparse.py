@@ -529,7 +529,12 @@ class TdbParser(object):
         self.__expect(TOKEN_ANGLE_CLOSE)
         au = AU(self.__current_au[-1])
         au.set_title(self.__current_title)
-        for key, val in zip(self.__current_au[-1].get('$implicit'), self.__stack.pop()):
+        impl = self.__current_au[-1].get('$implicit')
+        vals = self.__stack.pop()
+        if len(impl) != len(vals):
+            raise RuntimeError, 'expected %d implicit assignments but got %d' % (len(impl),
+                                                                                 len(vals))
+        for key, val in zip(impl, vals):
             au.set(key, val)
         self.__tdb.add_au(au)
 
