@@ -177,13 +177,14 @@ def _process(tdb, options):
   <property name="%(publisher)s">
    <property name="name" value="All %(publisher)s Titles" />
    <property name="class" value="xpath" />
-   <property name="xpath" value="[attributes/publisher='%(publisher)s']" />
+   <property name="xpath" value="[attributes/publisher='%(publisher2)s']" />
   </property>
   
  </property>
  
  <property name="org.lockss.title">
-''' % { 'publisher': _escape(current_pub.name()) }
+''' % { 'publisher': _escape(current_pub.name()),
+        'publisher2': re.sub(r'\'', '&apos;', _escape(current_pub.name())) }
         _process_au(au, options)
     else:
         if options.style == TDB_STYLE_XML: print '''\
