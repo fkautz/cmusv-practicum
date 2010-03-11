@@ -41,7 +41,8 @@ TDB_LEVEL_CONTENT_TESTING_STATUSES = [ AU.STATUS_EXISTS,
                                        AU.STATUS_PRE_RELEASED,
                                        AU.STATUS_RELEASING,
                                        AU.STATUS_RELEASED,
-                                       AU.STATUS_DOWN ]
+                                       AU.STATUS_DOWN,
+                                       AU.STATUS_SUPERSEDED ]
 TDB_LEVEL_EVERYTHING               = 'everything'
 TDB_LEVEL_EVERYTHING_STATUSES      = AU.STATUSES[:]
 TDB_LEVEL_PRODUCTION               = 'production'
