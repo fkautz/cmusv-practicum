@@ -63,6 +63,24 @@ public class TestEditKeyStores extends LockssTestCase {
     assertFiles(outdir, HOST2);
   }
 
+  public void testEditKeyStoresShared() throws Exception {
+    File tempDir = getTempDir();
+    File outdir = new File(tempDir, "oot");
+    File pub = new File(tempDir, "pubkeys.jceks");
+    EditKeyStores.setTestOnlySecureRandom(MiscTestUtil.getSecureRandom());
+    String[] args = {"-s", pub.toString(),
+		     "-p", "pubpasstartout",
+		     "-o", outdir.toString(),
+		     "-t",
+		     HOST1, HOST2};
+    EditKeyStores.main(args);
+    // Check that files were created.  Should try to load them.
+    assertTrue("Output dir " + outdir + " wasn't created", outdir.exists());
+    assertTrue("Pub keystore " + pub + " wasn't created", pub.exists());
+    assertFiles(outdir, HOST1);
+    assertFiles(outdir, HOST2);
+  }
+
   void assertFiles(File dir, String host) {
     File ks = new File(dir, host + SUFF_KS);
     File pass = new File(dir, host + SUFF_PASS);
