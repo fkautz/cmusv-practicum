@@ -116,8 +116,14 @@ public class LockssTiming extends LockssTestCase {
       StringBuffer sb = new StringBuffer();
       sb.append(msg);
       sb.append(":  ");
-      sb.append(Long.toString(m_sumTime/m_count));
-      sb.append(" ms");
+      long ms = m_sumTime/m_count;
+      if (ms >= 10) {
+	sb.append(Long.toString(ms));
+	sb.append(" ms");
+      } else {
+	sb.append(Long.toString(m_sumTime * 1000000 /m_count));
+	sb.append(" ns");
+      }
       sb.append(" ( std. dev. ");
       sb.append(nf.format(stddevTime()));
       sb.append(" )");
