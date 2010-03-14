@@ -70,7 +70,6 @@ public class RandomManager extends BaseLockssManager
       prov = config.get(PARAM_SECURE_RANDOM_PROVIDER,
 			DEFAULT_SECURE_RANDOM_PROVIDER);
       log.info("alg: " + alg + ", prov: " + prov);
-      log.info("isNullString(" + prov + "): " + StringUtil.isNullString(prov));
     }
   }
 
