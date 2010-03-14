@@ -75,6 +75,7 @@ public abstract class BasePlugin
   protected ClassLoader classLoader;
   protected List<ConfigParamDescr> allParamDescrs;
   protected Map<String,ConfigParamDescr> paramDescrMap;
+  protected boolean stopped = false;
 
 
   Configuration.Callback configCb = new Configuration.Callback() {
@@ -104,13 +105,24 @@ public abstract class BasePlugin
   }
 
   public void stopPlugin() {
+    stopped = true;
+    // Don't actually perform stop actions unless/until no AUs
+    if (!aus.isEmpty()) {
+      return;
+    }
     theDaemon.getConfigManager().unregisterConfigurationCallback(configCb);
+    classLoader = null;
   }
 
   public void stopAu(ArchivalUnit au) {
     // Is there any reason to notify the AU itself?
     synchronized (aus) {
       aus.remove(au);
+    }
+    // If that was the last AU and we're supposed to be stopped, perform
+    // stop actions now
+    if (stopped && aus.isEmpty()) {
+      stopPlugin();
     }
   }
 

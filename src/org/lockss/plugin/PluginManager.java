@@ -1381,6 +1381,7 @@ public class PluginManager
 	  needRestartAus.addAll(aus);
 	}
       }
+      oldPlug.stopPlugin();
     }
     pluginMap.put(pluginKey, plugin);
     resetTitles();
