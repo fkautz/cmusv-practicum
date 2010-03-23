@@ -54,10 +54,10 @@ public class HighWirePressH20HttpResponseHandler implements CacheResultHandler {
       case 500:
         logger.debug2("500");
         if (url.endsWith("_manifest.dtl") || url.endsWith(".toc")) {
-          return new CacheException.RetrySameUrlException();
+          return new CacheException.RetrySameUrlException("500 Internal Server Error");
         }
         else {
-          return new CacheException.NoRetryDeadLinkException();
+          return new CacheException.NoRetryDeadLinkException("500 Internal Server Error (non-fatal)");
         }
       default:
         logger.debug2("default");
