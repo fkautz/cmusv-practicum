@@ -149,7 +149,7 @@ public class EditKeyStores {
       SecureRandom rng = tflag ? testOnlySecureRandom : getSecureRandom();
       if (pubFile != null) {
 	if (StringUtil.isNullString(pubPass)) {
-	  log.info("No public keystore supplied, using \"password\"");
+	  log.info("No public keystore password supplied, using \"password\"");
 	  pubPass = "password";
 	}
 	KeyStoreUtil.createSharedPLNKeyStores(outDirFile, hostlist,
