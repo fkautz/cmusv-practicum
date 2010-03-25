@@ -233,8 +233,7 @@ public class LockssKeyStoreManager
     lk.setType(config.get(KEYSTORE_PARAM_TYPE, defaultKeyStoreType));
     lk.setProvider(config.get(KEYSTORE_PARAM_PROVIDER,
 			      defaultKeyStoreProvider));
-    lk.setPassword(config.get(KEYSTORE_PARAM_PASSWORD,
-			      ConfigManager.getPlatformHostname()));
+    lk.setPassword(config.get(KEYSTORE_PARAM_PASSWORD));
     lk.setKeyPassword(config.get(KEYSTORE_PARAM_KEY_PASSWORD));
     lk.setKeyPasswordFile(config.get(KEYSTORE_PARAM_KEY_PASSWORD_FILE));
     lk.setMayCreate(config.getBoolean(KEYSTORE_PARAM_CREATE, DEFAULT_CREATE));
