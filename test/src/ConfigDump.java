@@ -138,6 +138,10 @@ public class ConfigDump {
       for (Iterator iter = keys.iterator(); iter.hasNext(); ) {
 	String key = (String)iter.next();
 	if (!isExcluded(key)) {
+	  String val = config.get(key);
+	  if (val == null) {
+	    val = "(null)";
+	  }
 	  pout.println(key + " = " + (String)config.get(key));
 	}
       }
