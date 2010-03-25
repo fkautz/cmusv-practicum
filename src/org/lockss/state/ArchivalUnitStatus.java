@@ -819,6 +819,12 @@ public class ArchivalUnitStatus
 					    ColumnDescriptor.TYPE_STRING,
 					    plat));
       }
+      String pub = AuUtil.getTitleAttribute(au, "publisher");
+      if (pub != null) {
+	res.add(new StatusTable.SummaryInfo("Publisher",
+					    ColumnDescriptor.TYPE_STRING,
+					    pub));
+      }
       res.add(new StatusTable.SummaryInfo("Available From Publisher",
 					  ColumnDescriptor.TYPE_STRING,
 					  (AuUtil.isPubDown(au)
