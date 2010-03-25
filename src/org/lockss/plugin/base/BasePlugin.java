@@ -111,6 +111,13 @@ public abstract class BasePlugin
       return;
     }
     theDaemon.getConfigManager().unregisterConfigurationCallback(configCb);
+    if (classLoader instanceof LoadablePluginClassLoader) {
+      LoadablePluginClassLoader lploader =
+	(LoadablePluginClassLoader)classLoader;
+      if (lploader != null) {
+	lploader.close();
+      }
+    }
     classLoader = null;
   }
 
