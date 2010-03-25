@@ -943,7 +943,8 @@ public class RepositoryNodeImpl implements RepositoryNode {
       return curOutputStream;
     } catch (FileNotFoundException fnfe) {
       try {
-        logger.error("No new version file for "+tempCacheFile.getPath()+".");
+        logger.error("No new version file for "+tempCacheFile.getPath()+".",
+		     fnfe);
         throw new LockssRepository.RepositoryStateException("Couldn't load new outputstream.");
       } finally {
         abandonNewVersion();
