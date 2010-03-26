@@ -64,6 +64,11 @@ public class HighWirePressH20HtmlFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttribute("div", "id", "cb-art-recm"),
         // e.g. SWCS TOC pages
         HtmlNodeFilters.tagWithAttribute("div", "class", "cit-form-select"),
+        // For JBC pages
+        HtmlNodeFilters.tagWithAttribute("div", "id", "ad-top"),
+        HtmlNodeFilters.tagWithAttribute("div", "id", "ad-top2"),
+        HtmlNodeFilters.tagWithAttribute("div", "id", "ad-footer"),
+        HtmlNodeFilters.tagWithAttribute("div", "id", "ad-footer2"),
     };
     
     return new HtmlFilterInputStream(in,
