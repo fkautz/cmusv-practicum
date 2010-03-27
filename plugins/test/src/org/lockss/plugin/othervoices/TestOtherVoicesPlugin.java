@@ -94,7 +94,7 @@ public class TestOtherVoicesPlugin extends LockssTestCase {
     props.setProperty(VOL_KEY, "322");
 
     DefinableArchivalUnit au = makeAuFromProps(props);
-    assertEquals("www.example.com, vol. 322", au.getName());
+    assertEquals("Other Voices Plugin, Base URL http://www.example.com/, Volume 322", au.getName());
   }
 
   public void testGetPluginId() {
