@@ -203,7 +203,7 @@ public class LockssKeyStoreManager
 	  continue;
 	}
 
-	log.debug("Adding keystore " + lk.getName());
+	log.debug("Adding keystore " + name);
 	keystoreMap.put(name, lk);
 
       } catch (Exception e) {
@@ -225,9 +225,9 @@ public class LockssKeyStoreManager
     if (!StringUtil.isNullString(file)) {
       lk.setLocation(file, LocationType.File);
     } else if (!StringUtil.isNullString(resource)) {
-      lk.setLocation(file, LocationType.Resource);
+      lk.setLocation(resource, LocationType.Resource);
     } else if (!StringUtil.isNullString(url)) {
-      lk.setLocation(file, LocationType.Url);
+      lk.setLocation(url, LocationType.Url);
     }
 
     lk.setType(config.get(KEYSTORE_PARAM_TYPE, defaultKeyStoreType));
