@@ -53,7 +53,11 @@ public class HighWirePressH20HttpResponseHandler implements CacheResultHandler {
     switch (responseCode) {
       case 500:
         logger.debug2("500");
-        if (url.endsWith("_manifest.dtl") || url.endsWith(".toc")) {
+        if (   url.endsWith("_manifest.dtl")
+            || url.endsWith(".toc")
+            || (   url.contains("/content/vol")
+                && url.contains("/issue")
+                && (url.endsWith("/index.dtl") || url.endsWith("/")))) {
           return new CacheException.RetrySameUrlException("500 Internal Server Error");
         }
         else {
