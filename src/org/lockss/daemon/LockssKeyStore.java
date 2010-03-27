@@ -129,6 +129,10 @@ public class LockssKeyStore {
     mayCreate = val;
   }
 
+  boolean getMayCreate() {
+    return mayCreate;
+  }
+
   void setPassword(String val) {
     password = val;
   }
