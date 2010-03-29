@@ -188,6 +188,7 @@ class Content:
             except urllib2.URLError:
                 num_URLError += 1
                 if num_URLError < MAXIMUM_URLError:
+                    logging.warn( self.status_message( 'URL error while attempting to crawl %s on %s.  Continuing.' ))
                     continue
                 else:
                     raise
