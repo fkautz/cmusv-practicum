@@ -14,6 +14,7 @@ import sys
 import tempfile
 import threading
 import time
+import urllib2
 import urlparse
 
 sys.path.append( os.path.realpath( os.path.join( os.path.dirname( sys.argv[ 0 ] ), '../lib' ) ) )
