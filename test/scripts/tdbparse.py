@@ -399,7 +399,6 @@ class TdbParser(object):
         if self.__token[0] == TOKEN_KEYWORD_AU:
             self.__au()
         elif self.__token[0] == TOKEN_CURLY_OPEN:
-            self.__current_au.append(AU(self.__current_au[-1]))
             self.__au_container()
         else:
             raise RuntimeError, 'expected %s or %s but got %s' % (_translate_token(TOKEN_KEYWORD_AU),
