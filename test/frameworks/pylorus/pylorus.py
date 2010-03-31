@@ -6,6 +6,7 @@ $Id$'''
 
 import ConfigParser
 import cPickle
+import httplib
 import logging
 import optparse
 import os
@@ -186,7 +187,7 @@ class Content:
                 # Local or repeated remote crawl failures are fatal
                 self.state = Content.State.CRAWL_FAILURE
                 raise Leaving_Pipeline
-            except urllib2.URLError:
+            except (urllib2.URLError, httplib.BadStatusLine):
                 num_URLError += 1
                 if num_URLError < MAXIMUM_URLError:
                     logging.warn( self.status_message( 'URL error while attempting to crawl %s on %s.  Continuing.' ))
