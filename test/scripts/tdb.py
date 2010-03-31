@@ -63,7 +63,7 @@ class ChainedMap(Map):
         Map.__init__(self)
         self._next = next
 
-    def get(self, key):        
+    def get(self, key):
         myval = super(ChainedMap,self).get(key)
         if self._next is None: return myval
         nextval = self._next.get(key)
