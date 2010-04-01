@@ -126,9 +126,12 @@ def _process_au(au, options):
         _short_au_name(au),
         _escape(au.title().publisher().name()),
         _escape(au.title().name()) )
-    if au.issn() is not None: # There's a bug here: au.title().issn() is intended
+    if au.title().issn() is not None:
         print '''\
-   <property name="issn" value="%s" />''' % ( au.issn(), )
+   <property name="issn" value="%s" />''' % ( au.title().issn(), )
+    if au.title().eissn() is not None:
+        print '''\
+   <property name="eissn" value="%s" />''' % ( au.title().eissn(), )
     print '''\
    <property name="title" value="%s" />
    <property name="plugin" value="%s" />''' % (
