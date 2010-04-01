@@ -212,7 +212,13 @@ public class NaturePublishingGroupHtmlFilterFactory implements FilterFactory {
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
                                                                          "id",
                                                                          "natpav")),
-
+                                                                         
+       /*
+        * Nature has changed items within JavaScript.  We're now deleting JavaScript.
+        */
+       HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("script", 
+                                                                        "type", 
+                                                                        "text/javascript")),
 
     };
 
