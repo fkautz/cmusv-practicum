@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2009 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,6 +34,7 @@ package org.lockss.plugin.nature;
 
 import java.io.InputStream;
 
+import org.htmlparser.filters.TagNameFilter;
 import org.lockss.daemon.PluginException;
 import org.lockss.filter.html.*;
 import org.lockss.plugin.*;
@@ -214,11 +215,9 @@ public class NaturePublishingGroupHtmlFilterFactory implements FilterFactory {
                                                                          "natpav")),
                                                                          
        /*
-        * Nature has changed items within JavaScript.  We're now deleting JavaScript.
+        * Nature has changed items within JavaScript.  We're now filtering JavaScript.
         */
-       HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("script", 
-                                                                        "type", 
-                                                                        "text/javascript")),
+       HtmlNodeFilterTransform.exclude(new TagNameFilter("script")),
 
     };
 
