@@ -184,11 +184,14 @@ public abstract class BaseConfigFile implements ConfigFile {
 
   protected void setConfigFrom(InputStream in) throws IOException {
     ConfigurationPropTreeImpl newConfig = new ConfigurationPropTreeImpl();
-
     try {
       // Load the configuration
       if (m_fileType == XML_FILE) {
-	XmlPropertyLoader.load(newConfig.getPropertyTree(), in);
+        Tdb tdb = new Tdb();
+	XmlPropertyLoader.load(newConfig.getPropertyTree(), tdb, in);
+	if (!tdb.isEmpty()) {
+	  newConfig.setTdb(tdb);
+	}
       } else {
 	newConfig.getPropertyTree().load(in);
       }
