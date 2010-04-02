@@ -155,6 +155,7 @@ class AU(ChainedMap):
                  STATUS_SUPERSEDED,
                  STATUS_RETRACTED ]
     TITLE = 'title'
+    YEAR = 'year'
 
     def __init__(self, next=None):
         '''Constructor.'''
@@ -180,6 +181,7 @@ class AU(ChainedMap):
     def rights(self): return self.get(AU.RIGHTS)
     def status(self): return self.get(AU.STATUS)
     def title(self): return self.get(AU.TITLE)
+    def year(self): return self.get(AU.YEAR)
 
 class Tdb(object):
 
