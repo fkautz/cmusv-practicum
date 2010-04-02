@@ -38,7 +38,7 @@ import java.util.Enumeration;
 import org.lockss.daemon.PluginException;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.util.Logger;
-import org.lockss.util.UrlUtil;
+import org.lockss.util.StringUtil;
 import org.w3c.rdf.model.*;
 import org.w3c.rdf.syntax.RDFParser;
 import org.w3c.rdf.util.*;
@@ -82,8 +82,9 @@ public class DublinCoreLinkExtractor implements LinkExtractor {
       // Pass in the original source URL
       m.setSourceURI(srcUrl);
 
-      // Now parse
-      parser.parse(new InputSource(in), new ModelConsumer(m));
+      // Now parse -- use reader to ensure correct end-of-lines for local files
+      Reader rdr = StringUtil.getLineReader(in, encoding);
+      parser.parse(new InputSource(rdr), new ModelConsumer(m));
 
       // So now we've got this model, we'll need to look at all of its
       // elements for HTTP links.

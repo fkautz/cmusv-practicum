@@ -188,7 +188,7 @@ public class GoslingHtmlLinkExtractor implements LinkExtractor {
     } else if (cb == null) {
       throw new IllegalArgumentException("Called with null callback");
     }
-    reader = StreamUtil.getReader(in, encoding);
+    reader = StringUtil.getLineReader(in, encoding);
     this.srcUrl = srcUrl;
     this.encoding = encoding;
 

@@ -73,7 +73,7 @@ public class RamLinkExtractor implements LinkExtractor {
       throw new IllegalArgumentException("Called with null callback");
     }
     BufferedReader bReader =
-      new BufferedReader(StreamUtil.getReader(in, encoding));
+      new BufferedReader(StringUtil.getLineReader(in, encoding));
     for (String line = bReader.readLine();
 	 line != null;
 	 line = bReader.readLine()) {
