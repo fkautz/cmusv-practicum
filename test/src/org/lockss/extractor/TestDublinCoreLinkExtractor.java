@@ -62,9 +62,13 @@ public class TestDublinCoreLinkExtractor extends LinkExtractorTestCase {
    * Test that a single links is found.
    */
   public void testOneUrl() throws Exception {
+try {    
     if (isSkipNetworkTests()) return;
     Set urls = SetUtil.set("http://www.foo.com/blah.jpg");
     assertEquals(urls, extractUrls(constructValidRDF(urls)));
+} catch (Throwable ex) {
+  fail("", ex);
+}
   }
   
   /**

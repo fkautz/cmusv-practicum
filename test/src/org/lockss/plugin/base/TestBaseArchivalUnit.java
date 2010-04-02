@@ -763,6 +763,7 @@ public class TestBaseArchivalUnit extends LockssTestCase {
 
 
   public void testGetTitleConfig() throws IOException {
+try {
     TitleConfig tc = makeTitleConfig();
     mplug.setTitleConfig(tc);
     mplug.setSupportedTitles(ListUtil.list("a", "b"));
@@ -782,6 +783,9 @@ public class TestBaseArchivalUnit extends LockssTestCase {
     lst.remove(0);
     tc.setParams(lst);
     assertNull(mbau.findTitleConfig(config));
+} catch (Throwable ex) {
+  fail("foo", ex);
+}
   }
 
   public void testParamHandlerMap() throws ConfigurationException {

@@ -104,7 +104,7 @@ public class TestLockssKeyStore extends LockssTestCase {
   public void testNoFile() throws Exception {
     File tmpDir = getTempDir("kstmp");
     File file = new File(tmpDir, "ks1");
-    assertFalse(file.exists());
+    assertFalse(file.exists()); 
     try {
       LockssKeyStore lk = createFromProp("lkone", file.toString(),
 					 PASSWD, "pass42");

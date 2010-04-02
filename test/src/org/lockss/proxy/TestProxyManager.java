@@ -176,7 +176,6 @@ public class TestProxyManager extends LockssTestCase {
     assertTrue(mgr.isMethodAllowed("POST"));
     assertTrue(mgr.isMethodAllowed("HEAD"));
     assertTrue(mgr.isMethodAllowed("CONNECT"));
-
   }
 
   class MyProxyManager extends ProxyManager {
