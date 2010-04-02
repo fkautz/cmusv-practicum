@@ -50,16 +50,17 @@ public class TitleSetActiveAus extends BaseTitleSet {
 
   /** Return the titles currently configured on the cache.
    * @return a collection of {@link TitleConfig} */
-  public Collection getTitles() {
+  public Collection<TitleConfig> getTitles() {
     PluginManager pmgr = daemon.getPluginManager();
-    List aus = pmgr.getAllAus();
-    List res = new ArrayList(aus.size());
+    List<ArchivalUnit> aus = pmgr.getAllAus();
+    ArrayList<TitleConfig> res = new ArrayList<TitleConfig>(aus.size());
     for (Iterator iter = aus.iterator(); iter.hasNext();) {
       ArchivalUnit au = (ArchivalUnit)iter.next();
       if (!pmgr.isInternalAu(au)) {
 	res.add(titleConfigFromAu(au));
       }
     }
+    res.trimToSize();
     return res;
   }
 
@@ -74,7 +75,7 @@ public class TitleSetActiveAus extends BaseTitleSet {
       String auname = au.getName();
       tc = new TitleConfig(auname, plugin);
       Configuration auConfig = au.getConfiguration();
-      List params = new ArrayList();
+      ArrayList<ConfigParamAssignment> params = new ArrayList<ConfigParamAssignment>();
       for (Iterator iter = auConfig.keyIterator(); iter.hasNext(); ) {
 	String key = (String)iter.next();
  	if (!ConfigParamDescr.isReservedParam(key)) {
@@ -89,6 +90,7 @@ public class TitleSetActiveAus extends BaseTitleSet {
 	  }
 	}
       }
+      params.trimToSize();
       tc.setParams(params);
     }
     return tc;
