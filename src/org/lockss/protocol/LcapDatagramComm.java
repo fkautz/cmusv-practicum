@@ -138,7 +138,7 @@ public class LcapDatagramComm
     sockFact = factory;
     configure(config,
 	      ConfigManager.EMPTY_CONFIGURATION,
-	      Configuration.DIFFERENCES_ALL);
+	      config.differences(ConfigManager.EMPTY_CONFIGURATION));
   }
 
   /**

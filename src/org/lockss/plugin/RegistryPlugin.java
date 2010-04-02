@@ -34,9 +34,9 @@ package org.lockss.plugin;
 
 import java.util.*;
 
+import org.lockss.config.ConfigManager;
 import org.lockss.config.Configuration;
 import org.lockss.daemon.*;
-import org.lockss.config.*;
 import org.lockss.plugin.base.BasePlugin;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.util.*;
@@ -69,8 +69,9 @@ public class RegistryPlugin extends BasePlugin {
 
     // Now configure it.
     au.setConfiguration(auConfig);
-    au.setConfig(ConfigManager.getCurrentConfig(), null,
-		 Configuration.DIFFERENCES_ALL);
+    Configuration curConfig = ConfigManager.getCurrentConfig();
+    au.setConfig(curConfig, ConfigManager.EMPTY_CONFIGURATION,
+		 curConfig.differences(ConfigManager.EMPTY_CONFIGURATION));
     return au;
   }
 

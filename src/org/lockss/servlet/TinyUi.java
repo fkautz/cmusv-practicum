@@ -76,7 +76,7 @@ public class TinyUi extends BaseServletManager {
     log.debug("Starting");
     Configuration config = ConfigManager.getCurrentConfig();
     setConfig(config, ConfigManager.EMPTY_CONFIGURATION,
-	      Configuration.DIFFERENCES_ALL);
+	      config.differences(ConfigManager.EMPTY_CONFIGURATION));
     startServlets();
   }
 
