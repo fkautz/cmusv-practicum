@@ -709,7 +709,18 @@ public class StringUtil {
    * newline characters. 
    */
   public static Reader getLineReader(InputStream in) {
-    return getLineReader(new InputStreamReader(in));
+    return getLineReader(in, null);
+  }
+  
+  /** Return a reader that transforms platform newline sequences to standard
+   * newline characters. 
+   * @param in an input stream
+   * @param encoding the character encoding
+   * @return a filtered reader that transforms platform newline sequences to standard
+   * newline characters. 
+   */
+  public static Reader getLineReader(InputStream in, String encoding) {
+    return getLineReader(StreamUtil.getReader(in, encoding));
   }
 
   /** Return a string with lines from a reader, separated by a newline character,
