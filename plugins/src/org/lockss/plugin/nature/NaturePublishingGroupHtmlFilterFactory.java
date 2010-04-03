@@ -218,6 +218,7 @@ public class NaturePublishingGroupHtmlFilterFactory implements FilterFactory {
         * Nature has changed items within JavaScript.  We're now filtering JavaScript.
         */
        HtmlNodeFilterTransform.exclude(new TagNameFilter("script")),
+       HtmlNodeFilterTransform.exclude(new TagNameFilter("noscript")),
 
     };
 
