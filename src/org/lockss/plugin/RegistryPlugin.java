@@ -71,7 +71,7 @@ public class RegistryPlugin extends BasePlugin {
     au.setConfiguration(auConfig);
     Configuration curConfig = ConfigManager.getCurrentConfig();
     au.setConfig(curConfig, ConfigManager.EMPTY_CONFIGURATION,
-		 curConfig.differences(ConfigManager.EMPTY_CONFIGURATION));
+		 curConfig.differences(null));  // all differences
     return au;
   }
 

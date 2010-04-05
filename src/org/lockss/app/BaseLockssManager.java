@@ -150,7 +150,7 @@ public abstract class BaseLockssManager implements LockssManager {
       ConfigurableManager cmgr = (ConfigurableManager)this;
       Configuration cur = CurrentConfig.getCurrentConfig();
       cmgr.setConfig(cur, ConfigManager.EMPTY_CONFIGURATION,
-		     cur.differences(ConfigManager.EMPTY_CONFIGURATION));
+		     cur.differences(null));  // all differences
     } else {
       throw new RuntimeException("Not a ConfigurableManager");
     }

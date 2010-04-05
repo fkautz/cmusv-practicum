@@ -1366,7 +1366,7 @@ public class ConfigManager implements LockssManager {
       configChangedCallbacks.add(c);
       if (!currentConfig.isEmpty()) {
 	runCallback(c, currentConfig, ConfigManager.EMPTY_CONFIGURATION,
-		    currentConfig.differences(ConfigManager.EMPTY_CONFIGURATION));
+		    currentConfig.differences(null));  // all differences
       }
     }
   }
