@@ -218,7 +218,7 @@ public class ExpertConfig extends LockssServlet {
       StringUtil.toFile(tmpfile, etext);
 
       ConfigManager.KeyPredicate keyPred = configMgr.expertConfigKeyPredicate;
-      String tmpUrl = tmpfile.toURL().toString();
+      String tmpUrl = tmpfile.toURI().toURL().toString();
       Configuration testConfig = configMgr.loadConfigFromFile(tmpUrl);
       List<String> illKeys = new ArrayList<String>();
       for (String key : testConfig.keySet()) {
