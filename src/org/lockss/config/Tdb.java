@@ -179,7 +179,7 @@ public class Tdb {
       // merge non-duplicate titles of otherPublisher into thisPublisher
       for (TdbTitle otherTitle : otherPublisher.getTdbTitles()) {
         String otherId = otherTitle.getId();
-        TdbTitle thisTitle = thisPublisher.getTitleById(otherId);
+        TdbTitle thisTitle = thisPublisher.getTdbTitleById(otherId);
         if (thisTitle == null) {
           // copy title if not present in this publisher
           thisTitle = otherTitle.copyForTdbPublisher(thisPublisher);
@@ -599,7 +599,7 @@ public class Tdb {
 
       // find a matching title for this publisher
       if (titleId != null) {
-        title = publisher.getTitleById(titleId); 
+        title = publisher.getTdbTitleById(titleId); 
       } else {
         // locate title with no title ID by name
         Collection<TdbTitle> titles = publisher.getTdbTitlesByName(titleName);
@@ -760,7 +760,7 @@ public class Tdb {
     
     TdbTitle title = null;
     for (TdbPublisher publisher : tdbPublisherMap.values()) {
-      title = publisher.getTitleById(titleId);
+      title = publisher.getTdbTitleById(titleId);
       if (title != null) {
         break;
       }
