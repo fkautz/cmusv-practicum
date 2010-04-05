@@ -88,10 +88,7 @@ public class ConfigurationUtil {
    */
   public static Configuration merge(Configuration c1, Configuration c2) {
     Configuration res = c1.copy();
-    for (Iterator iter = c2.keyIterator(); iter.hasNext(); ) {
-      String key = (String)iter.next();
-      res.put(key, c2.get(key));
-    }
+    res.copyFrom(c2);
     return res;
   }
 
