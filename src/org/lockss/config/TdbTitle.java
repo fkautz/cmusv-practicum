@@ -322,15 +322,43 @@ public class TdbTitle {
   }
   
   /**
-   * Add a new TdbAu for this title.
+   * Add a new TdbAu for this title.  The pluginID and all params must be set prior
+   * to adding tdbAu to this title.
    * 
    * @param tdbAu a new TdbAus
+   * @throws IllegalStateException if trying to add a TdbAu with the same id as
+   *   an existing TdbAu
    */
   public void addTdbAu(TdbAu tdbAu) {
     if (tdbAu == null) {
-      throw new IllegalArgumentException("au for title \"" + name + "\" cannot be null");
+      throw new IllegalArgumentException("au cannot be null");
+    }
+    if (tdbAu.getPluginId() == null) {
+      throw new IllegalArgumentException("cannot add au because its plugin ID is not set: \"" 
+                                         + tdbAu.getName() + "\"");
+    }
+    TdbTitle otherTitle = tdbAu.getTdbTitle();
+    if (otherTitle == this) {
+      throw new IllegalArgumentException("au entry \"" + tdbAu.getName() + "\" already exists in title \"" + name + "\"");
+    } else if (otherTitle != null) {
+      throw new IllegalArgumentException("au entry \"" + tdbAu.getName() 
+                                         + "\" already in another title: \"" 
+                                         + otherTitle.getName() + "\"");
     }
 
+    // ensure Id of new au is unique for this title 
+    TdbAu existingAu = this.getTdbAuById(tdbAu.getId());
+    if (existingAu != null) {
+      if (tdbAu.getName().equals(existingAu.getName())) {
+        throw new IllegalStateException("cannot add duplicate au entry: \"" + tdbAu.getName() 
+                                        + "\" to title \"" + name + "\"");
+      } else {
+        // error because it could lead to a missing AU -- one probably has a typo
+        throw new IllegalStateException("cannot add duplicate au entry: \"" + tdbAu.getName() 
+                     + "\" with the same id as existing au entry \"" + existingAu.getName()
+                     + "\" to title \"" + name + "\"");
+        }
+    }
     tdbAu.setTdbTitle(this);
     tdbAus.add(tdbAu);
     
