@@ -1351,7 +1351,7 @@ public class TestXmlPropertyLoader extends LockssTestCase {
     assertFalse(tdb.isEmpty());
     TdbPublisher pub = tdb.getTdbPublisher("University of Notre Dame");
     assertNotNull(pub);
-    TdbTitle title = pub.getTitleById("0003-0031");
+    TdbTitle title = pub.getTdbTitleById("0003-0031");
     assertNotNull(title);
     Collection<TdbAu> aus = title.getTdbAusByName("The American Midland Naturalist Volume 139");
     assertEquals(1, aus.size());
