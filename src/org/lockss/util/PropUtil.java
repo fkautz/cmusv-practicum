@@ -33,7 +33,6 @@ package org.lockss.util;
 
 import java.util.*;
 import java.io.*;
-import java.net.URLEncoder;
 
 
 /** Utilities for Properties
