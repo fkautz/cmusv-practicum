@@ -89,19 +89,19 @@ public class FileTestUtil {
   /** Store the string in a temp file and return a file: url for it */
   public static String urlOfString(String s) throws IOException {
     File file = FileTestUtil.writeTempFile("test", s);
-    return file.toURL().toString();
+    return file.toURI().toURL().toString();
   }
 
   /** Store the string in a temp file and return a file: url for it */
   public static String urlOfString(String s, String suffix) throws IOException {
     File file = FileTestUtil.writeTempFile("test", suffix, s);
-    return file.toURL().toString();
+    return file.toURI().toURL().toString();
   }
 
   /** Return the (absolute) url for the (possibly relative) file name */
   public static String urlOfFile(String s) throws IOException {
     File file = new File(s);
-    return file.toURL().toString();
+    return file.toURI().toURL().toString();
   }
 
   /**
