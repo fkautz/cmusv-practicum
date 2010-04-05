@@ -183,7 +183,12 @@ public class Tdb {
         if (thisTitle == null) {
           // copy title if not present in this publisher
           thisTitle = otherTitle.copyForTdbPublisher(thisPublisher);
-        } // PJG: else update thisTitle to match otherTitle?
+        } else if (! thisTitle.getName().equals(otherTitle.getName())) {
+          // error because it could lead to a missing title -- one probably has a typo
+          // (what about checking other title elements too?)
+          logger.error("Ignorning duplicate title entry: \"" + otherTitle.getName() 
+                       + "\" with the same ID as \"" + thisTitle.getName() + "\"");
+        }
         
         // merge non-duplicate TdbAus of otherTitle into thisTitle
         for (TdbAu otherAu : otherTitle.getTdbAus()) {
@@ -195,7 +200,7 @@ public class Tdb {
             logger.warning("Ignoring duplicate au entry: \"" + otherAu.getName() + "\"");
           } else {
             // error because it could lead to a missing AU -- one probably has a typo
-            logger.error(  "Ignorning duplicate au entry: \"" + otherAu.getName() 
+            logger.error("Ignorning duplicate au entry: \"" + otherAu.getName() 
                          + "\" with the same definition as \"" + thisAu.getName() + "\"");
           }
         }
