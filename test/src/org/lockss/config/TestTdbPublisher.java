@@ -162,7 +162,7 @@ public class TestTdbPublisher extends LockssTestCase {
     assertTrue(getTitle2.contains(title3));
 
     // get title by ID
-    TdbTitle getTitleId2 = publisher.getTitleById("978-0521807678");
+    TdbTitle getTitleId2 = publisher.getTdbTitleById("978-0521807678");
     assertEquals(title2, getTitleId2);
     
     // get unknown title by name
@@ -170,7 +170,7 @@ public class TestTdbPublisher extends LockssTestCase {
     assertEmpty(getTitleUnknown);
 
     // get unknown title by ID
-    TdbTitle getTitleIdUnknown = publisher.getTitleById("unknown");
+    TdbTitle getTitleIdUnknown = publisher.getTdbTitleById("unknown");
     assertNull(getTitleIdUnknown);
   }
   
