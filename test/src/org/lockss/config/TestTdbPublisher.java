@@ -88,6 +88,34 @@ public class TestTdbPublisher extends LockssTestCase {
   }
   
   /**
+   * Test equals() method for publisher.
+   */
+  public void testEquals() {
+    TdbPublisher publisher1 = new TdbPublisher("Test Publisher");
+    TdbTitle title1 = new TdbTitle("Test Title 1");
+    publisher1.addTdbTitle(title1);
+    assertEquals(publisher1, publisher1);
+    
+    // same as publisher1
+    TdbPublisher publisher2 = new TdbPublisher("Test Publisher");
+    TdbTitle title2 = new TdbTitle("Test Title 1");
+    publisher2.addTdbTitle(title2);
+    assertEquals(publisher2, publisher2);
+
+    // differs from publisher1 by title name
+    TdbPublisher publisher3 = new TdbPublisher("Test Publisher");
+    TdbTitle title3 = new TdbTitle("Test Title 3");
+    publisher3.addTdbTitle(title3);
+    assertEquals(publisher1, publisher3);
+
+    // differs from publisher3 by publisher name
+    TdbPublisher publisher4 = new TdbPublisher("Test Publisher 4");
+    TdbTitle title4 = new TdbTitle("Test Title 3");
+    publisher4.addTdbTitle(title4);
+    assertEquals(publisher1, publisher4);
+  }
+  
+  /**
    * Test addTitle() method.
    */
   public void testAddTitle() {
