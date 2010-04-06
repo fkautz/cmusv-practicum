@@ -108,6 +108,24 @@ public abstract class Configuration {
   }
 
   /**
+   * Return number of TdbTitles in this instance's Tdb.
+   * 
+   * @return the number of TdbTitles in this instances's Tdb
+   */
+  public int getTdbTitleCount() {
+    return (tdb == null) ? 0 : tdb.getTdbTitleCount();
+  }
+
+  /**
+   * Return number of TdbPublishers in this instance's Tdb.
+   * 
+   * @return the number of TdbPublishers in this instances's Tdb
+   */
+  public int getTdbPublisherCount() {
+    return (tdb == null) ? 0 : tdb.getTdbPublisherCount();
+  }
+
+  /**
    * Determine whether Tdbs for the two configurations are different.
    * 
    * @param config the other configuration
@@ -671,14 +689,21 @@ public abstract class Configuration {
     tdb = null;
   }
 
-  /** Return true iff the configurations have the same keys
-   * with the same values.
+  /** Return true iff the configurations have no differences.
+   * @param o the other object
+   * @return <code>true</code> iff the configurations have no
+   *    differences
    */
-  public boolean equals(Object c) {
-    if (! (c instanceof Configuration)) {
-      return false;
+  public boolean equals(Object o) {
+    // check for identity
+    if (this == o) {
+      return true;
     }
-    return this.differences((Configuration)c).isEmpty();
+
+    if (o instanceof Configuration) {
+      return differences((Configuration)o).isEmpty();
+    }
+    return false;
   }
 
   /** Throws UnsupportedOperationException always.
