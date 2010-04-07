@@ -158,7 +158,7 @@ public class TdbPublisher {
     
     String id = title.getId();
     if (id == null) {
-      id = genTdbTitleId(title);
+      id = genTdbTitleId(title.getName());
     }
     TdbTitle existingTitle = getTdbTitleById(id);
     if (existingTitle != null) {
@@ -186,11 +186,11 @@ public class TdbPublisher {
    * 
    * @return a unique title ID
    */
-  protected String genTdbTitleId(TdbTitle title) {
+  protected String genTdbTitleId(String titleName) {
     // use a hash of publisher name and title name for now
     // todo: should we verify this and retry if collision found
     // with other titles in this publisher?
-    return Integer.toString((title.getName() + name).hashCode());  
+    return Integer.toString((titleName + name).hashCode());
   }
   
   /**
