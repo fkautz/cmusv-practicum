@@ -45,17 +45,17 @@ public class EdinburghUniversityPressHtmlFilterFactory implements FilterFactory 
     HtmlTransform[] transforms = new HtmlTransform[] {
         HtmlNodeFilterTransform.exclude(new TagNameFilter("script")),
 
-        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttributeRegex("div",
             "class",
-            "sidebar_panel panel_256")),
+            "sidebar_panel")),
             
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
             "id",
             "footer")),
             
-        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttributeRegex("div",
             "class",
-            "rightColumn_panels panel_246")),
+            "rightColumn_panels")),
     };
     return new HtmlFilterInputStream(in,
                                      encoding,
