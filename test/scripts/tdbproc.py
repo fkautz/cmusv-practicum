@@ -30,7 +30,7 @@ from tdbconst import *
 import tdbout
 import tdbq
 
-TDBPROC_VERSION = '0.2.0'
+TDBPROC_VERSION = '0.2.1'
 
 OPTION_LONG        = '--'
 OPTION_SHORT       = '-'

@@ -159,6 +159,8 @@ def _process_au(au, options):
     au_attrs = au.attrs()
     for attr in au_attrs:
         _do_attr(au, attr, au_attrs[attr])
+    if au.year() is not None:
+        _do_attr(au, 'year', au.year())
     if au.status() == AU.STATUS_PRE_RELEASED:
         _do_attr(au, 'releaseStatus', 'pre-release')
     if au.rights() == 'openaccess':
