@@ -84,7 +84,11 @@ public class IngentaJournalHtmlFilterFactory implements FilterFactory {
         // Filter out <div id="baynote-recommendations">...</div>
         HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
                                                                          "id",
-                                                                         "baynote-recommendations")),   
+                                                                         "baynote-recommendations")),
+        // Filter out <div id="bookmarks-container">...</div>
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttribute("div",
+                                                                         "id",
+                                                                         "bookmarks-container")),   
     };
     return new HtmlFilterInputStream(in,
                                      encoding,
