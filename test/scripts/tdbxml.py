@@ -154,7 +154,7 @@ def _process_au(au, options):
     au_proxy = au.proxy()
     if au_proxy is not None:
         _do_param(au, 98, 'crawl_proxy', value=au_proxy)
-    if au.status() in [AU.STATUS_DOWN, AU.STATUS_SUPERSEDED]:
+    if not options.tdbxmlNoPubDown and au.status() in [AU.STATUS_DOWN, AU.STATUS_SUPERSEDED]:
         _do_param(au, 99, 'pub_down', value='true')
     au_attrs = au.attrs()
     for attr in au_attrs:
