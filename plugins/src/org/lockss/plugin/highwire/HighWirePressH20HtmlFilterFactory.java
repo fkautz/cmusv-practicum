@@ -73,6 +73,9 @@ public class HighWirePressH20HtmlFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttribute("span", "class", "free"),
         // For American College of Physicians
         HtmlNodeFilters.tagWithAttribute("div", "class", "acp-menu"),
+        // For Royal Society pages
+        HtmlNodeFilters.tagWithAttribute("div", "id", "ac"),
+        HtmlNodeFilters.tagWithAttribute("div", "id", "social_network"),
     };
     
     return new HtmlFilterInputStream(in,
