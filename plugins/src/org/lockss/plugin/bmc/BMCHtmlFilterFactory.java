@@ -55,6 +55,7 @@ public class BMCHtmlFilterFactory implements FilterFactory {
         new HtmlTagFilter.TagPair("<table", "</table>", true, false),
         new HtmlTagFilter.TagPair("<script", "</script>", true, false),
         new HtmlTagFilter.TagPair("<noscript", "</noscript>", true, false),
+        new HtmlTagFilter.TagPair("<div id=\"browse\"", "</div>", true, true),
         new HtmlTagFilter.TagPair("<", ">", false, false)
         );
     Reader tagFilter = HtmlTagFilter.makeNestedFilter(reader, tagList);
