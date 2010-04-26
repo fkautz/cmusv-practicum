@@ -68,15 +68,9 @@ public class NatureArticleIteratorFactory implements ArticleIteratorFactory {
     String vol = au.getConfiguration().get(ConfigParamDescr.VOLUME_NAME.getKey());
     subTreeRoot = jid + "/journal/v" + vol;
     log.debug("createArticleIterator(" + mimeType + "," + au.toString() +
-              ") " + subTreeRoot);
-    
-    if (jid != "ndigest") {
-      pat = Pattern.compile("journal/v[^/]+/n[^/]+/full/",
+              ") " + subTreeRoot);    
+    pat = Pattern.compile("journal/v[^/]+/n[^/]+/full/",
           Pattern.CASE_INSENSITIVE);
-    } else {
-      pat = Pattern.compile("journal/v[^/]+/n[^/]+/pdf/",
-          Pattern.CASE_INSENSITIVE);
-    }
     
     return new SubTreeArticleIterator(mimeType, au, subTreeRoot, pat);
   }
