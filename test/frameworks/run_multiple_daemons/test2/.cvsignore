@@ -3,6 +3,7 @@ V3
 cache
 config
 dpid
+export
 history
 iddb
 local.opt
