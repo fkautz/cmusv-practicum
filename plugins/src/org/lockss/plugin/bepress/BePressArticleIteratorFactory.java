@@ -85,9 +85,9 @@ public class BePressArticleIteratorFactory implements ArticleIteratorFactory {
     Pattern pat = Pattern.compile("^"
                                   + base_url.replaceAll(".", "\\.")
                                   + journal_abbr
-                                  + "/((vol)?"
+                                  + "/((default/)?(vol)?"
                                   + volume
-                                  + "/(iss)?[0-9]+/(art)?[0-9]+|vol"
+                                  + "/(iss)?[0-9]+/(art|editorial)?[0-9]+|vol"
                                   + volume
                                   + "/[A-Z][0-9]+)$",
                                   Pattern.CASE_INSENSITIVE);
