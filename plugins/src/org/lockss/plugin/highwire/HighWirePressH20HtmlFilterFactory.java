@@ -76,6 +76,8 @@ public class HighWirePressH20HtmlFilterFactory implements FilterFactory {
         // For Royal Society pages
         HtmlNodeFilters.tagWithAttribute("div", "id", "ac"),
         HtmlNodeFilters.tagWithAttribute("div", "id", "social_network"),
+        // For biologists.org
+        HtmlNodeFilters.tagWithAttribute("div", "id", "authstring"),
     };
     
     return new HtmlFilterInputStream(in,
