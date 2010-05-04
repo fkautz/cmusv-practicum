@@ -36,7 +36,6 @@ import java.io.*;
 import java.util.*;
 
 import org.apache.commons.lang.StringUtils;
-import org.lockss.state.AuStateBean;
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
 
