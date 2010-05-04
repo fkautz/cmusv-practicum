@@ -188,14 +188,15 @@ public class ConfigManager implements LockssManager {
   public static final String PARAM_EXPERT_ALLOW = MYPREFIX + "expert.allow";
   public static final List DEFAULT_EXPERT_ALLOW = null;
   /** If set to a list of regexps, only parameter names that do not match
-   * one of them will be allowed to be set in expert config.  */
+   * any of them will be allowed to be set in expert config.  */
   public static final String PARAM_EXPERT_DENY = MYPREFIX + "expert.deny";
   static String ODLD = "^org\\.lockss\\.";
   public static final List DEFAULT_EXPERT_DENY =
     ListUtil.list("[pP]assword\\b",
 		  ODLD +"platform\\.",
-		  ODLD +"keystore\\..*\\.keyPasswordFile$",
+		  ODLD +"keystore\\.",
 		  ODLD +"app\\.exit(Once|After|Immediately)$",
+		  Perl5Compiler.quotemeta(PARAM_DAEMON_GROUPS),
 		  Perl5Compiler.quotemeta(PARAM_AUX_PROP_URLS),
 		  Perl5Compiler.quotemeta(IdentityManager.PARAM_LOCAL_IP),
 		  Perl5Compiler.quotemeta(IdentityManager.PARAM_LOCAL_V3_IDENTITY),

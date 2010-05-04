@@ -728,7 +728,7 @@ public class TestConfigManager extends LockssTestCase {
     mgr.updateConfig(Collections.EMPTY_LIST);
     assertTrue(mgr.isLegalExpertConfigKey("org.lockss.unrelated.param"));
     assertTrue(mgr.isLegalExpertConfigKey("org.lockss.foo.passwordFrob"));
-    assertTrue(mgr.isLegalExpertConfigKey("org.lockss.keystore.abcdy.keyFile"));
+    assertFalse(mgr.isLegalExpertConfigKey("org.lockss.keystore.abcdy.keyFile"));
     assertFalse(mgr.isLegalExpertConfigKey("org.lockss.foo.password"));
     assertFalse(mgr.isLegalExpertConfigKey("org.lockss.keystore.foo.keyPasswordFile"));
     assertFalse(mgr.isLegalExpertConfigKey("org.lockss.platform.anything"));
