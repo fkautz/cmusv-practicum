@@ -1717,8 +1717,9 @@ public class ServletUtil {
     return manifestIndex(daemon.getPluginManager(), aus, header);
   }
 
+  /** Transform applied to URLs of manifest pages */
   public interface ManifestUrlTransform {
-    public Object transformUrl(String url);
+    public Object transformUrl(String url, ArchivalUnit au);
   }
 
   /** Return an index of manifest pages for the given AUs. */
@@ -1729,7 +1730,8 @@ public class ServletUtil {
 			 aus,
 			 header,
 			 new ManifestUrlTransform(){
-			   public Object transformUrl(String url) {
+			   public Object transformUrl(String url,
+						      ArchivalUnit au) {
 			     return new Link(url, url);
 			   }},
 			 true);
@@ -1785,7 +1787,7 @@ public class ServletUtil {
 	List urls = ((SpiderCrawlSpec)spec).getStartingUrls();
 	for (Iterator uiter = urls.iterator(); uiter.hasNext(); ) {
 	  String url = (String)uiter.next();
-	  tbl.add(xform.transformUrl(url));
+	  tbl.add(xform.transformUrl(url, au));
 	  if (checkCollected && AuUtil.getAuState(au).getLastCrawlTime() < 0) {
 	    tbl.add(" (not fully collected)");
 	  }
