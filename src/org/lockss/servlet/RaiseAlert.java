@@ -73,8 +73,7 @@ public class RaiseAlert extends LockssServlet {
   String auid;
   String name;
   String text;
-  ArchivalUnit au;
-  boolean showResult;
+
   protected void resetLocals() {
     resetVars();
     super.resetLocals();
@@ -82,6 +81,9 @@ public class RaiseAlert extends LockssServlet {
 
   void resetVars() {
     auid = null;
+    name = null;
+    text = null;
+    name = null;
     errMsg = null;
     statusMsg = null;
   }
@@ -105,7 +107,7 @@ public class RaiseAlert extends LockssServlet {
 
   private boolean doRaise() {
     auid = getParameter(KEY_AUID);
-    au = pluginMgr.getAuFromId(auid);
+    ArchivalUnit au = pluginMgr.getAuFromId(auid);
     name = getParameter(KEY_NAME_SEL);
     if (StringUtil.isNullString(name)) {
       name = getParameter(KEY_NAME_TYPE);
