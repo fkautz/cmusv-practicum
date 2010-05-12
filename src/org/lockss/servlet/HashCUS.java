@@ -512,6 +512,7 @@ public class HashCUS extends LockssServlet {
     Reader rdr = new BufferedReader(new FileReader(blockFile));
     org.mortbay.util.IO.copy(rdr, wrtr);
     rdr.close();
+    blockFile.delete();
   }
 
   String getElapsedString() {
