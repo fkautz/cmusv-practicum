@@ -49,13 +49,10 @@ public class ListObjects extends LockssServlet {
   private String auid;
   private ArchivalUnit au;
 
-  private PrintWriter wrtr = null;
-
   private PluginManager pluginMgr;
 
   // don't hold onto objects after request finished
   protected void resetLocals() {
-    wrtr = null;
     au = null;
     auid = null;
     super.resetLocals();
@@ -134,6 +131,7 @@ public class ListObjects extends LockssServlet {
 	wrtr.println(cusn.getUrl());
       }
     }
+    wrtr.println("# end");
   }
 
   void listDOIs() throws IOException {
@@ -161,6 +159,7 @@ public class ListObjects extends LockssServlet {
         AuUtil.safeRelease(cu);
       }
     }
+    wrtr.println("# end");
   }
 
   void listFiles() throws IOException {
@@ -186,6 +185,7 @@ public class ListObjects extends LockssServlet {
 	AuUtil.safeRelease(cu);
       }
     }
+    wrtr.println("# end");
   }
 
   void listArticles() throws IOException {
@@ -219,11 +219,14 @@ public class ListObjects extends LockssServlet {
         AuUtil.safeRelease(cu);       
       }
     }
+    wrtr.println("# end");
   }
 
   void listAUs() throws IOException {
     PrintWriter wrtr = resp.getWriter();
     resp.setContentType("text/plain");
+    wrtr.println("# AUs on " + getMachineName());
+    wrtr.println();
     boolean includeInternalAus = isDebugUser();
     for (ArchivalUnit au : pluginMgr.getAllAus()) {
       if (!includeInternalAus && pluginMgr.isInternalAu(au)) {
@@ -231,11 +234,14 @@ public class ListObjects extends LockssServlet {
       }
       wrtr.println(au.getName());
     }
+    wrtr.println("# end");
   }
 
   void listAuIds() throws IOException {
     PrintWriter wrtr = resp.getWriter();
     resp.setContentType("text/plain");
+    wrtr.println("# AUIDs on " + getMachineName());
+    wrtr.println();
     boolean includeInternalAus = isDebugUser();
     for (ArchivalUnit au : pluginMgr.getAllAus()) {
       if (!includeInternalAus && pluginMgr.isInternalAu(au)) {
@@ -243,6 +249,7 @@ public class ListObjects extends LockssServlet {
       }
       wrtr.println(au.getAuId());
     }
+    wrtr.println("# end");
   }
 
   // unfinished form to select object list
