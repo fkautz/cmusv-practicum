@@ -82,6 +82,9 @@ public class HighWirePressH20HtmlFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttribute("div", "id", "access"),
         HtmlNodeFilters.tagWithAttribute("div", "id", "feeds-widget1"),
         HtmlNodeFilters.tagWithAttribute("div", "class", "careers-widget"),
+        // For JCB
+        HtmlNodeFilters.tagWithAttribute("div", "id", "leaderboard-ads"),
+        HtmlNodeFilters.tagWithAttribute("div", "class", "current-issue"),
 
     };
     
