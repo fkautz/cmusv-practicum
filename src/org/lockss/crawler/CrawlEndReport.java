@@ -93,7 +93,7 @@ public class CrawlEndReport {
     MessageDigest digest = MessageDigest.getInstance(hashAlg);
     SimpleHasher hasher = new SimpleHasher(digest);
     File blockFile = FileUtil.createTempFile("auhash", ".tmp");
-    hasher.doV3Hash(au.getAuCachedUrlSet(), blockFile, textPart);
+    hasher.doV3Hash(au.getAuCachedUrlSet(), blockFile, textPart, null);
     return blockFile;
   }
 
