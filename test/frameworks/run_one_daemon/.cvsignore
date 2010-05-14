@@ -10,3 +10,4 @@ test.out
 jmp_dump-*.txt
 jmp_heap_dump_*
 
+export
