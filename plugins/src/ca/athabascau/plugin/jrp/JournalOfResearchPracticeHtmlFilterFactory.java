@@ -37,21 +37,22 @@ import org.lockss.plugin.*;
  * @author edwardsb
  *
  */
-public class JournalOfResearchPracticeHtmlFilterFactory implements
-    FilterFactory {
+public class JournalOfResearchPracticeHtmlFilterFactory extends org.lockss.plugin.ojs2.OJS2HtmlFilterFactory {
 
-  /* (non-Javadoc)
+  /* @Override
    * @see org.lockss.plugin.FilterFactory#createFilteredInputStream(org.lockss.plugin.ArchivalUnit, java.io.InputStream, java.lang.String)
    */               
   public InputStream createFilteredInputStream(ArchivalUnit au, InputStream in,
-      String encoding) throws PluginException {
+      String encoding) {
+    InputStream instr1;
+    
+    instr1 = super.createFilteredInputStream(au, in, encoding);
+    
     NodeFilter[] filters = new NodeFilter[] {
-        // Some OJS sites have a tag cloud
-        HtmlNodeFilters.tagWithAttribute("div", "id", "sidebarKeywordCloud"),
         HtmlNodeFilters.tagWithAttribute("table", "id", "table1"),        
     };
     OrFilter orFilter = new OrFilter(filters);
-    return new HtmlFilterInputStream(in,
+    return new HtmlFilterInputStream(instr1,
                                    encoding,
                                    HtmlNodeFilterTransform.exclude(orFilter));
 }
