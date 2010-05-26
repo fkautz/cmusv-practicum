@@ -47,8 +47,12 @@ public class EmeraldHtmlFilterFactory implements FilterFactory {
                                                String encoding)
     throws PluginException {
     HtmlTransform[] transforms = new HtmlTransform[] {
-        // Filter out <meta http-equiv>
-        HtmlNodeFilterTransform.exclude(new TagNameFilter("meta")),
+        /*
+         * Exclude <div class="welcomeBox">
+         */
+        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttributeRegex("div",
+                                                                              "class",
+                                                                              "welcomeBox")),
     };
     return new HtmlFilterInputStream(in,
                                      encoding,
