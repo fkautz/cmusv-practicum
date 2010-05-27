@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2009 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -153,7 +153,7 @@ public class AdminEditAccounts extends EditAccountBase {
       return;
     }
 
-    acct.setRoles(roles);
+    acct.setRoles(roles, true);
     if (!StringUtil.isNullString(email)) {
       acct.setEmail(email);
     }
@@ -421,10 +421,22 @@ public class AdminEditAccounts extends EditAccountBase {
     return in;
   }
 
+  Input addTextInput(Table tbl, String label, String key, boolean isPassword,
+		     String initialValue) {
+    tbl.newRow();
+    tbl.newCell("align=right");
+    tbl.add(label);
+    Input in = new Input(isPassword ? Input.Password : Input.Text,
+			 key, initialValue);
+    setTabOrder(in);
+    tbl.add(in);
+    return in;
+  }
+
   private Table buildEditAttrsTable(UserAccount acct) {
     Table tbl = new Table(0, "align=center cellspacing=1 border=1 cellpadding=2");
-    addTextInput(tbl, "New password: ", KEY_NEW_PASSWD, true);
-    addTextInput(tbl, "Confirm password: ", KEY_NEW_PASSWD_2, true);
+    addTextInput(tbl, "New password: ", KEY_NEW_PASSWD, true, "");
+    addTextInput(tbl, "Confirm password: ", KEY_NEW_PASSWD_2, true, "");
     Input eml = addTextInput(tbl, "Email address: ", KEY_EMAIL, false);
     eml.attribute("value", acct.getEmail());
     return tbl;
