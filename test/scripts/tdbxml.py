@@ -118,6 +118,15 @@ def _do_attr(au, attr, value=None):
    <property name="attributes.%s" value="%s" />''' % ( attr, value )
 
 def _process_au(au, options):
+    # Added by BEE:
+    # Give a warning message if the plugin is org.lockss.plugin.highwire.{
+    # HighWirePlugin, HighWireStrVolPlugin} and the status is 'testing'.
+    import sys
+    if (au.status() == AU.STATUS_TESTING and \
+            au.plugin() in ["org.lockss.plugin.highwire.HighWirePlugin",
+                            "org.lockss.plugin.highwire.HighWireStrVolPlugin"]):
+        sys.stderr.write("Warning: %s is using an old HighWire plugin.\n" % au.name())
+    
     print '''\
   <property name="%s">
    <property name="attributes.publisher" value="%s" />
