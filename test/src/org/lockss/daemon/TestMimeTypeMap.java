@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -49,7 +49,8 @@ public class TestMimeTypeMap extends LockssTestCase {
   MimeTypeMap map;
   MimeTypeInfo.Mutable mti;
 
-  public void setUp() {
+  public void setUp() throws Exception {
+    super.setUp();
     map = new MimeTypeMap();
     mti = new MimeTypeInfo.Impl();
   }
@@ -90,7 +91,17 @@ public class TestMimeTypeMap extends LockssTestCase {
     assertNull(mt2.getHashFilterFactory());
     assertNull(mt2.getCrawlFilterFactory());
     assertTrue(mt2.getLinkExtractorFactory()
-	       instanceof CssLinkExtractor.Factory);
+	       instanceof FluteCssLinkExtractor.Factory);
+
+    ConfigurationUtil.setFromArgs(MimeTypeMap.PARAM_DEFAULT_CSS_EXTRACTOR_FACTORY,
+				  "org.lockss.extractor.RegexpCssLinkExtractor$Factory");
+    assertTrue(mt2.getLinkExtractorFactory()
+	       instanceof RegexpCssLinkExtractor.Factory);
+
+    ConfigurationUtil.setFromArgs(MimeTypeMap.PARAM_DEFAULT_CSS_EXTRACTOR_FACTORY,
+				  "No.Such.Class");
+    assertTrue(mt2.getLinkExtractorFactory()
+	       instanceof FluteCssLinkExtractor.Factory);
   }
 
   public void testModifyMimeTypeInfo() {
