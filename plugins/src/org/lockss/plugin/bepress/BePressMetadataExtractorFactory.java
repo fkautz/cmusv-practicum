@@ -116,7 +116,7 @@ public class BePressMetadataExtractorFactory
               ret.putAuthor(content);              
               break;
             case 4:
-              ret.putTitle(content);              
+              ret.putArticleTitle(content);
               break;
           }
         }

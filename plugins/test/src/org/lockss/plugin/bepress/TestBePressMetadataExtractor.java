@@ -229,7 +229,7 @@ public class TestBePressMetadataExtractor extends LockssTestCase{
     goodAuthor = goodAuthor.replaceAll(";", ",");
     
     assertEquals(goodAuthor, md.getAuthor());
-    assertEquals(goodTitle, md.getTitle());
+    assertEquals(goodTitle, md.getArticleTitle());
     for (int i = 1; i < dublinCoreField.length; i++) {
       assertEquals(dublinCoreValue[i], md.getProperty(dublinCoreField[i]));
     }

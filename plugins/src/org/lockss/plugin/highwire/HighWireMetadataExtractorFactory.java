@@ -114,7 +114,7 @@ public class HighWireMetadataExtractorFactory
           }
           content = ret.getProperty("citation_title");
           if (content != null && !"".equals(content)) {
-            ret.putTitle(content);
+            ret.putArticleTitle(content);
           }
           content = ret.getProperty("citation_date");
           if (content != null && !"".equals(content)) {
