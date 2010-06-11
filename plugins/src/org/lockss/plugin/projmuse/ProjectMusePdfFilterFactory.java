@@ -53,14 +53,6 @@ public class ProjectMusePdfFilterFactory implements FilterFactory {
   }
 
   /**
-   * <p>This filter identifies the dynamic part by looking for
-   * telltale constructs at the end of the token stream of the first
-   * page; this is the heuristic number of tokens from the end it
-   * should attempt to look through before giving up.</p>
-   */
-  protected static final int MAX_LOOKBACK = 40;
-
-  /**
    * <p>The result is written to a temporary file output stream; this
    * constant defines the size up to which it is handled entirely in
    * memory.</p>
@@ -83,7 +75,7 @@ public class ProjectMusePdfFilterFactory implements FilterFactory {
       int indexOfBt = -1;
       int progress = 0;
       
-      iteration_label: for (int index = tokens.size() - 1 ; index >= 0 && index >= tokens.size() - MAX_LOOKBACK ; --index) {
+      iteration_label: for (int index = tokens.size() - 1 ; index >= 0 ; --index) {
         
         switch (progress) {
 
