@@ -156,7 +156,8 @@ public class TdbPublisher {
    * 
    * @param title a new TdbTitle
    * @throws IllegalArgumentException if the title ID is not set
-   * @throws TdbException if title already added to a publisher
+   * @throws TdbException if trying to add different TdbTitle with same id
+   *   as existing TdbTitle
    */
   protected void addTdbTitle(TdbTitle title) throws TdbException{
     if (title == null) {
