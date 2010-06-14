@@ -313,7 +313,7 @@ public class TdbTitle {
    * to adding tdbAu to this title.
    * 
    * @param tdbAu a new TdbAus
-   * @throws TdbException if trying to add a TdbAu with the same id as
+   * @throws TdbException if trying to add different TdbAu with the same id as
    *   an existing TdbAu
    */
   public void addTdbAu(TdbAu tdbAu) throws TdbException {
