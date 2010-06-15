@@ -309,7 +309,7 @@ public class TdbTitle {
   }
   
   /**
-   * Add a new TdbAu for this title.  The pluginID and all params must be set prior
+   * Add a new TdbAu for this title.  All params must be set prior
    * to adding tdbAu to this title.
    * 
    * @param tdbAu a new TdbAus
