@@ -36,6 +36,7 @@ import java.io.*;
 import java.util.*;
 import org.lockss.app.*;
 import org.lockss.config.*;
+import org.lockss.config.Tdb.TdbException;
 import org.lockss.daemon.*;
 import org.lockss.test.*;
 import org.lockss.plugin.*;
@@ -146,7 +147,7 @@ public class TestBasePlugin extends LockssTestCase {
     assertNull(mbp.findAuConfigDescr("noparam"));
   }
 
-  public void testInitTitleDB() {
+  public void testInitTitleDB() throws TdbException {
     String plugName = "org.lockss.plugin.base.TestBasePlugin$MyBasePlugin";
     mbp.setConfigDescrs(ListUtil.list(PD_VOL, PD_YEAR));
     
