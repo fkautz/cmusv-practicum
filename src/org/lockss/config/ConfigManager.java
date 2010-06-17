@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -1313,8 +1313,8 @@ public class ConfigManager implements LockssManager {
 	}
       }
     }
-    log.debug("Difference count in Configuratioin keys: " + numDiffs);
-    log.debug("Difference count in TdbAus: " + diffs.getTdbAuDifferenceCount());
+    log.debug("New Configuration keys: " + numDiffs);
+    log.debug("New TdbAus: " + diffs.getTdbAuDifferenceCount());
   }
 
   public static boolean shouldParamBeLogged(String key) {

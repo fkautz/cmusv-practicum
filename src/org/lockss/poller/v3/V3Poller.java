@@ -1583,6 +1583,8 @@ public class V3Poller extends BasePoll {
         public void signalCrawlAttemptCompleted(boolean success,
                                                 Object cookie,
                                                 CrawlerStatus status) {
+	  log.debug3("Repair crawl complete: " + success + ", fethced: "
+		     + status.getUrlsFetched());
           if (success) {
             // Check the repairs.
             // XXX: It would be nice to be able to re-hash the repaired
