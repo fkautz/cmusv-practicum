@@ -1037,8 +1037,10 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
 	CrawlerStatus cs = crawler.getStatus();
 	cmStatus.touchCrawlStatus(cs);
 	signalAuEvent(crawler, cs);
-	if (cs != null) cs.sealCounters();
+	// must call callback before sealing counters.  V3Poller relies
+	// on fetched URL list
 	callCallback(cb, cookie, crawlSuccessful, cs);
+	if (cs != null) cs.sealCounters();
       }
     }
   }
