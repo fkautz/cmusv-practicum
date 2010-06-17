@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -36,46 +36,50 @@ import java.util.*;
 
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
-import org.lockss.extractor.*;
+import org.lockss.crawler.*;
 import org.lockss.test.*;
+import org.lockss.extractor.*;
 import org.lockss.util.*;
 
-public class TestMetadataExtractorFactoryWrapper extends LockssTestCase {
+public class TestArticleMetadataExtractorWrapper extends LockssTestCase {
 
+  private static final String url = "http://www.example.com/";
   public void testWrap() throws PluginException, IOException {
-    MetadataExtractorFactory obj = new MockMetadataExtractorFactory();
-    MetadataExtractorFactory wrapper =
-      (MetadataExtractorFactory)WrapperUtil.wrap(obj, MetadataExtractorFactory.class);
-    assertTrue(wrapper instanceof MetadataExtractorFactoryWrapper);
-    assertTrue(WrapperUtil.unwrap(wrapper)
-	       instanceof MockMetadataExtractorFactory);
+    ArticleMetadataExtractor obj = new MyArticleMetadataExtractor();
+    ArticleMetadataExtractor wrapper =
+      (ArticleMetadataExtractor)WrapperUtil.wrap(obj, ArticleMetadataExtractor.class);
+    assertTrue(wrapper instanceof ArticleMetadataExtractorWrapper);
+    assertTrue(WrapperUtil.unwrap(wrapper) instanceof MyArticleMetadataExtractor);
 
-    wrapper.createMetadataExtractor("foomime");
-    MockMetadataExtractorFactory mn = (MockMetadataExtractorFactory)obj;
-    assertEquals(ListUtil.list("foomime"), mn.args);
+    CachedUrl cu = new MockCachedUrl(url);
+    ArticleFiles af = new ArticleFiles();
+    wrapper.extract(af);
+    MyArticleMetadataExtractor mn = (MyArticleMetadataExtractor)obj;
+    log.info("xxxx: "+mn);
+    assertEquals(ListUtil.list(af), mn.args);
   }
 
   public void testLinkageError() throws IOException {
-    MetadataExtractorFactory obj = new MockMetadataExtractorFactory();
-    MetadataExtractorFactory wrapper =
-      (MetadataExtractorFactory)WrapperUtil.wrap(obj, MetadataExtractorFactory.class);
-    assertTrue(wrapper instanceof MetadataExtractorFactoryWrapper);
-    assertTrue(WrapperUtil.unwrap(wrapper)
-	       instanceof MockMetadataExtractorFactory);
+    ArticleMetadataExtractor obj = new MyArticleMetadataExtractor();
+    ArticleMetadataExtractor wrapper =
+      (ArticleMetadataExtractor)WrapperUtil.wrap(obj, ArticleMetadataExtractor.class);
+    assertTrue(wrapper instanceof ArticleMetadataExtractorWrapper);
+    assertTrue(WrapperUtil.unwrap(wrapper) instanceof MyArticleMetadataExtractor);
     Error err = new LinkageError("bar");
-    MockMetadataExtractorFactory a = (MockMetadataExtractorFactory)obj;
+    MyArticleMetadataExtractor a = (MyArticleMetadataExtractor)obj;
     a.setError(err);
+    ArticleFiles af = new ArticleFiles();
+    CachedUrl cu = new MockCachedUrl(url);
     try {
-      wrapper.createMetadataExtractor(null);
+      wrapper.extract(af);
       fail("Should have thrown PluginException");
     } catch (PluginException e) {
       assertTrue(e instanceof PluginException.LinkageError);
     }
   }
 
-  public static class MockMetadataExtractorFactory
-    implements MetadataExtractorFactory {
-
+  public static class MyArticleMetadataExtractor
+    implements ArticleMetadataExtractor {
     List args;
     Error error;
 
@@ -83,13 +87,13 @@ public class TestMetadataExtractorFactoryWrapper extends LockssTestCase {
       this.error = error;
     }
 
-    public MetadataExtractor createMetadataExtractor(String mimeType)
-	throws PluginException {
-      args = ListUtil.list(mimeType);
+    public Metadata extract(ArticleFiles af)
+	throws IOException {
+      args = ListUtil.list(af);
       if (error != null) {
 	throw error;
       }
-      return new MockMetadataExtractor();
+      return new Metadata(new Properties());
     }
   }
 }

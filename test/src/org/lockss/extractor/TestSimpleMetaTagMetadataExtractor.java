@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -41,13 +41,13 @@ import org.lockss.plugin.*;
 import org.lockss.daemon.*;
 
 public class TestSimpleMetaTagMetadataExtractor
-    extends MetadataExtractorTestCase {
+    extends FileMetadataExtractorTestCase {
 
   public TestSimpleMetaTagMetadataExtractor() {
   }
 
-  public MetadataExtractorFactory getFactory() {
-    return new MyMetadataExtractorFactory();
+  public FileMetadataExtractorFactory getFactory() {
+    return new MyFileMetadataExtractorFactory();
   }
 
   public String getMimeType() {
@@ -174,11 +174,11 @@ public class TestSimpleMetaTagMetadataExtractor
 		 SetUtil.theSet(extractFrom(text).values()));
   }
 
-  private class MyMetadataExtractorFactory
-      implements MetadataExtractorFactory {
-    MyMetadataExtractorFactory() {
+  private class MyFileMetadataExtractorFactory
+      implements FileMetadataExtractorFactory {
+    MyFileMetadataExtractorFactory() {
     }
-    public MetadataExtractor createMetadataExtractor(String mimeType)
+    public FileMetadataExtractor createFileMetadataExtractor(String mimeType)
         throws PluginException {
       return new SimpleMetaTagMetadataExtractor();
     }

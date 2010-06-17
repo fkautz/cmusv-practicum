@@ -30,24 +30,40 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.extractor;
-import org.lockss.util.*;
+package org.lockss.plugin.wrapper;
+import java.io.*;
 import org.lockss.daemon.*;
-import org.lockss.extractor.*;
 import org.lockss.plugin.*;
+import org.lockss.extractor.*;
 
-public class SimpleMetaTagMetadataExtractorFactory
-    implements FileMetadataExtractorFactory {
-  /**
-   * Create a MetadataExtractor
-   * @param contentType the content type type from which to extract URLs
-   */
-  public FileMetadataExtractor createFileMetadataExtractor(String contentType)
-      throws PluginException {
-    String mimeType = HeaderUtil.getMimeTypeFromContentType(contentType);
-    if ("text/html".equalsIgnoreCase(mimeType)) {
-      return new SimpleMetaTagMetadataExtractor();
+/** Error catching wrapper for ArticleMetadataExtractor */
+public class ArticleMetadataExtractorWrapper
+  implements ArticleMetadataExtractor, PluginCodeWrapper {
+
+  ArticleMetadataExtractor inst;
+
+  public ArticleMetadataExtractorWrapper(ArticleMetadataExtractor inst) {
+    this.inst = inst;
+  }
+
+  public Object getWrappedObj() {
+    return inst;
+  }
+
+  public Metadata extract(ArticleFiles af)
+      throws IOException, PluginException {
+    Metadata ret = null;
+    try {
+      ret = inst.extract(af);
+    } catch (LinkageError e) {
+      throw new PluginException.LinkageError(e);
     }
-    return null;
+    return ret;
+  }
+
+  static class Factory implements WrapperFactory {
+    public Object wrap(Object obj) {
+      return new ArticleMetadataExtractorWrapper((ArticleMetadataExtractor)obj);
+    }
   }
 }

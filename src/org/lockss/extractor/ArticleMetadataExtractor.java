@@ -31,23 +31,21 @@ in this Software without prior written authorization from Stanford University.
 */
 
 package org.lockss.extractor;
-import org.lockss.util.*;
+
+import java.io.*;
+
 import org.lockss.daemon.*;
-import org.lockss.extractor.*;
 import org.lockss.plugin.*;
 
-public class SimpleMetaTagMetadataExtractorFactory
-    implements FileMetadataExtractorFactory {
+/** Content parser that extracts metadata from CachedUrl objects */
+public interface ArticleMetadataExtractor {
   /**
-   * Create a MetadataExtractor
-   * @param contentType the content type type from which to extract URLs
+   * Parse content on CachedUrl,  Return a Metadata object describing it
+   * @param cu the CachedUrl to extract from
    */
-  public FileMetadataExtractor createFileMetadataExtractor(String contentType)
-      throws PluginException {
-    String mimeType = HeaderUtil.getMimeTypeFromContentType(contentType);
-    if ("text/html".equalsIgnoreCase(mimeType)) {
-      return new SimpleMetaTagMetadataExtractor();
-    }
-    return null;
-  }
+  public Metadata extract(/*ArchivalUnit au,
+			    MetadataTarget target,*/
+			  ArticleFiles af)
+    throws IOException, PluginException;
+
 }

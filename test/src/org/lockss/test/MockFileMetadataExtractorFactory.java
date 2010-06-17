@@ -30,24 +30,19 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.extractor;
-import org.lockss.util.*;
-import org.lockss.daemon.*;
-import org.lockss.extractor.*;
+package org.lockss.test;
+import java.util.*;
+import java.io.*;
 import org.lockss.plugin.*;
+import org.lockss.extractor.*;
 
-public class SimpleMetaTagMetadataExtractorFactory
-    implements FileMetadataExtractorFactory {
-  /**
-   * Create a MetadataExtractor
-   * @param contentType the content type type from which to extract URLs
-   */
-  public FileMetadataExtractor createFileMetadataExtractor(String contentType)
-      throws PluginException {
-    String mimeType = HeaderUtil.getMimeTypeFromContentType(contentType);
-    if ("text/html".equalsIgnoreCase(mimeType)) {
-      return new SimpleMetaTagMetadataExtractor();
-    }
-    return null;
+public class MockFileMetadataExtractorFactory
+  implements FileMetadataExtractorFactory {
+
+  public MockFileMetadataExtractorFactory() {
+  }
+
+  public FileMetadataExtractor createFileMetadataExtractor(String mimeType) {
+    return new MockFileMetadataExtractor();
   }
 }

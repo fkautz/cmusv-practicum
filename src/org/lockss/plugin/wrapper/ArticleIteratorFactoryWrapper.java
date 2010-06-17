@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -35,6 +35,7 @@ import java.io.*;
 import java.util.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
+import org.lockss.extractor.*;
 
 /** Error catching wrapper for ArticleIteratorFactory */
 public class ArticleIteratorFactoryWrapper
@@ -50,10 +51,10 @@ public class ArticleIteratorFactoryWrapper
     return inst;
   }
 
-  public Iterator createArticleIterator(String mimeType, ArchivalUnit au)
+  public Iterator createArticleIterator(ArchivalUnit au, MetadataTarget target)
       throws PluginException {
     try {
-      return inst.createArticleIterator(mimeType, au);
+      return inst.createArticleIterator(au, target);
     } catch (LinkageError e) {
       throw new PluginException.LinkageError(e);
     }

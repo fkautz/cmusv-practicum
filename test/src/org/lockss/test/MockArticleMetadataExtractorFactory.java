@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,23 +33,17 @@ in this Software without prior written authorization from Stanford University.
 package org.lockss.test;
 import java.util.*;
 import java.io.*;
-import org.lockss.util.*;
 import org.lockss.plugin.*;
 import org.lockss.extractor.*;
 
-public class MockMetadataExtractor implements MetadataExtractor {
+public class MockArticleMetadataExtractorFactory
+  implements ArticleMetadataExtractorFactory {
 
-  private Metadata metadata = null;
-
-  public MockMetadataExtractor() {
+  public MockArticleMetadataExtractorFactory() {
   }
 
-  public Metadata extract(CachedUrl cu) {
-      return metadata;
+  public ArticleMetadataExtractor
+    createArticleMetadataExtractor(MetadataTarget target) {
+    return new MockArticleMetadataExtractor();
   }
-
-  public void setMetadataToReturn(Metadata metadata) {
-    this.metadata = metadata;
-  }
-
 }

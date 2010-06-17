@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -38,12 +38,14 @@ import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 
 /** Content parser that extracts metadata from CachedUrl objects */
-public interface MetadataExtractor {
+public interface FileMetadataExtractor {
   /**
    * Parse content on CachedUrl,  Return a Metadata object describing it
    * @param cu the CachedUrl to extract from
    */
-  public Metadata extract(CachedUrl cu)
+  public Metadata extract(/*ArchivalUnit au,
+			  MetadataTarget target,*/
+			  CachedUrl cu)
     throws IOException, PluginException;
 
 }

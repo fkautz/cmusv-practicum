@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2007 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -32,14 +32,42 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.extractor;
 
-import org.lockss.daemon.*;
 
-/** Factory to create a MetadataExtractor */
-public interface MetadataExtractorFactory {
-  /**
-   * Create a MetadataExtractor
-   * @param contentType the MIME type from which to extract URLs
-   */
-  public MetadataExtractor createMetadataExtractor(String contentType)
-      throws PluginException;
+/**
+ * Describes the purpose for which metadata is being extracted and the
+ * format desired.  Passed to ArticleIterator.
+ */
+public class MetadataTarget {
+
+  public static MetadataTarget DOI = new MetadataTarget("DOI");
+  public static MetadataTarget OpenURL = new MetadataTarget("OpenURL");
+  public static MetadataTarget Article = new MetadataTarget("Article");
+
+  private String format;
+  private String purpose;
+
+  public MetadataTarget() {
+  }
+
+  public MetadataTarget(String purpose) {
+    this.purpose = purpose;
+  }
+
+  public MetadataTarget setFormat(String format) {
+    this.format = format;
+    return this;
+  }
+
+  public String getFormat() {
+    return format;
+  }
+
+  public MetadataTarget setPurpose(String purpose) {
+    this.purpose = purpose;
+    return this;
+  }
+
+  public String getPurpose() {
+    return purpose;
+  }
 }

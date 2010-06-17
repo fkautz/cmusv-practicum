@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,38 +30,27 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.plugin.wrapper;
+package org.lockss.test;
+import java.util.*;
 import java.io.*;
-import org.lockss.daemon.*;
+import org.lockss.util.*;
 import org.lockss.plugin.*;
 import org.lockss.extractor.*;
 
-/** Error catching wrapper for MetadataExtractorFactory */
-public class MetadataExtractorFactoryWrapper
-  implements MetadataExtractorFactory, PluginCodeWrapper {
+public class MockArticleMetadataExtractor implements ArticleMetadataExtractor {
 
-  MetadataExtractorFactory inst;
+  private Metadata metadata = null;
 
-  public MetadataExtractorFactoryWrapper(MetadataExtractorFactory inst) {
-    this.inst = inst;
+  public MockArticleMetadataExtractor() {
   }
 
-  public Object getWrappedObj() {
-    return inst;
+  public Metadata extract(ArticleFiles af) {
+//     CachedUrl cu = af.getFullTextCu();
+    return metadata;
   }
 
-  public MetadataExtractor createMetadataExtractor(String mimeType)
-      throws PluginException {
-    try {
-      return inst.createMetadataExtractor(mimeType);
-    } catch (LinkageError e) {
-      throw new PluginException.LinkageError(e);
-    }
+  public void setMetadataToReturn(Metadata metadata) {
+    this.metadata = metadata;
   }
 
-  static class Factory implements WrapperFactory {
-    public Object wrap(Object obj) {
-      return new MetadataExtractorFactoryWrapper((MetadataExtractorFactory)obj);
-    }
-  }
 }

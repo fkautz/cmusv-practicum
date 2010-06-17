@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2009 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -72,8 +72,9 @@ public class MockArchivalUnit implements ArchivalUnit {
   private FilterFactory hashFilterFactory = null;
   private FilterFactory crawlFilterFactory = null;
   private LinkRewriterFactory rewriterFactory = null;
-  private Iterator articleIterator = null;
+  private Iterator<ArticleFiles> articleIterator = null;
   private Map extractors = new HashMap();
+  private Map fileMetadataExtractors = new HashMap();
   private TypedEntryMap propertyMap = new TypedEntryMap();
   private List urlStems = Collections.EMPTY_LIST;
   private Collection loginUrls;
@@ -484,17 +485,32 @@ public class MockArchivalUnit implements ArchivalUnit {
     this.rewriterFactory = rewriterFactory;
   }
 
-  public Iterator getArticleIterator() {
+  public Iterator<ArticleFiles> getArticleIterator() {
     return articleIterator;
   }
 
-  public Iterator getArticleIterator(String contentType) {
+  public Iterator<ArticleFiles> getArticleIterator(MetadataTarget target) {
     return articleIterator;
   }
 
-  public void setArticleIterator(Iterator iter) {
+  public void setArticleIterator(Iterator<ArticleFiles> iter) {
     this.articleIterator = iter;
   }
+
+  public FileMetadataExtractor getFileMetadataExtractor(String contentType) {
+    String mimeType = HeaderUtil.getMimeTypeFromContentType(contentType);
+    FileMetadataExtractor res = (FileMetadataExtractor)fileMetadataExtractors.get(mimeType);
+    if (res == null) {
+      res = (FileMetadataExtractor)fileMetadataExtractors.get("*");
+    }      
+    return res;
+  }
+
+  public void setFileMetadataExtractor(String mimeType,
+				       FileMetadataExtractor extractor) {
+    fileMetadataExtractors.put(mimeType, extractor);
+  }
+
 
   public LinkExtractor getLinkExtractor(String contentType) {
     String mimeType = HeaderUtil.getMimeTypeFromContentType(contentType);

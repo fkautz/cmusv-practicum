@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,18 +30,37 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.test;
-import java.util.*;
+package org.lockss.plugin;
+
 import java.io.*;
-import org.lockss.plugin.*;
-import org.lockss.extractor.*;
+import java.util.*;
+import org.lockss.app.*;
+import org.lockss.config.Configuration;
+import org.lockss.daemon.*;
+import org.lockss.state.*;
+import org.lockss.test.*;
+import org.lockss.plugin.base.*;
+import org.lockss.util.*;
+import org.lockss.plugin.ArchivalUnit.ConfigurationException;
 
-public class MockMetadataExtractorFactory implements MetadataExtractorFactory {
+public class TestArticleFiles extends LockssTestCase {
 
-  public MockMetadataExtractorFactory() {
+  public void testAccessors() {
+    ArticleFiles af1 = new ArticleFiles();
+    assertNull(af1.getFullTextCu());
+    assertNull(af1.getRoleCu("xml"));
+    CachedUrl cu1 = new MockCachedUrl("full");
+    af1.setFullTextCu(cu1);
+    assertSame(cu1, af1.getFullTextCu());
+    assertNull(af1.getRoleCu("xml"));
+
+    CachedUrl cu2 = new MockCachedUrl("xml");
+    af1.setRoleCu("xml", cu2);
+    assertSame(cu1, af1.getFullTextCu());
+    assertSame(cu2, af1.getRoleCu("xml"));
+    assertEquals("full", af1.getFullTextUrl());
+    assertEquals("xml", af1.getRoleUrl("xml"));
+    assertEquals(null, af1.getRoleUrl("html"));
   }
 
-  public MetadataExtractor createMetadataExtractor(String mimeType) {
-    return new MockMetadataExtractor();
-  }
 }
