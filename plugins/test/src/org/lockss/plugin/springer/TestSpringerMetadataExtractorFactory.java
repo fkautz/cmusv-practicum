@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -51,170 +51,96 @@ import org.lockss.extractor.*;
 public class TestSpringerMetadataExtractorFactory extends LockssTestCase {
   static Logger log = Logger.getLogger("TestSpringerMetadataExtractorFactory");
 
-  private SimulatedArchivalUnit sau;
+  private SimulatedArchivalUnit simau;	// Simulated AU to generate content
+  private ArchivalUnit spau;		// Springer AU
   private MockLockssDaemon theDaemon;
-  private CrawlManager crawlMgr;
-  private static final int DEFAULT_MAX_DEPTH = 1000;
   private static final int DEFAULT_FILESIZE = 3000;
   private static int fileSize = DEFAULT_FILESIZE;
-  private static int maxDepth=DEFAULT_MAX_DEPTH;
 
-  public static void main(String[] args) throws Exception {
-    TestSpringerMetadataExtractorFactory test = new TestSpringerMetadataExtractorFactory();
-    if (args.length>0) {
-      try {
-        maxDepth = Integer.parseInt(args[0]);
-      } catch (NumberFormatException ex) { }
-    }
+  private static String PLUGIN_NAME =
+    "org.lockss.plugin.springer.ClockssSpringerExplodedPlugin";
 
-    test.setUp(maxDepth);
-    test.testDOI();
-    test.tearDown();
-  }
+  private static String BASE_URL =
+    "http://source.lockss.org/sourcefiles/springer-released/";
 
   public void setUp() throws Exception {
     super.setUp();
-    this.setUp(DEFAULT_MAX_DEPTH);
-  }
-
-  public void setUp(int max) throws Exception {
-
     String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
-    String auId = "org|lockss|plugin|springer|TestSpringerMetadataExtractorFactory$MySimulatedPlugin.root~" +
-      PropKeyEncoder.encode(tempDirPath);
-    Properties props = new Properties();
-    props.setProperty(NewContentCrawler.PARAM_MAX_CRAWL_DEPTH, ""+max);
-    maxDepth=max;
-    props.setProperty(LockssRepositoryImpl.PARAM_CACHE_LOCATION, tempDirPath);
+    ConfigurationUtil.setFromArgs(LockssRepositoryImpl.PARAM_CACHE_LOCATION,
+				  tempDirPath,
+				  "org.lockss.plugin.simulated.SimulatedContentGenerator.doSpringer",
+				  "true");
 
-    props.setProperty("org.lockss.au." + auId + "." +
-                      SimulatedPlugin.AU_PARAM_ROOT, tempDirPath);
-    // the simulated Content's depth will be (AU_PARAM_DEPTH + 1)
-    props.setProperty("org.lockss.au." + auId + "." +
-                      SimulatedPlugin.AU_PARAM_DEPTH, "3");
-    props.setProperty("org.lockss.au." + auId + "." +
-                      SimulatedPlugin.AU_PARAM_BRANCH, "3");
-    props.setProperty("org.lockss.au." + auId + "." +
-                      SimulatedPlugin.AU_PARAM_NUM_FILES, "7");
-    props.setProperty("org.lockss.au." + auId + "." +
-                      SimulatedPlugin.AU_PARAM_FILE_TYPES, "" +
-                      (SimulatedContentGenerator.FILE_TYPE_PDF +
-		       SimulatedContentGenerator.FILE_TYPE_XML));
-    props.setProperty("org.lockss.au." + auId + "." +
-                      SimulatedPlugin.AU_PARAM_BIN_FILE_SIZE, ""+fileSize);
-    props.setProperty("org.lockss.au." + auId + "." +
-                      SimulatedPlugin.AU_PARAM_DEFAULT_ARTICLE_MIME_TYPE,
-		      "application/pdf");
-    props.setProperty("org.lockss.plugin.simulated.SimulatedContentGenerator" +
-		      ".doSpringer", "true");
     theDaemon = getMockLockssDaemon();
     theDaemon.getAlertManager();
-    theDaemon.getPluginManager().setLoadablePluginsReady(true);
+    PluginManager pluginMgr = theDaemon.getPluginManager();
+    pluginMgr.setLoadablePluginsReady(true);
     theDaemon.setDaemonInited(true);
-    theDaemon.getPluginManager().startService();
-    crawlMgr = theDaemon.getCrawlManager();
+    pluginMgr.startService();
+    theDaemon.getCrawlManager();
 
-    ConfigurationUtil.setCurrentConfigFromProps(props);
-
-    sau =
-        (SimulatedArchivalUnit)theDaemon.getPluginManager().getAllAus().get(0);
-    theDaemon.getLockssRepository(sau).startService();
-    theDaemon.setNodeManager(new MockNodeManager(), sau);
-    ArticleIteratorFactory aif = new SpringerArticleIteratorFactory();
-    sau.setArticleIteratorFactory(aif);
+    simau = PluginTestUtil.createAndStartSimAu(simAuConfig(tempDirPath));
+    spau = PluginTestUtil.createAndStartAu(PLUGIN_NAME, springerAuConfig());
   }
 
   public void tearDown() throws Exception {
-    sau.deleteContentTree();
+    simau.deleteContentTree();
     theDaemon.stopDaemon();
     super.tearDown();
   }
 
+  Configuration simAuConfig(String rootPath) {
+    Configuration conf = ConfigManager.newConfiguration();
+    conf.put("root", rootPath);
+    conf.put("base_url", BASE_URL);
+    conf.put("depth", "1");
+    conf.put("branch", "3");
+    conf.put("numFiles", "7");
+    conf.put("fileTypes", "" + (SimulatedContentGenerator.FILE_TYPE_PDF +
+				SimulatedContentGenerator.FILE_TYPE_XML));
+    return conf;
+  }
+
+  Configuration springerAuConfig() {
+    Configuration conf = ConfigManager.newConfiguration();
+    conf.put("base_url", BASE_URL);
+    conf.put("year", "2009");
+    return conf;
+  }
+
   public void testDOI() throws Exception {
-    createContent();
+    PluginTestUtil.crawlSimAu(simau);
+    PluginTestUtil.copyAu(simau, spau);
 
-    // get the root of the simContent
-    String simDir = sau.getSimRoot();
-
-    crawlContent();
-
-    Plugin plugin = sau.getPlugin();
+    Plugin plugin = spau.getPlugin();
     String articleMimeType = "application/pdf";
-    MetadataExtractor me = plugin.getMetadataExtractor(articleMimeType, sau);
+    ArticleMetadataExtractor me =
+      plugin.getArticleMetadataExtractor(null, spau);
     assertNotNull(me);
-    assert(me instanceof SpringerMetadataExtractorFactory.SpringerMetadataExtractor);
+    assertTrue(""+me.getClass(),
+	       me instanceof SpringerArticleIteratorFactory.SpringerArticleMetadataExtractor);
     int count = 0;
-    for (Iterator it = sau.getArticleIterator(); it.hasNext(); ) {
-	BaseCachedUrl cu = (BaseCachedUrl)it.next();
-	assertNotNull(cu);
-	assert(cu instanceof CachedUrl);
-	String contentType = cu.getContentType();
-	assertNotNull(contentType);
-	assert(contentType.toLowerCase().startsWith(articleMimeType));
-	log.debug("count " + count + " url " + cu.getUrl() + " " + contentType);
-	count++;
-	Metadata md = me.extract(cu);
-	assertNotNull(md);
-	String doi = md.getDOI();
-	assertNotNull(doi);
-	log.debug(cu.getUrl() + " doi " + doi);
-	String doi2 = md.getProperty(Metadata.KEY_DOI);
-	assert(doi2.startsWith(Metadata.PROTOCOL_DOI));
-	assertEquals(doi, doi2.substring(Metadata.PROTOCOL_DOI.length()));
+    for (Iterator<ArticleFiles> it = spau.getArticleIterator(); it.hasNext();){
+      ArticleFiles af = it.next();
+      assertNotNull(af);
+      CachedUrl fcu = af.getFullTextCu();
+      assertNotNull("full text CU", fcu);
+      String contentType = fcu.getContentType();
+      assertNotNull(contentType);
+      assertTrue(contentType,
+		 contentType.toLowerCase().startsWith(articleMimeType));
+      log.debug("count " + count + " url " + fcu.getUrl() + " " + contentType);
+      count++;
+      Metadata md = me.extract(af);
+      assertNotNull(md);
+      String doi = md.getDOI();
+      assertNotNull(doi);
+      log.debug(fcu.getUrl() + " doi " + doi);
+      String doi2 = md.getProperty(Metadata.KEY_DOI);
+      assertTrue(doi2, doi2.startsWith(Metadata.PROTOCOL_DOI));
+      assertEquals(doi, doi2.substring(Metadata.PROTOCOL_DOI.length()));
     }
     log.debug("Article count is " + count);
     assertEquals(28, count);
-  }
-
-  private void createContent() {
-    log.debug("Generating tree of size 3x1x2 with "+fileSize
-	      +"byte files...");
-    sau.generateContentTree();
-  }
-
-  private void crawlContent() {
-    log.debug("Crawling tree...");
-    CrawlSpec spec = new SpiderCrawlSpec(sau.getNewContentCrawlUrls(), null);
-    NewContentCrawler crawler =
-      new NewContentCrawler(sau, spec, new MockAuState());
-    //crawler.setCrawlManager(crawlMgr);
-    crawler.doCrawl();
-  }
-
-  public static class MySimulatedPlugin extends SimulatedPlugin {
-    /**
-     * Returns the article iterator factory for the mime type, if any
-     * @param contentType the content type
-     * @return the ArticleIteratorFactory
-     */
-    public ArticleIteratorFactory getArticleIteratorFactory(String contentType) {
-      MySpringerArticleIteratorFactory ret =
-	  new MySpringerArticleIteratorFactory();
-      ret.setSubTreeRoot("branch1/branch1");
-      return ret;
-    }
-    public MetadataExtractor getMetadataExtractor(String contentType,
-						    ArchivalUnit au) {
-      MetadataExtractorFactory mef =
-        new SpringerMetadataExtractorFactory();
-      MetadataExtractor ret = null;
-      try {
-        ret = mef.createMetadataExtractor(contentType);
-      } catch (PluginException ex) {
-        // Do nothing
-      }
-      return ret;
-    }
-  }
-
-  public static class MySpringerArticleIteratorFactory
-      extends SpringerArticleIteratorFactory {
-    MySpringerArticleIteratorFactory() {
-    }
-    public void setSubTreeRoot(String root) {
-      subTreeRoot = root;
-      pat = Pattern.compile("branch[0-9]*/", Pattern.CASE_INSENSITIVE);
-      log.debug("Set subTreeRoot: " + subTreeRoot);
-    }
   }
 }

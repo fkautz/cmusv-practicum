@@ -30,61 +30,52 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.plugin.springer;
+package org.lockss.plugin.nature;
 
 import java.io.*;
 import java.util.*;
-import java.util.regex.*;
 
 import org.lockss.test.*;
 import org.lockss.util.*;
 import org.lockss.config.*;
 import org.lockss.daemon.*;
-import org.lockss.crawler.*;
 import org.lockss.extractor.*;
 import org.lockss.repository.*;
 import org.lockss.plugin.*;
-import org.lockss.plugin.base.*;
 import org.lockss.plugin.simulated.*;
 
-public class TestSpringerArticleIteratorFactory extends LockssTestCase {
-  static Logger log = Logger.getLogger("TestSpringerArticleIteratorFactory");
+public class TestNatureArticleIteratorFactory extends LockssTestCase {
+  static Logger log = Logger.getLogger("TestNatureArticleIteratorFactory");
 
-  private SimulatedArchivalUnit simau;	// Simulated AU to generate content
-  private ArchivalUnit spau;		// Springer AU
+  private SimulatedArchivalUnit sau;	// Simulated AU to generate content
+  private ArchivalUnit nau;		// Nature AU
   private MockLockssDaemon theDaemon;
-  private CrawlManager crawlMgr;
   private static final int DEFAULT_FILESIZE = 3000;
   private static int fileSize = DEFAULT_FILESIZE;
 
   private static String PLUGIN_NAME =
-    "org.lockss.plugin.springer.ClockssSpringerExplodedPlugin";
+    "org.lockss.plugin.nature.ClockssNaturePublishingGroupPlugin";
 
-  private static String BASE_URL =
-    "http://source.lockss.org/sourcefiles/springer-released/";
+  private static String BASE_URL = "http://www.nature.com/";
 
   public void setUp() throws Exception {
     super.setUp();
     String tempDirPath = getTempDir().getAbsolutePath() + File.separator;
     ConfigurationUtil.setFromArgs(LockssRepositoryImpl.PARAM_CACHE_LOCATION,
-				  tempDirPath,
-				  "org.lockss.plugin.simulated.SimulatedContentGenerator.doSpringer",
-				  "true");
-
+				  tempDirPath);
     theDaemon = getMockLockssDaemon();
     theDaemon.getAlertManager();
-    PluginManager pluginMgr = theDaemon.getPluginManager();
-    pluginMgr.setLoadablePluginsReady(true);
+    theDaemon.getPluginManager().setLoadablePluginsReady(true);
     theDaemon.setDaemonInited(true);
-    pluginMgr.startService();
+    theDaemon.getPluginManager().startService();
     theDaemon.getCrawlManager();
 
-    simau = PluginTestUtil.createAndStartSimAu(simAuConfig(tempDirPath));
-    spau = PluginTestUtil.createAndStartAu(PLUGIN_NAME, springerAuConfig());
+    sau = PluginTestUtil.createAndStartSimAu(simAuConfig(tempDirPath));
+    nau = PluginTestUtil.createAndStartAu(PLUGIN_NAME, natureAuConfig());
   }
 
   public void tearDown() throws Exception {
-    simau.deleteContentTree();
+    sau.deleteContentTree();
     theDaemon.stopDaemon();
     super.tearDown();
   }
@@ -93,60 +84,44 @@ public class TestSpringerArticleIteratorFactory extends LockssTestCase {
     Configuration conf = ConfigManager.newConfiguration();
     conf.put("root", rootPath);
     conf.put("base_url", BASE_URL);
-    conf.put("depth", "1");
-    conf.put("branch", "3");
+    conf.put("depth", "2");
+    conf.put("branch", "2");
     conf.put("numFiles", "7");
-    conf.put("fileTypes", "" + (SimulatedContentGenerator.FILE_TYPE_PDF +
-				SimulatedContentGenerator.FILE_TYPE_XML));
+    conf.put("fileTypes", "" + SimulatedContentGenerator.FILE_TYPE_HTML);
+    conf.put("binFileSize", ""+fileSize);
     return conf;
   }
 
-  Configuration springerAuConfig() {
+  Configuration natureAuConfig() {
     Configuration conf = ConfigManager.newConfiguration();
     conf.put("base_url", BASE_URL);
-    conf.put("year", "2009");
+    conf.put("journal_id", "aps");
+    conf.put("volume_name", "2");
+    conf.put("year", "2008");
     return conf;
   }
-
-  Pattern pat1 = Pattern.compile("(.*)\\.xml\\.Meta$",
-				 Pattern.CASE_INSENSITIVE);
-  Pattern pat2 = Pattern.compile("(.*)/BodyRef/PDF(/.*)\\.pdf$",
-				 Pattern.CASE_INSENSITIVE);
 
   public void testArticleCountAndType(String articleMimeType,
 				      boolean isDefaultTarget,
 				      int expCount)
       throws Exception {
-    PluginTestUtil.crawlSimAu(simau);
-    PluginTestUtil.copyAu(simau, spau);
+    PluginTestUtil.crawlSimAu(sau);
+    String pat = "branch(\\d+)/branch(\\d+)/(\\d+file\\.html)";
+    String rep = "aps/journal/v$1/n$2/full/$3";
+    PluginTestUtil.copyAu(sau, nau, null, pat, rep);
 
     Iterator<ArticleFiles> it =
       isDefaultTarget
-      ? spau.getArticleIterator()
-      : spau.getArticleIterator(new MetadataTarget().setFormat(articleMimeType));
+      ? nau.getArticleIterator()
+      : nau.getArticleIterator(new MetadataTarget().setFormat(articleMimeType));
     int count = 0;
     while (it.hasNext()) {
       ArticleFiles af = it.next();
       CachedUrl cu = af.getFullTextCu();
       assertNotNull(cu);
-      String pdfUrl = cu.getUrl();
       String contentType = cu.getContentType();
-      assertNotNull(contentType);
       assertTrue(contentType,
-	     contentType.toLowerCase().startsWith(articleMimeType));
-      CachedUrl xmlCu = af.getRoleCu("xml");
-      if (isDefaultTarget) {
-	assertNotNull("XML role is null", xmlCu);
-	String xmlUrl = xmlCu.getUrl();
-	Matcher m1 = pat1.matcher(xmlUrl);
-	assertTrue(xmlUrl, m1.matches());
-	Matcher m2 = pat2.matcher(pdfUrl);
-	assertTrue(pdfUrl, m2.matches());
-	assertEquals(m1.group(1), m2.group(1)+m2.group(2));
-      } else {	
-	assertNull("XML role is not null", xmlCu);
-      }
-
+		 contentType.toLowerCase().startsWith(articleMimeType));
       log.debug("count " + count + " url " + cu.getUrl() + " " + contentType);
       count++;
     }
@@ -155,11 +130,11 @@ public class TestSpringerArticleIteratorFactory extends LockssTestCase {
   }
 
   public void testArticleCountAndDefaultType() throws Exception {
-    testArticleCountAndType("application/pdf", true, 28);
+    testArticleCountAndType("text/html", true, 14);
   }
 
-  public void testArticleCountAndHtmlType() throws Exception {
-    testArticleCountAndType("text/html", false, 12);
+  public void testArticleCountAndPdf() throws Exception {
+    testArticleCountAndType("application/pdf", false, 0);
   }
 
 }

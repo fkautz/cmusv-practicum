@@ -4,7 +4,7 @@
 
 /*
 
-Copyright (c) 2000-2006 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -32,15 +32,19 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.plugin.nature;
 
+import java.io.*;
 import java.util.*;
 import java.util.regex.*;
 
 import org.lockss.util.*;
 import org.lockss.daemon.*;
 import org.lockss.plugin.*;
+import org.lockss.extractor.*;
 import org.lockss.daemon.PluginException;
 
-public class NatureArticleIteratorFactory implements ArticleIteratorFactory {
+public class NatureArticleIteratorFactory
+  implements ArticleIteratorFactory,
+	     ArticleMetadataExtractorFactory {
   static Logger log = Logger.getLogger("NatureArticleIteratorFactory");
 
   /*
@@ -48,30 +52,39 @@ public class NatureArticleIteratorFactory implements ArticleIteratorFactory {
    * at a URL like http://www.nature.com/gt/journal/v16/n5/full/gt200929a.html
    * ie <base_url>/<journal_id>/journal/v<volume> is the subtree we want.
    */
-  protected String subTreeRoot;
-
-  public NatureArticleIteratorFactory() {
-  }
-  /**
-   * Create an Iterator that iterates through the AU's articles, pointing
-   * to the appropriate CachedUrl of type mimeType for each, or to the plugin's
-   * choice of CachedUrl if mimeType is null
-   * @param mimeType the MIME type desired for the CachedUrls
-   * @param au the ArchivalUnit to iterate through
-   * @return the ArticleIterator
-   */
-  public Iterator createArticleIterator(String mimeType, ArchivalUnit au)
+  public Iterator<ArticleFiles> createArticleIterator(ArchivalUnit au,
+						      MetadataTarget target)
       throws PluginException {
-    Pattern pat;
-    String jid;
-    jid = au.getConfiguration().get(ConfigParamDescr.JOURNAL_ID.getKey());
-    String vol = au.getConfiguration().get(ConfigParamDescr.VOLUME_NAME.getKey());
-    subTreeRoot = jid + "/journal/v" + vol;
-    log.debug("createArticleIterator(" + mimeType + "," + au.toString() +
-              ") " + subTreeRoot);    
-    pat = Pattern.compile("journal/v[^/]+/n[^/]+/full/",
-          Pattern.CASE_INSENSITIVE);
+    String rootPat = "\"%s%s/journal/v%s\", base_url, journal_id, volume_name";
+    Pattern pat = Pattern.compile("journal/v[^/]+/n[^/]+/full/",
+				  Pattern.CASE_INSENSITIVE);
     
-    return new SubTreeArticleIterator(mimeType, au, subTreeRoot, pat);
+    return new SubTreeArticleIterator(au,
+				      new SubTreeArticleIterator.Spec()
+				      .setTarget(target)
+				      .setRootTemplate(rootPat)
+				      .setPattern(pat));
+  }
+
+  public ArticleMetadataExtractor
+    createArticleMetadataExtractor(MetadataTarget target)
+      throws PluginException {
+    return new NatureArticleMetadataExtractor();
+  }
+
+  public class NatureArticleMetadataExtractor
+    implements ArticleMetadataExtractor {
+
+    public Metadata extract(ArticleFiles af)
+	throws IOException, PluginException {
+      CachedUrl cu = af.getFullTextCu();
+      if (cu != null) {
+	FileMetadataExtractor me = cu.getFileMetadataExtractor();
+	if (me != null) {
+	  return me.extract(cu);
+	}
+      }
+      return null;
+    }
   }
 }

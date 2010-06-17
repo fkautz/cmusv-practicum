@@ -30,7 +30,7 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.plugin.springer;
+package org.lockss.plugin.bioone;
 
 import java.io.*;
 import java.util.*;
@@ -42,96 +42,40 @@ import org.lockss.plugin.base.*;
 import org.lockss.extractor.*;
 import org.lockss.daemon.PluginException;
 
-public class SpringerArticleIteratorFactory
+public class BioOneArticleIteratorFactory
   implements ArticleIteratorFactory,
 	     ArticleMetadataExtractorFactory {
-  static Logger log = Logger.getLogger("SpringerArticleIterator");
+  static Logger log = Logger.getLogger("BioOneArticleIterator");
 
   /*
-   * The Springer URL structure means that the metadata for an article
-   * is at a URL like
-   * http://springer.clockss.org/PUB=./JOU=./VOL=./ISU=./ART=./..xml.Meta
-   * and the PDF at
-   * http://springer.clockss.org/PUB=./JOU=./VOL=./ISU=./ART=./BodyRef/PDF/..pdf
+   * The BioOne exploded URL structure means that the metadata for an article
+   * is at a URL like http://bioone.clockss.org/<issn>/<issue>/<article>/main.xml
+   * The DOI is between <ce:doi> and </ce:doi>.
    */
-//   protected Pattern pat = Pattern.compile(".*\\.xml\\.Meta$",
-// 					  Pattern.CASE_INSENSITIVE);
-  Pattern pat = null;
 
-  private static final String part1 = "/BodyRef/PDF";
-  private static final String part2 = "\\.pdf";
-  private static final String regex = ".*" + part1 + "/.*" + part2;
-
+  Pattern pat = Pattern.compile("^.*[0-9][0-9][0-9]file\\.html$");
 
   public Iterator<ArticleFiles> createArticleIterator(ArchivalUnit au,
 						      MetadataTarget target)
       throws PluginException {
     return new SubTreeArticleIterator(au,
 				      new SubTreeArticleIterator.Spec()
-				      .setTarget(target)) {
-      protected ArticleFiles createArticleFiles(CachedUrl cu) {
-	ArticleFiles res = new ArticleFiles();
-	res.setFullTextCu(cu);
-	// cu points to a file whose name is ....pdf
-	// but the metadata we want is in a file whose name is ....xml.Meta
-	String pdfUrl = cu.getUrl();
-	if (pdfUrl.matches(regex)) {
-	  String xmlUrl =
-	    pdfUrl.replaceFirst(part1, "").replaceFirst(part2, ".xml.Meta");
-	  CachedUrl xmlCu = cu.getArchivalUnit().makeCachedUrl(xmlUrl);
-	  if (xmlCu == null || !xmlCu.hasContent()) {
-	    if (xmlCu == null) {
-	      log.debug2("xmlCu is null");
-	    } else {
-	      log.debug2(xmlCu.getUrl() + " no content");
-	    }
-	    xmlUrl = 
-	      pdfUrl.replaceFirst(part1, "").replaceFirst(part2, ".xml.meta");
-	    xmlCu = cu.getArchivalUnit().makeCachedUrl(xmlUrl);
-	  }
-	  try {
-	    if (xmlCu != null && xmlCu.hasContent()) {
-	      String mimeType =
-		HeaderUtil.getMimeTypeFromContentType(xmlCu.getContentType());
-	      if ("text/xml".equalsIgnoreCase(mimeType)) {
-		res.setRoleCu("xml", xmlCu);
-	      } else {
-		log.debug2("xml.meta wrong mime type: " + mimeType + ": "
-			   + xmlCu.getUrl());
-	      }
-	    } else {
-	      if (xmlCu == null) {
-		log.debug2("xmlCu is null");
-	      } else {
-		log.debug2(xmlCu.getUrl() + " no content");
-	      }
-	    }
-	  } finally {
-	    AuUtil.safeRelease(xmlCu);
-	  }
-	} else {
-	  log.debug2(pdfUrl + " doesn't match " + regex);
-	}
-	if (log.isDebug3()) {
-	  log.debug3("Iter: " + res);
-	}
-	return res;
-      }
-    };
+				      .setTarget(target)
+				      .setPattern(pat));
   }
 
   public ArticleMetadataExtractor
     createArticleMetadataExtractor(MetadataTarget target)
       throws PluginException {
-    return new SpringerArticleMetadataExtractor();
+    return new BioOneArticleMetadataExtractor();
   }
 
-  public class SpringerArticleMetadataExtractor
+  public static class BioOneArticleMetadataExtractor
     implements ArticleMetadataExtractor {
 
     public Metadata extract(ArticleFiles af)
 	throws IOException, PluginException {
-      CachedUrl cu = af.getRoleCu("xml");
+      CachedUrl cu = af.getFullTextCu();
       if (cu != null) {
 	FileMetadataExtractor me = cu.getFileMetadataExtractor();
 	if (me != null) {
