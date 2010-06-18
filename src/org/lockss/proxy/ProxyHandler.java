@@ -319,7 +319,7 @@ public class ProxyHandler extends AbstractHttpHandler {
     }
     // Does the URL point to a resolver rather than a
     // server?
-    String resolvedUrl = Metadata.proxyResolver(urlString);
+    String resolvedUrl = ArticleMetadata.proxyResolver(urlString);
     if (resolvedUrl != null) {
       // Yes - send a redirect
       sendRedirect(request, response, resolvedUrl);

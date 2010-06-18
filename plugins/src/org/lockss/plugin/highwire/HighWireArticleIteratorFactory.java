@@ -108,7 +108,7 @@ public class HighWireArticleIteratorFactory
   public static class HighWireArticleMetadataExtractor
     implements ArticleMetadataExtractor {
 
-    public Metadata extract(ArticleFiles af)
+    public ArticleMetadata extract(ArticleFiles af)
 	throws IOException, PluginException {
       CachedUrl cu = af.getRoleCu("reprintFramed");
       if (cu != null) {

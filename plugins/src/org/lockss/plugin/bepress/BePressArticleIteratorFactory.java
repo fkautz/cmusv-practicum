@@ -80,7 +80,7 @@ public class BePressArticleIteratorFactory
   public class BePressArticleMetadataExtractor
     implements ArticleMetadataExtractor {
 
-    public Metadata extract(ArticleFiles af)
+    public ArticleMetadata extract(ArticleFiles af)
 	throws IOException, PluginException {
       CachedUrl cu = af.getFullTextCu();
       if (cu != null) {

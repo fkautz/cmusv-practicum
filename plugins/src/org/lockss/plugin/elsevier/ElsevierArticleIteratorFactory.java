@@ -91,7 +91,7 @@ public class ElsevierArticleIteratorFactory
   public class ElsevierArticleMetadataExtractor
     implements ArticleMetadataExtractor {
 
-    public Metadata extract(ArticleFiles af)
+    public ArticleMetadata extract(ArticleFiles af)
 	throws IOException, PluginException {
       CachedUrl cu = af.getRoleCu("xml");
       if (cu != null) {

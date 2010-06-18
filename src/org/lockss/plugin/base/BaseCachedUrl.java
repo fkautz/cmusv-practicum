@@ -229,12 +229,12 @@ public class BaseCachedUrl implements CachedUrl {
   public class NullMetadataExtractor implements FileMetadataExtractor {
     public NullMetadataExtractor() {
     }
-    public Metadata extract(CachedUrl cu)
+    public ArticleMetadata extract(CachedUrl cu)
         throws IOException, PluginException {
       return new EmptyMetadata();
     }
   }
-  public class EmptyMetadata extends Metadata {
+  public class EmptyMetadata extends ArticleMetadata {
     private EmptyMetadata() {
     }
     public Object setProperty(String key, String value) {

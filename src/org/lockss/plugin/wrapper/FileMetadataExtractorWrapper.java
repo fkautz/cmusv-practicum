@@ -50,9 +50,9 @@ public class FileMetadataExtractorWrapper
     return inst;
   }
 
-  public Metadata extract(CachedUrl cu)
+  public ArticleMetadata extract(CachedUrl cu)
       throws IOException, PluginException {
-    Metadata ret = null;
+    ArticleMetadata ret = null;
     try {
       ret = inst.extract(cu);
     } catch (LinkageError e) {

@@ -75,7 +75,7 @@ public class NatureArticleIteratorFactory
   public class NatureArticleMetadataExtractor
     implements ArticleMetadataExtractor {
 
-    public Metadata extract(ArticleFiles af)
+    public ArticleMetadata extract(ArticleFiles af)
 	throws IOException, PluginException {
       CachedUrl cu = af.getFullTextCu();
       if (cu != null) {

@@ -87,13 +87,13 @@ public class TestArticleMetadataExtractorWrapper extends LockssTestCase {
       this.error = error;
     }
 
-    public Metadata extract(ArticleFiles af)
+    public ArticleMetadata extract(ArticleFiles af)
 	throws IOException {
       args = ListUtil.list(af);
       if (error != null) {
 	throw error;
       }
-      return new Metadata(new Properties());
+      return new ArticleMetadata(new Properties());
     }
   }
 }

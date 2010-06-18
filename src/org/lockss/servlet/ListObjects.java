@@ -146,7 +146,7 @@ public class ListObjects extends LockssServlet {
       CachedUrl cu = af.getFullTextCu();
       try {
         if (cu.hasContent()) {
-          Metadata md =
+          ArticleMetadata md =
 	    au.getPlugin().getArticleMetadataExtractor(MetadataTarget.DOI, au).extract(af);
           if (md != null) {
             String doi = md.getDOI();
@@ -203,7 +203,7 @@ public class ListObjects extends LockssServlet {
       CachedUrl cu = af.getFullTextCu();
       try {
         if (cu.hasContent()) {
-          Metadata md =
+          ArticleMetadata md =
 	    au.getPlugin().getArticleMetadataExtractor(MetadataTarget.Article, au).extract(af);
           if (md == null) {
             wrtr.println(cu.getUrl() + "\t");

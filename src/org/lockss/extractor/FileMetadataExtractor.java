@@ -43,7 +43,7 @@ public interface FileMetadataExtractor {
    * Parse content on CachedUrl,  Return a Metadata object describing it
    * @param cu the CachedUrl to extract from
    */
-  public Metadata extract(/*ArchivalUnit au,
+  public ArticleMetadata extract(/*ArchivalUnit au,
 			  MetadataTarget target,*/
 			  CachedUrl cu)
     throws IOException, PluginException;

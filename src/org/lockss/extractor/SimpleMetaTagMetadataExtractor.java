@@ -41,11 +41,11 @@ public class SimpleMetaTagMetadataExtractor implements FileMetadataExtractor {
   public SimpleMetaTagMetadataExtractor() {
   }
 
-  public Metadata extract(CachedUrl cu) throws IOException {
+  public ArticleMetadata extract(CachedUrl cu) throws IOException {
     if (cu == null) {
       throw new IllegalArgumentException("extract(null)");
     }
-    Metadata ret = new Metadata();
+    ArticleMetadata ret = new ArticleMetadata();
     BufferedReader bReader =
       new BufferedReader(cu.openForReading());
     for (String line = bReader.readLine();
@@ -60,7 +60,7 @@ public class SimpleMetaTagMetadataExtractor implements FileMetadataExtractor {
     IOUtil.safeClose(bReader);
     return ret;
   }
-  private void addTag(String line, Metadata ret) {
+  private void addTag(String line, ArticleMetadata ret) {
     String nameFlag = "name=\"";
     int nameBegin = StringUtil.indexOfIgnoreCase(line, nameFlag);
     if (nameBegin <= 0) {

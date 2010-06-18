@@ -39,17 +39,17 @@ import org.lockss.extractor.*;
 
 public class MockArticleMetadataExtractor implements ArticleMetadataExtractor {
 
-  private Metadata metadata = null;
+  private ArticleMetadata metadata = null;
 
   public MockArticleMetadataExtractor() {
   }
 
-  public Metadata extract(ArticleFiles af) {
+  public ArticleMetadata extract(ArticleFiles af) {
 //     CachedUrl cu = af.getFullTextCu();
     return metadata;
   }
 
-  public void setMetadataToReturn(Metadata metadata) {
+  public void setMetadataToReturn(ArticleMetadata metadata) {
     this.metadata = metadata;
   }
 

@@ -52,8 +52,8 @@ public class HighWireHtmlMetadataExtractorFactory
   public static class HighWireHtmlMetadataExtractor
     extends SimpleMetaTagMetadataExtractor {
 
-    public Metadata extract(CachedUrl cu) throws IOException {
-      Metadata ret = null;
+    public ArticleMetadata extract(CachedUrl cu) throws IOException {
+      ArticleMetadata ret = null;
       try {
         if (cu != null && cu.hasContent()) {
           ret = super.extract(cu);

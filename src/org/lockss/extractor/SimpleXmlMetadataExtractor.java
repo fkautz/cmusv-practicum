@@ -51,11 +51,11 @@ public class SimpleXmlMetadataExtractor implements FileMetadataExtractor {
   /*
    * XXX this should really do an XML parse and get all the metadata
    */
-  public Metadata extract(CachedUrl cu) throws IOException {
+  public ArticleMetadata extract(CachedUrl cu) throws IOException {
     if (cu == null) {
       throw new IllegalArgumentException("extract(null)");
     }
-    Metadata ret = new Metadata();
+    ArticleMetadata ret = new ArticleMetadata();
     BufferedReader bReader =
 	new BufferedReader(cu.openForReading());
     for (String line = bReader.readLine();
@@ -72,7 +72,7 @@ public class SimpleXmlMetadataExtractor implements FileMetadataExtractor {
     return ret;
   }
 
-  private void scanForTag(String line, String tag, Metadata ret) {
+  private void scanForTag(String line, String tag, ArticleMetadata ret) {
     int i = 0;
     String begin = "<" + tag + ">";
     String end = "</" + tag + ">";

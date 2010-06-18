@@ -85,8 +85,8 @@ public abstract class FileMetadataExtractorTestCase extends LockssTestCase {
     }
   }
 
-  protected Metadata extractFrom(String content) {
-    Metadata ret = null;
+  protected ArticleMetadata extractFrom(String content) {
+    ArticleMetadata ret = null;
     try {
       ret = extractor.extract(cu.addVersion(content));
     } catch (Exception e) {

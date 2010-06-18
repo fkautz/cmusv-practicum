@@ -360,7 +360,7 @@ public class ServeContent extends LockssServlet {
   protected void handleDoiRequest() throws IOException {
     log.debug("doi " + doi);
     // find the URL for the DOI
-    url = Metadata.doiToUrl(doi);
+    url = ArticleMetadata.doiToUrl(doi);
     log.debug(doi + " = " + (url == null ? "null" : url));
     if (url == null) {
       handleMissingUrlRequest(DOI_LOOKUP_URL + doi);
@@ -373,7 +373,7 @@ public class ServeContent extends LockssServlet {
     String openUrl = issn + "/" + volume + "/" + issue + "/" + spage;
     log.debug("OpenUrl " + openUrl);
     // find the URL for the OpenURL
-    url = Metadata.openUrlToUrl(openUrl);
+    url = ArticleMetadata.openUrlToUrl(openUrl);
     log.debug(openUrl + " = " + (url == null ? "null" : url));
     if (url == null) {
       handleMissingUrlRequest(OPENURL_LOOKUP_URL + openUrl);
