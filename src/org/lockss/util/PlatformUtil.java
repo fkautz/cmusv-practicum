@@ -67,7 +67,7 @@ public class PlatformUtil {
       if ("openbsd".equalsIgnoreCase(os)) {
 	instance = new OpenBSD();
       }
-      if ("mac os x".equalsIgnoreCase(os)) {
+      if (SystemUtils.IS_OS_MAC_OSX) {
 	instance = new MacOS();
       }
       if (SystemUtils.IS_OS_WINDOWS) {
