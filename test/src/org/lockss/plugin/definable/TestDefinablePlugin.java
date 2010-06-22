@@ -255,7 +255,7 @@ public class TestDefinablePlugin extends LockssTestCase {
   }
 
   public void testGetDefaultArticleMimeType() throws Exception {
-    assertEquals("text/html", definablePlugin.getDefaultArticleMimeType());
+    assertEquals(null, definablePlugin.getDefaultArticleMimeType());
     String expectedReturn = "mime/type";
     defMap.putString(DefinablePlugin.KEY_DEFAULT_ARTICLE_MIME_TYPE,
 		     expectedReturn);

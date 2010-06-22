@@ -48,7 +48,7 @@ public abstract class BasePlugin
     implements Plugin {
   static Logger log = Logger.getLogger("BasePlugin");
 
-  public static final String DEFAULT_ARTICLE_MIME_TYPE = "text/html";
+  public static final String DEFAULT_ARTICLE_MIME_TYPE = null;
 
   // Below org.lockss.title.xxx.
   static final String TITLE_PARAM_TITLE = "title";
