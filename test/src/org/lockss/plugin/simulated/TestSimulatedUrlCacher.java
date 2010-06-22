@@ -37,7 +37,7 @@ import java.util.Properties;
 import org.lockss.test.*;
 import org.lockss.daemon.*;
 import org.lockss.config.*;
-import org.lockss.repository.TestLockssRepositoryImpl;
+import org.lockss.repository.*;
 import org.lockss.plugin.*;
 import org.lockss.util.StreamUtil;
 
@@ -57,6 +57,8 @@ public class TestSimulatedUrlCacher extends LockssTestCase {
   public void setUp() throws Exception {
     super.setUp();
     tempDirPath = getTempDir().getAbsolutePath() + File.separator;
+    ConfigurationUtil.setFromArgs(LockssRepositoryImpl.PARAM_CACHE_LOCATION,
+				  tempDirPath);
 
     theDaemon = getMockLockssDaemon();
     theDaemon.getPluginManager();

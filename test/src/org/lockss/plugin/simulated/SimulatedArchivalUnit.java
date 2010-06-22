@@ -357,6 +357,10 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
 					  config.get(
 						     SimulatedPlugin.AU_PARAM_BAD_CACHED_FILE_NUM)));
       }
+      if (config.containsKey(SimulatedPlugin.AU_PARAM_MIXED_CASE)) {
+        gen.setMixedCase(config.getBoolean(SimulatedPlugin.AU_PARAM_MIXED_CASE));
+      }
+
       String spec = config.get(SimulatedPlugin.AU_PARAM_HASH_FILTER_SPEC);
       doFilter = !StringUtil.isNullString(spec);
       // if no previous generator, any content-determining parameters have
@@ -370,6 +374,7 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
 	    gen.getMaxFilenameLength() == scgen.getMaxFilenameLength() &&
 	    gen.getFileTypes() == scgen.getFileTypes() &&
 	    gen.oddBranchesHaveContent() == scgen.oddBranchesHaveContent() &&
+	    gen.getMixedCase() == scgen.getMixedCase() &&
 	    gen.getAbnormalBranchString().equals(scgen.getAbnormalBranchString()) &&
 	    gen.getAbnormalFileNumber() == scgen.getAbnormalFileNumber())) {
 	scgen = gen;
