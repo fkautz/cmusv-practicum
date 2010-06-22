@@ -61,6 +61,12 @@ public class TestArticleFiles extends LockssTestCase {
     assertEquals("full", af1.getFullTextUrl());
     assertEquals("xml", af1.getRoleUrl("xml"));
     assertEquals(null, af1.getRoleUrl("html"));
+
+    af1.setRoleString("handle", "shovel");
+    Map map = new HashMap();
+    af1.setRole("map", map);
+    assertEquals("shovel", af1.getRoleString("handle"));
+    assertSame(map, af1.getRole("map"));
   }
 
 }
