@@ -208,7 +208,7 @@ public class FuncNewContentCrawler extends LockssTestCase {
     log.debug("Crawling tree...");
     CrawlSpec spec = new SpiderCrawlSpec(sau.getNewContentCrawlUrls(), null);
     NewContentCrawler crawler =
-      new NewContentCrawler(sau, spec, new MockAuState());
+      new NoCrawlEndActionsNewContentCrawler(sau, spec, new MockAuState());
     crawler.setCrawlManager(crawlMgr);
     crawler.doCrawl();
   }
