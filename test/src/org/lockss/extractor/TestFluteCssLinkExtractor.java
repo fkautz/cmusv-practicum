@@ -67,12 +67,22 @@ public class TestFluteCssLinkExtractor extends LinkExtractorTestCase {
     // Normal @import syntax
     doTestOneUrl("@import url(\'", url, "\');", url);
     doTestOneUrl("@import url(\"", url, "\");", url);
+    doTestOneUrl("@import url( \'", url, "\');", url);
+    doTestOneUrl("@import  url(\"", url, "\");", url);
+    doTestOneUrl("@import\turl(\"", url, "\");", url);
+    doTestOneUrl("@import \turl(\"", url, "\");", url);
+    doTestOneUrl("@import  url(\'", url, "\');", url);
     // Simplified @import syntax
     doTestOneUrl("@import \'", url, "\';", url);
     doTestOneUrl("@import \"", url, "\";", url);
     // Property
     doTestOneUrl("bar { foo: url(\'", url, "\'); }", url);
     doTestOneUrl("bar { foo: url(\"", url, "\"); }", url);
+
+    // newlines
+    doTestOneUrl("@import\nurl(\'", url, "\');", url);
+    doTestOneUrl("@import url(\n\'", url, "\');", url);
+    doTestOneUrl("@import \n url(\n\'", url, "\'\n);", url);
   }
   
   public void testHandlesInputWithNoUrls() throws Exception {
