@@ -232,7 +232,12 @@ public class PluginTestUtil {
 
 
   public static boolean copyAu(ArchivalUnit fromAu, ArchivalUnit toAu) {
-    return copyCus(fromAu.getAuCachedUrlSet(), toAu);
+    return copyAu(fromAu, toAu, null, null, null);
+  }
+
+  public static boolean copyAu(ArchivalUnit fromAu, ArchivalUnit toAu,
+			       String ifMatch) {
+    return copyAu(fromAu, toAu, ifMatch, null, null);
   }
 
   public static boolean copyAu(ArchivalUnit fromAu, ArchivalUnit toAu,
@@ -266,8 +271,8 @@ public class PluginTestUtil {
 	  String toUrl = fromUrl;
 	  if (ifMatchPat != null) {
 	    Matcher mat = ifMatchPat.matcher(fromUrl);
-	    if (!mat.matches()) {
-	      log.info("no match: " + fromUrl + ", " + ifMatchPat);
+	    if (!mat.find()) {
+	      log.debug3("no match: " + fromUrl + ", " + ifMatchPat);
 	      continue;
 	    }
 	  }
@@ -281,9 +286,9 @@ public class PluginTestUtil {
 	  }
 	  uc.storeContent(cu.getUnfilteredInputStream(), props);
 	  if (!toUrl.equals(fromUrl)) {
-	    log.info("Copied " + fromUrl + " to " + toUrl);
+	    log.debug2("Copied " + fromUrl + " to " + toUrl);
 	  } else {
-	    log.info("Copied " + fromUrl);
+	    log.debug2("Copied " + fromUrl);
 	  }
 	} catch (Exception e) {
 	  log.error("Couldn't copy " + cu.getUrl(), e);
