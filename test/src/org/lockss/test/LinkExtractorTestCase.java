@@ -74,6 +74,7 @@ public abstract class LinkExtractorTestCase extends LockssTestCase {
 
   protected Collection extractUrls(String source)
       throws IOException, PluginException {
+    cb.reset();
     return extractUrls(source, cb);
   }
 
@@ -139,6 +140,10 @@ public abstract class LinkExtractorTestCase extends LockssTestCase {
 
     public Collection getFoundUrls() {
       return foundUrls;
+    }
+
+    public void reset() {
+      foundUrls = new HashSet();
     }
   }
 }
