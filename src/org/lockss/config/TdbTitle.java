@@ -279,10 +279,10 @@ public class TdbTitle {
       throw new IllegalArgumentException("linkType cannot be null");
     }
     if (linkTitles == null) {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
     Collection<String> titleIds = linkTitles.get(linkType);
-    return (titleIds != null) ? titleIds : Collections.EMPTY_LIST;
+    return (titleIds != null) ? titleIds : Collections.<String>emptyList();
   }
   
   /**
@@ -294,7 +294,7 @@ public class TdbTitle {
    * @return all linked titles by link type
    */
   public Map<LinkType,Collection<String>> getAllLinkedTitleIds() {
-    return (linkTitles != null) ? linkTitles : Collections.EMPTY_MAP;
+    return (linkTitles != null) ? linkTitles : Collections.<LinkType,Collection<String>>emptyMap();
   }
   
   /**
@@ -440,7 +440,7 @@ public class TdbTitle {
       try {
         // if no exception thrown, there are no differences
         // because the method did not try to modify the set
-        addPluginIdsForDifferences(Collections.EMPTY_SET, (TdbTitle)o);
+        addPluginIdsForDifferences(Collections.<String>emptySet(), (TdbTitle)o);
         return true;
       } catch (UnsupportedOperationException ex) {
         // differences because method tried to add to unmodifiable set
@@ -460,9 +460,6 @@ public class TdbTitle {
    * @throws the hashcode of this instance
    */
   public int hashCode() {
-    if (id == null) {
-      throw new IllegalStateException("id not set");
-    }
     return id.hashCode();
   }
 
