@@ -292,8 +292,7 @@ public class DefinablePlugin extends BasePlugin {
   }
 
   public String getDefaultArticleMimeType() {
-    String ret = definitionMap.getString(KEY_DEFAULT_ARTICLE_MIME_TYPE,
-					 DEFAULT_ARTICLE_MIME_TYPE);
+    String ret = definitionMap.getString(KEY_DEFAULT_ARTICLE_MIME_TYPE, null);
     log.debug3("DefaultArticleMimeType " + ret);
     if (ret == null) {
       ret = super.getDefaultArticleMimeType();
