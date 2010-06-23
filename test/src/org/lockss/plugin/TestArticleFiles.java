@@ -32,16 +32,8 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.plugin;
 
-import java.io.*;
 import java.util.*;
-import org.lockss.app.*;
-import org.lockss.config.Configuration;
-import org.lockss.daemon.*;
-import org.lockss.state.*;
 import org.lockss.test.*;
-import org.lockss.plugin.base.*;
-import org.lockss.util.*;
-import org.lockss.plugin.ArchivalUnit.ConfigurationException;
 
 public class TestArticleFiles extends LockssTestCase {
 

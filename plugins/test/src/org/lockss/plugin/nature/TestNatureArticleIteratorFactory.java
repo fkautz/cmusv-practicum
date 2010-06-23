@@ -142,10 +142,10 @@ public class TestNatureArticleIteratorFactory extends LockssTestCase {
       String contentType = cu.getContentType();
       log.debug("count " + count + " url " + url + " " + contentType);
       count++;
-      if (af.getRoleUrl(NatureArticleIteratorFactory.ARTICLE_FILES_KEY_PDF) == null) {
+      if (af.getRoleUrl(ArticleFiles.ROLE_FULL_TEXT_PDF) == null) {
         ++countHtmlOnly;
       }
-      if (cu == af.getRoleCu(NatureArticleIteratorFactory.ARTICLE_FILES_KEY_PDF)) {
+      if (af.getRoleUrl(ArticleFiles.ROLE_FULL_TEXT_PDF) == url) {
         ++countPdfOnly;
       }
     }
