@@ -49,6 +49,8 @@ def _short_au_name(au):
     str = au.name()
     str = re.sub(r'Volume\s+(\S+)$', r'\1', str)
     str = re.sub(r'\s+', '', str)
+    str = re.sub(r'Á|À|Â|Ä', 'A', str)
+    str = re.sub(r'á|à|â|ä', 'a', str)
     str = re.sub(r'É|È|Ê|Ë', 'E', str)
     str = re.sub(r'é|è|ê|ë', 'e', str)
     str = re.sub(r'Í|Ì|Î|Ï', 'I', str)
