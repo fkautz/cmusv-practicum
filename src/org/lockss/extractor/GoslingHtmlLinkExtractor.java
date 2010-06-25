@@ -538,8 +538,7 @@ public class GoslingHtmlLinkExtractor implements LinkExtractor {
       }
     };
 
-    // XXX This isn't as inefficient as it looks. ...
-    InputStream cssIn = new ReaderInputStream(cssReader);
+    InputStream cssIn = new ReaderInputStream(cssReader, encoding);
     try {
       LinkExtractor cssExtractor = au.getLinkExtractor("text/css");
       logger.debug2("CSS extractor: " + cssExtractor + ", " + au);
