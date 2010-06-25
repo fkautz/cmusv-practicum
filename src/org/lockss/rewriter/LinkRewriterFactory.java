@@ -48,11 +48,11 @@ public interface LinkRewriterFactory {
    * @param encoding the character encoding to use when reading, or null
    * @param url the url to which in is attached
    */
-  public Reader createLinkRewriterReader(String mimeType,
-					 ArchivalUnit au,
-					 Reader in,
-					 String encoding,
-					 String url,
-					 ServletUtil.LinkTransform xform)
+  public InputStream createLinkRewriter(String mimeType,
+					ArchivalUnit au,
+					InputStream in,
+					String encoding,
+					String url,
+					ServletUtil.LinkTransform xform)
       throws PluginException;
 }

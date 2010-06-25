@@ -88,12 +88,12 @@ public class NodeFilterHtmlLinkRewriterFactory implements LinkRewriterFactory {
 
 
 
-  public Reader createLinkRewriterReader(String mimeType,
-					 ArchivalUnit au,
-					 Reader in,
-					 String encoding,
-					 String url,
-					 ServletUtil.LinkTransform xform)
+  public InputStream createLinkRewriter(String mimeType,
+					ArchivalUnit au,
+					InputStream in,
+					String encoding,
+					String url,
+					ServletUtil.LinkTransform xform)
       throws PluginException {
     if ("text/html".equalsIgnoreCase(mimeType)) {
       logger.debug("Rewriting " + url + " in AU " + au);
@@ -259,14 +259,16 @@ public class NodeFilterHtmlLinkRewriterFactory implements LinkRewriterFactory {
       NodeFilter linkXform = new OrFilter(filters);
       // Create a transform to apply them
       HtmlTransform htmlXform = HtmlNodeFilterTransform.exclude(linkXform);
-      InputStream result = new HtmlFilterInputStream(new ReaderInputStream(in),
+//       try {
+//         return new InputStreamReader(result, encoding);
+//       } catch (UnsupportedEncodingException ex) {
+// 	logger.error(encoding + " threw " + ex);
+// 	return in;
+//       }
+      InputStream result = new HtmlFilterInputStream(in,
+						     encoding,
 						     htmlXform);
-      try {
-        return new InputStreamReader(result, encoding);
-      } catch (UnsupportedEncodingException ex) {
-	logger.error(encoding + " threw " + ex);
-	return in;
-      }
+      return result;
     } else {
       throw new PluginException("NodeFilterHtmlLinkRewriterFactory vs. " +
 				mimeType);
