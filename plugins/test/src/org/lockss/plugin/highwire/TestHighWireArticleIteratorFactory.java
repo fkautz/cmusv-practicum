@@ -56,7 +56,7 @@ public class TestHighWireArticleIteratorFactory extends LockssTestCase {
   private static int fileSize = DEFAULT_FILESIZE;
 
   private static String PLUGIN_NAME =
-    "org.lockss.plugin.highwire.HighWireStrVolPlugin";
+    "org.lockss.plugin.highwire.ClockssHighWirePlugin";
 
   private static String BASE_URL = "http://www.jhc.org/";
   private static String SIM_ROOT = BASE_URL + "cgi/reprint/";

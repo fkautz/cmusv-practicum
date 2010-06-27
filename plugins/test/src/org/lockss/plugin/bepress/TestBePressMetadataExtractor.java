@@ -74,7 +74,7 @@ public class TestBePressMetadataExtractor extends LockssTestCase{
     tagMap.put("bepress_citation_doi", "10.2202/%1%2%3%1-%3%2%1%2-%2%1%3%1");
   };
 
-  private static String PLUGIN_NAME = "org.lockss.plugin.bepress.BePressPlugin";
+  private static String PLUGIN_NAME = "org.lockss.plugin.bepress.ClockssBerkeleyElectronicPressPlugin";
 
   private static String BASE_URL = "http://www.bepress.com/";
   private static String SIM_ROOT = BASE_URL + "xyzjn/";
