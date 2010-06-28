@@ -529,6 +529,20 @@ public class ArticleMetadata extends Properties {
   }
 
   /*
+   * Return the article URL.
+   */
+  public static final String KEY_ARTICLE_URL = "LOCKSS.article.url";
+  public String getArticleUrl() {
+    String ret = getProperty(KEY_ARTICLE_URL);
+    // XXX
+    return ret;
+  }
+  public void putArticleUrl(String articleUrl) {
+    // XXX protocol?
+    setProperty(KEY_ARTICLE_URL, articleUrl);
+  }
+
+  /*
    * Ensure that metadata keys are case-insensitive strings
    * and the values are strings.
    */
