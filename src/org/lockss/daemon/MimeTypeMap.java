@@ -47,7 +47,7 @@ public class MimeTypeMap {
   public static final String PARAM_DEFAULT_CSS_EXTRACTOR_FACTORY =
     PREFIX + "defaultCssExtractorFactory";
   public static final String DEFAULT_DEFAULT_CSS_EXTRACTOR_FACTORY =
-    "org.lockss.extractor.FluteCssLinkExtractor$Factory";
+    "org.lockss.extractor.RegexpCssLinkExtractor$Factory";
 
   private static MimeTypeInfo.Mutable HTML = new MimeTypeInfo.Impl();
   private static MimeTypeInfo.Mutable CSS = new MimeTypeInfo.Impl();
@@ -83,7 +83,7 @@ public class MimeTypeMap {
     LinkExtractorFactory fact =
       (LinkExtractorFactory)newFact(className,
 				    LinkExtractorFactory.class,
-				    new FluteCssLinkExtractor.Factory());
+				    new RegexpCssLinkExtractor.Factory());
     mti.setLinkExtractorFactory(fact);
   }
 

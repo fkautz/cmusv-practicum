@@ -746,7 +746,7 @@ public class TestBaseArchivalUnit extends LockssTestCase {
 
   public void testGetLinkExtractor_text_css() {
     assertTrue(mbau.getLinkExtractor("text/css")
-	       instanceof FluteCssLinkExtractor);
+	       instanceof RegexpCssLinkExtractor);
   }
 
   public void testGetLinkExtractor_application_pdf() {

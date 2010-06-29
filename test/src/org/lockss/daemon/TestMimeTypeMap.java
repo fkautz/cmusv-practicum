@@ -91,17 +91,19 @@ public class TestMimeTypeMap extends LockssTestCase {
     assertNull(mt2.getHashFilterFactory());
     assertNull(mt2.getCrawlFilterFactory());
     assertTrue(mt2.getLinkExtractorFactory()
-	       instanceof FluteCssLinkExtractor.Factory);
-
-    ConfigurationUtil.setFromArgs(MimeTypeMap.PARAM_DEFAULT_CSS_EXTRACTOR_FACTORY,
-				  "org.lockss.extractor.RegexpCssLinkExtractor$Factory");
-    assertTrue(mt2.getLinkExtractorFactory()
 	       instanceof RegexpCssLinkExtractor.Factory);
 
     ConfigurationUtil.setFromArgs(MimeTypeMap.PARAM_DEFAULT_CSS_EXTRACTOR_FACTORY,
 				  "No.Such.Class");
-    assertTrue(mt2.getLinkExtractorFactory()
+    assertTrue(""+mt2.getLinkExtractorFactory(),
+	       mt2.getLinkExtractorFactory()
+	       instanceof RegexpCssLinkExtractor.Factory);
+    ConfigurationUtil.setFromArgs(MimeTypeMap.PARAM_DEFAULT_CSS_EXTRACTOR_FACTORY,
+				  "org.lockss.extractor.FluteCssLinkExtractor$Factory");
+    assertTrue(""+mt2.getLinkExtractorFactory(),
+	       mt2.getLinkExtractorFactory()
 	       instanceof FluteCssLinkExtractor.Factory);
+
   }
 
   public void testModifyMimeTypeInfo() {

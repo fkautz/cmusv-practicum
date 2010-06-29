@@ -216,7 +216,7 @@ public class TestBasePlugin extends LockssTestCase {
     assertNull(mti.getCrawlFilterFactory());
     mti = mbp.getMimeTypeInfo("text/css");
     assertTrue(mti.getLinkExtractorFactory()
-	       instanceof FluteCssLinkExtractor.Factory);
+	       instanceof RegexpCssLinkExtractor.Factory);
     assertNull(mti.getHashFilterFactory());
     assertNull(mti.getCrawlFilterFactory());
 
