@@ -168,11 +168,11 @@ public class TestRegexpCssLinkExtractor extends LinkExtractorTestCase {
   }
 
   public void testCssFragmentSmallBuf() throws Exception {
-    extractor = new RegexpCssLinkExtractor(10);
+    extractor = new RegexpCssLinkExtractor(1000, 200);
     testCssFragment();
-    extractor = new RegexpCssLinkExtractor(20);
+    extractor = new RegexpCssLinkExtractor(1000, 900);
     testCssFragment();
-    extractor = new RegexpCssLinkExtractor(40);
+    extractor = new RegexpCssLinkExtractor(100, 50);
     testCssFragment();
   }
 
