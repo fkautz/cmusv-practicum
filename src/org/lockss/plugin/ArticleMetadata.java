@@ -524,7 +524,7 @@ public class ArticleMetadata extends Properties {
   }
 
   /*
-   * Return the article URL.
+   * Return the article access URL.
    */
   public static final String KEY_ACCESS_URL = "LOCKSS.access.url";
   public String getAccessUrl() {
@@ -535,6 +535,20 @@ public class ArticleMetadata extends Properties {
   public void putAccessUrl(String articleUrl) {
     // XXX protocol?
     setProperty(KEY_ACCESS_URL, articleUrl);
+  }
+
+  /*
+   * Return the article keywords
+   */
+  public static final String KEY_KEYWORDS = "LOCKSS.keywords";
+  public String getKeywords() {
+    String ret = getProperty(KEY_KEYWORDS);
+    // XXX
+    return ret;
+  }
+  public void putKeywords(String keywords) {
+    // XXX protocol?
+    setProperty(KEY_KEYWORDS, keywords);
   }
 
   /*
