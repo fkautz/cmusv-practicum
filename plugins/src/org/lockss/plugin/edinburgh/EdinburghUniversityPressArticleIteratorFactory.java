@@ -112,6 +112,7 @@ public class EdinburghUniversityPressArticleIteratorFactory
       String doi = mat.group(1);
       
       ArticleMetadata am = new ArticleMetadata();
+      am.put(ArticleMetadata.KEY_ACCESS_URL, url);
       am.putDOI(doi);
       return am;
     }
