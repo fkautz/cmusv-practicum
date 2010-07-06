@@ -35,6 +35,7 @@ package org.lockss.plugin.bepress;
 import java.util.regex.Pattern;
 
 import org.lockss.plugin.*;
+import org.lockss.plugin.bepress.BePressArticleIteratorFactory.BePressArticleIterator;
 import org.lockss.test.*;
 
 public class TestBePressArticleIteratorFactory extends LockssTestCase {
@@ -58,7 +59,7 @@ public class TestBePressArticleIteratorFactory extends LockssTestCase {
   }
 
   Pattern makePattern(ArchivalUnit au) {
-    String pat = BePressArticleIteratorFactory.pat;
+    String pat = BePressArticleIteratorFactory.PATTERN_TEMPLATE;
 
     PrintfConverter.MatchPattern mp =
       new PrintfConverter.RegexpConverter(au).getMatchPattern(pat);
