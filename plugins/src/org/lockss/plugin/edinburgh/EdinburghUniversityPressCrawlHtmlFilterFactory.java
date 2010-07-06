@@ -34,21 +34,27 @@ package org.lockss.plugin.edinburgh;
 
 import java.io.InputStream;
 
+import org.htmlparser.NodeFilter;
+import org.htmlparser.filters.*;
 import org.lockss.daemon.PluginException;
 import org.lockss.filter.html.*;
 import org.lockss.plugin.*;
 
 public class EdinburghUniversityPressCrawlHtmlFilterFactory implements FilterFactory {
 
-  public InputStream createFilteredInputStream(ArchivalUnit au, InputStream in,
-      String encoding) throws PluginException {
-    // Contains "most downloaded articles" section
+  public InputStream createFilteredInputStream(ArchivalUnit au,
+                                               InputStream in,
+                                               String encoding)
+      throws PluginException {
+    NodeFilter[] filters = new NodeFilter[] {
+        // Contains logo of institution
+        HtmlNodeFilters.tagWithAttribute("img", "id", "accessLogo"),
+        // Contains "most downloaded articles" section
+        HtmlNodeFilters.tagWithAttribute("div", "id", "journalSidebar"),
+    };
     return new HtmlFilterInputStream(in,
                                      encoding,
-                                     HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttributeRegex("div",
-                                                                                                           "id",
-                                                                                                           "journalSidebar")));
-
+                                     HtmlNodeFilterTransform.exclude(new OrFilter(filters)));
   }
 
 }

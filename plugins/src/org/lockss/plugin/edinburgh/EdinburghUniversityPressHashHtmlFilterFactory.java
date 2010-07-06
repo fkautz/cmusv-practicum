@@ -49,6 +49,8 @@ public class EdinburghUniversityPressHashHtmlFilterFactory implements FilterFact
     NodeFilter[] filters = new NodeFilter[] {
         // Variable identifiers
         new TagNameFilter("script"),
+        // Contains name and logo of institution
+        HtmlNodeFilters.tagWithAttribute("div", "id", "institutionBanner"),
         // Contains "most downloaded articles" section
         HtmlNodeFilters.tagWithAttribute("div", "id", "journalSidebar"),
         // Contains the current year
