@@ -197,7 +197,10 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
     String pluginSrc = 
       definitionMap.getString(DefinablePlugin.KEY_PLUGIN_FETCH_RATE_LIMITER_SOURCE,
 			      defaultSource);
-    return paramMap.getString(KEY_AU_FETCH_RATE_LIMITER_SOURCE, pluginSrc);
+    String auSrc =
+      paramMap.getString(KEY_AU_FETCH_RATE_LIMITER_SOURCE, pluginSrc);
+    return CurrentConfig.getParam(PARAM_OVERRIDE_FETCH_RATE_LIMITER_SOURCE,
+				  auSrc);
   }
 
   @Override

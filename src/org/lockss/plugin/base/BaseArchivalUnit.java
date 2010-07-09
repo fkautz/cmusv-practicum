@@ -70,6 +70,11 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     Configuration.PREFIX+"baseau.defaultFetchRateLimiterSource";
   public static final String DEFAULT_DEFAULT_FETCH_RATE_LIMITER_SOURCE = "au";
 
+  /** Override fetch rate limiter source for all plugins and AU no matter
+   * what else they specify.  Can be "au" or "plugin"". */
+  public static final String PARAM_OVERRIDE_FETCH_RATE_LIMITER_SOURCE =
+    Configuration.PREFIX+"baseau.overrideFetchRateLimiterSource";
+
   //Short term conf parameter to get around the fact that DefinablePlugins
   //don't load crawl windows
   public static final String PARAM_USE_CRAWL_WINDOW_BY_DEFAULT =
@@ -536,7 +541,10 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     String defaultSource =
       CurrentConfig.getParam(PARAM_DEFAULT_FETCH_RATE_LIMITER_SOURCE,
 			     DEFAULT_DEFAULT_FETCH_RATE_LIMITER_SOURCE);
-    return paramMap.getString(KEY_AU_FETCH_RATE_LIMITER_SOURCE, defaultSource);
+    String auSrc =
+      paramMap.getString(KEY_AU_FETCH_RATE_LIMITER_SOURCE, defaultSource);
+    return CurrentConfig.getParam(PARAM_OVERRIDE_FETCH_RATE_LIMITER_SOURCE,
+				  auSrc);
   }
 
   private RateLimiter getLimiterWithRate(RateLimiter oldLimiter,
