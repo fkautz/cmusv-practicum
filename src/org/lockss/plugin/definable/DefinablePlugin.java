@@ -566,6 +566,40 @@ public class DefinablePlugin extends BasePlugin {
     return window;
   }
 
+  LoginPageChecker loginChecker;
+
+  protected LoginPageChecker makeLoginPageChecker() {
+    if (loginChecker == null) {
+      String loginPageCheckerClass =
+	definitionMap.getString(DefinableArchivalUnit.KEY_AU_LOGIN_PAGE_CHECKER,
+				null);
+      if (loginPageCheckerClass != null) {
+	loginChecker = (LoginPageChecker)newAuxClass(loginPageCheckerClass,
+						     LoginPageChecker.class);
+      }
+    }
+    return loginChecker;
+  }
+
+  PermissionCheckerFactory permissionCheckerFact;
+
+  protected PermissionCheckerFactory getPermissionCheckerFactory() {
+    if (permissionCheckerFact == null) {
+      String permissionCheckerFactoryClass =
+	definitionMap.getString(DefinableArchivalUnit.KEY_AU_PERMISSION_CHECKER_FACTORY,
+				null);
+      if (permissionCheckerFactoryClass != null) {
+	permissionCheckerFact =
+	  (PermissionCheckerFactory)newAuxClass(permissionCheckerFactoryClass,
+						PermissionCheckerFactory.class);
+	log.debug2("Loaded PermissionCheckerFactory: " + permissionCheckerFact);
+      }
+    }
+    return permissionCheckerFact;
+  }
+
+  protected UrlNormalizer urlNorm;
+
   protected UrlNormalizer getUrlNormalizer() {
     if (urlNorm == null) {
       String normalizerClass =
