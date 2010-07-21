@@ -142,4 +142,8 @@ public interface Constants {
   /** Exit code - required resource unavailable */
   public static int EXIT_CODE_RESOURCE_UNAVAILABLE = 105;
 
+  /** Exit code - critical keystore missing or not loadable (wrong
+   * password, missing password file) */
+  public static int EXIT_CODE_KEYSTORE_MISSING = 106;
+
 }

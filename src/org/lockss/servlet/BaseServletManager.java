@@ -371,7 +371,8 @@ public abstract class BaseServletManager
 	LockssSslListener lsl =
 	  new LockssSslListener(new org.mortbay.util.InetAddrPort(port));
 	KeyManagerFactory kmf =
-	  keystoreMgr.getKeyManagerFactory(sslKeystoreName);
+	  keystoreMgr.getKeyManagerFactory(sslKeystoreName,
+					   mi.serverName + " server");
 	if (kmf == null) {
 	  log.critical("Keystore " + sslKeystoreName +
 		       " not found, not starting " + mi.serverName + " server");

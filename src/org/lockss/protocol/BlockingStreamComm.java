@@ -1002,7 +1002,7 @@ public class BlockingStreamComm
       sockFact = null;
     }
     KeyManagerFactory kmf =
-      keystoreMgr.getKeyManagerFactory(paramSslPrivateKeyStoreName);
+      keystoreMgr.getKeyManagerFactory(paramSslPrivateKeyStoreName, "LCAP");
     if (kmf == null) {
       throw new IllegalArgumentException("Keystore not found: "
 					 + paramSslPrivateKeyStoreName);
@@ -1010,7 +1010,7 @@ public class BlockingStreamComm
     KeyManager[] kma = kmf.getKeyManagers();
 
     TrustManagerFactory tmf =
-      keystoreMgr.getTrustManagerFactory(paramSslPublicKeyStoreName);
+      keystoreMgr.getTrustManagerFactory(paramSslPublicKeyStoreName, "LCAP");
     if (tmf == null) {
       throw new IllegalArgumentException("Keystore not found: "
 					 + paramSslPublicKeyStoreName);
