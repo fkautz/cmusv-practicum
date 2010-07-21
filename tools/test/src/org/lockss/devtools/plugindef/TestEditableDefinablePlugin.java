@@ -245,7 +245,7 @@ public class TestEditableDefinablePlugin
     String mapFile = name.replace('.', '/') + ".xml";
 
     String location = tempDirPath + "testMap";
-    String version = "Version 1.0";
+    String version = "12";
 
     edPlugin.setPluginName(name);
     edPlugin.setPluginVersion(version);
@@ -611,8 +611,8 @@ public class TestEditableDefinablePlugin
   }
 
   public void testSetAndRemovePluginVersion() {
-    String defVersion = "1.0";
-    String expVersion = "2.0";
+    String defVersion = "1";
+    String expVersion = "2";
     String actVersion = null;
 
     actVersion = edPlugin.getMap().getString(DefinablePlugin.KEY_PLUGIN_VERSION,

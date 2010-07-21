@@ -636,6 +636,12 @@ public class EditableDefinablePlugin extends DefinablePlugin {
   public void setPluginVersion(String version) {
     // Default (1) reasonably stable; not explicitly saving unless changed
     logger.info("Setting the plugin version to: " + version);
+    try {
+      new PluginVersion(version);
+    } catch (Exception e) {
+      throw new PluginException.InvalidDefinition("Illegal version number: "
+						  + e.getMessage(), e);
+    }
     definitionMap.putString(DefinablePlugin.KEY_PLUGIN_VERSION, version);
   }
 
