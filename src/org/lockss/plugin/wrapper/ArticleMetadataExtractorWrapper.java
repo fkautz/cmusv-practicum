@@ -61,6 +61,10 @@ public class ArticleMetadataExtractorWrapper
     return ret;
   }
 
+  public String toString() {
+    return "[W: " + inst.toString() + "]";
+  }
+
   static class Factory implements WrapperFactory {
     public Object wrap(Object obj) {
       return new ArticleMetadataExtractorWrapper((ArticleMetadataExtractor)obj);

@@ -104,7 +104,7 @@ public class WrapperUtil {
       return obj;
     }
     Object wrapped = fact.wrap(obj);
-    log.debug2("Wrapped " + obj + " in " + wrapped);
+    log.debug2("Wrapped " + obj);
     return wrapped;
   }
 
