@@ -331,6 +331,7 @@ public class AccountManager
   public void installPlatformUser(String platUser, String platPass) {
     if (!StringUtil.isNullString(platUser) &&
 	!StringUtil.isNullString(platPass)) {
+      String msg = null;
       if (!CurrentConfig.getBooleanParam(PARAM_CONDITIONAL_PLATFORM_USER,
 					 DEFAULT_CONDITIONAL_PLATFORM_USER)) {
 	log.info("Installing platform user");
@@ -342,12 +343,15 @@ public class AccountManager
 	    return;
 	  }
 	}
-	log.info("Installing platform user because no other admin user");
+	msg = "platform admin account enabled because no other admin user";
       }
       try {
 	UserAccount acct = addStaticUser(platUser, platPass);
 	acct.setRoles(SetUtil.set(LockssServlet.ROLE_USER_ADMIN));
-	acct.auditableEvent("platform admin account enabled");
+	if (msg != null) {
+	  log.info("User " + acct.getName() + " " + msg);
+	  acct.auditableEvent(msg);
+	}
       } catch (NotAddedException e) {
 	log.error("Can't install platform user", e);
       }
