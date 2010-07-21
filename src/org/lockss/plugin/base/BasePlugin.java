@@ -453,8 +453,6 @@ public abstract class BasePlugin
     return NullUrlNormalizer.INSTANCE;
   }
 
-  protected UrlNormalizer urlNorm;
-
   public static class NullUrlNormalizer implements UrlNormalizer {
     public static final UrlNormalizer INSTANCE = new NullUrlNormalizer();
 
