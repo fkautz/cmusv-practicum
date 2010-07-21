@@ -294,7 +294,7 @@ public abstract class BaseCrawler
       logger.error("doCrawl0()", e);
       alertMgr.raiseAlert(Alert.auAlert(Alert.CRAWL_FAILED, au),
 			  "Crawl of " + au.getName() +
-			  "threw " + e.getMessage());
+			  " threw " + e.getMessage());
       if (isWholeAU()) {
 	NodeManager nodeManager = getDaemon().getNodeManager(au);
 	nodeManager.newContentCrawlFinished(Crawler.STATUS_ABORTED,

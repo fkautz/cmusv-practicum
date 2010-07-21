@@ -186,7 +186,7 @@ public class LockssKeyStore {
       loaded = true;
       log.info("Loaded keystore: " + name);
     } catch (Exception e) {
-      log.error("Error loading keystore: " + name, e);
+      // logged at higher level
       throw new UnavailableKeyStoreException(e);
     }
   }
