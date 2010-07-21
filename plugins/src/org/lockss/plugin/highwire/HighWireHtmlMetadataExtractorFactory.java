@@ -93,6 +93,10 @@ public class HighWireHtmlMetadataExtractorFactory
           if (content != null && !"".equals(content)) {
             ret.putArticleTitle(content);
           }
+          content = ret.getProperty("citation_journal_title");
+          if(content !=null && !"".equals(content)){
+        	  ret.putJournalTitle(content);
+          }          
           content = ret.getProperty("citation_date");
           if (content != null && !"".equals(content)) {
             ret.putDate(content);
