@@ -79,7 +79,7 @@ public class RegistryArchivalUnit extends BaseArchivalUnit {
   /** Run polls on Plugin registry AUs */
   static final String PARAM_ENABLE_REGISTRY_POLLS =
     RegistryPlugin.PREFIX + "enablePolls";
-  static final boolean DEFAULT_ENABLE_REGISTRY_POLLS = false;
+  static final boolean DEFAULT_ENABLE_REGISTRY_POLLS = true;
 
   private String m_registryUrl = null;
   private int m_maxRefetchDepth = NewContentCrawler.DEFAULT_MAX_CRAWL_DEPTH;
