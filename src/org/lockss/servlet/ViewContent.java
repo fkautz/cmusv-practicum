@@ -233,6 +233,17 @@ public class ViewContent extends LockssServlet {
       addPropRow(tbl, "Collected at", ServletUtil.headerDf.format(new Date(sdate)));
     } catch (NumberFormatException ignore) {
     }
+    String repairFrom = props.getProperty(CachedUrl.PROPERTY_REPAIR_FROM);
+    if (!StringUtil.isNullString(repairFrom)) {
+      addPropRow(tbl, "Repaired from", repairFrom);
+      try {
+	long rdate =
+	  Long.parseLong(props.getProperty(CachedUrl.PROPERTY_REPAIR_DATE));
+	addPropRow(tbl, "Repair date",
+		   ServletUtil.headerDf.format(new Date(rdate)));
+      } catch (NumberFormatException ignore) {
+      }
+    }
     page.add(tbl);
     page.add("<br>");
     Composite comp = new Block(Block.Center);
