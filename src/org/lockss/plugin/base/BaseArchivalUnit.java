@@ -569,7 +569,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     return sb.toString();
   }
 
-  protected List getPermissionPages() {
+  protected List<String> getPermissionPages() {
     return startUrls;
   }
 

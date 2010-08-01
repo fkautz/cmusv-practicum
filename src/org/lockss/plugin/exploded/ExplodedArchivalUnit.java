@@ -119,7 +119,7 @@ public class ExplodedArchivalUnit extends DefinableArchivalUnit {
     return new ArrayList(urlStems);
   }
 
-  protected List getPermissionPages() {
+  protected List<String> getPermissionPages() {
     return new ArrayList(permissionPageUrls);
   }
 
