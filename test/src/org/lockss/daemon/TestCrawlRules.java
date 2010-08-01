@@ -317,6 +317,18 @@ public class TestCrawlRules extends LockssTestCase {
     }
   }
 
+  public void testContains() throws LockssRegexpException {
+    List<String> l = ListUtil.list("http://foo.bar/one",
+				   "http://foo.bar/two",
+				   "http://foo.bar/three");
+    CrawlRule cr = new CrawlRules.Contains(l);
+    for (String url : l) {
+      assertEquals(CrawlRule.INCLUDE, cr.match(url));
+    }
+    assertEquals(CrawlRule.IGNORE, cr.match("http://foo.bar/threex"));
+    assertEquals(CrawlRule.IGNORE, cr.match("other"));
+  }
+
   public void testNullStringRange() throws LockssRegexpException {
     try {
       CrawlRule cr = new CrawlRules.REMatchRange("(.*)",
