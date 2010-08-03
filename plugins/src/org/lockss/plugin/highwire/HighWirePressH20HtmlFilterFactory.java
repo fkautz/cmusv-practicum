@@ -88,7 +88,9 @@ public class HighWirePressH20HtmlFilterFactory implements FilterFactory {
         // Optional institution-specific citation resolver (e.g. SAGE Publications)
         HtmlNodeFilters.tagWithAttributeRegex("a", "href", "^/cgi/openurl"),
         HtmlNodeFilters.tagWithAttributeRegex("a", "href", "^/openurl"),
-        HtmlNodeFilters.tagWithAttributeRegex("a", "href", "^/external-ref"),        
+        HtmlNodeFilters.tagWithAttributeRegex("a", "href", "^/external-ref"),   
+        //For SAGE (at least).  Name of the institution. E.g. </a> INDIANA UNIV </div>
+        HtmlNodeFilters.tagWithAttribute("div", "id", "header-Uni"),
 
     };
     
