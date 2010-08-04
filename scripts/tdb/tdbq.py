@@ -506,26 +506,26 @@ def tdbq_reprocess(tdb, options):
     if options.query: query = TdbqParser(TdbqScanner(options.query, options), options).parse()
     statuses = None
     if options.productionStatuses:
-        statuses = TdbqPredicate(lambda au: au.status() in [AU.STATUS_RELEASED,
-                                                            AU.STATUS_DOWN,
-                                                            AU.STATUS_SUPERSEDED,
-                                                            AU.STATUS_RETRACTED])
+        statuses = TdbqPredicate(lambda au: au.status() in [AU.Status.RELEASED,
+                                                            AU.Status.DOWN,
+                                                            AU.Status.SUPERSEDED,
+                                                            AU.Status.RETRACTED])
     elif options.testingStatuses:
-        statuses = TdbqPredicate(lambda au: au.status() in [AU.STATUS_EXISTS,
-                                                            AU.STATUS_MANIFEST,
-                                                            AU.STATUS_WANTED,
-                                                            AU.STATUS_TESTING,
-                                                            AU.STATUS_NOT_READY,
-                                                            AU.STATUS_TESTED,
-                                                            AU.STATUS_RETESTING,
-                                                            AU.STATUS_READY,
-                                                            AU.STATUS_PRE_RELEASING,
-                                                            AU.STATUS_PRE_RELEASED,
-                                                            AU.STATUS_RELEASING,
-                                                            AU.STATUS_RELEASED,
-                                                            AU.STATUS_DOWN,
-                                                            AU.STATUS_SUPERSEDED,
-                                                            AU.STATUS_RETRACTED])
+        statuses = TdbqPredicate(lambda au: au.status() in [AU.Status.EXISTS,
+                                                            AU.Status.MANIFEST,
+                                                            AU.Status.WANTED,
+                                                            AU.Status.TESTING,
+                                                            AU.Status.NOT_READY,
+                                                            AU.Status.TESTED,
+                                                            AU.Status.RETESTING,
+                                                            AU.Status.READY,
+                                                            AU.Status.PRE_RELEASING,
+                                                            AU.Status.PRE_RELEASED,
+                                                            AU.Status.RELEASING,
+                                                            AU.Status.RELEASED,
+                                                            AU.Status.DOWN,
+                                                            AU.Status.SUPERSEDED,
+                                                            AU.Status.RETRACTED])
     if query and statuses: prog = TdbqAnd(query, statuses)
     elif query: prog = query
     else: prog = statuses
