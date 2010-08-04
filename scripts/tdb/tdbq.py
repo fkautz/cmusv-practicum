@@ -26,7 +26,7 @@
 # be used in advertising or otherwise to promote the sale, use or other dealings
 # in this Software without prior written authorization from Stanford University.
 
-__version__ = '''0.3.1'''
+__version__ = '''0.3.2'''
 
 from optparse import OptionGroup, OptionParser
 import re
