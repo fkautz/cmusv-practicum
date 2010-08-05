@@ -89,6 +89,9 @@ public class NaturePublishingGroupArticleIteratorFactory
       
       mat = HTML_PATTERN.matcher(url);
       if (mat.find()) {
+        if ("index".equalsIgnoreCase(mat.group(1))) {
+          return null; // HTTP 404 served as HTTP 200
+        }
         return processFullTextHtml(cu, mat);
       }
         
@@ -184,7 +187,7 @@ public class NaturePublishingGroupArticleIteratorFactory
       if (am == null || am.size() == 0) {
         am = new ArticleMetadata();
       }
-      am.put(ArticleMetadata.KEY_ACCESS_URL, cu.getUrl());
+      am.put(ArticleMetadata.KEY_ACCESS_URL, af.getFullTextCu());
       return am;
     }
   }
