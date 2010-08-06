@@ -342,7 +342,7 @@ public class TdbDiff {
           System.exit(1);
         }
       } else if (arg.equalsIgnoreCase("-help")) {
-        usage();
+        usage("List the differences between two TDBs specified by two sets of configurations");
         System.exit(0);
       } else if (arg.startsWith("-")) {
         usage("Unknown flag " + arg);
