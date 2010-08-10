@@ -248,7 +248,7 @@ def __option_parser__(parser=None):
     tdbxml_group.add_option('-' + TdbxmlConstants.OPTION_NO_PUB_DOWN_SHORT,
                             '--' + TdbxmlConstants.OPTION_NO_PUB_DOWN,
                             action='store_true',
-                            help=TdbxmlConstants.OPTION_STYLE_HELP)
+                            help=TdbxmlConstants.OPTION_NO_PUB_DOWN_HELP)
     parser.add_option_group(tdbxml_group)
     return parser
 
