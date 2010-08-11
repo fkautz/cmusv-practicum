@@ -300,7 +300,8 @@ public class TestAuUtil extends LockssTestCase {
     MockArchivalUnit mau = new MockArchivalUnit();
     CachedUrl mcu = new MockCachedUrl(url, mau);
     assertSame(mcu, AuUtil.getCu(mcu));
-    CachedUrlSet mcus = new MockCachedUrlSet(mau, url);
+    MockCachedUrlSet mcus = new MockCachedUrlSet(url);
+    mcus.setArchivalUnit(mau);
     assertNull(AuUtil.getCu(mcus));
     mau.addUrl(url, "foo");
     CachedUrl cu2 = AuUtil.getCu(mcus);

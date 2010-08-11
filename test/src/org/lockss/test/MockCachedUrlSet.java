@@ -90,11 +90,6 @@ public class MockCachedUrlSet implements CachedUrlSet {
     this.url = url;
   }
 
-  public MockCachedUrlSet(MockArchivalUnit owner, String url) {
-    this.au = owner;
-    this.url = url;
-  }
-
   public CachedUrlSetSpec getSpec() {
     return spec;
   }
