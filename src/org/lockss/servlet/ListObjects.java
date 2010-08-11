@@ -175,9 +175,9 @@ public class ListObjects extends LockssServlet {
     for (Iterator iter = au.getAuCachedUrlSet().contentHashIterator();
 	 iter.hasNext(); ) {
       CachedUrlSetNode cusn = (CachedUrlSetNode)iter.next();
-      if (cusn.isLeaf()) {
-	CachedUrl cu = (CachedUrl)cusn;
-	if (cu.hasContent()) {
+      if (cusn.hasContent()) {
+	CachedUrl cu = AuUtil.getCu(cusn);
+	if (cu != null && cu.hasContent()) {
 	  String url = cu.getUrl();
 	  String contentType = cu.getContentType();
 	  long bytes = cu.getContentSize();

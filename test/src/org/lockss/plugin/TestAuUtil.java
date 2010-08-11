@@ -295,6 +295,18 @@ public class TestAuUtil extends LockssTestCase {
     assertFalse(AuUtil.okDeleteExtraFiles(new ExplodedArchivalUnit(new ExplodedPlugin(), null)));
   }
 
+  public void testGetCu() {
+    String url = "http://foo/";
+    MockArchivalUnit mau = new MockArchivalUnit();
+    CachedUrl mcu = new MockCachedUrl(url, mau);
+    assertSame(mcu, AuUtil.getCu(mcu));
+    CachedUrlSet mcus = new MockCachedUrlSet(mau, url);
+    assertNull(AuUtil.getCu(mcus));
+    mau.addUrl(url, "foo");
+    CachedUrl cu2 = AuUtil.getCu(mcus);
+    assertEquals(url, cu2.getUrl());
+  }
+
   private static class LocalMockArchivalUnit extends MockArchivalUnit {
     TitleConfig tc = null;
 

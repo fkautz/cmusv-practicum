@@ -332,8 +332,8 @@ public class SubTreeArticleIterator implements Iterator<ArticleFiles> {
 	  }
 	} else {
 	  CachedUrlSetNode node = (CachedUrlSetNode)cusIter.next();
-	  if (node instanceof CachedUrl) {
-	    cu = (CachedUrl)node;
+	  cu = AuUtil.getCu(node);
+	  if (cu != null && cu.hasContent()) {
 	    if (isArticleCu(cu)) {
 	      nextElement = createArticleFiles(cu);
 	      if (nextElement == null) {

@@ -191,15 +191,7 @@ public abstract class GenericHasher implements CachedUrlSetHasher {
 
   protected CachedUrl getCurrentCu() {
     if (curCu == null) {
-      switch (curNode.getType()) {
-      case CachedUrlSetNode.TYPE_CACHED_URL_SET:
-        CachedUrlSet cus = (CachedUrlSet)curNode;
-        curCu = au.makeCachedUrl(cus.getUrl());
-        break;
-      case CachedUrlSetNode.TYPE_CACHED_URL:
-        curCu = (CachedUrl)curNode;
-        break;
-      }
+      curCu = AuUtil.getCu(curNode);
     }
     return curCu;
   }
