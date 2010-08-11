@@ -252,8 +252,6 @@ public abstract class Exporter {
 	    recordError("Unable to write " + cu.getUrl(), e);
 	  }
 	}
-      } else {
-	throw new RuntimeException("Unknown node type");
       }
     }
   }
