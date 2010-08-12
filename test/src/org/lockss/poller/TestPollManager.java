@@ -91,6 +91,10 @@ public class TestPollManager extends LockssTestCase {
     initRequiredServices();
     initTestAddr();
     initTestMsg();
+    // Many of these tests are prone to timer events running after the test
+    // harness has been torn down, leading to spurious NPEs & such in the
+    // timer thread.
+    setErrorIfTimerThrows(false);
   }
 
 
