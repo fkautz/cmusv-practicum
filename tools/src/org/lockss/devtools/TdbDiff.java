@@ -372,6 +372,7 @@ public class TdbDiff {
       } else if (arg.equalsIgnoreCase("-showFields")) {
         showFields = true;
       } else if (arg.equalsIgnoreCase("-config")) {
+	inExclude = false;
         if (config1 == null) {
           curConfig = config1 = ConfigManager.newConfiguration();
         } else if (config2 == null) {
