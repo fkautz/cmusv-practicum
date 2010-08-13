@@ -307,10 +307,10 @@ public class TdbDiff {
 	    if (showAll && isIncl(paramEntry1.getKey())) {
 	      // list parameter whose value is the same in au1 and au2
 	      appendln(sb, "    " + paramEntry1.getKey());
-	    } else if (isIncl(paramEntry1.getKey(), "!")) {
+	    }
+	  } else if (isIncl(paramEntry1.getKey(), "!")) {
 	      // list parameter whose value is different in au1 and au2
 	      appendln(sb, "  ! " + paramEntry1.getKey());
-	    }
 	  }
 	  // advance to next param for au1 and au2
 	  paramEntry1 = iter1.hasNext() ? iter1.next() : null;
