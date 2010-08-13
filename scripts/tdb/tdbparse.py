@@ -26,7 +26,7 @@
 # be used in advertising or otherwise to promote the sale, use or other dealings
 # in this Software without prior written authorization from Stanford University.
 
-__version__ = '''0.3.1'''
+__version__ = '''0.3.2'''
 
 from optparse import OptionGroup, OptionParser
 import re
@@ -922,6 +922,6 @@ class TestTdbParser(unittest.TestCase):
 ''', 'mismatch line 10 column 5: expected 3 implicit assignments but got 4')]:
             parser = TdbParser(TdbScanner(StringIO(src)))
             try: parser.parse()
-            except RuntimeError as (exc,): self.assertEquals(mes, exc)
+            except RuntimeError, exc: self.assertEquals(mes, exc)
 
 if __name__ == '__main__': unittest.main()
