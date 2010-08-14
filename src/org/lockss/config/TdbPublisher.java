@@ -31,14 +31,11 @@ in this Software without prior written authorization from Stanford University.
 */
 package org.lockss.config;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 
 import org.lockss.config.Tdb.TdbException;
-import org.lockss.util.Logger;
+import org.lockss.util.*;
 
 /**
  * This class represents a title database publisher.
@@ -279,6 +276,19 @@ public class TdbPublisher {
       }
     }
     return false;
+  }
+
+  /** Print a full description of the publisher and all its titles */
+  public void prettyPrint(PrintStream ps, int indent) {
+    ps.println(StringUtil.tab(indent) + "Publisher: " + name);
+    TreeMap<String, TdbTitle> sorted =
+      new TreeMap<String, TdbTitle>(CatalogueOrderComparator.SINGLETON);
+    for (TdbTitle title : getTdbTitles()) {
+      sorted.put(title.getName(), title);
+    }
+    for (TdbTitle title : sorted.values()) {
+      title.prettyPrint(ps, indent + 2);
+    }
   }
 
   /**

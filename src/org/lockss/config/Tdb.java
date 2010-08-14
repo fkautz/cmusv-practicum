@@ -31,16 +31,10 @@ in this Software without prior written authorization from Stanford University.
 */
 package org.lockss.config;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 
-import org.lockss.util.Logger;
+import org.lockss.util.*;
 
 /**
  * This class represents a title database (TDB).  The TDB consists of
@@ -1029,4 +1023,16 @@ public class Tdb {
   public Map<String, TdbPublisher> getAllTdbPublishers() {
     return (tdbPublisherMap != null) ? tdbPublisherMap : Collections.<String,TdbPublisher>emptyMap();
   }
+
+  /** Print a full description of all elements in the Tdb */
+  public void prettyPrint(PrintStream ps) {
+    ps.println("Tdb");
+    TreeMap<String, TdbPublisher> sorted =
+      new TreeMap<String, TdbPublisher>(CatalogueOrderComparator.SINGLETON);
+    sorted.putAll(getAllTdbPublishers());
+    for (TdbPublisher tdbPublisher : sorted.values()) {
+      tdbPublisher.prettyPrint(ps, 2);
+    }
+  }
+
 }
