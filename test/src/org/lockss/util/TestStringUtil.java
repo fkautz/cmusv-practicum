@@ -520,6 +520,12 @@ public class TestStringUtil extends LockssTestCase {
     assertNotEquals(g1, g2);
   }
 
+  public void testTab() {
+    assertEquals("", StringUtil.tab(0));
+    assertEquals(" ", StringUtil.tab(1));
+    assertEquals("       ", StringUtil.tab(7));
+  }
+
   public void testShortNameObject() {
     Object o = null;
     assertNull(StringUtil.shortName(o));

@@ -88,10 +88,6 @@ public class PsmToDot {
   PsmToDot() {
   }
 
-  String tab(int n) {
-    return StringUtils.repeat(" ", n);
-  }      
-
   class Graph {
     String label;
     PsmMachine.Factory factory;
@@ -195,15 +191,15 @@ public class PsmToDot {
       }
       for (Map.Entry<String,SI> ent : infoMap.entrySet()) {
 	SI sInfo = ent.getValue();
-	pout.println(tab(4) + ent.getKey() + sInfo.dotNode);
+	pout.println(StringUtil.tab(4) + ent.getKey() + sInfo.dotNode);
       }
       for (Map.Entry<String,String> ent : dotActions.entrySet()) {
-	pout.println(tab(4) + ent.getKey() + " [shape=box,label=\"" +
+	pout.println(StringUtil.tab(4) + ent.getKey() + " [shape=box,label=\"" +
 		     ent.getValue() + "\"];");
       }
       for (Map.Entry<String,SI> ent : infoMap.entrySet()) {
 	SI sInfo = ent.getValue();
-	pout.println(tab(4) + ent.getKey() + sInfo.dotNode);
+	pout.println(StringUtil.tab(4) + ent.getKey() + sInfo.dotNode);
       }
       pout.println(SUBGRAPH_END);
     }
@@ -255,7 +251,7 @@ public class PsmToDot {
       lst.add(attrs);
     }
     StringBuilder sb = new StringBuilder();
-    sb.append(tab(indent));
+    sb.append(StringUtil.tab(indent));
     sb.append(from);
     sb.append(" -> ");
     sb.append(to);
