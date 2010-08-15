@@ -663,7 +663,7 @@ public class Tdb {
     for (Map<String, String> pmap : paramMap.values()) {
       String name = pmap.get("key");
       String value = pmap.get("value");
-      if ((name == null) || (value == null)) {
+      if (name == null) {
         logger.warning("Ignoring property with null name");
       } else if (value == null) {
         logger.warning("Ignoring property \"" + name + "\" with null value");
@@ -832,6 +832,12 @@ public class Tdb {
       // find title from publisher
       title = publisher.getTdbTitleById(titleId);
       if (title != null) {
+        // warn that title name is different
+        if (!title.getName().equals(titleNameFromProps)) {
+          logger.warning("Title for au \"" + au.getName() + "\": \"" + titleNameFromProps 
+                         + "\" is different than existing title \"" + title.getName() 
+                         + "\" for id " + titleId + " -- using existing title.");
+        }
         return title;
       }
     }
