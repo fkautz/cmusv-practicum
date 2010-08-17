@@ -574,6 +574,9 @@ def __option_parser__(parser=None):
 
 def __reprocess_options__(parser, options):
     # Reprocess the statuses
+    if options.statuses is None:
+        options.statuses = []
+        return 
     sta = []
     for s in options.statuses:
         if type(s) is list: sta.extend(s)

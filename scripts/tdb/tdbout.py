@@ -77,7 +77,7 @@ class TdboutConstants:
 
 def __process(tdb, options):
     fields = options.fields.split(',')
-    result = [[lam(au) for lam in map(tdbq.str_to_lambda_au, fields)] for au in tdb.aus()]
+    result = [[lam(au) or '' for lam in map(tdbq.str_to_lambda_au, fields)] for au in tdb.aus()]
     if options.style == TdboutConstants.OPTION_STYLE_CSV:
         import csv
         if options.headings: result = [[w.capitalize() for w in fields]] + result
