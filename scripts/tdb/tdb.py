@@ -127,14 +127,14 @@ class AU(ChainedMap):
 
     class Status:
         DOES_NOT_EXIST = 'doesNotExist'
-        DO_NOT_PROCESS = 'doNotProcess'
         EXISTS = 'exists'
+        DO_NOT_PROCESS = 'doNotProcess'
         MANIFEST = 'manifest'
         WANTED = 'wanted'
         TESTING = 'testing'
+        RETESTING = 'retesting'
         NOT_READY = 'notReady'
         TESTED = 'tested'
-        RETESTING = 'retesting'
         READY = 'ready'
         PRE_RELEASING = 'preReleasing'
         PRE_RELEASED = 'preReleased'
