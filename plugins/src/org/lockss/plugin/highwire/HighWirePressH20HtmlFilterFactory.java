@@ -92,6 +92,8 @@ public class HighWirePressH20HtmlFilterFactory implements FilterFactory {
         //For SAGE (at least).  Name of the institution. E.g. </a> INDIANA UNIV </div>
         HtmlNodeFilters.tagWithAttribute("div", "id", "header-Uni"),
 
+        HtmlNodeFilters.tagWithAttribute("li", "class", "subscr-ref"),
+
     };
     
     return new HtmlFilterInputStream(in,
