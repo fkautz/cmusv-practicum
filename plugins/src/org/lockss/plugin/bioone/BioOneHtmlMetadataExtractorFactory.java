@@ -47,12 +47,16 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class BioOneHtmlMetadataExtractorFactory implements
-		FileMetadataExtractorFactory {
+/**
+ * Two of the articles used to get the html source for this plugin is:
+ * http://www.bioone.org/doi/abs/10.4202/app.2009.0087
+ * http://www.bioone.org/doi/abs/10.3161/150811010X504554
+ *
+ */
+public class BioOneHtmlMetadataExtractorFactory implements FileMetadataExtractorFactory {
 	static Logger log = Logger.getLogger("BioOneHtmlMetadataExtractorFactory");
 
-	public FileMetadataExtractor createFileMetadataExtractor(String contentType)
-			throws PluginException {
+	public FileMetadataExtractor createFileMetadataExtractor(String contentType) throws PluginException {
 		return new BioOneHtmlMetadataExtractor();
 	}
 

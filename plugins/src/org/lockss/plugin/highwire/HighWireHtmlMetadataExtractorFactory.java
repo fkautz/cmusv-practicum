@@ -40,8 +40,11 @@ import org.lockss.extractor.*;
 import org.lockss.plugin.*;
 
 
-public class HighWireHtmlMetadataExtractorFactory
-  implements FileMetadataExtractorFactory {
+/**
+ * One of the articles used to get the html source for this plugin is:
+ * http://asj.sagepub.com/content/53/2/99.abstract
+ */
+public class HighWireHtmlMetadataExtractorFactory implements FileMetadataExtractorFactory {
   static Logger log = Logger.getLogger("HighWireHtmlMetadataExtractorFactory");
 
   public FileMetadataExtractor createFileMetadataExtractor(String contentType)

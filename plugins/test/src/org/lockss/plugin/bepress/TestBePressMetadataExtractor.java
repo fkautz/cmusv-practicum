@@ -47,6 +47,11 @@ import org.lockss.plugin.*;
 import org.lockss.plugin.base.*;
 import org.lockss.plugin.simulated.*;
 
+/**
+ * One of the articles used to get the html source for this plugin is:
+ * http://www.bepress.com/cppm/vol5/iss1/17/
+ *
+ */
 public class TestBePressMetadataExtractor extends LockssTestCase {
 
 	static Logger log = Logger.getLogger("TestBePressMetadataExtractor");
