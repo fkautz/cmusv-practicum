@@ -96,7 +96,12 @@ public class HighWirePressH20HtmlFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttribute("li", "class", "subscr-ref"),
         //Filter for <div class="col-3adverTower"> (SAGE)
         HtmlNodeFilters.tagWithAttribute("div", "class", "col-3adverTower"),        
-
+        //Filter for <div class="social-bookmarking"> 
+        HtmlNodeFilters.tagWithAttribute("div", "class", "social-bookmarking"), 
+        //Filter out .abstract/.short links
+        HtmlNodeFilters.tagWithAttributeRegex("a", "href", "(\\.abstract|\\.short)$"),   
+        
+        
     };
     
     return new HtmlFilterInputStream(in,
