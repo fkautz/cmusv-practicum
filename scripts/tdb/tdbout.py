@@ -80,7 +80,7 @@ def __process(tdb, options):
     result = [[lam(au) or '' for lam in map(tdbq.str_to_lambda_au, fields)] for au in tdb.aus()]
     if options.style == TdboutConstants.OPTION_STYLE_CSV:
         import csv
-        if options.headings: result = [[w.capitalize() for w in fields]] + result
+        if options.names: result = [[w.capitalize() for w in fields]] + result
         if options.warnings:
             from datetime import date
             warnings = [['Current as of %s' % (date.today())],
