@@ -100,7 +100,7 @@ public class HighWirePressH20HtmlFilterFactory implements FilterFactory {
         // Filter for <div class="social-bookmarking"> 
         HtmlNodeFilters.tagWithAttribute("div", "class", "social-bookmarking"), 
         // Normalize the probabilistic substitution of .short for .abstract
-        HtmlNodeFilters.tagWithAttributeRegex("a", "href", "\\.(abstract|short)$"),   
+        HtmlNodeFilters.tagWithAttributeRegex("a", "href", "\\.(abstract|short)(\\?|$)"),   
         
         
     };
