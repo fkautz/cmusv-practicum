@@ -52,7 +52,7 @@ public interface MimeTypeInfo {
 
   /** Returns the hash FilterFactory, or null */
   public FilterFactory getHashFilterFactory();
-  /** Returns the crarl FilterFactory, or null */
+  /** Returns the crawl FilterFactory, or null */
   public FilterFactory getCrawlFilterFactory();
   /** Returns the LinkExtractorFactory, or null */
   public LinkExtractorFactory getLinkExtractorFactory();
