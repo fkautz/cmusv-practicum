@@ -66,6 +66,7 @@ public class AuStateBean extends AuState {
 				      auState.clockssSubscriptionStatus,
 				      auState.v3Agreement,
 				      auState.highestV3Agreement,
+				      auState.hasSubstance,
 				      null);
   }
 

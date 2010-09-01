@@ -942,8 +942,12 @@ public class PollManager
     return (pollspecs.iterator());
   }
 
-  void raiseAlert(Alert alert) {
+  public void raiseAlert(Alert alert) {
     theAlertManager.raiseAlert(alert);
+  }
+
+  public void raiseAlert(Alert alert, String msg) {
+    theAlertManager.raiseAlert(alert, msg);
   }
 
   /**

@@ -35,6 +35,7 @@ package org.lockss.test;
 import java.io.*;
 import java.security.*;
 import java.util.*;
+import org.apache.oro.text.regex.*;
 
 import org.lockss.app.*;
 import org.lockss.config.Configuration;
@@ -437,6 +438,14 @@ public class NullPlugin {
     }
 
     public CrawlSpec getCrawlSpec() {
+      return null;
+    }
+
+    public List<Pattern> makeNonSubstanceUrlPatterns() {
+      return null;
+    }
+
+    public List<Pattern> makeSubstanceUrlPatterns() {
       return null;
     }
 

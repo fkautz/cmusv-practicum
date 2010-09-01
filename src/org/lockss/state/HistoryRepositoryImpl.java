@@ -274,6 +274,7 @@ public class HistoryRepositoryImpl
                          auState.getClockssSubscriptionStatus(),
                          auState.getV3Agreement(),
                          auState.getHighestV3Agreement(),
+			 auState.getSubstanceState(),
                          this);
     }
     catch (SerializationException.FileNotFound fnf) {

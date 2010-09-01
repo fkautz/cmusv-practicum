@@ -96,6 +96,7 @@ public class PollerStateMachineFactory implements PsmMachine.Factory {
                                      new PsmMethodMsgAction(actionClass,
                                                            "handleReceiveVote")),
                      new PsmResponse(V3Events.evtError, "FinalizePoller"),
+                     new PsmResponse(V3Events.evtFinalize, "FinalizePoller"),
                      new PsmResponse(V3Events.evtOk, "TallyVote")).setResumable(true),
         new PsmState("TallyVote", new PsmMethodAction(actionClass,
                                                       "handleTallyVote"),

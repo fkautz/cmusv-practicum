@@ -56,10 +56,17 @@ public interface CrawlSpec {
   public void setCrawlWindow(CrawlWindow window);
 
   /**
+   * Get the URLs from which to start crawling.  May be null if the crawl
+   * type has nother way of finding starting points (e.g., OAI)
+   * @return an immutable list of URLs, as Strings, or null
+   */
+  public List getStartingUrls();
+
+  /**
    * Gets the permission pages list
    * @return a list of permission pages URLS, as Strings
    */
-  public List getPermissionPages();
+  public List<String> getPermissionPages();
 
   /**
    * Returns whether the rule is null

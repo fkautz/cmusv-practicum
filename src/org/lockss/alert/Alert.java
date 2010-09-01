@@ -97,6 +97,10 @@ public class Alert {
     cAlert("CrawlExcludedURL").
     setAttribute(ATTR_SEVERITY, SEVERITY_WARNING);
 
+  public static final Alert CRAWL_NO_SUBSTANCE =
+    cAlert("CrawlCollectedNoSubstantialContent").
+    setAttribute(ATTR_SEVERITY, SEVERITY_WARNING);
+
   public static final Alert NEW_CONTENT =
     cAlert("NewContent").
     setAttribute(ATTR_SEVERITY, SEVERITY_INFO);

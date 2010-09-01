@@ -96,6 +96,11 @@ public abstract class BaseCrawlSpec implements CrawlSpec {
     this.window = window;
   }
 
+  /** Default implementation returns null */
+  public List getStartingUrls() {
+    return null;
+  }
+
   public List getPermissionPages() {
     return permissionList;
   }

@@ -142,7 +142,8 @@ public class TestV3LcapMessage extends LockssTestCase {
 
   public void testTestMessageToString() throws IOException {
     String expectedResult = "[V3LcapMessage: from " + m_testID.toString() +
-      ", Vote Key:key " +
+      ", Vote AUID: TestAU_1.0 " +
+      "Key:key " +
       "PN:AQIDBAUGBwgJAAECAwQFBgcICQA= " +
       "VN:AQIDBAUGBwgJAAECAwQFBgcICQA= " +
       "B:10 ver 3 rev 4]";
