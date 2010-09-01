@@ -58,6 +58,7 @@ public class MimeTypeMap {
     // HTML.setLinkRewriterFactory(new JavascriptHtmlLinkRewriterFactory());
     HTML.setLinkRewriterFactory(new NodeFilterHtmlLinkRewriterFactory());
     DEFAULT.putMimeTypeInfo("text/html", HTML);
+    DEFAULT.putMimeTypeInfo("application/xhtml+xml", HTML);
     setLinkExtractorFactory(CSS,
 			    DEFAULT_DEFAULT_CSS_EXTRACTOR_FACTORY);
 //     CSS.setLinkExtractorFactory(new FluteCssLinkExtractor.Factory());

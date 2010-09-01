@@ -93,6 +93,13 @@ public class TestMimeTypeMap extends LockssTestCase {
     assertTrue(mt2.getLinkExtractorFactory()
 	       instanceof RegexpCssLinkExtractor.Factory);
 
+    MimeTypeInfo mt3 =
+      MimeTypeMap.DEFAULT.getMimeTypeInfo("application/xhtml+xml");
+    assertNull(mt3.getHashFilterFactory());
+    assertNull(mt3.getCrawlFilterFactory());
+    assertTrue(mt3.getLinkExtractorFactory()
+	       instanceof GoslingHtmlLinkExtractor.Factory);
+
     ConfigurationUtil.setFromArgs(MimeTypeMap.PARAM_DEFAULT_CSS_EXTRACTOR_FACTORY,
 				  "No.Such.Class");
     assertTrue(""+mt2.getLinkExtractorFactory(),
