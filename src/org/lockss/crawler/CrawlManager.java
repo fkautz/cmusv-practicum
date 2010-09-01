@@ -72,6 +72,21 @@ public interface CrawlManager {
                                    Object cookie, ActivityRegulator.Lock lock);
 
 
+  /**
+   * Starts a new content crawl with an explicit priority.
+   *
+   * @param au ArchivalUnit that the crawl manager should check
+   * @param priority If greater then zero, this crawl will have start-order
+   * priority over those with lower priority
+   * @param cb callback to be called when the crawler is done with the AU,
+   * if not now
+   * @param cookie cookie for the callback
+   * @param lock the activity lock (can be null)
+   */
+  public void startNewContentCrawl(ArchivalUnit au, int priority,
+				   CrawlManager.Callback cb,
+				   Object cookie, ActivityRegulator.Lock lock);
+
   /** Return true if the periodic crawl starter is running */
   public boolean isCrawlStarterEnabled();
 

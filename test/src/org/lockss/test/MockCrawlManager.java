@@ -91,6 +91,12 @@ public class MockCrawlManager implements CrawlManager, LockssManager {
     scheduleNewContentCrawl(au, cb, cookie);
   }
 
+  public void startNewContentCrawl(ArchivalUnit au, int priority,
+				   CrawlManager.Callback cb,
+                                   Object cookie, ActivityRegulator.Lock lock) {
+    scheduleNewContentCrawl(au, cb, cookie);
+  }
+
   public boolean isCrawlStarterEnabled() {
     return false;
   }
