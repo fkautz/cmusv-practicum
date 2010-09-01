@@ -201,9 +201,9 @@ public class XmlStatusTable {
       addTextElement(siElement, XmlStatusConstants.TITLE, si.getTitle());
       addTextElement(siElement, XmlStatusConstants.TYPE,
 		     Integer.toString(si.getType()));
-      if (si.getFootnote() != null) {
+      if (si.getHeaderFootnote() != null) {
 	addTextElement(siElement,
-		       XmlStatusConstants.FOOTNOTE, si.getFootnote());
+		       XmlStatusConstants.FOOTNOTE, si.getHeaderFootnote());
       }
       addValueElement(siElement, si.getValue(), si.getType());
     }

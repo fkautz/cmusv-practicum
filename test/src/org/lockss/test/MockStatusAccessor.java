@@ -105,7 +105,7 @@ public class MockStatusAccessor implements StatusAccessor {
 			       ((Integer)summaryInfoArray[ix][1]).intValue(),
 			       summaryInfoArray[ix][2]);
       if (summaryInfoArray[ix].length >= 4) {
-	summaryInfo.setFootnote((String)summaryInfoArray[ix][3]);
+	summaryInfo.setHeaderFootnote((String)summaryInfoArray[ix][3]);
       }
       list.add(summaryInfo);
     }
