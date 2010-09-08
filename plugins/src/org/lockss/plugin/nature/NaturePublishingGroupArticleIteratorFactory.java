@@ -187,7 +187,7 @@ public class NaturePublishingGroupArticleIteratorFactory
       if (am == null || am.size() == 0) {
         am = new ArticleMetadata();
       }
-      am.put(ArticleMetadata.KEY_ACCESS_URL, af.getFullTextCu());
+      am.put(ArticleMetadata.KEY_ACCESS_URL, af.getFullTextUrl());
       return am;
     }
   }
