@@ -161,18 +161,21 @@ def __process(options):
     try:
         __check_empty(db)
         __make_table(db, Slurpdb.SESSIONS, (Slurpdb.SESSIONS,
-                                                  Slurpdb.SESSIONS_UI_MAX))
+                                            Slurpdb.SESSIONS_UI_MAX))
         __make_table(db, Slurpdb.AUIDS, (Slurpdb.AUIDS,
-                                         Slurpdb.AUIDS_AUID_MAX))
+                                         Slurpdb.AUIDS_AUID_MAX,
+                                         Slurpdb.SESSIONS))
         __make_table(db, Slurpdb.AUS, (Slurpdb.AUS,
-                                               Slurpdb.AUS_NAME_MAX,
-                                               Slurpdb.AUS_PUBLISHER_MAX,
-                                               Slurpdb.AUS_REPOSITORY_MAX,
-                                               Slurpdb.AUS_STATUS_MAX,
-                                               Slurpdb.AUS_CRAWL_RESULT_MAX,
-                                               Slurpdb.AUS_POLL_RESULT_MAX))
+                                       Slurpdb.AUS_NAME_MAX,
+                                       Slurpdb.AUS_PUBLISHER_MAX,
+                                       Slurpdb.AUS_REPOSITORY_MAX,
+                                       Slurpdb.AUS_STATUS_MAX,
+                                       Slurpdb.AUS_CRAWL_RESULT_MAX,
+                                       Slurpdb.AUS_POLL_RESULT_MAX,
+                                       Slurpdb.AUIDS))
         __make_table(db, Slurpdb.ARTICLES, (Slurpdb.ARTICLES,
-                                            Slurpdb.ARTICLES_ARTICLE_MAX))
+                                            Slurpdb.ARTICLES_ARTICLE_MAX,
+                                            Slurpdb.AUIDS))
     finally:
         db.close()
 
