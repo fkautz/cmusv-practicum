@@ -104,7 +104,8 @@ public class HighWirePressH20HtmlFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttribute("div", "class", "social-bookmarking"), 
         // Normalize the probabilistic substitution of .short for .abstract
         HtmlNodeFilters.tagWithAttributeRegex("a", "href", "\\.(abstract|short)(\\?|$)"),   
-        
+        // Ahead-of-print markers eventually disappear (e.g. JBC)
+        HtmlNodeFilters.tagWithAttributeRegex("span", "class", "ahead-of-print"),
         
     };
     
