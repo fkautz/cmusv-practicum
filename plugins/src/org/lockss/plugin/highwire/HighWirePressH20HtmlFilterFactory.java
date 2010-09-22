@@ -66,6 +66,8 @@ public class HighWirePressH20HtmlFilterFactory implements FilterFactory {
         // e.g. PNAS (optional 'sid' query arg in URLs)
         HtmlNodeFilters.tagWithAttribute("div", "id", "cb-art-svcs"),
         HtmlNodeFilters.tagWithAttribute("div", "id", "cb-art-cit"),
+        // e.g. BMJ (optional 'sid' query arg in URLs)
+        HtmlNodeFilters.tagWithAttribute("div", "id", "cb-art-rel"),
         // e.g. SWCS TOC pages
         HtmlNodeFilters.tagWithAttribute("div", "class", "cit-form-select"),
         // For JBC pages
