@@ -26,7 +26,7 @@
 # be used in advertising or otherwise to promote the sale, use or other dealings
 # in this Software without prior written authorization from Stanford University.
 
-__version__ = '''0.3.1'''
+__version__ = '''0.3.2'''
 
 from optparse import OptionGroup, OptionParser
 import sys
@@ -75,7 +75,7 @@ class TdboutConstants:
     OPTION_WARNINGS_SHORT = 'w'
     OPTION_WARNINGS_HELP = 'include warnings with the CSV or TSV output'
 
-def __process(tdb, options):
+def process_tdbout(tdb, options):
     fields = options.fields.split(',')
     result = [[lam(au) or '' for lam in map(tdbq.str_to_lambda_au, fields)] for au in tdb.aus()]
     if options.style == TdboutConstants.OPTION_STYLE_CSV:
@@ -168,4 +168,4 @@ if __name__ == '__main__':
     (options, args) = parser.parse_args(values=parser.get_default_values())
     __reprocess_options__(parser, options)
     tdb = tdbparse.tdbparse(sys.stdin, options) 
-    __process(tdb, options)
+    process_tdbout(tdb, options)
