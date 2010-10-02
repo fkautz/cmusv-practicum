@@ -1318,7 +1318,8 @@ public class ConfigManager implements LockssManager {
   }
 
   public static boolean shouldParamBeLogged(String key) {
-    return !(key.startsWith(ConfigManager.PARAM_TITLE_DB)
+    return !(key.startsWith(ConfigManager.PARAM_TITLE_DB + ".")
+	     || key.startsWith(PluginManager.PARAM_TITLE_SETS + ".")
 	     || key.startsWith(PluginManager.PARAM_AU_TREE + ".")
 	     || StringUtils.endsWithIgnoreCase(key, "password"));
   }
