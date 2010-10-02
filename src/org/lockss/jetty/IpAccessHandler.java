@@ -108,7 +108,7 @@ public class IpAccessHandler extends AbstractHttpHandler {
     try	{
       String ip = request.getRemoteAddr();
       boolean authorized = isIpAuthorized(ip);
-
+      if (log.isDebug3()) log.debug3("Access to " + serverName + " from " + ip);
       if (!authorized) {
 	// The IP is NOT allowed
 	if (logForbidden) {
