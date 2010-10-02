@@ -2064,6 +2064,9 @@ public class PollManager
 	pollManager.getV3Status().setNextPollStartTime(null);
 	try {
 	  startOnePoll();
+	} catch (RuntimeException e) {
+	  // Can happen if AU deactivated recently
+	  log.debug2("Error starting poll", e);
 	} catch (InterruptedException e) {
 	  // check goOn
 	}
