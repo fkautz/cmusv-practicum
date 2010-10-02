@@ -190,7 +190,7 @@ public class ValidatePluginResultsDialog extends JDialog {
       output += "Validating Starting Url (" + startingUrl + ")...\n";
 
       //Checks if the Crawl Rules have been set
-      if(m_au.getCrawlSpec().isRuleNull()){
+      if(m_au.getCrawlSpec().getCrawlRule() == null){
 	  succeeded = false;
 	  output += "  Validation Error:      Crawl Rules have not been set for plugin\n";
       }

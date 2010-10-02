@@ -69,10 +69,9 @@ public interface CrawlSpec {
   public List<String> getPermissionPages();
 
   /**
-   * Returns whether the rule is null
-   * @author Rebecca Illowsky
+   * Return the crawl rule
    */
-    public boolean isRuleNull();
+    public CrawlRule getCrawlRule();
 
   /**
    * Determine whether a url is part of this CrawlSpec.
