@@ -61,7 +61,6 @@ public class MimeTypeMap {
     DEFAULT.putMimeTypeInfo("application/xhtml+xml", HTML);
     setLinkExtractorFactory(CSS,
 			    DEFAULT_DEFAULT_CSS_EXTRACTOR_FACTORY);
-//     CSS.setLinkExtractorFactory(new FluteCssLinkExtractor.Factory());
     // XXX
     CSS.setLinkRewriterFactory(new StringFilterCssLinkRewriterFactory());
     DEFAULT.putMimeTypeInfo("text/css", CSS);
