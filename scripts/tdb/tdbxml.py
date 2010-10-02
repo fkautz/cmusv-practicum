@@ -215,7 +215,7 @@ def __process(tdb, options):
  </property>
  
  <property name="org.lockss.title">
-''' % { 'publisher': __escape(current_pub.name()),
+''' % { 'publisher': __escape(current_pub.name().replace('.', '')),
         'publisher2': re.sub(r'\'', '&apos;', __escape(current_pub.name())),
         'outer': '"' if current_pub.name().find('\'') < 0 else '\'',
         'inner': '\'' if current_pub.name().find('\'') < 0 else '"' }
