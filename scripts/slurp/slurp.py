@@ -288,7 +288,7 @@ def __aus(db, ui, id, auids_aids, options):
                 last_crawl, last_crawl_result, last_completed_crawl,
                 last_poll, last_poll_result, last_completed_poll,
                 content_size, disk_usage)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         ''', (aid, name, publisher, year_str, repository, creation_date, status, available,
               last_crawl, last_crawl_result, last_completed_crawl,
               last_poll, last_poll_result, last_completed_poll,
