@@ -26,7 +26,7 @@
 # be used in advertising or otherwise to promote the sale, use or other dealings
 # in this Software without prior written authorization from Stanford University.
 
-__version__ = '''0.3.2'''
+__version__ = '''0.3.3'''
 
 from optparse import OptionGroup, OptionParser
 import sys
@@ -133,7 +133,7 @@ def __option_parser__(parser=None):
                             metavar=TdboutConstants.OPTION_LIST_META,
                             action='callback',
                             help=TdboutConstants.OPTION_LIST_HELP,
-                            callback=__synonym_csv) 
+                            callback=__synonym_list) 
     def __synonym_tsv(opt, str, val, par):
         if getattr(par.values, TdboutConstants.OPTION_STYLE, None): par.error('cannot specify -%s and -%s together' % (TdboutConstants.OPTION_TSV_SHORT, TdboutConstants.OPTION_STYLE_SHORT))
         setattr(par.values, TdboutConstants.OPTION_STYLE, TdboutConstants.OPTION_STYLE_TSV)
