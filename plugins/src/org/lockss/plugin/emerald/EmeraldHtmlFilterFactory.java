@@ -32,31 +32,30 @@
 
 package org.lockss.plugin.emerald;
 
-import java.io.InputStream;
+import java.io.*;
+import java.util.List;
 
-import org.htmlparser.filters.TagNameFilter;
-import org.htmlparser.filters.AndFilter;
-import org.htmlparser.filters.HasAttributeFilter;
-import org.lockss.daemon.PluginException;
-import org.lockss.filter.html.*;
+import org.lockss.filter.*;
 import org.lockss.plugin.*;
+import org.lockss.util.*;
 
 public class EmeraldHtmlFilterFactory implements FilterFactory {
 
-  public InputStream createFilteredInputStream(ArchivalUnit au, InputStream in,
-                                               String encoding)
-    throws PluginException {
-    HtmlTransform[] transforms = new HtmlTransform[] {
-        /*
-         * Exclude <div class="welcomeBox">
-         */
-        HtmlNodeFilterTransform.exclude(HtmlNodeFilters.tagWithAttributeRegex("div",
-                                                                              "class",
-                                                                              "welcomeBox")),
-    };
-    return new HtmlFilterInputStream(in,
-                                     encoding,
-                                     new HtmlCompoundTransform(transforms));
+  public InputStream createFilteredInputStream(ArchivalUnit au,
+					       InputStream in,
+					       String encoding) {
+    Reader reader = FilterUtil.getReader(in, encoding);
+    Reader filtReader = makeFilteredReader(reader);
+    return new ReaderInputStream(filtReader);
+  }
 
-    }
+  static Reader makeFilteredReader(Reader reader) {
+    List tagList = ListUtil.list(
+        new HtmlTagFilter.TagPair("<p>Printed from:", "Emerald Group Publishing Limited</p>", false, false)
+        );
+    Reader tagFilter = HtmlTagFilter.makeNestedFilter(reader, tagList);
+    return new WhiteSpaceFilter(tagFilter);
+  }
+
 }
+
