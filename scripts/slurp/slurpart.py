@@ -38,7 +38,7 @@ class SlurpartConstants:
     VERSION = '0.3.0'
     
     DESCRIPTION = '''Produces an article report from data collected by
-Slurp and stored in a Slurb database, arranged by publisher and by
+Slurp and stored in a Slurp database, arranged by publisher and by
 year. Displays progress information to standard error and produces
 comma-separated output to standard output.'''
 
