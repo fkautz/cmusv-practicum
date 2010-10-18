@@ -62,6 +62,8 @@ public class SpringerLinkHtmlHashFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttributeRegex("div", "class", "linkoutView"),
         // Has a session cookie
         HtmlNodeFilters.tagWithAttribute("form", "id", "LoginForm"),
+        // CSS file names are versioned
+        HtmlNodeFilters.tagWithAttributeRegex("link", "href", "\\.css$"),
     };
     return new HtmlFilterInputStream(in,
                                      encoding,
