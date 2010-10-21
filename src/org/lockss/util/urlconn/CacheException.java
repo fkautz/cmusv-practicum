@@ -488,7 +488,7 @@ public class CacheException
 
   /** Retryable network error; five tries with 30 second delay */
   public static class RetryableNetworkException_5_30S
-    extends RetryableNetworkException_3 {
+    extends RetryableNetworkException_5 {
     public RetryableNetworkException_5_30S() {
       super();
     }
@@ -510,7 +510,7 @@ public class CacheException
 
   /** Retryable network error; five tries with 60 second delay */
   public static class RetryableNetworkException_5_60S
-    extends RetryableNetworkException_3 {
+    extends RetryableNetworkException_5 {
     public RetryableNetworkException_5_60S() {
       super();
     }
@@ -532,7 +532,7 @@ public class CacheException
 
   /** Retryable network error; five tries with 5 minute delay */
   public static class RetryableNetworkException_5_5M
-    extends RetryableNetworkException_3 {
+    extends RetryableNetworkException_5 {
     public RetryableNetworkException_5_5M() {
       super();
     }
