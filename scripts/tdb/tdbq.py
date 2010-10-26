@@ -616,4 +616,8 @@ def str_to_lambda_au(str):
                    ('eissn', lambda au: au.title().eissn()),
                    ('publisher', lambda au: au.title().publisher().name())]:
         if id == str: return fn
+    if str.endswith(']'):
+        if str.startswith('attr['): return lambda au: au.attr(str[5:-1]) 
+        if str.startswith('param['): return lambda au: au.param(str[6:-1]) 
+        if str.startswith('nondefparam['): return lambda au: au.nondefparam(str[12:-1]) 
     return None
