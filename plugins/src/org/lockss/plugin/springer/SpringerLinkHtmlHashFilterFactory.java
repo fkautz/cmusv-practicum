@@ -66,6 +66,10 @@ public class SpringerLinkHtmlHashFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttributeRegex("link", "href", "^/styles/"),
         // Icon names can be spuriously versioned
         HtmlNodeFilters.tagWithAttributeRegex("img", "src", "^/images/"),
+        // Contains ASP state blob
+        HtmlNodeFilters.tagWithAttribute("input", "id", "__VIEWSTATE"),
+        // Contains ASP state blob
+        HtmlNodeFilters.tagWithAttribute("input", "id", "__EVENTVALIDATION"),
     };
     return new HtmlFilterInputStream(in,
                                      encoding,
