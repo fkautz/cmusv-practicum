@@ -164,6 +164,7 @@ public class TestEditableDefinablePlugin
   }
 
   String[] cenames = {
+    "IgnoreCloseException",
     "UnknownCodeException",
     "UnknownExceptionException",
     "RetryableException",
