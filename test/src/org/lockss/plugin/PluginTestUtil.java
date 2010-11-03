@@ -137,6 +137,7 @@ public class PluginTestUtil {
       tp.unregisterArchivalUnit(au);
       aulist.remove(au);
     }
+    mgr.stopAu(au);
   }
 
   public static void unregisterAllArchivalUnits() {

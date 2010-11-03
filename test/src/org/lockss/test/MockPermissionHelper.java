@@ -64,7 +64,7 @@ public class MockPermissionHelper implements PermissionHelper {
   }
 
   public CrawlerStatus getCrawlerStatus() {
-    return new CrawlerStatus(null, null, null);
+    return new CrawlerStatus(MockArchivalUnit.newInited(), null, null);
   }
 
 }

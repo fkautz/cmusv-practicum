@@ -160,7 +160,8 @@ public class TestPermissionMap extends LockssTestCase {
 
   // XXX unfinished
   class MyMockPermissionHelper extends MockPermissionHelper {
-    CrawlerStatus cStatus = new CrawlerStatus(null, null, null);
+    CrawlerStatus cStatus = new CrawlerStatus(MockArchivalUnit.newInited(),
+					      null, null);
 
     public UrlCacher makeUrlCacher(String url) {
       MockUrlCacher muc =  new MockUrlCacher("foo", new MockArchivalUnit());

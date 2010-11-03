@@ -207,7 +207,7 @@ public class TestCrawlManagerImpl extends LockssTestCase {
       waitForCrawlToFinish(sem);
       assertTrue("doCrawl() not called", crawler.doCrawlCalled());
 
-      crawlManager.cancelAuCrawls(mau);
+      crawlManager.auEventDeleted(mau);
 
       assertFalse(crawler.wasAborted());
     }
@@ -235,7 +235,7 @@ public class TestCrawlManagerImpl extends LockssTestCase {
 		 sem1.take(TIMEOUT_SHOULDNT));
       //we know that doCrawl started
 
-      crawlManager.cancelAuCrawls(mau);
+      crawlManager.auEventDeleted(mau);
 
       assertTrue(crawler.wasAborted());
     }

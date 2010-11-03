@@ -146,7 +146,7 @@ public class TestCrawlManagerStatus extends LockssTestCase {
   }
 
   CrawlerStatus newCStat(String url) {
-    return new CrawlerStatus(new MockArchivalUnit(),
+    return new CrawlerStatus(MockArchivalUnit.newInited(),
 			      ListUtil.list(url), "new");
   }
 }

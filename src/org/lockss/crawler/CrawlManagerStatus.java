@@ -89,7 +89,7 @@ public class CrawlManagerStatus {
   }
 
   /** Return a list of CrawlerStatus for each crawl in the history. */
-  public synchronized List getCrawlerStatusList() {
+  public synchronized List<CrawlerStatus> getCrawlerStatusList() {
     List res = new ArrayList(statusMap.size());
     for (OrderedMapIterator iter = statusMap.orderedMapIterator();
 	 iter.hasNext(); ) {
