@@ -153,6 +153,18 @@ public class CacheException
     }
   }
 
+  /** Ignore exception on close (return success) */
+  public static class IgnoreCloseException extends CacheException {
+
+    public IgnoreCloseException() {
+      super();
+    }
+
+    public IgnoreCloseException(String message) {
+      super(message);
+    }
+  }
+
   /** Unknown response code */
   public static class UnknownCodeException extends CacheException {
 
@@ -182,6 +194,11 @@ public class CacheException
 
     public UnknownExceptionException(Exception e) {
       super(e.toString());
+      initCause(e);
+    }
+
+    public UnknownExceptionException(String message, Exception e) {
+      super(message);
       initCause(e);
     }
 

@@ -419,13 +419,15 @@ public class HttpResultMap implements CacheResultMap {
     if (ei == null) {
       if (message != null) {
 	return
-	  new CacheException.UnknownExceptionException("Unmapped exception: "
-						       + fetchException + ": "
-						       + message);
+	  new CacheException.UnknownExceptionException(("Unmapped exception: "
+							+ fetchException + ": "
+							+ message),
+						       fetchException);
       } else {
 	return
-	  new CacheException.UnknownExceptionException("Unmapped exception: "
-						       + fetchException);
+	  new CacheException.UnknownExceptionException(("Unmapped exception: "
+							+ fetchException),
+						       fetchException);
       }
     }
 
