@@ -74,6 +74,8 @@ public class SpringerLinkHtmlHashFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttribute("div", "id", "AboutSection"),
         // Contains ever-updated information e.g. list of all issues
         HtmlNodeFilters.tagWithAttribute("div", "id", "Modes"),
+        // Text includes number of reverse citations
+        HtmlNodeFilters.tagWithAttributeRegex("a", "href", "/referrers/$"),
     };
     return new HtmlFilterInputStream(in,
                                      encoding,
