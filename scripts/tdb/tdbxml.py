@@ -82,7 +82,7 @@ def __preamble(tdb, options):
     print '''\
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE lockss-config [
-<!ELEMENT lockss-config (if|property)+>
+<!ELEMENT lockss-config (if|property)*>
 <!ELEMENT property (property|list|value|if)*>
 <!ELEMENT list (value)+>
 <!ELEMENT value (#PCDATA)>
@@ -221,7 +221,7 @@ def __process(tdb, options):
         'inner': '\'' if current_pub.name().find('\'') < 0 else '"' }
         __process_au(au, options)
     else:
-        if options.style == TdbxmlConstants.OPTION_STYLE_PUBLISHER: print '''\
+        if options.style == TdbxmlConstants.OPTION_STYLE_PUBLISHER and current_pub is not None: print '''\
  </property>
 '''             
     if options.style == TdbxmlConstants.OPTION_STYLE_LEGACY:
