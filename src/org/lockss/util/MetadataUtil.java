@@ -122,7 +122,7 @@ public class MetadataUtil {
   /**
    * Check that DOI number is a valid DOI string. 
    * @param doi the DOI string
-   * @return true of DOI is a valid string, false otherwise
+   * @return true if DOI is a valid string, false otherwise
    */
   public static boolean isDOI(String doi) {    
 

@@ -395,7 +395,7 @@ public class ArticleMetadata extends Properties {
   }
 
   /*
-   * Return the ISSN, if any.
+   * Return the ISBN, if any.
    */
   public static final String KEY_ISBN = "LOCKSS.isbn";
   public String getISBN() {

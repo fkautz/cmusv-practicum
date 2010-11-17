@@ -98,4 +98,21 @@ public class TestHtmlUtil extends LockssTestCase {
     assertEquals("http://bar.com/xxz",
 		 HtmlUtil.extractMetaRefreshUrl("5 ; url = http://bar.com/xxz"));
   }
+  
+  public void testStripHtmlTags() {
+      // Remember the result is trimmed
+      assertEquals("Hello", HtmlUtil.stripHtmlTags("<foo><b>  Hello   </b></foo>"));   
+      assertEquals("", HtmlUtil.stripHtmlTags("<foo><b></b></foo>"));   
+      assertEquals("This method should remove only tags.", HtmlUtil.stripHtmlTags("<p>This <word>method</word> sho<irritatingMidWordTag/>uld remove <a href=\"url\">only</a> tags."));   
+  }
+  
+  public void testStripHtmlTagsWithTheirContent() {
+      // Test that the text between the same-named tags is not eliminated
+      String testIn = "Is it working? <foo attr=\"bar\">Some text</foo>YES!<foo>Some more text</foo>";
+      String testOut = "Is it working? YES!";
+      assertEquals(testOut, HtmlUtil.stripHtmlTagsWithTheirContent(testIn, "foo"));   
+      assertEquals("", HtmlUtil.stripHtmlTagsWithTheirContent("<foo><b>Hello</b></foo>", "foo"));   
+      assertEquals("<foo></foo>", HtmlUtil.stripHtmlTagsWithTheirContent("<foo><b>Hello</b></foo>", "b"));   
+  }
+  
 }
