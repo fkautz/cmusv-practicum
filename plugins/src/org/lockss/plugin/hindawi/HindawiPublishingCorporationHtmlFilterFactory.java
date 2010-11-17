@@ -52,10 +52,12 @@ public class HindawiPublishingCorporationHtmlFilterFactory implements FilterFact
         NodeFilter[] filters = new NodeFilter[] {
         // Filter out <div id="left_column">...</div>
         HtmlNodeFilters.tagWithAttribute("div", "id", "left_column"),
-        // Filter out <input type="hidden" name="__VIEWSTATE" id="VIEWSTATE" 
+        // ASP cookies; once without '__', now with  
         HtmlNodeFilters.tagWithAttribute("input", "id", "VIEWSTATE"),
-        // Filter out <input type="hidden" name="__EVENTVALIDATION" id="EVENTVALIDATION"
+        HtmlNodeFilters.tagWithAttribute("input", "id", "__VIEWSTATE"),
+        // ASP cookies; once without '__', now with  
         HtmlNodeFilters.tagWithAttribute("input", "id", "EVENTVALIDATION"),
+        HtmlNodeFilters.tagWithAttribute("input", "id", "__EVENTVALIDATION"),
     };
 
 
