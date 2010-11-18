@@ -135,7 +135,7 @@ public class TestOaiCrawler extends LockssTestCase {
     //System.out.println("last Crawl time = " + lastCrawlTime);
     String expected = iso8601DateFormatter.format(lastCrawlDate);
 
-    spec = new OaiCrawlSpec(handlerUrl, crawlRule);
+    spec = new OaiCrawlSpec(handlerUrl, crawlRule, permissionList, false);
     crawler = new OaiCrawler(mau, spec, aus);
     assertEquals(expected, ((OaiCrawler)crawler).getFromTime());
   }

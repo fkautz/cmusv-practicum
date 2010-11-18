@@ -44,6 +44,10 @@ public class OaiRequestData {
   private String auSetSpec;
   private String metadataPrefix;
 
+    // Adding metadata handler element, which will make it 
+    // possible for OAI plugins to define their own handlers, 
+    // e.g. extending the builtin BaseOaiMetadataHandler; 
+    private OaiMetadataHandler metadataHandler = null; 
 
   /**
    * Constructor
@@ -100,6 +104,8 @@ public class OaiRequestData {
     this.metadataPrefix = metadataHandler.getMetadataPrefix();
     this.metadataNamespaceUrl = metadataHandler.getMetadataNamespaceUrl();
     this.urlContainerTagName = metadataHandler.getUrlContainerTagName();
+
+    this.metadataHandler = metadataHandler; 
   }
 
   /**
@@ -159,5 +165,13 @@ public class OaiRequestData {
   public String getMetadataPrefix(){
     return metadataPrefix;
   }
+
+    public OaiMetadataHandler getMetadataHandler(){
+	return metadataHandler; 
+    }
+
+    public void setMetadataHandler(OaiMetadataHandler metadataHandler){
+	this.metadataHandler = metadataHandler; 
+    }
 
 }
