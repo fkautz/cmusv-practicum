@@ -64,7 +64,7 @@ public class AuConfig extends LockssServlet {
 
   static final String FOOT_CHOOSEPLUGWARN =
     "A LOCKSS " + new Link("http://www.lockss.org/lockss/Plugins", "plugin") +
-    "is required to collect and preserve content. " +
+    " is required to collect and preserve content. " +
     "Manual configuration of a plugin should be used with care, " +
     "and should not be necessary for normal usage of a LOCKSS box. " +
     "It will only work with sites of the same type " +
