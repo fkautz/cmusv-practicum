@@ -214,7 +214,8 @@ public abstract class BaseConfigFile implements ConfigFile {
     } catch (IOException ex) {
       throw ex;
     } catch (Exception ex) {
-      log.debug("Unexpected non-IO error loading configuration", ex);
+      log.debug(getFileUrl() +
+		": Unexpected non-IO error loading configuration", ex);
       throw new IOException(ex.toString());
     }
   }
