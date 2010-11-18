@@ -5,6 +5,7 @@
 .settings
 bin
 classes
+export
 instrumented
 javadoc
 jcoverage.ser
