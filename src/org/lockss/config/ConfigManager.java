@@ -686,7 +686,7 @@ public class ConfigManager implements LockssManager {
       sb.append("Error loading: ");
       sb.append(cf.getFileUrl());
       sb.append("<br>");
-      sb.append(cf.getLoadErrorMessage());
+      sb.append(HtmlUtil.htmlEncode(cf.getLoadErrorMessage()));
       sb.append("<br>Last attempt: ");
       sb.append(new Date(cf.getLastAttemptTime()));
       return sb.toString();
