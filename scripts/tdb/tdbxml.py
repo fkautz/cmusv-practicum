@@ -74,6 +74,7 @@ def __short_au_name(au):
     str = re.sub(r'é|è|ê|ë|ē', 'e', str)
     str = re.sub(r'Í|Ì|Î|Ï|Ī', 'I', str)
     str = re.sub(r'í|ì|î|ï|ī', 'i', str)
+    str = re.sub(r'æ', 'ae', str)
     str = re.sub(r'\W+', '', str)
     return au.plugin().split('.')[-1] + __escape(str)
 
