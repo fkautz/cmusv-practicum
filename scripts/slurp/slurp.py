@@ -36,6 +36,7 @@ from urllib2 import URLError
 
 sys.path.append(os.path.realpath(os.path.join(os.path.dirname(sys.argv[0]), '../../test/frameworks/lib')))
 import lockss_daemon
+from lockss_util import LockssError
 
 class SlurpConstants:
 
