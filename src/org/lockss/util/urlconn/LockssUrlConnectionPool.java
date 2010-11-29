@@ -35,6 +35,7 @@ import java.util.*;
 import org.lockss.util.*;
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.params.*;
+import org.apache.commons.httpclient.protocol.*;
 
 /** Encapsulates connection sharing object(s) used by implementations of
  * LockssUrlConnection.  Clients wishing to reuse connections should create
@@ -51,7 +52,7 @@ public class LockssUrlConnectionPool {
   private int dataTimeout = -1;
   private HttpConnectionManager hcConnManager =
     new SimpleHttpConnectionManager();
-
+  private SecureProtocolSocketFactory sockFact;
 
   /** Return (creating if necessary) an HttpClient */
   public HttpClient getHttpClient() {
@@ -94,6 +95,19 @@ public class LockssUrlConnectionPool {
   public void setDataTimeout(long dataTimeout) {
     this.dataTimeout = shortenToInt(dataTimeout);
     hcConnManager.getParams().setSoTimeout(this.dataTimeout);
+  }
+
+  /** Set the SecureProtocolSocketFactory to be used for authenticated
+   * connections. */
+  public void setSecureProtocolSocketFactory(SecureProtocolSocketFactory
+					     sockFact) {
+    this.sockFact = sockFact;
+  }
+
+  /** Return the SecureProtocolSocketFactory to be used for authenticated
+   * connections. */
+  public SecureProtocolSocketFactory getSecureProtocolSocketFactory() {
+    return sockFact;
   }
 
   /** Close connections that have been idle for at least idleTime.  If

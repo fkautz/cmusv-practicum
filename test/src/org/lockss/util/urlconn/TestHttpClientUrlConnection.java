@@ -186,6 +186,18 @@ public class TestHttpClientUrlConnection extends LockssTestCase {
 
   }
 
+  public void testProtocolSocketFactory() throws Exception {
+    client.setRes(201);
+    conn.execute();
+    assertTrue(conn.isExecuted());
+    assertEquals(201, conn.getResponseCode());
+    Header hdr;
+    hdr = method.getRequestHeader("connection");
+    assertEquals("keep-alive", hdr.getValue());
+    hdr = method.getRequestHeader("accept");
+    assertEquals(HttpClientUrlConnection.ACCEPT_STRING, hdr.getValue());
+  }
+
   public void testResponseStream() throws Exception {
     client.setRes(200);
     String test = "foo123";

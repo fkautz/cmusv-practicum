@@ -89,6 +89,12 @@ public interface LockssUrlConnection {
    */
   public void setProxy(String host, int port) throws CantProxyException ;
 
+  /** Set the ProtocolSocketFactory to be used with this connection */
+  public void setSecureSocketFactory(LockssSecureSocketFactory sockFact);
+
+  /** Return true iff the server is authenticated */
+  public boolean isAuthenticatedServer();
+
   /** Set the local address to be used when creating connections. */
   public void setLocalAddress(IPAddr localAddress);
 
