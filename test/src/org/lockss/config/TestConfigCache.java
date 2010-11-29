@@ -73,7 +73,7 @@ public class TestConfigCache extends LockssTestCase {
 
   public void setUp() throws Exception {
     super.setUp();
-    cache = new ConfigCache();
+    cache = new ConfigCache(null);
   }
 
   /*

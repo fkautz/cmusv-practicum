@@ -95,6 +95,17 @@ public class ConfigurationPropTreeImpl extends Configuration {
     return (String)props.get(key);
   }
 
+  /** Return the config value associated with <code>key</code>, returning
+   * null in place of the empty string.
+   */
+  public String getNonEmpty(String key) {
+    String val = get(key);
+    if (StringUtil.isNullString(val)) {
+      val = null;
+    }
+    return val;
+  }
+
   /**
    * Return a list of values for the given key.
    */

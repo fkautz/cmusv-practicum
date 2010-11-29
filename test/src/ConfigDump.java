@@ -117,7 +117,7 @@ public class ConfigDump {
     if (quiet) {
       for (String url : configUrls) {
 	try {
-	  ConfigCache configCache = new ConfigCache();
+	  ConfigCache configCache = new ConfigCache(null);
 	  ConfigFile cf = configCache.find(url);
 	  log.debug(url);
 	  cf.getConfiguration();
