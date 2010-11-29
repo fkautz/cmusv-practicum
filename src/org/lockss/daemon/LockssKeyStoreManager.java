@@ -242,19 +242,23 @@ public class LockssKeyStoreManager
 
   private void checkFact(Object fact, String name, String criticalServiceName,
 			 String message) {
-    if (fact == null && criticalServiceName != null
-	&& paramExitIfMissingKeyStore) {
-      if (StringUtil.isNullString(name)) {
-	log.critical("No keystore name given for critical keystore"
-		     + " needed for service "
-		     + criticalServiceName + ", daemon exiting");
+    if (fact == null && criticalServiceName != null) {
+      String msg =
+	StringUtil.isNullString(name)
+	? ("No keystore name given for critical keystore"
+	   + " needed for service "
+	   + criticalServiceName + ", daemon exiting")
+	: ("Critical keystore " + name + " " +
+	   ((message != null) ? message : "not found or not loadable")
+	   + " for service " + criticalServiceName
+	   + ", daemon exiting");
+      log.critical(msg);
+
+      if (paramExitIfMissingKeyStore) {
+	System.exit(Constants.EXIT_CODE_KEYSTORE_MISSING);
       } else {
-	log.critical("Critical keystore " + name + " " +
-		     ((message != null) ? message : "not found or not loadable")
-		     + " for service " + criticalServiceName
-		     + ", daemon exiting");
+	throw new IllegalArgumentException(msg);
       }
-      System.exit(Constants.EXIT_CODE_KEYSTORE_MISSING);
     }
   }
 
@@ -273,11 +277,9 @@ public class LockssKeyStoreManager
 	  continue;
 	}
 	LockssKeyStore old = keystoreMap.get(name);
-	if (lk.isSameLocation(old)) {
-	  log.error("Duplicate keystore definition: " + oneKs);
-	  log.error("Using original definition: "
-		    + keystoreMap.get(name));
-	  continue;
+	if (old != null && !lk.equals(old)) {
+	  log.warning("Keystore " + name + " redefined.  " +
+		    "New definition may not take effect until daemon restart");
 	}
 
 	log.debug("Adding keystore " + name);

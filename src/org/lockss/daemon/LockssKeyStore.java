@@ -375,6 +375,38 @@ public class LockssKeyStore {
     }
   }
 
+  public boolean equals(Object other) {
+    if (! (other instanceof LockssKeyStore)) {
+      return false;
+    }
+    LockssKeyStore o = (LockssKeyStore)other;
+    return name.equals(o.name)
+      && StringUtil.equalStrings(type, o.type)
+      && StringUtil.equalStrings(provider, o.provider)
+      && StringUtil.equalStrings(location, o.location)
+      && ltype == o.ltype
+      && mayCreate == o.mayCreate
+      && StringUtil.equalStrings(password, o.password)
+      && StringUtil.equalStrings(keyPassword, o.keyPassword)
+      && StringUtil.equalStrings(keyPasswordFile, o.keyPasswordFile);
+  }
+
+  public int hashCode() {
+    int hash = 0x272053;
+    hash += name.hashCode();
+    return hash;
+  }
+
+  public String toString() {
+    StringBuffer sb = new StringBuffer(40);
+    sb.append("[LKS: ");
+    sb.append(name);
+    sb.append(", ");
+    sb.append(location);
+    sb.append("]");
+    return sb.toString();
+  }
+
   public class UnavailableKeyStoreException extends Exception {
     UnavailableKeyStoreException(Throwable cause) {
       super(cause);
