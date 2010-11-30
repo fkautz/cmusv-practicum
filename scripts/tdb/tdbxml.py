@@ -62,7 +62,7 @@ __IMPLICIT_PARAM_ORDER = [
 
 def __escape(str):
     from xml.sax import saxutils
-    return saxutils.escape(str).replace('"', '&apos;').decode('utf-8').encode('ascii', 'xmlcharrefreplace')
+    return saxutils.escape(str).replace('"', '&quot;').decode('utf-8').encode('ascii', 'xmlcharrefreplace')
 
 def __short_au_name(au):
     str = au.name()
