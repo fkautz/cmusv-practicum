@@ -27,7 +27,7 @@
 # be used in advertising or otherwise to promote the sale, use or other dealings
 # in this Software without prior written authorization from Stanford University.
 
-__version__ = '0.3.2'
+__version__ = '0.3.3'
 
 from optparse import OptionGroup, OptionParser
 import re
@@ -62,7 +62,7 @@ __IMPLICIT_PARAM_ORDER = [
 
 def __escape(str):
     from xml.sax import saxutils
-    return saxutils.escape(str).decode('utf-8').encode('ascii', 'xmlcharrefreplace')
+    return saxutils.escape(str).replace('"', '&apos;').decode('utf-8').encode('ascii', 'xmlcharrefreplace')
 
 def __short_au_name(au):
     str = au.name()
@@ -218,8 +218,8 @@ def __process(tdb, options):
  <property name="org.lockss.title">
 ''' % { 'publisher': __escape(current_pub.name().replace('.', '')),
         'publisher2': re.sub(r'\'', '&apos;', __escape(current_pub.name())),
-        'outer': '"' if current_pub.name().find('\'') < 0 else '\'',
-        'inner': '\'' if current_pub.name().find('\'') < 0 else '"' }
+        'outer': '"' if "'" not in current_pub.name() else "'",
+        'inner': "'" if "'" not in current_pub.name() else '"' }
         __process_au(au, options)
     else:
         if options.style == TdbxmlConstants.OPTION_STYLE_PUBLISHER and current_pub is not None: print '''\
