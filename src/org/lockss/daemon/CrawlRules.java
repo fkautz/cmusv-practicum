@@ -64,6 +64,15 @@ public class CrawlRules {
     /** Exclude if match, else include */
     public static final int MATCH_EXCLUDE_ELSE_INCLUDE = 6;
 
+    String actionNames[] = {
+      "match_incl",
+      "match_excl",
+      "no_match_incl",
+      "no_match_excl",
+      "match_incl_else_excl",
+      "match_excl_else_incl",
+    };
+
     /**
      * Create a rule matching the given RE
      * @param regexp regular expression.
@@ -172,8 +181,16 @@ public class CrawlRules {
     }
 
     public String toString() {
-      return "[" + StringUtil.shortName(getClass()) + ": '"
-	+ regexp.getPattern() + "', " + action + "]";
+      return "[" + StringUtil.shortName(getClass()) + ": " +
+	actionString() + ", '" + regexp.getPattern() + "']";
+    }
+
+    private String actionString() {
+      if (action <= actionNames.length) {
+	return actionNames[action - 1];
+      } else {
+	return Integer.toString(action);
+      }
     }
   }
 
@@ -467,7 +484,7 @@ public class CrawlRules {
     }
 
     public String toString() {
-      return "[CrawlRule.FirstMatch: " + rules + "]";
+      return "[CrawlRules.FirstMatch: " + rules + "]";
     }
   }
 

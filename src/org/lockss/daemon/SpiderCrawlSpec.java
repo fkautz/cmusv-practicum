@@ -235,6 +235,18 @@ public final class SpiderCrawlSpec extends BaseCrawlSpec {
     exploderHelper = eh;
   }
 
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("[SpiderCrawl: start=");
+    sb.append(startList);
+    if (refetchDepth != 1) {
+      sb.append(", redepth=");
+      sb.append(refetchDepth);
+    }
+    sb.append(commonToString());
+    sb.append("]");
+    return sb.toString();
+  }
 
 }
 
