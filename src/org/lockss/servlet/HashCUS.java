@@ -659,7 +659,7 @@ public class HashCUS extends LockssServlet {
 	  return;
 	}
 	if (isRecord) {
-	  recordFile = File.createTempFile("HashCUS", ".tmp");
+	  recordFile = FileUtil.createTempFile("HashCUS", ".tmp");
 	  recordStream =
 	    new BufferedOutputStream(new FileOutputStream(recordFile));
 	  long truncateTo =
