@@ -90,4 +90,7 @@ public class NewContentCrawler extends FollowLinkCrawler {
     return true;
   }
 
+  protected boolean isFailOnStartUrlError() {
+    return true;
+  }
 }

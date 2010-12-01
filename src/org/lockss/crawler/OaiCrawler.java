@@ -186,4 +186,8 @@ public class OaiCrawler extends FollowLinkCrawler {
   protected boolean shouldFollowLink(){
     return spec.getFollowLinkFlag();
   }
+
+  protected boolean isFailOnStartUrlError() {
+    return true;
+  }
 }
