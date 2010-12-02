@@ -236,7 +236,8 @@ public class ConfigManager implements LockssManager {
 		  Perl5Compiler.quotemeta(IpAccessControl.PARAM_ERROR_BELOW_BITS),
 		  Perl5Compiler.quotemeta(ExportContent.PARAM_ENABLE_EXPORT),
 		  Perl5Compiler.quotemeta(PARAM_EXPERT_ALLOW),
-		  Perl5Compiler.quotemeta(PARAM_EXPERT_DENY)
+		  Perl5Compiler.quotemeta(PARAM_EXPERT_DENY),
+		  Perl5Compiler.quotemeta(LockssDaemon.PARAM_TESTING_MODE)
 		  );
 
   /** Describes a config file stored on the local disk, normally maintained

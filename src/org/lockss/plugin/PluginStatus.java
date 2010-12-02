@@ -231,7 +231,7 @@ class PluginDetail extends PluginStatus implements StatusAccessor {
       String val = entry.getValue().toString();
       Map row = new HashMap();
       row.put("key", key);
-      row.put("val", HtmlUtil.htmlEncode(val));
+      row.put("val", val);
       rows.add(row);
     }
     return rows;
@@ -257,7 +257,7 @@ class PluginDetail extends PluginStatus implements StatusAccessor {
       if (notes != null) {
 	res.add(new StatusTable.SummaryInfo("Notes",
 					    ColumnDescriptor.TYPE_STRING,
-					    HtmlUtil.htmlEncode(notes)));
+					    notes));
       }
     }
     res.add(new StatusTable.SummaryInfo("Type",

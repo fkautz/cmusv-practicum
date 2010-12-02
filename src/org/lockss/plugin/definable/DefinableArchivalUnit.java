@@ -92,6 +92,12 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
   public static final String KEY_AU_NON_SUBSTANCE_URL_PATTERN =
     "au_non_substance_url_pattern";
 
+  /** Suffix for testing override submaps.  Values in a XXX_override map
+   * will be copied to the main map when in testing mode XXX.  In the
+   * presence of plugin inheritence, the first entry in (child-overrides,
+   * child, parent-overrides, parent) wins.  */
+  public static final String SUFFIX_OVERRIDE = "_override";
+
   public static final String SUFFIX_PARSER = "_parser";
   public static final String SUFFIX_LINK_EXTRACTOR_FACTORY =
     "_link_extractor_factory";
