@@ -49,9 +49,14 @@ public class XmlStatusTable {
 
   StatusTable statusTable = null;
   Document tableDocument = null;
+  int outputVersion = 1;
 
   public XmlStatusTable(StatusTable statusTable) {
     this.statusTable = statusTable;
+  }
+
+  public void setOutputVersion(int ver) {
+    outputVersion = ver;
   }
 
   /**
@@ -292,8 +297,17 @@ public class XmlStatusTable {
     return element;
   }
 
-  static String formatByType(Object object, int type) {
-    String str = DaemonStatus.convertDisplayString(object, type);
+  String formatByType(Object object, int type) {
+    String str;
+    switch (outputVersion) {
+    case 1:
+    default:
+      str = DaemonStatus.convertDisplayString(object, type);
+      break;
+    case 2:
+      str = object.toString();
+      break;
+    }
 //     if (type == ColumnDescriptor.TYPE_STRING) {
 //       str = StringEscapeUtils.escapeXml(str); 
 //     }

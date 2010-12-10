@@ -255,6 +255,15 @@ public class DaemonStatus extends LockssServlet {
     try {
       StatusTable statTable = makeTable();
       XmlStatusTable xmlTable = new XmlStatusTable(statTable);
+      String over = req.getParameter("outputVersion");
+      if (over != null) {
+	try {
+	  int ver = Integer.parseInt(over);
+	  xmlTable.setOutputVersion(ver);
+	} catch (NumberFormatException e) {
+	  log.warning("Illegal outputVersion: " + over + ": " + e.toString());
+	}
+      }
       Document xmlTableDoc = xmlTable.getTableDocument();
       XmlDomBuilder.serialize(xmlTableDoc, wrtr);
     } catch (Exception e) {
