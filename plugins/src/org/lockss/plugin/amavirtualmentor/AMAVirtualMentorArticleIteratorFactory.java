@@ -98,7 +98,7 @@ public class AMAVirtualMentorArticleIteratorFactory implements ArticleIteratorFa
       ArticleFiles af = new ArticleFiles();
       af.setFullTextCu(htmlCu);
       af.setRoleCu(ArticleFiles.ROLE_FULL_TEXT_HTML, htmlCu);
-      guessFullTextPdf(af, htmlMat);
+//      guessFullTextPdf(af, htmlMat);
       return af;
     }
     
@@ -113,12 +113,12 @@ public class AMAVirtualMentorArticleIteratorFactory implements ArticleIteratorFa
       return af;
     }
     
-    protected void guessFullTextPdf(ArticleFiles af, Matcher mat) {
-      CachedUrl pdfCu = au.makeCachedUrl(mat.replaceFirst("/$1/pdf/$2.pdf"));
-      if (pdfCu != null && pdfCu.hasContent()) {
-        af.setRoleCu(ArticleFiles.ROLE_FULL_TEXT_PDF, pdfCu);
-      }
-    }
+//    protected void guessFullTextPdf(ArticleFiles af, Matcher mat) {
+//      CachedUrl pdfCu = au.makeCachedUrl(mat.replaceFirst("/$1/pdf/$2.pdf"));
+//      if (pdfCu != null && pdfCu.hasContent()) {
+//        af.setRoleCu(ArticleFiles.ROLE_FULL_TEXT_PDF, pdfCu);
+//      }
+//    }
     
   }
   
