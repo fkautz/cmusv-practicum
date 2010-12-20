@@ -34,7 +34,6 @@ package org.lockss.config;
 
 import java.io.*;
 import java.net.*;
-import java.util.zip.*;
 
 import org.lockss.util.*;
 import org.lockss.util.urlconn.*;
@@ -172,15 +171,9 @@ public class HTTPConfigFile extends BaseConfigFile {
     case HttpURLConnection.HTTP_OK:
       m_loadError = null;
       m_httpLastModifiedString = conn.getResponseHeaderValue("last-modified");
-      in = conn.getResponseInputStream();
       log.debug2("New file, or file changed.  Loading file from " +
 		 "remote connection:" + url);
-      String encoding = conn.getResponseContentEncoding();
-      if ("gzip".equalsIgnoreCase(encoding) ||
-	  "x-gzip".equalsIgnoreCase(encoding)) {
-	log.debug3("Wrapping in GZIPInputStream");
-	in = new GZIPInputStream(in);
-      }
+      in = conn.getUncompressedResponseInputStream();
       break;
     case HttpURLConnection.HTTP_NOT_MODIFIED:
       m_loadError = null;
@@ -218,7 +211,7 @@ public class HTTPConfigFile extends BaseConfigFile {
       if (len == 0 || len > 10000) {
 	return msg;
       }
-      InputStream in = conn.getResponseInputStream();
+      InputStream in = conn.getUncompressedResponseInputStream();
       // XXX should use the charset parameter in the Content-Type: header
       // if any
       Reader rdr = new InputStreamReader(in, Constants.DEFAULT_ENCODING);
@@ -230,7 +223,7 @@ public class HTTPConfigFile extends BaseConfigFile {
       if (matcher.contains(body, HINT_PAT)) {
 	MatchResult matchResult = matcher.getMatch();
 	String hint = matchResult.group(1);
-	return msg + "<br>" + hint;
+	return msg + "\n" + hint;
       }
       return msg;
     } catch (Exception e) {

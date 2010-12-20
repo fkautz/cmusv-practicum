@@ -562,7 +562,7 @@ public abstract class TestConfigFile extends LockssTestCase {
 				 "locksshint: this is a hint endhint");
       hcf.setResponseCode(403);
       hcf.setResponseMessage("Forbidden");
-      testCantRead(hcf, "403: Forbidden<br>this is a hint$");
+      testCantRead(hcf, "403: Forbidden\nthis is a hint$");
     }
 
     public void testXLockssInfo() throws IOException {
