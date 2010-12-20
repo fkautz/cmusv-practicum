@@ -1054,6 +1054,22 @@ public class LockssTestCase extends TestCase {
     }
   }
 
+  public static void assertNotEmpty(Collection coll) {
+    assertNotEmpty(null, coll);
+  }
+
+  public static void assertNotEmpty(String message, Collection coll) {
+    if (coll.size() == 0) {
+      StringBuffer sb = new StringBuffer();
+      if (message != null) {
+	sb.append(message);
+	sb.append(" ");
+      }
+      sb.append("Expected non-empty Collection, but was empty");
+      fail(sb.toString());
+    }
+  }
+
   public static void assertContainsAll(Collection coll,
                                              Object[] elements) {
     for (int i = 0; i < elements.length; i++) {
