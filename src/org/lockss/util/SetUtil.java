@@ -46,6 +46,17 @@ public class SetUtil {
   }
 
   /**
+   * Create a list from any number of arguments. */
+  public static Set set(Object... elements) {
+    Set l = new HashSet();
+    if (elements == null) { return l; }
+    for (Object arg : elements) {
+      l.add(arg);
+    }
+    return l;
+  }
+  
+  /**
    * Create set from arg list. */
   public static Set set(Object object1) {
     Set l = new HashSet();
