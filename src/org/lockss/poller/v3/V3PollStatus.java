@@ -618,6 +618,12 @@ public class V3PollStatus {
                                     ColumnDescriptor.TYPE_STRING,
                                     pollerState.getErrorDetail()));
       }
+      if (poll.getStatus() == STATUS_COMPLETE) {
+	String agreePercent = doubleToPercent(poll.getPercentAgreement());
+	summary.add(new SummaryInfo("Agreement",
+				    ColumnDescriptor.TYPE_STRING,
+				    agreePercent));
+      }
       if (isDebug && pollerState.getAdditionalInfo() != null) {
         summary.add(new SummaryInfo("Info",
                                     ColumnDescriptor.TYPE_STRING,
