@@ -168,6 +168,10 @@ public interface LockssUrlConnection {
   /** Return an input stream open on the response content */
   public InputStream getResponseInputStream() throws IOException;
 
+  /** Return an input stream open on the response content, uncompressed if
+   * necessary */
+  public InputStream getUncompressedResponseInputStream() throws IOException;
+
   /** Store all the response headers into the supplied properties.
    * @param props the Properties to store into
    * @param prefix String to prepend onto each header field name to create

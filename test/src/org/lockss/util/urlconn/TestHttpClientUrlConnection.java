@@ -36,6 +36,7 @@ import java.io.*;
 import java.net.*;
 import java.net.ProtocolException;
 import java.util.*;
+import java.util.zip.*;
 import java.text.*;
 import org.lockss.daemon.*;
 import org.lockss.test.*;
@@ -209,6 +210,41 @@ public class TestHttpClientUrlConnection extends LockssTestCase {
     InputStream is = conn.getResponseInputStream();
     assertTrue(is instanceof
 	       EofBugInputStream);
+    String res = StringUtil.fromInputStream(is);
+    assertEquals(test, res);
+    assertEquals(0, is.available());
+    sis.close();
+    assertEquals(0, is.available());
+  }
+
+  public void testUnCompressedResponseStream() throws Exception {
+    client.setRes(200);
+    String test = "foo123";
+    StringInputStream sis = new StringInputStream(test);
+    method.setResponseStream(sis);
+    conn.execute();
+    assertTrue(conn.isExecuted());
+    assertEquals(200, conn.getResponseCode());
+    InputStream is = conn.getUncompressedResponseInputStream();
+    assertTrue(is instanceof
+	       EofBugInputStream);
+    String res = StringUtil.fromInputStream(is);
+    assertEquals(test, res);
+    assertEquals(0, is.available());
+    sis.close();
+    assertEquals(0, is.available());
+  }
+
+  public void testCompressedResponseStream() throws Exception {
+    client.setRes(200);
+    String test = "this is some text to be compressssssed";
+    InputStream sis = new GZIPpedInputStream(test);
+    method.setResponseStream(sis);
+    method.setResponseHeader("content-encoding", "gzip");
+    conn.execute();
+    assertTrue(conn.isExecuted());
+    assertEquals(200, conn.getResponseCode());
+    InputStream is = conn.getUncompressedResponseInputStream();
     String res = StringUtil.fromInputStream(is);
     assertEquals(test, res);
     assertEquals(0, is.available());
