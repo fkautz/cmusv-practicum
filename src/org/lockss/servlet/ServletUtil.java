@@ -1357,6 +1357,7 @@ public class ServletUtil {
   }
 
   /** Return a (possibly labelled) checkbox.
+   * @param servlet The servlet associated with the checkbox.
    * @param key     Form key to which result set is assigned
    * @param value   Value included in result set if box checked
    * @param text    Appears to right of checkbox if non null
