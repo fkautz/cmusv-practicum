@@ -124,7 +124,7 @@ public class TdbPublisher {
    */
   public Collection<TdbTitle> getTdbTitlesByName(String titleName) {
     if (titleName == null) {
-      return Collections.EMPTY_LIST;
+      return Collections.emptyList();
     }
 
     ArrayList<TdbTitle> matchTitles = new ArrayList<TdbTitle>();
@@ -265,7 +265,7 @@ public class TdbPublisher {
       try {
         // if no exception thrown, there are no differences
         // because the method did not try to modify the set
-        addPluginIdsForDifferences(Collections.EMPTY_SET, (TdbPublisher)o);
+        addPluginIdsForDifferences(Collections.<String>emptySet(), (TdbPublisher)o);
         return true;
       } catch (UnsupportedOperationException ex) {
         // differences because method tried to add to unmodifiable set
