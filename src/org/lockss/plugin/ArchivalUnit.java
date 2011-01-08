@@ -148,7 +148,7 @@ public interface ArchivalUnit {
    * it's okay for there to be matching URLs that aren't in the AU.
    * @return a Collection of URL stems
    */
-  public Collection getUrlStems();
+  public Collection<String> getUrlStems();
 
   /**
    * Returns the plugin to which this AU belongs
@@ -348,6 +348,7 @@ public interface ArchivalUnit {
    */
   public TitleConfig getTitleConfig();
 
+  @SuppressWarnings("serial")
   public class ConfigurationException extends Exception {
 
     public ConfigurationException(String msg) {

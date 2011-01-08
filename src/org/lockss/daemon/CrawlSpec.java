@@ -57,10 +57,10 @@ public interface CrawlSpec {
 
   /**
    * Get the URLs from which to start crawling.  May be null if the crawl
-   * type has nother way of finding starting points (e.g., OAI)
+   * type has another way of finding starting points (e.g., OAI)
    * @return an immutable list of URLs, as Strings, or null
    */
-  public List getStartingUrls();
+  public List<String> getStartingUrls();
 
   /**
    * Gets the permission pages list

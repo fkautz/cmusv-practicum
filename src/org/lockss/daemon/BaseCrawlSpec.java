@@ -41,7 +41,7 @@ import org.lockss.util.*;
  */
 public abstract class BaseCrawlSpec implements CrawlSpec {
 
-  protected List permissionList;
+  protected List<String> permissionList;
 //  protected List permissionCheckers = Collections.EMPTY_LIST;
   protected PermissionChecker permissionChecker;
   protected LoginPageChecker loginPageChecker = null;
@@ -57,7 +57,7 @@ public abstract class BaseCrawlSpec implements CrawlSpec {
    * @param permissionChecker a permissionChecker specified by the plugin
    * @throws IllegalArgumentException if the url list is empty.
    */
-  protected BaseCrawlSpec(List permissionUrls,
+  protected BaseCrawlSpec(List<String> permissionUrls,
 			  CrawlRule rule,
 			  PermissionChecker permissionChecker,
 			  LoginPageChecker loginPageChecker)
@@ -97,11 +97,11 @@ public abstract class BaseCrawlSpec implements CrawlSpec {
   }
 
   /** Default implementation returns null */
-  public List getStartingUrls() {
+  public List<String> getStartingUrls() {
     return null;
   }
 
-  public List getPermissionPages() {
+  public List<String> getPermissionPages() {
     return permissionList;
   }
 
