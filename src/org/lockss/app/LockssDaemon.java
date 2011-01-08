@@ -110,7 +110,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
   public static final String IDENTITY_MANAGER = "IdentityManager";
   public static final String CRAWL_MANAGER = "CrawlManager";
   public static final String PLUGIN_MANAGER = "PluginManager";
-  public static final String METADATA_MANAGER = "MetadataManager";
+//PJG  public static final String METADATA_MANAGER = "MetadataManager";
   public static final String POLL_MANAGER = "PollManager";
   public static final String PSM_MANAGER = "PsmManager";
   public static final String REPOSITORY_MANAGER = "RepositoryManager";
@@ -162,7 +162,7 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
     // start plugin manager after generic services
     new ManagerDesc(PLUGIN_MANAGER, "org.lockss.plugin.PluginManager"),
     // start metadata manager after pluggin manager
-    new ManagerDesc(METADATA_MANAGER, "org.lockss.daemon.MetadataManager"),
+//PJG    new ManagerDesc(METADATA_MANAGER, "org.lockss.daemon.MetadataManager"),
     // start proxy and servlets after plugin manager
     new ManagerDesc(REMOTE_API, "org.lockss.remote.RemoteApi"),
     new ManagerDesc(SERVLET_MANAGER, "org.lockss.servlet.AdminServletManager"),
@@ -434,9 +434,9 @@ private final static String LOCKSS_USER_AGENT = "LOCKSS cache";
    * @return the MetadataManager
    * @throws IllegalArgumentException if the manager is not available.
    */
-  public MetadataManager getMetadataManager() {
-    return (MetadataManager) getManager(METADATA_MANAGER);
-  }
+//PJG  public MetadataManager getMetadataManager() {
+//PJG    return (MetadataManager) getManager(METADATA_MANAGER);
+//PJG  }
 
   /**
    * return the Account Manager
