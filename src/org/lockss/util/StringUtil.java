@@ -286,11 +286,11 @@ public class StringUtil {
    * included in the result.
    * @param trimEachString is true, each string in the result will be trim()ed
    */
-  public static Vector breakAt(String s, char sep,
+  public static Vector<String> breakAt(String s, char sep,
 			       int maxItems,
 			       boolean discardEmptyStrings,
 			       boolean trimEachString) {
-    Vector res = new Vector();
+    Vector<String> res = new Vector<String>();
     int len;
     if (s == null || (len = s.length()) == 0) {
       return res;
