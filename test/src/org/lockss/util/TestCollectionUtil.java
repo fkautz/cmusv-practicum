@@ -63,6 +63,20 @@ public class TestCollectionUtil extends LockssTestCase {
       fail("remove() should throw UnsupportedOperationException");
     } catch (UnsupportedOperationException e) {
     }
+
+    assertFalse(CollectionUtil.<Object>emptyIterator().hasNext());
+    // make sure both next() and remove() throw the advertised exceptions
+    try {
+      CollectionUtil.<Object>emptyIterator().next();
+      fail("next() should throw NoSuchElementException");
+    } catch (NoSuchElementException e) {
+    }
+    try {
+      CollectionUtil.<Object>emptyIterator().remove();
+      fail("remove() should throw UnsupportedOperationException");
+    } catch (UnsupportedOperationException e) {
+    }
+
   }
 
   public void testIsDisjoint() {
