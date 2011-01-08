@@ -73,7 +73,7 @@ public class TestTitleConfig extends LockssTestCase {
     tc1.setParams(foo);
     assertSame(foo, tc1.getParams());
 
-    assertNull(tc1.getAttributes());
+    assertEmpty(tc1.getAttributes());
     Map map = MapUtil.map("key1", "val2", "k0", "1");
     tc1.setAttributes(map);
     assertSame(map, tc1.getAttributes());
