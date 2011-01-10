@@ -47,6 +47,7 @@ public abstract class BaseCrawlSpec implements CrawlSpec {
   protected LoginPageChecker loginPageChecker = null;
   protected CrawlRule rule;
   protected CrawlWindow window;
+  protected String cookiePolicy;
 
   /**
    * Create a BaseCrawlSpec with the specified permission list, permission
@@ -132,6 +133,14 @@ public abstract class BaseCrawlSpec implements CrawlSpec {
 
   public LoginPageChecker getLoginPageChecker() {
     return loginPageChecker;
+  }
+
+  public String getCookiePolicy() {
+    return cookiePolicy;
+  }
+
+  public void setCookiePolicy(String policy) {
+    cookiePolicy = policy;
   }
 
   public String getExploderPattern() {

@@ -105,6 +105,18 @@ public interface CrawlSpec {
    */
   public String getExploderPattern();
 
+  /**
+   * Return the cookie policy specified by the plugin, if any.
+   * @see org.lockss.util.urlconn.LockssUrlConnection#setCookiePolicy(String)
+   */
+  public String getCookiePolicy();
+
+  /**
+   * Set the cookie policy that should be used when crawling.
+   * @see org.lockss.util.urlconn.LockssUrlConnection#setCookiePolicy(String)
+   */
+  public void setCookiePolicy(String policy);
+
   // XXX temporary
   public void setExploderPattern(String pat);
 

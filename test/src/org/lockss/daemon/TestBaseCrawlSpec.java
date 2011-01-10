@@ -147,6 +147,17 @@ public class TestBaseCrawlSpec extends LockssTestCase {
     assertFalse(cs1.inCrawlWindow());
   }
 
+  public void testCookiePolicy() throws LockssRegexpException {
+    BaseCrawlSpec cs1 =
+      new TestableBaseCrawlSpec(ListUtil.list("foo"),
+				new CrawlRules.RE("foo[12]*",
+						  CrawlRules.RE.MATCH_INCLUDE),
+				null, null);
+    assertNull(cs1.getCookiePolicy());
+    cs1.setCookiePolicy("compatibility");
+    assertEquals("compatibility", cs1.getCookiePolicy());
+  }
+
   public void testArcFilePattern() {
     List l1 = ListUtil.list("one", "two");
     BaseCrawlSpec cs = new TestableBaseCrawlSpec(l1, rule, null, null);
