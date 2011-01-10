@@ -50,15 +50,14 @@ public class ArticleMetadataExtractorWrapper
     return inst;
   }
 
-  public ArticleMetadata extract(ArticleFiles af)
+  public void extract(ArticleFiles af,
+		      ArticleMetadataExtractor.Emitter emitter)
       throws IOException, PluginException {
-    ArticleMetadata ret = null;
     try {
-      ret = inst.extract(af);
+      inst.extract(af, emitter);
     } catch (LinkageError e) {
       throw new PluginException.LinkageError(e);
     }
-    return ret;
   }
 
   public String toString() {

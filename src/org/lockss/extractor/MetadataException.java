@@ -30,26 +30,69 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.test;
-import java.util.*;
-import java.io.*;
-import org.lockss.util.*;
-import org.lockss.plugin.*;
-import org.lockss.extractor.*;
+package org.lockss.extractor;
 
-public class MockFileMetadataExtractor implements FileMetadataExtractor {
+public class MetadataException extends /*Runtime*/Exception {
+  String rawVal;
+  String normVal;
+  MetadataField field;
 
-  private ArticleMetadata metadata = null;
-
-  public MockFileMetadataExtractor() {
+  public MetadataException() {
+    super();
   }
 
-  public void extract(CachedUrl cu, Emitter emitter) {
-    emitter.emitMetadata(cu, metadata);
+  public MetadataException(String message) {
+    super(message);
   }
 
-  public void setMetadataToReturn(ArticleMetadata metadata) {
-    this.metadata = metadata;
+  public MetadataException(String message, Throwable cause) {
+    super(message, cause);
   }
 
+  public MetadataException setField(MetadataField field) {
+    this.field = field;
+    return this;
+  }
+
+  public MetadataException setRawValue(String rawValue) {
+    rawVal = rawValue;
+    return this;
+  }
+
+  public MetadataException setNormalizedValue(String normValue) {
+    normVal = normValue;
+    return this;
+  }
+
+  public MetadataField getField() {
+    return field;
+  }
+
+  public String getRawValue() {
+    return rawVal;
+  }
+
+  public String getNormalizedValue() {
+    return normVal;
+  }
+
+  public static class CardinalityException extends MetadataException {
+    public CardinalityException() {
+      super();
+    }
+
+    public CardinalityException(String message) {
+      super(message);
+    }
+  }
+
+  public static class ValidationException extends MetadataException {
+    public ValidationException() {
+      super();
+    }
+
+    public ValidationException(String message) {
+      super(message);
+    }
+  }
 }

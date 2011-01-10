@@ -86,14 +86,14 @@ public class MockFactories {
   }
 
   public static class MetaExt implements ArticleMetadataExtractor {
-    public ArticleMetadata extract(ArticleFiles af) {
-      return null;
+    public void extract(ArticleFiles af,
+			ArticleMetadataExtractor.Emitter emitter) {
     }
   }
 
   public static class XmlMetaExt implements FileMetadataExtractor {
-    public ArticleMetadata extract(CachedUrl cu) {
-      return null;
+    public void extract(CachedUrl cu,
+			FileMetadataExtractor.Emitter emitter) {
     }
   }
 }

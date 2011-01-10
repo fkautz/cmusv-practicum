@@ -40,12 +40,18 @@ import org.lockss.plugin.*;
 /** Content parser that extracts metadata from CachedUrl objects */
 public interface ArticleMetadataExtractor {
   /**
-   * Parse content on CachedUrl,  Return a Metadata object describing it
-   * @param cu the CachedUrl to extract from
+   * Emit zero or more ArticleMetadata containing metadata extracted from
+   * files comprising article (feature)
+   * @param af the files making up the article
+   * @param emitter
    */
-  public ArticleMetadata extract(/*ArchivalUnit au,
-			    MetadataTarget target,*/
-			  ArticleFiles af)
-    throws IOException, PluginException;
+  public void extract(ArticleFiles af,
+		      /*MetadataTarget target,*/
+		      Emitter emitter)
+      throws IOException, PluginException;
 
+  /** Functor to emit ArticleMetadata object(s) created by extractor */
+  public interface Emitter {
+    public void emitMetadata(ArticleFiles af, ArticleMetadata metadata);
+  }
 }

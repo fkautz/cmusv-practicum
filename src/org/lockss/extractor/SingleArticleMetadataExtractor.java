@@ -30,26 +30,32 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.test;
-import java.util.*;
+package org.lockss.extractor;
+
 import java.io.*;
-import org.lockss.util.*;
+
+import org.lockss.daemon.*;
 import org.lockss.plugin.*;
-import org.lockss.extractor.*;
 
-public class MockFileMetadataExtractor implements FileMetadataExtractor {
+/** Base class for metadata extractors that return a single ArticleMetadata
+ * or null.  This was the previous ArticleMetadataExtractor interface. */
+public abstract class SingleArticleMetadataExtractor
+  implements ArticleMetadataExtractor {
 
-  private ArticleMetadata metadata = null;
-
-  public MockFileMetadataExtractor() {
+  public void extract(ArticleFiles af,
+		      /*MetadataTarget target,*/
+		      ArticleMetadataExtractor.Emitter emitter)
+      throws IOException, PluginException {
+    ArticleMetadata md = extract(af);
+    if (md != null) {
+      emitter.emitMetadata(af, md);
+    }
   }
 
-  public void extract(CachedUrl cu, Emitter emitter) {
-    emitter.emitMetadata(cu, metadata);
-  }
-
-  public void setMetadataToReturn(ArticleMetadata metadata) {
-    this.metadata = metadata;
-  }
-
+  /**
+   * Parse content on CachedUrl,  Return a Metadata object describing it
+   * @param cu the CachedUrl to extract from
+   */
+  public abstract ArticleMetadata extract(ArticleFiles af)
+      throws IOException, PluginException;
 }

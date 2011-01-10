@@ -30,26 +30,39 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.test;
-import java.util.*;
+package org.lockss.extractor;
+
 import java.io.*;
+import java.net.*;
+import java.util.*;
+
+import org.lockss.test.*;
 import org.lockss.util.*;
-import org.lockss.plugin.*;
-import org.lockss.extractor.*;
+import org.lockss.daemon.*;
+import static org.lockss.extractor.MetadataField.*;
 
-public class MockFileMetadataExtractor implements FileMetadataExtractor {
+public class TestMetadataField extends LockssTestCase {
 
-  private ArticleMetadata metadata = null;
-
-  public MockFileMetadataExtractor() {
+  public void setUp() throws Exception {
+    super.setUp();
   }
 
-  public void extract(CachedUrl cu, Emitter emitter) {
-    emitter.emitMetadata(cu, metadata);
+  void assertField(String expKey, Cardinality expCard, MetadataField field) {
+    assertEquals(expKey, field.getKey());
+    assertEquals(expCard, field.getCardinality());
   }
 
-  public void setMetadataToReturn(ArticleMetadata metadata) {
-    this.metadata = metadata;
+  public void testPredefined() {
+    assertField(KEY_VOLUME, Cardinality.Single, FIELD_VOLUME);
   }
 
+  public void testFindField() {
+    assertSame(FIELD_VOLUME, MetadataField.findField(KEY_VOLUME));
+    assertNull(MetadataField.findField("nosuchfield"));
+  }
+
+  public void testPutMulti() {
+    assertSame(FIELD_VOLUME, MetadataField.findField(KEY_VOLUME));
+    assertNull(MetadataField.findField("nosuchfield"));
+  }
 }

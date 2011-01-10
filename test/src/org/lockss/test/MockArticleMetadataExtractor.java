@@ -44,9 +44,9 @@ public class MockArticleMetadataExtractor implements ArticleMetadataExtractor {
   public MockArticleMetadataExtractor() {
   }
 
-  public ArticleMetadata extract(ArticleFiles af) {
+  public void extract(ArticleFiles af,
+		      ArticleMetadataExtractor.Emitter emitter) {
 //     CachedUrl cu = af.getFullTextCu();
-    return metadata;
   }
 
   public void setMetadataToReturn(ArticleMetadata metadata) {
