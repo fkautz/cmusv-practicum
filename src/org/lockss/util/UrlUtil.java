@@ -430,6 +430,19 @@ public class UrlUtil {
       StringUtil.equalStrings(u1.getRef(), u2.getRef());
   }
 
+  private static Pattern URL_PAT =
+    RegexpUtil.uncheckedCompile("^[a-zA-Z]+:/",
+				(Perl5Compiler.READ_ONLY_MASK
+				 + Perl5Compiler.CASE_INSENSITIVE_MASK));
+
+  /** Return true if the string is a url.  Very basic, just checks that the
+   * string starts with &quot;scheme:/&quot;.  (So returns false for,
+   * <i>eg</i>, <tt>jar:file:...</tt>)*/
+  public static boolean isUrl(String str) {
+    Perl5Matcher matcher = RegexpUtil.getMatcher();
+    return matcher.contains(str, URL_PAT);
+  }
+
   /** Return true if an http: or https: url */
   // XXX does this need to trim blanks?
   public static boolean isHttpUrl(String url) {

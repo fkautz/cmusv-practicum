@@ -857,6 +857,14 @@ public class TestUrlUtil extends LockssTestCase {
     assertFalse(UrlUtil.isFileUrl("jar:file:/foo.bar!x.y"));
   }
 
+  public void testIsUrl() {
+    assertTrue(UrlUtil.isUrl("http://foo.bar/"));
+    assertTrue(UrlUtil.isUrl("file:/foo.bar"));
+    assertFalse(UrlUtil.isUrl("/path/foo.bar"));
+    assertFalse(UrlUtil.isUrl("path/foo.bar"));
+    assertFalse(UrlUtil.isUrl("jar:file:/foo.bar!x.y"));
+  }
+
   public void testIsJarUrl() {
     assertTrue(UrlUtil.isJarUrl("jar:foo.bar"));
     assertTrue(UrlUtil.isJarUrl("jar:///foo.bar"));
