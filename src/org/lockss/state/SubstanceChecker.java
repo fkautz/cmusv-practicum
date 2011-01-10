@@ -198,7 +198,8 @@ public class SubstanceChecker {
   }
 
   /** If substance not detected yet, check whether this CachedUrl contains
-   * substance */
+   * substance.  Releasing the CachedUrl is the responsibility of the
+   * caller. */
   public void checkSubstance(CachedUrl cu) {
     if (hasSubstance == State.Yes) {
       // no need to check if already established has substance.
