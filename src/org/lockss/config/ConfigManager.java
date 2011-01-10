@@ -1026,18 +1026,22 @@ public class ConfigManager implements LockssManager {
 
   void loadList(Configuration intoConfig,
 		Collection<ConfigFile.Generation> gens) {
-    for (final ConfigFile.Generation gen : gens) {
+    for (ConfigFile.Generation gen : gens) {
       if (gen != null) {
 	// Remember the URL of the file in which any parameter whose value
 	// might be a (list of) relative URL(s) is found
-	intoConfig.copyFrom(gen.getConfig(),
-			    new Configuration.ParamCopyEvent() {
-			      public void paramCopied(String name, String val){
-				if (URL_PARAMS.contains(name)) {
-				  urlParamFile.put(name, gen.getUrl());
-				}
-			      }
-			    });
+	final String url = gen.getUrl();
+	Configuration.ParamCopyEvent pse = null;
+	if (UrlUtil.isUrl(url)) {
+	  pse = new Configuration.ParamCopyEvent() {
+	      public void paramCopied(String name,
+				      String val){
+		if (URL_PARAMS.contains(name)) {
+		  urlParamFile.put(name, url);
+		}
+	      }};
+	    }
+	intoConfig.copyFrom(gen.getConfig(), pse);
       }
     }
   }
