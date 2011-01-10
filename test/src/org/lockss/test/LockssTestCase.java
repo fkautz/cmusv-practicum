@@ -1131,6 +1131,24 @@ public class LockssTestCase extends TestCase {
     }
   }
 
+  public static void assertNotClass(Class expClass, Object obj) {
+    assertNotClass(null, expClass, obj);
+  }
+
+  public static void assertNotClass(String msg, Class expClass, Object obj) {
+    if (expClass.isInstance(obj)) {
+      StringBuffer sb = new StringBuffer();
+      if (msg != null) {
+	sb.append(msg);
+	sb.append(" ");
+      }
+      sb.append(obj);
+      sb.append(" is of class ");
+      sb.append(expClass);
+      fail(sb.toString());
+    }
+  }
+
   /** Fail, and output the stack trace of the Throwable */
   protected static void fail(String message, Throwable t) {
     fail(message + ": " + StringUtil.stackTraceString(t));
