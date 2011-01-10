@@ -67,7 +67,7 @@ public class NaturePublishingGroupArticleIteratorFactory
 
   public ArticleMetadataExtractor createArticleMetadataExtractor(MetadataTarget target)
       throws PluginException {
-    return new NatureArticleMetadataExtractor();
+    return new BaseArticleMetadataExtractor(ArticleFiles.ROLE_ARTICLE_METADATA);
   }
 
   protected static class NaturePublishingGroupArticleIterator
@@ -172,23 +172,4 @@ public class NaturePublishingGroupArticleIteratorFactory
     
   }
 
-  public class NatureArticleMetadataExtractor implements ArticleMetadataExtractor {
-
-    public ArticleMetadata extract(ArticleFiles af)
-	throws IOException, PluginException {
-      ArticleMetadata am = null;
-      CachedUrl cu = af.getRoleCu(ArticleFiles.ROLE_ARTICLE_METADATA);
-      if (cu != null) {
-	FileMetadataExtractor me = cu.getFileMetadataExtractor();
-	if (me != null) {
-	  am = me.extract(cu);
-	}
-      }
-      if (am == null || am.size() == 0) {
-        am = new ArticleMetadata();
-      }
-      am.put(ArticleMetadata.KEY_ACCESS_URL, af.getFullTextUrl());
-      return am;
-    }
-  }
 }

@@ -85,22 +85,6 @@ public class ElsevierArticleIteratorFactory
   public ArticleMetadataExtractor
     createArticleMetadataExtractor(MetadataTarget target)
       throws PluginException {
-    return new ElsevierArticleMetadataExtractor();
-  }
-
-  public class ElsevierArticleMetadataExtractor
-    implements ArticleMetadataExtractor {
-
-    public ArticleMetadata extract(ArticleFiles af)
-	throws IOException, PluginException {
-      CachedUrl cu = af.getRoleCu("xml");
-      if (cu != null) {
-	FileMetadataExtractor me = cu.getFileMetadataExtractor();
-	if (me != null) {
-	  return me.extract(cu);
-	}
-      }
-      return null;
-    }
+    return new BaseArticleMetadataExtractor("xml");
   }
 }

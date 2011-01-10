@@ -164,12 +164,13 @@ public class HighWirePressH20ArticleIteratorFactory
 //    
   }
   
-  protected static class HighWirePressH20ArticleMetadataExtractor implements ArticleMetadataExtractor {
+  protected static class HighWirePressH20ArticleMetadataExtractor
+    extends SingleArticleMetadataExtractor {
 
     public ArticleMetadata extract(ArticleFiles af) throws IOException, PluginException {
       String url = af.getFullTextUrl();
       ArticleMetadata am = new ArticleMetadata();
-      am.put(ArticleMetadata.KEY_ACCESS_URL, url);
+      am.put(MetadataField.FIELD_ACCESS_URL, url);
       return am;
     }
 
