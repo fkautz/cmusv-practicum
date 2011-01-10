@@ -1440,7 +1440,6 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
       for (Map.Entry<Pattern,Integer> ent : crawlPriorityAuidMap.entrySet()) {
 	if (matcher.contains(auid, ent.getKey())) {
 	  req.setPriority(ent.getValue());
-	  logger.debug("setPriority(" + req + ", " + ent.getValue() + ")");
 	  return;
 	}
       }
