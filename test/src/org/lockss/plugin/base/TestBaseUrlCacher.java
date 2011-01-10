@@ -357,6 +357,22 @@ public class TestBaseUrlCacher extends LockssTestCase {
     return mconn;
   }
 
+  public void testCookiePolicy() throws IOException {
+    TimeBase.setSimulated(555666);
+    CrawlSpec cs = mau.getCrawlSpec();
+    cs.setCookiePolicy("oatmeal-raisin");
+
+    MockConnectionMockBaseUrlCacher muc =
+      new MockConnectionMockBaseUrlCacher(mau, TEST_URL);
+    MyMockLockssUrlConnection mconn = makeConn(200, "", null, "foo");
+    muc.addConnection(mconn);
+    muc.getUncachedInputStream();
+    assertEquals("oatmeal-raisin", mconn.getCookiePolicy());
+    Properties props = muc.getUncachedProperties();
+    assertEquals("", props.get(CachedUrl.PROPERTY_CONTENT_TYPE));
+    assertEquals("555666", props.get(CachedUrl.PROPERTY_FETCH_TIME));
+  }
+
   public void testGetUncachedProperties() throws IOException {
     TimeBase.setSimulated(555666);
     MockConnectionMockBaseUrlCacher muc =
@@ -1292,8 +1308,9 @@ public class TestBaseUrlCacher extends LockssTestCase {
       connections.add(conn);
     }
 
-    protected LockssUrlConnection makeConnection(String url,
-                                                 LockssUrlConnectionPool pool)
+    @Override
+    protected LockssUrlConnection makeConnection0(String url,
+						  LockssUrlConnectionPool pool)
         throws IOException {
       if (connections != null && !connections.isEmpty()) {
         MockLockssUrlConnection mconn = (MockLockssUrlConnection) connections
@@ -1402,6 +1419,7 @@ public class TestBaseUrlCacher extends LockssTestCase {
     IPAddr localAddr = null;
     String username;
     String password;
+    String cpolicy;
 
     public void setProxy(String host, int port) {
       proxyHost = host;
@@ -1415,6 +1433,14 @@ public class TestBaseUrlCacher extends LockssTestCase {
     public void setCredentials(String username, String password) {
       this.username = username;
       this.password = password;
+    }
+
+    public void setCookiePolicy(String policy) {
+      cpolicy = policy;
+    }
+
+    String getCookiePolicy() {
+      return cpolicy;
     }
   }
 
