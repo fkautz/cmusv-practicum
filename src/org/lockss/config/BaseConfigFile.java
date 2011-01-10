@@ -299,7 +299,7 @@ public abstract class BaseConfigFile implements ConfigFile {
   protected abstract InputStream openInputStream() throws IOException;
 
   /**
-   * Return the new las-modified time
+   * Return the new last-modified time
    */
   protected abstract String calcNewLastModified();
 
