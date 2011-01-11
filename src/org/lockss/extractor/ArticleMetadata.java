@@ -30,7 +30,7 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.plugin;
+package org.lockss.extractor;
 
 import java.io.*;
 import java.util.*;
@@ -42,7 +42,6 @@ import org.lockss.app.*;
 import org.lockss.config.*;
 import org.lockss.util.*;
 import org.lockss.daemon.*;
-import org.lockss.extractor.*;
 import static org.lockss.extractor.MetadataField.*;
 
 

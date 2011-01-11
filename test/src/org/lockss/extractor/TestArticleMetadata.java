@@ -41,7 +41,7 @@ import org.lockss.daemon.*;
 import org.lockss.plugin.*;
 import static org.lockss.extractor.MetadataField.*;
 import static org.lockss.extractor.MetadataException.*;
-import static org.lockss.plugin.ArticleMetadata.InvalidValue;
+import static org.lockss.extractor.ArticleMetadata.InvalidValue;
 import static java.util.AbstractMap.SimpleEntry;
 
 public class TestArticleMetadata extends LockssTestCase {
