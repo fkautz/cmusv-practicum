@@ -215,6 +215,9 @@ public class ConfigManager implements LockssManager {
   public static final String CONFIG_FILE_AUDIT_PROXY =
     "audit_proxy_config.txt";
 
+  /** Indicates whether to show the ListHoldings servlet in the UI. */
+  public static final String PARAM_UI_SHOW_HOLDINGS_SERVLET = MYPREFIX + "ui.showHoldingsServlet";
+  
   /** If set to a list of regexps, only parameter names that match one of
    * them will be allowed to be set in expert config.  */
   public static final String PARAM_EXPERT_ALLOW = MYPREFIX + "expert.allow";
