@@ -235,14 +235,14 @@ public abstract class PrintfConverter {
       }
     }
 
-    public List getUrlList(String printfString) {
+    public List<String> getUrlList(String printfString) {
       convert(printfString);
       if (missingArgs) {
 	log.warning("Missing variable arguments: " + p_data);
 	return null;
       }
       if (!substitute_args.isEmpty() && haveSets) {
-	ArrayList res = new ArrayList();
+	ArrayList<String> res = new ArrayList<String>();
 	for (CartesianProductIterator iter =
 	       new CartesianProductIterator(substitute_args);
 	     iter.hasNext(); ) {
