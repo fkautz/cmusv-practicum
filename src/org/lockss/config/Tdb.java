@@ -916,9 +916,13 @@ public class Tdb {
     if (titleName == null) {
       String issue = au.getParam("issue");
       String year = au.getParam("year");
+      // *sigh*
       String volume = au.getParam("volume");
       if (volume == null) {
         volume = au.getParam("volume_str");
+      }
+      if (volume == null) {
+        volume = au.getParam("volume_name");
       }
       String auName = au.getName();
       String auNameLC = auName.toLowerCase();
