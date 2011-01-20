@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: BioOneHtmlMetadataExtractorFactory.java,v 1.8 2011/01/20 08:36:06 tlipkis Exp $
  */
 
 /*
@@ -65,7 +65,8 @@ public class BioOneHtmlMetadataExtractorFactory implements FileMetadataExtractor
         return new BioOneHtmlMetadataExtractor();
     }
     
-    public static class BioOneHtmlMetadataExtractor extends	SimpleMetaTagMetadataExtractor {
+    public static class BioOneHtmlMetadataExtractor
+      extends SimpleHtmlMetaTagMetadataExtractor {
         
         // Flags indicating where to find the appropriate text in a line of HTML
         
