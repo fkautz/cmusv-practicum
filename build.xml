@@ -2,7 +2,7 @@
 <!--
 
 ========================================================================
- $Id$
+ $Id: build.xml,v 1.266 2011/01/20 08:35:18 tlipkis Exp $
  Ant build file for LOCKSS daemon
 ========================================================================
 
@@ -109,6 +109,9 @@ Args:
   <property name="author" value="false" />
   <property name="use" value="true" />
   <property name="version" value="false" />
+  <property name="noqualifier" value="java.*" />
+<!--   <property name="noqualifier" -->
+<!-- 	    value="java.lang:java.io:java.net:java.util:java.text" /> -->
 
   <!--  Options for jikes, have no effect otherwise -->
   <property name="build.compiler.emacs" value="true" />
@@ -849,7 +852,7 @@ The target you have selected requires compiling under JDK 1.6.  Use the rant -1.
       <entry key="build.user.name" value="${user.name}"/>
       <entry key="build.host" value="${hostname}"/>
       <entry key="build.releasename" value="${releasename}"/>
-      <entry key="build.cvs.tag" value="$Name$"/>
+      <entry key="build.cvs.tag" value="$Name:  $"/>
     </propertyfile>
     <if>
       <isset property="releasename" />
@@ -1473,6 +1476,7 @@ JAVA_COMMAND_ARGS="-server `/usr/local/lib/maxheap` -Dsun.net.inetaddr.ttl=3600 
              author="${author}"
              version="${version}"
 	     access="protected"
+             noqualifier="${noqualifier}"
              windowtitle="LOCKSS API"
              doctitle="LOCKSS"
              verbose="false"
@@ -1971,6 +1975,7 @@ Test results in ${test.results}
    description="Load xml config files to ensure well-formed" >
     <fileset id="xml.files.filesetid" dir="${basedir}">
       <include name="test/frameworks/*.xml"/>
+      <include name="test/frameworks/tdbxml/**/*.xml"/>
     </fileset>
     <!-- convert the list of files to a string -->
     <pathconvert refid="xml.files.filesetid"
@@ -2085,7 +2090,7 @@ Test results in ${test.results}
 	   "$ Name: branch_tag $" (or "$ Name: $" or $ Name$ for no tag).
            (Except that there is no space between the $ and Name.)
            The prefix and suffix are removed to yield the actual tag. -->
-      <property name="cvs.name.tag" value="$Name$"/>
+      <property name="cvs.name.tag" value="$Name:  $"/>
       <propertyregex property="cvs.co.tag"
          input="${cvs.name.tag}"
          regexp="\$[N]ame: *([^ ]*) *\$"
