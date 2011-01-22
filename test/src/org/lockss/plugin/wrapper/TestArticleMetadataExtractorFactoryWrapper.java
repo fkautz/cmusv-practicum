@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: TestArticleMetadataExtractorFactoryWrapper.java,v 1.2 2011/01/22 08:22:29 tlipkis Exp $
  */
 
 /*
@@ -72,7 +72,7 @@ public class TestArticleMetadataExtractorFactoryWrapper extends LockssTestCase {
       (MockArticleMetadataExtractorFactory)obj;
     a.setError(err);
     try {
-      wrapper.createArticleMetadataExtractor(null);
+      wrapper.createArticleMetadataExtractor(MetadataTarget.Any);
       fail("Should have thrown PluginException");
     } catch (PluginException e) {
       assertTrue(e instanceof PluginException.LinkageError);

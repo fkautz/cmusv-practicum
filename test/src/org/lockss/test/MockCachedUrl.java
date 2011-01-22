@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: MockCachedUrl.java,v 1.48 2011/01/22 08:22:29 tlipkis Exp $
  */
 
 /*
@@ -276,7 +276,7 @@ public class MockCachedUrl implements CachedUrl {
     cachedProp = headers;
   }
 
-  public FileMetadataExtractor getFileMetadataExtractor() {
+  public FileMetadataExtractor getFileMetadataExtractor(MetadataTarget target) {
     return metadataExtractor;
   }
 

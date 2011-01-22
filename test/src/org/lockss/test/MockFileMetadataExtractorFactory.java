@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: MockFileMetadataExtractorFactory.java,v 1.2 2011/01/22 08:22:29 tlipkis Exp $
  */
 
 /*
@@ -42,7 +42,8 @@ public class MockFileMetadataExtractorFactory
   public MockFileMetadataExtractorFactory() {
   }
 
-  public FileMetadataExtractor createFileMetadataExtractor(String mimeType) {
+  public FileMetadataExtractor createFileMetadataExtractor(MetadataTarget target,
+							   String mimeType) {
     return new MockFileMetadataExtractor();
   }
 }
