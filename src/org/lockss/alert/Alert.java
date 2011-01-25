@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: Alert.java,v 1.15 2011/01/25 07:14:00 tlipkis Exp $
  */
 
 /*
@@ -81,6 +81,14 @@ public class Alert {
 
 
   // Predefined Alert templates
+  public static final Alert AU_CREATED =
+    cAlert("AuCreated").
+    setAttribute(ATTR_SEVERITY, SEVERITY_INFO);
+
+  public static final Alert AU_DELETED =
+    cAlert("AuDeleted").
+    setAttribute(ATTR_SEVERITY, SEVERITY_INFO);
+
   public static final Alert PERMISSION_PAGE_FETCH_ERROR =
     cAlert("PermissionPageFetchError").
     setAttribute(ATTR_SEVERITY, SEVERITY_WARNING);
