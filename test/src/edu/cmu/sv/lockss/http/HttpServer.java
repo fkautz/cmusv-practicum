@@ -9,7 +9,7 @@ import org.mortbay.http.handler.NotFoundHandler;
 import org.mortbay.http.handler.ResourceHandler;
 import org.mortbay.util.InetAddrPort;
 
-public class TestHttpServer {
+public class HttpServer {
 	private static HttpServer server;
 	private static Object lock = new Object();
 
