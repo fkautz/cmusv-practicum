@@ -9,7 +9,7 @@ import org.mortbay.http.handler.NotFoundHandler;
 import org.mortbay.http.handler.ResourceHandler;
 import org.mortbay.util.InetAddrPort;
 
-public class HttpServer {
+public class MockHttpServer {
 	private static HttpServer server;
 	private static Object lock = new Object();
 
@@ -48,8 +48,6 @@ public class HttpServer {
 	public static void main(String[] args) {
 		try {
 			startTestServer();
-			Thread.sleep(30000);
-			stopTestServer();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
