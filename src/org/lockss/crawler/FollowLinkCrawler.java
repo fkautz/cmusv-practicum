@@ -252,6 +252,18 @@ public abstract class FollowLinkCrawler extends BaseCrawler {
       logger.debug3("Not checking AU for substance during crawl");
     }
 
+    String sessionStartUrl = au.getConfiguration().get("session_start_url");
+    System.err.println("Session start url: " + sessionStartUrl);
+    if (sessionStartUrl != null) {
+	    System.err.println("Fetching session start url: " + sessionStartUrl);
+	    UrlCacher session_starter_uc = makeUrlCacher(sessionStartUrl);	
+	    try {
+		    cacheWithRetries(session_starter_uc);	
+	    } catch (IOException e1) {	
+		    System.err.println("Unable to establish session:\n" + e1.getMessage());
+	    }
+    }
+
     if (!populatePermissionMap()) {
       return aborted();
     }
