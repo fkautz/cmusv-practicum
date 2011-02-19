@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: MockLockssUrlConnection.java,v 1.7 2011/01/24 23:58:15 pgust Exp $
  */
 
 /*
@@ -48,6 +48,7 @@ public class MockLockssUrlConnection extends BaseLockssUrlConnection {
   String respContentType;
   String respContentEncoding;
   long respDate = -1;
+  long respLastModified = -1;
 
   public MockLockssUrlConnection() {
   }
@@ -170,6 +171,15 @@ public class MockLockssUrlConnection extends BaseLockssUrlConnection {
       }
       props.setProperty(key, respHeaders.getProperty(key.toLowerCase()));
     }
+  }
+
+  
+  public void setResponseLastModified(long lastModified) {
+    this.respLastModified = lastModified;
+  }
+  
+  public long getResponseLastModified() {
+    return respLastModified;
   }
 
   boolean released = false;

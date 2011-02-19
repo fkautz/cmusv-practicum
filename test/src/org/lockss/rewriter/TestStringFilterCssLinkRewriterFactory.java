@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: TestStringFilterCssLinkRewriterFactory.java,v 1.5 2011/02/14 00:07:31 tlipkis Exp $
  */
 
 /*
@@ -104,7 +104,6 @@ public class TestStringFilterCssLinkRewriterFactory extends LockssTestCase {
 
   public void testThrowsIfNotCss() {
     in = new StringInputStream(page);
-    setupConfig(true);
     try {
       sfclrf.createLinkRewriter("text/html", au, in,
 				encoding, url, xform);
@@ -118,26 +117,9 @@ public class TestStringFilterCssLinkRewriterFactory extends LockssTestCase {
     }
   }
 
-  public void testThrowsIfNoPort() {
-    in = new StringInputStream(page);
-    setupConfig(false);
-    try {
-      sfclrf.createLinkRewriter("text/css", au, in,
-				encoding, url, xform);
-      fail("createLinkRewriter should have thrown if no port");
-    } catch (Exception ex) {
-      if (ex instanceof PluginException) {
-	return;
-      }
-      fail("createLinkRewriter should have thrown PluginException but threw " +
-	   ex.toString());
-    }
-  }
-
-  public void testAbsRewriting() throws Exception {
+   public void testAbsRewriting() throws Exception {
     in = new StringInputStream(absImportBefore);
     log.debug3("page is " + absImportBefore);
-    setupConfig(true);
     InputStream is = sfclrf.createLinkRewriter("text/css", au, in,
 					       encoding, url, xform);
     assertNotNull(is);
@@ -151,7 +133,6 @@ public class TestStringFilterCssLinkRewriterFactory extends LockssTestCase {
   public void testPageRelRewriting() throws Exception {
     in = new StringInputStream(pageRelImportBefore);
     log.debug3("page is " + pageRelImportBefore + " url is " + url);
-    setupConfig(true);
     InputStream is = sfclrf.createLinkRewriter("text/css", au, in,
 					       encoding, url, xform);
     assertNotNull(is);
@@ -166,7 +147,6 @@ public class TestStringFilterCssLinkRewriterFactory extends LockssTestCase {
   public void testDotDotRelRewriting() throws Exception {
     in = new StringInputStream(dotDotRelImportBefore);
     log.debug3("page is " + dotDotRelImportBefore + " url is " + url);
-    setupConfig(true);
     InputStream is = sfclrf.createLinkRewriter("text/css", au, in,
 					       encoding, url, xform);
     assertNotNull(is);
@@ -181,7 +161,6 @@ public class TestStringFilterCssLinkRewriterFactory extends LockssTestCase {
   public void testSiteRelRewriting() throws Exception {
     in = new StringInputStream(siteRelImportBefore);
     log.debug3("page is " + siteRelImportBefore + " url is " + url);
-    setupConfig(true);
     InputStream is = sfclrf.createLinkRewriter("text/css", au, in,
 					       encoding, url, xform);
     assertNotNull(is);
@@ -195,7 +174,6 @@ public class TestStringFilterCssLinkRewriterFactory extends LockssTestCase {
 
   public void testRewriting() throws Exception {
     in = new StringInputStream(page);
-    setupConfig(true);
     log.debug3("page is \n" + page);
     InputStream is = sfclrf.createLinkRewriter("text/css", au, in,
 					       encoding, url, xform);
@@ -217,14 +195,6 @@ public class TestStringFilterCssLinkRewriterFactory extends LockssTestCase {
       log.error(out.substring(ix));
     }
     assertTrue("wrong url rewritten", ix < 0);
-  }
-
-  private void setupConfig(boolean good) {
-    Properties props = new Properties();
-    if (good) {
-      props.setProperty(ContentServletManager.PARAM_PORT, "9524");
-      ConfigurationUtil.setCurrentConfigFromProps(props);
-    }
   }
 
   public static void main(String[] argv) {

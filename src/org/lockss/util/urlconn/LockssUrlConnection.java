@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: LockssUrlConnection.java,v 1.16 2011/01/25 07:15:17 tlipkis Exp $
  *
 
 Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
@@ -47,11 +47,11 @@ public interface LockssUrlConnection {
    *   <li><tt>COMPATIBILITY</tt>: compatible with the common cookie management
    *   practices (even if they are not 100% standards compliant)
    *   <li><tt>NETSCAPE_DRAFT</tt>: Netscape cookie draft compliant
-   *   <li><tt>RFC2109</tt>: RFC2109 compliant (default)
+   *   <li><tt>RFC2109</tt>: RFC2109 compliant
    *  </ul>
    */
   static final String PARAM_COOKIE_POLICY = PREFIX + "cookiePolicy";
-  static final String DEFAULT_COOKIE_POLICY = "RFC2109";
+  static final String DEFAULT_COOKIE_POLICY = "COMPATIBILITY";
 
   /** All cookies sent in one header if true */
   static final String PARAM_SINGLE_COOKIE_HEADER =
@@ -139,6 +139,9 @@ public interface LockssUrlConnection {
 
   /** Return the Date: from the response header */
   public long getResponseDate();
+
+  /** Return the last-modified: from the response header */
+  public long getResponseLastModified();
 
   /** Return the value of the content-length response header, as an int.
    * @return  the content length, or -1 if not known.

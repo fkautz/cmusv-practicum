@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: HttpClientUrlConnection.java,v 1.34 2011/01/25 00:10:41 pgust Exp $
  *
 
 Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
@@ -330,6 +330,18 @@ public class HttpClientUrlConnection extends BaseLockssUrlConnection {
     }
   }
 
+  public long getResponseLastModified() {
+    String datestr = getResponseHeaderValue("last-modified");
+    if (datestr == null) {
+      return -1;
+    }
+    try {
+      return DateUtil.parseDate(datestr).getTime();
+    } catch (DateParseException e) {
+      log.error("Error parsing response last-modified: header: " + datestr, e);
+      return -1;
+    }
+  }
   public long getResponseContentLength() {
     assertExecuted();
     if (method instanceof LockssGetMethod) {

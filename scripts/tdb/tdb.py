@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-# $Id$
+# $Id: tdb.py,v 1.7 2011/02/17 23:14:25 barry409 Exp $
 
-# Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
+# Copyright (c) 2000-2011 Board of Trustees of Leland Stanford Jr. University,
 # all rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,34 +26,60 @@
 # be used in advertising or otherwise to promote the sale, use or other dealings
 # in this Software without prior written authorization from Stanford University.
 
-__version__ = '''0.3.1'''
+__version__ = '''0.3.3'''
 
 import re
 
-class Map(object):
-    
+class MapError(Exception):
+    pass
+
+class _Map(object):
+    '''A map from tuples to values.  In addition, when a tuple
+    provided to 'get' is a prefix of a set of tuples previously
+    provided to 'set', the returned value is a dictionary representing
+    all of the mapped pairs previously provided. The prefix is
+    stripped off.  There is no delete operation.
+    '''
     def __init__(self, dic={}):
         '''Constructor.'''
         object.__init__(self)
         self._dictionary = dic.copy()
 
     def get(self, key):
+        if key == ():
+            raise MapError('Null tuple not allowed as key.')
         if type(key) is not tuple: key = ( key, )
         return self._get(key, self._dictionary)
     
     def _get(self, key, rec):
         if len(key) == 0: return rec
+        if type(rec) is not dict:
+            raise MapError('Trying to get deeper level than was set.')
         newrec = rec.get(key[0])
         if newrec: return self._get(key[1:], newrec)
         return None
     
     def set(self, key, val):
+        if key == ():
+            raise MapError('Null tuple not allowed as key.')
+        if val == None:
+            raise MapError('None value not allowed as key.')
         if type(key) is not tuple: key = ( key, )
+        # reserve dict values for internal use
+        if type(val) is dict:
+            raise MapError('dictionary not allowed as value.')
         self._set(key, val, self._dictionary)
     
     def _set(self, key, val, rec):
+        assert len(key) > 0
         k0 = key[0]
         if len(key) == 1:
+            if type(rec) is not dict:
+                raise MapError('Trying to set a deeper level than before.')
+            if type(rec.get(k0)) is dict:
+                raise MapError('Trying to set a shallower level than before.')
+            if k0 in rec:
+                raise MapError("Attempt to redefine %s" % (k0))
             rec[k0] = val
             return
         if k0 not in rec:
@@ -61,41 +87,75 @@ class Map(object):
         newrec = rec.get(k0)
         self._set(key[1:], val, newrec)
     
-class ChainedMap(Map):
-    
+class _ChainedMap(_Map):
+    '''A map from tuples to values, including nested scopes.
+    '''
     def __init__(self, next=None):
-        Map.__init__(self)
+        _Map.__init__(self)
         self._next = next
 
     def get(self, key):
-        myval = super(ChainedMap,self).get(key)
+        myval = super(_ChainedMap,self).get(key)
         if self._next is None: return myval
         nextval = self._next.get(key)
+        # myval in the recursive calls will never be None, so it is
+        # checked here explicitly.
         if myval is None: return nextval
-        if nextval is None or type(myval) is not dict: return myval
-        nextval = nextval.copy()
-        self._recursive_update(nextval, myval)
-        return nextval
         
-    def _recursive_update(self, map1, map2):
-        for (k2,v2) in map2.items():
-            if type(v2) is dict:
-                if k2 not in map1: map1[k2] = dict()
-                self._recursive_update(map1[k2], v2)
-            else: map1[k2] = v2
+        return self._combine_thing(myval, nextval)
+        
+    def _combine_dicts(self, myval, result):
+        '''Combine two trees of dictionaries, destructively altering
+        'result'.  Any path present in either is present in 'result'.
+        myval is not altered.
+        '''
+        assert type(myval) is dict
+        assert type(result) is dict
 
-class Publisher(Map):
+        for (k, v) in myval.items():
+            result[k] = self._combine_thing(v, result.get(k))
+        return result
+    
+    def _combine_thing(self, myval, nextval):
+        '''Combines either two dictionaries or two values.  myval may
+        not be None, but nextval may be.  If both are dictionaries,
+        the returned value combines the trees at all levels.  If both
+        are values, then myval is returned.  Raises MapError if one is
+        a dictionary and the other isn't.
+        '''
+        # The above should be detected at "set", but isn't; see comment at set
+        assert myval != None
+        if type(myval) is dict:
+            if nextval == None:
+                return self._combine_dicts(myval, dict())
+            if type(nextval) is not dict:
+                raise MapError('Conflict on depth of array at different scopes')
+            return self._combine_dicts(myval, nextval.copy())
+        else:
+            if type(nextval) is dict:
+                raise MapError('Conflict on depth of array at different scopes')
+            return myval
+    
+    def set(self, key, val):
+        if self._next and type(self._next.get(key)) is dict:
+            raise MapError('Conflict on depth of array at different scopes')
+        # bug: lacking backpointers, this can't check for children having
+        # a dictionary for this value. That case will raise MapError when
+        # the child's get is called.
+        return super(_ChainedMap, self).set(key, val)
 
+class Publisher(_Map):
+    '''A tdb Publisher object.'''
     NAME = 'name'
-
+    
     def __init__(self):
         '''Constructor.'''
-        Map.__init__(self)
-
+        super(Publisher, self).__init__()
+    
     def name(self): return self.get(Publisher.NAME)
 
-class Title(Map):
-
+class Title(_Map):
+    '''A tdb Title object.'''
     NAME = 'name'
     EISBN = 'eisbn'
     EISSN = 'eissn'
@@ -103,7 +163,6 @@ class Title(Map):
     ISSN = 'issn'
     PUBLISHER = 'publisher'
     TYPE = 'type'
-
     class Type:
         BOOK = 'book'
         JOURNAL = 'journal'
@@ -111,8 +170,8 @@ class Title(Map):
 
     def __init__(self):
         '''Constructor.'''
-        Map.__init__(self)
-
+        super(Title, self).__init__()
+    
     def set_publisher(self, publisher): self.set(Title.PUBLISHER, publisher)
 
     def name(self): return self.get(Title.NAME)
@@ -123,18 +182,17 @@ class Title(Map):
     def publisher(self): return self.get(Title.PUBLISHER)
     def type(self): return self.get(Title.TYPE) or Title.Type.DEFAULT
 
-class AU(ChainedMap):
-
+class AU(_ChainedMap):
+    '''Adds convenience getters to a _ChainedMap.'''
     class Status:
         DOES_NOT_EXIST = 'doesNotExist'
         EXISTS = 'exists'
         DO_NOT_PROCESS = 'doNotProcess'
         MANIFEST = 'manifest'
         WANTED = 'wanted'
+        CRAWLING = 'crawling'
         TESTING = 'testing'
-        RETESTING = 'retesting'
         NOT_READY = 'notReady'
-        TESTED = 'tested'
         READY = 'ready'
         PRE_RELEASING = 'preReleasing'
         PRE_RELEASED = 'preReleased'
@@ -142,7 +200,7 @@ class AU(ChainedMap):
         RELEASED = 'released'
         DOWN = 'down'
         SUPERSEDED = 'superseded'
-        RETRACTED = 'retracted'
+        EXPUNGED = 'expunged'
 
     ATTR = 'attr'
     NAME = 'name'
@@ -156,11 +214,11 @@ class AU(ChainedMap):
     STATUS = 'status'
     TITLE = 'title'
     YEAR = 'year'
-
+    
     def __init__(self, next=None):
         '''Constructor.'''
-        ChainedMap.__init__(self, next)
-
+        super(AU, self).__init__(next)
+    
     def set_title(self, title): self.set(AU.TITLE, title)
 
     def attr(self, attr): return self.get( (AU.ATTR, attr) )
@@ -212,19 +270,3 @@ class Tdb(object):
     def publishers(self): return self.__publishers[:]
     def titles(self): return self.__titles[:]
     def aus(self): return self.__aus[:]
-
-###
-### Test code
-###
-
-import unittest
-
-class TestAU(unittest.TestCase):
-
-    def testAuid(self):
-        for st, par in [('a~b&c~d', {'a': 'b', 'c': 'd'}),
-                       ('a~b&c~d', {'c': 'd', 'a': 'b'}),
-                       ('base_url~http%3A%2F%2Fwww%2Eexample%2Ecom%2F&volume_name~123', {'base_url': 'http://www.example.com/', 'volume_name': '123'})]:
-            self.assertEquals('org|lockss|plugin|FooPlugin&' + st, AU.computeAuid('org.lockss.plugin.FooPlugin', par))
-
-if __name__ == '__main__': unittest.main()
