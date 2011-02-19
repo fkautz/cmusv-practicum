@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: ProxyHandler.java,v 1.69 2011/01/25 07:14:35 tlipkis Exp $
  */
 
 /*
@@ -32,7 +32,7 @@ in this Software without prior written authorization from Stanford University.
 // Some portions of this code are:
 // ========================================================================
 // Copyright (c) 2003 Mort Bay Consulting (Australia) Pty. Ltd.
-// $Id$
+// $Id: ProxyHandler.java,v 1.69 2011/01/25 07:14:35 tlipkis Exp $
 // ========================================================================
 
 package org.lockss.proxy;
@@ -319,12 +319,14 @@ public class ProxyHandler extends AbstractHttpHandler {
     }
     // Does the URL point to a resolver rather than a
     // server?
+/* PJG: DOIs now resolved by ServeContent
     String resolvedUrl = MetadataUtil.proxyResolver(urlString);
     if (resolvedUrl != null) {
       // Yes - send a redirect
       sendRedirect(request, response, resolvedUrl);
       return;
     }
+*/
     CachedUrl cu = pluginMgr.findCachedUrl(urlString);
 
     // Don't allow CLOCKSS to serve local content for unsubscribed AUs
@@ -551,7 +553,6 @@ public class ProxyHandler extends AbstractHttpHandler {
 		HttpResponse response,
 		String urlString,
 		CachedUrl cu) throws IOException {
-
     boolean isInCache = cu != null && cu.hasContent();
 
     LockssUrlConnection conn = null;

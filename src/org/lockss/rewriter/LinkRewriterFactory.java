@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: LinkRewriterFactory.java,v 1.6 2011/02/14 00:06:09 tlipkis Exp $
  */
 
 /*
@@ -54,5 +54,5 @@ public interface LinkRewriterFactory {
 					String encoding,
 					String url,
 					ServletUtil.LinkTransform xform)
-      throws PluginException;
+      throws PluginException, IOException;
 }
