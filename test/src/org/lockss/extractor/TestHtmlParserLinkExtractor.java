@@ -553,26 +553,26 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	//   }
 
 
-//	  public void testResolvesHtmlEntities()
-//	      throws IOException {
-//	    String url1=
-//	      "http://www.example.com/bioone/?"+
-//	      "request=get-toc&issn=0044-7447&volume=32&issue=1";
-//
-//	    String source =
-//	      "<html><head><title>Test</title></head><body>"+
-//	      "<a href=http://www.example.com/bioone/?"+
-//	      "request=get-toc&#38;issn=0044-7447&#38;volume=32&issue=1>link1</a>";
-//	    assertEquals(SetUtil.set(url1), parseSingleSource(source));
-//
-//	    // ensure character entities processed before rel url resolution
-//	    source =
-//	      "<html><head><title>Test</title></head><body>"+
-//	      "<base href=http://www.example.com/foo/bar>"+
-//	      "<a href=&#46&#46/xxx>link1</a>";
-//	    assertEquals(SetUtil.set("http://www.example.com/xxx"),
-//			 parseSingleSource(source));
-//	  }
+	  public void testResolvesHtmlEntities()
+	      throws IOException {
+	    String url1=
+	      "http://www.example.com/bioone/?"+
+	      "request=get-toc&issn=0044-7447&volume=32&issue=1";
+
+	    String source =
+	      "<html><head><title>Test</title></head><body>"+
+	      "<a href=http://www.example.com/bioone/?"+
+	      "request=get-toc&#38;issn=0044-7447&#38;volume=32&issue=1>link1</a>";
+	    assertEquals(SetUtil.set(url1), parseSingleSource(source));
+
+	    // ensure character entities processed before rel url resolution
+	    source =
+	      "<html><head><title>Test</title></head><body>"+
+	      "<base href=http://www.example.com/foo/bar>"+
+	      "<a href=&#46&#46/xxx>link1</a>";
+	    assertEquals(SetUtil.set("http://www.example.com/xxx"),
+			 parseSingleSource(source));
+	  }
 
 	  public void testInterpretsBaseTag() throws IOException {
 	    String url1= "http://www.example.com/link1.html";
@@ -907,7 +907,118 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	    assertEquals(expected, cb.getFoundUrls());
 	  }
 
+	  
+	  //More form tests to be written (Matt)
+	  //Multiple hidden attributes, test normalization
+	  //Radio button, test that all URLs are generated
+	  //Checkbox - test that all URls are generated
+	  //test that forms with names like Login and Email are ignored?
+	  //Parse input type button looking for links in the text?  See Creating  HTML push button link.
+	  //
+	  //based upon highwire test case 
+	  public void testFormOneHiddenAttribute()
+	  throws IOException {
+		  String url1=
+			  "http://www.example.com/bioone/cgi/;F2?filename=jci116136F2.ppt";
 
+		  String source =
+			  "<html><head><title>Test</title></head><body>"+
+			  "<form action=\"http://www.example.com/bioone/cgi/;F2\" method=\"get\">" +
+				  "<input type=\"submit\" value=\"Blah\"><INPUT TYPE=\"hidden\" NAME=\"filename\" VALUE=\"jci116136F2.ppt\"></form>";
+		  System.out.println("source = " + source);
+		  assertEquals(SetUtil.set(url1), parseSingleSource(source));
+
+	  }
+
+	  //based upon highwire test case 
+	  public void testFormTwoHiddenAttribute()
+	  throws IOException {
+		  String url1=
+			  "http://www.example.com/bioone/cgi/;F2?filename=jci116136F2.ppt&gender=male";
+
+		  String source =
+			  "<html><head><title>Test</title></head><body>"+
+			  "<form action=\"http://www.example.com/bioone/cgi/;F2\" method=\"get\">" +
+				  "<input type=\"submit\" value=\"Blah\">" +
+				  "<INPUT TYPE=\"hidden\" NAME=\"filename\" VALUE=\"jci116136F2.ppt\">" +
+				  "<InpUt name=\"gender\" tYpe=\"hidden\" value=\"male\"> </form>";
+		  System.out.println("source = " + source);
+		  assertEquals(SetUtil.set(url1), parseSingleSource(source));
+
+	  }
+
+	  //based upon highwire test case 
+	  public void testFormManyHiddenAttribute()
+	  throws IOException {
+		  String url1=
+			  "http://www.example.com/cgi/powerpoint/pediatrics;103/1/SE1/203/F4?image_path=%2Fcontent%2Fpediatrics%2Fvol103%2Fissue1%2Fimages%2Flarge%2Fpe01t0183004.jpeg&caption=No+Caption+Found&citation=Plsek%2C+P.+E.+Pediatrics+1999%3B103%3Ae203&copyright=1999+American+Academy+of+Pediatrics&filename=pediatricsv103i1pe203F4.ppt&ppt_download=true&id=103/1/SE1/203/F4&redirect_url=http%3A%2F%2Fpediatrics.aappublications.org%2Fcgi%2Fcontent%2Ffull%2F103%2F1%2FSE1%2F203%2FF4&site_name=pediatrics&notes_text=";
+
+		  String source =
+			  "<html><head><title>Test</title></head><body>"+
+			  "	  <FORM METHOD=POST ACTION=\"/cgi/powerpoint/pediatrics;103/1/SE1/203/F4\">"+
+	  "<INPUT TYPE=\"hidden\" NAME=\"image_path\" VALUE=\"%2Fcontent%2Fpediatrics%2Fvol103%2Fissue1%2Fimages%2Flarge%2Fpe01t0183004.jpeg\">"+
+	  "<INPUT TYPE=\"hidden\" NAME=\"caption\" VALUE=\"No+Caption+Found\">"+
+	  "<INPUT TYPE=\"hidden\" NAME=\"citation\" VALUE=\"Plsek%2C+P.+E.+Pediatrics+1999%3B103%3Ae203\">"+
+	  "<INPUT TYPE=\"hidden\" NAME=\"copyright\" VALUE=\"1999+American+Academy+of+Pediatrics\">"+
+	  "<INPUT TYPE=\"hidden\" NAME=\"filename\" VALUE=\"pediatricsv103i1pe203F4.ppt\">"+
+	  "<INPUT TYPE=\"hidden\" NAME=\"ppt_download\" VALUE=\"true\">"+
+	  "<INPUT TYPE=\"hidden\" NAME=\"id\" VALUE=\"103/1/SE1/203/F4\">"+
+	  "<INPUT TYPE=\"hidden\" NAME=\"redirect_url\" VALUE=\"http%3A%2F%2Fpediatrics.aappublications.org%2Fcgi%2Fcontent%2Ffull%2F103%2F1%2FSE1%2F203%2FF4\">"+
+	  "<INPUT TYPE=\"hidden\" NAME=\"site_name\" VALUE=\"pediatrics\">"+
+	  "<INPUT TYPE=\"hidden\" NAME=\"notes_text\" VALUE=\"\">"+
+	  "<INPUT TYPE=\"submit\" NAME=\"generate_file\" VALUE=\"Download Image to PowerPoint\">"+
+	  "</FORM>";
+		  System.out.println("source = " + source);
+		  assertEquals(SetUtil.set(url1), parseSingleSource(source));
+
+
+
+	  }
+	  
+/*TODO:disabled until this story arrive
+ * 	  //a submit form of type post should try the equivalent GET url
+	  public void testSubmitOnlyPostForm()
+	  throws IOException {
+		  String url1=
+			  "http://www.example.com/bioone/cgi/;F2&filename=jci116136F2.ppt";
+
+		  String source =
+			  "<html><head><title>Test</title></head><body>"+
+			  "<form action=\"http://www.example.com/bioone/cgi/;F2\" method=\"post\">" +
+				  "<input type=\"submit\" value=\"Blah\"><INPUT TYPE=\"hidden\" NAME=\"filename\" VALUE=\"jci116136F2.ppt\"></form>";
+
+		  		  assertEquals(SetUtil.set(url1), parseSingleSource(source));
+
+	  }
+*/
+	  
+	  //a submit form of type get should return a single url
+	  public void testSubmitOnlyForm()
+	  throws IOException {
+		  String url1=
+			  "http://www.example.com/bioone/cgi/;F2";
+
+		  String source =
+			  "<html><head><title>Test</title></head><body>"+
+			  "<form action=\"http://www.example.com/bioone/cgi/;F2\" method=\"get\">" +
+				  "<input type=\"submit\" value=\"Blah\"></form>";
+				  assertEquals(SetUtil.set(url1), parseSingleSource(source));
+
+	  }
+
+	  //no submit button => no URL returned
+	  public void testEmptyForm()
+	  throws IOException {
+
+		  String source =
+			  "<html><head><title>Test</title></head><body>"+
+			  "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">" +
+				  "</form>";
+				  assertEquals(SetUtil.set(), parseSingleSource(source));
+
+	  }
+
+	  
 	  private void checkBadTags(String[] badTags, String closeTag)
 	      throws IOException {
 	    String url = "http://www.example.com/web_link.html";
