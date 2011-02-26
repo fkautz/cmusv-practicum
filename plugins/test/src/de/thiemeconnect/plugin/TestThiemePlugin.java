@@ -108,7 +108,8 @@ public class TestThiemePlugin extends LockssTestCase {
 
 		/* order seems to matter in the list */
 		assertEquals(ListUtil.list(ConfigParamDescr.BASE_URL,
-				JOURNAL_NAME_DESC, ConfigParamDescr.YEAR,
-				SESSION_START_URL_DESC), plugin.getLocalAuConfigDescrs());
+				JOURNAL_NAME_DESC, 
+				ConfigParamDescr.YEAR
+				), plugin.getLocalAuConfigDescrs());
 	}
 }
