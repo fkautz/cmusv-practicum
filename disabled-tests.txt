@@ -1,0 +1,5 @@
+FuncArcExplorer.testSeveralVariants
+FuncWarcExplorer.testSeveralVariants
+
+delete FuncArcExplorer.testStub
+delete FuncWarcExplorer.testStub
