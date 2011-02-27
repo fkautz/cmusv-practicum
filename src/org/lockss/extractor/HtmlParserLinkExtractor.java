@@ -10,7 +10,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.Collections;
 
+import org.apache.commons.lang.StringUtils;
 import org.htmlparser.Parser;
 import org.htmlparser.Tag;
 import org.htmlparser.lexer.Lexer;
@@ -28,6 +30,7 @@ import org.htmlparser.util.NodeList;
 
 import org.lockss.daemon.PluginException;
 import org.lockss.plugin.ArchivalUnit;
+import org.lockss.plugin.UrlNormalizer;
 import org.lockss.util.ReaderInputStream;
 import org.lockss.util.StringUtil;
 import org.lockss.util.UrlUtil;
@@ -40,7 +43,7 @@ import org.lockss.util.UrlUtil;
  */
 public class HtmlParserLinkExtractor implements LinkExtractor {
 	private interface TagLinkExtractor {
-		public String extractLink();
+		public void extractLink(ArchivalUnit au,Callback cb); 
 	}
 	
 	private static class HrefTagLinkExtractor implements TagLinkExtractor {
@@ -50,10 +53,10 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		}
 		
 		@Override
-		public String extractLink() {
+		public void extractLink(ArchivalUnit au,Callback cb)  {
 			String target = this.tag_.getAttribute("href");
 			if (target != null ) { target = Translate.decode(target); }
-			return target;
+			cb.foundLink(target);
 		}
 	}
 		
@@ -64,8 +67,8 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		}
 		
 		@Override
-		public String extractLink() {
-			return this.tag_.getAttribute("src");
+		public void extractLink(ArchivalUnit au,Callback cb)  {
+			cb.foundLink( this.tag_.getAttribute("src") );
 		}
 	}
 	
@@ -76,8 +79,8 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		}
 		
 		@Override
-		public String extractLink() {
-			return this.tag_.getAttribute("code");
+		public void extractLink(ArchivalUnit au,Callback cb)  {
+			cb.foundLink( this.tag_.getAttribute("code") );
 		}
 	}
 	
@@ -88,8 +91,8 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		}
 		
 		@Override
-		public String extractLink() {
-			return this.tag_.getAttribute("codebase");
+		public void extractLink(ArchivalUnit au,Callback cb)  {
+			cb.foundLink(this.tag_.getAttribute("codebase"));
 		}
 	}
 	
@@ -100,16 +103,14 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		}
 		
 		@Override
-		public String extractLink() {
-			return this.tag_.getAttribute("background");
+		public void extractLink(ArchivalUnit au,Callback cb)  {
+			cb.foundLink(this.tag_.getAttribute("background"));
 		}
 	}
 	
-	/**
-	 * TODO: work in progress 
-	 * @author mlanken
-	 * @param tag
-	 * @return all possible links
+	/** 
+	 * @author mlanken,vibhor, fred
+	 * all possible links are emitted from extractLinks
 	 */
 	private static class FormTagLinkExtractor implements TagLinkExtractor {
 		private FormTag tag_;
@@ -117,15 +118,16 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			this.tag_ = (FormTag) tag;
 		}
 				
-		//TODO: change to use callback and allow multiple links to be extracted from a single tag
-		//TODO: check AU to see if this form should be ignored?
-		//Current behavior is to ignore the method parameter?
+		//Note: We think we do not need to check AU to see if this form should be ignored? because the crawl rules should cover it.  It is possible for a site to require special handling to exclude forms.
+		
 		//TODO: post as post			if (!"GET".equalsIgnoreCase(this.tag_.getFormMethod())) { return null;} //ignore POST forms for now
 		//TODO: do we need to support button submit tags? <BUTTON name="submit" value="submit" type="submit">
 		//	    Send<IMG src="/icons/wow.gif" alt="wow"></BUTTON>
 
 		@Override
-		public String extractLink() {
+		public void extractLink(ArchivalUnit au,Callback cb) {
+			Runtime me = java.lang.Runtime.getRuntime();
+			me.traceMethodCalls(true);
 			boolean debug = true;
 			if (debug) System.out.println("FTLE.extractLink: name - " + this.tag_.getFormName());
 			if (debug) System.out.println("FTLE.extractLink: action - " + this.tag_.getAttribute("action"));
@@ -135,7 +137,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 
 			Vector<String> links = new Vector<String>(); 
 			//TODO: check is action is specified, if not, return null
-			links.add(this.tag_.getAttribute("action") + "?"); //TODO: do we care if this is null? an empty string should be ok
+			links.add(this.tag_.getAttribute("action") + "?"); //TODO: do we care if this is null? an empty string should be a legal value
 
 			boolean submit_tag_found = false;
 			String submit_tag_value = null;
@@ -187,16 +189,16 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			}
 
 			//emit the link(s)
-			if (!submit_tag_found) return null;
+			if (!submit_tag_found) return;
 
 			for (String link :  links) { 
 				if (link.endsWith("&")) { link = link.substring(0, link.length()-1);}
 				if (link.endsWith("?")) { link = link.substring(0, link.length()-1);}//TODO: Is this correct?
 				if (debug) { System.out.println("returning link: " + link); }
-				return link;
+				cb.foundLink(link);
 			}
 
-			return null;
+			return;
 		}
 	}
 	
@@ -265,25 +267,98 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		
 		return null;
 	}
+
+	public class FormUrlNormalizer implements UrlNormalizer {
+//sort form parameters alphabetically
+		public String normalizeUrl(String url,
+		                             ArchivalUnit au)
+		      throws PluginException {
+			if (url==null) { return null;}
+			
+			Vector<String> keyValuePairs = new Vector<String>(); 
+			  //only process form urls that look like blah?key=value or blah?k=v&j=w
+			  if (StringUtils.indexOf(url,"?") == -1 ||StringUtils.indexOf(url,"?") == 0) { return url; } 
+			  String prefix = StringUtils.substringBefore(url, "?");
+			  String rest = StringUtils.substringAfter(url, "?");
+			  
+			  while (rest.length()>0 && rest!=null) {
+				  //disabled until needed.  This level of parsing is only needed if multiple inputs with the same names contain different values and their ordering needs to be preserved
+				  //if (StringUtils.indexOf(rest,"=") == -1 ) { return url; } //no key/values or malformed
+
+				  if (StringUtils.indexOf(rest,"&") != -1 ) {  
+					  keyValuePairs.add(StringUtils.substringBefore(rest,"&"));
+					  rest=StringUtils.substringAfter(rest, "&");
+				  } 
+				  else {
+					  //last value
+					  keyValuePairs.add(rest);
+					  rest="";
+				  }
+			  }
+			  Collections.sort(keyValuePairs);
+			  String newurl = prefix+"?";
+			  while (keyValuePairs.size() > 0) {
+				  newurl += keyValuePairs.get(0);
+				  if (keyValuePairs.size() > 1) { newurl += "&"; }
+				  keyValuePairs.remove(0);
+			  }
+				  
+			  return newurl;
+		  }
+
+  }
+
 	
 	private class LinkExtractorNodeVisitor extends NodeVisitor {
+		protected static final int MAX_LOCKSS_URL_LENGTH = 255;
 		private Callback cb_;
 		private ArchivalUnit au_;
 		private String srcUrl_;
 		private String encoding_;
 		private boolean malformedBaseUrl_;
 		private boolean inScriptMode_;
-
-//		private Callback emit_;
+		private boolean normalizeFormUrls_;
+		private Callback emit_;
+		private FormUrlNormalizer normalizer_;
 		
 		public LinkExtractorNodeVisitor(ArchivalUnit au, String srcUrl, Callback cb, String encoding) {
 			cb_ = cb;
-//			emit_ = emitUrl(cb);
 			au_ = au;
 			srcUrl_ = srcUrl;
 			encoding_ = encoding;
 			malformedBaseUrl_ = false;
 			inScriptMode_ = false;
+			normalizeFormUrls_ = false; //TODO:this should read the value from the AU
+			normalizer_ = new FormUrlNormalizer();
+			emit_ = new LinkExtractor.Callback() {
+			      public void foundLink(String url) {
+						if (url != null) {
+							try {
+								if (malformedBaseUrl_) {
+									if (!UrlUtil.isAbsoluteUrl(url)) {
+									  return;
+									}
+								} else {
+									url  = resolveUri(new URL(srcUrl_), url);
+								}
+								//check length
+								if (StringUtils.lastIndexOf(url, "/") != -1 ) {
+									int filename_length = url.length() - StringUtils.lastIndexOf(url, "/") - 1;
+									if (filename_length > MAX_LOCKSS_URL_LENGTH) {
+										return;
+									}
+								}
+								//sort form parameters if enabled
+								if (normalizeFormUrls_) { url = normalizer_.normalizeUrl(url, au_); }
+								//emit the processed url
+								cb_.foundLink(url);
+							} catch (MalformedURLException e) {
+							}
+							catch (PluginException e) {
+							}
+						}
+			      }};
+
 		}
 //TODO - right now ExtractLink can only return a single URL, but a tag can produce multiple links,  especially forms
 //		private Callback emitUrl(Callback cb);
@@ -342,20 +417,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			String link;
 			TagLinkExtractor tle = getTagLinkExtractor(tag);
 			if (tle != null) {
-				link = tle.extractLink();
-				if (link != null) {
-					try {
-						if (malformedBaseUrl_) {
-							if (!UrlUtil.isAbsoluteUrl(link)) {
-							  return;
-							}
-						    cb_.foundLink(link);
-						} else {
-						 cb_.foundLink(resolveUri(new URL(srcUrl_), link));
-						}
-					} catch (MalformedURLException e) {
-					}
-				}
+				tle.extractLink(au_, emit_);
 			}
 			
 		}
