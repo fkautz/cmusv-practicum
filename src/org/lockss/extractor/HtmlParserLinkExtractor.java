@@ -6,11 +6,14 @@ package org.lockss.extractor;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Vector;
 
+import org.apache.commons.io.IOUtils;
+import org.archive.crawler.util.IoUtils;
 import org.htmlparser.Parser;
 import org.htmlparser.Tag;
 import org.htmlparser.lexer.Lexer;
@@ -360,7 +363,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			
 		}
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see org.lockss.extractor.LinkExtractor#extractUrls(org.lockss.plugin.ArchivalUnit, java.io.InputStream, java.lang.String, java.lang.String, org.lockss.extractor.LinkExtractor.Callback)
 	 */
@@ -375,11 +378,22 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 	        throw new IllegalArgumentException("Called with null callback");
 	      }
 
+	    // Make a copy of input stream to be used with a fallback extractor (see comment before Gosling).
+		StringWriter w = new StringWriter();
+		IOUtils.copy(in, w);
+		// Restore the input stream consumed by StringWriter.
+		in = new ReaderInputStream(new StringReader(w.toString()), encoding);
+		// Make a copy.
+		InputStream inCopy = new ReaderInputStream(new StringReader(w.toString()), encoding);
+
 		Parser p = new Parser(new Lexer(new Page(in, encoding)));
 		try {
 			p.visitAllNodesWith(new LinkExtractorNodeVisitor(au, srcUrl, cb, encoding));
 		} catch (ParserException e) {
 		}
+		
+		// For legacy reasons, we want to ensure link extraction using a more permissive Gosling parser.
+		new GoslingHtmlLinkExtractor().extractUrls(au, inCopy, encoding, srcUrl, cb);
 	}
 
 }

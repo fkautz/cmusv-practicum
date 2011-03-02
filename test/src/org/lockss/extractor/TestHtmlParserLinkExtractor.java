@@ -102,22 +102,22 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	 			 "<object codebase=", "</object>");
 	  }
 
-//	  public void testParsesOptionPositive() throws IOException {
-//	    TypedEntryMap pMap = new TypedEntryMap();
-//	    pMap.setMapElement("html-parser-select-attrs", ListUtil.list("value"));
-//	    mau.setPropertyMap(pMap);
-//	    singleTagShouldParse("http://www.example.com/web_link.jpg",
-//	                         "<option  value=", "</option>", mau);
-//	    singleTagShouldParse("http://www.example.com/web_link.jpg",
-//	                         "<option a=b value=", "</option>", mau);
-//	  }
-//
-//	  public void testParsesOptionNegative() throws IOException {
-//	    singleTagShouldNotParse("http://www.example.com/web_link.jpg",
-//	                            "<option  value=", "</option>");
-//	    singleTagShouldNotParse("http://www.example.com/web_link.jpg",
-//	                            "<option a=b value=", "</option>");
-//	  }
+	  public void testParsesOptionPositive() throws IOException {
+	    TypedEntryMap pMap = new TypedEntryMap();
+	    pMap.setMapElement("html-parser-select-attrs", ListUtil.list("value"));
+	    mau.setPropertyMap(pMap);
+	    singleTagShouldParse("http://www.example.com/web_link.jpg",
+	                         "<option  value=", "</option>", mau);
+	    singleTagShouldParse("http://www.example.com/web_link.jpg",
+	                         "<option a=b value=", "</option>", mau);
+	  }
+
+	  public void testParsesOptionNegative() throws IOException {
+	    singleTagShouldNotParse("http://www.example.com/web_link.jpg",
+	                            "<option  value=", "</option>");
+	    singleTagShouldNotParse("http://www.example.com/web_link.jpg",
+	                            "<option a=b value=", "</option>");
+	  }
 
 	  public void testDoCrawlImageWithSrcInAltTag() throws IOException {
 	    singleTagShouldParse("http://www.example.com/web_link.jpg",
@@ -694,7 +694,7 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	      "<a href=http://www.example.com/link2.html" +
 	      "</script>"+
 	      "<a href=http://www.example.com/link3.html>link3</a>";
-	    assertEquals(SetUtil.set(), parseSingleSource(source));
+	    assertEquals(SetUtil.set(url), parseSingleSource(source));
 	  }
 
 
