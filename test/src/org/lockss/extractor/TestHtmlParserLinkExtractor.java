@@ -925,7 +925,6 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 			  "<html><head><title>Test</title></head><body>"+
 			  "<form action=\"http://www.example.com/bioone/cgi/;F2\" method=\"get\">" +
 				  "<input type=\"submit\" value=\"Blah\"><INPUT TYPE=\"hidden\" NAME=\"filename\" VALUE=\"jci116136F2.ppt\"></form>";
-		  System.out.println("source = " + source);
 		  assertEquals(SetUtil.set(url1), parseSingleSource(source));
 
 	  }
@@ -942,7 +941,6 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 				  "<input type=\"submit\" value=\"Blah\">" +
 				  "<INPUT TYPE=\"hidden\" NAME=\"filename\" VALUE=\"jci116136F2.ppt\">" +
 				  "<InpUt name=\"gender\" tYpe=\"hidden\" value=\"male\"> </form>";
-		  System.out.println("source = " + source);
 		  assertEquals(SetUtil.set(url1), parseSingleSource(source));
 
 	  }
@@ -968,12 +966,31 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	  "<INPUT TYPE=\"hidden\" NAME=\"notes_text\" VALUE=\"\">"+
 	  "<INPUT TYPE=\"submit\" NAME=\"generate_file\" VALUE=\"Download Image to PowerPoint\">"+
 	  "</FORM>";
-		  System.out.println("source = " + source);
 		  assertEquals(SetUtil.set(url1), parseSingleSource(source));
 
 
 
 	  }
+
+	  public void testTwoFormsOneHiddenAttribute()
+	  throws IOException {
+		  String url1=
+			  "http://www.example.com/bioone/cgi/;F2?filename=blah1.ppt";
+		  String url2=
+			  "http://www.example.com/biotwo/cgi/;F2?filename=blah2.ppt";
+
+		  
+		  String source =
+			  "<html><head><title>Test</title></head><body>"+
+			  "<form action=\"http://www.example.com/bioone/cgi/;F2\" method=\"get\">" +
+				  "<input type=\"submit\" value=\"Blah\"><INPUT TYPE=\"hidden\" NAME=\"filename\" VALUE=\"blah1.ppt\"></form>" +
+			  "<form action=\"http://www.example.com/biotwo/cgi/;F2\" method=\"get\">" +
+				  "<input type=\"submit\" value=\"Blah\"><INPUT TYPE=\"hidden\" NAME=\"filename\" VALUE=\"blah2.ppt\"></form>";
+
+		  assertEquals(SetUtil.set(url1,url2), parseSingleSource(source));
+
+	  }
+
 	  
 /*TODO:disabled until this story arrive
  * 	  //a submit form of type post should try the equivalent GET url
@@ -1006,6 +1023,39 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 
 	  }
 
+	  //url > 255 characters after the slash fail
+	  public void testTooLongFormUrl()
+	  throws IOException {
+		  String long_value = "";
+		  for (int i=0;i<(255-4-8-2+1);i++) {
+			  long_value+="a";
+		  }
+
+		  String source =
+			  "<html><head><title>Test</title></head><body>"+
+			  "<form action=\"http://www.example.com/bioone/cgi/;F2\" method=\"get\">" +
+				  "<input type=\"submit\" value=\"Blah\"><INPUT TYPE=\"hidden\" NAME=\"filename\" VALUE=\"j" + long_value +"\"></form>";
+		  assertEquals(SetUtil.set(), parseSingleSource(source));
+	  }
+
+	  //url = 255 characters after the slash passes
+	  public void testMaxLengthFormUrl()
+	  throws IOException {
+		  String long_value = "";
+		  for (int i=0;i<(255-4-8-2);i++) {
+			  long_value+="a";
+		  }
+		  String url1=
+			  "http://www.example.com/bioone/cgi/;F2?filename=j" + long_value;
+
+		  String source =
+			  "<html><head><title>Test</title></head><body>"+
+			  "<form action=\"http://www.example.com/bioone/cgi/;F2\" method=\"get\">" +
+				  "<input type=\"submit\" value=\"Blah\"><INPUT TYPE=\"hidden\" NAME=\"filename\" VALUE=\"j" + long_value +"\"></form>";
+		  assertEquals(SetUtil.set(url1), parseSingleSource(source));
+	  }
+
+	  
 	  //no submit button => no URL returned
 	  public void testEmptyForm()
 	  throws IOException {
