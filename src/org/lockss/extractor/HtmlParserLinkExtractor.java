@@ -173,7 +173,6 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			boolean submit_tag_found = false;
 //			String submit_tag_value = null; //TODO: remove if we decide not to use this
 			
-			String lastSelectName = "";
 			for (Node input : formComponents) {
 				TagNode i = (TagNode)input;
 				String type_of_input = i.getAttribute("type");
@@ -201,9 +200,8 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 					links = new_links;
 				}
 				else if (i instanceof SelectTag) {
-					lastSelectName = name;
-					if(lastSelectName != null)
-						selectNameToOptions.put(lastSelectName, new LinkedList<OptionTag>());
+					if(name != null)
+						selectNameToOptions.put(name, new LinkedList<OptionTag>());
 					//TODO:  add support for select lists
 					//<select>
 					//  <option value="volvo">Volvo</option>
