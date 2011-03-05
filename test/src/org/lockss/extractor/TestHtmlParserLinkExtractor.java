@@ -33,21 +33,33 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	    }
 	  }
 
-	  public void testThrowsOnNullSourceUrl() throws IOException {
-	    try {
-	      extractor.extractUrls(mau, new StringInputStream("Blah"), ENC,
-				    null, new MyLinkExtractorCallback());
-	      fail("Calling extractUrls with a null CachedUrl should have thrown");
-	    } catch (IllegalArgumentException iae) {
-	    }
-	  }
+	public void testThrowsOnNullSourceUrl() throws IOException {
+		StringInputStream sis = null;
+		try {
+			sis = new StringInputStream("Blah");
+			extractor.extractUrls(mau, sis, ENC,
+					null, new MyLinkExtractorCallback());
+			fail("Calling extractUrls with a null CachedUrl should have thrown");
+		} catch (IllegalArgumentException iae) {
+			
+		} finally {
+			if(sis != null)
+				sis.close();
+		}
+	}
 
 	  public void testThrowsOnNullCallback() throws IOException {
+		  StringInputStream sis = null;
 	    try {
-	      extractor.extractUrls(mau, new StringInputStream("blah"), ENC,
+	    	sis = new StringInputStream("blah");
+	      extractor.extractUrls(mau, sis, ENC,
 				  "http://www.example.com/", null);
 	      fail("Calling extractUrls with a null callback should have thrown");
 	    } catch (IllegalArgumentException iae) {
+	    	
+	    } finally {
+	    	if(sis != null)
+	    		sis.close();
 	    }
 	  }
 
@@ -140,7 +152,8 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	    extractor.extractUrls(mau, new StringInputStream(source), ENC,
 				  startUrl, cb);
 
-	    Set expected = SetUtil.set(url);
+	    Set<String> expected = new HashSet<String>();
+	    expected.add(url);
 	    assertEquals(expected, cb.getFoundUrls());
 	  }
 
@@ -342,10 +355,11 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 				"http://www.example.com", cb);
 
 	    if (shouldParse) {
-	      Set expected = SetUtil.set(url);
+	      Set<String> expected = new HashSet<String>();
+	      expected.add(url);
 	      assertEquals("Misparsed: "+content, expected, cb.getFoundUrls());
 	    } else {
-	      Set expected = SetUtil.set();
+	    	Set<String> expected = new HashSet<String>();
 	      assertEquals("Misparsed: "+content, expected, cb.getFoundUrls());
 	    }
 	  }
@@ -593,9 +607,11 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 
 	  //Relative URLs before a malforned base tag should be extracted, as well
 	  //as any absolute URLs after the malformed base tag
+	  // TODO This test looks like it should find url2, but it isn't in the result set
 	  public void testInterpretsMalformedBaseTag() throws IOException {
 	    String url1= "http://www.example.com/link1.html";
-	    String url2= "http://www.example2.com/link2.html";
+	    @SuppressWarnings("unused")
+		String url2= "http://www.example2.com/link2.html";
 	    String url3= "http://www.example2.com/link3.html";
 	    String url4= "http://www.example3.com/link3.html";
 
@@ -718,13 +734,14 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	    assertEquals(failMsg, SetUtil.set(url), parseSingleSource(src));
 	  }
 
-	  private String mkStr(char kar, int num) {
-	    StringBuffer sb = new StringBuffer(num);
-	    for (int ix=0; ix<num; ix++) {
-	      sb.append(kar);
-	    }
-	    return sb.toString();
-	  }
+	  // TODO Unused, figure out if we need this
+//	  private String mkStr(char kar, int num) {
+//	    StringBuffer sb = new StringBuffer(num);
+//	    for (int ix=0; ix<num; ix++) {
+//	      sb.append(kar);
+//	    }
+//	    return sb.toString();
+//	  }
 
 	  public void testSkipsScriptTagsIgnoreCase() throws IOException {
 	    doScriptSkipTest("<ScRipt>", "</sCripT>");
@@ -837,7 +854,6 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	  //tests that we are only parsing out the URL when the
 	  // http-equiv header is "refresh"
 	  public void testHttpEquiv2() throws IOException {
-	    String url1= "http://example.com/blah.html";
 	    String source =
 	      "<html><head>"+
 	      "<meta http-equiv=\"blah\" "
@@ -847,7 +863,7 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	    assertEquals(SetUtil.set(), parseSingleSource(source));
 	  }
 
-	  private Set parseSingleSource(String source) throws IOException {
+	  private Set<String> parseSingleSource(String source) throws IOException {
 	    MockArchivalUnit mau = new MockArchivalUnit();
 	    LinkExtractor ue = new RegexpCssLinkExtractor();
 	    mau.setLinkExtractor("text/css", ue);
@@ -877,7 +893,8 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	    extractor.extractUrls(mau, new StringInputStream(source), ENC,
 				  "http://www.example.com", cb);
 
-	    Set expected = SetUtil.set(url1, url2);
+	    Set<String> expected = new HashSet<String>();
+	    Collections.addAll(expected, url1, url2);
 	    assertEquals(expected, cb.getFoundUrls());
 	  }
 
@@ -903,7 +920,8 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	    extractor.extractUrls(mau, new StringInputStream(source), ENC,
 				  "http://www.example.com/blah/", cb);
 
-	    Set expected = SetUtil.set(url1, url2, url3, url4, url5);
+	    Set<String> expected = new HashSet<String>();
+	    Collections.addAll(expected, url1, url2, url3, url4, url5);
 	    assertEquals(expected, cb.getFoundUrls());
 	  }
 
@@ -1026,10 +1044,11 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	  //url > 255 characters after the slash fail
 	  public void testTooLongFormUrl()
 	  throws IOException {
-		  String long_value = "";
+		  StringBuffer long_value_builder = new StringBuffer();
 		  for (int i=0;i<(255-4-8-2+1);i++) {
-			  long_value+="a";
+			  long_value_builder.append("a");
 		  }
+		  String long_value = long_value_builder.toString();
 
 		  String source =
 			  "<html><head><title>Test</title></head><body>"+
@@ -1041,10 +1060,11 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	  //url = 255 characters after the slash passes
 	  public void testMaxLengthFormUrl()
 	  throws IOException {
-		  String long_value = "";
+		  StringBuffer long_value_builder = new StringBuffer();
 		  for (int i=0;i<(255-4-8-2);i++) {
-			  long_value+="a";
+			  long_value_builder.append("a");
 		  }
+		  String long_value = long_value_builder.toString();
 		  String url1=
 			  "http://www.example.com/bioone/cgi/;F2?filename=j" + long_value;
 
@@ -1068,17 +1088,77 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 
 	  }
 
-	public void testSingleOption() throws IOException {
+	public void testOneOption() throws IOException {
 		Set<String> expectedResults = new HashSet<String>();
-		expectedResults.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello");
+		expectedResults.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val");
 		String source = "<html><head><title>Test</title></head><body>"
 				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
-				+ "<select name=\"hello_name\"><option value=\"hello\" />hello</option></select>"
+				+ "<select name=\"hello_name\"><option value=\"hello_val\" />hello</option></select>"
+				+ "<input type=\"hidden\" name=\"odd\" value=\"world\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
+	}
+	
+	public void testTwoOptions() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=world_val");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<select name=\"hello_name\">"
+				+ "<option value=\"hello_val\" />hello</option>"
+				+ "<option value=\"world_val\" />world</option>" + "</select>"
 				+ "<input type=\"hidden\" name=\"odd\" value=\"world\" />"
 				+ "<input type=\"submit\"/>" + "</form></html>";
 		assertEquals(expectedResults, parseSingleSource(source));
 	}
 
+	public void testThreeOptions() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=world_val");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=goodbye_val");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<select name=\"hello_name\">"
+				+ "<option value=\"hello_val\" />hello</option>"
+				+ "<option value=\"world_val\" />world</option>"
+				+ "<option value=\"goodbye_val\" />goodbye</option>"
+				+ "</select>"
+				+ "<input type=\"hidden\" name=\"odd\" value=\"world\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
+	}
+	
+	public void testTwoSelect() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val&numbers_name=one_val");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=world_val&numbers_name=one_val");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val&numbers_name=two_val");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=world_val&numbers_name=two_val");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<select name=\"hello_name\">"
+				+ "<option value=\"hello_val\" />hello</option>"
+				+ "<option value=\"world_val\" />world</option>"
+				+ "</select>"
+				+ "<select name=\"numbers_name\">"
+				+ "<option value=\"one_val\" />one</option>"
+				+ "<option value=\"two_val\" />two</option>"
+				+ "</select>"
+				+ "<input type=\"hidden\" name=\"odd\" value=\"world\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
+	}
 	  
 	  private void checkBadTags(String[] badTags, String closeTag)
 	      throws IOException {
@@ -1099,19 +1179,19 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	    return sb.toString();
 	  }
 
-	  private class MyLinkExtractorCallback implements LinkExtractor.Callback {
-	    Set foundUrls = new HashSet();
+	  private static class MyLinkExtractorCallback implements LinkExtractor.Callback {
+	    Set<String> foundUrls = new HashSet<String>();
 
 	    public void foundLink(String url) {
 	      foundUrls.add(url);
 	    }
 
-	    public Set getFoundUrls() {
+	    public Set<String> getFoundUrls() {
 	      return foundUrls;
 	    }
 
 	    public void reset() {
-	      foundUrls = new HashSet();
+	      foundUrls = new HashSet<String>();
 	    }
 	  }
 
