@@ -9,27 +9,29 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Iterator;
-import java.util.Vector;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Vector;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
+import org.htmlparser.Node;
 import org.htmlparser.Parser;
 import org.htmlparser.Tag;
 import org.htmlparser.lexer.Lexer;
 import org.htmlparser.lexer.Page;
 import org.htmlparser.nodes.TagNode;
+import org.htmlparser.tags.FormTag;
+import org.htmlparser.tags.InputTag;
+import org.htmlparser.tags.OptionTag;
+import org.htmlparser.tags.SelectTag;
 import org.htmlparser.tags.StyleTag;
 import org.htmlparser.util.ParserException;
 import org.htmlparser.util.Translate;
 import org.htmlparser.visitors.NodeVisitor;
-import org.htmlparser.tags.FormTag;
-import org.htmlparser.tags.InputTag;
-import org.htmlparser.Node;
-import org.htmlparser.util.NodeList;
-
-
 import org.lockss.daemon.PluginException;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.plugin.UrlNormalizer;
@@ -128,6 +130,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 
 		@Override
 		public void extractLink(ArchivalUnit au,Callback cb) {
+			System.out.println("Extracting links!");
 			Runtime me = java.lang.Runtime.getRuntime();
 			me.traceMethodCalls(true);
 			boolean debug = true;
@@ -137,6 +140,28 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 
 			Node[] inputs = this.tag_.getFormInputs().toNodeArray();
 
+			// find all select
+			LinkedList<Node> formComponents = new LinkedList<Node>();
+			Collections.addAll(formComponents, inputs);
+			Queue<Node> nodeQueue = new LinkedList<Node>();
+			if(this.tag_.getChildCount() != 0) {
+				Collections.addAll(nodeQueue, this.tag_.getChildren().toNodeArray());
+			}
+			HashMap<String, List<String>> selectNameToOptions = new HashMap<String, List<String>>();
+			while(!nodeQueue.isEmpty()) {
+				Node node = nodeQueue.remove();
+				if(node instanceof SelectTag || node instanceof OptionTag) {
+					formComponents.add(node);
+				}
+				System.out.println(node.getText());
+				if(node.getChildren() != null && node.getChildren().size() > 0) {
+					Node[] currentChildren = node.getChildren().toNodeArray();
+					LinkedList<Node> currentChildrenList = new LinkedList<Node>();
+					Collections.addAll(currentChildrenList, currentChildren);
+					nodeQueue.addAll(currentChildrenList);
+				}
+			}
+
 			Vector<String> links = new Vector<String>(); 
 			//TODO: check is action is specified, if not, return null
 			links.add(this.tag_.getAttribute("action") + "?"); //TODO: do we care if this is null? an empty string should be a legal value
@@ -144,16 +169,18 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			boolean submit_tag_found = false;
 			String submit_tag_value = null;
 			
-			for (Node input : inputs) {
-				InputTag i = (InputTag) input;
+			String lastSelectName = "";
+			for (Node input : formComponents) {
+				TagNode i = (TagNode)input;
 				System.out.println(input.toString());				
 				String type_of_input = i.getAttribute("type");
 				String name = i.getAttribute("name");
 				String value = i.getAttribute("value");
-				if (type_of_input==null) {
+				System.out.println(i);
+				List<String> optionValues = new LinkedList<String>();
+				if(i instanceof InputTag && type_of_input == null) {
 					continue;
 				}
-
 				if ("submit".equalsIgnoreCase(type_of_input)) {
 					submit_tag_value = i.getAttribute("value"); //TODO: do we care if this is null?
 					//TODO: do we care if name is null?
@@ -161,7 +188,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 					continue;
 				}
 				//ignore this tag if name or value is null since we won't be able to create a url. TODO: is this correct?
-				if (name==null || value==null) {
+				if (i instanceof InputTag && (name==null || value==null)) {
 					continue;
 				}
 				if (debug) System.out.println("name:" + name + ", type:" + type_of_input + ", value:" + value);
@@ -172,7 +199,11 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 					}
 					links = new_links;
 				}
-				else if ("select".equalsIgnoreCase(type_of_input)) {
+				else if (i instanceof SelectTag) {
+					System.out.println("Entered select");
+					Vector<String> new_links = new Vector<String>();
+					lastSelectName = name;
+					selectNameToOptions.put(lastSelectName, new LinkedList<String>());
 					//TODO:  add support for select lists
 					//<select>
 					//  <option value="volvo">Volvo</option>
@@ -181,7 +212,9 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 					//  <option value="audi">Audi</option>
 					//</select>
 					
-				 continue;
+				}
+				else if (i instanceof OptionTag) {
+					selectNameToOptions.get(lastSelectName).add(value);
 				}
 				else {
 					//ignore null, reset, other tags not covered above
@@ -192,6 +225,18 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 
 			//emit the link(s)
 			if (!submit_tag_found) return;
+			
+			for(String key : selectNameToOptions.keySet()) {
+				Vector<String> new_links = new Vector<String>();
+				System.out.println("Key: " + key);
+				List<String> options = selectNameToOptions.get(key);
+				for(String option : options) {
+					for(String link : links) {
+						new_links.add(link + key + "=" + option + "&");	
+					}
+				}
+				links = new_links;
+			}
 
 			for (String link :  links) { 
 				if (link.endsWith("&")) { link = link.substring(0, link.length()-1);}
@@ -451,6 +496,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		try {
 			p.visitAllNodesWith(new LinkExtractorNodeVisitor(au, srcUrl, cb, encoding));
 		} catch (ParserException e) {
+			System.out.println(e);
 		}
 		
 		// For legacy reasons, we want to ensure link extraction using a more permissive Gosling parser.

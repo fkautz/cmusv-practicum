@@ -1068,6 +1068,17 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 
 	  }
 
+	public void testSingleOption() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<select name=\"hello_name\"><option value=\"hello\" />hello</option></select>"
+				+ "<input type=\"hidden\" name=\"odd\" value=\"world\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
+	}
+
 	  
 	  private void checkBadTags(String[] badTags, String closeTag)
 	      throws IOException {
