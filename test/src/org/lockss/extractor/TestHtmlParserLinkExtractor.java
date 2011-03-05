@@ -1087,10 +1087,23 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 				  assertEquals(SetUtil.set(), parseSingleSource(source));
 
 	  }
+	  
+	public void testEmptySelect() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<select name=\"hello_name\"></select>"
+				+ "<input type=\"hidden\" name=\"odd\" value=\"world\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
+	}
 
 	public void testOneOption() throws IOException {
 		Set<String> expectedResults = new HashSet<String>();
-		expectedResults.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val");
 		String source = "<html><head><title>Test</title></head><body>"
 				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
 				+ "<select name=\"hello_name\"><option value=\"hello_val\" />hello</option></select>"
@@ -1098,7 +1111,7 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 				+ "<input type=\"submit\"/>" + "</form></html>";
 		assertEquals(expectedResults, parseSingleSource(source));
 	}
-	
+
 	public void testTwoOptions() throws IOException {
 		Set<String> expectedResults = new HashSet<String>();
 		expectedResults
@@ -1134,7 +1147,7 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 				+ "<input type=\"submit\"/>" + "</form></html>";
 		assertEquals(expectedResults, parseSingleSource(source));
 	}
-	
+
 	public void testTwoSelect() throws IOException {
 		Set<String> expectedResults = new HashSet<String>();
 		expectedResults
@@ -1149,12 +1162,47 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
 				+ "<select name=\"hello_name\">"
 				+ "<option value=\"hello_val\" />hello</option>"
-				+ "<option value=\"world_val\" />world</option>"
-				+ "</select>"
+				+ "<option value=\"world_val\" />world</option>" + "</select>"
 				+ "<select name=\"numbers_name\">"
 				+ "<option value=\"one_val\" />one</option>"
-				+ "<option value=\"two_val\" />two</option>"
-				+ "</select>"
+				+ "<option value=\"two_val\" />two</option>" + "</select>"
+				+ "<input type=\"hidden\" name=\"odd\" value=\"world\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
+	}
+	
+	public void testTwoSelectWithOneSelectUnnamed() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=world_val");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<select name=\"hello_name\">"
+				+ "<option value=\"hello_val\" />hello</option>"
+				+ "<option value=\"world_val\" />world</option>" + "</select>"
+				+ "<select>"
+				+ "<option value=\"one_val\" />one</option>"
+				+ "<option value=\"two_val\" />two</option>" + "</select>"
+				+ "<input type=\"hidden\" name=\"odd\" value=\"world\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
+	}
+	public void testTwoSelectWithOneSelectUnnamedReversedOrder() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=world_val");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<select>"
+				+ "<option value=\"one_val\" />one</option>"
+				+ "<option value=\"two_val\" />two</option>" + "</select>"
+				+ "<select name=\"hello_name\">"
+				+ "<option value=\"hello_val\" />hello</option>"
+				+ "<option value=\"world_val\" />world</option>" + "</select>"
 				+ "<input type=\"hidden\" name=\"odd\" value=\"world\" />"
 				+ "<input type=\"submit\"/>" + "</form></html>";
 		assertEquals(expectedResults, parseSingleSource(source));
