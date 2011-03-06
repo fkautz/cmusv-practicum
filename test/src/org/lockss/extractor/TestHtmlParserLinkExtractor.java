@@ -1103,7 +1103,7 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	public void testOneOption() throws IOException {
 		Set<String> expectedResults = new HashSet<String>();
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val");
+				.add("http://www.example.com/bioone/cgi/?hello_name=hello_val&odd=world");
 		String source = "<html><head><title>Test</title></head><body>"
 				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
 				+ "<select name=\"hello_name\"><option value=\"hello_val\" />hello</option></select>"
@@ -1115,9 +1115,9 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	public void testTwoOptions() throws IOException {
 		Set<String> expectedResults = new HashSet<String>();
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val");
+				.add("http://www.example.com/bioone/cgi/?hello_name=hello_val&odd=world");
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=world_val");
+				.add("http://www.example.com/bioone/cgi/?hello_name=world_val&odd=world");
 		String source = "<html><head><title>Test</title></head><body>"
 				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
 				+ "<select name=\"hello_name\">"
@@ -1131,11 +1131,11 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	public void testThreeOptions() throws IOException {
 		Set<String> expectedResults = new HashSet<String>();
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val");
+				.add("http://www.example.com/bioone/cgi/?hello_name=hello_val&odd=world");
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=world_val");
+				.add("http://www.example.com/bioone/cgi/?hello_name=world_val&odd=world");
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=goodbye_val");
+				.add("http://www.example.com/bioone/cgi/?hello_name=goodbye_val&odd=world");
 		String source = "<html><head><title>Test</title></head><body>"
 				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
 				+ "<select name=\"hello_name\">"
@@ -1151,13 +1151,13 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	public void testTwoSelect() throws IOException {
 		Set<String> expectedResults = new HashSet<String>();
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val&numbers_name=one_val");
+				.add("http://www.example.com/bioone/cgi/?hello_name=hello_val&numbers_name=one_val&odd=world");
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=world_val&numbers_name=one_val");
+				.add("http://www.example.com/bioone/cgi/?hello_name=world_val&numbers_name=one_val&odd=world");
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val&numbers_name=two_val");
+				.add("http://www.example.com/bioone/cgi/?hello_name=hello_val&numbers_name=two_val&odd=world");
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=world_val&numbers_name=two_val");
+				.add("http://www.example.com/bioone/cgi/?hello_name=world_val&numbers_name=two_val&odd=world");
 		String source = "<html><head><title>Test</title></head><body>"
 				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
 				+ "<select name=\"hello_name\">"
@@ -1174,9 +1174,9 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	public void testTwoSelectWithOneSelectUnnamed() throws IOException {
 		Set<String> expectedResults = new HashSet<String>();
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val");
+				.add("http://www.example.com/bioone/cgi/?hello_name=hello_val&odd=world");
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=world_val");
+				.add("http://www.example.com/bioone/cgi/?hello_name=world_val&odd=world");
 		String source = "<html><head><title>Test</title></head><body>"
 				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
 				+ "<select name=\"hello_name\">"
@@ -1192,9 +1192,9 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 	public void testTwoSelectWithOneSelectUnnamedReversedOrder() throws IOException {
 		Set<String> expectedResults = new HashSet<String>();
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=hello_val");
+				.add("http://www.example.com/bioone/cgi/?hello_name=hello_val&odd=world");
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?odd=world&hello_name=world_val");
+				.add("http://www.example.com/bioone/cgi/?hello_name=world_val&odd=world");
 		String source = "<html><head><title>Test</title></head><body>"
 				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
 				+ "<select>"

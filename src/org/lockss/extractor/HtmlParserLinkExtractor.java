@@ -10,22 +10,16 @@ import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
 import java.util.Vector;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.htmlparser.Node;
 import org.htmlparser.Parser;
 import org.htmlparser.Tag;
 import org.htmlparser.lexer.Lexer;
 import org.htmlparser.lexer.Page;
-import org.htmlparser.nodes.TagNode;
 import org.htmlparser.tags.FormTag;
 import org.htmlparser.tags.InputTag;
 import org.htmlparser.tags.OptionTag;
@@ -117,154 +111,6 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		}
 	}
 	
-	/** 
-	 * @author mlanken,vibhor, fred
-	 * all possible links are emitted from extractLinks
-	 */
-	private static class FormTagLinkExtractor implements TagLinkExtractor {
-		private FormTag tag_;
-		public FormTagLinkExtractor(Tag tag) {
-			this.tag_ = (FormTag) tag;
-		}
-				
-		//Note: We think we do not need to check AU to see if this form should be ignored? because the crawl rules should cover it.  It is possible for a site to require special handling to exclude forms.
-		
-		//TODO: post as post			if (!"GET".equalsIgnoreCase(this.tag_.getFormMethod())) { return null;} //ignore POST forms for now
-		//TODO: do we need to support button submit tags? <BUTTON name="submit" value="submit" type="submit">
-		//	    Send<IMG src="/icons/wow.gif" alt="wow"></BUTTON>
-
-		@Override
-		public void extractLink(ArchivalUnit au,Callback cb) {
-			Runtime me = java.lang.Runtime.getRuntime();
-			me.traceMethodCalls(true);
-			boolean debug = true;
-			if (debug) System.out.println("FTLE.extractLink: name - " + this.tag_.getFormName());
-			if (debug) System.out.println("FTLE.extractLink: action - " + this.tag_.getAttribute("action"));
-			if (debug) System.out.println("FTLE.extractLink: method - " + this.tag_.getFormMethod());
-
-			Node[] inputs = this.tag_.getFormInputs().toNodeArray();
-
-			// find all select
-			LinkedList<Node> formComponents = new LinkedList<Node>();
-			Collections.addAll(formComponents, inputs);
-			Queue<Node> nodeQueue = new LinkedList<Node>();
-			if(this.tag_.getChildCount() != 0) {
-				Collections.addAll(nodeQueue, this.tag_.getChildren().toNodeArray());
-			}
-			HashMap<String,List<OptionTag>> selectNameToOptions = new HashMap<String, List<OptionTag>>();
-			HashMap<OptionTag,SelectTag> optionToSelectMap = new HashMap<OptionTag, SelectTag>();
-			while(!nodeQueue.isEmpty()) {
-				Node node = nodeQueue.remove();
-				if(node instanceof SelectTag || node instanceof OptionTag) {
-					formComponents.add(node);
-				}
-				if(node.getChildren() != null && node.getChildren().size() > 0) {
-					Node[] currentChildren = node.getChildren().toNodeArray();
-					LinkedList<Node> currentChildrenList = new LinkedList<Node>();
-					Collections.addAll(currentChildrenList, currentChildren);
-					nodeQueue.addAll(currentChildrenList);
-				}
-			}
-
-			Vector<String> links = new Vector<String>(); 
-			//TODO: check is action is specified, if not, return null
-			links.add(this.tag_.getAttribute("action") + "?"); //TODO: do we care if this is null? an empty string should be a legal value
-
-			boolean submit_tag_found = false;
-//			String submit_tag_value = null; //TODO: remove if we decide not to use this
-			
-			for (Node input : formComponents) {
-				TagNode i = (TagNode)input;
-				String type_of_input = i.getAttribute("type");
-				String name = i.getAttribute("name");
-				String value = i.getAttribute("value");
-				if(i instanceof InputTag && type_of_input == null) {
-					continue;
-				}
-				if ("submit".equalsIgnoreCase(type_of_input)) {
-//					submit_tag_value = i.getAttribute("value"); //TODO: do we care if this is null?
-					//TODO: do we care if name is null?
-					submit_tag_found = true;
-					continue;
-				}
-				//ignore this tag if name or value is null since we won't be able to create a url. TODO: is this correct?
-				if (i instanceof InputTag && (name==null || value==null)) {
-					continue;
-				}
-				if (debug) System.out.println("name:" + name + ", type:" + type_of_input + ", value:" + value);
-				if ("hidden".equalsIgnoreCase(type_of_input)) {
-					Vector<String> new_links = new Vector<String>();						
-					for (String link : links) {
-						new_links.add(link + name + "=" + value + "&");						
-					}
-					links = new_links;
-				}
-				else if (i instanceof SelectTag) {
-					if(name != null)
-						selectNameToOptions.put(name, new LinkedList<OptionTag>());
-					//TODO:  add support for select lists
-					//<select>
-					//  <option value="volvo">Volvo</option>
-					//  <option value="saab">Saab</option>
-					//  <option value="mercedes">Mercedes</option>
-					//  <option value="audi">Audi</option>
-					//</select>
-					
-				}
-				else if (i instanceof OptionTag) {
-					// find parent
-					Node iter = i;
-					while(iter != null) {
-						if(iter instanceof SelectTag) {
-							SelectTag currentSelect = (SelectTag)iter;
-							String select_name = currentSelect.getAttribute("name");
-							if(select_name != null) {
-								selectNameToOptions.get(select_name).add((OptionTag)i);
-								optionToSelectMap.put((OptionTag)i, currentSelect);
-							}
-							break;
-						}
-						iter = iter.getParent();
-					}
-				}
-				else {
-					//ignore null, reset, other tags not covered above
-					continue;
-				}
-			
-			}
-
-			//emit the link(s)
-			if (!submit_tag_found) return;
-			
-			for(String key : selectNameToOptions.keySet()) {
-				Vector<String> new_links = new Vector<String>();
-				List<OptionTag> options = selectNameToOptions.get(key);
-				for(OptionTag option : options) {
-					SelectTag select = optionToSelectMap.get(option);
-					String name = select.getAttribute("name");
-					String value = option.getAttribute("value");
-					if(name != null && value !=  null) {
-						for(String link : links) {
-							new_links.add(link + name + "=" + value + "&");	
-						}
-					}
-				}
-				if(!new_links.isEmpty())
-					links = new_links;
-			}
-
-			for (String link :  links) { 
-				if (link.endsWith("&")) { link = link.substring(0, link.length()-1);}
-				if (link.endsWith("?")) { link = link.substring(0, link.length()-1);}//TODO: Is this correct?
-				if (debug) { System.out.println("returning link: " + link); }
-				cb.foundLink(link);
-			}
-
-			return;
-		}
-	}
-	
 	private static TagLinkExtractor getTagLinkExtractor(Tag tag) {
 		String tagName = tag.getTagName();
 		if ("a".equalsIgnoreCase(tagName)) {
@@ -322,13 +168,140 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		if ("th".equalsIgnoreCase(tagName)) {
 			return new BackgroundTagLinkExtractor(tag);
 		}
-
-		if ("form".equalsIgnoreCase(tagName)) {
-			return new FormTagLinkExtractor(tag);
-		}
-
 		
 		return null;
+	}
+	
+	public interface FormInputWrapper {
+		public String[] getUrlComponents();
+	}
+
+	/** 
+	 * @author mlanken,vibhor, fred
+	 * all possible links are emitted from emitLinks
+	 */
+	public class FormProcessor {
+		private class HiddenFormInput implements FormInputWrapper {
+			private Tag tag_;
+			public HiddenFormInput(Tag tag) {
+				tag_ = tag;
+			}
+			
+			@Override
+			public String[] getUrlComponents() {
+				String[] l = new String[1];
+				String name = tag_.getAttribute("name");
+				if (name == null || name.isEmpty()) {
+					return null;
+				}
+				l[0] = name + '=' + tag_.getAttribute("value");
+				return l;
+			}
+		}
+		
+		private class RadioFormInput implements FormInputWrapper {			
+			public RadioFormInput() {
+			}
+			
+			public void add(Tag tag) {
+			}
+
+			@Override
+			public String[] getUrlComponents() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		}
+		
+		private class SingleSelectFormInput implements FormInputWrapper {
+			private SelectTag selectTag_;
+			public SingleSelectFormInput(SelectTag tag) {
+				selectTag_ = tag;
+			}
+
+			@Override
+			public String[] getUrlComponents() {
+				String l[] = new String[selectTag_.getOptionTags().length];
+				String name = selectTag_.getAttribute("name");
+				if (name == null || name.isEmpty()) {
+					return null;
+				}
+				OptionTag[] options = selectTag_.getOptionTags();
+				int i = 0;
+				for (OptionTag option : options) {
+					l[i++] = name + '=' + option.getAttribute("value");
+				}
+				return l;
+			}
+		}
+		private FormTag formTag_;
+		Vector<FormInputWrapper> orderedTags_;
+		private boolean isSubmitSeen_;
+		
+		public FormProcessor(FormTag formTag) {
+			formTag_ = formTag;
+			orderedTags_ = new Vector<HtmlParserLinkExtractor.FormInputWrapper>();
+			isSubmitSeen_ = false;
+		}
+		
+		public void submitSeen() {
+			isSubmitSeen_ = true;
+		}
+		
+		public void addTag(Tag tag) {
+			if ("submit".equalsIgnoreCase(tag.getAttribute("type"))) {
+				submitSeen();
+				return;
+			}
+			String name = tag.getAttribute("name");
+			if (name == null || name.isEmpty()) {
+				logger.warn("Form input tag with no name found. Skipping");
+				return;
+			}
+			
+			if (tag instanceof SelectTag) {
+				orderedTags_.add(new SingleSelectFormInput((SelectTag) tag));
+			} else if (tag instanceof InputTag) {
+				String type = tag.getAttribute("type");
+				if (type.equalsIgnoreCase("hidden")) {
+					orderedTags_.add(new HiddenFormInput(tag));
+				} else if (type.equalsIgnoreCase("radio")) {
+				}
+			}
+		}
+				
+		public void emitLinks(ArchivalUnit au, Callback cb) {
+			// Do not extract links if submit button is not seen in the form.
+			if (!isSubmitSeen_) return;
+			
+			// Get the absolute base url from action attribute.
+			String baseUrl = formTag_.extractFormLocn();
+			boolean isFirstArgSeen = false;
+			
+			Vector<String> links = new Vector<String>();
+			Vector<String> newLinks = null;
+			links.add(baseUrl);
+			for (FormInputWrapper tag : orderedTags_) {
+				String[] urlComponents = tag.getUrlComponents();
+				if (urlComponents == null) continue;
+				if (urlComponents.length <= 0) continue;
+				newLinks = new Vector<String>();
+				for (String url : links) {
+					for (String component : urlComponents) {
+						newLinks.add(url + (isFirstArgSeen ? '&' : '?') +
+					      	  component);
+					}
+				}
+				if (newLinks != null && newLinks.size() >= links.size()) {
+					links = newLinks;
+				}
+				isFirstArgSeen = true;
+			}
+			
+			for (String link : links) {
+				cb.foundLink(link);
+			}
+		}
 	}
 
 	public class FormUrlNormalizer implements UrlNormalizer {
@@ -380,9 +353,11 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		private String encoding_;
 		private boolean malformedBaseUrl_;
 		private boolean inScriptMode_;
+		private boolean inFormMode_;
 		private boolean normalizeFormUrls_;
 		private Callback emit_;
 		private FormUrlNormalizer normalizer_;
+		private FormProcessor formProcessor_;
 		
 		public LinkExtractorNodeVisitor(ArchivalUnit au, String srcUrl, Callback cb, String encoding) {
 			cb_ = cb;
@@ -393,6 +368,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			inScriptMode_ = false;
 			normalizeFormUrls_ = false; //TODO:this should read the value from the AU
 			normalizer_ = new FormUrlNormalizer();
+			formProcessor_ = null;
 			emit_ = new LinkExtractor.Callback() {
 			      public void foundLink(String url) {
 						if (url != null) {
@@ -448,10 +424,45 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			if ("script".equalsIgnoreCase(tag.getTagName())
 					&& tag.getStartPosition() != tag.getEndPosition()) {
 				inScriptMode_ = false;
-			}			
+			}
+
+			if ("form".equalsIgnoreCase(tag.getTagName())
+					&& tag.getStartPosition() != tag.getEndPosition()) {
+				inFormMode_ = false;
+				if (formProcessor_ == null) {
+					logger.error("Null FormProcessor while trying to emit links.");
+				    // Possibly throw exception to abort completely from this link extractor.
+					return;
+				}
+				formProcessor_.emitLinks(au_, emit_);
+				// Cleanup form processor
+				formProcessor_ = null;
+			}
 		}
 		
 		public void visitTag(Tag tag) {
+			if (tag instanceof FormTag) {
+				if (inFormMode_) {
+					logger.error("Invalid HTML: Form inside a form");
+					return;
+				}
+				inFormMode_ = true;
+				if (formProcessor_ != null) {
+				    // Possibly throw exception to abort completely from this link extractor.					
+					logger.error("Non-null FormProcessor found. " +
+							     "It is likely that a previous form processing was not finished. " +
+							     "Report the error to dev team (vibhor)");
+				}
+				// Initialize form processor
+				formProcessor_ = new FormProcessor((FormTag) tag);
+			}
+			
+			if (inFormMode_ &&
+					(tag instanceof InputTag || tag instanceof SelectTag)) {
+				formProcessor_.addTag(tag);
+				return;
+			}
+			
 			if (inScriptMode_) return;
 			if ("style".equalsIgnoreCase(tag.getTagName())) {
 				StyleTag styleTag = (StyleTag)tag;
@@ -476,7 +487,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			}
 			
 			this.inScriptMode_ = "script".equalsIgnoreCase(tag.getTagName());
-			
+						
 			TagLinkExtractor tle = getTagLinkExtractor(tag);
 			if (tle != null) {
 				tle.extractLink(au_, emit_);
