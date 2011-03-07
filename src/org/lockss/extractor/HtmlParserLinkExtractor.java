@@ -252,6 +252,28 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			}
 		}
 		
+		private class CheckboxFormInput implements FormInputWrapper {
+			// Assumed to be all input type=radio of same name.
+			private Tag tag_;
+			
+			public CheckboxFormInput(Tag tag) {
+				tag_ = tag;
+			}
+			
+			@Override
+			public String[] getUrlComponents() {
+				String name = tag_.getAttribute("name");
+				if (name == null || name.isEmpty()) return null;
+				// Only 2 possible values on/off (value sent or empty)
+				String[] l = new String[2];
+				String value = tag_.getAttribute("value");
+				if (value == null || value.isEmpty()) value = "on";
+				l[0] = name + '=' + value;
+				l[1] = name + '=';
+				return l;
+			}
+		}
+		
 		private class SingleSelectFormInput implements FormInputWrapper {
 			private SelectTag selectTag_;
 			public SingleSelectFormInput(SelectTag tag) {
@@ -275,13 +297,13 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		}
 		private FormTag formTag_;
 		Vector<FormInputWrapper> orderedTags_;
-		Map<String, RadioFormInput> nameToFormInputMap_;
+		Map<String, RadioFormInput> nameToRadioInput_;
 		private boolean isSubmitSeen_;
 		
 		public FormProcessor(FormTag formTag) {
 			formTag_ = formTag;
 			orderedTags_ = new Vector<HtmlParserLinkExtractor.FormInputWrapper>();
-			nameToFormInputMap_ = new HashMap<String, HtmlParserLinkExtractor.FormProcessor.RadioFormInput>();
+			nameToRadioInput_ = new HashMap<String, HtmlParserLinkExtractor.FormProcessor.RadioFormInput>();
 			isSubmitSeen_ = false;
 		}
 		
@@ -306,14 +328,16 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 				String type = tag.getAttribute("type");
 				if (type.equalsIgnoreCase("hidden")) {
 					orderedTags_.add(new HiddenFormInput(tag));
+				} else if (type.equalsIgnoreCase("checkbox")) {
+					orderedTags_.add(new CheckboxFormInput(tag));
 				} else if (type.equalsIgnoreCase("radio")) {
-					RadioFormInput in = nameToFormInputMap_.get(name);
+					RadioFormInput in = nameToRadioInput_.get(name);
 					if (in != null) {
 						in.add(tag);
 						return;
 					}
 					in = new RadioFormInput();
-					nameToFormInputMap_.put(name, in);
+					nameToRadioInput_.put(name, in);
 					in.add(tag);
 					orderedTags_.add(in);
 				}

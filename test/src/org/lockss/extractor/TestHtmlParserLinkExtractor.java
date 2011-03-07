@@ -1122,10 +1122,14 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 
 	public void testTwoRadioMultipleValues() throws IOException {
 		Set<String> expectedResults = new HashSet<String>();
-		expectedResults.add("http://www.example.com/bioone/cgi/?arg1=val11&arg2=val21");
-		expectedResults.add("http://www.example.com/bioone/cgi/?arg1=val11&arg2=val22");
-		expectedResults.add("http://www.example.com/bioone/cgi/?arg1=val12&arg2=val21");
-		expectedResults.add("http://www.example.com/bioone/cgi/?arg1=val12&arg2=val22");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?arg1=val11&arg2=val21");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?arg1=val11&arg2=val22");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?arg1=val12&arg2=val21");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?arg1=val12&arg2=val22");
 		String source = "<html><head><title>Test</title></head><body>"
 				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
 				+ "<input type=\"radio\" name=\"arg1\" value=\"val11\" />"
@@ -1141,7 +1145,49 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
 				+ "<input type=\"radio\" value=\"val\" />"
 				+ "<input type=\"submit\"/>" + "</form></html>";
-		assertEquals(SetUtil.set("http://www.example.com/bioone/cgi/"), parseSingleSource(source));
+		assertEquals(SetUtil.set("http://www.example.com/bioone/cgi/"),
+				parseSingleSource(source));
+	}
+
+	public void testOneCheckboxOneValue() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults.add("http://www.example.com/bioone/cgi/?arg=val");
+		expectedResults.add("http://www.example.com/bioone/cgi/?arg=");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<input type=\"checkbox\" name=\"arg\" value=\"val\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
+	}
+
+	public void testOneCheckboxMultipleValues() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?arg=val1&arg=val2");
+		expectedResults.add("http://www.example.com/bioone/cgi/?arg=&arg=val2");
+		expectedResults.add("http://www.example.com/bioone/cgi/?arg=val1&arg=");
+		expectedResults.add("http://www.example.com/bioone/cgi/?arg=&arg=");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<input type=\"checkbox\" name=\"arg\" value=\"val1\" />"
+				+ "<input type=\"checkbox\" name=\"arg\" value=\"val2\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
+	}
+
+	public void testMultipleCheckboxesWithDefaultValues() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?arg1=on&arg2=on");
+		expectedResults.add("http://www.example.com/bioone/cgi/?arg1=&arg2=on");
+		expectedResults.add("http://www.example.com/bioone/cgi/?arg1=on&arg2=");
+		expectedResults.add("http://www.example.com/bioone/cgi/?arg1=&arg2=");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<input type=\"checkbox\" name=\"arg1\" />"
+				+ "<input type=\"checkbox\" name=\"arg2\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
 	}
 
 	// Add any new input types supported to this test case as well.
@@ -1149,13 +1195,21 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 		// 2 select-options and 2 radio values means 4 possible combinations
 		Set<String> expectedResults = new HashSet<String>();
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?hello_name=hello_val&odd=world&radio=rval1");
+				.add("http://www.example.com/bioone/cgi/?hello_name=hello_val&odd=world&radio=rval1&checkbox=on");
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?hello_name=world_val&odd=world&radio=rval1");
+				.add("http://www.example.com/bioone/cgi/?hello_name=world_val&odd=world&radio=rval1&checkbox=on");
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?hello_name=hello_val&odd=world&radio=rval2");
+				.add("http://www.example.com/bioone/cgi/?hello_name=hello_val&odd=world&radio=rval2&checkbox=on");
 		expectedResults
-				.add("http://www.example.com/bioone/cgi/?hello_name=world_val&odd=world&radio=rval2");
+				.add("http://www.example.com/bioone/cgi/?hello_name=world_val&odd=world&radio=rval2&checkbox=on");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?hello_name=hello_val&odd=world&radio=rval1&checkbox=");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?hello_name=world_val&odd=world&radio=rval1&checkbox=");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?hello_name=hello_val&odd=world&radio=rval2&checkbox=");
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?hello_name=world_val&odd=world&radio=rval2&checkbox=");
 		String source = "<html><head><title>Test</title></head><body>"
 				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
 				+ "<select name=\"hello_name\">"
@@ -1164,10 +1218,11 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 				+ "<input type=\"hidden\" name=\"odd\" value=\"world\" />"
 				+ "<input type=\"radio\" name=\"radio\" value=\"rval1\" />"
 				+ "<input type=\"radio\" name=\"radio\" value=\"rval2\" />"
+				+ "<input type=\"checkbox\" name=\"checkbox\" />"
 				+ "<input type=\"submit\"/>" + "</form></html>";
 		assertEquals(expectedResults, parseSingleSource(source));
 	}
-	
+
 	private void checkBadTags(String[] badTags, String closeTag)
 			throws IOException {
 		String url = "http://www.example.com/web_link.html";
