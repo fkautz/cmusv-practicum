@@ -10,6 +10,8 @@ import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 import org.apache.commons.io.IOUtils;
@@ -199,17 +201,54 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			}
 		}
 		
-		private class RadioFormInput implements FormInputWrapper {			
+		private class RadioFormInput implements FormInputWrapper {
+			// Assumed to be all input type=radio of same name.
+			Vector<InputTag> inputs_;
+			String name_;
+			
 			public RadioFormInput() {
+				inputs_ = new Vector<InputTag>();
+				name_ = null;
 			}
 			
 			public void add(Tag tag) {
+				String tagName = tag.getAttribute("name");
+				if (name_ == null) {
+					name_ = tagName;
+					if (name_.isEmpty()) {
+						logger.warn("Radio button with no name. Aborting");
+						// TODO: Throw exception
+						return;
+					}
+				}
+				if (!tagName.equalsIgnoreCase(name_)) {
+					logger.error("Radio button for different group. Aborting");
+					// TODO: Throw exception
+					return;
+				}
+				
+				if (!(tag instanceof InputTag) || !tag.getAttribute("type").equalsIgnoreCase("radio")) {
+					logger.error("Not a radio button. Aborting");
+					// TODO: Throw exception
+					return;
+				}
+				
+				inputs_.add((InputTag) tag);
 			}
 
 			@Override
 			public String[] getUrlComponents() {
-				// TODO Auto-generated method stub
-				return null;
+				if (name_ == null || name_.isEmpty()) {
+					return null;
+				}
+				
+				String[] l = new String[inputs_.size()];
+				int i = 0;
+				// Like single select, radio allows ONLY one value at a time (unlike multi-select or checkbox).
+				for (InputTag in : inputs_) {
+					l[i++] = name_ + '=' + in.getAttribute("value");
+				}
+				return l;
 			}
 		}
 		
@@ -236,11 +275,13 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		}
 		private FormTag formTag_;
 		Vector<FormInputWrapper> orderedTags_;
+		Map<String, RadioFormInput> nameToFormInputMap_;
 		private boolean isSubmitSeen_;
 		
 		public FormProcessor(FormTag formTag) {
 			formTag_ = formTag;
 			orderedTags_ = new Vector<HtmlParserLinkExtractor.FormInputWrapper>();
+			nameToFormInputMap_ = new HashMap<String, HtmlParserLinkExtractor.FormProcessor.RadioFormInput>();
 			isSubmitSeen_ = false;
 		}
 		
@@ -266,6 +307,15 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 				if (type.equalsIgnoreCase("hidden")) {
 					orderedTags_.add(new HiddenFormInput(tag));
 				} else if (type.equalsIgnoreCase("radio")) {
+					RadioFormInput in = nameToFormInputMap_.get(name);
+					if (in != null) {
+						in.add(tag);
+						return;
+					}
+					in = new RadioFormInput();
+					nameToFormInputMap_.put(name, in);
+					in.add(tag);
+					orderedTags_.add(in);
 				}
 			}
 		}
