@@ -41,7 +41,7 @@ import org.lockss.state.*;
 
 public class LockssPermission {
   public static final String LOCKSS_PERMISSION_STRING =
-    "LOCKSS system has permission to collect, preserve, and serve this Archival Unit";
+    " ";
 
   public static final String LOCKSS_OPEN_ACCESS_PERMISSION_STRING =
     "LOCKSS system has permission to collect, preserve, and serve this open access Archival Unit";

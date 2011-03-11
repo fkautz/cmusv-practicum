@@ -58,7 +58,7 @@ public class MimeTypeMap {
   private static MimeTypeInfo.Mutable CSS = new MimeTypeInfo.Impl();
 
   static {
-    HTML.setLinkExtractorFactory(new GoslingHtmlLinkExtractor.Factory());
+    HTML.setLinkExtractorFactory(new HtmlParserLinkExtractor.Factory());
     // XXX
     // HTML.setLinkRewriterFactory(new JavascriptHtmlLinkRewriterFactory());
     HTML.setLinkRewriterFactory(new NodeFilterHtmlLinkRewriterFactory());
