@@ -15,7 +15,8 @@
   
       title <
         name = Cosmos and History ;
-        issn = 1832-9101
+        issn = 1832-9101 ;
+        issnl = 1832-9101
       >
     
       param[base_url] = http://www.cosmosandhistory.org/
@@ -33,7 +34,8 @@
   
       title <
         name = Culture Machine ;
-        issn = 1465-4121
+        issn = 1465-4121 ;
+        issnl = 1465-4121
       >
     
       param[base_url] = http://www.culturemachine.net/
@@ -58,7 +60,8 @@
   
       title <
         name = Film-Philosophy ;
-        issn = 1466-4615
+        issn = 1466-4615 ;
+        issnl = 1466-4615
       >
     
       param[base_url] = http://www.film-philosophy.com/
@@ -83,21 +86,35 @@
     {
   
       title <
-        name = Filozofski vestnik ;
-        issn = 0353-4510
+        name = Filozofski Vestnik ;
+        issn = 0353-4510 ;
+        eissn = 1581-1239 ;
+        issnl = 0353-4510
       >
     
       param[base_url] = http://www.filozofskivestnikonline.com/
       param[journal_id] = journal
       
-      au < manifest ; 2004 ; Filozofski vestnik Volume 2004 ; 2004 >
-      au < manifest ; 2005 ; Filozofski vestnik Volume 2005 ; 2005 >
-      au < manifest ; 2006 ; Filozofski vestnik Volume 2006 ; 2006 >
-      au < manifest ; 2007 ; Filozofski vestnik Volume 2007 ; 2007 >
-      au < manifest ; 2008 ; Filozofski vestnik Volume 2008 ; 2008 >
+      au < manifest ; 2004 ; Filozofski Vestnik Volume 2004 ; 2004 >
+      au < manifest ; 2005 ; Filozofski Vestnik Volume 2005 ; 2005 >
+      au < manifest ; 2006 ; Filozofski Vestnik Volume 2006 ; 2006 >
+      au < manifest ; 2007 ; Filozofski Vestnik Volume 2007 ; 2007 >
+      au < manifest ; 2008 ; Filozofski Vestnik Volume 2008 ; 2008 >
     
     }
+    
+    {
   
+      title <
+        name = International Journal of Žižek Studies ;
+        issn = 1552-5112
+      >
+      
+      param[base_url] = http://www.zizekstudies.org/
+      param[journal_id] = ijzs
+      
+    }
+    
     {
   
       title <

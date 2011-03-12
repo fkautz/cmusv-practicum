@@ -1,14 +1,46 @@
+/*
+ * $Id: HtmlKbartExporter.java,v 1.7 2011/02/26 21:40:30 easyonthemayo Exp $
+ */
+
+/*
+
+Copyright (c) 2010 Board of Trustees of Leland Stanford Jr. University,
+all rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+STANFORD UNIVERSITY BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of Stanford University shall not
+be used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from Stanford University.
+
+*/
+
 package org.lockss.exporter.kbart;
 
-import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.io.OutputStream;
 import java.io.IOException;
 
+import org.lockss.exporter.kbart.KbartTitle.Field;
 import org.lockss.util.StringUtil;
 import org.lockss.util.Logger;
-
 
 /**
  * An exporter that simply writes the records to an HTML table.
@@ -29,7 +61,10 @@ public class HtmlKbartExporter extends KbartExporter {
   private String header;
   /** Summary of the export for display. */
   private String exportSummary;
-
+  /** A form to be incorporated into the page which provides a link to customisable display options. */
+  //private Form customForm;
+  
+  
   /**
    * Default constructor takes a list of KbartTitles to be exported.
    * The exporter then does some reasonably costly processing, iterating 
@@ -43,6 +78,19 @@ public class HtmlKbartExporter extends KbartExporter {
     this(titles, format, omitEmptyFieldsByDefault);
   }
   
+  
+  public void sortByField(Field f) {
+    Collections.sort(titles, KbartTitleComparatorFactory.getComparator(f));
+  }
+
+  @Override
+  public void setFilter(KbartExportFilter filter) {
+    super.setFilter(filter);
+    // Use the filter to sort the titles for custom output 
+    filter.sortTitlesByFirstTwoFields();
+  }
+
+  
   /**
    * An alternative constructor that allows one to specify whether or not to show columns 
    * which are entirely empty. The data will be searched for fields which are empty across 
@@ -54,9 +102,8 @@ public class HtmlKbartExporter extends KbartExporter {
    */
   public HtmlKbartExporter(List<KbartTitle> titles, OutputFormat format, boolean omitEmptyFields) {
     super(titles, format);
-  } 
-  
-    
+  }   
+
   @Override
   protected void emitRecord(List<String> values) {
     odd = !odd;
@@ -75,43 +122,45 @@ public class HtmlKbartExporter extends KbartExporter {
       printWriter.printf("<td>%s</td>", val);
     }
     printWriter.println("</tr>");
-    // Flush this record
-    printWriter.flush();
   }
 
   @Override
   protected void setup(OutputStream os) throws IOException {
-    // First finalise the field lists and make them consistent 
-    //if (isCustomised) recalculateDisplayFields();    
-    printWriter = new PrintWriter(os, true);
+    super.setup(os);
     // Construct a title and summary
     this.exportSummary = String.format(this.outputFormat+" Export created on %s by %s | Exported %d KBART titles from %d TDB titles.",
 	new Date(), getHostName(), titles.size(), tdbTitleTotal);
-    this.header = String.format("<tr><th>Index</th><th>%s</th></tr>", 
-	StringUtil.separatedString(getFieldLabels(), "</th><th>")
-    );
+    this.header = makeHeader();
     // Write html and head tags, including a metatag declaring the content type UTF-8
-    printWriter.println("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>");
+    printWriter.println("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset="+DEFAULT_ENCODING+"\"/>");
     printWriter.printf("<title>%s</title>", this.exportSummary);
     printWriter.printf("%s</head><body>", css);
+    if (getHtmlCustomForm()!=null) printWriter.println(getHtmlCustomForm());
     // Initial attempt to get a static header on the page:
     //printWriter.printf("<div class=\"header\"><table>%s</table></div>", this.header);
     printWriter.println("<table>");
     printWriter.printf(this.header);
   }
 
+  private String makeHeader() {
+    return String.format("<tr><th>Index</th><th>%s</th></tr>", 
+	StringUtil.separatedString(Field.getLabels(filter.getVisibleFieldOrder()), "</th><th>")
+    );
+  }
+  
 
   @Override
   protected void clearup() throws IOException {
     printWriter.println("</table>");
-    printWriter.printf("<br/><b><i>%s</i></b><br/>%s<br/>%s<br/><br/>", 
+    printWriter.printf("<br/><b><i>%s</i></b><br/>%s<br/>%s<br/>%s<br/><br/>", 
 	this.exportSummary, 
-	this.getOmittedSummary(), 
+	this.getOmittedTitlesSummary(),
+	this.getOmittedFieldsSummary(), 
 	this.getEmptySummary()
     );
     printWriter.println("</body></html>");
-    printWriter.flush();
-    printWriter.close();
+    // Finally let superclass clear up
+    super.clearup();
   }
 
   

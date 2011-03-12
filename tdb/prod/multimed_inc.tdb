@@ -7,12 +7,13 @@
     title <
       name = Peritoneal Dialysis International ;
       issn = 0896-8608 ;
-      eissn = 1718-4304
+      eissn = 1718-4304 ;
+      issnl = 0896-8608
     >
 
     {
 
-      plugin = org.lockss.plugin.highwire.HighWireStrVolPlugin
+      plugin = org.lockss.plugin.highwire.HighWirePressPlugin
       param[base_url] = http://www.pdiconnect.com/
       implicit < status ; name ; param[volume_name] >
 
