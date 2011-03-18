@@ -857,6 +857,25 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 				+ "<form action=\"http://www.example.com/bioone/cgi/;F2\" method=\"get\">"
 				+ "<input type=\"submit\" value=\"Blah\"><INPUT TYPE=\"hidden\" NAME=\"filename\" VALUE=\"jci116136F2.ppt\"></form>";
 		assertEquals(SetUtil.set(url1), parseSingleSource(source));
+	}
+	
+	public void testFormOneHiddenAttributeWithoutName() throws IOException {
+		String url1 = "http://www.example.com/bioone/cgi/;F2";
+
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/;F2\" method=\"get\">"
+				+ "<input type=\"submit\" value=\"Blah\"><INPUT TYPE=\"hidden\" VALUE=\"jci116136F2.ppt\"></form>";
+		assertEquals(SetUtil.set(url1), parseSingleSource(source));
+
+	}
+	
+	public void testFormOneHiddenAttributeWithBlankName() throws IOException {
+		String url1 = "http://www.example.com/bioone/cgi/;F2";
+
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/;F2\" method=\"get\">"
+				+ "<input type=\"submit\" value=\"Blah\"><INPUT TYPE=\"hidden\" NAME=\"\" VALUE=\"jci116136F2.ppt\"></form>";
+		assertEquals(SetUtil.set(url1), parseSingleSource(source));
 
 	}
 
@@ -989,6 +1008,31 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 				+ "<input type=\"submit\"/>" + "</form></html>";
 		assertEquals(expectedResults, parseSingleSource(source));
 	}
+	
+	public void testSelectWithoutName() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<select><option value=\"hello_val\" />hello</option></select>"
+				+ "<input type=\"hidden\" name=\"odd\" value=\"world\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
+	}
+	
+	public void testSelectWithBlankName() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults
+				.add("http://www.example.com/bioone/cgi/?odd=world");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<select name=\"\"><option value=\"hello_val\" />hello</option></select>"
+				+ "<input type=\"hidden\" name=\"odd\" value=\"world\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
+	}
+	
 
 	public void testOneOption() throws IOException {
 		Set<String> expectedResults = new HashSet<String>();
@@ -1107,6 +1151,26 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 				+ "<input type=\"submit\"/>" + "</form></html>";
 		assertEquals(expectedResults, parseSingleSource(source));
 	}
+	
+	public void testOneRadioOneValueWithoutName() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults.add("http://www.example.com/bioone/cgi/");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<input type=\"radio\" value=\"val\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
+	}
+	
+	public void testOneRadioOneValueWithBlankName() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults.add("http://www.example.com/bioone/cgi/");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<input type=\"radio\" name=\"\" value=\"val\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
+	}
 
 	public void testOneRadioMultipleValues() throws IOException {
 		Set<String> expectedResults = new HashSet<String>();
@@ -1156,6 +1220,28 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 		String source = "<html><head><title>Test</title></head><body>"
 				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
 				+ "<input type=\"checkbox\" name=\"arg\" value=\"val\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
+	}
+	
+	public void testOneCheckboxOneValueWithoutName() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults.add("http://www.example.com/bioone/cgi/");
+		expectedResults.add("http://www.example.com/bioone/cgi/");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<input type=\"checkbox\" value=\"val\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(expectedResults, parseSingleSource(source));
+	}
+	
+	public void testOneCheckboxOneValueWithBlankName() throws IOException {
+		Set<String> expectedResults = new HashSet<String>();
+		expectedResults.add("http://www.example.com/bioone/cgi/");
+		expectedResults.add("http://www.example.com/bioone/cgi/");
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<input type=\"checkbox\" name=\"\" value=\"val\" />"
 				+ "<input type=\"submit\"/>" + "</form></html>";
 		assertEquals(expectedResults, parseSingleSource(source));
 	}

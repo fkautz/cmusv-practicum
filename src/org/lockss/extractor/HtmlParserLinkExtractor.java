@@ -194,7 +194,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 				String[] l = new String[1];
 				String name = tag_.getAttribute("name");
 				if (name == null || name.isEmpty()) {
-					return null;
+					return null; // should never reach this, return null for defense
 				}
 				l[0] = name + '=' + tag_.getAttribute("value");
 				return l;
@@ -216,20 +216,23 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 				if (name_ == null) {
 					name_ = tagName;
 					if (name_.isEmpty()) {
+						// should never reach this
 						logger.warn("Radio button with no name. Aborting");
-						// TODO: Throw exception
+						// TODO: Figure out if we should throw an exception.
 						return;
 					}
 				}
 				if (!tagName.equalsIgnoreCase(name_)) {
+					// should never reach this
 					logger.error("Radio button for different group. Aborting");
-					// TODO: Throw exception
+					// TODO: Figure out if we should throw an exception.
 					return;
 				}
 				
 				if (!(tag instanceof InputTag) || !tag.getAttribute("type").equalsIgnoreCase("radio")) {
+					// should never reach this
 					logger.error("Not a radio button. Aborting");
-					// TODO: Throw exception
+					// TODO: Figure out if we should throw an exception.
 					return;
 				}
 				
@@ -239,6 +242,9 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			@Override
 			public String[] getUrlComponents() {
 				if (name_ == null || name_.isEmpty()) {
+					// should never reach this
+					logger.error("Not a radio button. Aborting");
+					// TODO: Figure out if we should throw an exception.
 					return null;
 				}
 				
@@ -263,7 +269,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			@Override
 			public String[] getUrlComponents() {
 				String name = tag_.getAttribute("name");
-				if (name == null || name.isEmpty()) return null;
+				if (name == null || name.isEmpty()) return null; // shouldn't ever reach this, defensive
 				// Only 2 possible values on/off (value sent or empty)
 				String[] l = new String[2];
 				String value = tag_.getAttribute("value");
@@ -285,6 +291,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 				String l[] = new String[selectTag_.getOptionTags().length];
 				String name = selectTag_.getAttribute("name");
 				if (name == null || name.isEmpty()) {
+					// shouldn't ever reach this, defensive
 					return null;
 				}
 				OptionTag[] options = selectTag_.getOptionTags();
@@ -379,7 +386,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 	}
 
 	public class FormUrlNormalizer implements UrlNormalizer {
-//sort form parameters alphabetically
+		//sort form parameters alphabetically
 		public String normalizeUrl(String url,
 		                             ArchivalUnit au)
 		      throws PluginException {
