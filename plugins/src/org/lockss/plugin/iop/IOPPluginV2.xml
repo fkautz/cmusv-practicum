@@ -9,7 +9,7 @@ to support the current IOP journals.
   </entry>
   <entry>
     <string>au_def_pause_time</string>
-    <long>90000</long>
+    <long>4000</long>
   </entry>
   <!-- May be needed as we test more IOP Journals
   <entry>
@@ -36,6 +36,7 @@ to support the current IOP journals.
   <entry>
     <string>au_crawlrules</string>
     <list>
+      <!-- 
       <string>4,&quot;^%s&quot;, base_url</string>
       <string>1,&quot;^%s.*\.(gif|css|jpeg|jpg)$&quot;, base_url</string>
       <string>1,&quot;^%s/%s/%d&quot;, base_url, journal_id, volume</string>
@@ -43,11 +44,20 @@ to support the current IOP journals.
       <string>1,&quot;^%s/%s/%d/\d+/\d+$&quot;, base_url, journal_id, volume</string>
       <string>1,&quot;^%s/%s/%d/\d+/\d+/pdf.*&quot;, base_url, journal_id, volume</string>
       <string>1,&quot;^%s/export?articleId=%s/%d/\d+/\d+&amp;exportFormat=iopexport_(bib|ris|csv|endnote|txt|direx)&amp;exportType=(abs|refs)&amp;navsubmit=Export+Results&quot;, base_url, journal_id, volume</string>
+       -->
+      <string>4,&quot;^%s&quot;, base_url</string>
+      <string>1,&quot;^%s.*\.(gif|css|jpeg|jpg)$&quot;, base_url</string>
+      <string>1,&quot;^%s/2043-6262/1$&quot;, base_url</string>
+      <string>1,&quot;^%s/2043-6262/1/4$&quot;, base_url</string>
+      <string>1,&quot;^%s/2043-6262/1/4/043001$&quot;, base_url</string>
+      <string>1,&quot;^%s/2043-6262/1/4/043001/pdf.*&quot;, base_url</string>
+      <string>1,&quot;^%s/export?articleId=2043-6262/1/4/043001&amp;exportFormat=iopexport_(bib|ris|csv|endnote|txt|direx)&amp;exportType=(abs|refs)&quot;, base_url</string>
     </list>
   </entry>
   <entry>
     <string>au_start_url</string>
-    <string>&quot;%s/%s/%d&quot;, base_url, journal_id, volume</string>
+<!-- <string>&quot;%s/%s/%d&quot;, base_url, journal_id, volume</string>  --> 
+	 <string>&quot;http://iopscience.iop.org/2043-6262/1/4/043001&quot;</string>  
   </entry>
   <entry>
     <string>plugin_config_props</string>

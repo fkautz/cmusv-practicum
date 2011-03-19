@@ -59,9 +59,9 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		@Override
 		public void extractLink(ArchivalUnit au, Callback cb) {
 			String target = this.tag_.getAttribute("href");
-			if (target != null) {
-				target = Translate.decode(target);
-			}
+			if (target == null) return;
+			
+			target = Translate.decode(target);
 			cb.foundLink(target);
 		}
 	}
@@ -481,6 +481,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 								}
 							} else {
 								url = resolveUri(new URL(srcUrl_), url);
+								if (url == null) return;
 							}
 							// check length
 							if (StringUtils.lastIndexOf(url, "/") != -1) {
