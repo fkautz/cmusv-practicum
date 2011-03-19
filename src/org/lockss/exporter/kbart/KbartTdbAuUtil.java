@@ -1,5 +1,5 @@
 /*
- * $Id: KbartTdbAuUtil.java,v 1.3 2011/02/16 23:41:48 easyonthemayo Exp $
+ * $Id: KbartTdbAuUtil.java,v 1.5 2011/03/18 16:34:10 easyonthemayo Exp $
  */
 
 /*
@@ -31,6 +31,8 @@ in this Software without prior written authorization from Stanford University.
 */
 
 package org.lockss.exporter.kbart;
+
+import static org.lockss.exporter.kbart.KbartTdbAuUtil.findAuInfoType;
 
 import java.util.List;
 import java.util.Map;
@@ -74,6 +76,7 @@ public class KbartTdbAuUtil {
    * Returns less than 0 if the first is less than the second, greater than 0 if
    * the first is greater than the second, and 0 if they are the same. If the
    * strings cannot be parsed the default NumberFormatException is propagated to the caller.
+   * Currently this method just calls <code>compareIntStrings()</code>.
    * 
    * @param year1 a string representing a year
    * @param year2 a string representing a year
@@ -82,8 +85,19 @@ public class KbartTdbAuUtil {
   static int compareStringYears(String year1, String year2) throws NumberFormatException {
     // Note that in practise if the strings do represent comparable publication years, 
     // they will be 4 digits long and so comparable as strings with the same results.
-    Integer i1 = new Integer(year1);
-    Integer i2 = new Integer(year2);
+    return compareIntStrings(year1, year2);
+  }
+
+  /**
+   * Compare two strings that represent integers.
+   * @param int1 a string which should parse as an integer
+   * @param int2 a string which should parse as an integer
+   * @return the value 0 if the ints are the same; less than 0 if the first is less than the second; and greater than 0 if the first is greater than the second
+   * @throws NumberFormatException
+   */
+  static int compareIntStrings(String int1, String int2) throws NumberFormatException {
+    Integer i1 = new Integer(int1);
+    Integer i2 = new Integer(int2);
     return i1.compareTo(i2);
   }
 
@@ -227,6 +241,7 @@ public class KbartTdbAuUtil {
    * 
    * @param au the TdbAu to search for an attribute
    * @param defaultKeyList an array of possible key names, in descending order of importance
+   * @param type an info type that has been established for the keys 
    * @return an existing key name, or null
    */
   protected static String findMapKey(TdbAu au, String[] defaultKeyList, AuInfoType type) {
@@ -237,6 +252,22 @@ public class KbartTdbAuUtil {
     }
     return null;
   }
+  
+  /**
+   * Attempts to find a map key by searching for each of the 
+   * supplied keys in order.
+   * 
+   * @param au the TdbAu to search for an attribute
+   * @param defaultKeyList an array of possible key names, in descending order of importance
+   * @return an existing key name, or null
+   */
+  protected static String findMapKey(TdbAu au, String[] defaultKeyList) {
+    AuInfoType type = findAuInfoType(au, defaultKeyList);
+    return findMapKey(au, defaultKeyList, type);
+  }
+  
+
+
   
   /**
    * Attempts to find a map key by searching for the supplied key in 

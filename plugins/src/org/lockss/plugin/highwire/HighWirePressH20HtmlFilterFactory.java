@@ -1,5 +1,5 @@
 /*
- * $Id: HighWirePressH20HtmlFilterFactory.java,v 1.26 2011/03/10 23:55:39 greya Exp $
+ * $Id: HighWirePressH20HtmlFilterFactory.java,v 1.28 2011/03/16 17:57:25 barry409 Exp $
  */
 
 /*
@@ -69,6 +69,7 @@ public class HighWirePressH20HtmlFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttribute("div", "id", "cb-art-cit"),
         // e.g. BMJ (optional 'sid' query arg in URLs)
         HtmlNodeFilters.tagWithAttribute("div", "id", "cb-art-rel"),
+        HtmlNodeFilters.tagWithAttribute("div", "id", "cb-art-soc"),
         // e.g. SWCS TOC pages
         HtmlNodeFilters.tagWithAttribute("div", "class", "cit-form-select"),
         // For JBC pages
@@ -98,6 +99,9 @@ public class HighWirePressH20HtmlFilterFactory implements FilterFactory {
         HtmlNodeFilters.tagWithAttributeRegex("a", "href", "^/external-ref"),   
         //For SAGE (at least).  Name of the institution. E.g. </a> INDIANA UNIV </div>
         HtmlNodeFilters.tagWithAttribute("div", "id", "header-Uni"),
+        //Project HOPE (at least).  <div class="in-this-issue">
+        HtmlNodeFilters.tagWithAttribute("div", "class", "in-this-issue"),
+        HtmlNodeFilters.tagWithAttributeRegex("div", "class", "sidebar-feed"),   
 
         // Filter for <li class="subscr-ref">....</li>
         HtmlNodeFilters.tagWithAttribute("li", "class", "subscr-ref"),

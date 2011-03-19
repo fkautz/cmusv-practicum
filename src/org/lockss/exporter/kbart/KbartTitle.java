@@ -1,5 +1,5 @@
 /*
- * $Id: KbartTitle.java,v 1.5 2011/03/06 00:05:37 easyonthemayo Exp $
+ * $Id: KbartTitle.java,v 1.7 2011/03/18 16:34:10 easyonthemayo Exp $
  */
 
 /*
@@ -44,6 +44,7 @@ import java.util.TreeMap;
 
 import org.lockss.util.Logger;
 import org.lockss.util.StringUtil;
+import org.lockss.util.UrlUtil;
 
 /**
  * An object representing a tuple of information about a KBART title. 
@@ -154,11 +155,34 @@ public class KbartTitle implements Comparable<KbartTitle>, Cloneable {
    * If neither is set, an empty string is returned.
    * @return a valid issn, eissn, or the empty string
    */
-  public String getValidIssnIdentifier() {
+  /*public String getValidIssnIdentifier() {
     return hasFieldValue(Field.PRINT_IDENTIFIER) ? getField(Field.PRINT_IDENTIFIER) : 
       getField(Field.ONLINE_IDENTIFIER);
-  }
-  
+  }*/
+
+  /**
+   * Construct a parameter string for LOCKSS Resolver URLs. Depending on what is available, one
+   * of the following sets of arguments is used. These are in order of preference, most to least:
+   * <ul>
+   *   <li>eISSN</li>
+   *   <li>ISSN</li>
+   *   <li>Title and Publisher</li>
+   * </ul>
+   * @return a parameter string appropriate for OpenURL resolving
+   */
+  public String getResolverUrlParams() {
+    if (hasFieldValue(Field.ONLINE_IDENTIFIER)) return "?eissn=" + getField(Field.ONLINE_IDENTIFIER);
+    if (hasFieldValue(Field.PRINT_IDENTIFIER)) return "?issn=" + getField(Field.PRINT_IDENTIFIER);
+    // Resort to title and publisher (assume that they exist)
+    String pubTitle = UrlUtil.encodeUrl(getField(Field.PUBLICATION_TITLE));
+    String pubName = UrlUtil.encodeUrl(getField(Field.PUBLISHER_NAME));
+    // Build the arg url
+    StringBuilder sb = new StringBuilder("?");
+    sb.append(OpenUrlSyntax.PUBLICATION_TITLE).append("=").append(pubTitle);
+    sb.append("&"+OpenUrlSyntax.PUBLISHER_NAME).append("=").append(pubName);
+    return sb.toString();
+  }  
+
   /**
    * Normalise the string by removing tabs and converting characters to fit UTF-8.
    * 
@@ -429,6 +453,28 @@ public class KbartTitle implements Comparable<KbartTitle>, Cloneable {
       STRING, ALPHANUMERIC, NUMERIC, DATE;
     }
 
-  }  
+  }
 
+  
+  
+  /**
+   * An enum of the parameter values we use for OpenURL linking syntax.
+   * Currently these are based on OpenURL 0.1 and 
+   */
+  public static enum OpenUrlSyntax {
+    PUBLICATION_TITLE("title"),
+    PUBLISHER_NAME("pub")
+    ;
+    
+    private final String label;
+    
+    private OpenUrlSyntax(String label) {
+      this.label = label;
+    }
+    
+    public String toString() { return label; } 
+    
+  }
+  
+  
 }
