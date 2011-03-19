@@ -18,14 +18,20 @@ import org.lockss.util.Logger;
 import org.lockss.util.ReaderInputStream;
 
 /**
+ * Enhanced link extractor for thieme. Attempts to retrieve a list of issues when visiting the front page. Parses normally for all other pages.
+ *
  * @author nvibhor
  * 
  */
 public class ThiemeHtmlLinkExtractor implements LinkExtractor {
 	static Logger logger = Logger.getLogger("ThiemeHtmlLinkExtractor");
 
-	/*
-	 * (non-Javadoc)
+	/**
+     * @param au current archival unit
+     * @param in input stream containing page contents
+     * @param encoding encoding information for in stream
+     * @param srcUrl address of page being parsed
+     * @param cb callback that should be called when posting status information
 	 * 
 	 * @see
 	 * org.lockss.extractor.LinkExtractor#extractUrls(org.lockss.plugin.ArchivalUnit

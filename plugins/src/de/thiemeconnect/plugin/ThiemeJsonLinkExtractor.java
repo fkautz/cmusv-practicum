@@ -18,6 +18,7 @@ import org.lockss.util.IOUtil;
 import org.lockss.util.Logger;
 
 /**
+ * Link Extractor for JSON form in thieme.
  * @author vibhor
  *
  */
@@ -28,6 +29,13 @@ public class ThiemeJsonLinkExtractor implements LinkExtractor {
 	// We are interested in parsing out the valid json array out of it.
 	static int JSON_ARRAY_START_POS = 9;
 
+    /**
+     * @param au current archival unit
+     * @param in current page data
+     * @param encoding current page data encoding
+     * @param srcUrl current page source
+     * @param cb callback to report status and results
+     */
 	@Override
 	public void extractUrls(ArchivalUnit au, InputStream in, String encoding,
 			String srcUrl, Callback cb) throws IOException {
