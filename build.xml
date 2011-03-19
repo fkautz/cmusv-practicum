@@ -197,6 +197,7 @@ Args:
   <property name="xml-apis.jar"   value="${lib}/xml-apis.jar"/>
   <property name="jimi.jar"       value="${lib}/JimiProClasses.jar"/>
   <property name="jetty.jar"      value="${lib}/jetty-5.1.5L.jar"/>
+  <property name="json-java.jar"      value="${lib}/json-java.jar"/>
   <property name="servlet.jar"    value="${lib}/javax.servlet.jar"/>
   <property name="pjl-comp-filter.jar"
                                   value="${lib}/pjl-comp-filter-1.6.5.jar"/>
@@ -313,6 +314,7 @@ Args:
     <pathelement path="${log4j.jar}" />
     <pathelement path="${concurrent.jar}" />
     <pathelement path="${jetty.jar}" />
+    <pathelement path="${json-java.jar}" />
     <pathelement path="${servlet.jar}" />
     <pathelement path="${pjl-comp-filter.jar}" />
     <pathelement path="${derby.jar}" />

@@ -1,0 +1,34 @@
+{
+
+  publisher <
+    name = Thieme Connect EJournals
+  >
+
+  plugin = de.thiemeconnect.plugin.ThiemeConnectPlugin
+  implicit < status ; name ; param[year]; param[journal_name] >
+  param[base_url] = https://www.thieme-connect.de/
+  param[session_start_url] = https://www.thieme-connect.de/ejournals
+  
+  {
+  
+    title <
+      name = American Journal of Perinatology ;
+      issn = 0735-1631
+    >
+
+    au < released ; American Journal of Perinatology 25; 2008; ajp >
+
+  }
+
+  {
+  
+    title <
+      name = Aktuelle Rheumatolgie ;
+      issn = 0341-051X
+    >
+
+    au < released ; Aktuele Rheumatolgie 8; 2008; rheuma >
+
+  }
+
+}
