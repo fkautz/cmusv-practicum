@@ -1,0 +1,80 @@
+<map>
+  <entry>
+    <string>plugin_identifier</string>
+    <string>de.thiemeconnect.plugin.ThiemeConnectPlugin</string>
+  </entry>
+  <entry>
+    <string>plugin_version</string>
+    <string>1</string>
+  </entry>
+  <entry>
+    <string>au_def_pause_time</string>
+    <long>6000</long>
+  </entry>
+  <entry>
+    <string>au_name</string>
+    <string>&quot;Thieme Connect Plugin, Base URL %s, Year %d&quot;, base_url, year</string>
+  </entry>
+  <entry>
+    <string>au_def_new_content_crawl</string>
+    <long>1209600000</long>
+  </entry>
+  <entry>
+    <string>plugin_name</string>
+    <string>Thieme Connect Plugin</string>
+  </entry>
+  <entry>
+    <string>au_crawlrules</string>
+    <list>
+      <string>1,&quot;^%s[^?]+\.(bmp|css|gif|ico|jpe?g|js|png|tif?f)$&quot;, base_url</string>
+      <string>4,&quot;^%s&quot;, base_url</string>
+      <string>1,&quot;%sejournals/json/issues[?]shortname=%s&amp;year=%d&quot;, base_url, journal_name, year</string>
+      <string>1,&quot;%sejournals/toc/%s/[0-9]+&quot;, base_url, journal_name</string>
+      <string>1,&quot;%sejournals/(html|pdf)/%s/doi/10.1055/.*&quot;, base_url, journal_name</string>
+     </list>
+  </entry>
+  <entry>
+    <string>au_start_url</string>
+    <string>&quot;%sejournals/toc/%s&quot;, base_url, journal_name</string>
+  </entry>
+   <entry>
+    <string>text/plain_link_extractor_factory</string>
+    <string>de.thiemeconnect.plugin.ThiemeJsonLinkExtractorFactory</string>
+  </entry>
+   <entry>
+    <string>text/html_link_extractor_factory</string>
+    <string>de.thiemeconnect.plugin.ThiemeHtmlLinkExtractorFactory</string>
+  </entry>
+  <entry>
+    <string>plugin_config_props</string>
+    <list>
+      <org.lockss.daemon.ConfigParamDescr>
+        <key>base_url</key>
+        <displayName>Base URL</displayName>
+        <description>Usually of the form http://&lt;journal-name&gt;.com/</description>
+        <type>3</type>
+        <size>40</size>
+        <definitional>true</definitional>
+        <defaultOnly>false</defaultOnly>
+      </org.lockss.daemon.ConfigParamDescr>
+      <org.lockss.daemon.ConfigParamDescr>
+        <key>journal_name</key>
+        <displayName>Journal Name</displayName>
+        <description>Usually an acronym for the journal name.</description>
+        <type>1</type>
+        <size>40</size>
+        <definitional>true</definitional>
+        <defaultOnly>false</defaultOnly>
+      </org.lockss.daemon.ConfigParamDescr>
+      <org.lockss.daemon.ConfigParamDescr>
+        <key>year</key>
+        <displayName>Year</displayName>
+        <description>Four digit year (e.g., 2004)</description>
+        <type>4</type>
+        <size>4</size>
+        <definitional>true</definitional>
+        <defaultOnly>false</defaultOnly>
+      </org.lockss.daemon.ConfigParamDescr>
+    </list>
+  </entry>
+</map>

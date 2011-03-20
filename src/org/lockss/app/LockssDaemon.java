@@ -79,7 +79,7 @@ public class LockssDaemon extends LockssApp {
  * the software.  All good will associated with your use of the LOCKSS mark
  * shall inure to the benefit of Stanford University.
  */
-private final static String LOCKSS_USER_AGENT = "cmu sv lockss practicum 2011";
+  private final static String LOCKSS_USER_AGENT = "cmu sv lockss practicum 2011";
 
   public final static String PARAM_TESTING_MODE = PREFIX + "testingMode";
 

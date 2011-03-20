@@ -1,5 +1,5 @@
 /*
- * $Id: BaseArchivalUnit.java,v 1.147 2011/01/22 08:22:30 tlipkis Exp $
+ * $Id: BaseArchivalUnit.java,v 1.149 2011/03/18 09:56:05 tlipkis Exp $
  */
 
 /*
@@ -148,6 +148,7 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     if (config == null) {
       throw new ConfigurationException("Null Configuration");
     }
+    if (logger.isDebug3()) logger.debug3("setConfiguration: " + config);
     checkLegalConfigChange(config);
     auConfig = config;
     loadAuConfigDescrs(config);
@@ -480,13 +481,13 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     }
   }
 
-  public final Object getFetchRateLimiterKey() {
+  public final String getFetchRateLimiterKey() {
     String limiterSource = getFetchRateLimiterSource();
     if (logger.isDebug3()) logger.debug3("Limiter source: " + limiterSource);
     if ("au".equalsIgnoreCase(limiterSource)) {
       return null;
     } else {
-      Object key = null;
+      String key = null;
       if ("plugin".equalsIgnoreCase(limiterSource)) {
 	key = plugin.getPluginId();
       } else if (StringUtil.startsWithIgnoreCase(limiterSource,

@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: ServletUtil.java,v 1.67 2011/03/16 08:34:10 tlipkis Exp $
  */
 
 /*
@@ -1076,7 +1076,7 @@ public class ServletUtil {
         tbl.newCell(CHOOSEAUS_CELL_ATTRIBUTES);
         auConfs.put(auid, rs.getConfig());
         Element cb = checkbox(servlet, keyAuid, auid, false);
-        cb.attribute("onClick", "if (this.checked) selectRepo(this, this.form);");
+        cb.attribute("onClick", "clickAu(event, this, this.form);");
         cb.attribute("class", "doall");
         tbl.add(cb);
 

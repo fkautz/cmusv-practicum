@@ -7,12 +7,13 @@
     title <
       name = American Journal of Neuroradiology ;
       issn = 0195-6108 ;
-      eissn = 1936-959X
+      eissn = 1936-959X ;
+      issnl = 0195-6108
     >
 
     {
 
-      plugin = org.lockss.plugin.highwire.HighWireStrVolPlugin
+      plugin = org.lockss.plugin.highwire.HighWirePressPlugin
       param[base_url] = http://www.ajnr.org/
       implicit < status ; name ; param[volume_name] >
 
@@ -46,6 +47,8 @@
       au < exists ; American Journal of Neuroradiology Volume 28 ; 28 >
       au < exists ; American Journal of Neuroradiology Volume 29 ; 29 >
       au < exists ; American Journal of Neuroradiology Volume 30 ; 30 >
+      au < exists ; American Journal of Neuroradiology Volume 31 ; 31 >
+      au < exists ; American Journal of Neuroradiology Volume 32 ; 32 >
 
     }
 

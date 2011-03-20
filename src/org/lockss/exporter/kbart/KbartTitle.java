@@ -1,3 +1,35 @@
+/*
+ * $Id: KbartTitle.java,v 1.7 2011/03/18 16:34:10 easyonthemayo Exp $
+ */
+
+/*
+
+Copyright (c) 2010 Board of Trustees of Leland Stanford Jr. University,
+all rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+STANFORD UNIVERSITY BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of Stanford University shall not
+be used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from Stanford University.
+
+*/
+
 package org.lockss.exporter.kbart;
 
 import java.util.ArrayList;
@@ -12,6 +44,7 @@ import java.util.TreeMap;
 
 import org.lockss.util.Logger;
 import org.lockss.util.StringUtil;
+import org.lockss.util.UrlUtil;
 
 /**
  * An object representing a tuple of information about a KBART title. 
@@ -117,6 +150,39 @@ public class KbartTitle implements Comparable<KbartTitle>, Cloneable {
     return !StringUtil.isNullString(fields.get(f)); 
   }
   
+  /**
+   * Attempts to return a valid ISSN from the title's fields. If no ISSN, an eISSN is returned. 
+   * If neither is set, an empty string is returned.
+   * @return a valid issn, eissn, or the empty string
+   */
+  /*public String getValidIssnIdentifier() {
+    return hasFieldValue(Field.PRINT_IDENTIFIER) ? getField(Field.PRINT_IDENTIFIER) : 
+      getField(Field.ONLINE_IDENTIFIER);
+  }*/
+
+  /**
+   * Construct a parameter string for LOCKSS Resolver URLs. Depending on what is available, one
+   * of the following sets of arguments is used. These are in order of preference, most to least:
+   * <ul>
+   *   <li>eISSN</li>
+   *   <li>ISSN</li>
+   *   <li>Title and Publisher</li>
+   * </ul>
+   * @return a parameter string appropriate for OpenURL resolving
+   */
+  public String getResolverUrlParams() {
+    if (hasFieldValue(Field.ONLINE_IDENTIFIER)) return "?eissn=" + getField(Field.ONLINE_IDENTIFIER);
+    if (hasFieldValue(Field.PRINT_IDENTIFIER)) return "?issn=" + getField(Field.PRINT_IDENTIFIER);
+    // Resort to title and publisher (assume that they exist)
+    String pubTitle = UrlUtil.encodeUrl(getField(Field.PUBLICATION_TITLE));
+    String pubName = UrlUtil.encodeUrl(getField(Field.PUBLISHER_NAME));
+    // Build the arg url
+    StringBuilder sb = new StringBuilder("?");
+    sb.append(OpenUrlSyntax.PUBLICATION_TITLE).append("=").append(pubTitle);
+    sb.append("&"+OpenUrlSyntax.PUBLISHER_NAME).append("=").append(pubName);
+    return sb.toString();
+  }  
+
   /**
    * Normalise the string by removing tabs and converting characters to fit UTF-8.
    * 
@@ -271,7 +337,7 @@ public class KbartTitle implements Comparable<KbartTitle>, Cloneable {
 
     /** Publisher name (if not given in the file's title). */
     PUBLISHER_NAME("publisher_name",
-    "Publisher name (if not given in the file's title)"),
+    "Publisher name (if not given in the file's title)")
     ;
 
     /** A list of the fields that indicate range information. */
@@ -294,6 +360,12 @@ public class KbartTitle implements Comparable<KbartTitle>, Cloneable {
 
     /** The default case-sensitivity of string comparisons on fields. */
     public static boolean CASE_SENSITIVITY_DEFAULT = false;
+    
+    /** 
+     * The default approach to comparing strings which may have accented characters; 
+     * if true, characters are converted into two glyphs and then the diacritcal mark removed. 
+     */
+    public static boolean UNACCENTED_COMPARISON_DEFAULT = true;
     
     /**
      * Each field has a label dictated by the KBART recommendations, and 
@@ -381,6 +453,28 @@ public class KbartTitle implements Comparable<KbartTitle>, Cloneable {
       STRING, ALPHANUMERIC, NUMERIC, DATE;
     }
 
-  }  
+  }
 
+  
+  
+  /**
+   * An enum of the parameter values we use for OpenURL linking syntax.
+   * Currently these are based on OpenURL 0.1 and 
+   */
+  public static enum OpenUrlSyntax {
+    PUBLICATION_TITLE("title"),
+    PUBLISHER_NAME("pub")
+    ;
+    
+    private final String label;
+    
+    private OpenUrlSyntax(String label) {
+      this.label = label;
+    }
+    
+    public String toString() { return label; } 
+    
+  }
+  
+  
 }

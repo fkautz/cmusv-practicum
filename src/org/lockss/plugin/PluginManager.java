@@ -1,5 +1,5 @@
 /*
- * $Id: PluginManager.java,v 1.213 2011/02/15 09:01:11 tlipkis Exp $
+ * $Id: PluginManager.java,v 1.216 2011/03/16 08:34:33 tlipkis Exp $
  */
 
 /*
@@ -160,7 +160,7 @@ public class PluginManager
    * AUs will be restarted. */
   public static final String PARAM_RESTART_AUS_WITH_NEW_PLUGIN =
     PREFIX + "restartAusWithNewPlugin";
-  public static final boolean DEFAULT_RESTART_AUS_WITH_NEW_PLUGIN = false;
+  public static final boolean DEFAULT_RESTART_AUS_WITH_NEW_PLUGIN = true;
 
   /** The max amount of time to wait after stopping a set of AUs whose
    * plugin has been replaced by a new version, before restarting them. */
@@ -310,6 +310,7 @@ public class PluginManager
     alertMgr = getDaemon().getAlertManager();
     // Initialize the plugin directory.
     initPluginDir();
+    configureDefaultTitleSets();
     PluginStatus.register(getDaemon(), this);
     
     if (paramDisableURLConnectionCache) {
@@ -498,8 +499,17 @@ public class PluginManager
     }
   }
 
+  private void configureDefaultTitleSets() {
+    if (titleSets == null || titleSets.isEmpty()) {
+      TreeSet<TitleSet> list = new TreeSet<TitleSet>();
+      list.add(new TitleSetAllTitles(getDaemon()));
+      list.add(new TitleSetActiveAus(getDaemon()));
+      list.add(new TitleSetInactiveAus(getDaemon()));
+      installTitleSets(list);
+    }
+  }
+
   private void configureTitleSets(Configuration config) {
-    Map<String,TitleSet> map = new HashMap<String,TitleSet>();
     TreeSet<TitleSet> list = new TreeSet<TitleSet>();
     Configuration allSets = config.getConfigTree(PARAM_TITLE_SETS);
     for (Iterator iter = allSets.nodeIterator(); iter.hasNext(); ) {
@@ -519,11 +529,17 @@ public class PluginManager
 	log.warning("Error creating TitleSet from: " + setDef, e);
       }
     }
-    for (TitleSet ts : list) {
+    installTitleSets(list);
+  }
+
+  private void installTitleSets(TreeSet<TitleSet> sets) {
+    Map map = new HashMap();
+    for (TitleSet ts : sets) {
       map.put(ts.getName(), ts);
     }
-    titleSets = list;
+    titleSets = sets;
     titleSetMap = map;
+    log.debug2(titleSets.size() + " titlesets");
   }
 
   private TitleSet createTitleSet(Configuration config) {

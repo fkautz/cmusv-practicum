@@ -1,5 +1,5 @@
 /*
- * $Id: BaseArticleMetadataExtractor.java,v 1.2 2011/01/22 08:22:30 tlipkis Exp $
+ * $Id: BaseArticleMetadataExtractor.java,v 1.4 2011/03/13 22:04:55 tlipkis Exp $
  */
 
 /*
@@ -104,10 +104,15 @@ public class BaseArticleMetadataExtractor
     MyEmitter myEmitter = new MyEmitter(af, emitter);
     ArticleMetadata am = null;
     CachedUrl cu = getCuToExtract(af);
+    if (log.isDebug3()) log.debug3("extract(" + af + ")");
     if (cu != null) {
-      FileMetadataExtractor me = cu.getFileMetadataExtractor(target);
-      if (me != null) {
-	me.extract(target, cu, myEmitter);
+      try {
+	FileMetadataExtractor me = cu.getFileMetadataExtractor(target);
+	if (me != null) {
+	  me.extract(target, cu, myEmitter);
+	}
+      } finally {
+	AuUtil.safeRelease(cu);
       }
       myEmitter.finishArticle();
     }

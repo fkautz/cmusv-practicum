@@ -2,7 +2,7 @@
 <!--
 
 ========================================================================
- $Id: build.xml,v 1.269 2011/02/17 22:29:59 thib_gc Exp $
+ $Id: build.xml,v 1.273 2011/03/15 20:07:03 tlipkis Exp $
  Ant build file for LOCKSS daemon
 ========================================================================
 
@@ -158,6 +158,12 @@ Args:
 
   <property name="scripts"           value="${basedir}/scripts"/>
 
+  <!--  All python test files.  (How to factor out dir list?) -->
+  <fileset id="python.tests" dir="${basedir}">
+    <include name="scripts/**/*_test.py"/>
+    <include name="test/frameworks/*/*_test.py"/>
+  </fileset>
+
   <property name="ant"           value="${basedir}/ant"/>
   <property name="ant.src"       value="${ant}/src"/>
   <property name="ant.classes"   value="${ant}/classes" />
@@ -196,7 +202,8 @@ Args:
   <property name="xerces.jar"     value="${lib}/xercesImpl-2.7.1.jar"/>
   <property name="xml-apis.jar"   value="${lib}/xml-apis.jar"/>
   <property name="jimi.jar"       value="${lib}/JimiProClasses.jar"/>
-  <property name="jetty.jar"      value="${lib}/jetty-5.1.5.jar"/>
+  <property name="jetty.jar"      value="${lib}/jetty-5.1.5L.jar"/>
+  <property name="json-java.jar"      value="${lib}/json-java.jar"/>
   <property name="servlet.jar"    value="${lib}/javax.servlet.jar"/>
   <property name="pjl-comp-filter.jar"
                                   value="${lib}/pjl-comp-filter-1.6.5.jar"/>
@@ -250,7 +257,7 @@ Args:
   <!-- Needed by PDFBox: -->
   <property name="bouncycastle.mail.jar" value="${lib}/bcmail-jdk14-132.jar" />
   <!-- Needed by ArcExploder, exporters, jcr repo: -->
-  <property name="heritrix.jar" value="${lib}/heritrix-1.14.3-p1.jar" />
+  <property name="heritrix.jar" value="${lib}/heritrix-1.14.3-p2.jar" />
   <property name="heritrix-fastutil.jar" value="${lib}/fastutil-5.0.3-heritrix-subset-1.0.jar" />
 
   <property name="ext.javadoc"
@@ -313,6 +320,7 @@ Args:
     <pathelement path="${log4j.jar}" />
     <pathelement path="${concurrent.jar}" />
     <pathelement path="${jetty.jar}" />
+    <pathelement path="${json-java.jar}" />
     <pathelement path="${servlet.jar}" />
     <pathelement path="${pjl-comp-filter.jar}" />
     <pathelement path="${derby.jar}" />
@@ -1673,7 +1681,6 @@ JAVA_COMMAND_ARGS="-server `/usr/local/lib/maxheap` -Dsun.net.inetaddr.ttl=3600 
     <property name="copies" value="1" />
     <basename property="indexname" file="${file}" suffix=".java" />
     <javadoc
-       sourcepath="${src}"
        sourcefiles="${file}"
        destdir="${javadoc}"
        failonerror="true"
@@ -1759,7 +1766,7 @@ JAVA_COMMAND_ARGS="-server `/usr/local/lib/maxheap` -Dsun.net.inetaddr.ttl=3600 
    description="Run a class named by class prop, with args in args prop" >
     <!-- default args empty if not supplied on command line -->
     <property name="args" value="" />
-    <java classname="${class}" fork="true">
+    <java classname="${class}" fork="true" failonerror="true">
        <classpath refid="test.run.classpath" />
        <arg line="${args}" />
        <sysproperty key="org.lockss.defaultLogLevel" value="${loglevel}"/>
@@ -1952,6 +1959,19 @@ Test results in ${test.results}
   </target>
 
   <!-- ==================================================================== -->
+  <target name="test-python"
+   depends="prepare.run.test"
+   description="Run all python unit tests." >
+    <apply executable="python" dir="${basedir}"
+           relative="true"
+           parallel="false"
+	   failonerror="true"
+	   failifexecutionfails="false">
+      <fileset refid="python.tests" />
+    </apply>
+  </target>
+
+  <!-- ==================================================================== -->
   <target name="test-stf"
    depends="prepare.run.test,jar-tools-tests,jar-plugins-tests"
    description="Run an stf test suite" >
@@ -2000,7 +2020,51 @@ Test results in ${test.results}
     </if>
   </target>
 
-  <target name="load-plugins" depends="jar-tests,jar-plugins,-load-build-info"
+  <target name="load-plugins"
+	  depends="jar-tests,jar-plugins,prepare.run.test,-load-build-info"
+   description="Ensure plugins are well-formed by attempting to load them" >
+    <fileset id="plugin.files.filesetid" dir="${plugins.classes}">
+      <include name="**/*Plugin.xml"/>
+    </fileset>
+    <!-- convert the list of files to a string of plugin names -->
+    <pathconvert refid="plugin.files.filesetid"
+      property="plugin.names"
+      pathsep=";"
+      targetos="${detected.os}">
+       <mapper>
+        <packagemapper from="${plugins.classes}/*.xml" to="*"
+           casesensitive="no"/>
+       </mapper>
+    </pathconvert>
+
+    <if>
+     <not> <equals arg1="${plugin.names}" arg2="" /> </not>
+     <then>
+      <echo message="Validating plugin xml files"/>
+      <junit1 fork="${fork}" printsummary="yes" maxmemory="256m"
+	      filtertrace="${filtertrace}" showoutput="${showoutput}">
+        <test fork="${fork}" name="org.lockss.test.PluginTestCase" />
+	<!-- 	    <jvmarg value="-server"/> -->
+	<formatter type="plain" usefile="@{usefile}" />
+	<classpath refid="test.run.classpath" />
+        <sysproperty key="org.lockss.test.TestPluginNames"
+		     value="${plugin.names}"/>
+        <sysproperty key="org.lockss.manager.PluginManager"
+		     value="org.lockss.test.NonVersionCheckingPluginManager"/>
+	<sysproperty key="org.lockss.unitTesting" value="true"/>
+	<sysproperty key="org.lockss.defaultLogLevel" value="${loglevel}"/>
+	<sysproperty key="org.lockss.defaultLogTarget" value="${logtarget}"/>
+	<sysproperty key="org.lockss.keepTempFiles" value="${keeptempfiles}"/>
+      </junit1>
+     </then>
+     <else>
+      <echo message="No plugin xml files found"/>
+     </else>
+    </if>
+  </target>
+
+  <target name="load-plugins-old"
+	  depends="jar-tests,jar-plugins,-load-build-info"
    description="Ensure plugins are well-formed by attempting to load them" >
 <!--  Some plugins specify a minimum required daemon release version, so
       this test can't be run in daemon version 0.0.0 -->
