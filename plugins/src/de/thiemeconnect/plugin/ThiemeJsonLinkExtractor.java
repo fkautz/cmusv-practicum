@@ -18,7 +18,18 @@ import org.lockss.util.IOUtil;
 import org.lockss.util.Logger;
 
 /**
- * Link Extractor for JSON form in thieme.
+ * Link Extractor for json-like response of generated url emitted by {@link ThiemeHtmlLinkExtractor}.
+ * The response for https://www.thieme-connect.de/ejournals/json/issues?shortname=ajp&year=2011 is:
+ * 
+ * issues = [
+ * ["104225", "03", "169-252"], 
+ * ["103946", "02", "89-168"], 
+ * ["103623", "01", "1-88"]
+ * 
+ * ]
+ * 
+ * Above is a javascript statement assigning a json array to a variables 'issues'.
+ * 
  * @author vibhor
  *
  */
@@ -34,7 +45,7 @@ public class ThiemeJsonLinkExtractor implements LinkExtractor {
      * @param in current page data
      * @param encoding current page data encoding
      * @param srcUrl current page source
-     * @param cb callback to report status and results
+     * @param cb callback to record extracted links.
      */
 	@Override
 	public void extractUrls(ArchivalUnit au, InputStream in, String encoding,
