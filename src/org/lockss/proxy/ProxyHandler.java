@@ -42,8 +42,10 @@ import java.net.*;
 import java.net.HttpURLConnection;
 import java.util.*;
 
+import org.apache.commons.collections.SetUtils;
 import org.apache.commons.httpclient.util.*;
 import org.apache.commons.logging.Log;
+import org.exolab.castor.util.List;
 import org.mortbay.http.*;
 import org.mortbay.http.handler.AbstractHttpHandler;
 import org.mortbay.log.LogFactory;
@@ -301,6 +303,26 @@ public class ProxyHandler extends AbstractHttpHandler {
       log.debug3("pathInContext="+pathInContext);
       log.debug3("URI="+uri);
     }
+    
+    // Handling post requests specially.
+    // During a crawl, we can store links from a POST form similar to a GET form.
+    // See TestHtmlParserLinkExtractor::testPOSTForm.
+    // TODO(vibhor): We should only override the original uri if this is one of the POST request that
+    // was cached. Otherwise, carry on with the original uri.
+    if (HttpRequest.__POST.equals(request.getMethod())) {
+    	log.debug3("POST request found!");
+    	MultiMap params = request.getParameters();
+    	Set<String> unsortedKeys = SetUtils.typedSet(params.keySet(), String.class);
+    	SortedSet<String> keys = new TreeSet<String>(unsortedKeys);
+    	int i = 0;
+    	String urlCopy = uri.toString();
+    	for (String k : keys) {
+    		urlCopy = urlCopy + (i++ == 0 ? '?' : '&') + k + '=' + params.get(k);
+    	}
+    	log.debug3("Overriding original URI to:" + urlCopy);
+    	uri = new URI(UrlUtil.minimallyEncodeUrl(urlCopy));
+    }
+    
     if (isFailOver) {
       if (uri.getHost() == null && failOverTargetUri.getHost() != null) {
 	uri.setHost(failOverTargetUri.getHost());

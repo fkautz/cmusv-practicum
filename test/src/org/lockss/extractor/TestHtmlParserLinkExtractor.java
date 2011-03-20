@@ -875,10 +875,10 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 
 	// based upon highwire test case
 	public void testFormManyHiddenAttribute() throws IOException {
-		String url1 = "http://www.example.com/cgi/powerpoint/pediatrics;103/1/SE1/203/F4?image_path=%2Fcontent%2Fpediatrics%2Fvol103%2Fissue1%2Fimages%2Flarge%2Fpe01t0183004.jpeg&caption=No+Caption+Found&citation=Plsek%2C+P.+E.+Pediatrics+1999%3B103%3Ae203&copyright=1999+American+Academy+of+Pediatrics&filename=pediatricsv103i1pe203F4.ppt&ppt_download=true&id=103/1/SE1/203/F4&redirect_url=http%3A%2F%2Fpediatrics.aappublications.org%2Fcgi%2Fcontent%2Ffull%2F103%2F1%2FSE1%2F203%2FF4&site_name=pediatrics&notes_text=";
+		String url1 = "http://www.example.com/cgi/powerpoint/pediatrics;103/1/SE1/203/F4?image_path=%2Fcontent%2Fpediatrics%2Fvol103%2Fissue1%2Fimages%2Flarge%2Fpe01t0183004.jpeg&caption=No+Caption+Found&citation=Plsek%2C+P.+E.+Pediatrics+1999%3B103%3Ae203&copyright=1999+American+Academy+of+Pediatrics&filename=pediatricsv103i1pe203F4.ppt&ppt_download=true&id=103/1/SE1/203/F4&redirect_url=http%3A%2F%2Fpediatrics.aappublications.org%2Fcgi%2Fcontent%2Ffull%2F103%2F1%2FSE1%2F203%2FF4&site_name=pediatrics&notes_text=&generate_file=Download%20Image%20to%20PowerPoint";
 
 		String source = "<html><head><title>Test</title></head><body>"
-				+ "	  <FORM METHOD=POST ACTION=\"/cgi/powerpoint/pediatrics;103/1/SE1/203/F4\">"
+				+ "	  <FORM METHOD=GET ACTION=\"/cgi/powerpoint/pediatrics;103/1/SE1/203/F4\">"
 				+ "<INPUT TYPE=\"hidden\" NAME=\"image_path\" VALUE=\"%2Fcontent%2Fpediatrics%2Fvol103%2Fissue1%2Fimages%2Flarge%2Fpe01t0183004.jpeg\">"
 				+ "<INPUT TYPE=\"hidden\" NAME=\"caption\" VALUE=\"No+Caption+Found\">"
 				+ "<INPUT TYPE=\"hidden\" NAME=\"citation\" VALUE=\"Plsek%2C+P.+E.+Pediatrics+1999%3B103%3Ae203\">"
@@ -909,30 +909,28 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 
 	}
 
-	/*
-	 * TODO:disabled until this story arrive //a submit form of type post should
-	 * try the equivalent GET url public void testSubmitOnlyPostForm() throws
-	 * IOException { String url1=
-	 * "http://www.example.com/bioone/cgi/;F2&filename=jci116136F2.ppt";
-	 * 
-	 * String source = "<html><head><title>Test</title></head><body>"+
-	 * "<form action=\"http://www.example.com/bioone/cgi/;F2\" method=\"post\">"
-	 * +
-	 * "<input type=\"submit\" value=\"Blah\"><INPUT TYPE=\"hidden\" NAME=\"filename\" VALUE=\"jci116136F2.ppt\"></form>"
-	 * ;
-	 * 
-	 * assertEquals(SetUtil.set(url1), parseSingleSource(source));
-	 * 
-	 * }
-	 */
+	public void testPOSTForm() throws IOException {
+		// For a POST form, we treat it the same way as a GET form but normalize (alpha sorted parameters) the url 
+		// before storing. There is a corresponding logic in the proxy handler where a post request is assembled into
+		// a normalized get request before serving.
+		String url = "http://www.example.com/form/post?aArg=aVal&bArg=bVal";
+		String source = "<html><head><title>Test</title></head><body>"
+			+ "<form action=\"/form/post\" method=\"post\">"
+			+ "<input type=\"submit\" value=\"Blah\" />"
+			+ "<input type=\"hidden\" name=\"bArg\" value=\"bVal\" />"
+			+ "<input type=\"hidden\" name=\"aArg\" value=\"aVal\" />"
+			+ "</form>";
 
+		assertEquals(SetUtil.set(url), parseSingleSource(source));
+	}
+	
 	// a submit form of type get should return a single url
 	public void testSubmitOnlyForm() throws IOException {
-		String url1 = "http://www.example.com/bioone/cgi/;F2";
+		String url1 = "http://www.example.com/bioone/cgi/;F2?submitName=Blah";
 
 		String source = "<html><head><title>Test</title></head><body>"
 				+ "<form action=\"http://www.example.com/bioone/cgi/;F2\" method=\"get\">"
-				+ "<input type=\"submit\" value=\"Blah\"></form>";
+				+ "<input name=\"submitName\" type=\"submit\" value=\"Blah\"></form>";
 		assertEquals(SetUtil.set(url1), parseSingleSource(source));
 
 	}
