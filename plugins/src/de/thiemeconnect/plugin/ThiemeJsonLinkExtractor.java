@@ -20,14 +20,14 @@ import org.lockss.util.Logger;
 /**
  * Link Extractor for json-like response of generated url emitted by {@link ThiemeHtmlLinkExtractor}.
  * The response for https://www.thieme-connect.de/ejournals/json/issues?shortname=ajp&year=2011 is:
- * 
+ * <pre>
  * issues = [
  * ["104225", "03", "169-252"], 
  * ["103946", "02", "89-168"], 
  * ["103623", "01", "1-88"]
  * 
  * ]
- * 
+ * </pre>
  * Above is a javascript statement assigning a json array to a variables 'issues'.
  * 
  * @author vibhor

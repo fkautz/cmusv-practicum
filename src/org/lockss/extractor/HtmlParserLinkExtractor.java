@@ -37,19 +37,43 @@ import org.lockss.util.StringUtil;
 import org.lockss.util.UrlUtil;
 
 /**
- * @author vibhor TODO: blah BUG: blah
+ * An all purpose HTML Link extractor which attempts to collect a superset of links extracted by {@link GoslingHtmlLinkExtractor}.
+ * Specifically, this extractor provides an alternate {@link Parser} based implementation of LinkExtractor interface.
+ * This dom traversal capability is suitable to extract links from an HTML FORM that consists of radio buttons, checkboxes or select options.
+ *  
+ * @author vibhor
  * 
  */
 public class HtmlParserLinkExtractor implements LinkExtractor {
 	private static final Logger logger = Logger.getLogger("HtmlParserLinkExtractor");
 
+	/**
+	 * A link extractor interface that can parse a given html tag and extract link(s) from it.
+	 * 
+	 * @author nvibhor
+	 */
 	private interface TagLinkExtractor {
+		/**
+		 * Extract link(s) from this tag.
+		 * @param au Current archival unit to which this html document belongs.
+		 * @param cb A callback to record extracted links.
+		 */
 		public void extractLink(ArchivalUnit au, Callback cb);
 	}
 
+	/**
+	 * Implementation of {@link TagLinkExtractor} interface for html tags that contain an 'href' attribute.
+	 * 
+	 * @author nvibhor
+	 *
+	 */
 	private static class HrefTagLinkExtractor implements TagLinkExtractor {
 		private Tag tag_;
 
+		/**
+		 * Constructor
+		 * @param tag {@link Tag} object corresponding to this html tag.
+		 */
 		public HrefTagLinkExtractor(Tag tag) {
 			this.tag_ = tag;
 		}
@@ -64,9 +88,19 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		}
 	}
 
+	/**
+	 * Implementation of {@link TagLinkExtractor} interface for html tags that contain a 'src' attribute.
+	 * 
+	 * @author nvibhor
+	 *
+	 */
 	private static class SrcTagLinkExtractor implements TagLinkExtractor {
 		private Tag tag_;
 
+		/**
+		 * Constructor
+		 * @param tag {@link Tag} object corresponding to this html tag.
+		 */
 		public SrcTagLinkExtractor(Tag tag) {
 			this.tag_ = tag;
 		}
@@ -77,9 +111,19 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		}
 	}
 
+	/**
+	 * Implementation of {@link TagLinkExtractor} interface for html tags that contain a 'code' attribute.
+	 * 
+	 * @author nvibhor
+	 *
+	 */
 	private static class CodeTagLinkExtractor implements TagLinkExtractor {
 		private Tag tag_;
 
+		/**
+		 * Constructor
+		 * @param tag {@link Tag} object corresponding to this html tag.
+		 */
 		public CodeTagLinkExtractor(Tag tag) {
 			this.tag_ = tag;
 		}
@@ -90,9 +134,19 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		}
 	}
 
+	/**
+	 * Implementation of {@link TagLinkExtractor} interface for html tags that contain a 'codebase' attribute.
+	 * 
+	 * @author nvibhor
+	 *
+	 */
 	private static class CodeBaseTagLinkExtractor implements TagLinkExtractor {
 		private Tag tag_;
 
+		/**
+		 * Constructor
+		 * @param tag {@link Tag} object corresponding to this html tag.
+		 */
 		public CodeBaseTagLinkExtractor(Tag tag) {
 			this.tag_ = tag;
 		}
@@ -103,9 +157,19 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		}
 	}
 
+	/**
+	 * Implementation of {@link TagLinkExtractor} interface for html tags that contain a 'background' attribute.
+	 * 
+	 * @author nvibhor
+	 *
+	 */
 	private static class BackgroundTagLinkExtractor implements TagLinkExtractor {
 		private Tag tag_;
 
+		/**
+		 * Constructor
+		 * @param tag {@link Tag} object corresponding to this html tag.
+		 */
 		public BackgroundTagLinkExtractor(Tag tag) {
 			this.tag_ = tag;
 		}
@@ -116,6 +180,11 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		}
 	}
 
+	/**
+	 * A factory of {@link TagLinkExtractor} objects.
+	 * @param tag {@link Tag} object for which {@link TagLinkExtractor} is required.
+	 * @return {@link TagLinkExtractor} object.
+	 */
 	private static TagLinkExtractor getTagLinkExtractor(Tag tag) {
 		String tagName = tag.getTagName();
 		if ("a".equalsIgnoreCase(tagName)) {
@@ -458,6 +527,14 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 
 	}
 
+	/**
+	 * A custom NodeVisitor implementation that provides the support for link extraction from the current document.
+	 * An instance of this class is passed to {@link Parser#visitAllNodesWith} which invokes visitTag & visitEngTag for each tag in the document tree.
+	 * For each tag, a corresponding {@link TagLinkExtractor} object is used to emit links or in case of forms, a {@link FormProcessor} is used.
+	 * 
+	 * @author nvibhor
+	 *
+	 */
 	private class LinkExtractorNodeVisitor extends NodeVisitor {
 		protected static final int MAX_LOCKSS_URL_LENGTH = 255;
 		private Callback cb_;
@@ -472,6 +549,13 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		private FormUrlNormalizer normalizer_;
 		private FormProcessor formProcessor_;
 
+		/**
+		 * Constructor
+		 * @param au Current archival unit to which this html document belongs.
+		 * @param srcUrl The url of this html document.
+		 * @param cb A callback to record extracted links.
+		 * @param encoding Encoding needed to read this html document off input stream. 
+		 */
 		public LinkExtractorNodeVisitor(ArchivalUnit au, String srcUrl,
 				Callback cb, String encoding) {
 			cb_ = cb;
@@ -484,7 +568,11 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 										// the AU
 			normalizer_ = new FormUrlNormalizer();
 			formProcessor_ = null;
+			
+			// TODO: Refactor this custom callback to its own class for better readability.
 			emit_ = new LinkExtractor.Callback() {
+				
+				@Override
 				public void foundLink(String url) {
 					if (url != null) {
 						logger.debug3("Found link (before custom callback):" + url);
@@ -522,10 +610,16 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 
 		}
 
-		// TODO - right now ExtractLink can only return a single URL, but a tag
-		// can produce multiple links, especially forms
-		// private Callback emitUrl(Callback cb);
-
+		/**
+		 * Resolves a url relative to given base url and returns an absolute url. Also does some minor trasnformation (such as escaping).
+		 * Derived from {@link GoslingHtmlLinkExtractor#resolveUri(URL, String)}
+		 * @see UrlUtil#resolveUri(URL, String)
+		 * 
+		 * @param base The base url
+		 * @param relative Url that needs to be resolved
+		 * @return The absolute url.
+		 * @throws MalformedURLException
+		 */
 		protected String resolveUri(URL base, String relative)
 				throws MalformedURLException {
 			String baseProto = null;
@@ -543,12 +637,16 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			return UrlUtil.resolveUri(base, relative);
 		}
 
+		@Override
 		public void visitEndTag(Tag tag) {
+			// If end script tag visited and we were in script mode, exit script mode.
 			if ("script".equalsIgnoreCase(tag.getTagName())
 					&& tag.getStartPosition() != tag.getEndPosition()) {
 				inScriptMode_ = false;
 			}
 
+			// If end form tag visited, we must have encountered all the form inputs that will be needed to generate form links.
+			// Exit form mode, emit all form links and finish form processing for this form.
 			if ("form".equalsIgnoreCase(tag.getTagName())
 					&& tag.getStartPosition() != tag.getEndPosition()) {
 				inFormMode_ = false;
@@ -564,12 +662,15 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			}
 		}
 
+		@Override
 		public void visitTag(Tag tag) {
+			// We can definitely not recover from a form inside a form. 
 			if (tag instanceof FormTag) {
 				if (inFormMode_) {
 					logger.error("Invalid HTML: Form inside a form");
 					return;
 				}
+				// Visited a form tag, enter form mode and start form processing logic.
 				inFormMode_ = true;
 				if (formProcessor_ != null) {
 					// Possibly throw exception to abort completely from this
@@ -582,14 +683,18 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 				formProcessor_ = new FormProcessor((FormTag) tag);
 			}
 
+			// An input/select tag inside a form mode should be handled by form processor.
 			if (inFormMode_
 					&& (tag instanceof InputTag || tag instanceof SelectTag)) {
 				formProcessor_.addTag(tag);
 				return;
 			}
 
+			// We currently skip processing script tags.
 			if (inScriptMode_)
 				return;
+			
+			// The following code for style tag processing is heavily derived from GoslingHTmlLinkExtractor.
 			if ("style".equalsIgnoreCase(tag.getTagName())) {
 				StyleTag styleTag = (StyleTag) tag;
 				InputStream in = new ReaderInputStream(new StringReader(
@@ -603,6 +708,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 				}
 			}
 
+			// Visited a base tag, update the page url. All the relative links that follow base tag will need to be resolved to the new page url.
 			if ("base".equalsIgnoreCase(tag.getTagName())) {
 				String newBase = tag.getAttribute("href");
 				if (newBase != null && !"".equals(newBase)) {
@@ -614,8 +720,10 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 				return;
 			}
 
+			// Visited a script tag, enter script mode.
 			this.inScriptMode_ = "script".equalsIgnoreCase(tag.getTagName());
 
+			// For everything else, we fallback to a TagLinkExtractor instance if available for this tag.
 			TagLinkExtractor tle = getTagLinkExtractor(tag);
 			if (tle != null) {
 				tle.extractLink(au_, emit_);

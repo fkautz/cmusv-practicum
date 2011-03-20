@@ -23,9 +23,10 @@ import org.lockss.util.ReaderInputStream;
  * if it is the start page of AU and contains the special thieme form.
  * (The form sends out an ajax request when user changes one of the input values.) 
  * In this case, a url string is created using a pre-determined template and AU definitional parameters.
+ * <pre>
  * For example,
  * AJP, 2011 -> http://www.thieme-connect.de/ejournals/json/issues?shortname=ajp&year=2011
- * 
+ * </pre>
  * The response page of this url is processed by {@link ThiemeJsonLinkExtractor}
  *
  * @author nvibhor
