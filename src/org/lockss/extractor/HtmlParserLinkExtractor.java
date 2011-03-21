@@ -16,8 +16,6 @@ import java.util.Vector;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.htmlparser.Parser;
 import org.htmlparser.Tag;
 import org.htmlparser.lexer.Lexer;
@@ -33,6 +31,7 @@ import org.htmlparser.visitors.NodeVisitor;
 import org.lockss.daemon.PluginException;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.plugin.UrlNormalizer;
+import org.lockss.util.Logger;
 import org.lockss.util.ReaderInputStream;
 import org.lockss.util.StringUtil;
 import org.lockss.util.UrlUtil;
@@ -42,8 +41,7 @@ import org.lockss.util.UrlUtil;
  * 
  */
 public class HtmlParserLinkExtractor implements LinkExtractor {
-	private static final Log logger = LogFactory
-			.getLog(HtmlParserLinkExtractor.class);
+	private static final Logger logger = Logger.getLogger("HtmlParserLinkExtractor");
 
 	private interface TagLinkExtractor {
 		public void extractLink(ArchivalUnit au, Callback cb);
@@ -222,9 +220,9 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 				if (name_ == null) {
 					name_ = tagName;
 					if (name_.isEmpty()) {
-						// should never reach this
-						logger.warn("Radio button with no name. Aborting");
-						// TODO: Figure out if we should throw an exception.
+                        // shouldn't ever reach this
+						logger.warning("Radio button with no name. Aborting");
+						// TODO: Throw exception
 						return;
 					}
 				}
@@ -330,12 +328,14 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 
 		public void addTag(Tag tag) {
 			if ("submit".equalsIgnoreCase(tag.getAttribute("type"))) {
+				// HACK(vibhor): If the submit button has a value, browser will send its value in a POST form.
+				orderedTags_.add(new HiddenFormInput(tag));
 				submitSeen();
 				return;
 			}
 			String name = tag.getAttribute("name");
 			if (name == null || name.isEmpty()) {
-				logger.warn("Form input tag with no name found. Skipping");
+				logger.warning("Form input tag with no name found. Skipping");
 				return;
 			}
 
@@ -392,7 +392,16 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 				isFirstArgSeen = true;
 			}
 
+			FormUrlNormalizer normalizer = new FormUrlNormalizer();
+			boolean isPost = formTag_.getFormMethod().equalsIgnoreCase("post");
 			for (String link : links) {
+				if (isPost)
+					try {
+						link = normalizer.normalizeUrl(link, au);
+					} catch (PluginException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				cb.foundLink(link);
 			}
 		}
@@ -479,6 +488,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			emit_ = new LinkExtractor.Callback() {
 				public void foundLink(String url) {
 					if (url != null) {
+						logger.debug3("Found link (before custom callback):" + url);
 						try {
 							if (malformedBaseUrl_) {
 								if (!UrlUtil.isAbsoluteUrl(url)) {
@@ -488,6 +498,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 								url = resolveUri(new URL(srcUrl_), url);
 								if (url == null) return;
 							}
+							logger.debug3("Found link (custom callback) after resolver:" + url);
 							// check length
 							if (StringUtils.lastIndexOf(url, "/") != -1) {
 								int filename_length = url.length()
@@ -500,6 +511,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 							if (normalizeFormUrls_) {
 								url = normalizer_.normalizeUrl(url, au_);
 							}
+							logger.debug3("Found link (custom callback) after normalizer:" + url);							
 							// emit the processed url
 							cb_.foundLink(url);
 						} catch (MalformedURLException e) {
@@ -647,8 +659,8 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			p.visitAllNodesWith(new LinkExtractorNodeVisitor(au, srcUrl, cb,
 					encoding));
 		} catch (ParserException e) {
-			logger.warn("Unable to parse url: " + srcUrl);
-			logger.warn(e);
+			logger.warning("Unable to parse url: " + srcUrl);
+			logger.warning(e.getMessage());
 		}
 
 		// For legacy reasons, we want to ensure link extraction using a more
