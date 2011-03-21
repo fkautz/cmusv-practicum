@@ -14,7 +14,9 @@ import org.lockss.extractor.LinkExtractorFactory;
  */
 public class ThiemeJsonLinkExtractorFactory implements LinkExtractorFactory {
 
-	/* (non-Javadoc)
+	/**
+     * @param mimeType ignored
+     * @return new ThiemeHtmlLinkExtractor
 	 * @see org.lockss.extractor.LinkExtractorFactory#createLinkExtractor(java.lang.String)
 	 */
 	@Override
