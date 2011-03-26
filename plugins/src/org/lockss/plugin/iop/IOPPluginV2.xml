@@ -42,7 +42,7 @@ to support the current IOP journals.
       <string>1,&quot;^%s/%s/%d/\d+$&quot;, base_url, journal_id, volume</string>
       <string>1,&quot;^%s/%s/%d/\d+/\d+$&quot;, base_url, journal_id, volume</string>
       <string>1,&quot;^%s/%s/%d/\d+/\d+/pdf.*&quot;, base_url, journal_id, volume</string>
-      <string>1,&quot;^%s/export?articleId=%s/%d/\d+/\d+&amp;exportFormat=iopexport_(bib|ris|csv|endnote|txt|direx)&amp;exportType=(abs|refs)&amp;navsubmit=Export%%20Results&quot;, base_url, journal_id, volume</string>
+      <string>1,&quot;^%s/export\?articleId=%s\/%d\/\d+\/\d+&amp;exportFormat=iopexport_(bib|ris|csv|endnote|txt|direx)&amp;exportType=(abs|refs)&amp;navsubmit=Export%%20Results&quot;, base_url, journal_id, volume</string>
     </list>
   </entry>
   <entry>
