@@ -35,6 +35,12 @@
   </entry>
   <entry>
     <string>au_start_url</string>
+    <!-- TODO(vibhor): This url returns the page containing the list of current issues.
+               This can result in 2 copies of an AU across 2 crawls. In order to avoid false negatives during polling,
+               we should be either filtering out this page during voting or clear the content of this url completely after
+               the page has been processed:
+               If the LOCKSS team is able to get hold of manifest page from this publisher, we will probably not need this
+               plugin anyway. -->
     <string>&quot;%sejournals/toc/%s&quot;, base_url, journal_name</string>
   </entry>
    <entry>

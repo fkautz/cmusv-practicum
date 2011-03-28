@@ -307,10 +307,12 @@ public class ProxyHandler extends AbstractHttpHandler {
     // Handling post requests specially.
     // During a crawl, we can store links from a POST form similar to a GET form.
     // See TestHtmlParserLinkExtractor::testPOSTForm.
+    //
     // TODO(vibhor): We should only override the original uri if this is one of the POST request that
     // was cached. Otherwise, carry on with the original uri.
     if (HttpRequest.__POST.equals(request.getMethod())) {
     	log.debug3("POST request found!");
+    	// TODO(fkautz): Use request headers instead to get the POST parameters in the order in which proxy receives these.
     	MultiMap params = request.getParameters();
     	Set<String> unsortedKeys = SetUtils.typedSet(params.keySet(), String.class);
     	SortedSet<String> keys = new TreeSet<String>(unsortedKeys);

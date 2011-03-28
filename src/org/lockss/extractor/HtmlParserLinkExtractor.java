@@ -461,6 +461,9 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 				isFirstArgSeen = true;
 			}
 
+			// TODO(fkautz): Instead of using a custom normalizer, investigate and use PluginManager to normalize the form urls. This
+			// way we can share the logic between crawler and proxyhandler. (We do a similar normalization in ProxyHandler.java)
+			// ***NOTE: We only need to use a normalizer if the task to use proxy request header fails.***
 			FormUrlNormalizer normalizer = new FormUrlNormalizer();
 			boolean isPost = formTag_.getFormMethod().equalsIgnoreCase("post");
 			for (String link : links) {
@@ -776,6 +779,9 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 
 		// For legacy reasons, we want to ensure link extraction using a more
 		// permissive Gosling parser.
+		//
+		// TODO(vibhor): Instead of copying the IOStream, we should be able to specify pass multiple
+		// link extractors in the plugin (for same mime type) and reopen stream for each.
 		new GoslingHtmlLinkExtractor().extractUrls(au, inCopy, encoding,
 				srcUrl, cb);
 	}
