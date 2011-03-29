@@ -437,45 +437,105 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 
 			// Get the absolute base url from action attribute.
 			String baseUrl = formTag_.extractFormLocn();
-			boolean isFirstArgSeen = false;
-
-			Vector<String> links = new Vector<String>();
-			Vector<String> newLinks = null;
-			links.add(baseUrl);
-			for (FormInputWrapper tag : orderedTags_) {
-				String[] urlComponents = tag.getUrlComponents();
-				if (urlComponents == null)
-					continue;
-				if (urlComponents.length <= 0)
-					continue;
-				newLinks = new Vector<String>();
-				for (String url : links) {
-					for (String component : urlComponents) {
-						newLinks.add(url + (isFirstArgSeen ? '&' : '?')
-								+ component);
-					}
-				}
-				if (newLinks != null && newLinks.size() >= links.size()) {
-					links = newLinks;
-				}
-				isFirstArgSeen = true;
-			}
+			FormUrlIterator iter = new FormUrlIterator(orderedTags_, baseUrl);
+			iter.initialize();
 
 			// TODO(fkautz): Instead of using a custom normalizer, investigate and use PluginManager to normalize the form urls. This
 			// way we can share the logic between crawler and proxyhandler. (We do a similar normalization in ProxyHandler.java)
 			// ***NOTE: We only need to use a normalizer if the task to use proxy request header fails.***
 			FormUrlNormalizer normalizer = new FormUrlNormalizer();
 			boolean isPost = formTag_.getFormMethod().equalsIgnoreCase("post");
-			for (String link : links) {
-				if (isPost)
+			while (iter.hasMore()) {
+				String link = iter.nextUrl();
+				if (isPost) {
 					try {
 						link = normalizer.normalizeUrl(link, au);
 					} catch (PluginException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+				}
 				cb.foundLink(link);
 			}
+		}
+	}
+	
+	public class FormUrlIterator {
+		private Vector<FormInputWrapper> tags_;
+		private Vector<String[]> components_;
+		private int[] currentPositions_;
+		private int totalUrls_;
+		private int numUrlSeen_;
+		private String baseUrl_;
+		
+		public FormUrlIterator(Vector<FormInputWrapper> tags, String baseUrl) {
+			this.tags_ = tags;
+			this.components_ = new Vector<String[]>();
+			this.totalUrls_ = 1;
+			this.currentPositions_ = null;
+			this.numUrlSeen_ = 0;
+			this.baseUrl_ = baseUrl;
+		}
+
+		public void initialize() {
+			for (FormInputWrapper tag : this.tags_) {
+				String[] urlComponents = tag.getUrlComponents();
+				if (urlComponents != null && urlComponents.length > 0) {
+					this.totalUrls_ *= urlComponents.length;
+					this.components_.add(tag.getUrlComponents());
+				}
+			}
+			this.currentPositions_ = new int[this.components_.size()];
+			for (int i = 0; i < this.currentPositions_.length; ++i) {
+				this.currentPositions_[i] = 0;
+			}
+		}
+
+		public boolean hasMore() {
+			return this.numUrlSeen_ < this.totalUrls_;
+		}
+
+		private boolean isHighestValue_(int i) {
+			return (this.currentPositions_[i] + 1) >= this.components_.get(i).length;
+		}
+		
+		// If we have 3 select-option values, 1 checkbox and 2 radiobuttons, we can have 3 X 2 X 2 combinations:
+		// This is how the iteration works:
+		// <0,0,0> <0,0,1> <0,1,0> <0,1, 1>....<2,1,1>
+		private void increment_(int i) {
+			if (isHighestValue_(i)) {
+				if (i + 1 == this.currentPositions_.length) return;
+				
+				this.currentPositions_[i] = 0;
+				increment_(i + 1);
+			} else {
+				this.currentPositions_[i]++;
+			}
+		}
+		
+		private void incrementPositions_() {
+			if (!hasMore()) return;
+			
+			this.numUrlSeen_++;
+			
+			// Corner case where no valid url components were obtained.
+			if (this.currentPositions_.length == 0) return;
+			
+			increment_(0);
+		}
+		
+		public String nextUrl() {
+			if (!hasMore()) return null;
+			
+			boolean isFirstArgSeen = false;
+			String url = this.baseUrl_;
+			int i = 0;
+			for (String[] components : this.components_) {
+				url += (isFirstArgSeen ? '&' : '?') + components[this.currentPositions_[i++]];
+				isFirstArgSeen = true;
+			}
+			incrementPositions_();
+			return url;
 		}
 	}
 
