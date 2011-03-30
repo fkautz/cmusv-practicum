@@ -35,6 +35,8 @@ package org.lockss.repository;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.util.*;
+import java.util.regex.Matcher;
+
 import org.apache.oro.text.regex.*;
 
 import org.lockss.config.*;
@@ -1797,5 +1799,42 @@ public class RepositoryNodeImpl implements RepositoryNode {
       // compares file pathnames
       return ((File)o1).getName().compareTo(((File)o2).getName());
     }
+  }
+
+  /**
+   * Encodes URL
+   * Encodes the URL for storage in the file system.
+   *
+   * 1. Convert all backslashes to "%5c".
+   * 2. Convert all forward slashes to backslashes.
+   * 3. Add a backslash to the front of the string.
+   * 4. Escape all back slashes for storage in the filesystem.
+   */
+  static String encodeUrl(String url) {
+    if(url == null || url.isEmpty())
+      return url;
+    url = url.replaceAll("\\\\", "%5c");
+    url = url.replaceAll("\\/", "\\\\");
+    url = "\\" + url;
+    return url;
+  }
+  /**
+   *
+   * Decodes URL
+   * Decodes the URL for storage in the file system.
+   *
+   * 1. Return if no backslash is at the beginning of the string
+   * 2. Remove backslash at beginning of string.
+   * 3. Convert all backslashes to forward slashes
+   * 
+   * Design Decision: Don't convert %5c to URL
+   * This allows valid URLs that should have 
+   */
+  static String decodeUrl(String url) {
+    if(url == null || url.isEmpty() || url.charAt(0) != '\\')
+      return url;
+    url = url.substring(1, url.length());
+    url = url.replaceAll("\\\\", "/");
+    return url;
   }
 }
