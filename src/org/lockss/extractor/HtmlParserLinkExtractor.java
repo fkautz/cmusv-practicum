@@ -770,11 +770,9 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			p.visitAllNodesWith(new LinkExtractorNodeVisitor(au, srcUrl, cb,
 					encoding));
 		} catch (ParserException e) {
-			logger.warning("Unable to parse url: " + srcUrl);
-			logger.warning(e.getMessage());
+			logger.warning("Unable to parse url: " + srcUrl,e);
 		} catch (RuntimeException e) {
-			logger.warning("Encountered a runtime exception, continuing link extraction with Gosling");
-			logger.warning(e.getMessage());
+			logger.warning("Encountered a runtime exception, continuing link extraction with Gosling",e);
 		}
 
 		// For legacy reasons, we want to ensure link extraction using a more
