@@ -444,10 +444,6 @@ public class LockssRepositoryImpl
     int totalLength = rootLocation.length() + urlStr.length();
     URL url = new URL(urlStr);
     StringBuffer buffer = new StringBuffer(totalLength);
-    buffer.append(rootLocation);
-    if (!rootLocation.endsWith(File.separator)) {
-      buffer.append(File.separator);
-    }
     buffer.append(url.getHost().toLowerCase());
     int port = url.getPort();
     if (port != -1) {
@@ -463,7 +459,13 @@ public class LockssRepositoryImpl
       buffer.append("?");
       buffer.append(escapeQuery(query));
     }
-    return buffer.toString();
+    StringBuffer finalBuffer = new StringBuffer();
+    finalBuffer.append(rootLocation);
+    if (!rootLocation.endsWith(File.separator)) {
+      finalBuffer.append(File.separator);
+    }
+    finalBuffer.append(RepositoryNodeImpl.encodeUrl(buffer.toString()));
+    return finalBuffer.toString();
   }
 
   // name mapping functions
