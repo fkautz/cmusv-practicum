@@ -461,6 +461,8 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 	}
 	
 	public class FormUrlIterator {
+		// Do not allow more than MAX_NUM_URLS to be generated.
+		private static final int MAX_NUM_URLS = 10000;
 		private Vector<FormInputWrapper> tags_;
 		private Vector<String[]> components_;
 		private int[] currentPositions_;
@@ -489,6 +491,8 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			for (int i = 0; i < this.currentPositions_.length; ++i) {
 				this.currentPositions_[i] = 0;
 			}
+			
+			if (this.totalUrls_ > MAX_NUM_URLS) this.totalUrls_ = MAX_NUM_URLS;
 		}
 
 		public boolean hasMore() {
@@ -499,29 +503,23 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			return (this.currentPositions_[i] + 1) >= this.components_.get(i).length;
 		}
 		
-		// If we have 3 select-option values, 1 checkbox and 2 radiobuttons, we can have 3 X 2 X 2 combinations:
-		// This is how the iteration works:
-		// <0,0,0> <0,0,1> <0,1,0> <0,1, 1>....<2,1,1>
-		private void increment_(int i) {
-			if (isHighestValue_(i)) {
-				if (i + 1 == this.currentPositions_.length) return;
-				
-				this.currentPositions_[i] = 0;
-				increment_(i + 1);
-			} else {
-				this.currentPositions_[i]++;
-			}
-		}
-		
 		private void incrementPositions_() {
 			if (!hasMore()) return;
 			
 			this.numUrlSeen_++;
 			
-			// Corner case where no valid url components were obtained.
-			if (this.currentPositions_.length == 0) return;
-			
-			increment_(0);
+			// If we have 3 select-option values, 1 checkbox and 2 radiobuttons, we can have 3 X 2 X 2 combinations:
+			// This is how the iteration works:
+			// <0,0,0> <0,0,1> <0,1,0> <0,1, 1>....<2,1,1>			
+			for (int i = 0; i < this.currentPositions_.length; ++i) {
+				if (isHighestValue_(i)) {
+					if (i + 1 == this.currentPositions_.length) break;
+					this.currentPositions_[i] = 0;
+				} else {
+					this.currentPositions_[i]++;
+					break;
+				}
+			}
 		}
 		
 		public String nextUrl() {
