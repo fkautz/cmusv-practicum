@@ -1097,7 +1097,7 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
     // to throw
     OutputStream os =
       new BufferedOutputStream(new FileOutputStream(propsFile, true));
-    os.write("\\uxxxxfoo=bar".getBytes());
+    os.write("//uxxxxfoo=bar".getBytes());
     os.close();
     return leaf;
   }
@@ -1864,31 +1864,46 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
   public void testEncodeUrl() {
     assertEquals(null, RepositoryNodeImpl.encodeUrl(null));
     assertEquals("", RepositoryNodeImpl.encodeUrl(""));
-    assertEquals("\\www.example.com", RepositoryNodeImpl.encodeUrl("www.example.com"));
-    assertEquals("\\www.example.com\\val", RepositoryNodeImpl.encodeUrl("www.example.com/val"));
-    assertEquals("\\www.example.com%5cval", RepositoryNodeImpl.encodeUrl("www.example.com\\val"));
-    assertEquals("\\www.example.com\\val%5cval", RepositoryNodeImpl.encodeUrl("www.example.com/val\\val"));
-    assertEquals("\\www.example.com\\val\\val", RepositoryNodeImpl.encodeUrl("www.example.com/val/val"));
-    assertEquals("\\www.example.com\\val%5c%5cval", RepositoryNodeImpl.encodeUrl("www.example.com/val\\\\val"));
-    assertEquals("\\www.example.com\\val\\\\val", RepositoryNodeImpl.encodeUrl("www.example.com/val//val"));
-    assertEquals("\\www.example.com\\val\\val\\", RepositoryNodeImpl.encodeUrl("www.example.com/val/val/"));
-    assertEquals("\\www.example.com\\val\\val%5c", RepositoryNodeImpl.encodeUrl("www.example.com/val/val\\"));
-    assertEquals("\\www.example.com%5cval%5cval%5c", RepositoryNodeImpl.encodeUrl("www.example.com\\val\\val\\"));
+    assertEquals("www.example.com", RepositoryNodeImpl.encodeUrl("www.example.com"));
+    assertEquals("www.example.com/val", RepositoryNodeImpl.encodeUrl("www.example.com/val"));
+    assertEquals("www.example.com%5cval", RepositoryNodeImpl.encodeUrl("www.example.com\\val"));
+    assertEquals("www.example.com/val%5cval", RepositoryNodeImpl.encodeUrl("www.example.com/val\\val"));
+    assertEquals("www.example.com/val/val", RepositoryNodeImpl.encodeUrl("www.example.com/val/val"));
+    assertEquals("www.example.com/val%5c%5cval", RepositoryNodeImpl.encodeUrl("www.example.com/val\\\\val"));
+    assertEquals("www.example.com/val/val", RepositoryNodeImpl.encodeUrl("www.example.com/val/val"));
+    assertEquals("www.example.com/val/val/", RepositoryNodeImpl.encodeUrl("www.example.com/val/val/"));
+    assertEquals("www.example.com/val/val%5c", RepositoryNodeImpl.encodeUrl("www.example.com/val/val\\"));
+    assertEquals("www.example.com%5cval%5cval%5c", RepositoryNodeImpl.encodeUrl("www.example.com\\val\\val\\"));
   }
 
-  public void testDecodeUrl() {
+  public void testShortDecodeUrl() {
     assertEquals(null, RepositoryNodeImpl.decodeUrl(null));
     assertEquals("", RepositoryNodeImpl.decodeUrl(""));
-    assertEquals("www.example.com", RepositoryNodeImpl.decodeUrl("\\www.example.com"));
-    assertEquals("www.example.com/val", RepositoryNodeImpl.decodeUrl("\\www.example.com/val"));
-    assertEquals("www.example.com%5cval", RepositoryNodeImpl.decodeUrl("\\www.example.com%5cval"));
-    assertEquals("www.example.com/val%5cval", RepositoryNodeImpl.decodeUrl("\\www.example.com/val%5cval"));
-    assertEquals("www.example.com/val/val", RepositoryNodeImpl.decodeUrl("\\www.example.com\\val\\val"));
-    assertEquals("www.example.com/val%5c%5cval", RepositoryNodeImpl.decodeUrl("\\www.example.com\\val%5c%5cval"));
-    assertEquals("www.example.com/val//val", RepositoryNodeImpl.decodeUrl("\\www.example.com\\val\\\\val"));
-    assertEquals("www.example.com/val/val/", RepositoryNodeImpl.decodeUrl("\\www.example.com\\val\\val\\"));
-    assertEquals("www.example.com/val/val%5c", RepositoryNodeImpl.decodeUrl("\\www.example.com\\val\\val%5c"));
-    assertEquals("www.example.com%5cval%5cval%5c", RepositoryNodeImpl.decodeUrl("\\www.example.com%5cval%5cval%5c"));
+    assertEquals("www.example.com", RepositoryNodeImpl.decodeUrl("www.example.com"));
+    assertEquals("www.example.com/val", RepositoryNodeImpl.decodeUrl("www.example.com/val"));
+    assertEquals("www.example.com%5cval", RepositoryNodeImpl.decodeUrl("www.example.com%5cval"));
+    assertEquals("www.example.com/val%5cval", RepositoryNodeImpl.decodeUrl("www.example.com/val%5cval"));
+    assertEquals("www.example.com/val/val", RepositoryNodeImpl.decodeUrl("www.example.com/val/val"));
+    assertEquals("www.example.com/val%5c%5cval", RepositoryNodeImpl.decodeUrl("www.example.com/val%5c%5cval"));
+    assertEquals("www.example.com/val/val", RepositoryNodeImpl.decodeUrl("www.example.com/val/val"));
+    assertEquals("www.example.com/val/val/", RepositoryNodeImpl.decodeUrl("www.example.com/val/val/"));
+    assertEquals("www.example.com/val/val%5c", RepositoryNodeImpl.decodeUrl("www.example.com/val/val%5c"));
+    assertEquals("www.example.com%5cval%5cval%5c", RepositoryNodeImpl.decodeUrl("www.example.com%5cval%5cval%5c"));
+  }
+  
+  public void testLongDecodeUrl() {
+    StringBuffer longUrl = new StringBuffer();
+    longUrl.append("www.example.com/");
+    for(int i=0; i<218; i++)  {
+      longUrl.append(i + ",");
+    }
+    longUrl.append(".");
+    String result = RepositoryNodeImpl.encodeUrl(longUrl.toString());
+    System.out.println(longUrl);
+    System.out.println(result);
+    String result2 = RepositoryNodeImpl.decodeUrl(result);
+    System.out.println(result2);
+    assertTrue(longUrl.toString().equals(result2));
   }
 
   private RepositoryNode createLeaf(String url, String content,

@@ -37,6 +37,7 @@ import java.net.MalformedURLException;
 import java.util.*;
 import java.util.regex.Matcher;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.oro.text.regex.*;
 
 import org.lockss.config.*;
@@ -1805,36 +1806,65 @@ public class RepositoryNodeImpl implements RepositoryNode {
    * Encodes URL
    * Encodes the URL for storage in the file system.
    *
-   * 1. Convert all backslashes to "%5c".
-   * 2. Convert all forward slashes to backslashes.
-   * 3. Add a backslash to the front of the string.
-   * 4. Escape all back slashes for storage in the filesystem.
+   * 1. Convert all backslashes to %5c
+   * 2. Tokenize string by '/'
+   * 3. All strings longer than 254 characters are separated by a / at each 254'th character
    */
   static String encodeUrl(String url) {
     if(url == null || url.isEmpty())
       return url;
+    // 1. convert all backslashes to %5c
     url = url.replaceAll("\\\\", "%5c");
-    url = url.replaceAll("\\/", "\\\\");
-    url = "\\" + url;
-    return url;
+    // 2. tokenize string by '/'
+    StringTokenizer strtok = new StringTokenizer(url, "/");
+    StringBuffer sb = new StringBuffer();
+    sb.append(strtok.nextToken());
+    while(strtok.hasMoreTokens()) {
+      sb.append('/');
+      String token = strtok.nextToken();
+      if(token.length() > 254) {
+        int chunkCount = token.length()/254;
+        for(int i=0; i<=chunkCount; i++) {
+          StringBuffer tokenBuffer = new StringBuffer();
+          if(i != 0) {
+            tokenBuffer.append("\\/");
+          }
+          int low = 254*i;
+          int high = 254*(i+1);
+          if(high > token.length()) {
+            high = token.length();
+          }
+          if(token.substring(low, high).equals(".") || token.substring(low, high).equals(".")) {
+            tokenBuffer.append("\\");
+          }
+          tokenBuffer.append(token.substring(low, high));
+          sb.append(tokenBuffer);
+        }
+      } else {
+        sb.append(token);
+      }
+    }
+    if(url.endsWith("/")) {
+      sb.append('/');
+    }
+    return sb.toString();
   }
   /**
    *
    * Decodes URL
    * Decodes the URL for storage in the file system.
    *
-   * 1. Return if no backslash is at the beginning of the string
-   * 2. Remove backslash at beginning of string.
-   * 3. Convert all backslashes to forward slashes
+   * 1. Remove all \/
+   * 2. Remove all \
    * 
    * Design Decision: Don't convert %5c to URL
    * This allows valid URLs that should have 
    */
-  static String decodeUrl(String url) {
-    if(url == null || url.isEmpty() || url.charAt(0) != '\\')
-      return url;
-    url = url.substring(1, url.length());
-    url = url.replaceAll("\\\\", "/");
-    return url;
+  static String decodeUrl(String path) {
+    if(path == null || path.isEmpty())
+      return path;
+    path = path.replaceAll("\\\\/", "");
+    path = path.replaceAll("\\\\", "");
+    return path;
   }
 }
