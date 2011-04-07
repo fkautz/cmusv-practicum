@@ -93,7 +93,7 @@ public abstract class LinkExtractorTestCase extends LockssTestCase {
 
     String enc = Constants.DEFAULT_ENCODING;
 
-    extractor.extractUrls(new MockArchivalUnit(),
+    extractor.extractUrls(mau,
 			  mcu.getUnfilteredInputStream(),
 			  enc, mcu.getUrl(), callback);
       

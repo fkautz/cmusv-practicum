@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.util.regex.Pattern;
+
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,6 +18,9 @@ import org.lockss.extractor.LinkExtractor;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.util.IOUtil;
 import org.lockss.util.Logger;
+import org.lockss.util.urlconn.CacheException;
+
+import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector.Matcher;
 
 /**
  * Link Extractor for json-like response of generated url emitted by {@link ThiemeHtmlLinkExtractor}.
@@ -50,19 +55,34 @@ public class ThiemeJsonLinkExtractor implements LinkExtractor {
 	@Override
 	public void extractUrls(ArchivalUnit au, InputStream in, String encoding,
 			String srcUrl, Callback cb) throws IOException {
+		if (in == null) {
+			throw new IllegalArgumentException("Called with null InputStream");
+		} else if (srcUrl == null) {
+			throw new IllegalArgumentException("Called with null srcUrl");
+		} else if (cb == null) {
+			throw new IllegalArgumentException("Called with null callback");
+		}
+		
 		StringWriter w = new StringWriter();
 		IOUtils.copy(in, w);
+		String jsonString = w.toString();
+		if (jsonString.isEmpty()) return;
 		try {
-			JSONArray json = new JSONArray(w.toString().substring(JSON_ARRAY_START_POS));
+			Pattern p = Pattern.compile(".*?(\\[\\[.*?\\]\\]).*");
+			java.util.regex.Matcher m = p.matcher(jsonString);
+			if (!m.matches()) throw new CacheException.UnexpectedNoRetryFailException(
+					"Invalid thieme json response. Regex pattern did not match.");
+			JSONArray json = new JSONArray(m.group(1));
 			int length = json.length();
 			for (int i = 0; i < length; ++i) {
 				JSONArray innerJSON = json.getJSONArray(i);
-				cb.foundLink("https://www.thieme-connect.de/ejournals/toc/" +  au.getConfiguration().get("journal_name") + "/" + innerJSON.getString(0));
+				if (innerJSON.length() == 0) continue;
+				cb.foundLink(au.getConfiguration().get("base_url") +  au.getConfiguration().get("journal_name") + "/" + innerJSON.getString(0));
 			}
 		} catch (JSONException e) {
-			// Emit a log for invalid json but don't raise an exception
-			logger.error("Invalid thieme json response.");
-			
+			// Send a cache exception upstream to fail crawler for this url.
+			throw new CacheException.UnexpectedNoRetryFailException(
+					"Invalid thieme json response. JSONException: " + e);
 		}
 	}
 

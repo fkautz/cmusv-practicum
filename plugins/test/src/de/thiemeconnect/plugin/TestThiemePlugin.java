@@ -18,7 +18,6 @@ public class TestThiemePlugin extends LockssTestCase {
 	static final String BASE_URL_KEY = ConfigParamDescr.BASE_URL.getKey();
 	static final String YEAR_KEY = ConfigParamDescr.YEAR.getKey();
 	static final String JOURNAL_NAME = "journal_name";
-	static final String SESSION_START_URL = "session_start_url";
 
 	private ConfigParamDescr JOURNAL_NAME_DESC = new ConfigParamDescr()
 			.setKey(JOURNAL_NAME).setDisplayName("Journal Name")
@@ -26,7 +25,6 @@ public class TestThiemePlugin extends LockssTestCase {
 			.setDescription("Journal Name");
 
 	private ConfigParamDescr SESSION_START_URL_DESC = new ConfigParamDescr()
-			.setKey(SESSION_START_URL).setDisplayName("Session Start URL")
 			.setType(ConfigParamDescr.TYPE_URL).setSize(40)
 			.setDescription("Session Start URL");
 
@@ -53,8 +51,6 @@ public class TestThiemePlugin extends LockssTestCase {
 		props.setProperty(BASE_URL_KEY, "http://www.example.com/");
 		props.setProperty(YEAR_KEY, "2003");
 		props.setProperty(JOURNAL_NAME, "example journal");
-		props.setProperty(SESSION_START_URL,
-				"http://www.example.com/index.html");
 		return props;
 	}
 
