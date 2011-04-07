@@ -1,10 +1,10 @@
 /*
- * $Id$
+ * $Id: GPOFDsysHtmlFilterFactory.java,v 1.1 2011/04/01 23:33:24 thib_gc Exp $
  */
 
 /*
 
-Copyright (c) 2000-2008 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2011 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,53 +30,30 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.plugin.acs;
+package org.lockss.plugin.usdocspln.gov.gpo.fdsys;
 
-import java.io.*;
-import java.util.List;
-import org.htmlparser.*;
-import org.htmlparser.filters.*;
+import java.io.InputStream;
 
-import org.lockss.util.*;
-import org.lockss.filter.*;
+import org.htmlparser.NodeFilter;
+import org.htmlparser.filters.OrFilter;
+import org.lockss.daemon.PluginException;
 import org.lockss.filter.html.*;
 import org.lockss.plugin.*;
 
-/**
- * @deprecated
- */
-@Deprecated
-public class AcsHtmlFilterFactory implements FilterFactory {
+public class GPOFDsysHtmlFilterFactory implements FilterFactory {
 
-  // Remove everything on the line after these comments
-  static HtmlTagFilter.TagPair[] tagpairs = {
-    new HtmlTagFilter.TagPair("<", ">"),
-  };
-  static List tagList = ListUtil.fromArray(tagpairs);
-
+  @Override
   public InputStream createFilteredInputStream(ArchivalUnit au,
-					       InputStream in,
-					       String encoding) {
-
-    NodeFilter[] filters = new NodeFilter[2];
-    filters[0] =
-      HtmlNodeFilters.tagWithAttribute("script", "type", "text/javascript");
-
-    filters[1] = new TagNameFilter("noscript");
-
-    OrFilter combineFilter = new OrFilter();
-    combineFilter.setPredicates(filters);
-
-    HtmlTransform xform1 =
-      HtmlNodeFilterTransform.exclude(combineFilter);
-
-    // Still need to remove actual inverse citation section
-
-    InputStream htmlFilter = new HtmlFilterInputStream(in, encoding, xform1);
-
-    Reader rdr = FilterUtil.getReader(htmlFilter, encoding);
-    Reader tagFilter = HtmlTagFilter.makeNestedFilter(rdr, tagList);
-    //    return new ReaderInputStream(tagFilter);
-    return new ReaderInputStream(new WhiteSpaceFilter(tagFilter));
+                                               InputStream in,
+                                               String encoding)
+      throws PluginException {
+    NodeFilter[] filters = new NodeFilter[] {
+        // May contain a session token
+        HtmlNodeFilters.tagWithAttribute("input", "name", "struts.token"),
+    };
+    return new HtmlFilterInputStream(in,
+                                     encoding,
+                                     HtmlNodeFilterTransform.exclude(new OrFilter(filters)));
   }
+
 }

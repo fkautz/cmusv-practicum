@@ -1,13 +1,15 @@
 {
+
   publisher <
     name = Linguistic Society of America
   >
 
   plugin = org.lockss.plugin.projmuse.ProjectMusePlugin
-  implicit < status ; name ; param[volume] >
   param[base_url] = http://muse.jhu.edu/
+  implicit < status ; name ; param[volume] >
 
   {
+
     title <
       name = Language ;
       issn = 0097-8507 ;
@@ -26,7 +28,7 @@ comment[lang85] = 500 Internal Server Error http://muse.jhu.edu/journals/languag
     au < released ; Language Volume 81 ; 81 >
     au < released ; Language Volume 82 ; 82 >
     au < released ; Language Volume 83 ; 83 >
-    au < ready ; Language Volume 84 ; 84 >
+    au < released ; Language Volume 84 ; 84 >
     au < notReady ; Language Volume 85 ; 85 >
 
   }
