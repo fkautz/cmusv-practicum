@@ -159,9 +159,11 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
     createLeaf("http://www.example.com/testDir/branch1/leaf1",
                "test stream", null);
     assertTrue(testFile.exists());
-    cachePath += "\\www.example.com\\http\\testDir\\branch1\\leaf1";
+    cachePath += "www.example.com/http/";
     testFile = new File(cachePath);
-    System.out.println(testFile);
+    assertTrue(testFile.exists());
+    cachePath += "testDir/branch1/leaf1/";
+    testFile = new File(cachePath);
     assertTrue(testFile.exists());
   }
 
@@ -509,13 +511,13 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
 
   public void testMapUrlToFileLocation() throws MalformedURLException {
     String testStr = "http://www.example.com/branch1/branch2/index.html";
-    String expectedStr = "root/\\www.example.com\\http\\branch1\\branch2\\index.html";
-    assertEquals(expectedStr,
+    String expectedStr = "root/www.example.com/http/branch1/branch2/index.html";
+    assertEquals(FileUtil.sysDepPath(expectedStr),
                  LockssRepositoryImpl.mapUrlToFileLocation("root", testStr));
 
     testStr = "hTTp://www.exaMPLE.com/branch1/branch2/index.html";
-    expectedStr = "root/\\www.example.com\\http\\branch1\\branch2\\index.html";
-    assertEquals(expectedStr,
+    expectedStr = "root/www.example.com/http/branch1/branch2/index.html";
+    assertEquals(FileUtil.sysDepPath(expectedStr),
                  LockssRepositoryImpl.mapUrlToFileLocation("root", testStr));
 
     try {
@@ -535,10 +537,10 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
 
     testStr = "http://www.example.com/index.html?leaf=bad"+File.separator+
         "query"+File.separator;
-    expectedStr = "root/\\www.example.com\\http\\index.html?leaf=bad#squery#s";
-    assertEquals(expectedStr,
+    expectedStr = "root/www.example.com/http/index.html?leaf=bad#squery#s";
+    assertEquals(FileUtil.sysDepPath(expectedStr),
                  LockssRepositoryImpl.mapUrlToFileLocation("root", testStr));
-    assertEquals("root/\\www.example.com\\http\\index.html?leaf=bad"+
+    assertEquals("root/www.example.com/http/index.html?leaf=bad"+
                  File.separator+"query"+File.separator,
                  LockssRepositoryImpl.unescape(expectedStr));
   }
