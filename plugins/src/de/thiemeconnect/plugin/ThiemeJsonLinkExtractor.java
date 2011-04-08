@@ -40,10 +40,6 @@ import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector.Matcher;
  */
 public class ThiemeJsonLinkExtractor implements LinkExtractor {
 	static Logger logger = Logger.getLogger("ThiemeJsonLinkExtractor");
-	// The thieme plain/text response is actually not a json but javascript assignment statement of following form:
-	// issues = [....]; <-- json array.
-	// We are interested in parsing out the valid json array out of it.
-	static int JSON_ARRAY_START_POS = 9;
 
     /**
      * @param au current archival unit
@@ -68,6 +64,9 @@ public class ThiemeJsonLinkExtractor implements LinkExtractor {
 		String jsonString = w.toString();
 		if (jsonString.isEmpty()) return;
 		try {
+			// The thieme plain/text response is actually not a json but javascript assignment statement of following form:
+			// issues = [....]; <-- json array.
+			// We are interested in parsing out the valid json array out of it.
 			Pattern p = Pattern.compile(".*?(\\[\\[.*?\\]\\]).*");
 			java.util.regex.Matcher m = p.matcher(jsonString);
 			if (!m.matches()) throw new CacheException.UnexpectedNoRetryFailException(
