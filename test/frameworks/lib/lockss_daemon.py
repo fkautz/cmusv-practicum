@@ -387,8 +387,15 @@ class Client:
         return self.base_URL[ 7 : -1 ]  # Between "http://" and "/"
 
     def createAu( self, AU ):
-        """Create an AU."""
+        """Create an AU by Manual Journal Configuration."""
+        # Note that this is probably not what you want. This will not
+        # be correct if the AU has nondefinitional parameters. You
+        # probably want addByAuid, unless the AU isn't in the TDB.
         self.__execute_AU_post( AU, 'Create' )
+
+    def addByAuid( self, AU ):
+        """Create an AU by lookup in the TDB."""
+        self.__execute_AU_post( AU, 'AddByAuid' )
 
     def waitAu( self, AU ):
         """Block until the AU appears in the server's status table."""
@@ -484,7 +491,6 @@ class Client:
         d = dict()
         for map in self._getStatusTable('AuIds', outputVersion=2,
                                         columns="AuId;CrawlPool")[1]:
-            print map
             d[map['AuId']] = map['CrawlPool']
         return d
 
