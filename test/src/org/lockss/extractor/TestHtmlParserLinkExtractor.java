@@ -1306,7 +1306,27 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 				+ "<input type=\"submit\"/>" + "</form></html>";
 		assertEquals(expectedResults, parseSingleSource(source));
 	}
+	
+	public void testFormInsideForm() throws IOException {
+		String source = "<html><head><title>Test</title></head><body>"
+			+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+			+ "<input type=\"submit\"/>"
+			+ "<input type=\"hidden\" name=\"arg1\" value=\"value1\" />"
+			+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+			+ "<input type=\"hidden\" name=\"arg2\" value=\"value2\"/>"
+			+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(SetUtil.set("http://www.example.com/bioone/cgi/?arg1=value1&arg2=value2"), parseSingleSource(source));		
+	}
 
+	public void testFormWithNoStartTag() throws IOException {
+		String source = "<html><head><title>Test</title></head><body>"
+			+ "</form><form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+			+ "<input type=\"hidden\" name=\"arg1\" value=\"value1\" />"
+			+ "<input type=\"hidden\" name=\"arg2\" value=\"value2\"/>"
+			+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(SetUtil.set("http://www.example.com/bioone/cgi/?arg1=value1&arg2=value2"), parseSingleSource(source));		
+	}
+	
 	private void checkBadTags(String[] badTags, String closeTag)
 			throws IOException {
 		String url = "http://www.example.com/web_link.html";

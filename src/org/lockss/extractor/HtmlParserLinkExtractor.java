@@ -668,10 +668,10 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 
 		@Override
 		public void visitTag(Tag tag) {
-			// We can definitely not recover from a form inside a form. 
 			if (tag instanceof FormTag) {
 				if (inFormMode_) {
 					logger.error("Invalid HTML: Form inside a form");
+					// Recover from this error by simply ignoring any child forms (popular browser behavior)
 					return;
 				}
 				// Visited a form tag, enter form mode and start form processing logic.
@@ -715,7 +715,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			// Visited a base tag, update the page url. All the relative links that follow base tag will need to be resolved to the new page url.
 			if ("base".equalsIgnoreCase(tag.getTagName())) {
 				String newBase = tag.getAttribute("href");
-				if (newBase != null && !"".equals(newBase)) {
+				if (newBase != null && !newBase.isEmpty()) {
 					malformedBaseUrl_ = UrlUtil.isMalformedUrl(newBase);
 					if (!malformedBaseUrl_ && UrlUtil.isAbsoluteUrl(newBase)) {
 						srcUrl_ = newBase;
