@@ -456,8 +456,9 @@ public class LockssRepositoryImpl
     }
     buffer.append(File.separator);
     buffer.append(url.getProtocol());
-    buffer.append(escapePath(StringUtil.replaceString(url.getPath(),
-        UrlUtil.URL_PATH_SEPARATOR, File.separator)));
+    buffer.append(File.separator);
+    buffer.append(RepositoryNodeImpl.encodeUrl(escapePath(StringUtil.replaceString(url.getPath(),
+        UrlUtil.URL_PATH_SEPARATOR, File.separator))));
     String query = url.getQuery();
     if (query!=null) {
       buffer.append("?");
