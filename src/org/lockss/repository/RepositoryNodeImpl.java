@@ -1818,7 +1818,9 @@ public class RepositoryNodeImpl implements RepositoryNode {
     // 2. tokenize string by '/'
     StringTokenizer strtok = new StringTokenizer(url, "/");
     StringBuffer sb = new StringBuffer();
-    sb.append(strtok.nextToken());
+    if(strtok.hasMoreTokens()) {
+      sb.append(strtok.nextToken());
+    }
     while(strtok.hasMoreTokens()) {
       sb.append('/');
       String token = strtok.nextToken();
