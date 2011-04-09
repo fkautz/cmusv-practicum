@@ -554,6 +554,33 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
     RepositoryNode leaf = createLeaf(longUrl.toString(), "test stream", null);
     assertEquals(true, leaf.hasContent());
   }
+  
+  public void test255Url() throws Exception {
+    StringBuffer longUrl = new StringBuffer();
+    longUrl.append("http://www.example.com/");
+    for(int i=0; i<254; i++)  {
+      longUrl.append("a");
+    }
+    RepositoryNode leaf = createLeaf(longUrl.toString(), "test stream", null);
+    assertEquals(true, leaf.hasContent());
+    longUrl.append("a");
+    leaf = createLeaf(longUrl.toString(), "test stream", null);
+    assertEquals(true, leaf.hasContent());
+    longUrl.append("a");
+    leaf = createLeaf(longUrl.toString(), "test stream", null);
+    assertEquals(true, leaf.hasContent());
+    for(int i=0; i<252; i++) {
+      longUrl.append("a");
+    }
+    leaf = createLeaf(longUrl.toString(), "test stream", null);
+    assertEquals(true, leaf.hasContent());
+    longUrl.append("a");
+    leaf = createLeaf(longUrl.toString(), "test stream", null);
+    assertEquals(true, leaf.hasContent());
+    longUrl.append("a");
+    leaf = createLeaf(longUrl.toString(), "test stream", null);
+    assertEquals(true, leaf.hasContent());
+  }
 
   private RepositoryNode createLeaf(String url, String content,
                                     Properties props) throws Exception {

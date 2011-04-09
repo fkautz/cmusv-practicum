@@ -1819,33 +1819,24 @@ public class RepositoryNodeImpl implements RepositoryNode {
     // 1. convert all backslashes to %5c
     url = url.replaceAll("\\\\", "%5c");
     // 2. tokenize string by '/'
-    StringTokenizer strtok = new StringTokenizer(url, "/",true);
-    StringBuffer sb = new StringBuffer();
-    while(strtok.hasMoreTokens()) {
-      String token = strtok.nextToken();
-      if(token.length() > 254) {
-        int chunkCount = token.length()/254;
-        for(int i=0; i<=chunkCount; i++) {
-          StringBuffer tokenBuffer = new StringBuffer();
-          if(i != 0) {
-            tokenBuffer.append("\\/");
-          }
-          int low = 254*i;
-          int high = 254*(i+1);
-          if(high > token.length()) {
-            high = token.length();
-          }
-          if(token.substring(low, high).equals(".") || token.substring(low, high).equals(".")) {
-            tokenBuffer.append("\\");
-          }
-          tokenBuffer.append(token.substring(low, high));
-          sb.append(tokenBuffer);
-        }
-      } else {
-        sb.append(token);
-      }
+    StringBuffer result = new StringBuffer();
+    StringTokenizer strtok = new StringTokenizer(url, "/", true);
+    while(strtok.hasMoreTokens()) 
+      result.append(encodeUrlByRecursing(strtok.nextToken()));
+    return result.toString();
+  }
+  
+  private static String encodeUrlByRecursing(String string) {
+    return encodeUrlByRecursing("", string);
+  }
+  
+  private static String encodeUrlByRecursing(String current, String string) {
+    if(string.length() <= 255) {
+      return current + string;
+    } else {
+      String chunk = string.substring(0, 254) + "\\/";
+      return encodeUrlByRecursing(current + chunk, string.substring(254));
     }
-    return sb.toString();
   }
   /**
    *
