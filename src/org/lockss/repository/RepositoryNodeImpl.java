@@ -1810,19 +1810,18 @@ public class RepositoryNodeImpl implements RepositoryNode {
    * 2. Tokenize string by '/'
    * 3. All strings longer than 254 characters are separated by a / at each 254'th character
    */
-  static String encodeUrl(String url) {
+  public static String encodeUrl(String url) {
     if(url == null || url.isEmpty())
       return url;
+    if(url.charAt(0) == '/' && url.length() > 1) {
+      url = url.substring(1);
+    }
     // 1. convert all backslashes to %5c
     url = url.replaceAll("\\\\", "%5c");
     // 2. tokenize string by '/'
-    StringTokenizer strtok = new StringTokenizer(url, "/");
+    StringTokenizer strtok = new StringTokenizer(url, "/",true);
     StringBuffer sb = new StringBuffer();
-    if(strtok.hasMoreTokens()) {
-      sb.append(strtok.nextToken());
-    }
     while(strtok.hasMoreTokens()) {
-      sb.append('/');
       String token = strtok.nextToken();
       if(token.length() > 254) {
         int chunkCount = token.length()/254;
@@ -1845,9 +1844,6 @@ public class RepositoryNodeImpl implements RepositoryNode {
       } else {
         sb.append(token);
       }
-    }
-    if(url.endsWith("/")) {
-      sb.append('/');
     }
     return sb.toString();
   }

@@ -544,6 +544,16 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
                  File.separator+"query"+File.separator,
                  LockssRepositoryImpl.unescape(expectedStr));
   }
+  
+  public void testLongUrl() throws Exception {
+    StringBuffer longUrl = new StringBuffer();
+    longUrl.append("http://www.example.com/");
+    for(int i=0; i<218; i++)  {
+      longUrl.append(i + "-");
+    }
+    RepositoryNode leaf = createLeaf(longUrl.toString(), "test stream", null);
+    assertEquals(true, leaf.hasContent());
+  }
 
   private RepositoryNode createLeaf(String url, String content,
                                     Properties props) throws Exception {
