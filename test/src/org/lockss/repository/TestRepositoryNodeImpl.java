@@ -1097,7 +1097,7 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
     // to throw
     OutputStream os =
       new BufferedOutputStream(new FileOutputStream(propsFile, true));
-    os.write("//uxxxxfoo=bar".getBytes());
+    os.write("\\uxxxxfoo=bar".getBytes());
     os.close();
     return leaf;
   }
