@@ -809,7 +809,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			int common_url_count = common_urls.size();
 			int hple_url_count = hple_urls.size() - common_url_count;
 			int gosling_url_count = gosling_urls.size() - common_url_count;
-			logger.debug2("Stats AU: " + au.toString() + " Common URLs: " + common_url_count + " HPLE only: "+ hple_url_count + " Gosling only: " +gosling_url_count );
+			logger.debug2("Stats AU: " + au.toString() + " src URL=" + srcUrl + " Common URLs: " + common_url_count + " HPLE only: "+ hple_url_count + " Gosling only: " +gosling_url_count );
 
 			if (logger.isDebug3()) {
 				if (hple_url_count > 0) {
