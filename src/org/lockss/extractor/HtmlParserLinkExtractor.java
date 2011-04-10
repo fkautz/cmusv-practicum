@@ -677,11 +677,8 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 				// Visited a form tag, enter form mode and start form processing logic.
 				inFormMode_ = true;
 				if (formProcessor_ != null) {
-					// Possibly throw exception to abort completely from this
-					// link extractor.
-					logger.error("Non-null FormProcessor found. "
-							+ "It is likely that a previous form processing was not finished. "
-							+ "Report the error to dev team (vibhor)");
+					logger.error("Internal inconsistency for formprocessor_");
+					logger.error(Thread.currentThread().getStackTrace().toString());
 				}
 				// Initialize form processor
 				formProcessor_ = new FormProcessor((FormTag) tag);
