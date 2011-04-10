@@ -462,7 +462,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 	
 	public class FormUrlIterator {
 		// Do not allow more than MAX_NUM_URLS to be generated.
-		private static final int MAX_NUM_URLS = 10000;
+		private static final int MAX_NUM_URLS = 1000000;
 		private Vector<FormInputWrapper> tags_;
 		private Vector<String[]> components_;
 		private int[] currentPositions_;
@@ -483,7 +483,11 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			for (FormInputWrapper tag : this.tags_) {
 				String[] urlComponents = tag.getUrlComponents();
 				if (urlComponents != null && urlComponents.length > 0) {
-					this.totalUrls_ *= urlComponents.length;
+					if (MAX_NUM_URLS > this.totalUrls_ * urlComponents.length) {
+						this.totalUrls_ *= urlComponents.length;
+					} else {
+						this.totalUrls_ = MAX_NUM_URLS;
+					}
 					this.components_.add(tag.getUrlComponents());
 				}
 			}
