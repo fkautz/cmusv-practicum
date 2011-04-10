@@ -12,6 +12,8 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 
 import org.apache.commons.io.IOUtils;
@@ -531,6 +533,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 
 	}
 
+	
 	/**
 	 * A custom NodeVisitor implementation that provides the support for link extraction from the current document.
 	 * An instance of this class is passed to {@link Parser#visitAllNodesWith} which invokes visitTag & visitEngTag for each tag in the document tree.
@@ -606,7 +609,9 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 							// emit the processed url
 							cb_.foundLink(url);
 						} catch (MalformedURLException e) {
+							//if the link is malformed, we can safely ignore it
 						} catch (PluginException e) {
+							//If a PluginException results,  it can be safely ignored
 						}
 					}
 				}
@@ -747,6 +752,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 	@Override
 	public void extractUrls(ArchivalUnit au, InputStream in, String encoding,
 			String srcUrl, Callback cb) throws IOException {
+
 		if (in == null) {
 			throw new IllegalArgumentException("Called with null InputStream");
 		} else if (srcUrl == null) {
@@ -755,6 +761,8 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			throw new IllegalArgumentException("Called with null callback");
 		}
 
+		Callback current_cb = cb;
+		boolean statistics_enabled =  logger.isDebug2();
 		// Make a copy of input stream to be used with a fallback extractor (see
 		// comment before Gosling).
 		StringWriter w = new StringWriter();
@@ -765,25 +773,78 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		InputStream inCopy = new ReaderInputStream(new StringReader(
 				w.toString()), encoding);
 
-		Parser p = new Parser(new Lexer(new Page(in, encoding)));
+
+	    Parser p = new Parser(new Lexer(new Page(in, encoding)));
+	    LinkExtractorStatsCallback hple_cb = new LinkExtractorStatsCallback(cb);
+	    if (statistics_enabled) {
+	    	current_cb = hple_cb;
+		}
 		try {
-			p.visitAllNodesWith(new LinkExtractorNodeVisitor(au, srcUrl, cb,
+			p.visitAllNodesWith(new LinkExtractorNodeVisitor(au, srcUrl, current_cb,
 					encoding));
 		} catch (ParserException e) {
 			logger.warning("Unable to parse url: " + srcUrl,e);
 		} catch (RuntimeException e) {
 			logger.warning("Encountered a runtime exception, continuing link extraction with Gosling",e);
 		}
-
+		
 		// For legacy reasons, we want to ensure link extraction using a more
 		// permissive Gosling parser.
 		//
 		// TODO(vibhor): Instead of copying the IOStream, we should be able to specify pass multiple
 		// link extractors in the plugin (for same mime type) and reopen stream for each.
+	    LinkExtractorStatsCallback gosling_cb = new LinkExtractorStatsCallback(cb);
+	    if (statistics_enabled) {
+			current_cb = gosling_cb;
+		}
+	    
 		new GoslingHtmlLinkExtractor().extractUrls(au, inCopy, encoding,
-				srcUrl, cb);
-	}
+				srcUrl, current_cb);
+		if (statistics_enabled) {
+			Set<String> hple_urls = hple_cb.GetUrls();
+			Set<String> gosling_urls = gosling_cb.GetUrls();
+			Set<String> common_urls = new HashSet<String>(gosling_urls);
+			common_urls.retainAll(hple_urls);
 
+			int common_url_count = common_urls.size();
+			int hple_url_count = hple_urls.size() - common_url_count;
+			int gosling_url_count = gosling_urls.size() - common_url_count;
+			logger.debug2("Stats AU: " + au.toString() + " Common URLs: " + common_url_count + " HPLE only: "+ hple_url_count + " Gosling only: " +gosling_url_count );
+
+			if (logger.isDebug3()) {
+				if (hple_url_count > 0) {
+					Set<String> hple_only_urls = new HashSet<String>(hple_urls);
+				    hple_only_urls.removeAll(common_urls);
+				    logger.debug3("HPLE only urls: " + hple_only_urls.toString());
+				}
+				if  (gosling_url_count > 0 ) {
+					Set<String> gosling_only_urls = new HashSet<String>(gosling_urls);
+					gosling_only_urls.removeAll(common_urls);
+					logger.debug3("Gosling only urls: " + gosling_only_urls.toString());
+				}
+			}
+		}
+}
+
+//LinkExtractorStatsCallback wraps an existing Callback and stores all urls retrieved
+	private class LinkExtractorStatsCallback implements LinkExtractor.Callback {
+		private Set<String> urls_found_ = new HashSet<String>();
+		private Callback cb_;
+		public LinkExtractorStatsCallback(Callback cb) {
+			cb_=cb;
+		}
+
+		public Set<String> GetUrls() {
+			return urls_found_;
+		}
+		
+	    public void foundLink(String url) {
+	    urls_found_.add(url);
+	    cb_.foundLink(url);
+	    }
+	  }
+
+	
 	public static class Factory implements LinkExtractorFactory {
 		public LinkExtractor createLinkExtractor(String mimeType) {
 			return new HtmlParserLinkExtractor();
