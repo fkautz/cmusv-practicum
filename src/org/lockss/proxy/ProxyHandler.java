@@ -249,6 +249,7 @@ public class ProxyHandler extends AbstractHttpHandler {
 		     HttpResponse response)
       throws HttpException, IOException {
     try {
+      log.debug("Proxied URL: " + request.getURI());
       handle0(pathInContext, pathParams, request, response);
     } catch (HttpException e) {
       throw e;
