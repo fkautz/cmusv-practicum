@@ -93,6 +93,8 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
     "au_non_substance_url_pattern";
   public static final String KEY_AU_CRAWL_COOKIE_POLICY =
     "au_crawl_cookie_policy";
+  public static final String KEY_AU_CRAWL_SELENIUM_CANDIDATES =
+	  "au_crawl_selenium_candidates";
 
   /** Suffix for testing override submaps.  Values in a XXX_override map
    * will be copied to the main map when in testing mode XXX.  In the
@@ -363,6 +365,14 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
 						     rule));
 
     }
+  }
+  
+  protected List<String> makeSeleniumCandidates() throws ConfigurationException {
+	  Object o = definitionMap.getMapElement(KEY_AU_CRAWL_SELENIUM_CANDIDATES);
+	  if (!(o instanceof List<?>)) {
+		  throw new ConfigurationException("au_crawl_selenium_candidates should be list of urls (String)");
+	  }
+	  return (List<String>)o;
   }
 
   boolean isCaseIndependentCrawlRules() {

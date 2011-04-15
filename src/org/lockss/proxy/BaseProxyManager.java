@@ -160,6 +160,7 @@ public abstract class BaseProxyManager extends JettyManager {
 
       // Start the http server
       startServer(server, port);
+      log.info("Started server at " + port);
     } catch (Exception e) {
       log.error("Couldn't start proxy", e);
     }

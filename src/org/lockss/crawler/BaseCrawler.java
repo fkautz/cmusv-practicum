@@ -282,9 +282,26 @@ public abstract class BaseCrawler
 	return aborted();
       }
       logger.info("Beginning crawl of "+au);
+
+      boolean browserCleanupNeeded = false;
+      // Figure out if a browser context needs to be created
+      if (au.getSeleniumCandidateUrls() != null) {
+      	au.setBrowserContext(new BrowserContext());
+      	try {
+  			au.getBrowserContext().setUp();
+  			browserCleanupNeeded = true;
+  		} catch (BrowserContextException e) {
+  			// It is okay to continue however
+  			e.printStackTrace();
+  		}
+      }
+      
       boolean res = doCrawl0();
       if (!res && !crawlStatus.isCrawlError()) {
 	crawlStatus.setCrawlStatus(Crawler.STATUS_ERROR);
+      }
+      if (browserCleanupNeeded) {
+    	  au.getBrowserContext().tearDown();
       }
       if (crawlStatus.isCrawlError()) {
 	alertMgr.raiseAlert(Alert.auAlert(Alert.CRAWL_FAILED, au),

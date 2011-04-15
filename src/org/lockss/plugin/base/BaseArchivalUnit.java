@@ -114,6 +114,10 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
   private String auId = null;
 
   protected TypedEntryMap paramMap;
+  
+  // Fields related to selenium
+  protected List<String> seleniumCandidates = null;
+  protected BrowserContext browserContext = null;
 
   protected BaseArchivalUnit(Plugin myPlugin) {
     if (!(myPlugin instanceof BasePlugin)) {
@@ -159,6 +163,14 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
 
   public Configuration getConfiguration() {
     return auConfig;
+  }
+  
+  public void setBrowserContext(BrowserContext context) {
+	  browserContext = context;
+  }
+  
+  public BrowserContext getBrowserContext() {
+	  return browserContext;
   }
 
   public CachedUrlSet makeCachedUrlSet(CachedUrlSetSpec cuss) {
@@ -253,6 +265,8 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
     // make the start urls
     startUrls = makeStartUrls();
 
+    // make the selenium candidates
+    seleniumCandidates = makeSeleniumCandidates();
 
     // make our crawl spec
     try {
@@ -601,6 +615,8 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
    * regular expression.
    */
   abstract protected CrawlRule makeRules() throws LockssRegexpException;
+  
+  abstract protected List<String> makeSeleniumCandidates() throws ConfigurationException;
 
   /**
    * Compute the AU's single start URL.  (Subclasses must implement either
@@ -767,6 +783,10 @@ public abstract class BaseArchivalUnit implements ArchivalUnit {
 
   public List<String> getNewContentCrawlUrls() {
     return startUrls;
+  }
+  
+  public List<String> getSeleniumCandidateUrls() {
+	  return seleniumCandidates;
   }
 
   // utility methods for configuration management

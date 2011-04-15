@@ -287,12 +287,14 @@ public class ProxyManager extends BaseProxyManager {
 
   protected void startProxy() {
     stopCloseTimer();
+    log.info("Starting proxy at " + this.port);
     super.startProxy();
     startCloseTimer();
   }
 
   protected void stopProxy() {
     stopCloseTimer();
+    log.info("Stopping proxy at " + this.port);
     super.stopProxy();
   }
 

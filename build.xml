@@ -262,9 +262,8 @@ Args:
 
   <!-- Needed by crawl proxy prototype that uses selenium RC. -->
   <property name="selenium-client.jar"      value="${lib}/selenium-java-2.0b3.jar"/>
-<!-- TODO: See corresponding todo for pathelement.
-  <property name="selenium-server.jar"      value="${lib}/selenium-standalone-server-2.0b3.jar"/>
--->
+  <property name="selenium-server.jar"      value="${lib}/selenium-server-standalone-2.0b3.jar"/>
+
   <property name="ext.javadoc"
                       value="http://documents.lockss.org/gamma-libs/" />
 
@@ -355,9 +354,7 @@ Args:
     <pathelement path="${heritrix.jar}" />
     <pathelement path="${heritrix-fastutil.jar}" />
     <pathelement path="${selenium-client.jar}" />
-<!-- TODO(vibhor): Figure out what is causing the junit Assert incompatibility.
     <pathelement path="${selenium-server.jar}" />
--->
  </path>
 
   <path id="run.classpath">

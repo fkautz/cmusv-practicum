@@ -98,6 +98,9 @@ public class ProxyHandler extends AbstractHttpHandler {
   private boolean neverProxy = DEFAULT_NEVER_PROXY;
   private boolean auditProxy = false;
   private boolean auditIndex = false;
+  
+  private boolean crawlProxy = false;
+  private Set<String> proxiedRequests = null;
 
   private boolean isFailOver = false;
   private URI failOverTargetUri;
@@ -141,6 +144,10 @@ public class ProxyHandler extends AbstractHttpHandler {
    * the normal proxy does */
   public void setAuditIndex(boolean flg) {
     auditIndex = flg;
+  }
+  
+  public void setCrawlProxy(boolean isCrawlProxy) {
+	  crawlProxy = isCrawlProxy;
   }
 
   /** If set to true, content will be served only from the cache; requests
@@ -231,6 +238,10 @@ public class ProxyHandler extends AbstractHttpHandler {
   public int getTunnelTimeoutMs() {
     return _tunnelTimeoutMs;
   }
+  
+  public Set<String> getProxiedRequests() {
+	  return proxiedRequests;
+  }
 
   /* ------------------------------------------------------------ */
   /** Tunnel timeout.
@@ -249,7 +260,15 @@ public class ProxyHandler extends AbstractHttpHandler {
 		     HttpResponse response)
       throws HttpException, IOException {
     try {
-      log.debug("Proxied URL: " + request.getURI());
+      if (crawlProxy) {
+    	  if (proxiedRequests == null) {
+    		  proxiedRequests = new HashSet<String>();
+    	  }
+    	  // TODO(vibhor): Too many requests on a single publisher page can cause this thread to
+    	  // go out of memory. We should have a producer-consumer setup between proxy and crawler
+    	  // which require the proxy (or atleast the handler) to be run in a separate thread.
+    	  proxiedRequests.add(request.getURI().toString());
+      }
       handle0(pathInContext, pathParams, request, response);
     } catch (HttpException e) {
       throw e;

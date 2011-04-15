@@ -6,9 +6,7 @@
 
   plugin = de.thiemeconnect.plugin.ThiemeConnectPlugin
   implicit < status ; name ; param[year]; param[journal_name] >
-  param[base_url] = https://www.thieme-connect.de/
-  param[session_start_url] = https://www.thieme-connect.de/ejournals
-  
+  param[base_url] = https://www.thieme-connect.de/  
   {
   
     title <

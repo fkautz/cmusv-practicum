@@ -1167,7 +1167,7 @@ public class LockssTestCase extends TestCase {
   }
 
   // tk do a better job of printing collections
-  static protected void failNotEquals(String message,
+  static public void failNotEquals(String message,
 				    Object expected, Object actual) {
     String formatted= "";
     if (message != null)
@@ -1175,7 +1175,7 @@ public class LockssTestCase extends TestCase {
     fail(formatted+"expected:<"+expected+"> but was:<"+actual+">");
   }
 
-  static protected void failNotEquals(String message,
+  static public void failNotEquals(String message,
 				    int[] expected, int[] actual) {
     String formatted= "";
     if (message != null)
@@ -1184,7 +1184,7 @@ public class LockssTestCase extends TestCase {
 	 "> but was:<"+arrayString(actual)+">");
   }
 
-  static protected void failSame(String message) {
+  static public void failSame(String message) {
     String formatted= "";
     if (message != null)
       formatted= message+" ";

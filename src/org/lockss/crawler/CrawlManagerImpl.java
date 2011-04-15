@@ -836,6 +836,7 @@ public class CrawlManagerImpl extends BaseLockssDaemonManager
     CrawlSpec spec = au.getCrawlSpec();
     Crawler crawler = null;
     CrawlRunner runner = null;
+    
     try {
       crawler = makeNewContentCrawler(au, spec);
       runner = new CrawlRunner(crawler, spec, cb, cookie, SetUtil.set(lock),

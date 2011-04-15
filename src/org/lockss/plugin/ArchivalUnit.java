@@ -103,6 +103,10 @@ public interface ArchivalUnit {
    * @return a Configuration
    */
   public Configuration getConfiguration();
+  
+  public void setBrowserContext(BrowserContext context);
+  
+  public BrowserContext getBrowserContext();
 
   /**
    * Perform site-dependent URL normalization to produce a canonical form
@@ -141,6 +145,8 @@ public interface ArchivalUnit {
    * @return the {@link CrawlSpec} for the AU
    */
   public CrawlSpec getCrawlSpec();
+  
+  public List<String> getSeleniumCandidateUrls();
 
   /**
    * Return stems (protocol and host) of URLs in the AU.  Used for external

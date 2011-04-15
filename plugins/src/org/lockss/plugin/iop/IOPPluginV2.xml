@@ -46,9 +46,19 @@ to support the current IOP journals.
     </list>
   </entry>
   <entry>
+  	<string>au_crawl_selenium_candidates</string>
+  	<list>
+  		<string>http://iopscience.iop.org/2043-6262/1</string>
+  	</list>
+  </entry>
+  <entry>
     <string>au_start_url</string>
     <string>&quot;%s/%s/%d&quot;, base_url, journal_id, volume</string> 
   </entry>
+  <entry>
+    <string>text/html_link_extractor_factory</string>
+    <string>org.lockss.prototypes.plugin.SeleniumLinkExtractorFactory</string>
+  </entry>  
   <entry>
     <string>plugin_config_props</string>
     <list>
