@@ -1172,7 +1172,10 @@ public class LockssTestCase extends TestCase {
     String formatted= "";
     if (message != null)
       formatted= message+" ";
-    fail(formatted+"expected:<"+expected+"> but was:<"+actual+">");
+    System.out.println(expected);
+    System.out.println(actual);
+    throw new ComparisonFailure("Not equal", expected.toString(), actual.toString());
+//    fail(formatted+"expected:<"+expected+"> but was:<"+actual+">", new ComparisonFailure(message, expected, actual));
   }
 
   static protected void failNotEquals(String message,

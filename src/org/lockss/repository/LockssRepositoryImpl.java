@@ -206,6 +206,7 @@ public class LockssRepositoryImpl
       // determine proper node location
       nodeLocation = LockssRepositoryImpl.mapUrlToFileLocation(rootLocation,
           canonUrl);
+      System.out.println("nodeLocation: " + nodeLocation);
       node = new RepositoryNodeImpl(canonUrl, nodeLocation, this);
     }
 
@@ -457,13 +458,14 @@ public class LockssRepositoryImpl
     buffer.append(File.separator);
     buffer.append(url.getProtocol());
     buffer.append(File.separator);
-    buffer.append(RepositoryNodeImpl.encodeUrl(escapePath(StringUtil.replaceString(url.getPath(),
-        UrlUtil.URL_PATH_SEPARATOR, File.separator))));
+    String escapedPath = escapePath(StringUtil .replaceString(url.getPath(), UrlUtil.URL_PATH_SEPARATOR, File.separator));
     String query = url.getQuery();
     if (query!=null) {
-      buffer.append("?");
-      buffer.append(escapeQuery(query));
+      escapedPath = escapedPath + "?";
+      escapedPath = escapedPath + escapeQuery(query);
     }
+    String encodedPath = RepositoryNodeImpl.encodeUrl(escapedPath);
+    buffer.append(encodedPath);
     return buffer.toString();
   }
 
@@ -776,5 +778,8 @@ public class LockssRepositoryImpl
       return "[LR: " + repoPath + "]";
     }
   }
-
+  
+  String getRootLocation() {
+    return rootLocation;
+  }
 }

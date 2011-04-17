@@ -35,8 +35,10 @@ package org.lockss.repository;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.util.*;
+import java.util.Queue;
 import java.util.regex.Matcher;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.oro.text.regex.*;
 
@@ -193,6 +195,11 @@ public class RepositoryNodeImpl implements RepositoryNode {
   public String getNodeUrl() {
     return url;
   }
+  
+  // package level accessor to "fix" the url
+  private void setNodeUrl(String url) {
+    this.url = url;
+  }
 
   public boolean hasContent() {
     ensureCurrentInfoLoaded();
@@ -296,63 +303,127 @@ public class RepositoryNodeImpl implements RepositoryNode {
    * @return List the child list of RepositoryNodes
    */
   protected List getNodeList(CachedUrlSetSpec filter, boolean includeInactive) {
-    if (nodeRootFile==null) initNodeRoot();
-    if (contentDir==null) getContentDir();
+    if (nodeRootFile == null)
+      initNodeRoot();
+    if (contentDir == null)
+      getContentDir();
     File[] children = nodeRootFile.listFiles();
     if (children == null) {
       String msg = "No cache directory located for: " + url;
       logger.error(msg);
       throw new LockssRepository.RepositoryStateException(msg);
     }
+    
+    List<File> expandedDirectories = new ArrayList<File>();
+    
+    Queue<File> unexpandedDirectories = new LinkedList<File>();
+    for(File file : children) {
+      if(file.getName().endsWith("\\")) {
+        unexpandedDirectories.add(file);
+      } else {
+        expandedDirectories.add(file);
+      }
+    }
+    
+    while(!unexpandedDirectories.isEmpty()) {
+      File child = unexpandedDirectories.poll();
+      if(child.getName().endsWith("\\")) {
+        File[] newChildren = child.listFiles();
+        for(File newChild : newChildren) {
+          unexpandedDirectories.add(newChild);
+        }
+      } else {
+        expandedDirectories.add(child);
+      }
+    }
+    
+    System.out.println("Expanded directories");
+    for(File child : expandedDirectories) 
+      System.out.println(child);
+    
+    System.out.println("Node location: " + nodeLocation);
+    System.out.println("subdir");
+    
+    // using iterator to traverse safely
+    Iterator<File> iter = expandedDirectories.iterator();
+    while(iter.hasNext()) {
+      File child = iter.next();
+      if ((child.getName().equals(CONTENT_DIR)) || (!child.isDirectory())) {
+        // iter remove instead of list.remove
+        iter.remove();
+      }
+    }
+    
+    boolean checkUnnormalized = CurrentConfig.getBooleanParam(
+        PARAM_FIX_UNNORMALIZED, DEFAULT_FIX_UNNORMALIZED);
+    
+    SortedSet<String> subUrls = new TreeSet<String>();
+    for(File child : expandedDirectories) {
+      try{
+        String location = child.getCanonicalPath().substring(nodeRootFile.getCanonicalFile().toString().length());
+        location = decodeUrl(location);
+        String oldLocation = location;
+        if(checkUnnormalized == true) {
+          location = normalizeTrailingQuestion(location);
+          location = normalizeUrlEncodingCase(location);
+          if(oldLocation.equals(location)==false) {
+            String newRepoLocation = LockssRepositoryImpl.mapUrlToFileLocation(repository.getRootLocation(), url + location);
+            FileUtils.copyDirectory(child, new File(newRepoLocation));
+            FileUtils.deleteDirectory(child);
+          }
+          System.out.println("normalized: " + url + location);
+        }
+        location = url + location;
+        subUrls.add(location);
+      } catch (IOException e) {
+        e.printStackTrace();
+      } catch(NullPointerException ex) {
+        ex.printStackTrace();
+      }
+    }
+    
+    System.out.println("urls: " );
+    for(String cUrl : subUrls) {
+      System.out.println(cUrl);
+    }
+    
+    
     // sorts alphabetically relying on File.compareTo()
-    Arrays.sort(children, new FileComparator());
     int listSize;
-    if (filter==null) {
-      listSize = children.length;
+    if (filter == null) {
+      listSize = subUrls.size();
     } else {
       // give a reasonable minimum since, if it's filtered, the array size
       // may be much smaller than the total children, particularly in very
       // flat trees
-      listSize = Math.min(40, children.length);
+      listSize = Math.min(40, subUrls.size());
     }
 
-    boolean checkUnnormalized =
-      CurrentConfig.getBooleanParam(PARAM_FIX_UNNORMALIZED,
-				    DEFAULT_FIX_UNNORMALIZED);
-
-    ArrayList childL = new ArrayList(listSize);
-    for (int ii=0; ii<children.length; ii++) {
-      File child = children[ii];
-      if ((child.getName().equals(CONTENT_DIR)) || (!child.isDirectory())) {
-        // all children are in their own directories, and the content dir
-        // must be ignored
-        continue;
-      }
-      if (checkUnnormalized) {
-	child = checkUnnormalized(child, children, ii);
-      }
-      if (child == null) {
-	continue;
-      }
-      String childUrl = constructChildUrl(url, child.getName());
-      if ((filter==null) || (filter.matches(childUrl))) {
+    ArrayList childL = new ArrayList();
+    for(String childUrl : subUrls) {
+      if ((filter == null) || (filter.matches(childUrl))) {
         try {
+          System.out.println("---");
+          System.out.println(childUrl);
           RepositoryNode node = repository.getNode(childUrl);
+          System.out.println(node);
+          System.out.println("+++");
+          if(node == null)
+            continue;
           // add all nodes which are internal or active leaves
           // deleted nodes never included
-//           boolean activeInternal = !node.isLeaf() && !node.isDeleted();
-//           boolean activeLeaf = node.isLeaf() && !node.isDeleted() &&
-//               (!node.isContentInactive() || includeInactive);
-//           if (activeInternal || activeLeaf) {
-	  if (!node.isDeleted() && (!node.isContentInactive() ||
-				    (includeInactive || !node.isLeaf()))) {
-            childL.add(repository.getNode(childUrl));
+          // boolean activeInternal = !node.isLeaf() && !node.isDeleted();
+          // boolean activeLeaf = node.isLeaf() && !node.isDeleted() &&
+          // (!node.isContentInactive() || includeInactive);
+          // if (activeInternal || activeLeaf) {
+          if (!node.isDeleted() && (!node.isContentInactive() || (includeInactive || !node .isLeaf()))) {
+            childL.add(node);
           }
         } catch (MalformedURLException ignore) {
           // this can safely skip bad files because they will
           // eventually be trimmed by the repository integrity checker
           // and the content will be replaced by a poll repair
-          logger.error("Malformed child url: "+childUrl);
+          logger.error("Malformed child url: " + childUrl);
         }
       }
     }
@@ -1465,18 +1536,13 @@ public class RepositoryNodeImpl implements RepositoryNode {
    */
   void checkChildCountCacheAccuracy() {
     int count = 0;
-    File[] children = nodeRootFile.listFiles();
+    List children = getNodeList(null, true);
     if (children == null) {
       String msg = "No cache directory located for: " + url;
       logger.error(msg);
       throw new LockssRepository.RepositoryStateException(msg);
     }
-    for (int ii=0; ii<children.length; ii++) {
-      File child = children[ii];
-      if (!child.isDirectory()) continue;
-      if (child.getName().equals(contentDir.getName())) continue;
-      count++;
-    }
+    count = children.size();
 
     String childCount = nodeProps.getProperty(CHILD_COUNT_PROPERTY);
     if (isPropValid(childCount)) {
@@ -1831,11 +1897,19 @@ public class RepositoryNodeImpl implements RepositoryNode {
   }
   
   private static String encodeUrlByRecursing(String current, String string) {
-    if(string.length() <= 255) {
+    String separationLengthString = System.getProperty("fsLength");
+    int separationLength = 4;
+    if(separationLengthString != null) {
+      separationLength = Integer.parseInt(separationLengthString);
+    }
+    if(separationLength < 3) {
+      throw new IllegalStateException("fsLength must be >= 3");
+    }
+    if(string.length() <= separationLength) {
       return current + string;
     } else {
-      String chunk = string.substring(0, 254) + "\\/";
-      return encodeUrlByRecursing(current + chunk, string.substring(254));
+      String chunk = string.substring(0, separationLength-1) + "\\/";
+      return encodeUrlByRecursing(current + chunk, string.substring(separationLength-1));
     }
   }
   /**

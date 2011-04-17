@@ -446,6 +446,7 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
     for (Iterator childIt = dirEntry.listChildren(null, false);
 	 childIt.hasNext(); ) {
       RepositoryNode node = (RepositoryNode)childIt.next();
+      System.out.println(node);
       res.add(node.getNodeUrl());
     }
     return res;
@@ -1636,6 +1637,7 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
         "http://www.example.com/test.url");
     node.initNodeRoot();
     String contentStr = FileUtil.sysDepPath(node.nodeLocation + "/#content");
+    contentStr = contentStr.replaceAll("\\//", "\\\\/"); // sysDepPath mangles our backslashes
     assertEquals(contentStr, node.getContentDir().toString());
     contentStr = contentStr + File.separator;
     String expectedStr = contentStr + "123";
@@ -1851,6 +1853,7 @@ public class TestRepositoryNodeImpl extends LockssTestCase {
 
     // check that no change to valid count cache
     dirEntry.checkChildCountCacheAccuracy();
+    System.out.println(dirEntry.nodeProps.getProperty(RepositoryNodeImpl.CHILD_COUNT_PROPERTY));
     assertEquals("2",
         dirEntry.nodeProps.getProperty(RepositoryNodeImpl.CHILD_COUNT_PROPERTY));
 
