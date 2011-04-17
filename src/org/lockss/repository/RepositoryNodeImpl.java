@@ -1876,7 +1876,7 @@ public class RepositoryNodeImpl implements RepositoryNode {
   
   private static String encodeUrlByRecursing(String current, String string) {
     String separationLengthString = System.getProperty("fsLength");
-    int separationLength = 4;
+    int separationLength = 255;
     if(separationLengthString != null) {
       separationLength = Integer.parseInt(separationLengthString);
     }
