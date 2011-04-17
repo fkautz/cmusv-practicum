@@ -581,6 +581,16 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
     leaf = createLeaf(longUrl.toString(), "test stream", null);
     assertEquals(true, leaf.hasContent());
   }
+  
+  public void testUrlEscaping() throws Exception {
+    String separationLengthString = System.getProperty("fsLength");
+      String url = "http://www.example.com/abc..";
+      String expectedStr = "root/www.example.com/http/abc\\/\\.";
+      RepositoryNode leaf = createLeaf(url, "test stream", null);
+      assertEquals(true, leaf.hasContent());
+      String fileLocation = LockssRepositoryImpl.mapUrlToFileLocation("root", url);
+      assertEquals(expectedStr, fileLocation);
+  }
 
   private RepositoryNode createLeaf(String url, String content,
                                     Properties props) throws Exception {

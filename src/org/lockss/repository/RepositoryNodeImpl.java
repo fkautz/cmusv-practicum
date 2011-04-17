@@ -196,11 +196,6 @@ public class RepositoryNodeImpl implements RepositoryNode {
     return url;
   }
   
-  // package level accessor to "fix" the url
-  private void setNodeUrl(String url) {
-    this.url = url;
-  }
-
   public boolean hasContent() {
     ensureCurrentInfoLoaded();
     return currentVersion>0;
@@ -337,13 +332,6 @@ public class RepositoryNodeImpl implements RepositoryNode {
       }
     }
     
-    System.out.println("Expanded directories");
-    for(File child : expandedDirectories) 
-      System.out.println(child);
-    
-    System.out.println("Node location: " + nodeLocation);
-    System.out.println("subdir");
-    
     // using iterator to traverse safely
     Iterator<File> iter = expandedDirectories.iterator();
     while(iter.hasNext()) {
@@ -371,7 +359,6 @@ public class RepositoryNodeImpl implements RepositoryNode {
             FileUtils.copyDirectory(child, new File(newRepoLocation));
             FileUtils.deleteDirectory(child);
           }
-          System.out.println("normalized: " + url + location);
         }
         location = url + location;
         subUrls.add(location);
@@ -381,12 +368,6 @@ public class RepositoryNodeImpl implements RepositoryNode {
         ex.printStackTrace();
       }
     }
-    
-    System.out.println("urls: " );
-    for(String cUrl : subUrls) {
-      System.out.println(cUrl);
-    }
-    
     
     // sorts alphabetically relying on File.compareTo()
     int listSize;
@@ -403,11 +384,7 @@ public class RepositoryNodeImpl implements RepositoryNode {
     for(String childUrl : subUrls) {
       if ((filter == null) || (filter.matches(childUrl))) {
         try {
-          System.out.println("---");
-          System.out.println(childUrl);
           RepositoryNode node = repository.getNode(childUrl);
-          System.out.println(node);
-          System.out.println("+++");
           if(node == null)
             continue;
           // add all nodes which are internal or active leaves
@@ -1887,8 +1864,9 @@ public class RepositoryNodeImpl implements RepositoryNode {
     // 2. tokenize string by '/'
     StringBuffer result = new StringBuffer();
     StringTokenizer strtok = new StringTokenizer(url, "/", true);
-    while(strtok.hasMoreTokens()) 
+    while(strtok.hasMoreTokens()) {
       result.append(encodeUrlByRecursing(strtok.nextToken()));
+    }
     return result.toString();
   }
   
@@ -1904,6 +1882,9 @@ public class RepositoryNodeImpl implements RepositoryNode {
     }
     if(separationLength < 3) {
       throw new IllegalStateException("fsLength must be >= 3");
+    }
+    if(string.equals("..")) {
+      return current + "\\..";
     }
     if(string.length() <= separationLength) {
       return current + string;

@@ -206,7 +206,6 @@ public class LockssRepositoryImpl
       // determine proper node location
       nodeLocation = LockssRepositoryImpl.mapUrlToFileLocation(rootLocation,
           canonUrl);
-      System.out.println("nodeLocation: " + nodeLocation);
       node = new RepositoryNodeImpl(canonUrl, nodeLocation, this);
     }
 
