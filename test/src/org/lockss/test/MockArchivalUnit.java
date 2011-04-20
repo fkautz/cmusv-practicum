@@ -34,6 +34,7 @@ package org.lockss.test;
 
 import java.io.*;
 import java.util.*;
+
 import org.apache.oro.text.regex.*;
 
 import org.lockss.app.*;
@@ -574,6 +575,24 @@ public class MockArchivalUnit implements ArchivalUnit {
     sb.append("]");
     return sb.toString();
   }
+
+@Override
+public void setBrowserContext(BrowserContext context) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public BrowserContext getBrowserContext() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public List<String> getSeleniumCandidateUrls() {
+	// TODO Auto-generated method stub
+	return null;
+}
 
 }
 

@@ -264,4 +264,11 @@ public class RegistryArchivalUnit extends BaseArchivalUnit {
       }
     }
   }
+
+@Override
+protected List<String> makeSeleniumCandidates() throws ConfigurationException {
+	// We don't care about using browser context for extracting links from registry.
+	// TODO(vibhor): Confirm with LOCKSS team.
+	return null;
+}
 }

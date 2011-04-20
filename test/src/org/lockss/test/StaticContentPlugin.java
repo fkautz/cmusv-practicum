@@ -184,6 +184,13 @@ public class StaticContentPlugin extends BasePlugin implements PluginTestable {
     protected void loadAuConfigDescrs(Configuration config) {
     }
 
+	@Override
+	protected List<String> makeSeleniumCandidates()
+			throws ConfigurationException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
   }
 
   public class SCU extends BaseCachedUrl {

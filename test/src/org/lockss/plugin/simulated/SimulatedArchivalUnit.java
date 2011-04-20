@@ -443,4 +443,10 @@ public class SimulatedArchivalUnit extends BaseArchivalUnit {
       return false;
     }
   }
+
+@Override
+protected List<String> makeSeleniumCandidates() throws ConfigurationException {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

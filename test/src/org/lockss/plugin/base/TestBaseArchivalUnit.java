@@ -978,5 +978,12 @@ try {
     public void setFetchRateLimiter(RateLimiter limit) {
       fetchRateLimiter = limit;      
     }
+
+	@Override
+	protected List<String> makeSeleniumCandidates()
+			throws ConfigurationException {
+		// TODO Auto-generated method stub
+		return null;
+	}
   }
 }
