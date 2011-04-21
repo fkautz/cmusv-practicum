@@ -46,6 +46,8 @@ import org.lockss.util.UrlUtil;
  */
 public class HtmlParserLinkExtractor implements LinkExtractor {
 	private static final Logger logger = Logger.getLogger("HtmlParserLinkExtractor");
+	private static final int MAX_NUM_FORM_URLS = 1000000;
+	private int max_form_urls_;
 
 	/**
 	 * A link extractor interface that can parse a given html tag and extract link(s) from it.
@@ -383,12 +385,14 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		Vector<FormInputWrapper> orderedTags_;
 		Map<String, RadioFormInput> nameToRadioInput_;
 		private boolean isSubmitSeen_;
+		private int max_form_urls_;
 
-		public FormProcessor(FormTag formTag) {
+		public FormProcessor(FormTag formTag, int max_form_urls) {
 			formTag_ = formTag;
 			orderedTags_ = new Vector<HtmlParserLinkExtractor.FormInputWrapper>();
 			nameToRadioInput_ = new HashMap<String, HtmlParserLinkExtractor.FormProcessor.RadioFormInput>();
 			isSubmitSeen_ = false;
+			max_form_urls_ = max_form_urls;
 		}
 
 		public void submitSeen() {
@@ -437,7 +441,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 
 			// Get the absolute base url from action attribute.
 			String baseUrl = formTag_.extractFormLocn();
-			FormUrlIterator iter = new FormUrlIterator(orderedTags_, baseUrl);
+			FormUrlIterator iter = new FormUrlIterator(orderedTags_, baseUrl, max_form_urls_);
 			iter.initialize();
 
 			// TODO(fkautz): Instead of using a custom normalizer, investigate and use PluginManager to normalize the form urls. This
@@ -461,32 +465,32 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 	}
 	
 	public class FormUrlIterator {
-		// Do not allow more than MAX_NUM_URLS to be generated.
-		private static final int MAX_NUM_URLS = 1000000;
 		private Vector<FormInputWrapper> tags_;
 		private Vector<String[]> components_;
 		private int[] currentPositions_;
 		private int totalUrls_;
 		private int numUrlSeen_;
 		private String baseUrl_;
+		private int max_form_urls_;
 		
-		public FormUrlIterator(Vector<FormInputWrapper> tags, String baseUrl) {
+		public FormUrlIterator(Vector<FormInputWrapper> tags, String baseUrl, int max_form_urls) {
 			this.tags_ = tags;
 			this.components_ = new Vector<String[]>();
 			this.totalUrls_ = 1;
 			this.currentPositions_ = null;
 			this.numUrlSeen_ = 0;
 			this.baseUrl_ = baseUrl;
+			this.max_form_urls_ = max_form_urls;
 		}
 
 		public void initialize() {
 			for (FormInputWrapper tag : this.tags_) {
 				String[] urlComponents = tag.getUrlComponents();
 				if (urlComponents != null && urlComponents.length > 0) {
-					if (MAX_NUM_URLS > this.totalUrls_ * urlComponents.length) {
+					if (this.max_form_urls_ > this.totalUrls_ * urlComponents.length) {
 						this.totalUrls_ *= urlComponents.length;
 					} else {
-						this.totalUrls_ = MAX_NUM_URLS;
+						this.totalUrls_ = this.max_form_urls_;
 					}
 					this.components_.add(tag.getUrlComponents());
 				}
@@ -496,14 +500,14 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 				this.currentPositions_[i] = 0;
 			}
 			
-			if (this.totalUrls_ > MAX_NUM_URLS) this.totalUrls_ = MAX_NUM_URLS;
+			if (this.totalUrls_ > this.max_form_urls_) this.totalUrls_ = this.max_form_urls_;
 		}
 
 		public boolean hasMore() {
 			return this.numUrlSeen_ < this.totalUrls_;
 		}
 
-		private boolean isHighestValue_(int i) {
+		private boolean isLastComponent(int i) {
 			return (this.currentPositions_[i] + 1) >= this.components_.get(i).length;
 		}
 		
@@ -516,7 +520,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			// This is how the iteration works:
 			// <0,0,0> <0,0,1> <0,1,0> <0,1, 1>....<2,1,1>			
 			for (int i = 0; i < this.currentPositions_.length; ++i) {
-				if (isHighestValue_(i)) {
+				if (isLastComponent(i)) {
 					if (i + 1 == this.currentPositions_.length) break;
 					this.currentPositions_[i] = 0;
 				} else {
@@ -614,6 +618,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		private Callback emit_;
 		private FormUrlNormalizer normalizer_;
 		private FormProcessor formProcessor_;
+		private int max_form_urls_;
 
 		/**
 		 * Constructor
@@ -623,7 +628,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		 * @param encoding Encoding needed to read this html document off input stream. 
 		 */
 		public LinkExtractorNodeVisitor(ArchivalUnit au, String srcUrl,
-				Callback cb, String encoding) {
+				Callback cb, String encoding, int max_form_urls) {
 			cb_ = cb;
 			au_ = au;
 			srcUrl_ = srcUrl;
@@ -632,6 +637,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			inScriptMode_ = false;
 			normalizeFormUrls_ = false; // TODO:this should read the value from
 										// the AU
+			max_form_urls_ = max_form_urls;
 			normalizer_ = new FormUrlNormalizer();
 			formProcessor_ = null;
 			
@@ -746,7 +752,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 							+ "Report the error to dev team (vibhor)");
 				}
 				// Initialize form processor
-				formProcessor_ = new FormProcessor((FormTag) tag);
+				formProcessor_ = new FormProcessor((FormTag) tag, max_form_urls_);
 			}
 
 			// An input/select tag inside a form mode should be handled by form processor.
@@ -830,7 +836,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		Parser p = new Parser(new Lexer(new Page(in, encoding)));
 		try {
 			p.visitAllNodesWith(new LinkExtractorNodeVisitor(au, srcUrl, cb,
-					encoding));
+					encoding, max_form_urls_));
 		} catch (ParserException e) {
 			logger.warning("Unable to parse url: " + srcUrl);
 			logger.warning(e.getMessage());
@@ -846,6 +852,15 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		// link extractors in the plugin (for same mime type) and reopen stream for each.
 		new GoslingHtmlLinkExtractor().extractUrls(au, inCopy, encoding,
 				srcUrl, cb);
+	}
+	
+	// For testing
+	public HtmlParserLinkExtractor(int max_form_urls) {
+		max_form_urls_ = max_form_urls;
+	}
+	
+	public HtmlParserLinkExtractor() {
+		max_form_urls_ = MAX_NUM_FORM_URLS;
 	}
 
 	public static class Factory implements LinkExtractorFactory {

@@ -1337,6 +1337,27 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 //		assertEquals(1000000, parseSingleSource(source).size());
 //	}
 	
+	public void testTooManyCheckBoxesAreCapped() throws IOException {
+		extractor = new HtmlParserLinkExtractor(4000);
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<input type=\"checkbox\" name=\"cb1\" />"
+				+ "<input type=\"checkbox\" name=\"cb2\" />"
+				+ "<input type=\"checkbox\" name=\"cb3\" />"
+				+ "<input type=\"checkbox\" name=\"cb4\" />"
+				+ "<input type=\"checkbox\" name=\"cb5\" />"
+				+ "<input type=\"checkbox\" name=\"cb6\" />"
+				+ "<input type=\"checkbox\" name=\"cb7\" />"
+				+ "<input type=\"checkbox\" name=\"cb8\" />"
+				+ "<input type=\"checkbox\" name=\"cb9\" />"
+				+ "<input type=\"checkbox\" name=\"cb10\" />"
+				+ "<input type=\"checkbox\" name=\"cb11\" />"
+				+ "<input type=\"checkbox\" name=\"cb12\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(4000, parseSingleSource(source).size());
+	}
+
+	
 	public void testLargeNumberOfCheckBoxes() throws IOException {
 		String source = "<html><head><title>Test</title></head><body>"
 			+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
