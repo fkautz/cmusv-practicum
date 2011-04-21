@@ -5,7 +5,7 @@ to support the current IOP journals.
 <map>
   <entry>
     <string>plugin_identifier</string>
-    <string>org.lockss.plugin.iop.IOPPluginV2</string>
+    <string>org.lockss.plugin.iop.IOPPluginV3</string>
   </entry>
   <entry>
     <string>au_def_pause_time</string>
@@ -27,7 +27,7 @@ to support the current IOP journals.
   </entry>
   <entry>
     <string>plugin_name</string>
-    <string>IOP Publishing Plugin V2</string>
+    <string>IOP Publishing Plugin V3</string>
   </entry>
   <entry>
     <string>au_def_new_content_crawl</string>
@@ -46,9 +46,19 @@ to support the current IOP journals.
     </list>
   </entry>
   <entry>
+  	<string>au_crawl_selenium_candidates</string>
+  	<list>
+  		<string>&quot;%s/%s/%d&quot;, base_url, journal_id, volume</string>
+  	</list>
+  </entry>
+  <entry>
     <string>au_start_url</string>
     <string>&quot;%s/%s/%d&quot;, base_url, journal_id, volume</string> 
   </entry>
+  <entry>
+    <string>text/html_link_extractor_factory</string>
+    <string>org.lockss.prototypes.plugin.SeleniumLinkExtractorFactory</string>
+  </entry>  
   <entry>
     <string>plugin_config_props</string>
     <list>

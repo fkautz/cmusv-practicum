@@ -368,11 +368,7 @@ public class DefinableArchivalUnit extends BaseArchivalUnit {
   }
   
   protected List<String> makeSeleniumCandidates() throws ConfigurationException {
-	  Object o = definitionMap.getMapElement(KEY_AU_CRAWL_SELENIUM_CANDIDATES);
-	  if (!(o instanceof List<?>)) {
-		  throw new ConfigurationException("au_crawl_selenium_candidates should be list of urls (String)");
-	  }
-	  return (List<String>)o;
+	  return convertUrlListList(KEY_AU_CRAWL_SELENIUM_CANDIDATES);
   }
 
   boolean isCaseIndependentCrawlRules() {

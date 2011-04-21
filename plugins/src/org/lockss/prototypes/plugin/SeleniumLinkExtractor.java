@@ -35,13 +35,12 @@ public class SeleniumLinkExtractor implements LinkExtractor {
 			String srcUrl, Callback cb) throws IOException, PluginException {
 		HashSet<String> automatableUrls = new HashSet<String>(au.getSeleniumCandidateUrls());
 		logger.debug("matching " + srcUrl + " to selenium candidate:" + au.getSeleniumCandidateUrls());
-		if (automatableUrls.contains(srcUrl)) {
+		if (automatableUrls.contains(srcUrl) && au.getBrowserContext() != null) {
 			WebDriver d = au.getBrowserContext().newWebDriver();
 			logger.debug("Starting webdriver to get: " + srcUrl);
 			d.get(srcUrl);
 			//d.findElement(By.xpath("//ul[@class=\"journalYearListing\"]/li/a")).click();
 			d.findElement(By.xpath("//select[@name=\"categorys\"]/option[@title=\"Biological physics\"]")).setSelected();
-			d.findElement(By.xpath("//select[@name=\"time\"]/option[@value=\"week\"]")).setSelected();
 			d.findElement(By.id("subjectsearch1")).submit();
 			d.quit();
 			// Query crawl proxy for urls that were recorded.

@@ -9,6 +9,12 @@ public class CrawlProxyManager extends ProxyManager {
 		initService(daemon);
 	}
 	
+	protected ProxyHandler makeProxyHandler() {
+		ProxyHandler handler = super.makeProxyHandler();
+		handler.setCrawlProxy(true);
+		return handler;
+	}
+	
 	public void startProxy(int proxyPort) {
 		this.start = true;
 		this.port = proxyPort;
