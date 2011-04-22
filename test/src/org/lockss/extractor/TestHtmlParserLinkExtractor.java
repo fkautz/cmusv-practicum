@@ -1315,7 +1315,80 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 			+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
 			+ "<input type=\"hidden\" name=\"arg2\" value=\"value2\"/>"
 			+ "<input type=\"submit\"/>" + "</form></html>";
-		assertEquals(SetUtil.set("http://www.example.com/bioone/cgi/?arg1=value1&arg2=value2"), parseSingleSource(source));		
+		assertEquals(SetUtil.set("http://www.example.com/bioone/cgi/?arg1=value1&arg2=value2"), parseSingleSource(source));
+	}
+
+// NOTE: The test below is supposed to test the max num url restriction of 1000000 but it takes about 16-17s for the
+// Form iterator to iterate through 1000000 urls.
+//
+//	public void testTooManyCheckBoxes() throws IOException {
+//		String source = "<html><head><title>Test</title></head><body>"
+//			+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+//			+ "<input type=\"checkbox\" name=\"cb1\" />"
+//			+ "<input type=\"checkbox\" name=\"cb2\" />"
+//			+ "<input type=\"checkbox\" name=\"cb3\" />"
+//			+ "<input type=\"checkbox\" name=\"cb4\" />"
+//			+ "<input type=\"checkbox\" name=\"cb5\" />"
+//			+ "<input type=\"checkbox\" name=\"cb6\" />"
+//			+ "<input type=\"checkbox\" name=\"cb7\" />"
+//			+ "<input type=\"checkbox\" name=\"cb8\" />"
+//			+ "<input type=\"checkbox\" name=\"cb9\" />"
+//			+ "<input type=\"checkbox\" name=\"cb10\" />"
+//			+ "<input type=\"checkbox\" name=\"cb11\" />"
+//			+ "<input type=\"checkbox\" name=\"cb12\" />"
+//			+ "<input type=\"checkbox\" name=\"cb13\" />"
+//			+ "<input type=\"checkbox\" name=\"cb14\" />"
+//			+ "<input type=\"checkbox\" name=\"cb15\" />"
+//			+ "<input type=\"checkbox\" name=\"cb16\" />"
+//			+ "<input type=\"checkbox\" name=\"cb17\" />"
+//			+ "<input type=\"checkbox\" name=\"cb18\" />"
+//			+ "<input type=\"checkbox\" name=\"cb19\" />"
+//			+ "<input type=\"checkbox\" name=\"cb20\" />"
+//			+ "<input type=\"submit\"/>" + "</form></html>";
+//		assertEquals(1000000, parseSingleSource(source).size());
+//	}
+	
+	public void testTooManyCheckBoxesAreCapped() throws IOException {
+		extractor = new HtmlParserLinkExtractor(4000);
+		String source = "<html><head><title>Test</title></head><body>"
+				+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+				+ "<input type=\"checkbox\" name=\"cb1\" />"
+				+ "<input type=\"checkbox\" name=\"cb2\" />"
+				+ "<input type=\"checkbox\" name=\"cb3\" />"
+				+ "<input type=\"checkbox\" name=\"cb4\" />"
+				+ "<input type=\"checkbox\" name=\"cb5\" />"
+				+ "<input type=\"checkbox\" name=\"cb6\" />"
+				+ "<input type=\"checkbox\" name=\"cb7\" />"
+				+ "<input type=\"checkbox\" name=\"cb8\" />"
+				+ "<input type=\"checkbox\" name=\"cb9\" />"
+				+ "<input type=\"checkbox\" name=\"cb10\" />"
+				+ "<input type=\"checkbox\" name=\"cb11\" />"
+				+ "<input type=\"checkbox\" name=\"cb12\" />"
+				+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(4000, parseSingleSource(source).size());
+	}
+
+	
+	public void testLargeNumberOfCheckBoxes() throws IOException {
+		String source = "<html><head><title>Test</title></head><body>"
+			+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+			+ "<input type=\"checkbox\" name=\"cb1\" />"
+			+ "<input type=\"checkbox\" name=\"cb2\" />"
+			+ "<input type=\"checkbox\" name=\"cb3\" />"
+			+ "<input type=\"checkbox\" name=\"cb4\" />"
+			+ "<input type=\"checkbox\" name=\"cb5\" />"
+			+ "<input type=\"checkbox\" name=\"cb6\" />"
+			+ "<input type=\"checkbox\" name=\"cb7\" />"
+			+ "<input type=\"checkbox\" name=\"cb8\" />"
+			+ "<input type=\"checkbox\" name=\"cb9\" />"
+			+ "<input type=\"checkbox\" name=\"cb10\" />"
+			+ "<input type=\"checkbox\" name=\"cb11\" />"
+			+ "<input type=\"checkbox\" name=\"cb12\" />"
+			+ "<input type=\"checkbox\" name=\"cb13\" />"
+			+ "<input type=\"checkbox\" name=\"cb14\" />"
+			+ "<input type=\"checkbox\" name=\"cb15\" />"
+			+ "<input type=\"submit\"/>" + "</form></html>";
+		assertEquals(32768, parseSingleSource(source).size());
 	}
 
 	public void testFormWithNoStartTag() throws IOException {
