@@ -309,9 +309,14 @@ public class RepositoryNodeImpl implements RepositoryNode {
       throw new LockssRepository.RepositoryStateException(msg);
     }
     
+    // holds fully decoded immediate children
     List<File> expandedDirectories = new ArrayList<File>();
     
+    // holds immediate children that still need to be decoded, and may yield more than one
+    // expanded child
     Queue<File> unexpandedDirectories = new LinkedList<File>();
+
+    // add initial set of unexpanded directories
     for(File file : children) {
       if(file.getName().endsWith("\\")) {
         unexpandedDirectories.add(file);
@@ -320,6 +325,8 @@ public class RepositoryNodeImpl implements RepositoryNode {
       }
     }
     
+    // keep expanding directories until no more unexpanded directories exist
+    // core algorithm: BFS
     while(!unexpandedDirectories.isEmpty()) {
       File child = unexpandedDirectories.poll();
       if(child.getName().endsWith("\\")) {
@@ -342,19 +349,26 @@ public class RepositoryNodeImpl implements RepositoryNode {
       }
     }
     
+    // normalization needed?
     boolean checkUnnormalized = CurrentConfig.getBooleanParam(
         PARAM_FIX_UNNORMALIZED, DEFAULT_FIX_UNNORMALIZED);
     
+    // We switch to using a sorted set, this time we hold strings representing the url
     SortedSet<String> subUrls = new TreeSet<String>();
     for(File child : expandedDirectories) {
       try{
+        // http://root/child -> /child
         String location = child.getCanonicalPath().substring(nodeRootFile.getCanonicalFile().toString().length());
         location = decodeUrl(location);
         String oldLocation = location;
         if(checkUnnormalized == true) {
+          // Normalization done here against the url string, instead of against the file in the repository. This alleviates
+          // us from dealing with edge conditions where the file split occurs around an encoding. e.g. %/5c is special in
+          // file, but decoded URL string is %5c and we handle it correctly.
           location = normalizeTrailingQuestion(location);
           location = normalizeUrlEncodingCase(location);
           if(oldLocation.equals(location)==false) {
+            // most dangerous part done here, where we copy and delete. Maybe we should move to a lost in found instead? :)
             String newRepoLocation = LockssRepositoryImpl.mapUrlToFileLocation(repository.getRootLocation(), url + location);
             FileUtils.copyDirectory(child, new File(newRepoLocation));
             FileUtils.deleteDirectory(child);
@@ -380,6 +394,7 @@ public class RepositoryNodeImpl implements RepositoryNode {
       listSize = Math.min(40, subUrls.size());
     }
 
+    // generate the arraylist with urls and return
     ArrayList childL = new ArrayList();
     for(String childUrl : subUrls) {
       if ((filter == null) || (filter.matches(childUrl))) {
