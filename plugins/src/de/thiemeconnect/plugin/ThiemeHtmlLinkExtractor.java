@@ -50,6 +50,14 @@ public class ThiemeHtmlLinkExtractor implements LinkExtractor {
 	@Override
 	public void extractUrls(ArchivalUnit au, InputStream in, String encoding,
 			String srcUrl, Callback cb) throws IOException, PluginException {
+		if (in == null) {
+			throw new IllegalArgumentException("Called with null InputStream");
+		} else if (srcUrl == null) {
+			throw new IllegalArgumentException("Called with null srcUrl");
+		} else if (cb == null) {
+			throw new IllegalArgumentException("Called with null callback");
+		}
+		
 		// ASSUMPTION(vibhor): As of Feb 2011, the only
 		// plugin (ThiemeConnectPlugin) using this extractor specifies a
 		// start_url which is ONLY used to establish a valid session-id with
@@ -75,12 +83,8 @@ public class ThiemeHtmlLinkExtractor implements LinkExtractor {
 				return;
 			}
 			
-			// The StringWriter has consumed the given input stream, populate it
-			// again.
-			// TODO(vibhor): Given the assumption above, this code should never
-			// be executed in production.
-			in = new ReaderInputStream(new StringReader(html),
-					encoding);
+			// TODO: Throw some exception (possbily site exception)
+			return;
 		}
 
 		(new GoslingHtmlLinkExtractor()).extractUrls(au, in, encoding, srcUrl,

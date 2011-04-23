@@ -308,8 +308,7 @@ public class ProxyHandler extends AbstractHttpHandler {
     // During a crawl, we can store links from a POST form similar to a GET form.
     // See TestHtmlParserLinkExtractor::testPOSTForm.
     //
-    // TODO(vibhor): We should only override the original uri if this is one of the POST request that
-    // was cached. Otherwise, carry on with the original uri.
+    // TODO(lockss-team): This logic is also needed by ServeContent. Refactor and share.
     if (HttpRequest.__POST.equals(request.getMethod())) {
     	log.debug3("POST request found!");
     	// TODO(fkautz): Use request headers instead to get the POST parameters in the order in which proxy receives these.
@@ -322,7 +321,12 @@ public class ProxyHandler extends AbstractHttpHandler {
     		urlCopy = urlCopy + (i++ == 0 ? '?' : '&') + k + '=' + params.get(k);
     	}
     	log.debug3("Overriding original URI to:" + urlCopy);
-    	uri = new URI(UrlUtil.minimallyEncodeUrl(urlCopy));
+    	URI postUri = new URI(UrlUtil.minimallyEncodeUrl(urlCopy));
+    	// We only want to override the post request by proxy if we cached it during crawling.
+        CachedUrl cu = pluginMgr.findCachedUrl(postUri.toString());
+        if (cu != null) {
+        	uri = postUri;
+        }
     }
     
     if (isFailOver) {

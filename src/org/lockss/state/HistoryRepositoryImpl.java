@@ -1017,5 +1017,10 @@ public class HistoryRepositoryImpl
       return (NodeStateImpl)nodeState;
     }
   }
+  
+  protected String getRootlocation() {
+    return rootLocation;
+  }
+  
 
 }

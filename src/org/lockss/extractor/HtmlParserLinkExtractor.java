@@ -51,6 +51,8 @@ import org.lockss.util.UrlUtil;
  */
 public class HtmlParserLinkExtractor implements LinkExtractor {
 	private static final Logger logger = Logger.getLogger("HtmlParserLinkExtractor");
+	private static final int MAX_NUM_FORM_URLS = 1000000;
+	private int max_form_urls_;
 
 	/**
 	 * A link extractor interface that can parse a given html tag and extract link(s) from it.
@@ -388,12 +390,14 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		Vector<FormInputWrapper> orderedTags_;
 		Map<String, RadioFormInput> nameToRadioInput_;
 		private boolean isSubmitSeen_;
+		private int max_form_urls_;
 
-		public FormProcessor(FormTag formTag) {
+		public FormProcessor(FormTag formTag, int max_form_urls) {
 			formTag_ = formTag;
 			orderedTags_ = new Vector<HtmlParserLinkExtractor.FormInputWrapper>();
 			nameToRadioInput_ = new HashMap<String, HtmlParserLinkExtractor.FormProcessor.RadioFormInput>();
 			isSubmitSeen_ = false;
+			max_form_urls_ = max_form_urls;
 		}
 
 		public void submitSeen() {
@@ -442,45 +446,108 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 
 			// Get the absolute base url from action attribute.
 			String baseUrl = formTag_.extractFormLocn();
-			boolean isFirstArgSeen = false;
 
-			Vector<String> links = new Vector<String>();
-			Vector<String> newLinks = null;
-			links.add(baseUrl);
-			for (FormInputWrapper tag : orderedTags_) {
-				FormUrlInput[] urlComponents = tag.getUrlComponents();
-				if (urlComponents == null)
-					continue;
-				if (urlComponents.length <= 0)
-					continue;
-				newLinks = new Vector<String>();
-				for (String url : links) {
-					for (FormUrlInput component : urlComponents) {
-						newLinks.add(url + (isFirstArgSeen ? '&' : '?')
-								+ component);
-					}
-				}
-				if (newLinks != null && newLinks.size() >= links.size()) {
-					links = newLinks;
-				}
-				isFirstArgSeen = true;
-			}
+			FormUrlIterator iter = new FormUrlIterator(orderedTags_, baseUrl, max_form_urls_);
+			iter.initialize();
 
 			// TODO(fkautz): Instead of using a custom normalizer, investigate and use PluginManager to normalize the form urls. This
 			// way we can share the logic between crawler and proxyhandler. (We do a similar normalization in ProxyHandler.java)
 			// ***NOTE: We only need to use a normalizer if the task to use proxy request header fails.***
 			FormUrlNormalizer normalizer = new FormUrlNormalizer(true,null);
 			boolean isPost = formTag_.getFormMethod().equalsIgnoreCase("post");
-			for (String link : links) {
-				if (isPost)
+			while (iter.hasMore()) {
+				String link = iter.nextUrl();
+				if (isPost) {
 					try {
 						link = normalizer.normalizeUrl(link, au);
 					} catch (PluginException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+				}
 				cb.foundLink(link);
 			}
+		}
+	}
+	
+	public class FormUrlIterator {
+		private Vector<FormInputWrapper> tags_;
+		private Vector<FormUrlInput[]> components_;
+		private int[] currentPositions_;
+		private int totalUrls_;
+		private int numUrlSeen_;
+		private String baseUrl_;
+		private int max_form_urls_;
+		
+		public FormUrlIterator(Vector<FormInputWrapper> tags, String baseUrl, int max_form_urls) {
+			this.tags_ = tags;
+			this.components_ = new Vector<FormUrlInput[]>();
+			this.totalUrls_ = 1;
+			this.currentPositions_ = null;
+			this.numUrlSeen_ = 0;
+			this.baseUrl_ = baseUrl;
+			this.max_form_urls_ = max_form_urls;
+		}
+
+		public void initialize() {
+			for (FormInputWrapper tag : this.tags_) {
+				FormUrlInput[] urlComponents = tag.getUrlComponents();
+				if (urlComponents != null && urlComponents.length > 0) {
+					if (this.max_form_urls_ > this.totalUrls_ * urlComponents.length) {
+						this.totalUrls_ *= urlComponents.length;
+					} else {
+						this.totalUrls_ = this.max_form_urls_;
+					}
+					this.components_.add(tag.getUrlComponents());
+				}
+			}
+			this.currentPositions_ = new int[this.components_.size()];
+			for (int i = 0; i < this.currentPositions_.length; ++i) {
+				this.currentPositions_[i] = 0;
+			}
+			
+			if (this.totalUrls_ > this.max_form_urls_) this.totalUrls_ = this.max_form_urls_;
+		}
+
+		public boolean hasMore() {
+			return this.numUrlSeen_ < this.totalUrls_;
+		}
+
+		private boolean isLastComponent(int i) {
+			return (this.currentPositions_[i] + 1) >= this.components_.get(i).length;
+		}
+		
+		private void incrementPositions_() {
+			if (!hasMore()) return;
+			
+			this.numUrlSeen_++;
+			
+			// If we have 3 select-option values, 1 checkbox and 2 radiobuttons, we can have 3 X 2 X 2 combinations:
+			// This is how the iteration works:
+			// <0,0,0> <0,0,1> <0,1,0> <0,1, 1>....<2,1,1>			
+			for (int i = 0; i < this.currentPositions_.length; ++i) {
+				if (isLastComponent(i)) {
+					if (i + 1 == this.currentPositions_.length) break;
+					this.currentPositions_[i] = 0;
+				} else {
+					this.currentPositions_[i]++;
+					break;
+				}
+			}
+		}
+		
+		public String nextUrl() {
+			if (!hasMore()) return null;
+			
+			boolean isFirstArgSeen = false;
+			String url = this.baseUrl_;
+			int i = 0;
+			for (FormUrlInput[] components : this.components_) {
+				url += (isFirstArgSeen ? '&' : '?') + components[this.currentPositions_[i++]].toString();
+				isFirstArgSeen = true;
+			}
+			incrementPositions_();
+			return url;
 		}
 	}
 
@@ -505,6 +572,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		private Callback emit_;
 		private FormUrlNormalizer normalizer_;
 		private FormProcessor formProcessor_;
+		private int max_form_urls_;
 
 		/**
 		 * Constructor
@@ -514,7 +582,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		 * @param encoding Encoding needed to read this html document off input stream. 
 		 */
 		public LinkExtractorNodeVisitor(ArchivalUnit au, String srcUrl,
-				Callback cb, String encoding) {
+				Callback cb, String encoding, int max_form_urls) {
 			cb_ = cb;
 			au_ = au;
 			srcUrl_ = srcUrl;
@@ -523,6 +591,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			inScriptMode_ = false;
 			normalizeFormUrls_ = false; // TODO:this should read the value from
 										// the AU
+			max_form_urls_ = max_form_urls;
 			normalizer_ = new FormUrlNormalizer();
 			formProcessor_ = null;
 			
@@ -625,14 +694,11 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 				// Visited a form tag, enter form mode and start form processing logic.
 				inFormMode_ = true;
 				if (formProcessor_ != null) {
-					// Possibly throw exception to abort completely from this
-					// link extractor.
-					logger.error("Non-null FormProcessor found. "
-							+ "It is likely that a previous form processing was not finished. "
-							+ "Report the error to dev team (vibhor)");
+					logger.error("Internal inconsistency for formprocessor_");
+					logger.error(Thread.currentThread().getStackTrace().toString());
 				}
 				// Initialize form processor
-				formProcessor_ = new FormProcessor((FormTag) tag);
+				formProcessor_ = new FormProcessor((FormTag) tag, max_form_urls_);
 			}
 
 			// An input/select tag inside a form mode should be handled by form processor.
@@ -725,10 +791,9 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 	    	stats.startMeasurement("HtmlParser");
 	    	current_cb = stats.wrapCallback(cb,"HtmlParser");
 		}
-
-	    try {
+		try {
 			p.visitAllNodesWith(new LinkExtractorNodeVisitor(au, srcUrl, current_cb,
-					encoding));
+					encoding, max_form_urls_));
 		} catch (ParserException e) {
 			logger.warning("Unable to parse url: " + srcUrl,e);
 		} catch (RuntimeException e) {
@@ -753,7 +818,15 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			stats.compareExtractors("Gosling","HtmlParser", "AU: " + au.toString() + " src URL=" + srcUrl);
 		}
 }
-
+	
+	// For testing
+	public HtmlParserLinkExtractor(int max_form_urls) {
+		max_form_urls_ = max_form_urls;
+	}
+	
+	public HtmlParserLinkExtractor() {
+		max_form_urls_ = MAX_NUM_FORM_URLS;
+	}
 	
 	public static class Factory implements LinkExtractorFactory {
 		public LinkExtractor createLinkExtractor(String mimeType) {

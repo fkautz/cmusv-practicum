@@ -544,6 +544,55 @@ public class TestLockssRepositoryImpl extends LockssTestCase {
                  File.separator+"query"+File.separator,
                  LockssRepositoryImpl.unescape(expectedStr));
   }
+  
+  public void testLongUrl() throws Exception {
+    StringBuffer longUrl = new StringBuffer();
+    longUrl.append("http://www.example.com/");
+    for(int i=0; i<218; i++)  {
+      longUrl.append(i + "-");
+    }
+    RepositoryNode leaf = createLeaf(longUrl.toString(), "test stream", null);
+    assertEquals(true, leaf.hasContent());
+  }
+  
+  public void test255Url() throws Exception {
+    StringBuffer longUrl = new StringBuffer();
+    longUrl.append("http://www.example.com/");
+    for(int i=0; i<254; i++)  {
+      longUrl.append("a");
+    }
+    RepositoryNode leaf = createLeaf(longUrl.toString(), "test stream", null);
+    assertEquals(true, leaf.hasContent());
+    longUrl.append("a");
+    leaf = createLeaf(longUrl.toString(), "test stream", null);
+    assertEquals(true, leaf.hasContent());
+    longUrl.append("a");
+    leaf = createLeaf(longUrl.toString(), "test stream", null);
+    assertEquals(true, leaf.hasContent());
+    for(int i=0; i<252; i++) {
+      longUrl.append("a");
+    }
+    leaf = createLeaf(longUrl.toString(), "test stream", null);
+    assertEquals(true, leaf.hasContent());
+    longUrl.append("a");
+    leaf = createLeaf(longUrl.toString(), "test stream", null);
+    assertEquals(true, leaf.hasContent());
+    longUrl.append("a");
+    leaf = createLeaf(longUrl.toString(), "test stream", null);
+    assertEquals(true, leaf.hasContent());
+  }
+  
+  public void testUrlEscaping() throws Exception {
+    String separationLengthString = System.getProperty("fsLength");
+    if(separationLengthString != null && separationLengthString.equals("4")) {
+      String url = "http://www.example.com/abc..";
+      String expectedStr = "root/www.example.com/http/abc\\/\\..";
+      RepositoryNode leaf = createLeaf(url, "test stream", null);
+      assertEquals(true, leaf.hasContent());
+      String fileLocation = LockssRepositoryImpl.mapUrlToFileLocation("root", url);
+      assertEquals(expectedStr, fileLocation);
+    }
+  }
 
   private RepositoryNode createLeaf(String url, String content,
                                     Properties props) throws Exception {
