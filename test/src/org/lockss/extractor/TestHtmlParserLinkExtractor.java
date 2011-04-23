@@ -841,14 +841,7 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 		assertEquals(expected, cb.getFoundUrls());
 	}
 
-	// More form tests to be written (Matt)
-	// Multiple hidden attributes, test normalization
-	// Radio button, test that all URLs are generated
-	// Checkbox - test that all URls are generated
-	// test that forms with names like Login and Email are ignored?
-	// Parse input type button looking for links in the text? See Creating HTML
-	// push button link.
-	//
+	//Forms test cases
 	// based upon highwire test case
 	public void testFormOneHiddenAttribute() throws IOException {
 		String url1 = "http://www.example.com/bioone/cgi/;F2?filename=jci116136F2.ppt";
@@ -954,29 +947,33 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 
 	}
 
-	// url > 255 characters after the slash fail
+	// url > 256 characters after the slash succeeds (as long as long URLrepository is active)
 	public void testTooLongFormUrl() throws IOException {
 		StringBuffer long_value_builder = new StringBuffer();
-		for (int i = 0; i < (255 - 4 - 8 - 2 + 1); i++) {
+		String prefix = ";F2?filename=j";
+		for (int i = 0; i < (256 - prefix.length()); i++) {
 			long_value_builder.append("a");
 		}
 		String long_value = long_value_builder.toString();
+		String url1 = "http://www.example.com/bioone/cgi/" + prefix
+				+ long_value;
 
 		String source = "<html><head><title>Test</title></head><body>"
 				+ "<form action=\"http://www.example.com/bioone/cgi/;F2\" method=\"get\">"
 				+ "<input type=\"submit\" value=\"Blah\"><INPUT TYPE=\"hidden\" NAME=\"filename\" VALUE=\"j"
 				+ long_value + "\"></form>";
-		assertEquals(SetUtil.set(), parseSingleSource(source));
+		assertEquals(SetUtil.set(url1), parseSingleSource(source));
 	}
 
 	// url = 255 characters after the slash passes
 	public void testMaxLengthFormUrl() throws IOException {
 		StringBuffer long_value_builder = new StringBuffer();
-		for (int i = 0; i < (255 - 4 - 8 - 2); i++) {
+		String prefix = ";F2?filename=j";
+		for (int i = 0; i < (255 - prefix.length()); i++) {
 			long_value_builder.append("a");
 		}
 		String long_value = long_value_builder.toString();
-		String url1 = "http://www.example.com/bioone/cgi/;F2?filename=j"
+		String url1 = "http://www.example.com/bioone/cgi/" + prefix
 				+ long_value;
 
 		String source = "<html><head><title>Test</title></head><body>"
@@ -1276,7 +1273,6 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 
 	// Add any new input types supported to this test case as well.
 	public void testAllFormInputs() throws IOException {
-		// 2 select-options and 2 radio values means 4 possible combinations
 		Set<String> expectedResults = new HashSet<String>();
 		expectedResults
 				.add("http://www.example.com/bioone/cgi/?hello_name=hello_val&odd=world&radio=rval1&checkbox=on");
@@ -1312,7 +1308,7 @@ public class TestHtmlParserLinkExtractor extends LockssTestCase {
 			+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
 			+ "<input type=\"submit\"/>"
 			+ "<input type=\"hidden\" name=\"arg1\" value=\"value1\" />"
-			+ "<form action=\"http://www.example.com/bioone/cgi/\" method=\"get\">"
+			+ "<form action=\"http://www.example.com/biotwo/cgi/\" method=\"get\">"
 			+ "<input type=\"hidden\" name=\"arg2\" value=\"value2\"/>"
 			+ "<input type=\"submit\"/>" + "</form></html>";
 		assertEquals(SetUtil.set("http://www.example.com/bioone/cgi/?arg1=value1&arg2=value2"), parseSingleSource(source));		

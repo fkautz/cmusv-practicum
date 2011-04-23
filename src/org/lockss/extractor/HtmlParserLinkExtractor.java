@@ -32,6 +32,9 @@ import org.htmlparser.util.Translate;
 import org.htmlparser.visitors.NodeVisitor;
 import org.lockss.daemon.PluginException;
 import org.lockss.plugin.ArchivalUnit;
+import org.lockss.plugin.FormUrlInput;
+import org.lockss.plugin.FormUrlNormalizer;
+import org.lockss.plugin.LinkExtractorStatisticsManager;
 import org.lockss.plugin.UrlNormalizer;
 import org.lockss.util.Logger;
 import org.lockss.util.ReaderInputStream;
@@ -249,7 +252,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 	}
 
 	public interface FormInputWrapper {
-		public String[] getUrlComponents();
+		public FormUrlInput[] getUrlComponents();
 	}
 
 	/**
@@ -265,13 +268,13 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			}
 
 			@Override
-			public String[] getUrlComponents() {
-				String[] l = new String[1];
+			public FormUrlInput[] getUrlComponents() {
+				FormUrlInput[] l = new FormUrlInput[1];
 				String name = tag_.getAttribute("name");
 				if (name == null || name.isEmpty()) {
 					return null; // should never reach this, return null for defense
 				}
-				l[0] = name + '=' + tag_.getAttribute("value");
+				l[0] = new FormUrlInput(name,  tag_.getAttribute("value"));
 				return l;
 			}
 		}
@@ -315,7 +318,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			}
 
 			@Override
-			public String[] getUrlComponents() {
+			public FormUrlInput[] getUrlComponents() {
 				if (name_ == null || name_.isEmpty()) {
 					// should never reach this
 					logger.error("Not a radio button. Aborting");
@@ -323,12 +326,12 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 					return null;
 				}
 
-				String[] l = new String[inputs_.size()];
+				FormUrlInput[] l = new FormUrlInput[inputs_.size()];
 				int i = 0;
 				// Like single select, radio allows ONLY one value at a time
 				// (unlike multi-select or checkbox).
 				for (InputTag in : inputs_) {
-					l[i++] = name_ + '=' + in.getAttribute("value");
+					l[i++] = new FormUrlInput(name_,in.getAttribute("value"));
 				}
 				return l;
 			}
@@ -343,16 +346,16 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			}
 
 			@Override
-			public String[] getUrlComponents() {
+			public FormUrlInput[] getUrlComponents() {
 				String name = tag_.getAttribute("name");
 				if (name == null || name.isEmpty()) return null; // shouldn't ever reach this, defensive
 				// Only 2 possible values on/off (value sent or empty)
-				String[] l = new String[2];
+				FormUrlInput[] l = new FormUrlInput[2];
 				String value = tag_.getAttribute("value");
 				if (value == null || value.isEmpty())
 					value = "on";
-				l[0] = name + '=' + value;
-				l[1] = name + '=';
+				l[0] = new FormUrlInput(name, value);
+				l[1] = new FormUrlInput(name,"");
 				return l;
 			}
 		}
@@ -365,8 +368,8 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			}
 
 			@Override
-			public String[] getUrlComponents() {
-				String l[] = new String[selectTag_.getOptionTags().length];
+			public FormUrlInput[] getUrlComponents() {
+				FormUrlInput l[] = new FormUrlInput[selectTag_.getOptionTags().length];
 				String name = selectTag_.getAttribute("name");
 				if (name == null || name.isEmpty()) {
 					// shouldn't ever reach this, defensive
@@ -375,7 +378,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 				OptionTag[] options = selectTag_.getOptionTags();
 				int i = 0;
 				for (OptionTag option : options) {
-					l[i++] = name + '=' + option.getAttribute("value");
+					l[i++] = new FormUrlInput(name, option.getAttribute("value"));
 				}
 				return l;
 			}
@@ -445,14 +448,14 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			Vector<String> newLinks = null;
 			links.add(baseUrl);
 			for (FormInputWrapper tag : orderedTags_) {
-				String[] urlComponents = tag.getUrlComponents();
+				FormUrlInput[] urlComponents = tag.getUrlComponents();
 				if (urlComponents == null)
 					continue;
 				if (urlComponents.length <= 0)
 					continue;
 				newLinks = new Vector<String>();
 				for (String url : links) {
-					for (String component : urlComponents) {
+					for (FormUrlInput component : urlComponents) {
 						newLinks.add(url + (isFirstArgSeen ? '&' : '?')
 								+ component);
 					}
@@ -466,7 +469,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			// TODO(fkautz): Instead of using a custom normalizer, investigate and use PluginManager to normalize the form urls. This
 			// way we can share the logic between crawler and proxyhandler. (We do a similar normalization in ProxyHandler.java)
 			// ***NOTE: We only need to use a normalizer if the task to use proxy request header fails.***
-			FormUrlNormalizer normalizer = new FormUrlNormalizer();
+			FormUrlNormalizer normalizer = new FormUrlNormalizer(true,null);
 			boolean isPost = formTag_.getFormMethod().equalsIgnoreCase("post");
 			for (String link : links) {
 				if (isPost)
@@ -481,58 +484,6 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		}
 	}
 
-	public class FormUrlNormalizer implements UrlNormalizer {
-		// sort form parameters alphabetically
-		public String normalizeUrl(String url, ArchivalUnit au)
-				throws PluginException {
-			if (url == null) {
-				return null;
-			}
-
-			Vector<String> keyValuePairs = new Vector<String>();
-			// only process form urls that look like blah?key=value or
-			// blah?k=v&j=w
-			if (StringUtils.indexOf(url, "?") == -1
-					|| StringUtils.indexOf(url, "?") == 0) {
-				return url;
-			}
-			String prefix = StringUtils.substringBefore(url, "?");
-			String rest = StringUtils.substringAfter(url, "?");
-
-			while (rest != null && rest.length() > 0) {
-				// disabled until needed. This level of parsing is only needed
-				// if multiple inputs with the same names contain different
-				// values and their ordering needs to be preserved
-				// if (StringUtils.indexOf(rest,"=") == -1 ) { return url; }
-				// //no key/values or malformed
-
-				if (StringUtils.indexOf(rest, "&") != -1) {
-					keyValuePairs.add(StringUtils.substringBefore(rest, "&"));
-					rest = StringUtils.substringAfter(rest, "&");
-				} else {
-					// last value
-					keyValuePairs.add(rest);
-					rest = "";
-				}
-			}
-			Collections.sort(keyValuePairs);
-			StringBuffer newurl = new StringBuffer(prefix + "?"); // quadratic
-																	// time if
-																	// we use
-																	// string
-			while (keyValuePairs.size() > 0) {
-				newurl.append(keyValuePairs.get(0));
-				if (keyValuePairs.size() > 1) {
-					newurl.append("&");
-				}
-				keyValuePairs.remove(0);
-			}
-
-			return newurl.toString();
-		}
-
-	}
-
 	
 	/**
 	 * A custom NodeVisitor implementation that provides the support for link extraction from the current document.
@@ -543,7 +494,6 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 	 *
 	 */
 	private class LinkExtractorNodeVisitor extends NodeVisitor {
-		protected static final int MAX_LOCKSS_URL_LENGTH = 255;
 		private Callback cb_;
 		private ArchivalUnit au_;
 		private String srcUrl_;
@@ -593,14 +543,7 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 								if (url == null) return;
 							}
 							logger.debug3("Found link (custom callback) after resolver:" + url);
-							// check length
-							if (StringUtils.lastIndexOf(url, "/") != -1) {
-								int filename_length = url.length()
-										- StringUtils.lastIndexOf(url, "/") - 1;
-								if (filename_length > MAX_LOCKSS_URL_LENGTH) {
-									return;
-								}
-							}
+							//previously, a length check was done here
 							// sort form parameters if enabled
 							if (normalizeFormUrls_) {
 								url = normalizer_.normalizeUrl(url, au_);
@@ -761,8 +704,11 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 			throw new IllegalArgumentException("Called with null callback");
 		}
 
+		//TODO:  change this value to a configuration parameter
+//		boolean statistics_enabled =  logger.isDebug2();
+		boolean statistics_enabled = false;
 		Callback current_cb = cb;
-		boolean statistics_enabled =  logger.isDebug2();
+		LinkExtractorStatisticsManager stats = new LinkExtractorStatisticsManager();
 		// Make a copy of input stream to be used with a fallback extractor (see
 		// comment before Gosling).
 		StringWriter w = new StringWriter();
@@ -775,16 +721,18 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 
 
 	    Parser p = new Parser(new Lexer(new Page(in, encoding)));
-	    LinkExtractorStatsCallback hple_cb = new LinkExtractorStatsCallback(cb);
 	    if (statistics_enabled) {
-	    	current_cb = hple_cb;
+	    	stats.startMeasurement("HtmlParser");
+	    	current_cb = stats.wrapCallback(cb,"HtmlParser");
 		}
-		try {
+
+	    try {
 			p.visitAllNodesWith(new LinkExtractorNodeVisitor(au, srcUrl, current_cb,
 					encoding));
 		} catch (ParserException e) {
 			logger.warning("Unable to parse url: " + srcUrl,e);
 		} catch (RuntimeException e) {
+			e.printStackTrace();
 			logger.warning("Encountered a runtime exception, continuing link extraction with Gosling",e);
 		}
 		
@@ -793,56 +741,18 @@ public class HtmlParserLinkExtractor implements LinkExtractor {
 		//
 		// TODO(vibhor): Instead of copying the IOStream, we should be able to specify pass multiple
 		// link extractors in the plugin (for same mime type) and reopen stream for each.
-	    LinkExtractorStatsCallback gosling_cb = new LinkExtractorStatsCallback(cb);
 	    if (statistics_enabled) {
-			current_cb = gosling_cb;
+	    	stats.startMeasurement("Gosling");
+			current_cb = stats.wrapCallback(cb,"Gosling");
 		}
 	    
 		new GoslingHtmlLinkExtractor().extractUrls(au, inCopy, encoding,
 				srcUrl, current_cb);
 		if (statistics_enabled) {
-			Set<String> hple_urls = hple_cb.GetUrls();
-			Set<String> gosling_urls = gosling_cb.GetUrls();
-			Set<String> common_urls = new HashSet<String>(gosling_urls);
-			common_urls.retainAll(hple_urls);
-
-			int common_url_count = common_urls.size();
-			int hple_url_count = hple_urls.size() - common_url_count;
-			int gosling_url_count = gosling_urls.size() - common_url_count;
-			logger.debug2("Stats AU: " + au.toString() + " src URL=" + srcUrl + " Common URLs: " + common_url_count + " HPLE only: "+ hple_url_count + " Gosling only: " +gosling_url_count );
-
-			if (logger.isDebug3()) {
-				if (hple_url_count > 0) {
-					Set<String> hple_only_urls = new HashSet<String>(hple_urls);
-				    hple_only_urls.removeAll(common_urls);
-				    logger.debug3("HPLE only urls: " + hple_only_urls.toString());
-				}
-				if  (gosling_url_count > 0 ) {
-					Set<String> gosling_only_urls = new HashSet<String>(gosling_urls);
-					gosling_only_urls.removeAll(common_urls);
-					logger.debug3("Gosling only urls: " + gosling_only_urls.toString());
-				}
-			}
+			stats.stopMeasurement();
+			stats.compareExtractors("Gosling","HtmlParser", "AU: " + au.toString() + " src URL=" + srcUrl);
 		}
 }
-
-//LinkExtractorStatsCallback wraps an existing Callback and stores all urls retrieved
-	private class LinkExtractorStatsCallback implements LinkExtractor.Callback {
-		private Set<String> urls_found_ = new HashSet<String>();
-		private Callback cb_;
-		public LinkExtractorStatsCallback(Callback cb) {
-			cb_=cb;
-		}
-
-		public Set<String> GetUrls() {
-			return urls_found_;
-		}
-		
-	    public void foundLink(String url) {
-	    urls_found_.add(url);
-	    cb_.foundLink(url);
-	    }
-	  }
 
 	
 	public static class Factory implements LinkExtractorFactory {
