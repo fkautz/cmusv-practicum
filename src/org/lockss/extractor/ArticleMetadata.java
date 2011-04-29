@@ -1,10 +1,10 @@
 /*
- * $Id: ArticleMetadata.java,v 1.3 2011/03/13 21:51:57 tlipkis Exp $
+ * $Id: ArticleMetadata.java,v 1.5 2011/04/28 02:23:40 tlipkis Exp $
  */
 
 /*
 
-Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2011 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -138,11 +138,15 @@ public class ArticleMetadata {
   }
 
   private List<String> getRawCollection(String key) {
-    List<String> res = (List)rawMap.getCollection(key.toLowerCase());
+    List<String> res = getMapCollection(rawMap, key);
     if (res == null || res.isEmpty()) {
       return Collections.<String>emptyList();
     }
     return res;
+  }
+
+  private List<String> getMapCollection(MultiValueMap map, String key) {
+    return (List<String>)map.getCollection(key.toLowerCase());
   }
 
   // Cooked map
@@ -430,7 +434,7 @@ public class ArticleMetadata {
   }
 
   private List getCollection(String key) {
-    List res = (List)cookedmap.getCollection(key.toLowerCase());
+    List<String> res = getMapCollection(cookedmap, key);
     if (res == null || res.isEmpty()) {
       return Collections.EMPTY_LIST;
     }
@@ -455,6 +459,47 @@ public class ArticleMetadata {
       sb.append("]");
     }
     return sb.toString();
+  }
+
+  /** Return a pretty printed String */
+  public String ppString(int indent) {
+    StringBuilder sb = new StringBuilder();
+    String tab = StringUtil.tab(indent);
+    sb.append(tab);
+    if (cookedmap.isEmpty()) {
+      sb.append("Metadata (empty)\n");
+    } else {
+      sb.append("Metadata\n");
+      dumpMap(sb, cookedmap, indent + 2);
+    }
+    sb.append(tab);
+    if (rawMap.isEmpty()) {
+      sb.append("Raw Metadata (empty)\n");
+    } else {
+      sb.append("Raw Metadata\n");
+      dumpMap(sb, rawMap, indent + 2);
+    }
+    return sb.toString();
+  }
+
+  private void dumpMap(StringBuilder sb, MultiValueMap map, int indent) {
+    String tab = StringUtil.tab(indent);
+    for (String key : StringUtil.caseIndependentSortedSet(map.keySet())) {
+      sb.append(tab);
+      sb.append(key);
+      sb.append(": ");
+      List lst = getMapCollection(map, key);
+      if (lst.isEmpty()) {
+	sb.append("(null)");
+      } else if (lst.size() == 1 || lst.get(0) instanceof InvalidValue) {
+	sb.append(lst.get(0));
+      } else {
+	sb.append("[");
+	sb.append(StringUtil.separatedString(lst, "; "));
+	sb.append("]");
+      }
+      sb.append("\n");
+    }
   }
 
   /** Record of a failed attempt to store a value in the cooked map, either

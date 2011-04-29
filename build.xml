@@ -2,7 +2,7 @@
 <!--
 
 ========================================================================
- $Id: build.xml,v 1.273 2011/03/15 20:07:03 tlipkis Exp $
+ $Id: build.xml,v 1.276 2011/04/23 07:37:32 tlipkis Exp $
  Ant build file for LOCKSS daemon
 ========================================================================
 
@@ -38,7 +38,6 @@ in this Software without prior written authorization from Stanford University.
 <description>
 Args:
   -Dargs="args ..."        Supply cmd line args to run-class
-  -Dbuild.compiler=jikes   Use jikes to compile.
   -Dclass=pack.age.Class   Specify class for test-one, test-class, run-class
   -Dcvstag=tag             Cvs tag to checkout for post-commit-test
   -Dexclude=path           Exclude matching tests.
@@ -112,9 +111,6 @@ Args:
   <property name="noqualifier" value="java.*" />
 <!--   <property name="noqualifier" -->
 <!-- 	    value="java.lang:java.io:java.net:java.util:java.text" /> -->
-
-  <!--  Options for jikes, have no effect otherwise -->
-  <property name="build.compiler.emacs" value="true" />
 
   <property environment="env"/>
   <!--  Ignore system classpath, to ensure consistent builds -->
@@ -290,22 +286,12 @@ Args:
   <property name="ant-contrib.resource"
                           value="net/sf/antcontrib/antcontrib.properties"/>
 
-  <property name="requires-1.5" value="test/requires-1.5"/>
-  <property name="requires-1.6" value="test/requires-1.6"/>
+  <property name="requires-1.7" value="test/requires-1.7"/>
 
   <!--  Compiler options -->
   <property name="javac.debug"             value="on" />
   <property name="javac.optimize"          value="off" />
   <property name="javac.deprecation"       value="false" />
-
-  <!-- jikes is too strict if deprecations and warnings are turned on -->
-  <condition property="nowarn"  value="true">
-   <equals arg1="${build.compiler}" arg2="jikes" />
-  </condition>
-  <condition property="javac.deprecation"  value="false">
-   <equals arg1="${build.compiler}" arg2="jikes" />
-  </condition>
-
 
   <!--  Classpaths -->
   <path id="compile.classpath">
@@ -523,14 +509,6 @@ Test results in ${test.results}
   <target name="prepare">
     <mkdir dir="${classes}" />
 
-    <condition property="is-java-1.5">
-     <or>
-      <equals arg1="1.5" arg2="${ant.java.version}"/>
-      <equals arg1="1.6" arg2="${ant.java.version}"/>
-      <equals arg1="1.7" arg2="${ant.java.version}"/>
-     </or>
-    </condition>
-
     <condition property="is-java-1.6">
      <or>
       <equals arg1="1.6" arg2="${ant.java.version}"/>
@@ -538,16 +516,22 @@ Test results in ${test.results}
      </or>
     </condition>
 
-    <!-- Require at least Java 1.5, but allow builds if force is set -->
+    <condition property="is-java-1.7">
+     <or>
+      <equals arg1="1.7" arg2="${ant.java.version}"/>
+     </or>
+    </condition>
+
+    <!-- Require at least Java 1.6, but allow builds if force is set -->
     <condition property="is-sufficient-java-version">
      <or>
-      <istrue value="${is-java-1.5}" />
+      <istrue value="${is-java-1.6}" />
       <istrue value="${force}" />
      </or>
     </condition>
 
     <fail unless="is-sufficient-java-version">
-Java ${ant.java.version} found, 1.5 required
+Java ${ant.java.version} found, 1.6 required
     </fail>
 
     <condition property="detected.os" value="unix">
@@ -584,15 +568,9 @@ Java ${ant.java.version} found, 1.5 required
     </if>
   </target>
 
-  <target name="-check-if-1.5" depends="prepare" >
-    <fail unless="is-java-1.5">
-The target you have selected requires compiling under JDK 1.5.  Use the rant -1.5 option
-    </fail>
-  </target>
-
-  <target name="-check-if-1.6" depends="prepare" >
-    <fail unless="is-java-1.6">
-The target you have selected requires compiling under JDK 1.6.  Use the rant -1.6 option
+  <target name="-check-if-1.7" depends="prepare" >
+    <fail unless="is-java-1.7">
+The target you have selected requires compiling under JDK 1.7.
     </fail>
   </target>
 
@@ -717,8 +695,7 @@ The target you have selected requires compiling under JDK 1.6.  Use the rant -1.
              cpid="test.compile.classpath" >
      <javacelem>
        <include name="**/*.java"/>
-       <excludesfile name="${requires-1.5}" unless="is-java-1.5" />
-       <excludesfile name="${requires-1.6}" unless="is-java-1.6" />
+       <excludesfile name="${requires-1.7}" unless="is-java-1.7" />
      </javacelem>
     </dojavac>
     <copy todir="${test.classes}" >
@@ -1796,16 +1773,17 @@ JAVA_COMMAND_ARGS="-server `/usr/local/lib/maxheap` -Dsun.net.inetaddr.ttl=3600 
   <target name="test-unit"
    depends="prepare.run.test,jar-tests"
    description="Run all unit tests (test/src/**/Test*.class)" >
-    <property name="include" value="**/Test*.java" />
+    <condition property="unit.include" value="${include}" else="**/Test*.java">
+      <isset property="include" />
+    </condition>
     <dojunit cpid="test.run.classpath">
      <junitelem>
       <batchtest fork="${fork}" todir="${test.results}">
         <fileset dir="${test.src}">
-          <include name="${include}" />
+          <include name="${unit.include}" />
           <exclude name="${exclude}" />
           <excludesfile name="${excludesfile}" if="excludesfile" />
-          <excludesfile name="${requires-1.5}" unless="is-java-1.5" />
-          <excludesfile name="${requires-1.6}" unless="is-java-1.6" />
+          <excludesfile name="${requires-1.7}" unless="is-java-1.7" />
         </fileset>
       </batchtest>
      </junitelem>
@@ -1817,12 +1795,17 @@ JAVA_COMMAND_ARGS="-server `/usr/local/lib/maxheap` -Dsun.net.inetaddr.ttl=3600 
   <target name="test-func"
    depends="prepare.run.test,jar-tests"
    description="Run all functional tests (test/src/**/Func*.class)" >
+    <condition property="func.include" value="${include}" else="**/Func*.java">
+      <isset property="include" />
+    </condition>
     <dojunit cpid="test.run.classpath">
      <junitelem>
       <batchtest fork="${fork}" todir="${test.results}">
         <fileset dir="${test.src}">
-          <include name="**/Func*.java" />
+          <include name="${func.include}" />
           <exclude name="${exclude}" />
+          <excludesfile name="${excludesfile}" if="excludesfile" />
+          <excludesfile name="${requires-1.7}" unless="is-java-1.7" />
         </fileset>
       </batchtest>
      </junitelem>
@@ -1834,13 +1817,17 @@ JAVA_COMMAND_ARGS="-server `/usr/local/lib/maxheap` -Dsun.net.inetaddr.ttl=3600 
   <target name="test-plugins"
    depends="prepare.run.test,jar-plugins-tests,load-plugins"
    description="Run all plugin unit tests (plugins/test/src/**/Test*.class)" >
-    <property name="include" value="**/Test*.java" />
+    <condition property="plug.include" value="${include}" else="**/Test*.java">
+      <isset property="include" />
+    </condition>
     <dojunit cpid="plugins.test.run.classpath">
      <junitelem>
       <batchtest fork="${fork}" todir="${test.results}">
         <fileset dir="${plugins.test.src}">
-          <include name="${include}" />
+          <include name="${plug.include}" />
           <exclude name="${exclude}" />
+          <excludesfile name="${excludesfile}" if="excludesfile" />
+          <excludesfile name="${requires-1.7}" unless="is-java-1.7" />
         </fileset>
       </batchtest>
      </junitelem>
@@ -1909,13 +1896,13 @@ Test results in ${test.results}
      <else>
       <fileset id="test.one.filesetid" dir="${test.src}">
 	 <include name="**/${class}.java" />
-         <excludesfile name="${requires-1.5}" unless="is-java-1.5" />
-         <excludesfile name="${requires-1.6}" unless="is-java-1.6" />
+         <excludesfile name="${excludesfile}" if="excludesfile" />
+         <excludesfile name="${requires-1.7}" unless="is-java-1.7" />
       </fileset>
       <fileset id="test.one.plugin.filesetid" dir="${plugins.test.src}">
 	 <include name="**/${class}.java" />
-         <excludesfile name="${requires-1.5}" unless="is-java-1.5" />
-         <excludesfile name="${requires-1.6}" unless="is-java-1.6" />
+         <excludesfile name="${excludesfile}" if="excludesfile" />
+         <excludesfile name="${requires-1.7}" unless="is-java-1.7" />
       </fileset>
       <!-- test whether fileset is empty by converting it to a string -->
       <pathconvert refid="test.one.filesetid" property="test.one.files"
@@ -1951,6 +1938,8 @@ Test results in ${test.results}
         <fileset dir="${tools.test.src}">
           <include name="**/Test*.java" />
 	  <include name="**/Func*.java"/>
+          <excludesfile name="${excludesfile}" if="excludesfile" />
+          <excludesfile name="${requires-1.7}" unless="is-java-1.7" />
        </fileset>
       </batchtest>
      </junitelem>
@@ -2265,6 +2254,7 @@ Test results in ${test.results}
 	   inheritAll="false">
        <property name="ant-contrib.loaded" value="${ant-contrib.loaded}" />
        <property name="halt" value="${halt}" />
+<!--        <property name="excludesfile" value="${excludesfile} if=excludesfile" /> -->
        <property name="build.compiler" value="modern" />
      </ant>
      <echo>Build was successful, deleting "${temp.build.dir}"</echo>

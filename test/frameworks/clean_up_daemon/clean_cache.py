@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# $Id: clean_cache.py,v 1.2 2011/02/22 21:24:36 barry409 Exp $
+# $Id: clean_cache.py,v 1.10 2011/04/22 02:07:59 thib_gc Exp $
 
 # Copyright (c) 2011 Board of Trustees of Leland Stanford Jr. University,
 # all rights reserved.
@@ -36,7 +36,7 @@ import lockss_daemon
 
 __author__ = "Barry Hayes"
 __maintainer__ = "Barry Hayes"
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 
 
 class _SectionAdder(object):
@@ -69,14 +69,14 @@ def _parser():
                         'never prompt')
     parser.add_option('-i', '--verify', dest='verify', action='store_true',
                         default=False, help='prompt before each move')
-    parser.add_option('--commands', action='store_true', default=False,
+    parser.add_option('-c', '--commands', action='store_true', default=False,
                         help='print mv commands, but do not move files')
     parser.add_option('-d', '--directory', default='.',
                         help='the daemon directory where ./cache is '
-                        '(default: \'.\')')
+                        '(default: \'%default\')')
     parser.add_option('--dest', default='deleted',
                         help='where under the daemon directory the cache '
-                        'entries are moved to (default: \'deleted\')')
+                        'entries are moved to (default: \'%default\')')
     return parser
 
 
@@ -86,6 +86,24 @@ def _process_args():
     if arguments != []:
         parser.error('There should be no arguments. Try --help')
     return options
+
+def _auid(cache_dir):
+    """Return the AUID for the given cache dir."""
+    # If the #au_id_file isn't present, or doesn't contain an au.id
+    # entry, the daemon doesn't list the directory in the table, so no
+    # need to check either condition. 
+    path = os.path.join(cache_dir, '#au_id_file')
+    config = ConfigParser.ConfigParser()
+    f = open(os.path.join(path))
+    try:
+        config.readfp(_SectionAdder('foo', f))
+        auid = config.get('foo', 'au.id')
+        # If this fails, something very odd is going on, and a human
+        # should check.
+        assert auid
+    finally:
+        f.close()
+    return auid
 
 
 def main():
@@ -97,35 +115,56 @@ def main():
         raise Exception('%s doesn\'t look like a daemon directory. '
                         'Try --directory.' % src)
 
-    config = ConfigParser.ConfigParser()
-    local_config = open(local_txt)
-    config.readfp(_SectionAdder('foo', local_config))
-    port = config.get('foo', 'org.lockss.ui.port')
+    if 'LOCKSS_UI_PORT' in os.environ:
+        port = os.environ['LOCKSS_UI_PORT']
+    else:
+        config = ConfigParser.ConfigParser()
+        local_config = open(local_txt)
+        try:
+            config.readfp(_SectionAdder('foo', local_config))
+            port = config.get('foo', 'org.lockss.ui.port')
+        finally:
+            local_config.close()
 
     fix_auth_failure.fix_auth_failure()
     client = lockss_daemon.Client('127.0.0.1', port,
                                   options.user, options.password)
     repos = client._getStatusTable( 'RepositoryTable' )[ 1 ]
-    deleted = [r for r in repos if r['status'] == 'Deleted']
 
+    no_auid = [r for r in repos if r['status'] == 'No AUID']
+    if no_auid:
+        print 'Warning: These cache directories have no AUID:'
+        for r in no_auid:
+            print r['dir']
+        print
+
+    deleted = [r for r in repos if r['status'] == 'Deleted']
+    for r in deleted:
+        r['auid'] = _auid(os.path.join(src, r['dir']))
+    deleted.sort(key=lambda r: r['auid'])
+
+    move_all = False
     if options.verbose:
         if deleted:
             print 'These AUs have been deleted on the daemon:'
             for r in deleted:
-                print r['plugin'], r['params']
+                print r['auid']
+            if options.verify:
+                move_all = raw_input('move all [y]? ').startswith('y')
         else:
             print 'No deleted AUs.'
 
+    verify_each = options.verify and not move_all
     dst = os.path.join(options.directory, options.dest)
     for r in deleted:
-        r = r['dir']
-        if not options.verify or \
-                options.verify and \
-                raw_input('move %s [n]? ' % r).startswith('y'):
-            src_r = os.path.join(src, r)
-            dst_r = os.path.join(dst, r)
+        dir = r['dir']
+        if not verify_each or \
+                verify_each and \
+                raw_input('move %s [n]? ' % r['auid']).startswith('y'):
+            src_r = os.path.join(src, dir)
+            dst_r = os.path.join(dst, dir)
             if options.commands:
-                print "mv %s %s" % (src_r, dst_r)
+                print "mv %s %s # %s" % (src_r, dst_r, r['auid'])
             else:
                 os.renames(src_r, dst_r)
 
