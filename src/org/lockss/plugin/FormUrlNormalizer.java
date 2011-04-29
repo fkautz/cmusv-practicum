@@ -31,7 +31,8 @@ private FormUrlHelper _converter;
 		//return all non-form urls unchanged
 		if (StringUtils.indexOf(url, "?") == -1) { return url; }
         //if there is a problem converting the url, return the original url;
-		if (!_converter.convertFromString(url)) { return url; }
+		System.out.println("Prenormalization - " + url);
+		if (!_converter.convertFromEncodedString(url)) { return url; }
 		
 		if (_sortAllUrls) {
 			_converter.sortKeyValues();

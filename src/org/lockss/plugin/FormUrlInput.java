@@ -3,6 +3,7 @@
  */
 package org.lockss.plugin;
 
+import org.lockss.util.StringUtil;
 import org.lockss.util.UrlUtil;
 
 /**
@@ -14,7 +15,7 @@ public class FormUrlInput  implements Comparable<FormUrlInput> {
   private String _value;
   public FormUrlInput(String name, String value) {
 	  if (name.length()<=0) {
-		  //TODO: throw
+		  //TODO: throw ?
 //		  throw FormUrlException
 	  }
 	  _name=name;
@@ -30,11 +31,16 @@ public class FormUrlInput  implements Comparable<FormUrlInput> {
   public String getRawValue() {
 	  return  _value;
   }
+  //application/x-www-form-encoded content requires space be converted to a +.  This will also allow us to match incoming client requests
+  public String formEncodeParameter(String url) {
+	  //url = StringUtil.replaceString(url, " ", "+");
+	  return UrlUtil.encodeUrl(url);
+  }
   public String getName() {
-	  return UrlUtil.minimallyEncodeUrl(_name);
+	  return formEncodeParameter(_name);
   }
   public String getValue() {
-	  return UrlUtil.minimallyEncodeUrl(_value);
+	  return formEncodeParameter(_value);
   }
 //default behavior is to behave like a String for GET requests
   public String toString() {
