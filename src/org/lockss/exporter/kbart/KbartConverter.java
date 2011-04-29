@@ -1,5 +1,5 @@
 /*
- * $Id: KbartConverter.java,v 1.7 2011/03/22 18:58:31 easyonthemayo Exp $
+ * $Id: KbartConverter.java,v 1.10 2011/04/19 20:36:22 pgust Exp $
  */
 
 /*
@@ -80,8 +80,8 @@ import static org.lockss.exporter.kbart.KbartTitle.Field.*;
  * Note that if the underlying <code>Tdb</code> objects are changed during iteration the resulting 
  * output is undefined.
  * <p>
- * <emph>Note that the <code>title_id</code> field is currently left 
- * empty as the data we have for this is incomplete or inappropriate.</emph>
+ * <emph>Note that the <code>title_id</code> field is now filled with the ISSN-L code, as these have
+ * now been incorporated for all titles, and are used for linking.</emph>
  * 
  * 
  * @author Neil Mayo
@@ -209,7 +209,7 @@ public class KbartConverter {
   *   <li>num_first_vol_online</li>
   *   <li>num_last_vol_online</li>
   *   <li>title_url</li>
-  *   <li><del>title_id</del> (temporarily disabled)</li>
+  *   <li>title_id</li>
   *   <li>publisher_name</li>
   * </ul>
   * The following fields currently have no analog in the TDB data:
@@ -217,7 +217,7 @@ public class KbartConverter {
   *   <li><del>first_author</del> (not relevant to journals)</li>
   *   <li>embargo_info</li>
   *   <li>coverage_depth</li>
-  *   <li>coverage_notes</li>
+  *   <li>coverage_notes (free text field, may be used for PEPRS data)</li>
   * </ul>
   * <p>
   * We assume AUs are listed in order from earliest to most recent, when they are
@@ -243,9 +243,7 @@ public class KbartConverter {
     // Add publisher and title and title identifier
     baseKbt.setField(PUBLISHER_NAME, tdbt.getTdbPublisher().getName());
     baseKbt.setField(PUBLICATION_TITLE, tdbt.getName());
-    // XXX Disabled title_id temporarily
-    //baseKbt.setField(TITLE_ID, tdbt.getId());
-    
+
     // If there are no aus, we have nothing more to add
     if (aus.size()==0) {
       kbtList.add(baseKbt);
@@ -270,6 +268,8 @@ public class KbartConverter {
     // According to TdbTitle, "The ID is guaranteed to be globally unique".
     baseKbt.setField(PRINT_IDENTIFIER, findIssn(firstAu)); 
     baseKbt.setField(ONLINE_IDENTIFIER, findEissn(firstAu)); 
+    baseKbt.setField(TITLE_ID, findIssnL(firstAu));
+
 
     // Title URL
     // Set using a substitution parameter e.g. LOCKSS_RESOLVER?issn=1234-5678 (issn or eissn or issn-l)
@@ -325,7 +325,7 @@ public class KbartConverter {
   
   /**
    * Update the KbartTitle with new values for the title fields if the TdbAu has
-   * different values. Fields checked are title name, issn and eissn.
+   * different values. Fields checked are title name, issn, eissn, and issnl.
    *  
    * @param au a TdbAu with potentially new field values 
    * @param kbt a KbartTitle whose properties to update
@@ -333,6 +333,7 @@ public class KbartConverter {
   private static void updateTitleProperties(TdbAu au, KbartTitle kbt) {
     String issnCheck = findIssn(au);
     String eissnCheck = findEissn(au);
+    String issnlCheck = findIssnL(au);
     String titleCheck = au.getTdbTitle().getName();
     if (!titleCheck.equals(kbt.getField(PUBLICATION_TITLE))) {
       log.info("Name change within title "+kbt.getField(PUBLICATION_TITLE)+" => "+titleCheck);
@@ -345,6 +346,10 @@ public class KbartConverter {
     if (!eissnCheck.equals(kbt.getField(ONLINE_IDENTIFIER))) {
       log.info("EISSN change within title "+kbt.getField(ONLINE_IDENTIFIER)+" => "+eissnCheck);
       kbt.setField(ONLINE_IDENTIFIER, eissnCheck);
+    }
+    if (!issnlCheck.equals(kbt.getField(TITLE_ID))) {
+      log.info("ISSN-L change within title "+kbt.getField(TITLE_ID)+" => "+issnlCheck);
+      kbt.setField(TITLE_ID, issnlCheck);
     }
   }
   
