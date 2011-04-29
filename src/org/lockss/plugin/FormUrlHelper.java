@@ -16,12 +16,13 @@ public class FormUrlHelper {
 	boolean _valid = false;
 	boolean _alreadyEncoded = false;
 	
-	FormUrlHelper() {
+	public FormUrlHelper() {
 		this("");
 	}
-	FormUrlHelper(String baseUrl) {
+	public FormUrlHelper(String baseUrl) {
 		setBaseUrl(baseUrl);
 	}
+
 	public void setBaseUrl(String baseUrl) {
 		_baseUrl = baseUrl;
 		_valid = true;
@@ -103,7 +104,7 @@ public class FormUrlHelper {
 	//construct a get URL. 
 	public String toEncodedString() {
 		if (_alreadyEncoded) { return toString();}
-		StringBuilder url = new StringBuilder(UrlUtil.encodeUrl(_baseUrl));
+		StringBuilder url = new StringBuilder(_baseUrl);
 		int i=0;
 		url.append("?");
 		for (i=0;i<_inputs.size();i++) {

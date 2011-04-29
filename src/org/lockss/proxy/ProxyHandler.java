@@ -315,13 +315,16 @@ public class ProxyHandler extends AbstractHttpHandler {
     	MultiMap params = request.getParameters();
     	Set<String> unsortedKeys = SetUtils.typedSet(params.keySet(), String.class);
     	SortedSet<String> keys = new TreeSet<String>(unsortedKeys);
-    	int i = 0;
-    	String urlCopy = uri.toString();
+    	
+    	FormUrlHelper helper = new FormUrlHelper(uri.toString());
+    
     	for (String k : keys) {
-    		urlCopy = urlCopy + (i++ == 0 ? '?' : '&') + k + '=' + params.get(k);
+    		helper.add((k), params.get(k).toString());
     	}
-    	log.debug3("Overriding original URI to:" + urlCopy);
-    	URI postUri = new URI(UrlUtil.minimallyEncodeUrl(urlCopy));
+    	if (log.isDebug3()) {
+    		log.debug3("Overriding original URI to:" + helper.toEncodedString());
+    	}
+    	URI postUri = new URI(helper.toEncodedString());
     	// We only want to override the post request by proxy if we cached it during crawling.
         CachedUrl cu = pluginMgr.findCachedUrl(postUri.toString());
         if (cu != null) {
