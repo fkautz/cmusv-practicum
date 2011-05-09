@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: PollSpec.java,v 1.38 2011/05/09 00:40:23 tlipkis Exp $
  */
 
 /*
@@ -165,7 +165,7 @@ public class PollSpec {
     this.cus = cus;
     ArchivalUnit au = cus.getArchivalUnit();
     auId = au.getAuId();
-    this.pluginVersion = au.getPlugin().getVersion();
+    this.pluginVersion = AuUtil.getPollVersion(au);
     CachedUrlSetSpec cuss = cus.getSpec();
     url = cuss.getUrl();
     this.lwrBound = lwrBound;
