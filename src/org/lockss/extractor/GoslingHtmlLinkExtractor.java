@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: GoslingHtmlLinkExtractor.java,v 1.8 2011/05/09 00:31:26 tlipkis Exp $
  */
 
 /*
@@ -617,8 +617,7 @@ public class GoslingHtmlLinkExtractor implements LinkExtractor {
 	returnStr = resolveUri(baseUrl, returnStr);
       } catch (MalformedURLException e) {
 	logger.debug("Couldn't resolve URL, base: \"" + srcUrl +
-		     "\", link: \"" + returnStr + "\"",
-		     e);
+		     "\", link: \"" + returnStr + "\": " + e);
 	return false;
       }
       if (isTrace) {
