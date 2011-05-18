@@ -1,5 +1,5 @@
 /*
- * $Id: ExploderHelper.java,v 1.4 2011/05/18 04:09:55 tlipkis Exp $
+ * $Id: ExploderHelper.java,v 1.1 2011/05/18 04:09:55 tlipkis Exp $
  */
 
 /*
@@ -30,17 +30,28 @@ in this Software without prior written authorization from Stanford University.
 
 */
 
-package org.lockss.daemon;
+package org.lockss.plugin;
+
+import org.lockss.daemon.*;
 
 /**
- * ExploderHelper has been moved to the org.lockss.plugin package.  This
- * interface is left behind to provide compatibility for already-release
- * plugins; it should be removed once all plugins are converted to
- * reference the new interface.
+ * The interface to publisher-specific ExploderHelper classes.
+ * They encapsulate knowledge about what to do with individual
+ * entries in an archive that's being exploded.
  *
  * @author  David S. H. Rosenthal
  * @version 0.0
- * @deprecated Use {@link org.lockss.plugin.ExploderHelper} instead.
  */
-public interface ExploderHelper extends org.lockss.plugin.ExploderHelper {
+
+public interface ExploderHelper {
+
+  /**
+   * Do what needs to be done to this ArchiveEntry, which is a
+   * generic data structure describing the entry. This method
+   * typically sets fields descbing the AU the entry is to end
+   * up in, the URL it is to be assigned, and the header fields.
+   * @param ae the entry to be processed
+   */
+  public void process(ArchiveEntry ae) throws PluginException;
+
 }
