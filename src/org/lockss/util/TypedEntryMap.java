@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: TypedEntryMap.java,v 1.8 2011/06/20 07:06:59 tlipkis Exp $
  */
 
 /*
@@ -277,7 +277,7 @@ public class TypedEntryMap {
     throw new NoSuchElementException("Collection element for " + key + " not found.");
   }
 
-  public Map getMap(String key) {
+  public Map<String,?> getMap(String key) {
     Map value = (Map)getMapElement(key);
     if (value != null) {
       return value;
