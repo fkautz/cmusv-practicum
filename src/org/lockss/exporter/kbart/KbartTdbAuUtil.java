@@ -1,5 +1,5 @@
 /*
- * $Id: KbartTdbAuUtil.java,v 1.7 2011/04/19 20:00:02 pgust Exp $
+ * $Id: KbartTdbAuUtil.java,v 1.9 2011/06/22 23:52:27 pgust Exp $
  */
 
 /*
@@ -32,7 +32,10 @@ in this Software without prior written authorization from Stanford University.
 
 package org.lockss.exporter.kbart;
 
+import java.util.Collections;
 import java.util.Map;
+
+import javax.security.auth.login.Configuration;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.oro.text.regex.MatchResult;
@@ -41,6 +44,7 @@ import org.apache.oro.text.regex.Perl5Matcher;
 import org.lockss.config.TdbAu;
 import org.lockss.util.Logger;
 import org.lockss.util.MetadataUtil;
+import org.lockss.util.NumberUtil;
 import org.lockss.util.RegexpUtil;
 
 /**
@@ -67,7 +71,7 @@ public class KbartTdbAuUtil {
   static final String DEFAULT_ISSN_PROP = "issn";
   static final String DEFAULT_EISSN_PROP = "eissn";
   static final String DEFAULT_ISSNL_PROP = "issnl";
-
+  
   
   /**
    * Compare two strings which are supposed to be representations of years.
@@ -80,8 +84,8 @@ public class KbartTdbAuUtil {
    * @param year2 a string representing a year
    * @return the value 0 if the years are the same; less than 0 if the first is less than the second; and greater than 0 if the first is greater than the second
    */
-  static int compareStringYears(String year1, String year2) throws NumberFormatException {
     // Note that in practise if the strings do represent comparable publication years, 
+  static int compareStringYears(String year1, String year2) throws NumberFormatException {
     // they will be 4 digits long and so comparable as strings with the same results.
     return compareIntStrings(year1, year2);
   }
@@ -94,8 +98,10 @@ public class KbartTdbAuUtil {
    * @throws NumberFormatException
    */
   static int compareIntStrings(String int1, String int2) throws NumberFormatException {
-    Integer i1 = new Integer(int1);
-    Integer i2 = new Integer(int2);
+    // Return zero if the strings are equal
+    if (int1.equals(int2)) return 0;
+    Integer i1 = NumberUtil.parseInt(int1);
+    Integer i2 = NumberUtil.parseInt(int2);
     return i1.compareTo(i2);
   }
 
@@ -333,6 +339,7 @@ public class KbartTdbAuUtil {
    * @return the first year string found, or empty string
    */
   static String getFirstYear(String yStr) {
+    if (yStr==null || yStr.equals("")) return "";
     Perl5Matcher matcher = RegexpUtil.getMatcher();
     String y = null;
     if (matcher.contains(yStr, defaultYearPattern)) {
@@ -349,7 +356,7 @@ public class KbartTdbAuUtil {
    * @return the last year string found, or empty string
    */
   static String getLastYear(String yStr) {
-    if (yStr.equals("")) return "";
+    if (yStr==null || yStr.equals("")) return "";
     Perl5Matcher matcher = RegexpUtil.getMatcher();
     String y = null;
     if (matcher.contains(yStr, defaultYearPattern)) {
@@ -366,7 +373,7 @@ public class KbartTdbAuUtil {
    */
   static int stringYearAsInt(String yr) {
     if (!yr.equals("")) try {
-      return Integer.parseInt(yr);
+      return NumberUtil.parseInt(yr);
     } catch (NumberFormatException e) { }
     return 0;
   }
