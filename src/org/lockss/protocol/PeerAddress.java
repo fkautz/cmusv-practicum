@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: PeerAddress.java,v 1.8 2011/06/26 20:20:47 tlipkis Exp $
  */
 
 /*
@@ -111,7 +111,7 @@ public abstract class PeerAddress {
   private static void checkIpAddr(String addr)
       throws IdentityManager.MalformedIdentityKeyException {
     try {
-      new IpFilter.Addr(addr);
+      IpFilter.newAddr(addr);
     } catch (IpFilter.MalformedException e) {
       throw new IdentityManager.MalformedIdentityKeyException(e.toString());
     }
