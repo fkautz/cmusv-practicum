@@ -10,6 +10,8 @@ import org.lockss.config.TdbTitle;
 import org.lockss.config.Tdb.TdbException;
 import org.lockss.exporter.kbart.KbartTitle.Field;
 import org.lockss.test.LockssTestCase;
+import org.lockss.util.NumberUtil;
+
 
 /**
  * Try some conversions from TdbTitles to KbartTitles. This is done using a single
@@ -21,18 +23,18 @@ import org.lockss.test.LockssTestCase;
  */
 public class TestKbartConverter extends LockssTestCase {
 
-  private KbartConverter conv;
-  private Tdb tdb;
+  //private KbartConverter conv;
+  //private Tdb tdb;
   
   protected void setUp() throws Exception {
     super.setUp();
     //this.tdb = TdbTestUtil.makeTestTdb();
-    this.conv = new KbartConverter(tdb);
+    //this.conv = new KbartConverter(tdb);
   }
 
   protected void tearDown() throws Exception {
     super.tearDown();
-    this.conv = null;
+    //this.conv = null;
   }
 
   // TODO Unwritten test
@@ -57,28 +59,34 @@ public class TestKbartConverter extends LockssTestCase {
     try {
       // Title without volume info; just year ranges leading to a coverage gap
       TdbTitle title = TdbTestUtil.makeRangeTestTitle(false);
-      List<KbartTitle> titles = conv.createKbartTitles(title);
+      List<KbartTitle> titles = KbartConverter.createKbartTitles(title);
       assertEquals(2, titles.size());
       // Check the dates and vols have been correctly transferred in each title
       KbartTitle t = titles.get(0);
-      assertEquals(t.getField(Field.DATE_FIRST_ISSUE_ONLINE), TdbTestUtil.RANGE_1_START);
-      assertEquals(t.getField(Field.DATE_LAST_ISSUE_ONLINE), TdbTestUtil.RANGE_1_END);
-      assertEquals(t.getField(Field.NUM_FIRST_VOL_ONLINE), "");
-      assertEquals(t.getField(Field.NUM_LAST_VOL_ONLINE), "");
-      assertEquals(t.getField(Field.PRINT_IDENTIFIER), TdbTestUtil.DEFAULT_ISSN_2);
-      assertEquals(t.getField(Field.ONLINE_IDENTIFIER), TdbTestUtil.DEFAULT_EISSN_2);
+      assertEquals(NumberUtil.toArabicNumber(TdbTestUtil.RANGE_1_START), 
+                   t.getField(Field.DATE_FIRST_ISSUE_ONLINE));
+      assertEquals(NumberUtil.toArabicNumber(TdbTestUtil.RANGE_1_END), 
+                   t.getField(Field.DATE_LAST_ISSUE_ONLINE));
+      assertEquals("", t.getField(Field.NUM_FIRST_VOL_ONLINE));
+      assertEquals("", t.getField(Field.NUM_LAST_VOL_ONLINE));
+      assertEquals(TdbTestUtil.DEFAULT_ISSN_2, t.getField(Field.PRINT_IDENTIFIER));
+      assertEquals(TdbTestUtil.DEFAULT_EISSN_2, t.getField(Field.ONLINE_IDENTIFIER));
       // Title 2
       t = titles.get(1);
-      assertEquals(t.getField(Field.DATE_FIRST_ISSUE_ONLINE), TdbTestUtil.RANGE_2_START);
-      assertEquals(t.getField(Field.DATE_LAST_ISSUE_ONLINE), TdbTestUtil.RANGE_2_END);
-      assertEquals(t.getField(Field.NUM_FIRST_VOL_ONLINE), "");
-      assertEquals(t.getField(Field.NUM_LAST_VOL_ONLINE), "");
-      assertEquals(t.getField(Field.PRINT_IDENTIFIER), TdbTestUtil.DEFAULT_ISSN_2);
-      assertEquals(t.getField(Field.ONLINE_IDENTIFIER), TdbTestUtil.DEFAULT_EISSN_2);
+      log.critical("first issue: " + t.getField(Field.DATE_FIRST_ISSUE_ONLINE));
+      log.critical("last issue: " + t.getField(Field.DATE_LAST_ISSUE_ONLINE));
+      assertEquals(NumberUtil.toArabicNumber(TdbTestUtil.RANGE_2_START), 
+                   t.getField(Field.DATE_FIRST_ISSUE_ONLINE));
+      assertEquals(NumberUtil.toArabicNumber(TdbTestUtil.RANGE_2_END), 
+                   t.getField(Field.DATE_LAST_ISSUE_ONLINE));
+      assertEquals("", t.getField(Field.NUM_FIRST_VOL_ONLINE));
+      assertEquals("", t.getField(Field.NUM_LAST_VOL_ONLINE));
+      assertEquals(TdbTestUtil.DEFAULT_ISSN_2, t.getField(Field.PRINT_IDENTIFIER));
+      assertEquals(TdbTestUtil.DEFAULT_EISSN_2, t.getField(Field.ONLINE_IDENTIFIER));
       
       // Test the method again with a range which goes to the present - end values should be empty
       title = TdbTestUtil.makeRangeToNowTestTitle();
-      titles = conv.createKbartTitles(title);
+      titles = KbartConverter.createKbartTitles(title);
       assertEquals("Range to now yields too many KBART titles", 1, titles.size());
       // Title with a range to now
       t = titles.get(0);
@@ -91,15 +99,19 @@ public class TestKbartConverter extends LockssTestCase {
       
       // Test with a title which has volume info as well as year ranges; no coverage gap by volume
       title = TdbTestUtil.makeRangeTestTitle(true);
-      titles = conv.createKbartTitles(title);
+      titles = KbartConverter.createKbartTitles(title);
       assertEquals("Coverage gap found when none exists in volume field; only years.", 1, titles.size());
       t = titles.get(0);
-      assertEquals(t.getField(Field.DATE_FIRST_ISSUE_ONLINE), TdbTestUtil.RANGE_1_START);
-      assertEquals(t.getField(Field.DATE_LAST_ISSUE_ONLINE), TdbTestUtil.RANGE_2_END);
-      assertEquals(t.getField(Field.NUM_FIRST_VOL_ONLINE), TdbTestUtil.RANGE_1_START_VOL);
-      assertEquals(t.getField(Field.NUM_LAST_VOL_ONLINE), TdbTestUtil.RANGE_2_END_VOL);
-      assertEquals(t.getField(Field.PRINT_IDENTIFIER), TdbTestUtil.DEFAULT_ISSN_2);
-      assertEquals(t.getField(Field.ONLINE_IDENTIFIER), TdbTestUtil.DEFAULT_EISSN_2);
+      assertEquals(NumberUtil.toArabicNumber(TdbTestUtil.RANGE_1_START), 
+                   t.getField(Field.DATE_FIRST_ISSUE_ONLINE));
+      assertEquals(NumberUtil.toArabicNumber(TdbTestUtil.RANGE_2_END), 
+                   t.getField(Field.DATE_LAST_ISSUE_ONLINE));
+      assertEquals(TdbTestUtil.RANGE_1_START_VOL, 
+                   t.getField(Field.NUM_FIRST_VOL_ONLINE));
+      assertEquals(TdbTestUtil.RANGE_2_END_VOL, 
+                   t.getField(Field.NUM_LAST_VOL_ONLINE));
+      assertEquals(TdbTestUtil.DEFAULT_ISSN_2, t.getField(Field.PRINT_IDENTIFIER));
+      assertEquals(TdbTestUtil.DEFAULT_EISSN_2, t.getField(Field.ONLINE_IDENTIFIER));
       
     } catch (TdbException e) {
       fail("Exception while making range test title: "+e);
