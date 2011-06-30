@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: TitleSetInactiveAus.java,v 1.7 2011/06/30 19:06:00 tlipkis Exp $
  */
 
 /*
@@ -87,7 +87,9 @@ public class TitleSetInactiveAus extends BaseTitleSet {
     return tc;
   }
 
-  Collection filterTitles(Collection allTitles) {
+  protected Collection<TitleConfig>
+    filterTitles(Collection<TitleConfig> allTitles) {
+
     return allTitles;
   }
 
