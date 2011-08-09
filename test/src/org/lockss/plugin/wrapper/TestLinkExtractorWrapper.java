@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: TestLinkExtractorWrapper.java,v 1.2 2011/08/09 04:17:30 tlipkis Exp $
  */
 
 /*
@@ -45,8 +45,7 @@ public class TestLinkExtractorWrapper extends LockssTestCase {
 
   public void testWrap() throws PluginException, IOException {
     LinkExtractor obj = new MockLinkExtractor();
-    LinkExtractor wrapper =
-      (LinkExtractor)WrapperUtil.wrap(obj, LinkExtractor.class);
+    LinkExtractor wrapper = WrapperUtil.wrap(obj, LinkExtractor.class);
     assertTrue(wrapper instanceof LinkExtractorWrapper);
     assertTrue(WrapperUtil.unwrap(wrapper) instanceof MockLinkExtractor);
 
@@ -58,8 +57,7 @@ public class TestLinkExtractorWrapper extends LockssTestCase {
 
   public void testLinkageError() throws IOException {
     LinkExtractor obj = new MockLinkExtractor();
-    LinkExtractor wrapper =
-      (LinkExtractor)WrapperUtil.wrap(obj, LinkExtractor.class);
+    LinkExtractor wrapper = WrapperUtil.wrap(obj, LinkExtractor.class);
     assertTrue(wrapper instanceof LinkExtractorWrapper);
     assertTrue(WrapperUtil.unwrap(wrapper) instanceof MockLinkExtractor);
     Error err = new LinkageError("bar");
