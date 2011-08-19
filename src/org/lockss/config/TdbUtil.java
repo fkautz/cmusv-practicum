@@ -1,3 +1,35 @@
+/*
+ * $Id: TdbUtil.java,v 1.5 2011/08/19 10:36:18 easyonthemayo Exp $
+ */
+
+/*
+
+Copyright (c) 2010-2011 Board of Trustees of Leland Stanford Jr. University,
+all rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+STANFORD UNIVERSITY BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of Stanford University shall not
+be used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from Stanford University.
+
+*/
+
 package org.lockss.config;
 
 import java.util.*;
@@ -7,23 +39,22 @@ import org.lockss.daemon.TitleConfig;
 import org.lockss.plugin.ArchivalUnit;
 import org.lockss.plugin.AuHealthMetric;
 import org.lockss.plugin.AuOrderComparator;
-import org.lockss.plugin.AuHealthMetric.HealthMetric;
 import org.lockss.plugin.AuHealthMetric.PreservationStatus;
-import org.lockss.state.AuState;
-import org.lockss.state.SubstanceChecker;
 
 /**
- * Static utility methods for getting lists of Tdb entities. Sometimes the process of retrieving a list 
- * of entities that meet particular criteria (for example only those TdbAus which are configured 
- * or preserved) can be convoluted and require going through other formats such as ArchivalUnit.
+ * Static utility methods for getting lists of Tdb entities. Sometimes the 
+ * process of retrieving a list of entities that meet particular criteria 
+ * (for example only those TdbAus which are configured or preserved) can be 
+ * convoluted and require going through other formats such as ArchivalUnit.
  * The static methods in this class attempt to mitigate the complexity.
  * <p>
- * Could be more efficient. All retrievals are made from the current Tdb record which is retrieved 
- * from the CurrentConfig. It might be desirable to provide a parallel method for each one which 
- * takes a Tdb argument, or to instantiate the class with a tdb reference.
+ * Could be more efficient. All retrievals are made from the current Tdb 
+ * record which is retrieved from the CurrentConfig. It might be desirable to 
+ * provide a parallel method for each one which takes a Tdb argument, or to 
+ * instantiate the class with a tdb reference.
  * <p>
- * Currently TdbAu objects are returned as Collections, but it might be more useful to return 
- * (ordered) Lists. 
+ * Currently TdbAu objects are returned as Collections, but it might be more 
+ * useful to return (ordered) Lists. 
  * <p>
  * Caching should be implemented for the lists of TdbTitles where possible. 
  * 
@@ -38,7 +69,8 @@ public class TdbUtil {
    * will not be included and that may result in a coverage gap within a range 
    * of AUs.
    */
-  public static final float DEFAULT_HEALTH_INCLUSION_THRESHOLD = .8f;
+  public static final float DEFAULT_HEALTH_INCLUSION_THRESHOLD = AuHealthMetric.calculateInclusionThreshold();
+  //public static final float DEFAULT_HEALTH_INCLUSION_THRESHOLD = .8f;
 
   /**
    * Get the Tdb record from the current configuration.
@@ -197,7 +229,8 @@ public class TdbUtil {
   }*/
 
   /**
-   * Get ArchivalUnit records for all the AUs which are configured in this LOCKSS box.
+   * Get ArchivalUnit records for all the AUs which are configured in this 
+   * LOCKSS box.
    * 
    * @return a collection of ArchivalUnit objects
    */
@@ -206,9 +239,9 @@ public class TdbUtil {
   }
 
   /**
-   * Get ArchivalUnit records for all the AUs which are preserved in this LOCKSS box.
-   * This relies on the PreservationStatus enum class to provide an interpretation
-   * of the ArchivalUnit's status.  
+   * Get ArchivalUnit records for all the AUs which are preserved in this 
+   * LOCKSS box. This relies on the PreservationStatus enum class to provide 
+   * an interpretation of the ArchivalUnit's status.  
    * 
    * @return a collection of ArchivalUnit objects
    */
@@ -216,9 +249,8 @@ public class TdbUtil {
     List<ArchivalUnit> aus = new ArrayList<ArchivalUnit>();
     LockssDaemon daemon = LockssDaemon.getLockssDaemon();
     for (ArchivalUnit au : getConfiguredAus()) {
-      PreservationStatus ps = PreservationStatus.interpret(AuHealthMetric.getHealthMetrics(au));
-      //System.out.format("Checking AU health %s >= %s\n", ps.health, DEFAULT_HEALTH_INCLUSION_THRESHOLD);
-      if (ps.health >= DEFAULT_HEALTH_INCLUSION_THRESHOLD) aus.add(au);
+      if (AuHealthMetric.getHealth(au) >= DEFAULT_HEALTH_INCLUSION_THRESHOLD) 
+	aus.add(au);
     }
     return aus;
   }
@@ -235,9 +267,9 @@ public class TdbUtil {
   }
 
   /**
-   * Get records for all the TdbAus actually preserved in this box. An AU should 
-   * appear in this list iff it is configured for collection, has been collected,
-   * and has a health above the threshold.
+   * Get records for all the TdbAus actually preserved in this box. An AU 
+   * should appear in this list iff it is configured for collection, has 
+   * been collected, and has a health above the threshold.
    * 
    * @return a list of TdbAu objects
    */
@@ -246,8 +278,8 @@ public class TdbUtil {
   }
 
   /**
-   * Get a list of all titles from which at least one AU is configured to be archived locally 
-   * on this LOCKSS box.
+   * Get a list of all titles from which at least one AU is configured to be 
+   * archived locally on this LOCKSS box.
    * 
    * @return a collection of TdbTitle objects
    */
@@ -266,9 +298,10 @@ public class TdbUtil {
   }
   
   /**
-   * Get a collection of TdbTitles which represent the titles containing the supplied ArchivalUnits.
-   * If there is no TitleConfig for a set of ArchivalUnits, there will be no corresponding TdbTitle 
-   * in the returned collection.
+   * Get a collection of TdbTitles which represent the titles containing the 
+   * supplied ArchivalUnits. If there is no TitleConfig for a set of 
+   * ArchivalUnits, there will be no corresponding TdbTitle in the returned 
+   * collection.
    *  
    * @param units a collection of ArchivalUnits
    * @return a collection of TdbTitles containing the supplied ArchivalUnits
@@ -287,9 +320,11 @@ public class TdbUtil {
    * @param units
    * @return
    */
-  public static Map<TdbTitle, List<ArchivalUnit>> mapTitlesToAus(Collection<ArchivalUnit> units) {
+  public static Map<TdbTitle, List<ArchivalUnit>> mapTitlesToAus(
+      Collection<ArchivalUnit> units) {
     if (units==null) return Collections.emptyMap();
-    Map<TdbTitle, List<ArchivalUnit>> tdbTitles = new HashMap<TdbTitle, List<ArchivalUnit>>();
+    Map<TdbTitle, List<ArchivalUnit>> tdbTitles = 
+      new HashMap<TdbTitle, List<ArchivalUnit>>();
     // Add each AU to a list for its title
     for (final ArchivalUnit unit : units) {
       TdbAu au = getTdbAu(unit);
@@ -300,14 +335,16 @@ public class TdbUtil {
       }
     }
     // Order each list
-    for (List<ArchivalUnit> list : tdbTitles.values()) Collections.sort(list, new AuOrderComparator());
+    for (List<ArchivalUnit> list : tdbTitles.values()) 
+      Collections.sort(list, new AuOrderComparator());
     return tdbTitles; 
   }
 
   /**
-   * Get a collection of TdbAus which correspond to the the supplied ArchivalUnits. Note
-   * that if an ArchivalUnit has no TitleConfig, there will be no corresponding TdbAu 
-   * in the returned collection, and so it may differ in size to the argument.
+   * Get a collection of TdbAus which correspond to the supplied ArchivalUnits.
+   * Note that if an ArchivalUnit has no TitleConfig, there will be no 
+   * corresponding TdbAu in the returned collection, and so it may differ in 
+   * size to the argument.
    *   
    * @param units a collection of ArchivalUnits
    * @return a collection of TdbAus corresponding to the supplied ArchivalUnits
@@ -321,10 +358,28 @@ public class TdbUtil {
     return tdbAus; 
   }
 
+  /**
+   * For each of the the supplied ArchivalUnits, get the corresponding TdbAu 
+   * and map it to the AU. Note that if an ArchivalUnit has no TitleConfig, 
+   * there will be no corresponding TdbAu in the returned map, and so it may 
+   * differ in size to the argument.
+   *   
+   * @param units a collection of ArchivalUnits
+   * @return a map of TdbAus to ArchivalUnits
+   */
+  public static Map<TdbAu, ArchivalUnit> mapTdbAusToAus(Collection<ArchivalUnit> units) {
+    Map<TdbAu, ArchivalUnit> map = new HashMap<TdbAu, ArchivalUnit>();
+    for (ArchivalUnit unit : units) {
+      TdbAu tdbAu = getTdbAu(unit);
+      if (tdbAu!=null) map.put(tdbAu, unit); 
+    }
+    return map; 
+  }
+
   
   /** 
-   * An enum representing the various scopes which can be requested and returned for the 
-   * contents of a LOCKSS box. 
+   * An enum representing the various scopes which can be requested and 
+   * returned for the contents of a LOCKSS box. 
    */
   public static enum ContentScope {
     /** Everything available according to the TDB files. */

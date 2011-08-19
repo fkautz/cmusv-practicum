@@ -1,12 +1,45 @@
+/*
+ * $Id: TestKbartConverter.java,v 1.8 2011/08/19 10:36:18 easyonthemayo Exp $
+ */
+
+/*
+
+Copyright (c) 2010-2011 Board of Trustees of Leland Stanford Jr. University,
+all rights reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+STANFORD UNIVERSITY BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of Stanford University shall not
+be used in advertising or otherwise to promote the sale, use or other dealings
+in this Software without prior written authorization from Stanford University.
+
+*/
 package org.lockss.exporter.kbart;
 
 import java.util.*;
 
 import org.lockss.config.*;
 import org.lockss.config.Tdb.TdbException;
+import org.lockss.exporter.kbart.KbartConverter.TitleRange;
 import org.lockss.exporter.kbart.KbartTitle.Field;
 import org.lockss.plugin.ArchivalUnit;
-import org.lockss.test.LockssTestCase;
+import org.lockss.plugin.Plugin;
+import org.lockss.test.*;
 import org.lockss.util.NumberUtil;
 
 
@@ -20,23 +53,17 @@ import org.lockss.util.NumberUtil;
  */
 public class TestKbartConverter extends LockssTestCase {
 
-  //private KbartConverter conv;
-  //private Tdb tdb;
+  // The base for an auid; note that if this is removed from the TDB files,
+  // the tests may break.
+  static final String auidAbsintheBase = 
+    "org|lockss|plugin|absinthe|AbsinthePlugin&base_url~http%3A%2F%2Fabsintheliteraryreview%2Ecom%2F&year~";
+  static final String auid1 = auidAbsintheBase+"2003";
+  static final String auid2 = auidAbsintheBase+"2004";
+  static final String auid3 = auidAbsintheBase+"2005";
   
-  protected void setUp() throws Exception {
-    super.setUp();
-    //this.tdb = TdbTestUtil.makeTestTdb();
-    //this.conv = new KbartConverter(tdb);
-  }
-
-  protected void tearDown() throws Exception {
-    super.tearDown();
-    //this.conv = null;
-  }
-
-  // TODO Unwritten test
+  
   public final void testExtractAllTitles() {
-    //fail("Not yet implemented");
+    // TODO Unwritten test
     // extractAllTitles() loops through titles for each publisher and runs createKbartTitles()
   }
 
@@ -69,32 +96,43 @@ public class TestKbartConverter extends LockssTestCase {
   }
 
   public final void testConvertAus() {
+    boolean showHealth = true;
+    boolean rangeFieldsIncluded = true;
+    
     Map<TdbTitle, List<ArchivalUnit>> emptyMap = Collections.emptyMap();
-    assertEmpty(KbartConverter.convertAus(null));
-    assertEmpty(KbartConverter.convertAus(emptyMap));
+    assertEmpty(KbartConverter.convertAus(null, showHealth, rangeFieldsIncluded));
+    assertEmpty(KbartConverter.convertAus(emptyMap, showHealth, rangeFieldsIncluded));
 
     // TODO Test a list of AUs (how to create dummy AUs?)
     final List<ArchivalUnit> ausNull = null;
     final List<ArchivalUnit> ausEmpty = Collections.emptyList();
+    final List<ArchivalUnit> ausMock = makeMockAuList();
+    
     // Test null
-    assertIsomorphic(KbartConverter.createKbartTitles(ausNull), 
-	KbartConverter.convertAus(TdbUtil.mapTitlesToAus(ausNull))
+    assertIsomorphic(KbartConverter.createKbartTitles(ausNull, showHealth, rangeFieldsIncluded), 
+	KbartConverter.convertAus(null, showHealth, rangeFieldsIncluded)
     );
-    assertIsomorphic(KbartConverter.createKbartTitles(ausNull), 
-	KbartConverter.convertAus(null)
-    );
-    // Test empty list
-    assertIsomorphic(KbartConverter.createKbartTitles(ausEmpty), 
-	KbartConverter.convertAus(TdbUtil.mapTitlesToAus(ausEmpty))
-    );
+    // Test null list, empty list, list of mock AUs
+    for (List<ArchivalUnit> lau : Arrays.asList(ausNull, ausEmpty, ausMock)) {
+      assertIsomorphic(
+	  KbartConverter.createKbartTitles(
+	      lau, showHealth, rangeFieldsIncluded
+	  ), 
+	  KbartConverter.convertAus(
+	      TdbUtil.mapTitlesToAus(lau), showHealth, rangeFieldsIncluded
+	  )
+      );
+    }
+    
+    
     // Test empty map against map with empty value lists
     try {
       Map<TdbTitle, List<ArchivalUnit>> emptyAusMap = new HashMap<TdbTitle, List<ArchivalUnit>>() {{
 	put(TdbTestUtil.makeRangeTestTitle(false), ausEmpty);
 	put(TdbTestUtil.makeRangeTestTitle(false), ausEmpty);
       }};
-      assertIsomorphic(KbartConverter.createKbartTitles(ausEmpty), 
-	  KbartConverter.convertAus(emptyAusMap)
+      assertIsomorphic(KbartConverter.createKbartTitles(ausEmpty, showHealth, rangeFieldsIncluded), 
+	  KbartConverter.convertAus(emptyAusMap, showHealth, rangeFieldsIncluded)
       );
     } catch (TdbException e) {
       fail("Exception while making range test title: "+e);
@@ -106,8 +144,19 @@ public class TestKbartConverter extends LockssTestCase {
   public final void testCreateKbartTitlesCollectionAus() {
     // If there are no AUs, an empty list should be returned
     Collection<ArchivalUnit> aus = Collections.emptyList();
-    assertEmpty(KbartConverter.createKbartTitles(aus));
-    // TODO Test with dummy AUs
+    assertEmpty(KbartConverter.createKbartTitles(aus, true, true));
+    aus = makeMockAuList();
+    boolean showHealth = true;
+    List<KbartTitle> titles = KbartConverter.createKbartTitles(aus, showHealth, true);
+    // The result should be at most the size of the AU list 
+    assertNotNull(titles);
+    //assertNotEmpty(titles); // the result may be empty
+    // Note that the result will in fact be empty using mock AUs which don't 
+    // correspond to TDB entries.
+    assertTrue(titles.size()<=aus.size());
+    // If we asked for health values to be calculated, the list should contain 
+    // wrapped KbartTitles:
+    if (showHealth && titles.size()>0) assertTrue(titles.get(0) instanceof KbartTitleHealthWrapper);
   }
 
   // Test the thin wrapper method which gets a List of TdbAus from a TdbTitle  
@@ -120,6 +169,61 @@ public class TestKbartConverter extends LockssTestCase {
     // createKbartTitlesTdbTitle() merely extracts TdbAus from a dummy title 
   }
 
+  /**
+   * The createKbartTitlesWithRanges() method is called by other createKbartTitles() 
+   * methods and gets exercised by the tests for those methods. This test performs
+   * some generic tests to ensure that the TitleRanges mapped to by the KbartTitles
+   * have sensible parameters. 
+   */
+  public final void testCreateKbartTitlesWithRanges() {
+    List<TdbAu> noAus = Collections.emptyList();
+    assertEmpty(KbartConverter.createKbartTitlesWithRanges(noAus));
+    
+    TdbTitle rangeTitle;
+    TdbTitle rangeToNowTitle;
+    try {
+      rangeTitle = TdbTestUtil.makeRangeTestTitle(true);
+      rangeToNowTitle = TdbTestUtil.makeRangeToNowTestTitle();
+      for (TdbTitle title : Arrays.asList(rangeTitle, rangeToNowTitle)) {
+	List<TdbAu> aus = new ArrayList<TdbAu>(title.getTdbAus());
+	Map<KbartTitle, TitleRange> map = KbartConverter.createKbartTitlesWithRanges(aus);
+	// The map should have at least one title
+	assertTrue(map.size()>=1);
+	// Put the titles in order
+	List<KbartTitle> sortedKeys = new ArrayList<KbartTitle>(map.keySet());
+	KbartConverter.sortKbartTitles(sortedKeys); // This sort may not be necessery
+	// Keep track of the ranges
+	int totalRangeSize = 0;
+	TitleRange prevRange = null;
+	TitleRange currentRange;
+	for (KbartTitle kbt : sortedKeys) {
+	  currentRange = map.get(kbt);
+	  int s = currentRange.tdbAus.size();
+	  // Each TitleRange should be of a size no bigger than the full set of aus
+	  assertTrue(s<=aus.size());
+	  assertTrue(s>0);
+	  // If there was a previous range, check the boundary TdbAus
+	  if (prevRange!=null) {
+	    // TdbAu following previous last should be the first of this one
+	    assertEquals(aus.get(totalRangeSize+1), currentRange.first);
+	  } else {
+	    // First TdbAu should be first of first range
+	    assertEquals(aus.get(0), currentRange.first);
+	  }
+	  // Set the previous range and add the range size to the total
+	  prevRange = currentRange;
+	  totalRangeSize += currentRange.tdbAus.size();
+	}
+	// The sum should be equal to the original list size
+	assertEquals(aus.size(), totalRangeSize);
+	// The last TdbAu should be the same as the last of the final range
+	assertEquals(aus.get(aus.size()-1), prevRange.last);
+      }
+    } catch (TdbException e) {
+      fail("Could not create TdbTitles: "+e);
+    }
+  }
+  
   // Test the main createKbartTitles() method
   public final void testCreateKbartTitlesTdbTitle() {
     try {
@@ -200,5 +304,23 @@ public class TestKbartConverter extends LockssTestCase {
       assertTrue(d+" should be a valid publication date", KbartConverter.isPublicationDate(d));
     }
   }  
+  
+  List<ArchivalUnit> makeMockAuList() {
+    // Test with dummy AUs
+    MockLockssDaemon daemon = getMockLockssDaemon();
+    Plugin plugin = new MockPlugin();
+    /*ArchivalUnit au1 = MockArchivalUnit.newInited(daemon);
+    ArchivalUnit au2 = MockArchivalUnit.newInited(daemon);
+    ArchivalUnit au3 = MockArchivalUnit.newInited(daemon);
+    ArchivalUnit au4 = MockArchivalUnit.newInited(daemon);*/
+    ArchivalUnit au1 = new MockArchivalUnit(plugin, auid1);
+    ArchivalUnit au2 = new MockArchivalUnit(plugin, auid2);
+    ArchivalUnit au3 = new MockArchivalUnit(plugin, auid3);
+    List<ArchivalUnit> aus = Arrays.asList(au1, au2, au3);
+    for (ArchivalUnit au : aus) {
+      daemon.setNodeManager(new MockNodeManager(), au);
+    }
+    return aus;
+  }
   
 }

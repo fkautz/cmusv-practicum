@@ -1,10 +1,10 @@
 /*
- * $Id: KbartExporter.java,v 1.10 2011/08/10 14:21:24 easyonthemayo Exp $
+ * $Id: KbartExporter.java,v 1.12 2011/08/19 10:36:18 easyonthemayo Exp $
  */
 
 /*
 
-Copyright (c) 2010 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2010-2011 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -147,6 +147,10 @@ public abstract class KbartExporter {
    * KBART.
    */
   public static final boolean omitEmptyFieldsByDefault = false;
+  /**
+   * By default, we don't show health ratings as they are non-KBART.
+   */
+  public static final boolean showHealthRatingsByDefault = false;
   
   /** Default encoding for output. */
   public static final String DEFAULT_ENCODING = "UTF-8";
@@ -168,7 +172,6 @@ public abstract class KbartExporter {
     // Create an identity filter by default
     this.filter = KbartExportFilter.identityFilter(titles);
     // KBART info should be ordered alphabetically by title by default
-    //Collections.sort(titles, new KbartTitleAlphanumericComparator());
     Collections.sort(titles, 
 	KbartTitleComparatorFactory.getComparator(Field.PUBLICATION_TITLE)
     );
@@ -251,6 +254,7 @@ public abstract class KbartExporter {
    * the output.
    */
   private void doExport() throws IOException {
+    emitHeader();
     for (KbartTitle title : titles) {
       // Don't output some titles
       if (!filter.isTitleForOutput(title)) {
@@ -264,6 +268,13 @@ public abstract class KbartExporter {
     printWriter.flush();
   }
   
+  /**
+   * Format a header line and write it to the output.
+   *  
+   * @param names the names for each visible column
+   */
+  protected abstract void emitHeader() throws IOException;
+
   /**
    * Format a single title and write it to the output.
    *  

@@ -1,10 +1,10 @@
 /*
- * $Id: SeparatedValuesKbartExporter.java,v 1.5 2011/08/10 14:21:25 easyonthemayo Exp $
+ * $Id: SeparatedValuesKbartExporter.java,v 1.7 2011/08/19 10:36:18 easyonthemayo Exp $
  */
 
 /*
 
-Copyright (c) 2010 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2010-2011 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -41,9 +41,9 @@ import org.lockss.util.Logger;
 import org.lockss.util.StringUtil;
 
 /**
- * Exports records as fields separated by a separator character. By default this is a tab.
- * When emitting records using a comma separator, fields are quoted if necessary, 
- * and quotes are escaped.
+ * Exports records as fields separated by a separator character. By default 
+ * this is a tab. When emitting records using a comma separator, fields are 
+ * quoted if necessary, and quotes are escaped.
  * 
  * @author Neil Mayo
  *
@@ -63,7 +63,8 @@ public class SeparatedValuesKbartExporter extends KbartExporter {
    * 
    * @param titles the titles which are to be exported
    */
-  public SeparatedValuesKbartExporter(List<KbartTitle> titles, OutputFormat format) {
+  public SeparatedValuesKbartExporter(List<KbartTitle> titles, 
+      OutputFormat format) {
     this(titles, format, SEPARATOR_TAB);
   }
 
@@ -72,7 +73,8 @@ public class SeparatedValuesKbartExporter extends KbartExporter {
    * 
    * @param titles the titles which are to be exported
    */
-  public SeparatedValuesKbartExporter(List<KbartTitle> titles, OutputFormat format, String sep) {
+  public SeparatedValuesKbartExporter(List<KbartTitle> titles, 
+      OutputFormat format, String sep) {
     super(titles, format);
     this.SEPARATOR = sep;
   }
@@ -84,7 +86,12 @@ public class SeparatedValuesKbartExporter extends KbartExporter {
     // Write a byte-order mark (BOM) for excel 
     writeBOM(os);
     //printWriter.println( constructRecord(KbartTitle.Field.getLabels()) );
-    printWriter.println( constructRecord(filter.getVisibleFieldOrder()) );
+    //printWriter.println( constructRecord(filter.getVisibleFieldOrder()) );
+  }
+
+  @Override
+  protected void emitHeader() {
+    printWriter.println( constructRecord(filter.getColumnLabels(scope)) );
   }
 
   @Override
