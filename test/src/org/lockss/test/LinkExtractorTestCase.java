@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: LinkExtractorTestCase.java,v 1.4 2011/08/30 04:42:11 tlipkis Exp $
  */
 
 /*
@@ -93,7 +93,7 @@ public abstract class LinkExtractorTestCase extends LockssTestCase {
 
     String enc = Constants.DEFAULT_ENCODING;
 
-    extractor.extractUrls(new MockArchivalUnit(),
+    extractor.extractUrls(mau,
 			  mcu.getUnfilteredInputStream(),
 			  enc, mcu.getUrl(), callback);
       
