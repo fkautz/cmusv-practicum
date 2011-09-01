@@ -1,10 +1,10 @@
 /*
- * $Id$
+ * $Id: BioOneAllenPressFilterRule.java,v 1.1 2011/09/01 21:38:17 thib_gc Exp $
  */
 
 /*
 
-Copyright (c) 2000-2003 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2011 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -41,7 +41,7 @@ import org.lockss.plugin.FilterRule;
 /**
  * Filters out menu, comments, javascript, html tags, and whitespace.
  */
-public class BioOneFilterRule implements FilterRule {
+public class BioOneAllenPressFilterRule implements FilterRule {
   public Reader createFilteredReader(Reader reader) {
     List tagList = ListUtil.list(
         new HtmlTagFilter.TagPair("<!--", "-->", true),

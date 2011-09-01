@@ -1,10 +1,10 @@
 /*
- * $Id$
+ * $Id: BioOneAllenPressArticleIteratorFactory.java,v 1.1 2011/09/01 21:38:17 thib_gc Exp $
  */
 
 /*
 
-Copyright (c) 2000-2010 Board of Trustees of Leland Stanford Jr. University,
+Copyright (c) 2000-2011 Board of Trustees of Leland Stanford Jr. University,
 all rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -42,7 +42,7 @@ import org.lockss.plugin.base.*;
 import org.lockss.extractor.*;
 import org.lockss.daemon.PluginException;
 
-public class BioOneArticleIteratorFactory
+public class BioOneAllenPressArticleIteratorFactory
   implements ArticleIteratorFactory,
 	     ArticleMetadataExtractorFactory {
   static Logger log = Logger.getLogger("BioOneArticleIterator");
