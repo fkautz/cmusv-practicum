@@ -1,5 +1,5 @@
 /*
- * $Id$
+ * $Id: CurrentConfig.java,v 1.6 2011/09/19 03:24:12 tlipkis Exp $
  */
 
 /*
@@ -43,7 +43,8 @@ public class CurrentConfig {
     //can't be instantiated
   }
 
-  /** Return current configuration */
+  /** Return current configuration, or an empty configuration if there is
+   * no current configuration. */
   public static Configuration getCurrentConfig() {
     return ConfigManager.getCurrentConfig();
   }
